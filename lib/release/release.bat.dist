@@ -1,0 +1,57 @@
+::SET ECHO OFF
+@echo off
+
+::SET DIRECTORIES
+SET SCRIPT_DIR=%~dp0
+SET PROJECT_DIR=%SCRIPT_DIR%..\..
+SET VBDE=%PROJECT_DIR%\..\..\..
+
+::GET DATE INDEPENDENT OF SYSTEM SETTINGS
+FOR /F "usebackq tokens=1,2 delims==" %%i IN (`wmic os get LocalDateTime /VALUE 2^>NUL`) DO IF '.%%i.'=='.LocalDateTime.' SET LDT=%%j
+SET LDT=%LDT:~0,4%-%LDT:~4,2%-%LDT:~6,2%
+
+ECHO STARTING RELEASE PROCESS...
+ECHO.
+
+FOR %%M IN (debug, beta, tools) DO (
+
+	::OUTPUT MODE
+	ECHO Mode: %%M
+
+	::BUILD ROM
+	ECHO|SET /p="Building... "
+	SET BUILD_MODE=%%M
+	CALL "%VBDE%\system\batch\build.bat" "%PROJECT_DIR%" >nul 2>&1
+	ECHO done.
+
+	::PAD ROM
+	ECHO|SET /p="Padding... "
+	START "" "%VBDE%\tools\rom\Pad_VB\Pad_VB.exe" "%PROJECT_DIR%\build\output.vb" 3 >nul 2>&1
+	ECHO done.
+
+	::UPLOAD TO FTP
+	ECHO|SET /p="Uploading... "
+	IF EXIST %SCRIPT_DIR%upload.ftp DEL %SCRIPT_DIR%upload.ftp
+	ECHO open planetvb.com>>%SCRIPT_DIR%upload.ftp
+	ECHO [USERNAME]>>%SCRIPT_DIR%upload.ftp
+	ECHO [PASSWORD]>>%SCRIPT_DIR%upload.ftp
+	ECHO mkdir %%M>>%SCRIPT_DIR%upload.ftp
+	ECHO cd %%M>>%SCRIPT_DIR%upload.ftp
+	ECHO binary>>%SCRIPT_DIR%upload.ftp
+	IF %%M==debug (
+		ECHO put %PROJECT_DIR%\build\output_pad.vb "VUEngine Platformer Demo (Debug) (%LDT%).vb">>%SCRIPT_DIR%upload.ftp
+	) ELSE IF %%M==tools (
+		ECHO put %PROJECT_DIR%\build\output_pad.vb "VUEngine Platformer Demo (Tools) (%LDT%).vb">>%SCRIPT_DIR%upload.ftp
+	) ELSE (
+		ECHO put %PROJECT_DIR%\build\output_pad.vb "VUEngine Platformer Demo (Release) (%LDT%).vb">>%SCRIPT_DIR%upload.ftp
+	)
+	ECHO bye>>%SCRIPT_DIR%upload.ftp
+	FTP -s:%SCRIPT_DIR%upload.ftp >nul 2>&1
+	DEL %SCRIPT_DIR%upload.ftp
+	ECHO done.
+
+	ECHO.
+)
+
+ECHO ALL DONE.
+ECHO.
