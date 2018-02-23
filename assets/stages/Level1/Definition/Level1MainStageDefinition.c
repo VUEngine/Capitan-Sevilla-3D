@@ -73,6 +73,32 @@ extern EntityDefinition TREE_1_IM;
 extern EntityDefinition TREE_BG_1_IM;
 extern EntityDefinition WALL_1_IM;
 
+extern CharSetDefinition CITY_BG_A_CH;
+extern CharSetDefinition CITY_BG_B_CH;
+extern CharSetDefinition CITY_FLOOR_CH;
+extern CharSetDefinition CONTAINER_1_CH;
+extern CharSetDefinition GUI_CH;
+extern CharSetDefinition HERO_CH;
+extern CharSetDefinition HERO_BLACK_CH;
+extern CharSetDefinition HOUSE_1_CH;
+extern CharSetDefinition HOUSE_1_BLACK_CH;
+extern CharSetDefinition LANTERN_1_CH;
+extern CharSetDefinition LANTERN_1_BLACK_CH;
+extern CharSetDefinition MOTORBIKE_1_CH;
+
+extern TextureDefinition CITY_BG_A_TX;
+extern TextureDefinition CITY_BG_B_TX;
+extern TextureDefinition CITY_FLOOR_TX;
+extern TextureDefinition CONTAINER_1_TX;
+extern TextureDefinition GUI_TX;
+extern TextureDefinition HERO_TX;
+extern TextureDefinition HERO_BLACK_TX;
+extern TextureDefinition HOUSE_1_TX;
+extern TextureDefinition HOUSE_1_BLACK_TX;
+extern TextureDefinition LANTERN_1_TX;
+extern TextureDefinition LANTERN_1_BLACK_TX;
+extern TextureDefinition MOTORBIKE_1_TX;
+
 extern Size collision_2_28_8;
 extern Size collision_64_2_8;
 
@@ -94,7 +120,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&COLLISION_CL,			{-8, 96, 0, 0},				0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
 	{&COLLISION_CL,			{256, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-//	{&LANTERN_1_IM,			{32, 123, 0, 0}, 			0, "Start", NULL, NULL, false},
+	{&LANTERN_1_IM,			{32, 123, 0, 0}, 			0, "Start", NULL, NULL, false},
 	{&MOTORBIKE_1_IM,		{104, 158, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&HOUSE_1_IM,			{200, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
 	{&CONTAINER_1_IM,		{181, 161, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
@@ -113,15 +139,17 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&HOUSE_2_IM,			{864, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
 	{&GARAGE_1_IM,			{1040, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
 	{&TRASH_BIN_1_IM,		{1100, 155, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&FENCE_1_IM,			{1150, 151, (LAYER_1)-16, 0}, 			0, NULL, NULL, NULL, false},
-	{&BUSH_BG_1_IM,			{1212, 120, LAYER_2, 0}, 			0, NULL, NULL, NULL, false},
+	{&FENCE_1_IM,			{1150, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
+	{&BUSH_BG_1_IM,			{1212, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 	{&LANTERN_1_IM,			{1230, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
 
-	{&BUSH_BG_2_IM,			{1584, 120, LAYER_2, 0}, 			0, NULL, NULL, NULL, false},
-	{&PLAYGROUND_SIGN_1_IM,	{1320, 100, LAYER_1, 0}, 			0, NULL, NULL, NULL, false},
-	{&PLAYGROUND_1_IM,		{1422, 112, LAYER_1, 0}, 			0, NULL, NULL, NULL, false},
-	{&STATUE_1_IM,			{1518, 112, LAYER_1, 0}, 			0, NULL, NULL, NULL, false},
-	{&FENCE_2_IM,			{1414, 151, (LAYER_1)-16, 0}, 			0, NULL, NULL, NULL, false},
+	{&BUSH_BG_2_IM,			{1584, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,			{1272, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,			{1328, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&PLAYGROUND_SIGN_1_IM,	{1320, 100, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&PLAYGROUND_1_IM,		{1422, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&STATUE_1_IM,			{1518, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&FENCE_2_IM,			{1414, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_IM,			{1618, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
 
@@ -130,8 +158,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&BARBERIA_1_IM,		{1810, 95, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&GARAGE_2_IM,			{1994, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
 	{&HOUSE_3_IM,			{2170, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&CLOTHES_1_IM,			{2322, 52, (LAYER_1)+16, 0}, 	0, NULL, NULL, NULL, false},
-	//{&BIKE_1_IM,			{2354, 128, (LAYER_1)+16, 0}, 	0, NULL, NULL, NULL, false},
+	{&CLOTHES_1_IM,			{2322, 52, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
+	{&BIKE_1_IM,			{2367, 159, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
 
 	{&COLLISION_CL,			{2304, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
@@ -141,7 +169,6 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&HOUSE_5_IM,			{3098, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&LANTERN_1_IM,			{3354, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
-{&LANTERN_1_IM,			{3354, 123, 0, 0}, 			0, "Start", NULL, NULL, false},
 	{&TREE_1_IM,			{3378, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 	{&BENCH_1_IM,			{3434, 159, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 
@@ -178,11 +205,37 @@ FontROMDef* const LEVEL_1_MAIN_STAGE_ST_FONTS[] =
 
 CharSetROMDef* const LEVEL_1_MAIN_STAGE_ST_CHARSETS[] =
 {
+	&CITY_BG_A_CH,
+	&CITY_BG_B_CH,
+	&CITY_FLOOR_CH,
+	//&CONTAINER_1_CH,
+	&GUI_CH,
+	&HERO_CH,
+	&HERO_BLACK_CH,
+/*	&HOUSE_1_CH,
+    &HOUSE_1_BLACK_CH,
+	&LANTERN_1_CH,
+	&LANTERN_1_BLACK_CH,
+	&MOTORBIKE_1_CH,*/
+
 	NULL
 };
 
 TextureDefinition* const LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 {
+	&CITY_BG_A_TX,
+	&CITY_BG_B_TX,
+	&CITY_FLOOR_TX,
+	//&CONTAINER_1_TX,
+	&GUI_TX,
+	&HERO_TX,
+	&HERO_BLACK_TX,
+	/*&HOUSE_1_TX,
+    &HOUSE_1_BLACK_TX,
+	&LANTERN_1_TX,
+	&LANTERN_1_BLACK_TX,
+	&MOTORBIKE_1_TX,*/
+
 	NULL
 };
 
@@ -245,9 +298,9 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		48,
+		16,
 		// unload padding
-		32,
+		0,
 		// streaming amplitude
 		16,
 		// particle removal delay cycles
@@ -260,7 +313,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		1,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		8,
+		32,
 
 		// maximum number of rows to compute on each call to the affine functions
 		48,
@@ -342,10 +395,8 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 
 		// optical configuration values
 		{
-			// maximum x view distance's power into the horizon
-			6,
-			// maximum y view distance's power into the horizon
-			14,
+			// maximum x view distance's power into the horizon (x, y)
+			6, 14,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)
@@ -361,7 +412,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 
 	// physics
 	{
-		// gravity
+		// gravity (x, y, z)
 		{
 			__I_TO_FIX10_6(0),
 			__F_TO_FIX10_6(__GRAVITY),

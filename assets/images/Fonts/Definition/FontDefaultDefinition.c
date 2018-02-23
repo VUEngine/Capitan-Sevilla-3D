@@ -41,7 +41,7 @@ CharSetROMDef PLATFORMER_DEFAULT_FONT_CH =
 {
 	// number of chars
 	//(sizeof(FontDefaultTiles) >> 2),
-	256,
+	128,
 
 	// allocation type
 	__NOT_ANIMATED,
