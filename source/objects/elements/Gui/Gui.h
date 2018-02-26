@@ -27,7 +27,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedEntity.h>
+#include <Entity.h>
 #include <macros.h>
 
 
@@ -36,46 +36,39 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define Gui_METHODS(ClassName)																			\
-		AnimatedEntity_METHODS(ClassName)															\
+		Entity_METHODS(ClassName)																		\
 
 #define Gui_SET_VTABLE(ClassName)																		\
-		AnimatedEntity_SET_VTABLE(ClassName)														\
+		Entity_SET_VTABLE(ClassName)																	\
 		__VIRTUAL_SET(ClassName, Gui, ready);															\
-		__VIRTUAL_SET(ClassName, Gui, handlePropagatedMessage);											\
 
 __CLASS(Gui);
 
 #define Gui_ATTRIBUTES																					\
-		/* it is derived from */																		\
-		AnimatedEntity_ATTRIBUTES																	\
+		Entity_ATTRIBUTES																				\
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define GUI_FONT	"GuiFont"
 #define GUI_X_POS	0
-#define GUI_Y_POS	26
+#define GUI_Y_POS	25
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Gui, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Gui, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Gui_constructor(Gui this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+void Gui_constructor(Gui this, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 void Gui_destructor(Gui this);
 void Gui_ready(Gui this, bool recursive);
 void Gui_printClock(Gui this);
-void Gui_printBestTime(Gui this);
-void Gui_printCoins(Gui this);
-void Gui_printEnergy(Gui this);
-void Gui_printKey(Gui this);
-void Gui_printLevel(Gui this);
+void Gui_printLives(Gui this);
+void Gui_printSausages(Gui this);
 void Gui_printAll(Gui this);
-bool Gui_handlePropagatedMessage(Gui this, int message);
 
 
 #endif

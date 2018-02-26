@@ -1,9 +1,9 @@
 
-//{{BLOCK(Car1)
+//{{BLOCK(CarBg2)
 
 //======================================================================
 //
-//	Car1, 72x56@2, 
+//	CarBg2, 72x56@2, 
 //	+ 46 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 9x7 
 //	Total size: 736 + 128 = 864
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int Car1Tiles[184] __attribute__((aligned(4)))=
+const unsigned int CarBg2Tiles[184] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0xFFC00000,0xC82BAAAC,0xC82BCA8B,0xFFF0EAAC,
 	0xFFFF0000,0x00000003,0xC000C000,0x303F3000,0x00030000,0x00030003,0x00000000,0x00000000,
@@ -42,7 +42,7 @@ const unsigned int Car1Tiles[184] __attribute__((aligned(4)))=
 	0xAC02AC0C,0xAC03AC03,0x8003B003,0x0030000C,0x2C0F2C33,0x08FC2333,0x00AA0220,0x00000000,
 };
 
-const unsigned short Car1Map[64] __attribute__((aligned(4)))=
+const unsigned short CarBg2Map[64] __attribute__((aligned(4)))=
 {
 	0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0001,0x0002,
 	0x0003,0x0000,0x0000,0x0000,0x0000,0x0004,0x0005,0x0006,
@@ -54,4 +54,4 @@ const unsigned short Car1Map[64] __attribute__((aligned(4)))=
 	0x0028,0x0029,0x002A,0x002B,0x002C,0x002D,0x0000,0x0000,
 };
 
-//}}BLOCK(Car1)
+//}}BLOCK(CarBg2)

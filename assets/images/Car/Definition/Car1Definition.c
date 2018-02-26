@@ -24,49 +24,80 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <BgmapSprite.h>
-#include <Gui.h>
-#include <macros.h>
+#include <libgccvb.h>
+#include <BgmapAnimatedSprite.h>
+#include <Actor.h>
+#include <MovingOneWayEntity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GuiTiles[];
-extern BYTE GuiMap[];
+extern BYTE Car1Tiles[];
+extern BYTE Car1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef GUI_CH =
+// a function which defines the frames to play
+AnimationFunctionROMDef CAR_1_MOVE_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{0, 1},
+
+	// number of cycles a frame of animation is displayed
+	8,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Move",
+};
+
+// an animation definition
+AnimationDescriptionROMDef CAR_1_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&CAR_1_MOVE_ANIM,
+		NULL,
+	}
+};
+
+CharSetROMDef CAR_1_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	52,
+	55,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
+	__ANIMATED_SINGLE,
 
 	// char definition
-	GuiTiles,
+	Car1Tiles,
 };
 
-TextureROMDef GUI_TX =
+TextureROMDef CAR_1_TX =
 {
-	// charset definition
-	(CharSetDefinition*)&GUI_CH,
+	(CharSetDefinition*)&CAR_1_CH,
 
 	// bgmap definition
-	GuiMap,
+	Car1Map,
 
 	// cols (max 64)
-	48,
+	11,
 
 	// rows (max 64)
 	5,
@@ -86,14 +117,14 @@ TextureROMDef GUI_TX =
 	false,
 };
 
-BgmapSpriteROMDef GUI_IM_SPRITE =
+BgmapSpriteROMDef CAR_1_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapSprite),
+		__TYPE(BgmapAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&GUI_TX,
+		(TextureDefinition*)&CAR_1_TX,
 
 		// transparent
 		false,
@@ -113,30 +144,46 @@ BgmapSpriteROMDef GUI_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const GUI_IM_SPRITES[] =
+BgmapSpriteROMDef* const CAR_1_SPRITES[] =
 {
-	&GUI_IM_SPRITE,
+	&CAR_1_SPRITE,
 	NULL
 };
 
-EntityROMDef GUI_IM =
+ActorROMDef CAR_1_AC =
 {
-	// class allocator
-	__TYPE(Gui),
+	{
+		{
+			// class allocator
+			__TYPE(MovingOneWayEntity),
 
-	// sprites
-	(SpriteROMDef**)GUI_IM_SPRITES,
+			// sprites
+			(SpriteROMDef**)CAR_1_SPRITES,
 
-	// collision shapes
-	NULL,
+			// collision shapes
+			(ShapeDefinition*)NULL,
 
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
+			// size
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{0, 0, 0},
 
-	// gameworld's character's type
-	kNoType,
+			// gameworld's character's type
+			kNoType,
 
-	// physical specification
-	NULL,
+			// physical specification
+			(PhysicalSpecification*)NULL,
+		},
+
+		// pointer to the animation definition for the character
+		(AnimationDescription*)&CAR_1_ANIM,
+
+		// initial animation
+		"Move",
+	},
+
+	// true to create a body
+	true,
+
+	// axes subject to gravity
+	__NO_AXIS
 };

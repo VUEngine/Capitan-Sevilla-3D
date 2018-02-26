@@ -34,15 +34,15 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Car1Tiles[];
-extern BYTE Car1Map[];
+extern BYTE CarBg2Tiles[];
+extern BYTE CarBg2Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef CAR_1_CH =
+CharSetROMDef CAR_BG_2_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -54,16 +54,16 @@ CharSetROMDef CAR_1_CH =
 	__NOT_ANIMATED,
 
 	// char definition
-	Car1Tiles,
+	CarBg2Tiles,
 };
 
-TextureROMDef CAR_1_TX =
+TextureROMDef CAR_BG_2_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&CAR_1_CH,
+	(CharSetDefinition*)&CAR_BG_2_CH,
 
 	// bgmap definition
-	Car1Map,
+	CarBg2Map,
 
 	// cols (max 64)
 	9,
@@ -86,14 +86,14 @@ TextureROMDef CAR_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef CAR_1_IM_SPRITE =
+BgmapSpriteROMDef CAR_BG_2_IM_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&CAR_1_TX,
+		(TextureDefinition*)&CAR_BG_2_TX,
 
 		// transparent
 		false,
@@ -113,13 +113,13 @@ BgmapSpriteROMDef CAR_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const CAR_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const CAR_BG_2_IM_SPRITES[] =
 {
-	&CAR_1_IM_SPRITE,
+	&CAR_BG_2_IM_SPRITE,
 	NULL
 };
 
-ShapeROMDef CAR_1_IM_SHAPES[] =
+ShapeROMDef CAR_BG_2_IM_SHAPES[] =
 {
 	{
 		// shape
@@ -175,7 +175,7 @@ ShapeROMDef CAR_1_IM_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-PhysicalSpecificationROMDef CAR_1_IM_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMDef CAR_BG_2_IM_PHYSICAL_PROPERTIES =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -187,16 +187,16 @@ PhysicalSpecificationROMDef CAR_1_IM_PHYSICAL_PROPERTIES =
 	__F_TO_FIX10_6(FLOOR_ELASTICITY),
 };
 
-EntityROMDef CAR_1_IM =
+EntityROMDef CAR_BG_2_IM =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)CAR_1_IM_SPRITES,
+	(SpriteROMDef**)CAR_BG_2_IM_SPRITES,
 
 	// collision shapes
-	(ShapeDefinition*)CAR_1_IM_SHAPES,
+	(ShapeDefinition*)CAR_BG_2_IM_SHAPES,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
@@ -206,5 +206,5 @@ EntityROMDef CAR_1_IM =
 	kNoType,
 
 	// physical specification
-	(PhysicalSpecification*)&CAR_1_IM_PHYSICAL_PROPERTIES,
+	(PhysicalSpecification*)&CAR_BG_2_IM_PHYSICAL_PROPERTIES,
 };

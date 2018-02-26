@@ -44,7 +44,8 @@ extern EntityDefinition BIKE_1_IM;
 extern EntityDefinition BULLY_1_AC;
 extern EntityDefinition BUSH_BG_1_IM;
 extern EntityDefinition BUSH_BG_2_IM;
-extern EntityDefinition CAR_1_IM;
+extern EntityDefinition CAR_1_AC;
+extern EntityDefinition CAR_BG_2_IM;
 extern EntityDefinition CAR_BG_1_IM;
 extern EntityDefinition CITY_BG_IM;
 extern EntityDefinition CITY_FLOOR_IM;
@@ -127,8 +128,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CONTAINER_1_IM,		{181, 161, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&TREE_1_IM,			{384, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 
-	{&BULLY_1_AC,			{320, 156, 0, 0}, 			0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,		{540, 160, -16, 0}, 		0, NULL, NULL, NULL, true},
+	{&CAR_1_AC,				{540, 164, -16, 0}, 		0, NULL, NULL, NULL, true},
+	{&BULLY_1_AC,			{640, 156, 16, 0}, 			0, NULL, NULL, NULL, true},
 
 	{&COLLISION_CL,			{768, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
@@ -140,7 +141,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&TREE_BG_1_IM,			{752, 130, (LAYER_2)+16, 0}, 0, NULL, NULL, NULL, false},
 	{&HOUSE_2_IM,			{864, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
 	{&GARAGE_1_IM,			{1040, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,		{1100, 160, -16, 0}, 		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_1_AC,		{1100, 128, 16, 0}, 		0, NULL, NULL, NULL, false},
 	{&TRASH_BIN_1_IM,		{1100, 155, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&FENCE_1_IM,			{1150, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&BUSH_BG_1_IM,			{1212, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
@@ -154,7 +155,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&PLAYGROUND_SIGN_1_IM,	{1320, 100, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&PLAYGROUND_1_IM,		{1422, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&STATUE_1_IM,			{1518, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,		{1518, 160, -16, 0}, 		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_1_AC,		{1518, 128, 16, 0}, 		0, NULL, NULL, NULL, false},
 	{&FENCE_2_IM,			{1414, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_IM,			{1618, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
@@ -180,7 +181,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&COLLISION_CL,			{3329, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&CAR_1_IM,				{3671, 147, 0, 0}, 			0, NULL, NULL, NULL, false},
+	{&CAR_BG_2_IM,				{3671, 147, 0, 0}, 			0, NULL, NULL, NULL, false},
 	{&HOUSE_6_IM,			{3675, 80, 0, 16}, 			0, NULL, NULL, NULL, false},
 
 	{&COLLISION_CL,			{3700, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
@@ -476,8 +477,8 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 	// offset from entry point (x, y, z)
 	{
 		32,
-		0,
-		1,
+		-16,
+		16,
 		0,
 	},
 
