@@ -81,3 +81,10 @@ void MovingOneWayEntity_ready(MovingOneWayEntity this, bool recursive)
 	Velocity velocity = {__I_TO_FIX10_6(-4), 0, 0};
 	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
 }
+
+bool MovingOneWayEntity_respawn(MovingOneWayEntity this __attribute__ ((unused)))
+{
+	ASSERT(this, "MovingOneWayEntity::respawn: null this");
+
+	return false;
+}

@@ -136,19 +136,6 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 
 		Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Walk");
 	}
-	else if(K_LU & userInput->pressedKey)
-	{
-		//Hero_lookBack(__SAFE_CAST(Hero, owner));
-
-		if(NULL != Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner)))
-		{
-			if(__VIRTUAL_CALL(Door, canEnter, Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner))))
-			{
-				Hero_enterDoor(__SAFE_CAST(Hero, owner));
-				return;
-			}
-		}
-	}
 }
 
 void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* owner, const UserInput* userInput)

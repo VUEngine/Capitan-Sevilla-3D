@@ -125,21 +125,6 @@ bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner
 
 void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, const UserInput* userInput)
 {
-	// check if in front of door and possibly enter it
-	if(K_LU & userInput->pressedKey)
-	{
-		//Hero_lookBack(__SAFE_CAST(Hero, owner));
-
-		if(NULL != Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner)))
-		{
-			if(__VIRTUAL_CALL(Door, canEnter, Hero_getOverlappedDoor(__SAFE_CAST(Hero, owner))))
-			{
-				Hero_enterDoor(__SAFE_CAST(Hero, owner));
-				return;
-			}
-		}
-	}
-
 	if((K_LL | K_LR | K_A) & userInput->pressedKey)
 	{
 		Acceleration acceleration =

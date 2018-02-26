@@ -150,7 +150,7 @@ BgmapSpriteROMDef* const HOVER_CAR_1_SPRITES[] =
 	NULL
 };
 
-ActorROMDef HOVER_CAR_1_AE =
+ActorROMDef HOVER_CAR_1_AC =
 {
 	{
 		{

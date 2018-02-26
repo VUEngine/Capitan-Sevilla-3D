@@ -123,7 +123,7 @@ typedef struct SaveData
 	u16 numberOfCollectedCoins;
 
 	// completion statuses for every level in the game
-	LevelStatus levelStatuses[LEVELS_IN_GAME];
+	LevelStatus levelStatuses[1];
 
 } SaveData;
 

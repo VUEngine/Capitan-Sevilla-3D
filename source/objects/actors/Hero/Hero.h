@@ -28,7 +28,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Actor.h>
-#include <Door.h>
 #include <ParticleSystem.h>
 #include <ProgressManager.h>
 #include <macros.h>
@@ -62,7 +61,7 @@ enum HeroPowerUps
 #define HERO_MAX_VELOCITY_X					__F_TO_FIX10_6(3.5f)
 #define HERO_MAX_VELOCITY_Y					__F_TO_FIX10_6(15)
 #define HERO_MAX_VELOCITY_Z					__F_TO_FIX10_6(4)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		__F_TO_FIX10_6(-300)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		__F_TO_FIX10_6(-280)
 
 #define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(-24/16), __PIXELS_TO_METERS(0)}
 
@@ -98,12 +97,6 @@ __CLASS(Hero);
 #define Hero_ATTRIBUTES																					\
 		/* it is derived from */																		\
 		Actor_ATTRIBUTES																				\
-		/* a reference to the last door the hero passed */												\
-		Door currentlyOverlappedDoor;																	\
-		/* hint entity */																				\
-		Entity hint;																					\
-		/* feet dust */																					\
-		ParticleSystem feetDust;																		\
 		/* bounding box to control camera's movement */													\
 		Entity cameraBoundingBox;																		\
 		/* used to know if gap must be changed */														\
@@ -152,10 +145,6 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 void Hero_flash(Hero this);
 void Hero_toggleFlashPalette(Hero this);
 void Hero_resetPalette(Hero this);
-Door Hero_getOverlappedDoor(Hero this);
-void Hero_enterDoor(Hero this);
-void Hero_showHint(Hero this, u32 hintType);
-void Hero_hideHint(Hero this);
 void Hero_die(Hero this);
 void Hero_collectKey(Hero this);
 bool Hero_hasKey(Hero this);
@@ -172,7 +161,6 @@ bool Hero_handlePropagatedMessage(Hero this, int message);
 void Hero_suspend(Hero this);
 void Hero_resume(Hero this);
 void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
-void Hero_getOutOfDoor(Hero this, Vector3D* outOfDoorPosition);
 bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionInformation);
 u16 Hero_getAxisForFlipping(Hero this);
 void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);

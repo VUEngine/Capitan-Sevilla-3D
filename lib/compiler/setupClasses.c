@@ -13,11 +13,8 @@
 #include <HeroMoving.h>
 #include <HeroState.h>
 #include <MovingEntity.h>
+#include <MovingOneWayEntity.h>
 #include <Collision.h>
-#include <Door.h>
-#include <GoalDoor.h>
-#include <KeyDoor.h>
-#include <LayerSwitchDoor.h>
 #include <Gui.h>
 #include <Collectable.h>
 #include <Item.h>
@@ -129,11 +126,8 @@ void setupClasses(void)
 	HeroMoving_setVTable();
 	HeroState_setVTable();
 	MovingEntity_setVTable();
+	MovingOneWayEntity_setVTable();
 	Collision_setVTable();
-	Door_setVTable();
-	GoalDoor_setVTable();
-	KeyDoor_setVTable();
-	LayerSwitchDoor_setVTable();
 	Gui_setVTable();
 	Collectable_setVTable();
 	Item_setVTable();

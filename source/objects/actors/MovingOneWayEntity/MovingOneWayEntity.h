@@ -41,6 +41,7 @@
 #define MovingOneWayEntity_SET_VTABLE(ClassName)														\
 		Actor_SET_VTABLE(ClassName)																		\
 		__VIRTUAL_SET(ClassName, MovingOneWayEntity, ready);											\
+		__VIRTUAL_SET(ClassName, MovingOneWayEntity, respawn);											\
 
 __CLASS(MovingOneWayEntity);
 
@@ -58,6 +59,7 @@ __CLASS_NEW_DECLARE(MovingOneWayEntity, ActorDefinition* actorDefinition, s16 id
 void MovingOneWayEntity_constructor(MovingOneWayEntity this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
 void MovingOneWayEntity_destructor(MovingOneWayEntity this);
 void MovingOneWayEntity_ready(MovingOneWayEntity this, bool recursive);
+bool MovingOneWayEntity_respawn(MovingOneWayEntity this);
 
 
 #endif

@@ -24,52 +24,83 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <BgmapSprite.h>
-#include <Box.h>
-#include <macros.h>
+#include <libgccvb.h>
+#include <BgmapAnimatedSprite.h>
+#include <Actor.h>
+#include <MovingOneWayEntity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Car1Tiles[];
-extern BYTE Car1Map[];
+extern BYTE Bully1Tiles[];
+extern BYTE Bully1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef CAR_1_CH =
+// a function which defines the frames to play
+AnimationFunctionROMDef BULLY_1_MOVE_ANIM =
+{
+	// number of frames of this animation function
+	4,
+
+	// frames to play in animation
+	{0, 1, 2, 1},
+
+	// number of cycles a frame of animation is displayed
+	4,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Move",
+};
+
+// an animation definition
+AnimationDescriptionROMDef BULLY_1_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&BULLY_1_MOVE_ANIM,
+		NULL,
+	}
+};
+
+CharSetROMDef BULLY_1_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	45,
+	18,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
+	__ANIMATED_SINGLE,
 
 	// char definition
-	Car1Tiles,
+	Bully1Tiles,
 };
 
-TextureROMDef CAR_1_TX =
+TextureROMDef BULLY_1_TX =
 {
-	// charset definition
-	(CharSetDefinition*)&CAR_1_CH,
+	(CharSetDefinition*)&BULLY_1_CH,
 
 	// bgmap definition
-	Car1Map,
+	Bully1Map,
 
 	// cols (max 64)
-	9,
+	3,
 
 	// rows (max 64)
-	7,
+	6,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -80,20 +111,20 @@ TextureROMDef CAR_1_TX =
 	1,
 
 	// palette number (0-3)
-	0,
+	1,
 
 	// recyclable
 	false,
 };
 
-BgmapSpriteROMDef CAR_1_IM_SPRITE =
+BgmapSpriteROMDef BULLY_1_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapSprite),
+		__TYPE(BgmapAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&CAR_1_TX,
+		(TextureDefinition*)&BULLY_1_TX,
 
 		// transparent
 		false,
@@ -113,98 +144,46 @@ BgmapSpriteROMDef CAR_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const CAR_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const BULLY_1_SPRITES[] =
 {
-	&CAR_1_IM_SPRITE,
+	&BULLY_1_SPRITE,
 	NULL
 };
 
-ShapeROMDef CAR_1_IM_SHAPES[] =
+ActorROMDef BULLY_1_AC =
 {
 	{
-		// shape
-		__TYPE(Box),
+		{
+			// class allocator
+			__TYPE(MovingOneWayEntity),
 
-		// size (x, y, z)
-		{9 * 8, 4 * 8, 4 * 8},
+			// sprites
+			(SpriteROMDef**)BULLY_1_SPRITES,
 
-		// displacement (x, y, z, p)
-		{4, 11, 0, 0},
+			// collision shapes
+			(ShapeDefinition*)NULL,
 
-		// rotation (x, y, z)
-		{0, 0, 0},
+			// size
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{0, 0, 0},
 
-		// scale (x, y, z)
-		{0, 0, 0},
+			// gameworld's character's type
+			kNoType,
 
-		// if true this shape checks for collisions against other shapes
-		false,
+			// physical specification
+			(PhysicalSpecification*)NULL,
+		},
 
-		// layers in which I live
-		kPlayerLayer,
+		// pointer to the animation definition for the character
+		(AnimationDescription*)&BULLY_1_ANIM,
 
-		// layers to ignore when checking for collisions
-		kAllLayers,
-	},
-	{
-		// shape
-		__TYPE(Box),
-
-		// size (x, y, z)
-		{4 * 8, 5 * 8, 4 * 8},
-
-		// displacement (x, y, z, p)
-		{0, -34, 0, 0},
-
-		// rotation (x, y, z)
-		{0, 0, 0},
-
-		// scale (x, y, z)
-		{0, 0, 0},
-
-		// if true this shape checks for collisions against other shapes
-		false,
-
-		// layers in which I live
-		kPlayerLayer,
-
-		// layers to ignore when checking for collisions
-		kAllLayers,
+		// initial animation
+		"Move",
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
-};
+	// true to create a body
+	true,
 
-PhysicalSpecificationROMDef CAR_1_IM_PHYSICAL_PROPERTIES =
-{
-	// mass
-	__F_TO_FIX10_6(0),
-
-	// friction
-	__F_TO_FIX10_6(0.85f),
-
-	// elasticity
-	__F_TO_FIX10_6(FLOOR_ELASTICITY),
-};
-
-EntityROMDef CAR_1_IM =
-{
-	// class allocator
-	__TYPE(Entity),
-
-	// sprites
-	(SpriteROMDef**)CAR_1_IM_SPRITES,
-
-	// collision shapes
-	(ShapeDefinition*)CAR_1_IM_SHAPES,
-
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kNoType,
-
-	// physical specification
-	(PhysicalSpecification*)&CAR_1_IM_PHYSICAL_PROPERTIES,
+	// axes subject to gravity
+	__NO_AXIS
 };

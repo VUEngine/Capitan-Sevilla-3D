@@ -565,9 +565,9 @@ static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer __
 // handle event
 static void ProgressManager_onLevelStarted(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
+//	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
 
-	ProgressManager_loadLevelStatus(this, platformerLevelDefinition->id);
+//	ProgressManager_loadLevelStatus(this, platformerLevelDefinition->id);
 }
 
 // handle event
@@ -580,7 +580,7 @@ static void ProgressManager_onCheckpointLoaded(ProgressManager this, Object even
 // handle event
 static void ProgressManager_onLevelCompleted(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
+//	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
 
-	ProgressManager_persistLevelStatus(this, platformerLevelDefinition->id);
+//	ProgressManager_persistLevelStatus(this, platformerLevelDefinition->id);
 }
