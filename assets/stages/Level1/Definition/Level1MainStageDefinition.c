@@ -61,6 +61,7 @@ extern EntityDefinition HOUSE_3_IM;
 extern EntityDefinition HOUSE_4_IM;
 extern EntityDefinition HOUSE_5_IM;
 extern EntityDefinition HOUSE_6_IM;
+extern EntityDefinition HOVER_CAR_1_AE;
 extern EntityDefinition KEY_DOOR_AG;
 extern EntityDefinition LANTERN_1_IM;
 extern EntityDefinition MOTORBIKE_1_IM;
@@ -126,6 +127,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CONTAINER_1_IM,		{181, 161, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&TREE_1_IM,			{384, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 
+	{&HOVER_CAR_1_AE,		{540, 160, -16, 0}, 		0, NULL, NULL, NULL, true},
+
 	{&COLLISION_CL,			{768, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&WALL_1_IM,			{552, 140, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
@@ -133,15 +136,16 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&LANTERN_1_IM,			{655, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
 	{&CAR_BG_1_IM,			{704, 150, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 
-	{&COLLISION_CL,			{1280, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
-
 	{&TREE_BG_1_IM,			{752, 130, (LAYER_2)+16, 0}, 0, NULL, NULL, NULL, false},
 	{&HOUSE_2_IM,			{864, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
 	{&GARAGE_1_IM,			{1040, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_1_AE,		{1100, 160, -16, 0}, 		0, NULL, NULL, NULL, false},
 	{&TRASH_BIN_1_IM,		{1100, 155, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&FENCE_1_IM,			{1150, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&BUSH_BG_1_IM,			{1212, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 	{&LANTERN_1_IM,			{1230, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
+
+	{&COLLISION_CL,			{1280, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&BUSH_BG_2_IM,			{1584, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 	{&TREE_1_IM,			{1272, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
@@ -149,6 +153,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&PLAYGROUND_SIGN_1_IM,	{1320, 100, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&PLAYGROUND_1_IM,		{1422, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&STATUE_1_IM,			{1518, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_1_AE,		{1518, 160, -16, 0}, 		0, NULL, NULL, NULL, false},
 	{&FENCE_2_IM,			{1414, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_IM,			{1618, 123, 0, 0}, 			0, NULL, NULL, NULL, false},

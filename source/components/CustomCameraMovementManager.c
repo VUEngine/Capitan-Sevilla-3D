@@ -42,7 +42,6 @@
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-// define the CustomCameraMovementManager
 __CLASS_DEFINITION(CustomCameraMovementManager, CameraMovementManager);
 
 __CLASS_FRIEND_DEFINITION(Camera);

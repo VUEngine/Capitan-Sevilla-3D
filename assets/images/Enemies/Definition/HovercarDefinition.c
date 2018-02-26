@@ -24,68 +24,83 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <MBgmapSprite.h>
-#include <macros.h>
+#include <libgccvb.h>
+#include <BgmapAnimatedSprite.h>
+#include <Actor.h>
+#include <MovingOneWayEntity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CityBackgroundATiles[];
-extern BYTE CityBackgroundBTiles[];
-extern BYTE CityBackgroundAMap[];
-extern BYTE CityBackgroundBMap[];
+extern BYTE HoverCar1Tiles[];
+extern BYTE HoverCar1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef CITY_BG_A_CH =
+// a function which defines the frames to play
+AnimationFunctionROMDef HOVER_CAR_1_MOVE_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{0, 1},
+
+	// number of cycles a frame of animation is displayed
+	8,
+
+	// whether to play it in loop or not
+	true,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Move",
+};
+
+// an animation definition
+AnimationDescriptionROMDef HOVER_CAR_1_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&HOVER_CAR_1_MOVE_ANIM,
+		NULL,
+	}
+};
+
+CharSetROMDef HOVER_CAR_1_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	105,
+	60,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
+	__ANIMATED_SINGLE,
 
 	// char definition
-	CityBackgroundATiles,
+	HoverCar1Tiles,
 };
 
-CharSetROMDef CITY_BG_B_CH =
+TextureROMDef HOVER_CAR_1_TX =
 {
-	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
-	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	83,
-
-	// allocation type
-	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
-
-	// char definition
-	CityBackgroundBTiles,
-};
-
-TextureROMDef CITY_BG_A_TX =
-{
-	// charset definition
-	(CharSetDefinition*)&CITY_BG_A_CH,
+	(CharSetDefinition*)&HOVER_CAR_1_CH,
 
 	// bgmap definition
-	CityBackgroundAMap,
+	HoverCar1Map,
 
 	// cols (max 64)
-	64,
+	10,
 
 	// rows (max 64)
-	11,
+	6,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -96,112 +111,79 @@ TextureROMDef CITY_BG_A_TX =
 	1,
 
 	// palette number (0-3)
-	0,
-
-	// recyclable
-	false,
-};
-
-TextureROMDef CITY_BG_B_TX =
-{
-	// charset definition
-	(CharSetDefinition*)&CITY_BG_B_CH,
-
-	// bgmap definition
-	CityBackgroundBMap,
-
-	// cols (max 64)
-	64,
-
-	// rows (max 64)
-	11,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
 	1,
 
-	// palette number (0-3)
-	0,
-
 	// recyclable
 	false,
 };
 
-TextureROMDef* const CITY_BG_SB_TEXTURES[] =
+BgmapSpriteROMDef HOVER_CAR_1_SPRITE =
 {
-	(TextureDefinition*)&CITY_BG_A_TX,
-	(TextureDefinition*)&CITY_BG_B_TX,
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
+
+		// texture definition
+		(TextureDefinition*)&HOVER_CAR_1_TX,
+
+		// transparent
+		false,
+
+		// displacement
+		{0, 0, 0, 0},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+BgmapSpriteROMDef* const HOVER_CAR_1_SPRITES[] =
+{
+	&HOVER_CAR_1_SPRITE,
 	NULL
 };
 
-MBgmapSpriteROMDef CITY_BG_SB_SPRITE =
+ActorROMDef HOVER_CAR_1_AE =
 {
 	{
 		{
-			// sprite's type
-			__TYPE(MBgmapSprite),
+			// class allocator
+			__TYPE(MovingOneWayEntity),
 
-			// texture definition
-			NULL,
+			// sprites
+			(SpriteROMDef**)HOVER_CAR_1_SPRITES,
 
-			// transparent
-			false,
+			// collision shapes
+			(ShapeDefinition*)NULL,
 
-			// displacement
-			{0, 0, 0, 0},
+			// size
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{0, 0, 0},
+
+			// gameworld's character's type
+			kNoType,
+
+			// physical specification
+			(PhysicalSpecification*)NULL,
 		},
 
-		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-		__WORLD_BGMAP,
+		// pointer to the animation definition for the character
+		(AnimationDescription*)&HOVER_CAR_1_ANIM,
 
-		// pointer to affine/hbias manipulation function
-		NULL,
-
-		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-		__WORLD_ON,
+		// initial animation
+		"Move",
 	},
 
-	(TextureDefinition**)CITY_BG_SB_TEXTURES,
-
-	// SCX/SCY
-	__WORLD_1x2,
-
-	// x loop
+	// true to create a body
 	true,
 
-	// y loop
-	false,
-};
-
-BgmapSpriteROMDef* const CITY_BG_SB_SPRITES[] =
-{
-	(BgmapSpriteROMDef*)&CITY_BG_SB_SPRITE,
-	NULL
-};
-
-EntityROMDef CITY_BG_IM =
-{
-	// class allocator
-	__TYPE(Entity),
-
-	// sprites
-	(SpriteROMDef**)CITY_BG_SB_SPRITES,
-
-	// collision shapes
-	NULL,
-
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kNoType,
-
-	// physical specification
-	NULL,
+	// axes subject to gravity
+	__NO_AXIS
 };

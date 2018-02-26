@@ -1,0 +1,14 @@
+.idea/workspace.xml
+build/
+*.o
+*.a
+*.vb
+*.elf
+*.ram
+*.lnk
+*.asm
+*.map
+*.ftp
+sections*.txt
+setupClasses.c
+headerFiles.txt
