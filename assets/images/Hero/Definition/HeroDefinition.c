@@ -78,7 +78,7 @@ AnimationFunctionROMDef HERO_WALKING_ANIM =
 	{0, 1, 2, 1},
 
 	// number of cycles a frame of animation is displayed
-	6,
+	4,
 
 	// whether to play it in loop or not
 	true,

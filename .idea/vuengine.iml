@@ -2,11 +2,10 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../../libs/vuengine">
-      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vuengine/.idea" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vuengine/build" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vuengine/doc" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../libs/vuengine/lib" />
+    <content url="file://C:/vbde/libs/vuengine">
+      <excludeFolder url="file://C:/vbde/libs/vuengine/.idea" />
+      <excludeFolder url="file://C:/vbde/libs/vuengine/build" />
+      <excludeFolder url="file://C:/vbde/libs/vuengine/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
