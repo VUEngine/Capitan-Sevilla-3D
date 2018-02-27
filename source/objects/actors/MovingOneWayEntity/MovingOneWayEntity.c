@@ -26,7 +26,6 @@
 
 #include <Game.h>
 #include <MessageDispatcher.h>
-#include <CollisionManager.h>
 #include <Optics.h>
 #include <PhysicalWorld.h>
 #include <MessageDispatcher.h>
@@ -70,6 +69,16 @@ void MovingOneWayEntity_destructor(MovingOneWayEntity this)
 	__DESTROY_BASE;
 }
 
+// set extra info
+void MovingOneWayEntity_setExtraInfo(MovingOneWayEntity this, void* extraInfo)
+{
+	ASSERT(this, "MovingOneWayEntity::setExtraInfo: null this");
+
+	this->speed = (extraInfo != NULL)
+		? __I_TO_FIX10_6((int)extraInfo)
+		: __I_TO_FIX10_6(-4);
+}
+
 void MovingOneWayEntity_ready(MovingOneWayEntity this, bool recursive)
 {
 	ASSERT(this, "MovingOneWayEntity::ready: null this");
@@ -78,7 +87,7 @@ void MovingOneWayEntity_ready(MovingOneWayEntity this, bool recursive)
 	__CALL_BASE_METHOD(Actor, ready, this, recursive);
 
 	// start movement
-	Velocity velocity = {__I_TO_FIX10_6(-4), 0, 0};
+	Velocity velocity = {this->speed, 0, 0};
 	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
 }
 

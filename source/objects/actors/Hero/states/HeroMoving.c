@@ -79,7 +79,7 @@ void HeroMoving_destructor(HeroMoving this)
 // state's enter
 void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 {
-	u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
+	//u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
 
 #ifdef __DEBUG
 	Printing_text(Printing_getInstance(), "HeroMoving", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, NULL);
@@ -135,6 +135,10 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 		Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, true);
 
 		Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Walk");
+	}
+	else if(K_LD & (userInput->pressedKey | userInput->holdKey))
+	{
+		Hero_kneel(__SAFE_CAST(Hero, owner));
 	}
 }
 

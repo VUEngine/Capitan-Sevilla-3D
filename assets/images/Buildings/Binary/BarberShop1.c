@@ -1,9 +1,9 @@
 
-//{{BLOCK(Barberia1)
+//{{BLOCK(BarberShop1)
 
 //======================================================================
 //
-//	Barberia1, 264x160@2, 
+//	BarberShop1, 264x160@2, 
 //	+ 371 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 33x20 
 //	Total size: 5936 + 1320 = 7256
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int Barberia1Tiles[1484] __attribute__((aligned(4)))=
+const unsigned int BarberShop1Tiles[1484] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00080000,0x0BA802A0,0x0FA80FA8,0x0C080FA8,
 	0x80020000,0x82EA00A8,0x83EA83EA,0x830283EA,0x20000000,0xA0BA802A,0xA0FAA0FA,0x20C0A0FA,
@@ -226,7 +226,7 @@ const unsigned int Barberia1Tiles[1484] __attribute__((aligned(4)))=
 	0x00330030,0x003E002C,0x003E003A,0x0000000F,
 };
 
-const unsigned short Barberia1Map[660] __attribute__((aligned(4)))=
+const unsigned short BarberShop1Map[660] __attribute__((aligned(4)))=
 {
 	0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
 	0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,
@@ -323,4 +323,4 @@ const unsigned short Barberia1Map[660] __attribute__((aligned(4)))=
 	0x016F,0x0170,0x0171,0x0172,
 };
 
-//}}BLOCK(Barberia1)
+//}}BLOCK(BarberShop1)

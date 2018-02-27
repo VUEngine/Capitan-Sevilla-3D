@@ -27,6 +27,7 @@
 #include <libgccvb.h>
 #include <BgmapAnimatedSprite.h>
 #include <Actor.h>
+#include <Box.h>
 #include <MovingOneWayEntity.h>
 
 
@@ -150,6 +151,37 @@ BgmapSpriteROMDef* const HOVER_CAR_1_SPRITES[] =
 	NULL
 };
 
+ShapeROMDef HOVER_CAR_1_AC_SHAPES[] =
+{
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{64, 26, 24},
+
+		// displacement (x, y, z, p)
+		{8, 19, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kPlayerLayer,
+
+		// layers to ignore when checking for collisions
+		kParticlesLayer,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+};
+
 ActorROMDef HOVER_CAR_1_AC =
 {
 	{
@@ -161,14 +193,14 @@ ActorROMDef HOVER_CAR_1_AC =
 			(SpriteROMDef**)HOVER_CAR_1_SPRITES,
 
 			// collision shapes
-			(ShapeDefinition*)NULL,
+			(ShapeDefinition*)HOVER_CAR_1_AC_SHAPES,
 
 			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
 			{0, 0, 0},
 
 			// gameworld's character's type
-			kNoType,
+			kHit,
 
 			// physical specification
 			(PhysicalSpecification*)NULL,

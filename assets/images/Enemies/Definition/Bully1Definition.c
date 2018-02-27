@@ -26,6 +26,7 @@
 
 #include <libgccvb.h>
 #include <BgmapAnimatedSprite.h>
+#include <Box.h>
 #include <Actor.h>
 #include <MovingOneWayEntity.h>
 
@@ -150,6 +151,37 @@ BgmapSpriteROMDef* const BULLY_1_SPRITES[] =
 	NULL
 };
 
+ShapeROMDef BULLY_1_AC_SHAPES[] =
+{
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{22, 38, 24},
+
+		// displacement (x, y, z, p)
+		{0, -5, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kPlayerLayer,
+
+		// layers to ignore when checking for collisions
+		kParticlesLayer,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+};
+
 ActorROMDef BULLY_1_AC =
 {
 	{
@@ -161,14 +193,14 @@ ActorROMDef BULLY_1_AC =
 			(SpriteROMDef**)BULLY_1_SPRITES,
 
 			// collision shapes
-			(ShapeDefinition*)NULL,
+			(ShapeDefinition*)BULLY_1_AC_SHAPES,
 
 			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
 			{0, 0, 0},
 
 			// gameworld's character's type
-			kNoType,
+			kHit,
 
 			// physical specification
 			(PhysicalSpecification*)NULL,

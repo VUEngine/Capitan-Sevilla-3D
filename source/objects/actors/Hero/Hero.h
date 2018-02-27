@@ -137,7 +137,7 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce);
 void Hero_stopAddingForce(Hero this);
 void Hero_startedMovingOnAxis(Hero this, u16 axis);
 bool Hero_stopMovingOnAxis(Hero this, u16 axis);
-void Hero_move(Hero this);
+void Hero_kneel(Hero this);
 void Hero_jump(Hero this, bool checkIfYMovement);
 void Hero_addMomentumToJump(Hero this);
 void Hero_checkDirection(Hero this, u32 currentPressedKey, char * animation);

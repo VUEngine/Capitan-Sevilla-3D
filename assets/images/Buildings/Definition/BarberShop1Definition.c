@@ -33,17 +33,17 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Barberia1Tiles[];
-extern BYTE Barberia1Map[];
-extern BYTE Barberia1BlackTiles[];
-extern BYTE Barberia1BlackMap[];
+extern BYTE BarberShop1Tiles[];
+extern BYTE BarberShop1Map[];
+extern BYTE BarberShop1BlackTiles[];
+extern BYTE BarberShop1BlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef BARBERIA_1_CH =
+CharSetROMDef BARBER_SHOP_1_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -55,10 +55,10 @@ CharSetROMDef BARBERIA_1_CH =
 	__NOT_ANIMATED,
 
 	// char definition
-	Barberia1Tiles,
+	BarberShop1Tiles,
 };
 
-CharSetROMDef BARBERIA_1_BLACK_CH =
+CharSetROMDef BARBER_SHOP_1_BLACK_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -70,16 +70,16 @@ CharSetROMDef BARBERIA_1_BLACK_CH =
 	__NOT_ANIMATED,
 
 	// char definition
-	Barberia1BlackTiles,
+	BarberShop1BlackTiles,
 };
 
-TextureROMDef BARBERIA_1_TX =
+TextureROMDef BARBER_SHOP_1_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&BARBERIA_1_CH,
+	(CharSetDefinition*)&BARBER_SHOP_1_CH,
 
 	// bgmap definition
-	Barberia1Map,
+	BarberShop1Map,
 
 	// cols (max 64)
 	33,
@@ -102,13 +102,13 @@ TextureROMDef BARBERIA_1_TX =
 	false,
 };
 
-TextureROMDef BARBERIA_1_BLACK_TX =
+TextureROMDef BARBER_SHOP_1_BLACK_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&BARBERIA_1_BLACK_CH,
+	(CharSetDefinition*)&BARBER_SHOP_1_BLACK_CH,
 
 	// bgmap definition
-	Barberia1BlackMap,
+	BarberShop1BlackMap,
 
 	// cols (max 64)
 	33,
@@ -131,14 +131,14 @@ TextureROMDef BARBERIA_1_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMDef BARBERIA_1_SPRITE =
+BgmapSpriteROMDef BARBER_SHOP_1_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&BARBERIA_1_TX,
+		(TextureDefinition*)&BARBER_SHOP_1_TX,
 
 		// transparent
 		false,
@@ -158,14 +158,14 @@ BgmapSpriteROMDef BARBERIA_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef BARBERIA_1_BLACK_SPRITE =
+BgmapSpriteROMDef BARBER_SHOP_1_BLACK_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&BARBERIA_1_BLACK_TX,
+		(TextureDefinition*)&BARBER_SHOP_1_BLACK_TX,
 
 		// transparent
 		false,
@@ -185,20 +185,20 @@ BgmapSpriteROMDef BARBERIA_1_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const BARBERIA_1_SPRITES[] =
+BgmapSpriteROMDef* const BARBER_SHOP_1_SPRITES[] =
 {
-	&BARBERIA_1_BLACK_SPRITE,
-	&BARBERIA_1_SPRITE,
+	&BARBER_SHOP_1_BLACK_SPRITE,
+	&BARBER_SHOP_1_SPRITE,
 	NULL
 };
 
-EntityROMDef BARBERIA_1_IM =
+EntityROMDef BARBER_SHOP_1_IM =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)BARBERIA_1_SPRITES,
+	(SpriteROMDef**)BARBER_SHOP_1_SPRITES,
 
 	// collision shapes
 	NULL,

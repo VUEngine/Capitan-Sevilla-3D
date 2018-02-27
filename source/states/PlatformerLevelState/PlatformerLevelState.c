@@ -242,7 +242,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 	PlatformerLevelState_setModeToPaused(this);
 
 	// show up level after a little delay
-	MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
+	MessageDispatcher_dispatchMessage(200, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
 
 	// start clocks
 	Clock_start(this->clock);
@@ -496,7 +496,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 				GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
 
 				// show level after a little delay
-				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
+				MessageDispatcher_dispatchMessage(200, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
 
 				this->mode = kShowingUp;
 			}

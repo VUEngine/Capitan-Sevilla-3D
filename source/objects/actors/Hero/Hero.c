@@ -203,6 +203,18 @@ void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
 	*/
 }
 
+void Hero_kneel(Hero this)
+{
+	// switch to kneel state
+	//StateMachine_swapState(this->stateMachine, __SAFE_CAST(State,  HeroKneeling_getInstance()));
+
+	// play kneel animation
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Kneel");
+
+	// shorten hit box
+	// TODO
+}
+
 // make him jump
 void Hero_jump(Hero this, bool checkIfYMovement)
 {
@@ -449,15 +461,7 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 			}
 		}
 
-		if(__Z_AXIS & axis)
-		{
-			this->keepAddingForce = false;
-			this->jumps = 0;
-			StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
-			return true;
-		}
-
-		if(!movementState && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine))
+		if((__Z_AXIS & axis) || (!movementState && __SAFE_CAST(State, HeroIdle_getInstance()) != StateMachine_getCurrentState(this->stateMachine)))
 		{
 			this->keepAddingForce = false;
 			this->jumps = 0;
@@ -543,6 +547,13 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 #ifdef GOD_MODE
 	return;
 #endif
+
+
+
+	Printing_text(Printing_getInstance(), "HIT", 0, 0, NULL);
+	return;
+
+
 
 	if(!Hero_isInvincible(this) || !invincibleWins)
 	{

@@ -38,7 +38,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition BARBERIA_1_IM;
+extern EntityDefinition BARBER_SHOP_1_IM;
 extern EntityDefinition BENCH_1_IM;
 extern EntityDefinition BIKE_1_IM;
 extern EntityDefinition BULLY_1_AC;
@@ -128,8 +128,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CONTAINER_1_IM,		{181, 161, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&TREE_1_IM,			{384, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 
-	{&CAR_1_AC,				{540, 164, -16, 0}, 		0, NULL, NULL, NULL, true},
-	{&BULLY_1_AC,			{640, 156, 16, 0}, 			0, NULL, NULL, NULL, true},
+	{&CAR_1_AC,				{540, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, true},
+	{&BULLY_1_AC,			{640, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, true},
 
 	{&COLLISION_CL,			{768, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
@@ -141,7 +141,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&TREE_BG_1_IM,			{752, 130, (LAYER_2)+16, 0}, 0, NULL, NULL, NULL, false},
 	{&HOUSE_2_IM,			{864, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
 	{&GARAGE_1_IM,			{1040, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,		{1100, 128, 16, 0}, 		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_1_AC,		{1100, 128, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
 	{&TRASH_BIN_1_IM,		{1100, 155, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&FENCE_1_IM,			{1150, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&BUSH_BG_1_IM,			{1212, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
@@ -155,14 +155,14 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&PLAYGROUND_SIGN_1_IM,	{1320, 100, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&PLAYGROUND_1_IM,		{1422, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&STATUE_1_IM,			{1518, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,		{1518, 128, 16, 0}, 		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_1_AC,		{1518, 128, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
 	{&FENCE_2_IM,			{1414, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_IM,			{1618, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
 
 	{&COLLISION_CL,			{1792, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&BARBERIA_1_IM,		{1810, 95, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&BARBER_SHOP_1_IM,		{1810, 95, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&GARAGE_2_IM,			{1994, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
 	{&HOUSE_3_IM,			{2170, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&CLOTHES_1_IM,			{2322, 52, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
@@ -181,7 +181,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&COLLISION_CL,			{3329, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&CAR_BG_2_IM,				{3671, 147, 0, 0}, 			0, NULL, NULL, NULL, false},
+	{&CAR_BG_2_IM,			{3671, 147, 0, 0}, 			0, NULL, NULL, NULL, false},
 	{&HOUSE_6_IM,			{3675, 80, 0, 16}, 			0, NULL, NULL, NULL, false},
 
 	{&COLLISION_CL,			{3700, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
@@ -282,7 +282,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 			// z
 			0,
 			// p
-			0
+			0,
 		},
 
 		// camera's frustum
@@ -298,8 +298,8 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
         	// y1
         	__SCREEN_HEIGHT,
         	// z1
-        	__SCREEN_DEPTH
-        }
+        	__SCREEN_DEPTH,
+        },
 	},
 
 	// streaming

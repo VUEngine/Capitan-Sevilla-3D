@@ -42,11 +42,13 @@
 		Actor_SET_VTABLE(ClassName)																		\
 		__VIRTUAL_SET(ClassName, MovingOneWayEntity, ready);											\
 		__VIRTUAL_SET(ClassName, MovingOneWayEntity, respawn);											\
+		__VIRTUAL_SET(ClassName, MovingOneWayEntity, setExtraInfo);										\
 
 __CLASS(MovingOneWayEntity);
 
 #define MovingOneWayEntity_ATTRIBUTES																	\
 		Actor_ATTRIBUTES																				\
+		int speed;																						\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,6 +62,7 @@ void MovingOneWayEntity_constructor(MovingOneWayEntity this, ActorDefinition* ac
 void MovingOneWayEntity_destructor(MovingOneWayEntity this);
 void MovingOneWayEntity_ready(MovingOneWayEntity this, bool recursive);
 bool MovingOneWayEntity_respawn(MovingOneWayEntity this);
+void MovingOneWayEntity_setExtraInfo(MovingOneWayEntity this, void* extraInfo);
 
 
 #endif

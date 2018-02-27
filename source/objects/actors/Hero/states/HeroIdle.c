@@ -148,6 +148,10 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, 
 				Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
 			}
 		}
+		else if(K_LD & (userInput->pressedKey | userInput->holdKey))
+		{
+			Hero_kneel(__SAFE_CAST(Hero, owner));
+		}
 
 		return;
 	}

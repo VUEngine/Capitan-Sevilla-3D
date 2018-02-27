@@ -69,7 +69,7 @@ AnimationFunctionROMDef HERO_IDLE_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_WALKING_ANIM =
+AnimationFunctionROMDef HERO_WALK_ANIM =
 {
 	// number of frames of this animation function
 	4,
@@ -91,7 +91,29 @@ AnimationFunctionROMDef HERO_WALKING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_JUMPING_ANIM =
+AnimationFunctionROMDef HERO_KNEEL_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{3},
+
+	// number of cycles a frame of animation is displayed
+	4,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Walk",
+};
+
+// a function which defines the frames to play
+AnimationFunctionROMDef HERO_JUMP_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -113,7 +135,7 @@ AnimationFunctionROMDef HERO_JUMPING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_FALLING_ANIM =
+AnimationFunctionROMDef HERO_FALL_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -135,7 +157,7 @@ AnimationFunctionROMDef HERO_FALLING_ANIM =
 };
 
 // a function which defines the frames to play
-AnimationFunctionROMDef HERO_SLIDING_ANIM =
+AnimationFunctionROMDef HERO_SLIDE_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -206,10 +228,11 @@ AnimationDescriptionROMDef HERO_ANIM =
 	// animation functions
 	{
 		(AnimationFunction*)&HERO_IDLE_ANIM,
-		(AnimationFunction*)&HERO_WALKING_ANIM,
-		(AnimationFunction*)&HERO_JUMPING_ANIM,
-		(AnimationFunction*)&HERO_FALLING_ANIM,
-		(AnimationFunction*)&HERO_SLIDING_ANIM,
+		(AnimationFunction*)&HERO_WALK_ANIM,
+		(AnimationFunction*)&HERO_KNEEL_ANIM,
+		(AnimationFunction*)&HERO_JUMP_ANIM,
+		(AnimationFunction*)&HERO_FALL_ANIM,
+		(AnimationFunction*)&HERO_SLIDE_ANIM,
 		(AnimationFunction*)&HERO_HIT_ANIM,
 		(AnimationFunction*)&HERO_DEAD_ANIM,
 		NULL,
