@@ -38,6 +38,20 @@ extern EntityDefinition TITLE_CAPITAN_IM;
 extern EntityDefinition TITLE_EARTH_IM;
 extern EntityDefinition TITLE_SUBTITLE_IM;
 
+extern CharSetDefinition TITLE_LOGO_CH;
+extern CharSetDefinition TITLE_LOGO_BLACK_CH;
+extern CharSetDefinition TITLE_CAPITAN_CH;
+extern CharSetDefinition TITLE_CAPITAN_BLACK_CH;
+extern CharSetDefinition TITLE_EARTH_CH;
+extern CharSetDefinition TITLE_SUBTITLE_CH;
+
+extern TextureDefinition TITLE_LOGO_TX;
+extern TextureDefinition TITLE_LOGO_BLACK_TX;
+extern TextureDefinition TITLE_CAPITAN_TX;
+extern TextureDefinition TITLE_CAPITAN_BLACK_TX;
+extern TextureDefinition TITLE_EARTH_TX;
+extern TextureDefinition TITLE_SUBTITLE_TX;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
@@ -67,6 +81,30 @@ PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 FontROMDef* const TITLE_SCREEN_STAGE_ST_FONTS[] =
 {
 	&PLATFORMER_DEFAULT_FONT,
+
+	NULL
+};
+
+CharSetROMDef* const TITLE_SCREEN_STAGE_ST_CHARSETS[] =
+{
+	&TITLE_LOGO_CH,
+	&TITLE_LOGO_BLACK_CH,
+	&TITLE_CAPITAN_CH,
+	&TITLE_CAPITAN_BLACK_CH,
+	&TITLE_EARTH_CH,
+	&TITLE_SUBTITLE_CH,
+
+	NULL
+};
+
+TextureDefinition* const TITLE_SCREEN_STAGE_ST_TEXTURES[] =
+{
+	&TITLE_LOGO_TX,
+	&TITLE_LOGO_BLACK_TX,
+	&TITLE_CAPITAN_TX,
+	&TITLE_CAPITAN_BLACK_TX,
+	&TITLE_EARTH_TX,
+	&TITLE_SUBTITLE_TX,
 
 	NULL
 };
@@ -256,10 +294,10 @@ StageROMDef TITLE_SCREEN_STAGE_ST =
 		(FontDefinition**)TITLE_SCREEN_STAGE_ST_FONTS,
 
 		// char sets to preload
-		(CharSetDefinition**)NULL,
+		(CharSetDefinition**)TITLE_SCREEN_STAGE_ST_CHARSETS,
 
 		// textures to preload
-		(TextureDefinition**)NULL,
+		(TextureDefinition**)TITLE_SCREEN_STAGE_ST_TEXTURES,
 
 		// background music
 		(const u16 (*)[])NULL,

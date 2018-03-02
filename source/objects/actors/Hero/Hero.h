@@ -37,7 +37,7 @@
 //												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define HERO_NAME							"John Hero"
+#define HERO_NAME							"Capitan"
 #define HERO_INITIAL_ENERGY					3
 
 #define HERO_MASS							1
@@ -52,12 +52,10 @@
 #define HERO_INPUT_FORCE 					__I_TO_FIX10_6(60)
 #define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX10_6(10)
 
-#define HERO_MAX_VELOCITY_X					__F_TO_FIX10_6(3.5f)
-#define HERO_MAX_VELOCITY_Y					__F_TO_FIX10_6(15)
-#define HERO_MAX_VELOCITY_Z					__F_TO_FIX10_6(4)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		__F_TO_FIX10_6(-280)
-
-#define CAMERA_BOUNDING_BOX_DISPLACEMENT	{__PIXELS_TO_METERS(0), __PIXELS_TO_METERS(-24/16), __PIXELS_TO_METERS(0)}
+#define HERO_MAX_VELOCITY_X					__I_TO_FIX10_6(4)
+#define HERO_MAX_VELOCITY_Y					__I_TO_FIX10_6(15)
+#define HERO_MAX_VELOCITY_Z					__I_TO_FIX10_6(4)
+#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX10_6(-280)
 
 #define HERO_CHECK_Y_VELOCITY				(20/16)
 

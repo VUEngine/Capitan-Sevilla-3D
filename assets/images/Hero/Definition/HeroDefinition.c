@@ -35,9 +35,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HeroTiles[];
-extern BYTE HeroBlackTiles[];
-extern BYTE HeroMap[];
+extern BYTE HeroRightTiles[];
+extern BYTE HeroRightBlackTiles[];
+extern BYTE HeroRightMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -249,7 +249,7 @@ CharSetROMDef HERO_CH =
 	__ANIMATED_SINGLE,
 
 	// char definition
-	HeroTiles,
+	HeroRightTiles,
 };
 
 CharSetROMDef HERO_BLACK_CH =
@@ -264,7 +264,7 @@ CharSetROMDef HERO_BLACK_CH =
 	__ANIMATED_SINGLE,
 
 	// char definition
-	HeroBlackTiles,
+	HeroRightBlackTiles,
 };
 
 TextureROMDef HERO_TX =
@@ -272,7 +272,7 @@ TextureROMDef HERO_TX =
 	(CharSetDefinition*)&HERO_CH,
 
 	// bgmap definition
-	HeroMap,
+	HeroRightMap,
 
 	// cols (max 64)
 	4,
@@ -300,7 +300,7 @@ TextureROMDef HERO_BLACK_TX =
 	(CharSetDefinition*)&HERO_BLACK_CH,
 
 	// bgmap definition
-	HeroMap,
+	HeroRightMap,
 
 	// cols (max 64)
 	4,
