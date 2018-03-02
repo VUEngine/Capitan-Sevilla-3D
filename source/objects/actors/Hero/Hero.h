@@ -37,12 +37,6 @@
 //												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-enum HeroPowerUps
-{
-	kPowerUpNone,
-	kPowerUpBandana,
-};
-
 #define HERO_NAME							"John Hero"
 #define HERO_INITIAL_ENERGY					3
 
@@ -105,10 +99,6 @@ __CLASS(Hero);
 		u8 energy;																						\
 		/* number of collected coins */																	\
 		u8 coins;																						\
-		/* flag for collected key */																	\
-		bool hasKey;																					\
-		/* currently active power-up */																	\
-		u8 powerUp;																						\
 		/* number of jumps performed (for double jump) */												\
 		s8 jumps;																						\
 		/* flag for invincible mode (after being hit) */												\
@@ -146,10 +136,6 @@ void Hero_flash(Hero this);
 void Hero_toggleFlashPalette(Hero this);
 void Hero_resetPalette(Hero this);
 void Hero_die(Hero this);
-void Hero_collectKey(Hero this);
-bool Hero_hasKey(Hero this);
-void Hero_collectPowerUp(Hero this, u8 powerUp);
-u8 Hero_getPowerUp(Hero this);
 u8 Hero_getEnergy(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);
 bool Hero_isInvincible(Hero this);
@@ -163,7 +149,6 @@ void Hero_resume(Hero this);
 void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
 bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionInformation);
 u16 Hero_getAxisForFlipping(Hero this);
-void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer);
 void Hero_capVelocity(Hero this, bool discardPreviousMessages);
 bool Hero_isAffectedByRelativity(Hero this);
 void Hero_syncRotationWithBody(Hero this);

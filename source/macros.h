@@ -90,7 +90,6 @@ enum PlatformerTypes
 	kShape,
 	kTopShape,
 	kNotShape,
-	kCameraTarget,
 	kHit,
 	kFloor,
 	kMovingPlatform,

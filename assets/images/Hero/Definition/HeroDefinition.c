@@ -26,9 +26,7 @@
 
 #include <libgccvb.h>
 #include <BgmapAnimatedSprite.h>
-#include <CameraTriggerEntity.h>
 #include <Box.h>
-#include <InverseBox.h>
 
 #include "Hero.h"
 
@@ -338,7 +336,7 @@ BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, 1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -365,7 +363,7 @@ BgmapSpriteROMDef HERO_BLACK_AFFINE_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, 1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -465,58 +463,4 @@ HeroROMDef HERO_AC =
 
 	// axes subject to gravity
 	__Y_AXIS
-};
-
-ShapeROMDef CAMERA_BOUNDING_BOX_IG_SHAPES[] =
-{
-	{
-		// shape
-		__TYPE(InverseBox),
-
-		// size (x, y, z)
-		{16 * 8, 24 * 8, 4 * 8},
-
-		// displacement (x, y, z, p)
-		{0, 0, 0, 0},
-
-		// rotation (x, y, z)
-		{0, 0, 0},
-
-		// scale (x, y, z)
-		{0, 0, 0},
-
-		// if true this shape checks for collisions against other shapes
-		false,
-
-		// layers in which I live
-		kTriggersLayer,
-
-		// layers to ignore when checking for collisions
-		kAllLayers,
-	},
-
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
-};
-
-
-CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG =
-{
-	// class allocator
-	__TYPE(CameraTriggerEntity),
-
-	// sprites
-	(SpriteROMDef**)NULL,
-
-	// collision shapes
-	(ShapeDefinition*)CAMERA_BOUNDING_BOX_IG_SHAPES,
-
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kCameraTarget,
-
-	// physical specification
-	(PhysicalSpecification*)NULL,
 };

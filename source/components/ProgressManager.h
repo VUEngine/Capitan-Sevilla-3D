@@ -64,16 +64,10 @@ __CLASS(ProgressManager);
 		u16 collectedItems;																				\
 		/* bitstring that holds collected item flags at last checkpoint */								\
 		u16 checkpointCollectedItems;																	\
-		/* flag that tells if the hero has collected the current level's key */							\
-		bool heroHasKey;																				\
-		/* flag that tells if the hero has collected the current level's key at last checkpoint */		\
-		bool checkpointHeroHasKey;																		\
 		/* flag that tells if sram is available on the current cartridge */								\
 		bool sramAvailable;																				\
 		/* hero's current energy */																		\
 		u8 heroCurrentEnergy;																			\
-		/* hero's currently active power-up */															\
-		u8 heroCurrentPowerUp;																			\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -142,12 +136,10 @@ u32  ProgressManager_getCurrentLevelBestTime(ProgressManager this);
 u8   ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this);
 u32  ProgressManager_getCurrentLevelTime(ProgressManager this);
 u8   ProgressManager_getHeroCurrentEnergy(ProgressManager this);
-u8   ProgressManager_getHeroCurrentPowerUp(ProgressManager this);
 bool ProgressManager_getItemStatus(ProgressManager this, u16 itemNumber);
 u8   ProgressManager_getLanguage(ProgressManager this);
 u16  ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this);
 bool ProgressManager_hasProgress(ProgressManager this);
-bool ProgressManager_heroHasKey(ProgressManager this);
 void ProgressManager_loadCheckPointData(ProgressManager this);
 void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 automaticPause);
 void ProgressManager_setCheckPointData(ProgressManager this);

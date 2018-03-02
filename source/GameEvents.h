@@ -41,7 +41,6 @@ enum GameEvents
 	kEventUserInput,
 
 	kEventHitTaken,
-	kEventCoinTaken,
 	kEventKeyTaken,
 	kEventPowerUp,
 	kEventHeroDied,

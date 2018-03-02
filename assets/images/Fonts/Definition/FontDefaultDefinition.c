@@ -41,7 +41,7 @@ CharSetROMDef PLATFORMER_DEFAULT_FONT_CH =
 {
 	// number of chars
 	//(sizeof(FontDefaultTiles) >> 2),
-	128,
+	96,
 
 	// allocation type
 	__NOT_ANIMATED,
@@ -58,7 +58,7 @@ FontROMDef PLATFORMER_DEFAULT_FONT =
 	// character number at which the font starts, allows you to skip the control characters for example
 	0,
 
-	// size of a single character (in chars) ({width, height})
+	// size of a single character (in chars) (width, height)
 	{1, 1},
 
 	// font's name

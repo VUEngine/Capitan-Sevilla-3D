@@ -75,31 +75,19 @@ extern EntityDefinition TREE_1_IM;
 extern EntityDefinition TREE_BG_1_IM;
 extern EntityDefinition WALL_1_IM;
 
-extern CharSetDefinition CITY_BG_A_CH;
-extern CharSetDefinition CITY_BG_B_CH;
-extern CharSetDefinition CITY_FLOOR_CH;
-extern CharSetDefinition CONTAINER_1_CH;
+extern CharSetDefinition BULLY_1_CH;
+extern CharSetDefinition CAR_1_CH;
 extern CharSetDefinition GUI_CH;
 extern CharSetDefinition HERO_CH;
 extern CharSetDefinition HERO_BLACK_CH;
-extern CharSetDefinition HOUSE_1_CH;
-extern CharSetDefinition HOUSE_1_BLACK_CH;
-extern CharSetDefinition LANTERN_1_CH;
-extern CharSetDefinition LANTERN_1_BLACK_CH;
-extern CharSetDefinition MOTORBIKE_1_CH;
+extern CharSetDefinition HOVER_CAR_1_CH;
 
-extern TextureDefinition CITY_BG_A_TX;
-extern TextureDefinition CITY_BG_B_TX;
-extern TextureDefinition CITY_FLOOR_TX;
-extern TextureDefinition CONTAINER_1_TX;
+extern TextureDefinition BULLY_1_TX;
+extern TextureDefinition CAR_1_TX;
 extern TextureDefinition GUI_TX;
 extern TextureDefinition HERO_TX;
 extern TextureDefinition HERO_BLACK_TX;
-extern TextureDefinition HOUSE_1_TX;
-extern TextureDefinition HOUSE_1_BLACK_TX;
-extern TextureDefinition LANTERN_1_TX;
-extern TextureDefinition LANTERN_1_BLACK_TX;
-extern TextureDefinition MOTORBIKE_1_TX;
+extern TextureDefinition HOVER_CAR_1_TX;
 
 extern Size collision_2_28_8;
 extern Size collision_64_2_8;
@@ -131,14 +119,15 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CAR_1_AC,				{540, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, true},
 	{&BULLY_1_AC,			{640, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, true},
 
-	{&COLLISION_CL,			{768, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
-
 	{&WALL_1_IM,			{552, 140, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&THING_1_IM,			{479, 150, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&LANTERN_1_IM,			{655, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
 	{&CAR_BG_1_IM,			{704, 150, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
-
 	{&TREE_BG_1_IM,			{752, 130, (LAYER_2)+16, 0}, 0, NULL, NULL, NULL, false},
+
+	{&COLLISION_CL,			{768, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+
+	{&BULLY_1_AC,			{860, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, false},
 	{&HOUSE_2_IM,			{864, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
 	{&GARAGE_1_IM,			{1040, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
 	{&HOVER_CAR_1_AC,		{1100, 128, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
@@ -146,6 +135,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&FENCE_1_IM,			{1150, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&BUSH_BG_1_IM,			{1212, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 	{&LANTERN_1_IM,			{1230, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
+	{&BULLY_1_AC,			{1230, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, false},
+	{&CAR_1_AC,				{1240, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
 
 	{&COLLISION_CL,			{1280, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
@@ -162,6 +153,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&COLLISION_CL,			{1792, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
+	{&CAR_1_AC,				{1810, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
 	{&BARBER_SHOP_1_IM,		{1810, 95, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&GARAGE_2_IM,			{1994, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
 	{&HOUSE_3_IM,			{2170, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
@@ -172,6 +164,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&HOUSE_4_IM,			{2626, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 
+	{&CAR_1_AC,				{2700, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
 	{&COLLISION_CL,			{2817, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&HOUSE_5_IM,			{3098, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
@@ -186,7 +179,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&COLLISION_CL,			{3700, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&COLLISION_CL,			{3708, 96, 0, 0},			0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
+	{&COLLISION_CL,			{3700, 96, 0, 0},			0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -212,36 +205,24 @@ FontROMDef* const LEVEL_1_MAIN_STAGE_ST_FONTS[] =
 
 CharSetROMDef* const LEVEL_1_MAIN_STAGE_ST_CHARSETS[] =
 {
-	&CITY_BG_A_CH,
-	&CITY_BG_B_CH,
-	&CITY_FLOOR_CH,
-	//&CONTAINER_1_CH,
+	&BULLY_1_CH,
+	&CAR_1_CH,
+	&HOVER_CAR_1_CH,
 	&GUI_CH,
 	&HERO_CH,
 	&HERO_BLACK_CH,
-/*	&HOUSE_1_CH,
-    &HOUSE_1_BLACK_CH,
-	&LANTERN_1_CH,
-	&LANTERN_1_BLACK_CH,
-	&MOTORBIKE_1_CH,*/
 
 	NULL
 };
 
 TextureDefinition* const LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 {
-	&CITY_BG_A_TX,
-	&CITY_BG_B_TX,
-	&CITY_FLOOR_TX,
-	//&CONTAINER_1_TX,
+	&BULLY_1_TX,
+	&CAR_1_TX,
+	&HOVER_CAR_1_TX,
 	&GUI_TX,
 	&HERO_TX,
 	&HERO_BLACK_TX,
-	/*&HOUSE_1_TX,
-    &HOUSE_1_BLACK_TX,
-	&LANTERN_1_TX,
-	&LANTERN_1_BLACK_TX,
-	&MOTORBIKE_1_TX,*/
 
 	NULL
 };
@@ -305,9 +286,9 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		16,
+		40,
 		// unload padding
-		0,
+		40,
 		// streaming amplitude
 		16,
 		// particle removal delay cycles
@@ -478,7 +459,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 	{
 		32,
 		-16,
-		16,
+		1,
 		0,
 	},
 

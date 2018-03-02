@@ -58,8 +58,6 @@ bool ProgressManager_verifyChecksum(ProgressManager this);
 static void ProgressManager_initialize(ProgressManager this);
 static void ProgressManager_onSecondChange(ProgressManager this, Object eventFirer);
 static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer);
-static void ProgressManager_onKeyTaken(ProgressManager this, Object eventFirer);
-static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer);
 static void ProgressManager_onLevelStarted(ProgressManager this, Object eventFirer);
 static void ProgressManager_onLevelCompleted(ProgressManager this, Object eventFirer);
 static void ProgressManager_onCheckpointLoaded(ProgressManager this, Object eventFirer);
@@ -91,8 +89,6 @@ static void __attribute__ ((noinline)) ProgressManager_constructor(ProgressManag
 	Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
 	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager_onSecondChange, kEventSecondChanged);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, kEventHitTaken);
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
-	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelStarted, kEventLevelStarted);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onCheckpointLoaded, kEventCheckpointLoaded);
 	Object_addEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelCompleted, kEventLevelCompleted);
@@ -108,8 +104,6 @@ void ProgressManager_destructor(ProgressManager this)
 	Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
 	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)ProgressManager_onSecondChange, kEventSecondChanged);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onHitTaken, kEventHitTaken);
-	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onKeyTaken, kEventKeyTaken);
-	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onPowerUp, kEventPowerUp);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelStarted, kEventLevelStarted);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onCheckpointLoaded, kEventCheckpointLoaded);
 	Object_removeEventListener(eventManager, __SAFE_CAST(Object, this), (EventListener)ProgressManager_onLevelCompleted, kEventLevelCompleted);
@@ -121,28 +115,21 @@ void ProgressManager_destructor(ProgressManager this)
 void ProgressManager_resetHeroState(ProgressManager this)
 {
 	this->heroCurrentEnergy = HERO_INITIAL_ENERGY;
-	this->heroCurrentPowerUp = kPowerUpNone;
 }
 
 void ProgressManager_resetCurrentLevelProgress(ProgressManager this)
 {
 	ProgressManager_resetHeroState(this);
 
-	this->heroHasKey = false;
 	this->currentLevelTime = 0;
 	this->collectedItems = 0;
 	this->collectedCoins[0] = 0;
 	this->collectedCoins[1] = 0;
 
-	this->checkpointHeroHasKey = false;
 	this->checkpointCurrentLevelTime = 0;
 	this->checkpointCollectedItems = 0;
 	this->checkpointCollectedCoins[0] = 0;
 	this->checkpointCollectedCoins[1] = 0;
-
-#ifdef GOD_MODE
-	this->heroHasKey = true;
-#endif
 }
 
 // write then immediately read save stamp to validate sram
@@ -259,7 +246,6 @@ void ProgressManager_setCheckPointData(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::setCheckPoint: null this");
 
-	this->checkpointHeroHasKey = this->heroHasKey;
 	this->checkpointCurrentLevelTime = this->currentLevelTime;
 	this->checkpointCollectedItems = this->collectedItems;
 	this->checkpointCollectedCoins[0] = this->collectedCoins[0];
@@ -270,7 +256,6 @@ void ProgressManager_loadCheckPointData(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::setCheckPoint: null this");
 
-	this->heroHasKey = this->checkpointHeroHasKey;
 	this->currentLevelTime = this->checkpointCurrentLevelTime;
 	this->collectedItems = this->checkpointCollectedItems;
 	this->collectedCoins[0] = this->checkpointCollectedCoins[0];
@@ -521,17 +506,6 @@ u8 ProgressManager_getHeroCurrentEnergy(ProgressManager this)
 	return this->heroCurrentEnergy;
 }
 
-// get hero's current power-up
-u8 ProgressManager_getHeroCurrentPowerUp(ProgressManager this)
-{
-	return this->heroCurrentPowerUp;
-}
-
-bool ProgressManager_heroHasKey(ProgressManager this)
-{
-	return this->heroHasKey;
-}
-
 // get current level time
 u32 ProgressManager_getCurrentLevelTime(ProgressManager this)
 {
@@ -548,18 +522,6 @@ static void ProgressManager_onSecondChange(ProgressManager this, Object eventFir
 static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
 	this->heroCurrentEnergy = Hero_getEnergy(Hero_getInstance());
-}
-
-// handle event
-static void ProgressManager_onKeyTaken(ProgressManager this, Object eventFirer __attribute__ ((unused)))
-{
-	this->heroHasKey = true;
-}
-
-// handle event
-static void ProgressManager_onPowerUp(ProgressManager this, Object eventFirer __attribute__ ((unused)))
-{
-	this->heroCurrentPowerUp = Hero_getPowerUp(Hero_getInstance());
 }
 
 // handle event

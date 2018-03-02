@@ -154,7 +154,7 @@ ShapeROMDef CAR_BG_2_IM_SHAPES[] =
 		{4 * 8, 5 * 8, 4 * 8},
 
 		// displacement (x, y, z, p)
-		{0, -34, 0, 0},
+		{0, -30, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

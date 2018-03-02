@@ -1,7 +1,6 @@
 // Do not modify this file, it is auto-generated
  
 // includes
-#include <CameraTriggerEntity.h>
 #include <CustomCameraEffectManager.h>
 #include <CustomCameraMovementManager.h>
 #include <EventManager.h>
@@ -114,7 +113,6 @@
 // setup function
 void setupClasses(void)
 {
-	CameraTriggerEntity_setVTable();
 	CustomCameraEffectManager_setVTable();
 	CustomCameraMovementManager_setVTable();
 	EventManager_setVTable();

@@ -37,7 +37,6 @@
 #include "states/HeroMoving.h"
 #include <CustomCameraMovementManager.h>
 #include <CustomCameraEffectManager.h>
-#include <CameraTriggerEntity.h>
 #include <EventManager.h>
 #include <SoundManager.h>
 #include <debugConfig.h>
@@ -61,17 +60,13 @@ extern const u16 FIRE_SND[];
 extern const u16 JUMP_SND[];
 extern CharSetDefinition HERO_CH;
 
-extern CameraTriggerEntityROMDef CAMERA_BOUNDING_BOX_IG;
-
 
 //---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
 static void Hero_onUserInput(Hero this, Object eventFirer);
-void Hero_updateSprite(Hero this);
 static void Hero_slide(Hero this);
-void Hero_losePowerUp(Hero this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -111,10 +106,7 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 
 	// init class variables
 	this->coins = 0;
-	this->hasKey = false;
-	this->cameraBoundingBox = NULL;
 	this->energy = HERO_INITIAL_ENERGY;
-	this->powerUp = kPowerUpNone;
 	this->invincible = false;
 	this->jumps = 0;
 	this->keepAddingForce = false;
@@ -145,7 +137,6 @@ void Hero_destructor(Hero this)
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
 
 	// free the instance pointers
-	this->cameraBoundingBox = NULL;
 	hero = NULL;
 
 	// delete the super object
@@ -167,15 +158,6 @@ void Hero_ready(Hero this, bool recursive)
 	if(progressManager)
 	{
 		this->energy = ProgressManager_getHeroCurrentEnergy(progressManager);
-
-		u8 currentPowerUp = ProgressManager_getHeroCurrentPowerUp(progressManager);
-		if(currentPowerUp != this->powerUp)
-		{
-			this->powerUp = currentPowerUp;
-			Hero_updateSprite(this);
-		}
-
-		this->hasKey = ProgressManager_heroHasKey(ProgressManager_getInstance());
 	}
 
 	// initialize me as idle
@@ -223,7 +205,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 	if(this->body)
 	{
 		// determine the maximum number of possible jumps before reaching ground again
-		s8 allowedNumberOfJumps = this->underWater ? 127 : (this->powerUp == kPowerUpBandana) ? 2 : 1;
+		s8 allowedNumberOfJumps = this->underWater ? 127 : 1;
 
 #ifdef GOD_MODE
 	allowedNumberOfJumps = 127;
@@ -444,8 +426,6 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 		{
 			MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
 
-			Hero_lockCameraTriggerMovement(this, __Y_AXIS, true);
-
 			this->jumps = 0;
 
 			if(Body_getVelocity(this->body).x)
@@ -506,39 +486,9 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 		this->inputDirection.z = __NEAR;
 	}
 
-	if(direction.x != this->inputDirection.x)
-	{
-		Hero_lockCameraTriggerMovement(this, __X_AXIS, true);
-	}
-
 	if(animation && !(__Y_AXIS & movementState))
 	{
 		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), animation);
-	}
-}
-
-void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked)
-{
-	if(this->cameraBoundingBox)
-	{
-		Vector3DFlag overridePositionFlag = CameraTriggerEntity_getOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox));
-
-		Vector3DFlag positionFlag = CustomCameraMovementManager_getPositionFlag(CustomCameraMovementManager_getInstance());
-
-		if(__X_AXIS & axisToLockUp)
-		{
-			overridePositionFlag.x = locked;
-
-			positionFlag.x = !locked;
-		}
-
-		if(__Y_AXIS & axisToLockUp)
-		{
-			overridePositionFlag.y = locked;
-		}
-
-		CameraTriggerEntity_setOverridePositionFlag(__SAFE_CAST(CameraTriggerEntity, this->cameraBoundingBox), overridePositionFlag);
-		CustomCameraMovementManager_setPositionFlag(CustomCameraMovementManager_getInstance(), positionFlag);
 	}
 }
 
@@ -557,7 +507,7 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 
 	if(!Hero_isInvincible(this) || !invincibleWins)
 	{
-		if(invincibleWins && ((this->energy - energyToReduce >= 0) || (this->powerUp != kPowerUpNone)))
+		if(invincibleWins && (this->energy - energyToReduce >= 0))
 		{
 			Hero_setInvincible(this, true);
 
@@ -568,15 +518,8 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 			MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
 			MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroFlash, NULL);
 
-			// lose power-up or reduce energy
-			if(this->powerUp != kPowerUpNone)
-			{
-				Hero_losePowerUp(this);
-			}
-			else
-			{
-				this->energy -= energyToReduce;
-			}
+			// reduce energy
+			this->energy -= energyToReduce;
 
 			if(pause)
 			{
@@ -726,66 +669,6 @@ static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused
 	}
 }
 
-// does the hero have a key?
-bool Hero_hasKey(Hero this)
-{
-	return this->hasKey;
-}
-
-// collect a power-up
-void Hero_collectPowerUp(Hero this, u8 powerUp)
-{
-	this->powerUp = powerUp;
-	this->keepAddingForce = false;
-
-	Hero_updateSprite(this);
-
-	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
-	Game_disableKeypad(Game_getInstance());
-	GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
-
-	//AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Transition");
-}
-
-// lose a power-up
-void Hero_losePowerUp(Hero this)
-{
-	this->powerUp = kPowerUpNone;
-	Hero_updateSprite(this);
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventPowerUp);
-}
-
-// update sprite, e.g. after collecting a power-up
-void Hero_updateSprite(Hero this)
-{
-	CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
-
-	CharSetDefinition* charSetDefinition = NULL;
-
-	switch(this->powerUp)
-	{
-		case kPowerUpBandana:
-
-			//charSetDefinition = &HERO_BANDANA_CH;
-			break;
-
-		default:
-		case kPowerUpNone:
-
-			charSetDefinition = &HERO_CH;
-			break;
-	}
-
-	CharSet_setCharSetDefinition(charSet, charSetDefinition);
-	CharSet_rewrite(charSet);
-}
-
-// get current power-up
-u8 Hero_getPowerUp(Hero this)
-{
-	return this->powerUp;
-}
-
 // get energy
 u8 Hero_getEnergy(Hero this)
 {
@@ -828,29 +711,6 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 	{
 		// speed things up by breaking early
 		case kShape:
-			break;
-
-		case kCameraTarget:
-			{
-				if(collisionInformation->solutionVector.direction.y)
-				{
-					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
-				}
-
-				if(collisionInformation->solutionVector.direction.x)
-				{
-					Hero_lockCameraTriggerMovement(this, __X_AXIS, false);
-				}
-				else
-				{
-					Hero_lockCameraTriggerMovement(this, __Y_AXIS, false);
-				}
-
-				Vector3D position = CAMERA_BOUNDING_BOX_DISPLACEMENT;
-
-				__VIRTUAL_CALL(Container, setLocalPosition, this->cameraBoundingBox, &position);
-			}
-			return false;
 			break;
 
 		case kHit:
@@ -1010,12 +870,6 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 	switch(message)
 	{
 		case kLevelSetUp:
-			{
-				// set camera
-				Vector3D cameraBoundingBoxPosition = CAMERA_BOUNDING_BOX_DISPLACEMENT;
-				this->cameraBoundingBox = Entity_addChildEntity(__SAFE_CAST(Entity, this), (EntityDefinition*)&CAMERA_BOUNDING_BOX_IG, 0, NULL, &cameraBoundingBoxPosition, NULL);
-				Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
-			}
 
 			//Hero_locateOverNextFloor(this);
 
@@ -1048,12 +902,8 @@ void Hero_resume(Hero this)
 
 	Camera_focus(Camera_getInstance(), false);
 
-	Hero_lockCameraTriggerMovement(this, __X_AXIS | __Y_AXIS, true);
-
 	Vector3DFlag positionFlag = {true, true, true};
 	CustomCameraMovementManager_setPositionFlag(CustomCameraMovementManager_getInstance(), positionFlag);
-
-	Hero_updateSprite(this);
 }
 
 bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionInformation)
@@ -1071,13 +921,6 @@ bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionI
 u16 Hero_getAxisForFlipping(Hero this __attribute__ ((unused)))
 {
 	return __X_AXIS;
-}
-
-void Hero_onPowerUpTransitionComplete(Hero this, Object eventFirer __attribute__ ((unused)))
-{
-	ASSERT(this, "Hero::onPowerUpTransitionComplete: null this");
-
-	MessageDispatcher_dispatchMessage(300, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, NULL);
 }
 
 bool Hero_isAffectedByRelativity(Hero this __attribute__ ((unused)))
