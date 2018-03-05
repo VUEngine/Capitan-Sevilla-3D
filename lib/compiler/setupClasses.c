@@ -8,6 +8,7 @@
 #include <HbiasMaskMBgmapSprite.h>
 #include <ProgressManager.h>
 #include <Hero.h>
+#include <HeroDead.h>
 #include <HeroIdle.h>
 #include <HeroMoving.h>
 #include <HeroState.h>
@@ -120,6 +121,7 @@ void setupClasses(void)
 	HbiasMaskMBgmapSprite_setVTable();
 	ProgressManager_setVTable();
 	Hero_setVTable();
+	HeroDead_setVTable();
 	HeroIdle_setVTable();
 	HeroMoving_setVTable();
 	HeroState_setVTable();

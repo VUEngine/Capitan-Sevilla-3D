@@ -5,6 +5,7 @@
     <content url="file://C:/vbde/libs/vuengine">
       <excludeFolder url="file://C:/vbde/libs/vuengine/.idea" />
       <excludeFolder url="file://C:/vbde/libs/vuengine/build" />
+      <excludeFolder url="file://C:/vbde/libs/vuengine/doc" />
       <excludeFolder url="file://C:/vbde/libs/vuengine/lib" />
     </content>
     <orderEntry type="inheritedJdk" />

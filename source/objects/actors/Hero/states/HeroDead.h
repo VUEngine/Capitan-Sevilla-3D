@@ -19,57 +19,46 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef GUI_H_
-#define GUI_H_
+#ifndef HERO_DEAD_H_
+#define HERO_DEAD_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <macros.h>
+#include <HeroState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Gui_METHODS(ClassName)																			\
-		Entity_METHODS(ClassName)																		\
+// declare the virtual methods
+#define HeroDead_METHODS(ClassName)																		\
+		HeroState_METHODS(ClassName)																	\
 
-#define Gui_SET_VTABLE(ClassName)																		\
-		Entity_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, Gui, ready);															\
+// declare the virtual methods which are redefined
+#define HeroDead_SET_VTABLE(ClassName)																	\
+		HeroState_SET_VTABLE(ClassName)																	\
+		__VIRTUAL_SET(ClassName, HeroDead, enter);														\
+		__VIRTUAL_SET(ClassName, HeroDead, exit);														\
+		__VIRTUAL_SET(ClassName, HeroDead, onKeyPressed);												\
 
-__CLASS(Gui);
+__CLASS(HeroDead);
 
-#define Gui_ATTRIBUTES																					\
-		Entity_ATTRIBUTES																				\
-		u8 timeRemaining;																				\
-
-
-//---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-#define GUI_X_POS	0
-#define GUI_Y_POS	25
+#define HeroDead_ATTRIBUTES																				\
+		/* inherits */																					\
+		HeroState_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Gui, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+HeroDead HeroDead_getInstance();
 
-void Gui_constructor(Gui this, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-void Gui_destructor(Gui this);
-void Gui_ready(Gui this, bool recursive);
-void Gui_printClock(Gui this);
-void Gui_printLives(Gui this);
-void Gui_printSausages(Gui this);
-void Gui_printAll(Gui this);
+void HeroDead_onKeyPressed(HeroDead this, void* owner, const UserInput* userInput);
 
 
 #endif

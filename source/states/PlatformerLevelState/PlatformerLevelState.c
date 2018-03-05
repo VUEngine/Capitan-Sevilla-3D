@@ -71,13 +71,12 @@ static void PlatformerLevelState_onHeroStreamedOut(PlatformerLevelState this, Ob
 void PlatformerLevelState_setPrintingLayerCoordinates(PlatformerLevelState this);
 void PlatformerLevelState_startStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);
 
-extern PlatformerLevelDefinition LEVEL_1_LV;
-
 
 //---------------------------------------------------------------------------------------------------------
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern PlatformerLevelDefinition LEVEL_1_LV;
 extern EntityDefinition HERO_AC;
 
 
@@ -553,6 +552,7 @@ void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object even
 
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
+/*
 	// unset the hero as focus entity from the custom screen movement manager
 	Camera_setFocusGameEntity(Camera_getInstance(), NULL);
 
@@ -568,6 +568,7 @@ void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((u
 	);
 
 	Game_disableKeypad(Game_getInstance());
+*/
 }
 
 static void PlatformerLevelState_onHeroStreamedOut(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))

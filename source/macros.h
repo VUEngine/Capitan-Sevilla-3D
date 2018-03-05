@@ -104,7 +104,7 @@ enum CollisionLayers
     kItemsLayer							= 1 << (kNoLayer + 4), 	// hex 00000010
     kCollectablesLayer					= 1 << (kNoLayer + 5), 	// hex 00000020
     kTriggersLayer						= 1 << (kNoLayer + 6), 	// hex 00000040
-    kMovingPlatformsLayer				= 1 << (kNoLayer + 7), 	// hex 00000040
+    kMovingPlatformsLayer				= 1 << (kNoLayer + 7), 	// hex 00000080
     kAllLayers							= 0xFFFFFFFF,
 };
 

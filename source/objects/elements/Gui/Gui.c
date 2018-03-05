@@ -37,6 +37,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//											DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern EntityDefinition GAME_OVER_IM;
+
+
+//---------------------------------------------------------------------------------------------------------
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
@@ -50,6 +57,7 @@ __CLASS_DEFINITION(Gui, Entity);
 void Gui_printAll(Gui this);
 static void Gui_onSecondChange(Gui this, Object eventFirer);
 static void Gui_onHitTaken(Gui this, Object eventFirer);
+static void Gui_onHeroDied(Gui this, Object eventFirer);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -73,9 +81,12 @@ void Gui_constructor(Gui this, EntityDefinition* animatedEntityDefinition, s16 i
 	// construct base
 	__CONSTRUCT_BASE(Entity, animatedEntityDefinition, id, internalId, name);
 
+	this->timeRemaining = 90;
+
 	// add event listeners
 	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui_onSecondChange, kEventSecondChanged);
 	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHitTaken, kEventHitTaken);
+	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHeroDied, kEventHeroDied);
 }
 
 // class's destructor
@@ -84,6 +95,7 @@ void Gui_destructor(Gui this)
 	// remove event listeners
 	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui_onSecondChange, kEventSecondChanged);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHitTaken, kEventHitTaken);
+	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHeroDied, kEventHeroDied);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -102,8 +114,7 @@ void Gui_ready(Gui this, bool recursive)
 
 void Gui_printClock(Gui this __attribute__ ((unused)))
 {
-	Printing_text(Printing_getInstance(), "00", GUI_X_POS + 37, GUI_Y_POS, NULL);
-	//Clock_print(PlatformerLevelState_getClock(PlatformerLevelState_getInstance()), GUI_X_POS + 37, GUI_Y_POS, NULL);
+	Printing_int(Printing_getInstance(), this->timeRemaining, GUI_X_POS + 37, GUI_Y_POS, NULL);
 }
 
 void Gui_printSausages(Gui this __attribute__ ((unused)))
@@ -114,7 +125,7 @@ void Gui_printSausages(Gui this __attribute__ ((unused)))
 void Gui_printLives(Gui this __attribute__ ((unused)))
 {
 	Printing_text(Printing_getInstance(), "X00", GUI_X_POS + 44, GUI_Y_POS, NULL);
-	Printing_int(Printing_getInstance(), 3, GUI_X_POS + 46, GUI_Y_POS, NULL);
+	Printing_int(Printing_getInstance(), Hero_getEnergy(Hero_getInstance()), GUI_X_POS + 46, GUI_Y_POS, NULL);
 }
 
 void Gui_printAll(Gui this)
@@ -137,11 +148,30 @@ static void Gui_onSecondChange(Gui this, Object eventFirer __attribute__ ((unuse
 	if(!Game_isInSpecialMode(Game_getInstance()))
 #endif
 
-	Gui_printClock(this);
+	if(this->timeRemaining > 0)
+	{
+		this->timeRemaining--;
+		Gui_printClock(this);
+	}
 }
 
 // handle event
 static void Gui_onHitTaken(Gui this, Object eventFirer __attribute__ ((unused)))
 {
 	Gui_printLives(this);
+}
+
+// handle event
+static void Gui_onHeroDied(Gui this, Object eventFirer __attribute__ ((unused)))
+{
+	Printing_text(Printing_getInstance(), "                                                ", GUI_X_POS, GUI_Y_POS, NULL);
+
+
+
+	PositionedEntity gameOverPositionedEntity = {&GAME_OVER_IM, {384, 112, 0, 0}, 0, NULL, NULL, NULL, false};
+	Stage_addChildEntity(Game_getStage(Game_getInstance()), &gameOverPositionedEntity, true);
+
+
+
+	Container_deleteMyself(__SAFE_CAST(Container, this));
 }

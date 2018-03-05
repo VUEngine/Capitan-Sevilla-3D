@@ -173,10 +173,10 @@ ShapeROMDef BULLY_1_AC_SHAPES[] =
 		false,
 
 		// layers in which I live
-		kPlayerLayer,
+		kEnemiesLayer,
 
 		// layers to ignore when checking for collisions
-		kParticlesLayer,
+		kNoLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}

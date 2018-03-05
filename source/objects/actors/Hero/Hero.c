@@ -32,13 +32,15 @@
 #include <Box.h>
 #include <PhysicalWorld.h>
 #include <KeypadManager.h>
-#include "Hero.h"
-#include "states/HeroIdle.h"
-#include "states/HeroMoving.h"
+#include <Hero.h>
+#include <HeroIdle.h>
+#include <HeroMoving.h>
+#include <HeroDead.h>
 #include <CustomCameraMovementManager.h>
 #include <CustomCameraEffectManager.h>
 #include <EventManager.h>
 #include <SoundManager.h>
+#include <PlatformerLevelState.h>
 #include <debugConfig.h>
 
 
@@ -129,9 +131,6 @@ void Hero_destructor(Hero this)
 	// remove event listeners
 	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getInstance()), __SAFE_CAST(Object, this), (EventListener)Hero_onUserInput, kEventUserInput);
 
-	// announce my dead
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHeroDied);
-
 	// discard pending delayed messages
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroCheckVelocity);
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
@@ -206,10 +205,6 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 	{
 		// determine the maximum number of possible jumps before reaching ground again
 		s8 allowedNumberOfJumps = this->underWater ? 127 : 1;
-
-#ifdef GOD_MODE
-	allowedNumberOfJumps = 127;
-#endif
 
 		// check if more jumps are allowed
 		if(this->jumps < allowedNumberOfJumps)
@@ -494,19 +489,20 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 
 void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
 {
-#ifdef GOD_MODE
-	return;
-#endif
-
-
-
-	Printing_text(Printing_getInstance(), "HIT", 0, 0, NULL);
-	return;
-
-
-
 	if(!Hero_isInvincible(this) || !invincibleWins)
 	{
+		// start short screen shake
+		Camera_startEffect(Camera_getInstance(), kShake, 200);
+
+		// play hit sound
+		SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transformation.globalPosition);
+
+		// play animation
+		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Hit");
+
+		// inform others to update ui etc
+		Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHitTaken);
+
 		if(invincibleWins && (this->energy - energyToReduce >= 0))
 		{
 			Hero_setInvincible(this, true);
@@ -532,28 +528,8 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 		}
 		else
 		{
-			Game_disableKeypad(Game_getInstance());
-			Hero_setInvincible(this, true);
-			this->energy = 0;
-			Hero_flash(this);
-			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Dead");
-			GameState_pausePhysics(Game_getCurrentState(Game_getInstance()), true);
-			GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
-			Entity_activateShapes(__SAFE_CAST(Entity, this), false);
-			MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
+			Hero_die(this);
 		}
-
-		// start short screen shake
-		Camera_startEffect(Camera_getInstance(), kShake, 200);
-
-		// play hit sound
-		SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transformation.globalPosition);
-
-		// play animation
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Hit");
-
-		// inform others to update ui etc
-		Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHitTaken);
 	}
 }
 
@@ -630,20 +606,26 @@ void Hero_resetPalette(Hero this)
 // die hero
 void Hero_die(Hero this)
 {
+	// unregister the shape for collision detection
+	Entity_activateShapes(__SAFE_CAST(Entity, this), false);
+
+	// show animation
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Dead");
+
+	// set flashing palette back to original
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kHeroFlash);
+	Hero_resetPalette(this);
 
-	Container_deleteMyself(__SAFE_CAST(Container, this));
+	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
+	Game_disableKeypad(Game_getInstance());
+	Hero_setInvincible(this, true);
+	//MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
 
-	/*
 	// go to dead state
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroDead_getInstance()));
 
-	// must unregister the shape for collision detections
-	Entity_activateShapes(__SAFE_CAST(Entity, this), false);
-
-	// change in game state
-	this->inGameState = kDead;
-	*/
+	// announce my dead
+	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHeroDied);
 }
 
 // process user input
@@ -843,11 +825,6 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 				AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
 			}
 
-			break;
-
-		case kHeroDied:
-
-			Hero_die(this);
 			break;
 
 		case kBodyStopped:

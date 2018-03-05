@@ -391,7 +391,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{19, 37, 32},
+		{19, 37, 48},
 
 		// displacement (x, y, z, p)
 		{0, -3, -16, 0},

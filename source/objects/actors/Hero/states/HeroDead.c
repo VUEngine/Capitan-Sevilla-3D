@@ -19,57 +19,78 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef GUI_H_
-#define GUI_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <macros.h>
+#include "HeroDead.h"
+#include "HeroMoving.h"
+#include "../Hero.h"
+
+#include <PlatformerLevelState.h>
+#include <MessageDispatcher.h>
+#include <KeypadManager.h>
+#include <debugUtilities.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
+//												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-#define Gui_METHODS(ClassName)																			\
-		Entity_METHODS(ClassName)																		\
-
-#define Gui_SET_VTABLE(ClassName)																		\
-		Entity_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, Gui, ready);															\
-
-__CLASS(Gui);
-
-#define Gui_ATTRIBUTES																					\
-		Entity_ATTRIBUTES																				\
-		u8 timeRemaining;																				\
+static void HeroDead_constructor(HeroDead this);
+void HeroDead_destructor(HeroDead this);
+void HeroDead_enter(HeroDead this, void* owner);
+void HeroDead_exit(HeroDead this, void* owner);
+bool HeroDead_processMessage(HeroDead this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-#define GUI_X_POS	0
-#define GUI_Y_POS	25
+__CLASS_DEFINITION(HeroDead, HeroState);
+__SINGLETON(HeroDead);
 
 
 //---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Gui, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+// class's constructor
+void __attribute__ ((noinline)) HeroDead_constructor(HeroDead this)
+{
+	// construct base
+	__CONSTRUCT_BASE(HeroState);
+}
 
-void Gui_constructor(Gui this, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-void Gui_destructor(Gui this);
-void Gui_ready(Gui this, bool recursive);
-void Gui_printClock(Gui this);
-void Gui_printLives(Gui this);
-void Gui_printSausages(Gui this);
-void Gui_printAll(Gui this);
+// class's destructor
+void HeroDead_destructor(HeroDead this)
+{
+	// destroy base
+	__SINGLETON_DESTROY;
+}
 
-
+// state's enter
+void HeroDead_enter(HeroDead this __attribute__ ((unused)), void* owner)
+{
+#ifdef __DEBUG
+	Printing_text(Printing_getInstance(), "HeroDead   ", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, NULL);
 #endif
+
+	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED);
+}
+
+// state's exit
+void HeroDead_exit(HeroDead this, void* owner __attribute__ ((unused)))
+{
+}
+
+void HeroDead_onKeyPressed(HeroDead this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+{
+	if((K_LL | K_LR | K_A) & userInput->pressedKey)
+	{
+		//Container_deleteMyself(__SAFE_CAST(Container, &owner));
+		return;
+	}
+}

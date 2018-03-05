@@ -24,84 +24,51 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <libgccvb.h>
-#include <BgmapAnimatedSprite.h>
-#include <Actor.h>
-#include <Box.h>
-#include <MovingOneWayEntity.h>
+#include <Entity.h>
+#include <BgmapSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HoverCar1Tiles[];
-extern BYTE HoverCar1Map[];
+extern BYTE GameOverTiles[];
+extern BYTE GameOverMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
-AnimationFunctionROMDef HOVER_CAR_1_MOVE_ANIM =
-{
-	// number of frames of this animation function
-	2,
-
-	// frames to play in animation
-	{0, 1},
-
-	// number of cycles a frame of animation is displayed
-	6,
-
-	// whether to play it in loop or not
-	true,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Move",
-};
-
-// an animation definition
-AnimationDescriptionROMDef HOVER_CAR_1_ANIM =
-{
-	// animation functions
-	{
-		(AnimationFunction*)&HOVER_CAR_1_MOVE_ANIM,
-		NULL,
-	}
-};
-
-CharSetROMDef HOVER_CAR_1_CH =
+CharSetROMDef GAME_OVER_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	60,
+	144,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SINGLE,
+	__NOT_ANIMATED,
 
 	// char definition
-	HoverCar1Tiles,
+	GameOverTiles,
 };
 
-TextureROMDef HOVER_CAR_1_TX =
+TextureROMDef GAME_OVER_TX =
 {
-	(CharSetDefinition*)&HOVER_CAR_1_CH,
+	// charset definition
+	(CharSetDefinition*)&GAME_OVER_CH,
 
 	// bgmap definition
-	HoverCar1Map,
+	GameOverMap,
 
 	// cols (max 64)
-	10,
+	31,
 
 	// rows (max 64)
-	6,
+	5,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -118,14 +85,14 @@ TextureROMDef HOVER_CAR_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef HOVER_CAR_1_SPRITE =
+BgmapSpriteROMDef GAME_OVER_IM_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&HOVER_CAR_1_TX,
+		(TextureDefinition*)&GAME_OVER_TX,
 
 		// transparent
 		false,
@@ -145,77 +112,30 @@ BgmapSpriteROMDef HOVER_CAR_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const HOVER_CAR_1_SPRITES[] =
+BgmapSpriteROMDef* const GAME_OVER_IM_SPRITES[] =
 {
-	&HOVER_CAR_1_SPRITE,
+	&GAME_OVER_IM_SPRITE,
 	NULL
 };
 
-ShapeROMDef HOVER_CAR_1_AC_SHAPES[] =
+EntityROMDef GAME_OVER_IM =
 {
-	{
-		// shape
-		__TYPE(Box),
+	// class allocator
+	__TYPE(Entity),
 
-		// size (x, y, z)
-		{64, 26, 24},
+	// sprites
+	(SpriteROMDef**)GAME_OVER_IM_SPRITES,
 
-		// displacement (x, y, z, p)
-		{8, 19, 0, 0},
+	// collision shapes
+	NULL,
 
-		// rotation (x, y, z)
-		{0, 0, 0},
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
 
-		// scale (x, y, z)
-		{0, 0, 0},
+	// gameworld's character's type
+	kNoType,
 
-		// if true this shape checks for collisions against other shapes
-		false,
-
-		// layers in which I live
-		kEnemiesLayer,
-
-		// layers to ignore when checking for collisions
-		kNoLayer,
-	},
-
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
-};
-
-ActorROMDef HOVER_CAR_1_AC =
-{
-	{
-		{
-			// class allocator
-			__TYPE(MovingOneWayEntity),
-
-			// sprites
-			(SpriteROMDef**)HOVER_CAR_1_SPRITES,
-
-			// collision shapes
-			(ShapeDefinition*)HOVER_CAR_1_AC_SHAPES,
-
-			// size
-			// if 0, width and height will be inferred from the first sprite's texture's size
-			{0, 0, 0},
-
-			// gameworld's character's type
-			kHit,
-
-			// physical specification
-			(PhysicalSpecification*)NULL,
-		},
-
-		// pointer to the animation definition for the character
-		(AnimationDescription*)&HOVER_CAR_1_ANIM,
-
-		// initial animation
-		"Move",
-	},
-
-	// true to create a body
-	true,
-
-	// axes subject to gravity
-	__NO_AXIS
+	// physical specification
+	NULL,
 };

@@ -38,7 +38,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define HERO_NAME							"Capitan"
-#define HERO_INITIAL_ENERGY					3
+#define HERO_INITIAL_ENERGY					0
 
 #define HERO_MASS							1
 #define HERO_ELASTICITY						0.0f
