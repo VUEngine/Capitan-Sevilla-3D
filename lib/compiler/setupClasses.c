@@ -10,6 +10,7 @@
 #include <Hero.h>
 #include <HeroDead.h>
 #include <HeroIdle.h>
+#include <HeroKneel.h>
 #include <HeroMoving.h>
 #include <HeroState.h>
 #include <MovingEntity.h>
@@ -123,6 +124,7 @@ void setupClasses(void)
 	Hero_setVTable();
 	HeroDead_setVTable();
 	HeroIdle_setVTable();
+	HeroKneel_setVTable();
 	HeroMoving_setVTable();
 	HeroState_setVTable();
 	MovingEntity_setVTable();

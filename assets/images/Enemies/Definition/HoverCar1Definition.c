@@ -158,10 +158,10 @@ ShapeROMDef HOVER_CAR_1_AC_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{64, 26, 24},
+		{68, 32, 24},
 
 		// displacement (x, y, z, p)
-		{8, 19, 0, 0},
+		{4, 4, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

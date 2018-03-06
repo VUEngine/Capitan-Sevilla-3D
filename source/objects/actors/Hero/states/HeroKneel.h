@@ -19,59 +19,51 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef GUI_H_
-#define GUI_H_
+#ifndef HERO_KNEEL_H_
+#define HERO_KNEEL_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <macros.h>
+#include <HeroState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Gui_METHODS(ClassName)																			\
-		Entity_METHODS(ClassName)																		\
+// declare the virtual methods
+#define HeroKneel_METHODS(ClassName)																	\
+		HeroState_METHODS(ClassName)																	\
 
-#define Gui_SET_VTABLE(ClassName)																		\
-		Entity_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, Gui, ready);															\
-		__VIRTUAL_SET(ClassName, Gui, resume);															\
+// declare the virtual methods which are redefined
+#define HeroKneel_SET_VTABLE(ClassName)																	\
+		HeroState_SET_VTABLE(ClassName)																	\
+		__VIRTUAL_SET(ClassName, HeroKneel, enter);														\
+		__VIRTUAL_SET(ClassName, HeroKneel, exit);														\
+		__VIRTUAL_SET(ClassName, HeroKneel, processMessage);											\
+		__VIRTUAL_SET(ClassName, HeroKneel, onKeyPressed);												\
+		__VIRTUAL_SET(ClassName, HeroKneel, onKeyReleased);												\
+		__VIRTUAL_SET(ClassName, HeroKneel, onKeyHold);													\
 
-__CLASS(Gui);
+__CLASS(HeroKneel);
 
-#define Gui_ATTRIBUTES																					\
-		Entity_ATTRIBUTES																				\
-		u8 timeRemaining;																				\
-
-
-//---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-#define GUI_X_POS	0
-#define GUI_Y_POS	25
+#define HeroKneel_ATTRIBUTES																			\
+		/* inherits */																					\
+		HeroState_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Gui, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+HeroKneel HeroKneel_getInstance();
 
-void Gui_constructor(Gui this, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-void Gui_destructor(Gui this);
-void Gui_ready(Gui this, bool recursive);
-void Gui_resume(Gui this);
-void Gui_printClock(Gui this);
-void Gui_printLives(Gui this);
-void Gui_printSausages(Gui this);
-void Gui_printAll(Gui this);
+void HeroKneel_onKeyPressed(HeroKneel this, void* owner, const UserInput* userInput);
+void HeroKneel_onKeyReleased(HeroKneel this, void* owner, const UserInput* userInput);
+void HeroKneel_onKeyHold(HeroKneel this, void* owner, const UserInput* userInput);
 
 
 #endif

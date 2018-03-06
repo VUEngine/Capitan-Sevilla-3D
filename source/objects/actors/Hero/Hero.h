@@ -38,7 +38,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define HERO_NAME							"Capitan"
-#define HERO_INITIAL_ENERGY					0
+#define HERO_INITIAL_ENERGY					3
+#define HERO_INITIAL_SAUSAGES				12
 
 #define HERO_MASS							1
 #define HERO_ELASTICITY						0.0f
@@ -95,16 +96,14 @@ __CLASS(Hero);
 		Direction inputDirection;																		\
 		/* hero has energy	*/																			\
 		u8 energy;																						\
-		/* number of collected coins */																	\
-		u8 coins;																						\
 		/* number of jumps performed (for double jump) */												\
 		s8 jumps;																						\
+		/* number of sausages */																		\
+		u8 sausages;																					\
 		/* flag for invincible mode (after being hit) */												\
 		bool invincible;																				\
 		/* flag to keep applying force to the x axis */													\
 		bool keepAddingForce;																			\
-		/* flag to keep applying force to the x axis */													\
-		bool underWater;																				\
 
 typedef const ActorDefinition HeroDefinition;
 typedef const HeroDefinition HeroROMDef;
@@ -135,6 +134,7 @@ void Hero_toggleFlashPalette(Hero this);
 void Hero_resetPalette(Hero this);
 void Hero_die(Hero this);
 u8 Hero_getEnergy(Hero this);
+u8 Hero_getSausages(Hero this);
 void Hero_setInvincible(Hero this, bool invincible);
 bool Hero_isInvincible(Hero this);
 fix10_6 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal);

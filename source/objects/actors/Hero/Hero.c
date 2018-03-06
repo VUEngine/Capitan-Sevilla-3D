@@ -60,7 +60,10 @@ extern double fabs (double);
 extern const u16 COLLECT_SND[];
 extern const u16 FIRE_SND[];
 extern const u16 JUMP_SND[];
-extern CharSetDefinition HERO_CH;
+extern CharSetDefinition HERO_LEFT_CH;
+extern CharSetDefinition HERO_LEFT_BLACK_CH;
+extern CharSetDefinition HERO_RIGHT_CH;
+extern CharSetDefinition HERO_RIGHT_BLACK_CH;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,7 +71,6 @@ extern CharSetDefinition HERO_CH;
 //---------------------------------------------------------------------------------------------------------
 
 static void Hero_onUserInput(Hero this, Object eventFirer);
-static void Hero_slide(Hero this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -103,16 +105,15 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 	// construct base
 	__CONSTRUCT_BASE(Actor, (ActorDefinition*)heroDefinition, id, internalId, name);
 
-	// construct the game state machine
+	// construct the hero's state machine
 	this->stateMachine = __NEW(StateMachine, this);
 
 	// init class variables
-	this->coins = 0;
 	this->energy = HERO_INITIAL_ENERGY;
 	this->invincible = false;
 	this->jumps = 0;
+	this->sausages = HERO_INITIAL_SAUSAGES;
 	this->keepAddingForce = false;
-	this->underWater = false;
 
 	Hero_setInstance(this);
 
@@ -156,44 +157,18 @@ void Hero_ready(Hero this, bool recursive)
 	ProgressManager progressManager = ProgressManager_getInstance();
 	if(progressManager)
 	{
-		this->energy = ProgressManager_getHeroCurrentEnergy(progressManager);
+		//this->energy = ProgressManager_getHeroCurrentEnergy(progressManager);
+		//this->sausages = ProgressManager_getHeroCurrentSausages(progressManager);
 	}
 
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
 }
 
-void Hero_locateOverNextFloor(Hero this __attribute__ ((unused)))
-{
-/*	Vector3D direction = {0, 1, 0};
-
-	SpatialObject collidingSpatialObject = CollisionManager_searchNextObjectOfCollision(Game_getCollisionManager(Game_getInstance()), this->shape, direction);
-	ASSERT(collidingSpatialObject, "Hero::locateOverNextFloor: null collidingSpatialObject");
-
-	if(collidingSpatialObject)
-	{
-		Vector3D displacement =
-		{
-			__I_TO_FIX10_6(0),
-			__1I_FIX10_6,
-			__I_TO_FIX10_6(0),
-		};
-
-		Shape_resolveCollision(this->shape, VirtualList_front(this->shapes), collidingShapesToRemove, displacement, true);
-	}
-	*/
-}
-
 void Hero_kneel(Hero this)
 {
 	// switch to kneel state
-	//StateMachine_swapState(this->stateMachine, __SAFE_CAST(State,  HeroKneeling_getInstance()));
-
-	// play kneel animation
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Kneel");
-
-	// shorten hit box
-	// TODO
+	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State,  HeroKneel_getInstance()));
 }
 
 // make him jump
@@ -204,7 +179,7 @@ void Hero_jump(Hero this, bool checkIfYMovement)
 	if(this->body)
 	{
 		// determine the maximum number of possible jumps before reaching ground again
-		s8 allowedNumberOfJumps = this->underWater ? 127 : 1;
+		s8 allowedNumberOfJumps = 1;
 
 		// check if more jumps are allowed
 		if(this->jumps < allowedNumberOfJumps)
@@ -278,8 +253,6 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 
 	fix10_6 maxVelocity = HERO_MAX_VELOCITY_X;
 
-	maxVelocity = this->underWater ? maxVelocity >> 1: maxVelocity;
-
 	Velocity velocity = Body_getVelocity(this->body);
 
 	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
@@ -318,11 +291,6 @@ void Hero_addForce(Hero this, u16 axis, bool enableAddingForce)
 	}
 }
 
-static void Hero_slide(Hero this)
-{
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Slide");
-}
-
 // start movement
 void Hero_stopAddingForce(Hero this)
 {
@@ -336,12 +304,6 @@ void Hero_stopAddingForce(Hero this)
 //	this->inputDirection.x = 0;
 //	this->inputDirection.y = 0;
 //	this->inputDirection.z = 0;
-
-	// if walking over something
-	if(0 > Body_getNormal(this->body).y)
-	{
-		Hero_slide(this);
-	}
 
 	// begin to decelerate
 	u16 axisOfDeacceleration = 0;
@@ -429,10 +391,6 @@ bool Hero_stopMovingOnAxis(Hero this, u16 axis)
 				{
 					AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Walk");
 				}
-				else
-				{
-					Hero_slide(this);
-				}
 			}
 		}
 
@@ -497,12 +455,6 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 		// play hit sound
 		SoundManager_playFxSound(SoundManager_getInstance(), FIRE_SND, this->transformation.globalPosition);
 
-		// play animation
-		AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Hit");
-
-		// inform others to update ui etc
-		Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHitTaken);
-
 		if(invincibleWins && (this->energy - energyToReduce >= 0))
 		{
 			Hero_setInvincible(this, true);
@@ -525,6 +477,12 @@ void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToRedu
 				//GameState_pauseAnimations(Game_getCurrentState(Game_getInstance()), true);
 				MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroResumePhysics, collidingObject);
 			}
+
+			// play animation
+			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Hit");
+
+			// inform others to update ui etc
+			Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventHitTaken);
 		}
 		else
 		{
@@ -655,6 +613,12 @@ static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused
 u8 Hero_getEnergy(Hero this)
 {
 	return this->energy;
+}
+
+// get number of sausages
+u8 Hero_getSausages(Hero this)
+{
+	return this->sausages;
 }
 
 // set invincibility
@@ -848,8 +812,6 @@ bool Hero_handlePropagatedMessage(Hero this, int message)
 	{
 		case kLevelSetUp:
 
-			//Hero_locateOverNextFloor(this);
-
 			break;
 
 		case kLevelStarted:
@@ -907,6 +869,35 @@ bool Hero_isAffectedByRelativity(Hero this __attribute__ ((unused)))
 	return true;
 }
 
+void Hero_updateSprite(Hero this, Direction direction)
+{
+	CharSet charSetBlack = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
+	CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_back(this->sprites))), true);
+
+	CharSetDefinition* charSetDefinition = NULL;
+	CharSetDefinition* charSetBlackDefinition = NULL;
+
+	switch(direction.x)
+	{
+		case __LEFT:
+
+			charSetDefinition = &HERO_LEFT_CH;
+			charSetBlackDefinition = &HERO_LEFT_BLACK_CH;
+			break;
+
+		default:
+		case __RIGHT:
+
+			charSetDefinition = &HERO_RIGHT_CH;
+			charSetBlackDefinition = &HERO_RIGHT_BLACK_CH;
+			break;
+	}
+
+	CharSet_setCharSetDefinition(charSet, charSetDefinition);
+	CharSet_setCharSetDefinition(charSetBlack, charSetBlackDefinition);
+	CharSet_rewrite(charSet);
+}
+
 void Hero_syncRotationWithBody(Hero this)
 {
 	ASSERT(this, "Hero::syncRotationWithBody: null this");
@@ -919,11 +910,13 @@ void Hero_syncRotationWithBody(Hero this)
 	{
 		direction.x = __RIGHT;
 		Entity_setDirection(__SAFE_CAST(Entity, this), direction);
+		Hero_updateSprite(this, direction);
 	}
 	else if(0 > xLastDisplacement)
 	{
 		direction.x = __LEFT;
 		Entity_setDirection(__SAFE_CAST(Entity, this), direction);
+		Hero_updateSprite(this, direction);
 	}
 }
 

@@ -24,8 +24,8 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include "HeroKneel.h"
 #include "HeroMoving.h"
-#include "HeroIdle.h"
 #include "../Hero.h"
 
 #include <PlatformerLevelState.h>
@@ -38,19 +38,19 @@
 //												PROTOTYPES
 //---------------------------------------------------------------------------------------------------------
 
-void HeroMoving_constructor(HeroMoving this);
-void HeroMoving_destructor(HeroMoving this);
-void HeroMoving_enter(HeroMoving this, void* owner);
-void HeroMoving_execute(HeroMoving this, void* owner);
-bool HeroMoving_processMessage(HeroMoving this, void* owner, Telegram telegram);
+static void HeroKneel_constructor(HeroKneel this);
+void HeroKneel_destructor(HeroKneel this);
+void HeroKneel_enter(HeroKneel this, void* owner);
+void HeroKneel_exit(HeroKneel this, void* owner);
+bool HeroKneel_processMessage(HeroKneel this, void* owner, Telegram telegram);
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(HeroMoving, HeroState);
-__SINGLETON(HeroMoving);
+__CLASS_DEFINITION(HeroKneel, HeroState);
+__SINGLETON(HeroKneel);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -58,94 +58,111 @@ __SINGLETON(HeroMoving);
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) HeroMoving_constructor(HeroMoving this)
+void __attribute__ ((noinline)) HeroKneel_constructor(HeroKneel this)
 {
 	// construct base
 	__CONSTRUCT_BASE(HeroState);
-
-	this->bouncing = false;
 }
 
 // class's destructor
-void HeroMoving_destructor(HeroMoving this)
+void HeroKneel_destructor(HeroKneel this)
 {
-	// discard pending delayed messages
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kDisallowJumpOnBouncing);
-
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
+void HeroKneel_enter(HeroKneel this __attribute__ ((unused)), void* owner)
 {
-	//u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
+	// show animation
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Kneel");
 
-	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED);
-
-	// make sure that the hero's body is awaken right now so the check during
-	// the execute method doesn't fail
-	Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
+	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
 
 	// manipulate hero's shape
-	__VIRTUAL_CALL(HeroState, toggleShapes, this, owner, false);
+	__VIRTUAL_CALL(HeroState, toggleShapes, this, owner, true);
 }
 
-void HeroMoving_execute(HeroMoving this __attribute__ ((unused)), void* owner)
+// state's exit
+void HeroKneel_exit(HeroKneel this, void* owner __attribute__ ((unused)))
 {
-	// keep adding force
-	if(Body_isAwake(Actor_getBody(__SAFE_CAST(Actor, owner))))
-	{
-		Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
-	}
 }
 
 // state's handle message
-bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* owner, Telegram telegram)
+bool HeroKneel_processMessage(HeroKneel this __attribute__ ((unused)), void* owner, Telegram telegram)
 {
 	switch(Telegram_getMessage(telegram))
 	{
+		case kBodyStartedMoving:
+
+			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(u16*)Telegram_getExtraInfo(telegram));
+			break;
+
 		case kBodyStopped:
 
-			Hero_stopMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
 			return true;
 			break;
 
-		case kBodyStartedMoving:
+		case kHeroSleep:
 
-			// start movement
-			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
+			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Sleep");
+			return true;
 			break;
 	}
 
 	return false;
 }
 
-void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroKneel_onKeyPressed(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)
 {
-	if(K_A & userInput->pressedKey)
+	if((K_LL | K_LR | K_A) & userInput->pressedKey)
 	{
-		Hero_jump(__SAFE_CAST(Hero, owner), !this->bouncing);
-	}
+		Acceleration acceleration =
+		{
+			K_LL & userInput->pressedKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->pressedKey ? __1I_FIX10_6 : 0,
+			K_A & userInput->pressedKey ? __I_TO_FIX10_6(-1) : 0,
+			0,
+		};
 
-	// check direction
-	if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
-	{
-		Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, true);
+		if(K_A & userInput->pressedKey)
+		{
+			Hero_jump(__SAFE_CAST(Hero, owner), true);
+		}
 
-		Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Walk");
-	}
-	else if(K_LD & userInput->pressedKey)
-	{
-		Hero_kneel(__SAFE_CAST(Hero, owner));
+		if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
+		{
+			if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), acceleration))
+			{
+				Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
+
+				Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
+			}
+		}
+
+		return;
 	}
 }
 
-void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroKneel_onKeyReleased(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)
 {
-	if((K_LL | K_LR) & userInput->releasedKey)
-	{
-		Hero_stopAddingForce(__SAFE_CAST(Hero, owner));
-	}
 }
 
+void HeroKneel_onKeyHold(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+{
+    if((K_LL | K_LR) & userInput->holdKey)
+    {
+        Vector3D direction =
+        {
+            K_LL & userInput->holdKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->holdKey ? __I_TO_FIX10_6(1) : 0,
+            K_A & userInput->holdKey ? __I_TO_FIX10_6(-1) : 0,
+            0,
+        };
+
+		if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), direction))
+        {
+            Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->holdKey, "Idle");
+
+            Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
+        }
+    }
+}

@@ -158,10 +158,10 @@ ShapeROMDef BULLY_1_AC_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{22, 38, 24},
+		{16, 38, 24},
 
 		// displacement (x, y, z, p)
-		{0, -5, 0, 0},
+		{3, -5, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

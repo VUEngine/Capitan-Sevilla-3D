@@ -78,13 +78,12 @@ void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
 	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Idle");
 
 	// start sleeping after 6 seconds of inactivity
-	MessageDispatcher_dispatchMessage(6000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kHeroSleep, NULL);
-
-#ifdef __DEBUG
-	Printing_text(Printing_getInstance(), "HeroIdle   ", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, NULL);
-#endif
+	//MessageDispatcher_dispatchMessage(6000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, owner), kHeroSleep, NULL);
 
 	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
+
+	// manipulate hero's shape
+	__VIRTUAL_CALL(HeroState, toggleShapes, __SAFE_CAST(HeroState, this), owner, false);
 }
 
 // state's exit
@@ -111,7 +110,7 @@ bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner
 
 		case kHeroSleep:
 
-			//AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Sleep");
+			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Sleep");
 			return true;
 			break;
 	}
@@ -144,12 +143,12 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, 
 				Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
 			}
 		}
-		else if(K_LD & (userInput->pressedKey | userInput->holdKey))
-		{
-			Hero_kneel(__SAFE_CAST(Hero, owner));
-		}
 
 		return;
+	}
+	else if(K_LD & userInput->pressedKey)
+	{
+		Hero_kneel(__SAFE_CAST(Hero, owner));
 	}
 }
 

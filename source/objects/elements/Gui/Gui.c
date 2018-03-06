@@ -92,6 +92,9 @@ void Gui_constructor(Gui this, EntityDefinition* animatedEntityDefinition, s16 i
 // class's destructor
 void Gui_destructor(Gui this)
 {
+	// clear printing layer
+	Printing_text(Printing_getInstance(), "                                                ", GUI_X_POS, GUI_Y_POS, NULL);
+
 	// remove event listeners
 	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui_onSecondChange, kEventSecondChanged);
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHitTaken, kEventHitTaken);
@@ -112,6 +115,15 @@ void Gui_ready(Gui this, bool recursive)
 	__CALL_BASE_METHOD(Entity, ready, this, recursive);
 }
 
+void Gui_resume(Gui this)
+{
+	ASSERT(this, "Gui::resume: null this");
+
+	__CALL_BASE_METHOD(Entity, resume, this);
+
+	Gui_printAll(this);
+}
+
 void Gui_printClock(Gui this __attribute__ ((unused)))
 {
 	Printing_int(Printing_getInstance(), this->timeRemaining, GUI_X_POS + 37, GUI_Y_POS, NULL);
@@ -120,6 +132,7 @@ void Gui_printClock(Gui this __attribute__ ((unused)))
 void Gui_printSausages(Gui this __attribute__ ((unused)))
 {
 	Printing_text(Printing_getInstance(), "X00", GUI_X_POS + 28, GUI_Y_POS, NULL);
+	Printing_int(Printing_getInstance(), Hero_getSausages(Hero_getInstance()), GUI_X_POS + 28, GUI_Y_POS, NULL);
 }
 
 void Gui_printLives(Gui this __attribute__ ((unused)))
@@ -138,16 +151,6 @@ void Gui_printAll(Gui this)
 // handle event
 static void Gui_onSecondChange(Gui this, Object eventFirer __attribute__ ((unused)))
 {
-#ifdef __DEBUG_TOOLS
-	if(!Game_isInSpecialMode(Game_getInstance()))
-#endif
-#ifdef __STAGE_EDITOR
-	if(!Game_isInSpecialMode(Game_getInstance()))
-#endif
-#ifdef __ANIMATION_INSPECTOR
-	if(!Game_isInSpecialMode(Game_getInstance()))
-#endif
-
 	if(this->timeRemaining > 0)
 	{
 		this->timeRemaining--;
@@ -164,14 +167,10 @@ static void Gui_onHitTaken(Gui this, Object eventFirer __attribute__ ((unused)))
 // handle event
 static void Gui_onHeroDied(Gui this, Object eventFirer __attribute__ ((unused)))
 {
-	Printing_text(Printing_getInstance(), "                                                ", GUI_X_POS, GUI_Y_POS, NULL);
-
-
-
-	PositionedEntity gameOverPositionedEntity = {&GAME_OVER_IM, {384, 112, 0, 0}, 0, NULL, NULL, NULL, false};
-	Stage_addChildEntity(Game_getStage(Game_getInstance()), &gameOverPositionedEntity, true);
-
-
-
 	Container_deleteMyself(__SAFE_CAST(Container, this));
+
+	// add "game over"
+	Vector3D cameraPosition = Camera_getPosition(Camera_getInstance());
+	PositionedEntity gameOverPositionedEntity = {&GAME_OVER_IM, {__METERS_TO_PIXELS(cameraPosition.x) + 192, 112, 0, 0}, 0, NULL, NULL, NULL, false};
+	Stage_addChildEntity(Game_getStage(Game_getInstance()), &gameOverPositionedEntity, true);
 }

@@ -74,10 +74,6 @@ void HeroDead_destructor(HeroDead this)
 // state's enter
 void HeroDead_enter(HeroDead this __attribute__ ((unused)), void* owner)
 {
-#ifdef __DEBUG
-	Printing_text(Printing_getInstance(), "HeroDead   ", 38, (__SCREEN_HEIGHT_IN_CHARS) - 1, NULL);
-#endif
-
 	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED);
 }
 

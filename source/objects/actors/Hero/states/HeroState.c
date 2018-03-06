@@ -26,6 +26,8 @@
 
 #include "HeroState.h"
 #include <VirtualList.h>
+#include <Entity.h>
+#include <Shape.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -55,5 +57,13 @@ void HeroState_destructor(HeroState this)
 
 void HeroState_onKeyHold(HeroState this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
 {
+}
 
+void HeroState_toggleShapes(HeroState this __attribute__ ((unused)), void* owner, bool kneeling)
+{
+	VirtualList shapes = Entity_getShapes(__SAFE_CAST(Entity, owner));
+	Shape shapeStanding = __SAFE_CAST(Shape, VirtualList_front(shapes));
+	Shape shapeKneeling = __SAFE_CAST(Shape, VirtualList_back(shapes));
+	Shape_setActive(shapeStanding, !kneeling);
+	Shape_setActive(shapeKneeling, kneeling);
 }

@@ -37,6 +37,8 @@
 
 extern BYTE HeroRightTiles[];
 extern BYTE HeroRightBlackTiles[];
+extern BYTE HeroLeftTiles[];
+extern BYTE HeroLeftBlackTiles[];
 extern BYTE HeroRightMap[];
 
 
@@ -107,7 +109,7 @@ AnimationFunctionROMDef HERO_KNEEL_ANIM =
 	NULL,
 
 	// function's name
-	"Walk",
+	"Kneel",
 };
 
 // a function which defines the frames to play
@@ -152,28 +154,6 @@ AnimationFunctionROMDef HERO_FALL_ANIM =
 
 	// function's name
 	"Fall",
-};
-
-// a function which defines the frames to play
-AnimationFunctionROMDef HERO_SLIDE_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{0},
-
-	// number of cycles a frame of animation is displayed
-	16,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Slide",
 };
 
 // a function which defines the frames to play
@@ -230,14 +210,43 @@ AnimationDescriptionROMDef HERO_ANIM =
 		(AnimationFunction*)&HERO_KNEEL_ANIM,
 		(AnimationFunction*)&HERO_JUMP_ANIM,
 		(AnimationFunction*)&HERO_FALL_ANIM,
-		(AnimationFunction*)&HERO_SLIDE_ANIM,
 		(AnimationFunction*)&HERO_HIT_ANIM,
 		(AnimationFunction*)&HERO_DEAD_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef HERO_CH =
+CharSetROMDef HERO_LEFT_CH =
+{
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	24,
+
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
+
+	// char definition
+	HeroLeftTiles,
+};
+
+CharSetROMDef HERO_LEFT_BLACK_CH =
+{
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	24,
+
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
+
+	// char definition
+	HeroLeftBlackTiles,
+};
+
+CharSetROMDef HERO_RIGHT_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -252,7 +261,7 @@ CharSetROMDef HERO_CH =
 	HeroRightTiles,
 };
 
-CharSetROMDef HERO_BLACK_CH =
+CharSetROMDef HERO_RIGHT_BLACK_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -269,7 +278,7 @@ CharSetROMDef HERO_BLACK_CH =
 
 TextureROMDef HERO_TX =
 {
-	(CharSetDefinition*)&HERO_CH,
+	(CharSetDefinition*)&HERO_RIGHT_CH,
 
 	// bgmap definition
 	HeroRightMap,
@@ -297,7 +306,7 @@ TextureROMDef HERO_TX =
 
 TextureROMDef HERO_BLACK_TX =
 {
-	(CharSetDefinition*)&HERO_BLACK_CH,
+	(CharSetDefinition*)&HERO_RIGHT_BLACK_CH,
 
 	// bgmap definition
 	HeroRightMap,
@@ -323,7 +332,7 @@ TextureROMDef HERO_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMDef HERO_AFFINE_SPRITE =
+BgmapSpriteROMDef HERO_SPRITE =
 {
 	{
 		// sprite's type
@@ -341,7 +350,7 @@ BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_AFFINE,
+	__WORLD_BGMAP,
 
 	// pointer to affine/hbias manipulation function
 	NULL,
@@ -350,7 +359,7 @@ BgmapSpriteROMDef HERO_AFFINE_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef HERO_BLACK_AFFINE_SPRITE =
+BgmapSpriteROMDef HERO_BLACK_SPRITE =
 {
 	{
 		// sprite's type
@@ -368,7 +377,7 @@ BgmapSpriteROMDef HERO_BLACK_AFFINE_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_AFFINE,
+	__WORLD_BGMAP,
 
 	// pointer to affine/hbias manipulation function
 	NULL,
@@ -377,15 +386,16 @@ BgmapSpriteROMDef HERO_BLACK_AFFINE_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const HERO_AFFINE_SPRITES[] =
+BgmapSpriteROMDef* const HERO_SPRITES[] =
 {
-	&HERO_BLACK_AFFINE_SPRITE,
-	&HERO_AFFINE_SPRITE,
+	&HERO_BLACK_SPRITE,
+	&HERO_SPRITE,
 	NULL
 };
 
 ShapeROMDef HERO_AC_SHAPES[] =
 {
+	// standing
 	{
 		// shape
 		__TYPE(Box),
@@ -409,7 +419,34 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		kPlayerLayer,
 
 		// layers to ignore when checking for collisions
-		kParticlesLayer,
+		kParticlesLayer | kPlayerLayer,
+	},
+
+	// kneeling
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{19, 28, 48},
+
+		// displacement (x, y, z, p)
+		{0, 1, -16, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+
+		// if true this shape checks for collisions against other shapes
+		true,
+
+		// layers in which I live
+		kPlayerLayer,
+
+		// layers to ignore when checking for collisions
+		kParticlesLayer | kPlayerLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
@@ -435,7 +472,7 @@ HeroROMDef HERO_AC =
 			__TYPE(Hero),
 
 			// sprites
-			(SpriteROMDef**)HERO_AFFINE_SPRITES,
+			(SpriteROMDef**)HERO_SPRITES,
 
 			// collision shapes
 			(ShapeDefinition*)HERO_AC_SHAPES,

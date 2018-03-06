@@ -78,8 +78,8 @@ extern EntityDefinition WALL_1_IM;
 extern CharSetDefinition BULLY_1_CH;
 extern CharSetDefinition CAR_1_CH;
 extern CharSetDefinition GUI_CH;
-extern CharSetDefinition HERO_CH;
-extern CharSetDefinition HERO_BLACK_CH;
+extern CharSetDefinition HERO_RIGHT_CH;
+extern CharSetDefinition HERO_RIGHT_BLACK_CH;
 extern CharSetDefinition HOVER_CAR_1_CH;
 
 extern TextureDefinition BULLY_1_TX;
@@ -130,7 +130,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&BULLY_1_AC,			{860, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, false},
 	{&HOUSE_2_IM,			{864, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
 	{&GARAGE_1_IM,			{1040, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,		{1100, 128, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
+	{&HOVER_CAR_1_AC,		{1100, 120, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
 	{&TRASH_BIN_1_IM,		{1100, 155, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&FENCE_1_IM,			{1150, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&BUSH_BG_1_IM,			{1212, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
@@ -146,7 +146,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&PLAYGROUND_SIGN_1_IM,	{1320, 100, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&PLAYGROUND_1_IM,		{1422, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&STATUE_1_IM,			{1518, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,		{1518, 128, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
+	{&HOVER_CAR_1_AC,		{1518, 120, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
 	{&FENCE_2_IM,			{1414, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_IM,			{1618, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
@@ -209,8 +209,8 @@ CharSetROMDef* const LEVEL_1_MAIN_STAGE_ST_CHARSETS[] =
 	&CAR_1_CH,
 	&HOVER_CAR_1_CH,
 	&GUI_CH,
-	&HERO_CH,
-	&HERO_BLACK_CH,
+	&HERO_RIGHT_CH,
+	&HERO_RIGHT_BLACK_CH,
 
 	NULL
 };
