@@ -64,6 +64,7 @@ extern CharSetDefinition HERO_LEFT_CH;
 extern CharSetDefinition HERO_LEFT_BLACK_CH;
 extern CharSetDefinition HERO_RIGHT_CH;
 extern CharSetDefinition HERO_RIGHT_BLACK_CH;
+extern ParticleSystemDefinition SAUSAGE_PS;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -114,6 +115,7 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 	this->jumps = 0;
 	this->sausages = HERO_INITIAL_SAUSAGES;
 	this->keepAddingForce = false;
+	this->sausagePs = NULL;
 
 	Hero_setInstance(this);
 
@@ -161,8 +163,33 @@ void Hero_ready(Hero this, bool recursive)
 		//this->sausages = ProgressManager_getHeroCurrentSausages(progressManager);
 	}
 
+	// add sausage particle system
+	Hero_addSausagePs(this);
+
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
+}
+
+void Hero_addSausagePs(Hero this)
+{
+	ASSERT(this, "Hero::addSausagePs: null this");
+
+	Vector3D position = {__PIXELS_TO_METERS(8), __PIXELS_TO_METERS(-8), 0};
+	this->sausagePs = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &SAUSAGE_PS, -1, NULL, &position, NULL));
+	ASSERT(this->sausagePs, "Hero::addSausagePs: null sausagePs");
+
+	ParticleSystem_spawnAllParticles(this->sausagePs);
+	//Hero_stopShooting(this);
+}
+
+void Hero_startShooting(Hero this)
+{
+	ParticleSystem_resume(this->sausagePs);
+}
+
+void Hero_stopShooting(Hero this)
+{
+	ParticleSystem_pause(this->sausagePs);
 }
 
 void Hero_kneel(Hero this)

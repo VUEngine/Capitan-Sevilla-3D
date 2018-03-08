@@ -62,6 +62,7 @@ const char* const LANGUAGE_ES_STRINGS[] =
 	/* STR_ON */						"Encendido",
 	/* STR_OPTIONS */					"Opciones",
 	/* STR_PAUSE */						"Pausa",
+	/* STR_PRESENTS */					"Presenta",
 	/* STR_PRESS_START_BUTTON */		"Presionar Start",
 	/* STR_PROGRESS_WILL_BE_ERASED */	"Esto eliminará todo tu progreso.",
 	/* STR_QUIT_LEVEL */				"Salir del nivel",

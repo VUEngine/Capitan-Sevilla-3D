@@ -19,60 +19,44 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef LANGUAGES_H_
-#define LANGUAGES_H_
+#ifndef LOLA_SOFT_SCREEN_STATE_H_
+#define LOLA_SOFT_SCREEN_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-enum LanguageIdentifiers
-{
-	LANG_EN,
-	LANG_DE,
-	LANG_ES,
-	LANG_FR,
-};
+#include <SplashScreenState.h>
 
-enum LanguageStrings
-{
-	/* General */
-	STR_ARE_YOU_SURE,
-	STR_AUTOMATIC_PAUSE,
-	STR_BACK,
-	STR_CHECKPOINT,
-	STR_CONTINUE,
-	STR_CREDITS,
-	STR_IMPORTANT,
-	STR_LANGUAGE,
-	STR_LANGUAGE_SELECT,
-	STR_LEVEL,
-	STR_LEVEL_CONQUERED,
-	STR_LEVEL_DONE,
-	STR_NEW_BEST,
-	STR_NEW_GAME,
-	STR_NO,
-	STR_OFF,
-	STR_ON,
-	STR_OPTIONS,
-	STR_PAUSE,
-	STR_PRESENTS,
-	STR_PRESS_START_BUTTON,
-	STR_PROGRESS_WILL_BE_ERASED,
-	STR_QUIT_LEVEL,
-	STR_SELECT,
-	STR_TAKE_A_REST,
-	STR_YES,
 
-	/* Splash Screens */
-	STR_PRECAUTION_SCREEN_TEXT,
-	STR_AUTO_PAUSE_EXPLANATION,
+//---------------------------------------------------------------------------------------------------------
+//											CLASS'S DECLARATION
+//---------------------------------------------------------------------------------------------------------
 
-	/* Levels */
-	STR_LEVEL_1_NAME,
-	STR_LEVEL_1_SLOGAN,
-};
+// declare the virtual methods
+#define LolaSoftScreenState_METHODS(ClassName)															\
+		SplashScreenState_METHODS(ClassName)															\
+
+// declare the virtual methods which are redefined
+#define LolaSoftScreenState_SET_VTABLE(ClassName)														\
+		SplashScreenState_SET_VTABLE(ClassName)															\
+		__VIRTUAL_SET(ClassName, LolaSoftScreenState, enter);											\
+
+
+__CLASS(LolaSoftScreenState);
+
+#define LolaSoftScreenState_ATTRIBUTES																	\
+		SplashScreenState_ATTRIBUTES																	\
+
+
+//---------------------------------------------------------------------------------------------------------
+//										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+LolaSoftScreenState LolaSoftScreenState_getInstance(void);
+
+void LolaSoftScreenState_enter(LolaSoftScreenState this, void* owner);
 
 
 #endif

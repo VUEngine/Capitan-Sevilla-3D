@@ -120,7 +120,21 @@ bool HeroIdle_processMessage(HeroIdle this __attribute__ ((unused)), void* owner
 
 void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, const UserInput* userInput)
 {
-	if((K_LL | K_LR | K_A) & userInput->pressedKey)
+	if(K_A & userInput->pressedKey)
+	{
+		Hero_jump(__SAFE_CAST(Hero, owner), true);
+	}
+
+	if(K_B & userInput->pressedKey)
+	{
+		Hero_startShooting(__SAFE_CAST(Hero, owner));
+	}
+	else if(K_B & userInput->releasedKey)
+	{
+		Hero_stopShooting(__SAFE_CAST(Hero, owner));
+	}
+
+	if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
 	{
 		Acceleration acceleration =
 		{
@@ -129,24 +143,15 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, 
 			0,
 		};
 
-		if(K_A & userInput->pressedKey)
+		if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), acceleration))
 		{
-			Hero_jump(__SAFE_CAST(Hero, owner), true);
+			Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
+
+			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
 		}
-
-		if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
-		{
-			if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), acceleration))
-			{
-				Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
-
-				Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
-			}
-		}
-
-		return;
 	}
-	else if(K_LD & userInput->pressedKey)
+
+	if(K_LD & userInput->pressedKey)
 	{
 		Hero_kneel(__SAFE_CAST(Hero, owner));
 	}

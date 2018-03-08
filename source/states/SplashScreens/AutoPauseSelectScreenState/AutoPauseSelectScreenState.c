@@ -107,7 +107,13 @@ static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
 	);
 
 	u8 strExplanationXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseExplanationSize.x >> 1);
-	Printing_text(Printing_getInstance(), strAutomaticPauseExplanation, strExplanationXPos, 9 + strAutomaticPauseSize.y, NULL);
+	Printing_text(
+		Printing_getInstance(),
+		Utilities_toUppercase(strAutomaticPauseExplanation),
+		strExplanationXPos,
+		9 + strAutomaticPauseSize.y,
+		NULL
+	);
 
 	AutoPauseSelectScreenState_renderSelection(this);
 }
@@ -137,8 +143,8 @@ static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenStat
 	}
 
 	// print options
-	Printing_text(Printing_getInstance(), strOn, selectionStart, __OPTIONS_Y_POS + 1, NULL);
-	Printing_text(Printing_getInstance(), strOff, selectionStart + 3 + strOnSize.x, __OPTIONS_Y_POS + 1, NULL);
+	Printing_text(Printing_getInstance(), Utilities_toUppercase(strOn), selectionStart, __OPTIONS_Y_POS + 1, NULL);
+	Printing_text(Printing_getInstance(), Utilities_toUppercase(strOff), selectionStart + 3 + strOnSize.x, __OPTIONS_Y_POS + 1, NULL);
 
 	// print selector
 	u8 optionStart = this->selection ? selectionStart : selectionStart + __OPTIONS_GAP + strOnSize.x;

@@ -27,6 +27,7 @@
 #include <AdjustmentScreenState.h>
 #include <AutoPauseSelectScreenState.h>
 #include <LangSelectScreenState.h>
+#include <LolaSoftScreenState.h>
 #include <PrecautionScreenState.h>
 #include <SplashScreenState.h>
 #include <TitleScreenState.h>
@@ -141,6 +142,7 @@ void setupClasses(void)
 	AdjustmentScreenState_setVTable();
 	AutoPauseSelectScreenState_setVTable();
 	LangSelectScreenState_setVTable();
+	LolaSoftScreenState_setVTable();
 	PrecautionScreenState_setVTable();
 	SplashScreenState_setVTable();
 	TitleScreenState_setVTable();

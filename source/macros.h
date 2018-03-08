@@ -92,6 +92,7 @@ enum PlatformerTypes
 	kNotShape,
 	kHit,
 	kFloor,
+	kSausage,
 	kMovingPlatform,
 };
 

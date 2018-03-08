@@ -115,15 +115,6 @@ bool HeroKneel_processMessage(HeroKneel this __attribute__ ((unused)), void* own
 
 void HeroKneel_onKeyPressed(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)
 {
-	if((K_LL | K_LR | K_A) & userInput->pressedKey)
-	{
-		Acceleration acceleration =
-		{
-			K_LL & userInput->pressedKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->pressedKey ? __1I_FIX10_6 : 0,
-			K_A & userInput->pressedKey ? __I_TO_FIX10_6(-1) : 0,
-			0,
-		};
-
 		if(K_A & userInput->pressedKey)
 		{
 			Hero_jump(__SAFE_CAST(Hero, owner), true);
@@ -131,6 +122,13 @@ void HeroKneel_onKeyPressed(HeroKneel this __attribute__ ((unused)), void* owner
 
 		if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
 		{
+			Acceleration acceleration =
+			{
+				K_LL & userInput->pressedKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->pressedKey ? __1I_FIX10_6 : 0,
+				K_A & userInput->pressedKey ? __I_TO_FIX10_6(-1) : 0,
+				0,
+			};
+
 			if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), acceleration))
 			{
 				Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
@@ -138,9 +136,6 @@ void HeroKneel_onKeyPressed(HeroKneel this __attribute__ ((unused)), void* owner
 				Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
 			}
 		}
-
-		return;
-	}
 }
 
 void HeroKneel_onKeyReleased(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)

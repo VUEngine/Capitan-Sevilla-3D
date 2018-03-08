@@ -46,7 +46,6 @@
 __CLASS(EventManager);
 
 #define EventManager_ATTRIBUTES																			\
-		/* super's attributes */																		\
 		Object_ATTRIBUTES																				\
 
 

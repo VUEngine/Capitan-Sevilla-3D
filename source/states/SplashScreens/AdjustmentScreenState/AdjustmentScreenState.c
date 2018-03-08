@@ -28,7 +28,7 @@
 #include <Camera.h>
 #include <MessageDispatcher.h>
 #include <AdjustmentScreenState.h>
-#include <AutoPauseSelectScreenState.h>
+#include <LolaSoftScreenState.h>
 #include <DirectDraw.h>
 
 
@@ -66,7 +66,7 @@ static void __attribute__ ((noinline)) AdjustmentScreenState_constructor(Adjustm
 {
 	__CONSTRUCT_BASE(SplashScreenState);
 
-	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
+	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, LolaSoftScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&ADJUSTMENT_SCREEN_STAGE_ST;
 }
 

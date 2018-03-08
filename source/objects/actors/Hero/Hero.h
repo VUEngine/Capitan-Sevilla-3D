@@ -90,8 +90,8 @@ __CLASS(Hero);
 #define Hero_ATTRIBUTES																					\
 		/* it is derived from */																		\
 		Actor_ATTRIBUTES																				\
-		/* bounding box to control camera's movement */													\
-		Entity cameraBoundingBox;																		\
+		/* sausage particle system for shooting */														\
+		ParticleSystem sausagePs;																		\
 		/* used to know if gap must be changed */														\
 		Direction inputDirection;																		\
 		/* hero has energy	*/																			\
@@ -152,5 +152,7 @@ bool Hero_isAffectedByRelativity(Hero this);
 void Hero_syncRotationWithBody(Hero this);
 void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
 u16 Hero_getAxesForShapeSyncWithDirection(Hero this);
+void Hero_startShooting(Hero this);
+void Hero_stopShooting(Hero this);
 
 #endif

@@ -62,6 +62,7 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	/* STR_ON */						"An",
 	/* STR_OPTIONS */					"Optionen",
 	/* STR_PAUSE */						"Pause",
+	/* STR_PRESENTS */					"Präsentiert",
 	/* STR_PRESS_START_BUTTON */		"Start-Knopf drücken",
 	/* STR_PROGRESS_WILL_BE_ERASED */	"Dein kompletter Fortschritt wird gelöscht.",
 	/* STR_QUIT_LEVEL */				"Level beenden",

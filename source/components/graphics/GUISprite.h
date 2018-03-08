@@ -36,7 +36,7 @@
 
 // declare the virtual methods
 #define GUISprite_METHODS(ClassName)																	\
-	    BgmapAnimatedSprite_METHODS(ClassName)																	\
+	    BgmapAnimatedSprite_METHODS(ClassName)															\
 
 // declare the virtual methods which are redefined
 #define GUISprite_SET_VTABLE(ClassName)																	\
