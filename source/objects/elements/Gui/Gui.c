@@ -126,7 +126,15 @@ void Gui_resume(Gui this)
 
 void Gui_printClock(Gui this __attribute__ ((unused)))
 {
-	Printing_int(Printing_getInstance(), this->timeRemaining, GUI_X_POS + 37, GUI_Y_POS, NULL);
+	if((this->timeRemaining < 10))
+	{
+		Printing_int(Printing_getInstance(), 0, GUI_X_POS + 37, GUI_Y_POS, NULL);
+		Printing_int(Printing_getInstance(), this->timeRemaining, GUI_X_POS + 38, GUI_Y_POS, NULL);
+	}
+	else
+	{
+		Printing_int(Printing_getInstance(), this->timeRemaining, GUI_X_POS + 37, GUI_Y_POS, NULL);
+	}
 }
 
 void Gui_printSausages(Gui this __attribute__ ((unused)))

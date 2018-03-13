@@ -93,6 +93,7 @@ enum PlatformerTypes
 	kHit,
 	kFloor,
 	kSausage,
+	kProjectile,
 	kMovingPlatform,
 };
 

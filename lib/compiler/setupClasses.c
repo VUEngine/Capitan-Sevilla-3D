@@ -15,6 +15,8 @@
 #include <HeroState.h>
 #include <MovingEntity.h>
 #include <MovingOneWayEntity.h>
+#include <Projectile.h>
+#include <ProjectileEjector.h>
 #include <Collision.h>
 #include <Gui.h>
 #include <Sausage.h>
@@ -131,6 +133,8 @@ void setupClasses(void)
 	HeroState_setVTable();
 	MovingEntity_setVTable();
 	MovingOneWayEntity_setVTable();
+	Projectile_setVTable();
+	ProjectileEjector_setVTable();
 	Collision_setVTable();
 	Gui_setVTable();
 	Sausage_setVTable();
