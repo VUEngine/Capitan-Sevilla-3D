@@ -24,52 +24,49 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <BgmapSprite.h>
-#include <Gui.h>
-#include <macros.h>
+#include <MBgmapSprite.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GuiTiles[];
-extern BYTE GuiMap[];
+extern BYTE IntroImagesTiles[];
+extern BYTE IntroImage1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef GUI_CH =
+CharSetROMDef INTRO_IMAGES_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	53,
+	839,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	GuiTiles,
+	IntroImagesTiles,
 };
 
-TextureROMDef GUI_TX =
+TextureROMDef INTRO_IMAGE_1_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&GUI_CH,
+	(CharSetDefinition*)&INTRO_IMAGES_CH,
 
 	// bgmap definition
-	GuiMap,
+	IntroImage1Map,
 
 	// cols (max 64)
-	48,
+	19,
 
 	// rows (max 64)
-	5,
+	13,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -80,23 +77,29 @@ TextureROMDef GUI_TX =
 	1,
 
 	// palette number (0-3)
-	1,
+	0,
 
 	// recyclable
 	false,
 };
 
-BgmapSpriteROMDef GUI_IM_SPRITE =
+TextureROMDef* const INTRO_IMAGE_1_IM_TEXTURES[] =
+{
+	(TextureDefinition*)&INTRO_IMAGE_1_TX,
+	NULL
+};
+
+BgmapSpriteROMDef INTRO_IMAGE_1_IM_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&GUI_TX,
+		(TextureDefinition*)&INTRO_IMAGE_1_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},
@@ -111,32 +114,4 @@ BgmapSpriteROMDef GUI_IM_SPRITE =
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
-};
-
-BgmapSpriteROMDef* const GUI_IM_SPRITES[] =
-{
-	&GUI_IM_SPRITE,
-	NULL
-};
-
-EntityROMDef GUI_IM =
-{
-	// class allocator
-	__TYPE(Gui),
-
-	// sprites
-	(SpriteROMDef**)GUI_IM_SPRITES,
-
-	// collision shapes
-	NULL,
-
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kNoType,
-
-	// physical specification
-	NULL,
 };
