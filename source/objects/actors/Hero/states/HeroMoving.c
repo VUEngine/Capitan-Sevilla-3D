@@ -79,8 +79,6 @@ void HeroMoving_destructor(HeroMoving this)
 // state's enter
 void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 {
-	//u32 holdKey = KeypadManager_getHoldKey(KeypadManager_getInstance());
-
 	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED);
 
 	// make sure that the hero's body is awaken right now so the check during
@@ -113,7 +111,6 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 
 		case kBodyStartedMoving:
 
-			// start movement
 			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
 			break;
 	}

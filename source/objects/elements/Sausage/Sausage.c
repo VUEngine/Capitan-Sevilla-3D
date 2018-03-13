@@ -19,52 +19,65 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MOVING_ONE_WAY_ENTITY_H_
-#define MOVING_ONE_WAY_ENTITY_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Actor.h>
-#include <macros.h>
+#include <Game.h>
+#include <MessageDispatcher.h>
+#include <Optics.h>
+#include <PhysicalWorld.h>
+#include <MessageDispatcher.h>
+#include <PlatformerLevelState.h>
+#include <debugUtilities.h>
+
+
+#include "Sausage.h"
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
+//											CLASS'S DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-#define MovingOneWayEntity_METHODS(ClassName)															\
-		Actor_METHODS(ClassName)																		\
-
-#define MovingOneWayEntity_SET_VTABLE(ClassName)														\
-		Actor_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, MovingOneWayEntity, ready);											\
-		__VIRTUAL_SET(ClassName, MovingOneWayEntity, respawn);											\
-		__VIRTUAL_SET(ClassName, MovingOneWayEntity, setExtraInfo);										\
-
-__CLASS(MovingOneWayEntity);
-
-#define MovingOneWayEntity_ATTRIBUTES																	\
-		Actor_ATTRIBUTES																				\
-		int speed;																						\
+__CLASS_DEFINITION(Sausage, MovingOneWayEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// allocator
-__CLASS_NEW_DECLARE(MovingOneWayEntity, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
+// always call these two macros next to each other
+__CLASS_NEW_DEFINITION(Sausage, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Sausage, actorDefinition, id, internalId, name);
 
-void MovingOneWayEntity_constructor(MovingOneWayEntity this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
-void MovingOneWayEntity_destructor(MovingOneWayEntity this);
-void MovingOneWayEntity_ready(MovingOneWayEntity this, bool recursive);
-bool MovingOneWayEntity_respawn(MovingOneWayEntity this);
-void MovingOneWayEntity_setExtraInfo(MovingOneWayEntity this, void* extraInfo);
-void MovingOneWayEntity_startMovement(MovingOneWayEntity this);
-void MovingOneWayEntity_stopMovement(MovingOneWayEntity this);
+// class's constructor
+void Sausage_constructor(Sausage this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
+{
+	ASSERT(this, "Sausage::constructor: null this");
 
+	// construct base
+	__CONSTRUCT_BASE(MovingOneWayEntity, actorDefinition, id, internalId, name);
+}
 
-#endif
+void Sausage_destructor(Sausage this)
+{
+	ASSERT(this, "Sausage::destructor: null this");
+
+	// destroy the super object
+	// must always be called at the end of the destructor
+	__DESTROY_BASE;
+}
+
+void Sausage_ready(Sausage this, bool recursive)
+{
+	ASSERT(this, "Sausage::ready: null this");
+
+	// call base
+	__CALL_BASE_METHOD(MovingOneWayEntity, ready, this, recursive);
+
+	// stop movement, deactivate shapes and hide sprite
+	MovingOneWayEntity_stopMovement(__SAFE_CAST(MovingOneWayEntity, this));
+	Entity_activateShapes(__SAFE_CAST(Entity, this), false);
+	Entity_hide(__SAFE_CAST(Entity, this));
+}

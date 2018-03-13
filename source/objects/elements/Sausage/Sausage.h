@@ -19,15 +19,15 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MOVING_ONE_WAY_ENTITY_H_
-#define MOVING_ONE_WAY_ENTITY_H_
+#ifndef SAUSAGE_H_
+#define SAUSAGE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Actor.h>
+#include <MovingOneWayEntity.h>
 #include <macros.h>
 
 
@@ -35,20 +35,17 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define MovingOneWayEntity_METHODS(ClassName)															\
-		Actor_METHODS(ClassName)																		\
+#define Sausage_METHODS(ClassName)																		\
+		MovingOneWayEntity_METHODS(ClassName)															\
 
-#define MovingOneWayEntity_SET_VTABLE(ClassName)														\
-		Actor_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, MovingOneWayEntity, ready);											\
-		__VIRTUAL_SET(ClassName, MovingOneWayEntity, respawn);											\
-		__VIRTUAL_SET(ClassName, MovingOneWayEntity, setExtraInfo);										\
+#define Sausage_SET_VTABLE(ClassName)																	\
+		MovingOneWayEntity_SET_VTABLE(ClassName)														\
+		__VIRTUAL_SET(ClassName, Sausage, ready);														\
 
-__CLASS(MovingOneWayEntity);
+__CLASS(Sausage);
 
-#define MovingOneWayEntity_ATTRIBUTES																	\
-		Actor_ATTRIBUTES																				\
-		int speed;																						\
+#define Sausage_ATTRIBUTES																				\
+		MovingOneWayEntity_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -56,15 +53,11 @@ __CLASS(MovingOneWayEntity);
 //---------------------------------------------------------------------------------------------------------
 
 // allocator
-__CLASS_NEW_DECLARE(MovingOneWayEntity, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Sausage, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
 
-void MovingOneWayEntity_constructor(MovingOneWayEntity this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
-void MovingOneWayEntity_destructor(MovingOneWayEntity this);
-void MovingOneWayEntity_ready(MovingOneWayEntity this, bool recursive);
-bool MovingOneWayEntity_respawn(MovingOneWayEntity this);
-void MovingOneWayEntity_setExtraInfo(MovingOneWayEntity this, void* extraInfo);
-void MovingOneWayEntity_startMovement(MovingOneWayEntity this);
-void MovingOneWayEntity_stopMovement(MovingOneWayEntity this);
+void Sausage_constructor(Sausage this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
+void Sausage_destructor(Sausage this);
+void Sausage_ready(Sausage this, bool recursive);
 
 
 #endif

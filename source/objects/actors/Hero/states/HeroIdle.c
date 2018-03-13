@@ -127,11 +127,7 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, 
 
 	if(K_B & userInput->pressedKey)
 	{
-		Hero_startShooting(__SAFE_CAST(Hero, owner));
-	}
-	else if(K_B & userInput->releasedKey)
-	{
-		Hero_stopShooting(__SAFE_CAST(Hero, owner));
+		Hero_shoot(__SAFE_CAST(Hero, owner));
 	}
 
 	if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))

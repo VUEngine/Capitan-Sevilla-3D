@@ -27,6 +27,8 @@
 #include <libgccvb.h>
 #include <AnimatedEntity.h>
 #include <ObjectAnimatedSprite.h>
+#include <Sausage.h>
+#include <Box.h>
 #include <macros.h>
 
 
@@ -141,40 +143,78 @@ ObjectSpriteROMDef SAUSAGE_SPRITE =
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
-/*
+
 ObjectSpriteROMDef* const SAUSAGE_SPRITES[] =
 {
 	&SAUSAGE_SPRITE,
 	NULL
 };
 
-AnimatedEntityROMDef SAUSAGE_AG =
+ShapeROMDef SAUSAGE_AC_SHAPES[] =
 {
 	{
-		// class allocator
-		__TYPE(AnimatedEntity),
+		// shape
+		__TYPE(Box),
 
-		// sprites
-		(SpriteROMDef**)SAUSAGE_SPRITES,
+		// size (x, y, z)
+		{68, 32, 24},
 
-		// collision shapes
-		(ShapeDefinition*)NULL,
+		// displacement (x, y, z, p)
+		{4, 4, 0, 0},
 
-		// size
-		// if 0, width and height will be inferred from the first sprite's texture's size
+		// rotation (x, y, z)
 		{0, 0, 0},
 
-		// gameworld's character's type
-		kNotShape,
+		// scale (x, y, z)
+		{0, 0, 0},
 
-		// physical specification
-		(PhysicalSpecification*)NULL,
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kEnemiesLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
 	},
 
-	// pointer to the animation definition for the item
-	(AnimationDescription*)&SAUSAGE_ANIM,
-
-	// initial animation
-	"Default",
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
-*/
+
+ActorROMDef SAUSAGE_AC =
+{
+	{
+		{
+			// class allocator
+			__TYPE(Sausage),
+
+			// sprites
+			(SpriteROMDef**)SAUSAGE_SPRITES,
+
+			// collision shapes
+			(ShapeDefinition*)SAUSAGE_AC_SHAPES,
+
+			// size
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{0, 0, 0},
+
+			// gameworld's character's type
+			kSausage,
+
+			// physical specification
+			(PhysicalSpecification*)NULL,
+		},
+
+		// pointer to the animation definition for the character
+		(AnimationDescription*)&SAUSAGE_ANIM,
+
+		// initial animation
+		"Default",
+	},
+
+	// true to create a body
+	true,
+
+	// axes subject to gravity
+	__NO_AXIS
+};

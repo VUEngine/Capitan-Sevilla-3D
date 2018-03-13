@@ -17,6 +17,7 @@
 #include <MovingOneWayEntity.h>
 #include <Collision.h>
 #include <Gui.h>
+#include <Sausage.h>
 #include <Collectable.h>
 #include <Item.h>
 #include <AutoPauseScreenState.h>
@@ -132,6 +133,7 @@ void setupClasses(void)
 	MovingOneWayEntity_setVTable();
 	Collision_setVTable();
 	Gui_setVTable();
+	Sausage_setVTable();
 	Collectable_setVTable();
 	Item_setVTable();
 	AutoPauseScreenState_setVTable();

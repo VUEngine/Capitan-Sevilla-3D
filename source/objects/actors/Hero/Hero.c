@@ -41,6 +41,7 @@
 #include <EventManager.h>
 #include <SoundManager.h>
 #include <PlatformerLevelState.h>
+#include <MovingOneWayEntity.h>
 #include <debugConfig.h>
 
 
@@ -64,7 +65,7 @@ extern CharSetDefinition HERO_LEFT_CH;
 extern CharSetDefinition HERO_LEFT_BLACK_CH;
 extern CharSetDefinition HERO_RIGHT_CH;
 extern CharSetDefinition HERO_RIGHT_BLACK_CH;
-extern ParticleSystemDefinition SAUSAGE_PS;
+extern EntityDefinition SAUSAGE_AC;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -115,7 +116,7 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 	this->jumps = 0;
 	this->sausages = HERO_INITIAL_SAUSAGES;
 	this->keepAddingForce = false;
-	this->sausagePs = NULL;
+	this->sausageEntities = NULL;
 
 	Hero_setInstance(this);
 
@@ -141,6 +142,10 @@ void Hero_destructor(Hero this)
 	// free the instance pointers
 	hero = NULL;
 
+	// delete the sausage entities
+	__DELETE(this->sausageEntities);
+	this->sausageEntities = NULL;
+
 	// delete the super object
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
@@ -163,37 +168,33 @@ void Hero_ready(Hero this, bool recursive)
 		//this->sausages = ProgressManager_getHeroCurrentSausages(progressManager);
 	}
 
-	// add sausage particle system
-	Hero_addSausagePs(this);
-
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
+
+	// add sausage particle system
+	Hero_addSausageEntities(this);
 }
 
-void Hero_addSausagePs(Hero this)
+void Hero_addSausageEntities(Hero this)
 {
-	ASSERT(this, "Hero::addSausagePs: null this");
+	ASSERT(this, "Hero::addSausageEntities: null this");
 
-	Vector3D position = {__PIXELS_TO_METERS(8), __PIXELS_TO_METERS(-8), 0};
-	this->sausagePs = __SAFE_CAST(ParticleSystem, Entity_addChildEntity(__SAFE_CAST(Entity, this), &SAUSAGE_PS, -1, NULL, &position, NULL));
-	ASSERT(this->sausagePs, "Hero::addSausagePs: null sausagePs");
+	this->sausageEntities = __NEW(VirtualList);
 
-	ParticleSystem_spawnAllParticles(this->sausagePs);
-	//Hero_stopShooting(this);
+	Vector3D position = {__PIXELS_TO_METERS(8), __PIXELS_TO_METERS(-6), 0};
+	Entity newEntity = Entity_addChildEntity(__SAFE_CAST(Entity, this), &SAUSAGE_AC, -1, NULL, &position, (void*)3);
+	VirtualList_pushBack(this->sausageEntities, newEntity);
 }
 
-void Hero_startShooting(Hero this)
+void Hero_shoot(Hero this)
 {
-	ParticleSystem_resume(this->sausagePs);
-}
-
-void Hero_stopShooting(Hero this)
-{
-	ParticleSystem_pause(this->sausagePs);
 }
 
 void Hero_kneel(Hero this)
 {
+	// stop movement
+	Actor_stopMovement(__SAFE_CAST(Actor, this), __X_AXIS);
+
 	// switch to kneel state
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State,  HeroKneel_getInstance()));
 }

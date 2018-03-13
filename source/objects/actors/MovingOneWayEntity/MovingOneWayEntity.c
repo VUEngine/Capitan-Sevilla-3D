@@ -87,8 +87,18 @@ void MovingOneWayEntity_ready(MovingOneWayEntity this, bool recursive)
 	__CALL_BASE_METHOD(Actor, ready, this, recursive);
 
 	// start movement
+	MovingOneWayEntity_startMovement(this);
+}
+
+void MovingOneWayEntity_startMovement(MovingOneWayEntity this)
+{
 	Velocity velocity = {this->speed, 0, 0};
 	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
+}
+
+void MovingOneWayEntity_stopMovement(MovingOneWayEntity this)
+{
+	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
 }
 
 bool MovingOneWayEntity_respawn(MovingOneWayEntity this __attribute__ ((unused)))
