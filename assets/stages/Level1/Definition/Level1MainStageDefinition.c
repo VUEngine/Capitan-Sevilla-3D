@@ -114,7 +114,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&LANTERN_1_IM,			{32, 123, 0, 0}, 			0, "Start", NULL, NULL, false},
 	{&MOTORBIKE_1_IM,		{104, 158, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&HOUSE_1_IM,			{200, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_AC,			{200, 72, (LAYER_1)-1, 0}, 	0, NULL, NULL, NULL, false},
+	{&GRANNY_1_AC,			{193, 68, (LAYER_1)-1, 0}, 	0, NULL, NULL, NULL, false},
 	{&CONTAINER_1_IM,		{181, 161, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&TREE_1_IM,			{384, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 
@@ -131,13 +131,14 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&BULLY_1_AC,			{860, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, false},
 	{&HOUSE_2_IM,			{864, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
+	{&GRANNY_1_AC,			{909, 67, (LAYER_1)-1, 0}, 	0, NULL, NULL, NULL, false},
 	{&GARAGE_1_IM,			{1040, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
 	{&HOVER_CAR_1_AC,		{1100, 120, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
 	{&TRASH_BIN_1_IM,		{1100, 155, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&FENCE_1_IM,			{1150, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
 	{&BUSH_BG_1_IM,			{1212, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 	{&LANTERN_1_IM,			{1230, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
-	{&BULLY_1_AC,			{1230, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, false},
+	{&BULLY_1_AC,			{1230, 156, 16, 0}, 		0, NULL, NULL, (void*)-3, false},
 	{&CAR_1_AC,				{1240, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
 
 	{&COLLISION_CL,			{1280, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
@@ -157,6 +158,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&CAR_1_AC,				{1810, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
 	{&BARBER_SHOP_1_IM,		{1810, 95, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&GRANNY_1_AC,			{1848, 47, (LAYER_1)-1, 0}, 0, NULL, NULL, NULL, false},
 	{&GARAGE_2_IM,			{1994, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
 	{&HOUSE_3_IM,			{2170, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&CLOTHES_1_IM,			{2322, 52, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
@@ -165,7 +167,9 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&COLLISION_CL,			{2304, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&HOUSE_4_IM,			{2626, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&GRANNY_1_AC,			{2422, 62, (LAYER_1)-1, 0}, 0, NULL, NULL, NULL, false},
 
+	{&GRANNY_1_AC,			{2644, 34, (LAYER_1)-1, 0}, 0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,				{2700, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
 	{&COLLISION_CL,			{2817, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 

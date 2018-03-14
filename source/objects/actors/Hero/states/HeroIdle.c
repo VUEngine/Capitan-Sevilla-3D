@@ -153,7 +153,7 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, 
 	}
 }
 
-void HeroIdle_onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroIdle_onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
 {
 }
 

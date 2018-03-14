@@ -35,6 +35,7 @@
 #include <Hero.h>
 #include <HeroIdle.h>
 #include <HeroMoving.h>
+#include <HeroKneel.h>
 #include <HeroDead.h>
 #include <CustomCameraMovementManager.h>
 #include <CustomCameraEffectManager.h>
@@ -73,6 +74,7 @@ extern EntityDefinition SAUSAGE_AC;
 //---------------------------------------------------------------------------------------------------------
 
 static void Hero_onUserInput(Hero this, Object eventFirer);
+void Hero_addSausageEntities(Hero this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -448,7 +450,7 @@ void Hero_checkDirection(Hero this, u32 pressedKey, char* animation)
 	ASSERT(this, "Hero::checkDirection: null this");
 
 	bool movementState = Body_getMovementOnAllAxes(this->body);
-	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
+	//Direction direction = Entity_getDirection(__SAFE_CAST(Entity, this));
 
 	if(K_LR & pressedKey)
 	{
@@ -605,7 +607,6 @@ void Hero_die(Hero this)
 	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
 	Game_disableKeypad(Game_getInstance());
 	Hero_setInvincible(this, true);
-	//MessageDispatcher_dispatchMessage(500, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kHeroDied, NULL);
 
 	// go to dead state
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroDead_getInstance()));
@@ -832,7 +833,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 }
 
 // process message
-bool Hero_handlePropagatedMessage(Hero this, int message)
+bool Hero_handlePropagatedMessage(Hero this __attribute__ ((unused)), int message)
 {
 	ASSERT(this, "Hero::handlePropagatedMessage: null this");
 

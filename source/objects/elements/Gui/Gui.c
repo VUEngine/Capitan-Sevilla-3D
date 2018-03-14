@@ -164,6 +164,10 @@ static void Gui_onSecondChange(Gui this, Object eventFirer __attribute__ ((unuse
 		this->timeRemaining--;
 		Gui_printClock(this);
 	}
+	else
+	{
+		Hero_die(Hero_getInstance());
+	}
 }
 
 // handle event

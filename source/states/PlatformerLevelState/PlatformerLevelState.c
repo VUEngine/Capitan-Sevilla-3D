@@ -552,15 +552,11 @@ void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object even
 
 void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
-/*
-	// unset the hero as focus entity from the custom screen movement manager
-	Camera_setFocusGameEntity(Camera_getInstance(), NULL);
-
 	// start a fade out effect
 	Brightness brightness = (Brightness){0, 0, 0};
 	Camera_startEffect(Camera_getInstance(),
 		kFadeTo, // effect type
-		0, // initial delay (in ms)
+		5000, // initial delay (in ms)
 		&brightness, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))PlatformerLevelState_onHeroDiedFadeOutComplete, // callback function
@@ -568,7 +564,6 @@ void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((u
 	);
 
 	Game_disableKeypad(Game_getInstance());
-*/
 }
 
 static void PlatformerLevelState_onHeroStreamedOut(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))

@@ -84,7 +84,7 @@ void HeroKneel_enter(HeroKneel this __attribute__ ((unused)), void* owner)
 }
 
 // state's exit
-void HeroKneel_exit(HeroKneel this, void* owner __attribute__ ((unused)))
+void HeroKneel_exit(HeroKneel this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
 {
 }
 
@@ -138,7 +138,7 @@ void HeroKneel_onKeyPressed(HeroKneel this __attribute__ ((unused)), void* owner
 		}
 }
 
-void HeroKneel_onKeyReleased(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroKneel_onKeyReleased(HeroKneel this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
 {
 }
 

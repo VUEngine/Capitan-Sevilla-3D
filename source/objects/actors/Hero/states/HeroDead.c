@@ -72,17 +72,17 @@ void HeroDead_destructor(HeroDead this)
 }
 
 // state's enter
-void HeroDead_enter(HeroDead this __attribute__ ((unused)), void* owner)
+void HeroDead_enter(HeroDead this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
 {
 	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED);
 }
 
 // state's exit
-void HeroDead_exit(HeroDead this, void* owner __attribute__ ((unused)))
+void HeroDead_exit(HeroDead this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
 {
 }
 
-void HeroDead_onKeyPressed(HeroDead this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroDead_onKeyPressed(HeroDead this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput)
 {
 	if((K_LL | K_LR | K_A) & userInput->pressedKey)
 	{
