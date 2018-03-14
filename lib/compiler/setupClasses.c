@@ -23,6 +23,7 @@
 #include <Collectable.h>
 #include <Item.h>
 #include <AutoPauseScreenState.h>
+#include <IntroState.h>
 #include <LevelDoneScreenState.h>
 #include <OptionsScreenState.h>
 #include <PauseScreenState.h>
@@ -141,6 +142,7 @@ void setupClasses(void)
 	Collectable_setVTable();
 	Item_setVTable();
 	AutoPauseScreenState_setVTable();
+	IntroState_setVTable();
 	LevelDoneScreenState_setVTable();
 	OptionsScreenState_setVTable();
 	PauseScreenState_setVTable();

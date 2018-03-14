@@ -290,7 +290,7 @@ TextureROMDef HERO_TX =
 	6,
 
 	// padding for affine/hbias transformations (cols, rows)
-	{1, 1},
+	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
@@ -318,7 +318,7 @@ TextureROMDef HERO_BLACK_TX =
 	6,
 
 	// padding for affine/hbias transformations (cols, rows)
-	{1, 1},
+	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1

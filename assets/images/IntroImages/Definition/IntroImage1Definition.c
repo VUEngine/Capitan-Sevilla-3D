@@ -24,7 +24,9 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MBgmapSprite.h>
+#include <Entity.h>
+#include <BgmapSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -33,6 +35,7 @@
 
 extern BYTE IntroImagesTiles[];
 extern BYTE IntroImage1Map[];
+extern BYTE IntroImage1BlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -83,13 +86,36 @@ TextureROMDef INTRO_IMAGE_1_TX =
 	false,
 };
 
-TextureROMDef* const INTRO_IMAGE_1_IM_TEXTURES[] =
+TextureROMDef INTRO_IMAGE_1_BLACK_TX =
 {
-	(TextureDefinition*)&INTRO_IMAGE_1_TX,
-	NULL
+	// charset definition
+	(CharSetDefinition*)&INTRO_IMAGES_CH,
+
+	// bgmap definition
+	IntroImage1BlackMap,
+
+	// cols (max 64)
+	19,
+
+	// rows (max 64)
+	13,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
+
+	// recyclable
+	false,
 };
 
-BgmapSpriteROMDef INTRO_IMAGE_1_IM_SPRITE =
+BgmapSpriteROMDef INTRO_IMAGE_1_SPRITE =
 {
 	{
 		// sprite's type
@@ -114,4 +140,61 @@ BgmapSpriteROMDef INTRO_IMAGE_1_IM_SPRITE =
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
+};
+
+BgmapSpriteROMDef INTRO_IMAGE_1_BLACK_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture definition
+		(TextureDefinition*)&INTRO_IMAGE_1_BLACK_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 0, 0, 0},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+BgmapSpriteROMDef* const INTRO_IMAGE_1_SPRITES[] =
+{
+	&INTRO_IMAGE_1_BLACK_SPRITE,
+	&INTRO_IMAGE_1_SPRITE,
+	NULL
+
+};
+
+EntityROMDef INTRO_IMAGE_1_IM =
+{
+	// class allocator
+	__TYPE(Entity),
+
+	// sprites
+	(SpriteROMDef**)INTRO_IMAGE_1_SPRITES,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };

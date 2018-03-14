@@ -139,14 +139,13 @@ static void OptionsScreenState_print(OptionsScreenState this __attribute__ ((unu
 
 	// title
 	const char* strOptionsTitle = I18n_getText(I18n_getInstance(), STR_OPTIONS);
-	const char* strOptionsTitleFont = "LargeFont";
-	FontSize strOptionsTextSize = Printing_getTextSize(Printing_getInstance(), strOptionsTitle, strOptionsTitleFont);
+	FontSize strOptionsTextSize = Printing_getTextSize(Printing_getInstance(), strOptionsTitle, NULL);
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strOptionsTitle),
 		((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1,
 		8,
-		strOptionsTitleFont
+		NULL
 	);
 
 	// menu

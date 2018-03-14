@@ -37,11 +37,10 @@ extern BYTE FontDefaultTiles[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef PLATFORMER_DEFAULT_FONT_CH =
+CharSetROMDef CAPITAN_DEFAULT_FONT_CH =
 {
 	// number of chars
-	//(sizeof(FontDefaultTiles) >> 2),
-	96,
+	256,
 
 	// allocation type
 	__NOT_ANIMATED,
@@ -50,10 +49,10 @@ CharSetROMDef PLATFORMER_DEFAULT_FONT_CH =
 	FontDefaultTiles,
 };
 
-FontROMDef PLATFORMER_DEFAULT_FONT =
+FontROMDef CAPITAN_DEFAULT_FONT =
 {
 	// font charset definition pointer
-	(CharSetDefinition*)&PLATFORMER_DEFAULT_FONT_CH,
+	(CharSetDefinition*)&CAPITAN_DEFAULT_FONT_CH,
 
 	// character number at which the font starts, allows you to skip the control characters for example
 	0,

@@ -33,29 +33,57 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_BG_IM;
-extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L;
-extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R;
-extern EntityDefinition ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM;
+extern EntityDefinition INTRO_IMAGE_1_IM;
+extern EntityDefinition INTRO_IMAGE_2_IM;
+extern EntityDefinition INTRO_IMAGE_3_IM;
+extern EntityDefinition INTRO_IMAGE_4_IM;
+extern EntityDefinition INTRO_IMAGE_5_IM;
+extern EntityDefinition INTRO_IMAGE_6_IM;
+extern EntityDefinition INTRO_IMAGE_7_IM;
+extern EntityDefinition INTRO_IMAGE_8_IM;
+
+extern EntityDefinition INTRO_TEXT_1_SPANISH_IM;
+extern EntityDefinition INTRO_TEXT_2_SPANISH_IM;
+extern EntityDefinition INTRO_TEXT_3_SPANISH_IM;
+extern EntityDefinition INTRO_TEXT_4_SPANISH_IM;
+extern EntityDefinition INTRO_TEXT_5_SPANISH_IM;
+extern EntityDefinition INTRO_TEXT_6_SPANISH_IM;
+extern EntityDefinition INTRO_TEXT_7_SPANISH_IM;
+extern EntityDefinition INTRO_TEXT_8_SPANISH_IM;
+extern EntityDefinition INTRO_TEXT_9_SPANISH_IM;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMDef ADJUSTMENT_SCREEN_STAGE_ST_ENTITIES[] =
+PositionedEntityROMDef INTRO_STAGE_ST_ENTITIES[] =
 {
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {12, 12, 0, 0}, 0, NULL, NULL, NULL, false}, // Icon Top Left (Left Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {12, 212, 0, 0}, 0, NULL, NULL, NULL, false}, // Icon Bottom Left (Right Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_BG_IM, {192, 112, 16, 0}, 0, NULL, NULL, NULL, false}, // Background
-	{&ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM, {192, 112, 0, 0}, 0, NULL, NULL, NULL, false}, // Logo
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L, {372, 212, 0, 0}, 0, NULL, NULL, NULL, false}, // Icon Bottom Right (Left Eye)
-	{&ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R, {372, 12, 0, 0}, 0, NULL, NULL, NULL, false}, // Icon Top Right (Right Eye)
+	{&INTRO_IMAGE_1_IM, 		{80, 68, 0, 0}, 	0, "IMAGE1", NULL, NULL, false},
+	{&INTRO_IMAGE_2_IM, 		{188, 126, 1, 0}, 	0, "IMAGE2", NULL, NULL, false},
+	{&INTRO_IMAGE_3_IM, 		{328, 56, 2, 0}, 	0, "IMAGE3", NULL, NULL, false},
+	{&INTRO_IMAGE_4_IM, 		{296, 164, 2, 0}, 	0, "IMAGE4", NULL, NULL, false},
+
+	{&INTRO_TEXT_1_SPANISH_IM, 	{80, 32, 0, 0}, 	0, "TEXT1", NULL, NULL, false},
+	{&INTRO_TEXT_2_SPANISH_IM, 	{84, 172, 0, 0}, 	0, "TEXT2", NULL, NULL, false},
+	{&INTRO_TEXT_3_SPANISH_IM, 	{228, 36, 0, 0}, 	0, "TEXT3", NULL, NULL, false},
+	{&INTRO_TEXT_4_SPANISH_IM, 	{264, 197, 0, 0}, 	0, "TEXT4", NULL, NULL, false},
+	{&INTRO_TEXT_5_SPANISH_IM, 	{353, 197, 0, 0}, 	0, "TEXT5", NULL, NULL, false},
+
+	{&INTRO_IMAGE_5_IM, 		{64, 60, 0, 0}, 	0, "IMAGE5", NULL, NULL, false},
+	{&INTRO_IMAGE_6_IM, 		{180, 48, 1, 0}, 	0, "IMAGE6", NULL, NULL, false},
+	{&INTRO_IMAGE_7_IM, 		{308, 44, 2, 0}, 	0, "IMAGE7", NULL, NULL, false},
+	{&INTRO_IMAGE_8_IM, 		{308, 180, 2, 0}, 	0, "IMAGE8", NULL, NULL, false},
+
+	{&INTRO_TEXT_6_SPANISH_IM, 	{64, 164, 0, 0}, 	0, "TEXT6", NULL, NULL, false},
+	{&INTRO_TEXT_7_SPANISH_IM, 	{180, 154, 1, 0}, 	0, "TEXT7", NULL, NULL, false},
+	{&INTRO_TEXT_8_SPANISH_IM, 	{310, 103, 2, 0}, 	0, "TEXT8", NULL, NULL, false},
+	{&INTRO_TEXT_9_SPANISH_IM, 	{344, 154, 2, 0}, 	0, "TEXT9", NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef ADJUSTMENT_SCREEN_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMDef INTRO_STAGE_ST_UI_ENTITIES[] =
 {
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
@@ -66,7 +94,7 @@ PositionedEntityROMDef ADJUSTMENT_SCREEN_STAGE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMDef* const ADJUSTMENT_SCREEN_STAGE_ST_FONTS[] =
+FontROMDef* const INTRO_STAGE_ST_FONTS[] =
 {
 	&CAPITAN_DEFAULT_FONT,
 
@@ -78,7 +106,7 @@ FontROMDef* const ADJUSTMENT_SCREEN_STAGE_ST_FONTS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
+StageROMDef INTRO_STAGE_ST =
 {
 	// allocator
 	__TYPE(Stage),
@@ -255,7 +283,7 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontDefinition**)ADJUSTMENT_SCREEN_STAGE_ST_FONTS,
+		(FontDefinition**)INTRO_STAGE_ST_FONTS,
 
 		// char sets to preload
 		(CharSetDefinition**)NULL,
@@ -271,12 +299,12 @@ StageROMDef ADJUSTMENT_SCREEN_STAGE_ST =
 	{
 		// ui
 		{
-			ADJUSTMENT_SCREEN_STAGE_ST_UI_ENTITIES,
+			INTRO_STAGE_ST_UI_ENTITIES,
 			__TYPE(UiContainer),
 		},
 
 		// children
-		ADJUSTMENT_SCREEN_STAGE_ST_ENTITIES,
+		INTRO_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects

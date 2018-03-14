@@ -19,109 +19,67 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef INTRO_STATE_H_
+#define INTRO_STATE_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <BgmapSprite.h>
-#include <macros.h>
+#include <GameState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE IntroImage3Map[];
-extern CharSetROMDef INTRO_IMAGES_CH;
+// declare the virtual methods
+#define IntroState_METHODS(ClassName)																	\
+ 		GameState_METHODS(ClassName)											 						\
+
+// declare the virtual methods which are redefined
+#define IntroState_SET_VTABLE(ClassName)																\
+		GameState_SET_VTABLE(ClassName)								 									\
+		__VIRTUAL_SET(ClassName, IntroState, enter);													\
+		__VIRTUAL_SET(ClassName, IntroState, exit);														\
+		__VIRTUAL_SET(ClassName, IntroState, resume);													\
+		__VIRTUAL_SET(ClassName, IntroState, suspend);													\
+		__VIRTUAL_SET(ClassName, IntroState, processUserInput);											\
+
+__CLASS(IntroState);
+
+#define IntroState_ATTRIBUTES								 											\
+		GameState_ATTRIBUTES																			\
+		/* image entity references */																	\
+		Entity entityImage1;																			\
+		Entity entityImage2;																			\
+		Entity entityImage3;																			\
+		Entity entityImage4;																			\
+		Entity entityImage5;																			\
+		Entity entityImage6;																			\
+		Entity entityImage7;																			\
+		Entity entityImage8;																			\
+		/* text entity references */																	\
+		Entity entityText1;																				\
+		Entity entityText2;																				\
+		Entity entityText3;																				\
+		Entity entityText4;																				\
+		Entity entityText5;																				\
+		Entity entityText6;																				\
+		Entity entityText7;																				\
+		Entity entityText8;																				\
+		Entity entityText9;																				\
+		/* current intro step */																		\
+		u8 currentStep;																					\
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef INTRO_IMAGE_3_TX =
-{
-	// charset definition
-	(CharSetDefinition*)&INTRO_IMAGES_CH,
+IntroState IntroState_getInstance(void);
+void IntroState_processUserInput(IntroState this, UserInput userInput);
 
-	// bgmap definition
-	IntroImage3Map,
 
-	// cols (max 64)
-	13,
-
-	// rows (max 64)
-	11,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
-	1,
-
-	// palette number (0-3)
-	0,
-
-	// recyclable
-	false,
-};
-
-BgmapSpriteROMDef INTRO_IMAGE_3_SPRITE =
-{
-	{
-		// sprite's type
-		__TYPE(BgmapSprite),
-
-		// texture definition
-		(TextureDefinition*)&INTRO_IMAGE_3_TX,
-
-		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-		__TRANSPARENCY_NONE,
-
-		// displacement
-		{0, 0, 0, 1},
-	},
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
-};
-
-BgmapSpriteROMDef* const INTRO_IMAGE_3_SPRITES[] =
-{
-	&INTRO_IMAGE_3_SPRITE,
-	NULL
-
-};
-
-EntityROMDef INTRO_IMAGE_3_IM =
-{
-	// class allocator
-	__TYPE(Entity),
-
-	// sprites
-	(SpriteROMDef**)INTRO_IMAGE_3_SPRITES,
-
-	// collision shapes
-	(ShapeDefinition*)NULL,
-
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kNoType,
-
-	// physical specification
-	(PhysicalSpecification*)NULL,
-};
+#endif

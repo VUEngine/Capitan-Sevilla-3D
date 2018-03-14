@@ -131,7 +131,7 @@ static void PrecautionScreenState_print(PrecautionScreenState this __attribute__
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strPrecautionTitle),
-		(__HALF_SCREEN_WIDTH_IN_CHARS) - (titleSize.x >> 1),
+		__HALF_SCREEN_WIDTH_IN_CHARS - (titleSize.x >> 1),
 		(__HALF_SCREEN_HEIGHT_IN_CHARS) - (totalHeight >> 1) - 1,
 		NULL
 	);
@@ -139,7 +139,7 @@ static void PrecautionScreenState_print(PrecautionScreenState this __attribute__
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strPrecautionText),
-		(__HALF_SCREEN_WIDTH_IN_CHARS) - (textSize.x >> 1),
+		__HALF_SCREEN_WIDTH_IN_CHARS - (textSize.x >> 1),
 		(__HALF_SCREEN_HEIGHT_IN_CHARS) - (totalHeight >> 1) + titleSize.y,
 		NULL
 	);

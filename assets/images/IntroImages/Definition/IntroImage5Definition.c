@@ -33,8 +33,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE IntroImage2Map[];
-extern BYTE IntroImage2BlackMap[];
+extern BYTE IntroImage5Map[];
 extern CharSetROMDef INTRO_IMAGES_CH;
 
 
@@ -42,16 +41,16 @@ extern CharSetROMDef INTRO_IMAGES_CH;
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMDef INTRO_IMAGE_2_TX =
+TextureROMDef INTRO_IMAGE_5_TX =
 {
 	// charset definition
 	(CharSetDefinition*)&INTRO_IMAGES_CH,
 
 	// bgmap definition
-	IntroImage2Map,
+	IntroImage5Map,
 
 	// cols (max 64)
-	21,
+	16,
 
 	// rows (max 64)
 	14,
@@ -71,49 +70,20 @@ TextureROMDef INTRO_IMAGE_2_TX =
 	false,
 };
 
-TextureROMDef INTRO_IMAGE_2_BLACK_TX =
-{
-	// charset definition
-	(CharSetDefinition*)&INTRO_IMAGES_CH,
-
-	// bgmap definition
-	IntroImage2BlackMap,
-
-	// cols (max 64)
-	21,
-
-	// rows (max 64)
-	14,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
-	1,
-
-	// palette number (0-3)
-	1,
-
-	// recyclable
-	false,
-};
-
-BgmapSpriteROMDef INTRO_IMAGE_2_SPRITE =
+BgmapSpriteROMDef INTRO_IMAGE_5_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&INTRO_IMAGE_2_TX,
+		(TextureDefinition*)&INTRO_IMAGE_5_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 1},
+		{0, 0, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -127,48 +97,20 @@ BgmapSpriteROMDef INTRO_IMAGE_2_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef INTRO_IMAGE_2_BLACK_SPRITE =
+BgmapSpriteROMDef* const INTRO_IMAGE_5_SPRITES[] =
 {
-	{
-		// sprite's type
-		__TYPE(BgmapSprite),
-
-		// texture definition
-		(TextureDefinition*)&INTRO_IMAGE_2_BLACK_TX,
-
-		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-		__TRANSPARENCY_NONE,
-
-		// displacement
-		{0, 0, 0, 1},
-	},
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
-};
-
-BgmapSpriteROMDef* const INTRO_IMAGE_2_SPRITES[] =
-{
-	&INTRO_IMAGE_2_BLACK_SPRITE,
-	&INTRO_IMAGE_2_SPRITE,
+	&INTRO_IMAGE_5_SPRITE,
 	NULL
 
 };
 
-EntityROMDef INTRO_IMAGE_2_IM =
+EntityROMDef INTRO_IMAGE_5_IM =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)INTRO_IMAGE_2_SPRITES,
+	(SpriteROMDef**)INTRO_IMAGE_5_SPRITES,
 
 	// collision shapes
 	(ShapeDefinition*)NULL,

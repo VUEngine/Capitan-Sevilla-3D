@@ -32,7 +32,7 @@
 #include <Utilities.h>
 #include <I18n.h>
 #include <AutoPauseSelectScreenState.h>
-#include <LangSelectScreenState.h>
+#include <LolaSoftScreenState.h>
 #include <AutoPauseScreenState.h>
 #include <Languages.h>
 #include <KeyPadManager.h>
@@ -74,7 +74,7 @@ static void __attribute__ ((noinline)) AutoPauseSelectScreenState_constructor(Au
 {
 	__CONSTRUCT_BASE(SplashScreenState);
 
-	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, LangSelectScreenState_getInstance()));
+	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, LolaSoftScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_STAGE_ST;
 	this->selection = true;
 }
@@ -91,22 +91,21 @@ static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
 	this->selection = ProgressManager_getAutomaticPauseStatus(ProgressManager_getInstance());
 
 	const char* strAutomaticPauseTitle = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
-	const char* strAutomaticPauseTitleFont = "LargeFont";
-	FontSize strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseTitle, strAutomaticPauseTitleFont);
+	FontSize strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseTitle, NULL);
 
 	const char* strAutomaticPauseExplanation = I18n_getText(I18n_getInstance(), STR_AUTO_PAUSE_EXPLANATION);
 	FontSize strAutomaticPauseExplanationSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseExplanation, NULL);
 
-	u8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseSize.x >> 1);
+	u8 strHeaderXPos = __HALF_SCREEN_WIDTH_IN_CHARS - (strAutomaticPauseSize.x >> 1);
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strAutomaticPauseTitle),
 		strHeaderXPos,
 		8,
-		strAutomaticPauseTitleFont
+		NULL
 	);
 
-	u8 strExplanationXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strAutomaticPauseExplanationSize.x >> 1);
+	u8 strExplanationXPos = __HALF_SCREEN_WIDTH_IN_CHARS - (strAutomaticPauseExplanationSize.x >> 1);
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strAutomaticPauseExplanation),
@@ -132,15 +131,6 @@ static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenStat
 	Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS, NULL);
 	Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS + 1, NULL);
 	Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS + 2, NULL);
-	if(strOnSize.y > 1) {
-		Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS + 3, NULL);
-		if(strOnSize.y > 2) {
-			Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS + 4, NULL);
-			if(strOnSize.y > 3) {
-				Printing_text(Printing_getInstance(), "                                                ", 0, __OPTIONS_Y_POS + 5, NULL);
-			}
-		}
-	}
 
 	// print options
 	Printing_text(Printing_getInstance(), Utilities_toUppercase(strOn), selectionStart, __OPTIONS_Y_POS + 1, NULL);
@@ -154,18 +144,6 @@ static void AutoPauseSelectScreenState_renderSelection(AutoPauseSelectScreenStat
 	Printing_text(Printing_getInstance(), "\x04               ", optionEnd, __OPTIONS_Y_POS, NULL);
 	Printing_text(Printing_getInstance(), "\x07", optionStart, __OPTIONS_Y_POS + 1, NULL);
 	Printing_text(Printing_getInstance(), "\x07", optionEnd, __OPTIONS_Y_POS + 1, NULL);
-	if(strOnSize.y > 1) {
-		Printing_text(Printing_getInstance(), "\x07", optionStart, __OPTIONS_Y_POS + 2, NULL);
-		Printing_text(Printing_getInstance(), "\x07", optionEnd, __OPTIONS_Y_POS + 2, NULL);
-		if(strOnSize.y > 2) {
-			Printing_text(Printing_getInstance(), "\x07", optionStart, __OPTIONS_Y_POS + 3, NULL);
-			Printing_text(Printing_getInstance(), "\x07", optionEnd, __OPTIONS_Y_POS + 3, NULL);
-			if(strOnSize.y > 3) {
-				Printing_text(Printing_getInstance(), "\x07", optionStart, __OPTIONS_Y_POS + 4, NULL);
-				Printing_text(Printing_getInstance(), "\x07", optionEnd, __OPTIONS_Y_POS + 4, NULL);
-			}
-		}
-	}
 	Printing_text(Printing_getInstance(), "\x05\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08\x08", optionStart, __OPTIONS_Y_POS + 1 + strOnSize.y, NULL);
 	Printing_text(Printing_getInstance(), "\x06               ", optionEnd, __OPTIONS_Y_POS + 1 + strOnSize.y, NULL);
 }

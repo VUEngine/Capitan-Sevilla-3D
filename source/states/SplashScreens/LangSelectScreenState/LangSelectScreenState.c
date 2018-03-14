@@ -29,7 +29,7 @@
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <LangSelectScreenState.h>
-#include <TitleScreenState.h>
+#include <AutoPauseSelectScreenState.h>
 #include <Languages.h>
 #include <KeyPadManager.h>
 #include <Utilities.h>
@@ -70,7 +70,7 @@ static void __attribute__ ((noinline)) LangSelectScreenState_constructor(LangSel
 {
 	__CONSTRUCT_BASE(SplashScreenState);
 
-	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
+	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&EMPTY_STAGE_ST;
 
 	// create options selector and populate with language names
@@ -128,15 +128,14 @@ static void LangSelectScreenState_print(LangSelectScreenState this)
 {
 	// print header
 	const char* strLanguageSelectTitle = I18n_getText(I18n_getInstance(), STR_LANGUAGE);
-	const char* strLanguageSelectTitleFont = "LargeFont";
-	FontSize size = Printing_getTextSize(Printing_getInstance(), strLanguageSelectTitle, strLanguageSelectTitleFont);
-	u8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (size.x >> 1);
+	FontSize size = Printing_getTextSize(Printing_getInstance(), strLanguageSelectTitle, NULL);
+	u8 strHeaderXPos = __HALF_SCREEN_WIDTH_IN_CHARS - (size.x >> 1);
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strLanguageSelectTitle),
 		strHeaderXPos,
 		8,
-		strLanguageSelectTitleFont
+		NULL
 	);
 
 	// print options

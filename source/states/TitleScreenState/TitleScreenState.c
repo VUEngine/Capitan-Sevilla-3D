@@ -35,7 +35,7 @@
 #include <TitleScreenState.h>
 #include <Hero.h>
 #include <ParticleSystem.h>
-#include <PlatformerLevelState.h>
+#include <IntroState.h>
 #include <AdjustmentScreenState.h>
 #include <OptionsScreenState.h>
 #include <ProgressManager.h>
@@ -124,54 +124,12 @@ static void TitleScreenState_resume(TitleScreenState this, void* owner)
 {
 	__CALL_BASE_METHOD(GameState, resume, this, owner);
 
-#ifdef __DEBUG_TOOLS
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
-	{
-#endif
-#ifdef __STAGE_EDITOR
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
-	{
-#endif
-#ifdef __ANIMATION_INSPECTOR
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
-	{
-#endif
-
-	// make a fade in
 	Camera_startEffect(Camera_getInstance(), kFadeIn, __FADE_DELAY);
-
-	// unpause physical simulations
-	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
-
-#ifdef __DEBUG_TOOLS
-	}
-#endif
-#ifdef __STAGE_EDITOR
-	}
-#endif
-#ifdef __ANIMATION_INSPECTOR
-	}
-#endif
 }
 
 // state's suspend
 static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 {
-
-	// pause physical simulations
-	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
-
-#ifdef __DEBUG_TOOLS
-	if(!Game_isEnteringSpecialMode(Game_getInstance()))
-#endif
-#ifdef __STAGE_EDITOR
-	if(!Game_isEnteringSpecialMode(Game_getInstance()))
-#endif
-#ifdef __ANIMATION_INSPECTOR
-	if(!Game_isEnteringSpecialMode(Game_getInstance()))
-#endif
-
-	// make a fade out
 	Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
 
 	__CALL_BASE_METHOD(GameState, suspend, this, owner);
@@ -179,8 +137,8 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 
 void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInput)
 {
-	if(userInput.pressedKey & ~K_PWR) {
-
+	if(userInput.pressedKey & ~K_PWR)
+	{
 		// disable user input
 		Game_disableKeypad(Game_getInstance());
 
@@ -198,12 +156,9 @@ void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInpu
 }
 
 // handle event
-static void TitleScreenState_onFadeInComplete(TitleScreenState this, Object eventFirer __attribute__ ((unused)))
+static void TitleScreenState_onFadeInComplete(TitleScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
 {
 	ASSERT(this, "TitleScreenState::onFadeInComplete: null this");
-
-	// tell any interested entity
-	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
 
 	// enable user input
 	Game_enableKeypad(Game_getInstance());
@@ -214,5 +169,5 @@ static void TitleScreenState_onFadeOutComplete(TitleScreenState this __attribute
 {
 	ASSERT(this, "TitleScreenState::onFadeOutComplete: null this");
 
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, PlatformerLevelState_getInstance()));
+	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, IntroState_getInstance()));
 }

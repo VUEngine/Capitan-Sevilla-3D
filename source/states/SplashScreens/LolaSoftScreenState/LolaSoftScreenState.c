@@ -28,7 +28,7 @@
 #include <Camera.h>
 #include <MessageDispatcher.h>
 #include <LolaSoftScreenState.h>
-#include <AutoPauseSelectScreenState.h>
+#include <TitleScreenState.h>
 #include <I18n.h>
 #include <Utilities.h>
 #include <Languages.h>
@@ -67,7 +67,7 @@ static void __attribute__ ((noinline)) LolaSoftScreenState_constructor(LolaSoftS
 {
 	__CONSTRUCT_BASE(SplashScreenState);
 
-	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
+	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&LOLA_SOFT_SCREEN_STAGE_ST;
 }
 
@@ -87,6 +87,6 @@ void LolaSoftScreenState_enter(LolaSoftScreenState this, void* owner)
 	// print "presents"
 	const char* strPresents = I18n_getText(I18n_getInstance(), STR_PRESENTS);
 	FontSize strPresentsSize = Printing_getTextSize(Printing_getInstance(), strPresents, NULL);
-	u8 strPresentsXPos = (__HALF_SCREEN_WIDTH_IN_CHARS) - (strPresentsSize.x >> 1);
+	u8 strPresentsXPos = __HALF_SCREEN_WIDTH_IN_CHARS - (strPresentsSize.x >> 1);
 	Printing_text(Printing_getInstance(), Utilities_toUppercase(strPresents), strPresentsXPos, 18, NULL);
 }

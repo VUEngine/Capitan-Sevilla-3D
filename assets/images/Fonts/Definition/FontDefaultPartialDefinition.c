@@ -19,24 +19,47 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef FONTS_H_
-#define FONTS_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Printing.h>
-#include <CharSet.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern FontDefinition CAPITAN_DEFAULT_FONT;
-extern FontDefinition CAPITAN_DEFAULT_FONT_PARTIAL;
+extern BYTE FontDefaultTiles[];
 
 
-#endif
+//---------------------------------------------------------------------------------------------------------
+//												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+CharSetROMDef CAPITAN_DEFAULT_FONT_PARTIAL_CH =
+{
+	// number of chars
+	96,
+
+	// allocation type
+	__NOT_ANIMATED,
+
+	// char definition
+	FontDefaultTiles,
+};
+
+FontROMDef CAPITAN_DEFAULT_FONT_PARTIAL =
+{
+	// font charset definition pointer
+	(CharSetDefinition*)&CAPITAN_DEFAULT_FONT_PARTIAL_CH,
+
+	// character number at which the font starts, allows you to skip the control characters for example
+	0,
+
+	// size of a single character (in chars) (width, height)
+	{1, 1},
+
+	// font's name
+	"DfltFontPrt",
+};

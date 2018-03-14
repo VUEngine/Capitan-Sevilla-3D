@@ -72,7 +72,7 @@ const char* const LANGUAGE_ES_STRINGS[] =
 
 	/* Splash Screens */
 
-	/* STR_PRECAUTION_SCREEN_TEXT */	"       Lee los libros de\n\nInstrucciones y Precauciones\n\n       antes de jugar",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"      Lee los libros de\n\nInstrucciones y Precauciones\n\n       antes de jugar",
 	/* STR_AUTO_PAUSE_EXPLANATION */	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
 
 	/* Levels */

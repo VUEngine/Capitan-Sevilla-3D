@@ -434,7 +434,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 						strLevelName,
 						((__SCREEN_WIDTH_IN_CHARS) - strlen(strLevelName)) >> 1,
 						6,
-						"GuiFont"
+						NULL
 					);
 
 					if(this->currentLevel->identifier)
