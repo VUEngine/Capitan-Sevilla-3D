@@ -149,6 +149,7 @@ enum PlatformerLevelStateMessageTypes
 	kCogWheelMove,
 	kCogWheelStop,
 	kLavaMove,
+	kIntroNextImage,
 	kProjectileEjectorShoot,
 	kProjectileCheckDisplacement,
 	kMovingEntityStartMoving,

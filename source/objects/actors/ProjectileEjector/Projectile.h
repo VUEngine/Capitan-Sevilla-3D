@@ -36,7 +36,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define PROJECTILE_MAX_Y_POS					164
+#define PROJECTILE_MAX_Y_POS					168
 #define PROJECTILE_DISPLACEMENT_CHECK_DELAY		100
 
 

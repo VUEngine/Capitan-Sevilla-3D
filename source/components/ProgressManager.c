@@ -191,7 +191,7 @@ bool ProgressManager_verifyChecksum(ProgressManager this)
 	return (computedChecksum == savedChecksum);
 }
 
-void ProgressManager_clearProgress(ProgressManager this __attribute__ ((unused)))
+void ProgressManager_clearProgress(ProgressManager this)
 {
 	if(this->sramAvailable)
 	{
@@ -199,7 +199,7 @@ void ProgressManager_clearProgress(ProgressManager this __attribute__ ((unused))
 	}
 }
 
-bool ProgressManager_hasProgress(ProgressManager this __attribute__ ((unused)))
+bool ProgressManager_hasProgress(ProgressManager this)
 {
 	u8 numberOfCompletedLevels = 0;
 
@@ -282,7 +282,7 @@ u32 ProgressManager_getCurrentLevelBestTime(ProgressManager this)
 	return this->currentLevelBestTime;
 }
 
-u16 ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this __attribute__ ((unused)))
+u16 ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::getTotalNumberOfCollectedCoins: null this");
 
@@ -295,7 +295,7 @@ u16 ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this __attrib
 	return numberOfCollectedCoins;
 }
 
-u8 ProgressManager_getLanguage(ProgressManager this __attribute__ ((unused)))
+u8 ProgressManager_getLanguage(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::getLanguage: null this");
 
@@ -308,7 +308,7 @@ u8 ProgressManager_getLanguage(ProgressManager this __attribute__ ((unused)))
 	return languageId;
 }
 
-void ProgressManager_setLanguage(ProgressManager this __attribute__ ((unused)), u8 languageId)
+void ProgressManager_setLanguage(ProgressManager this, u8 languageId)
 {
 	ASSERT(this, "ProgressManager::setLanguage: null this");
 
@@ -322,7 +322,7 @@ void ProgressManager_setLanguage(ProgressManager this __attribute__ ((unused)), 
 	}
 }
 
-bool ProgressManager_getAutomaticPauseStatus(ProgressManager this __attribute__ ((unused)))
+bool ProgressManager_getAutomaticPauseStatus(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::getAutomaticPause: null this");
 
@@ -335,7 +335,7 @@ bool ProgressManager_getAutomaticPauseStatus(ProgressManager this __attribute__ 
 	return !autoPauseStatus;
 }
 
-void ProgressManager_setAutomaticPauseStatus(ProgressManager this __attribute__ ((unused)), u8 autoPauseStatus)
+void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 autoPauseStatus)
 {
 	ASSERT(this, "ProgressManager::setAutomaticPause: null this");
 

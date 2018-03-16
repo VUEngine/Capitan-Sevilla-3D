@@ -19,15 +19,13 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef PROJECTILE_EJECTOR_H_
-#define PROJECTILE_EJECTOR_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <AnimatedEntity.h>
+#include <Entity.h>
+#include <BgmapSprite.h>
 #include <macros.h>
 
 
@@ -35,40 +33,109 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define PROJECTILE_EJECTOR_INITIAL_SHOOT_DELAY 1200
-#define PROJECTILE_EJECTOR_SHOOT_DELAY 2800
+extern BYTE FlagSpainTiles[];
+extern BYTE FlagSpainMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define ProjectileEjector_METHODS(ClassName)															\
-		AnimatedEntity_METHODS(ClassName)																\
+CharSetROMDef FLAG_SPAIN_CH =
+{
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	4,
 
-#define ProjectileEjector_SET_VTABLE(ClassName)															\
-		AnimatedEntity_SET_VTABLE(ClassName)															\
-		__VIRTUAL_SET(ClassName, ProjectileEjector, handleMessage);										\
-		__VIRTUAL_SET(ClassName, ProjectileEjector, ready);												\
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
 
-__CLASS(ProjectileEjector);
+	// char definition
+	FlagSpainTiles,
+};
 
-#define ProjectileEjector_ATTRIBUTES																	\
-		AnimatedEntity_ATTRIBUTES																		\
+TextureROMDef FLAG_SPAIN_TX =
+{
+	// charset definition
+	(CharSetDefinition*)&FLAG_SPAIN_CH,
 
+	// bgmap definition
+	FlagSpainMap,
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
+	// cols (max 64)
+	5,
 
-__CLASS_NEW_DECLARE(ProjectileEjector, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	// rows (max 64)
+	4,
 
-void ProjectileEjector_constructor(ProjectileEjector this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-void ProjectileEjector_destructor(ProjectileEjector this);
-bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram);
-void ProjectileEjector_ready(ProjectileEjector this, bool recursive);
-void ProjectileEjector_shoot(ProjectileEjector this);
-void ProjectileEjector_onShootAnimationComplete(ProjectileEjector this);
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
 
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
 
-#endif
+	// palette number (0-3)
+	0,
+
+	// recyclable
+	false,
+};
+
+BgmapSpriteROMDef FLAG_SPAIN_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture definition
+		(TextureDefinition*)&FLAG_SPAIN_TX,
+
+		// transparent
+		false,
+
+		// displacement
+		{0, 0, 0, 0},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+BgmapSpriteROMDef* const FLAG_SPAIN_SPRITES[] =
+{
+	&FLAG_SPAIN_SPRITE,
+	NULL
+};
+
+EntityROMDef FLAG_SPAIN_IM =
+{
+	// class allocator
+	__TYPE(Entity),
+
+	// sprites
+	(SpriteROMDef**)FLAG_SPAIN_SPRITES,
+
+	// collision shapes
+	NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
+	kNoType,
+
+	// physical specification
+	NULL,
+};

@@ -31,6 +31,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+#define INTRO_IMAGE_DURATION	1000
+
+
+//---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
@@ -43,6 +50,7 @@
 		GameState_SET_VTABLE(ClassName)								 									\
 		__VIRTUAL_SET(ClassName, IntroState, enter);													\
 		__VIRTUAL_SET(ClassName, IntroState, exit);														\
+		__VIRTUAL_SET(ClassName, IntroState, handleMessage);											\
 		__VIRTUAL_SET(ClassName, IntroState, resume);													\
 		__VIRTUAL_SET(ClassName, IntroState, suspend);													\
 		__VIRTUAL_SET(ClassName, IntroState, processUserInput);											\
@@ -80,6 +88,8 @@ __CLASS(IntroState);
 
 IntroState IntroState_getInstance(void);
 void IntroState_processUserInput(IntroState this, UserInput userInput);
+bool IntroState_handleMessage(IntroState this, Telegram telegram);
+void IntroState_nextImageStep(IntroState this);
 
 
 #endif

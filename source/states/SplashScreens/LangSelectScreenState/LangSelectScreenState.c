@@ -40,7 +40,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef EMPTY_STAGE_ST;
+extern StageROMDef LANG_SELECT_SCREEN_STAGE_ST;
 extern LangROMDef* __LANGUAGES[];
 
 
@@ -68,38 +68,18 @@ __SINGLETON_DYNAMIC(LangSelectScreenState);
 
 static void __attribute__ ((noinline)) LangSelectScreenState_constructor(LangSelectScreenState this)
 {
+	ASSERT(this, "LangSelectScreenState::constructor: null this");
+
 	__CONSTRUCT_BASE(SplashScreenState);
 
+	// init members
 	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
-	this->stageDefinition = (StageDefinition*)&EMPTY_STAGE_ST;
-
-	// create options selector and populate with language names
-	this->languageSelector = __NEW(OptionsSelector, 1, 8, NULL);
-	VirtualList languageNames = __NEW(VirtualList);
-
-	u8 activeLanguage = ProgressManager_getLanguage(ProgressManager_getInstance());
-
-	int i = 0;
-	for(; __LANGUAGES[i]; i++)
-	{
-		I18n_setActiveLanguage(I18n_getInstance(), i);
-
-		Option* option = __NEW_BASIC(Option);
-		option->value = (char*)I18n_getActiveLanguageName(I18n_getInstance());
-		option->type = kString;
-		VirtualList_pushBack(languageNames, option);
-	}
-
-	OptionsSelector_setOptions(this->languageSelector, languageNames);
-	__DELETE(languageNames);
-
-	I18n_setActiveLanguage(I18n_getInstance(), activeLanguage);
-	OptionsSelector_setSelectedOption(this->languageSelector, activeLanguage);
+	this->stageDefinition = (StageDefinition*)&LANG_SELECT_SCREEN_STAGE_ST;
 }
 
 static void LangSelectScreenState_destructor(LangSelectScreenState this)
 {
-	__DELETE(this->languageSelector);
+	ASSERT(this, "LangSelectScreenState::destructor: null this");
 
 	// destroy base
 	__SINGLETON_DESTROY;
@@ -107,38 +87,66 @@ static void LangSelectScreenState_destructor(LangSelectScreenState this)
 
 void LangSelectScreenState_processInput(LangSelectScreenState this, u32 pressedKey)
 {
-	if((pressedKey & K_LU) || (pressedKey & K_RU))
+	if((pressedKey & K_LL) || (pressedKey & K_RL))
 	{
-		OptionsSelector_selectPrevious(this->languageSelector);
+		u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
+		int numLangs = sizeof(*__LANGUAGES);
+		activeLanguage = (activeLanguage > 0) ? activeLanguage - 1 : numLangs - 1;
+		I18n_setActiveLanguage(I18n_getInstance(), activeLanguage);
+		LangSelectScreenState_print(this);
 	}
-	else if((pressedKey & K_LD) || (pressedKey & K_RD))
+	else if((pressedKey & K_LR) || (pressedKey & K_RR))
 	{
-		OptionsSelector_selectNext(this->languageSelector);
+		u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
+		int numLangs = sizeof(*__LANGUAGES);
+		activeLanguage = (activeLanguage < (numLangs - 1)) ? activeLanguage + 1 : 0;
+		I18n_setActiveLanguage(I18n_getInstance(), activeLanguage);
+		LangSelectScreenState_print(this);
 	}
 	else if((pressedKey & K_A) || (pressedKey & K_STA))
 	{
-		int selectedLanguage = OptionsSelector_getSelectedOption(this->languageSelector);
-		I18n_setActiveLanguage(I18n_getInstance(), selectedLanguage);
-		ProgressManager_setLanguage(ProgressManager_getInstance(), selectedLanguage);
+		u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
+		ProgressManager_setLanguage(ProgressManager_getInstance(), activeLanguage);
 		SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
 	}
 }
 
-static void LangSelectScreenState_print(LangSelectScreenState this)
+static void LangSelectScreenState_print(LangSelectScreenState this __attribute__ ((unused)))
 {
+	// move cursor entity
+	u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
+	Entity cursorEntity = __SAFE_CAST(Entity, Container_getChildByName(
+		__SAFE_CAST(Container, Game_getStage(Game_getInstance())),
+		"Cursor",
+		false
+	));
+	Vector3D position = {__PIXELS_TO_METERS(120 + activeLanguage * 48), __PIXELS_TO_METERS(96), 0};
+	Entity_setLocalPosition(cursorEntity, &position);
+
+	/*
 	// print header
 	const char* strLanguageSelectTitle = I18n_getText(I18n_getInstance(), STR_LANGUAGE);
-	FontSize size = Printing_getTextSize(Printing_getInstance(), strLanguageSelectTitle, NULL);
-	u8 strHeaderXPos = __HALF_SCREEN_WIDTH_IN_CHARS - (size.x >> 1);
+	FontSize strLanguageSelectTitleSize = Printing_getTextSize(Printing_getInstance(), strLanguageSelectTitle, NULL);
+	Printing_text(Printing_getInstance(), "                                                ", 0, 8, NULL);
 	Printing_text(
 		Printing_getInstance(),
 		Utilities_toUppercase(strLanguageSelectTitle),
-		strHeaderXPos,
+		(__SCREEN_WIDTH_IN_CHARS - strLanguageSelectTitleSize.x) >> 1,
 		8,
 		NULL
 	);
+	*/
 
-	// print options
-	OptionsSelector_printOptions(this->languageSelector, strHeaderXPos, 9 + size.y);
+	// print current language
+	const char* strActiveLanguageName = (char*)I18n_getActiveLanguageName(I18n_getInstance());
+	FontSize strActiveLanguageNameSize = Printing_getTextSize(Printing_getInstance(), strActiveLanguageName, NULL);
+	Printing_text(Printing_getInstance(), "                                                ", 0, 15, NULL);
+	Printing_text(
+		Printing_getInstance(),
+		strActiveLanguageName,
+		(__SCREEN_WIDTH_IN_CHARS - strActiveLanguageNameSize.x) >> 1,
+		15,
+		NULL
+	);
 }
 

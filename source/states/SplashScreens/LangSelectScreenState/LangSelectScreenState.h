@@ -48,9 +48,7 @@
 __CLASS(LangSelectScreenState);
 
 #define LangSelectScreenState_ATTRIBUTES																\
-		/* inherits */																					\
 		SplashScreenState_ATTRIBUTES																	\
-		OptionsSelector languageSelector;																\
 
 
 //---------------------------------------------------------------------------------------------------------

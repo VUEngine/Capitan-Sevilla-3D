@@ -28,6 +28,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Object.h>
+#include <PlatformerLevelState.h>
 #include <Hero.h>
 
 
@@ -48,7 +49,6 @@ __CLASS(ProgressManager);
 
 // declare class attributes
 #define ProgressManager_ATTRIBUTES																		\
-		/* super's attributes */																		\
 		Object_ATTRIBUTES																				\
 		/* time in current level */																		\
 		u32 currentLevelTime;																			\
@@ -74,8 +74,8 @@ __CLASS(ProgressManager);
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define SAVE_STAMP								"VUEngine"
-#define SAVE_STAMP_LENGTH						8
+#define SAVE_STAMP			"VUEngine"
+#define SAVE_STAMP_LENGTH	8
 
 typedef struct LevelStatus
 {
@@ -145,7 +145,7 @@ void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 automaticP
 void ProgressManager_setCheckPointData(ProgressManager this);
 bool ProgressManager_setCoinStatus(ProgressManager this, u16 itemNumber, bool taken);
 bool ProgressManager_setItemStatus(ProgressManager this, u16 itemNumber, bool taken);
-void ProgressManager_setLanguage(ProgressManager this, u8 language);
+void ProgressManager_setLanguage(ProgressManager this, u8 languageId);
 void ProgressManager_resetCurrentLevelProgress(ProgressManager this);
 
 
