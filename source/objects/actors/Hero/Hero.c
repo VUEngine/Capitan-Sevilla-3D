@@ -689,6 +689,7 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 			break;
 
 		case kHit:
+		case kProjectile:
 
 			Hero_takeHitFrom(this, collidingObject, 1, true, true);
 			return false;

@@ -28,13 +28,7 @@
 #include <Entity.h>
 #include <MessageDispatcher.h>
 #include <Box.h>
-#include <PhysicalWorld.h>
-#include <ProgressManager.h>
 #include <Container.h>
-#include <Camera.h>
-#include <ParticleSystem.h>
-#include <SoundManager.h>
-#include <CustomCameraEffectManager.h>
 #include <Projectile.h>
 #include "ProjectileEjector.h"
 #include <PlatformerLevelState.h>
@@ -52,7 +46,7 @@ __CLASS_DEFINITION(ProjectileEjector, AnimatedEntity);
 //---------------------------------------------------------------------------------------------------------
 
 void ProjectileEjector_shoot(ProjectileEjector this);
-static void ProjectileEjector_onProjectileSpawned(ProjectileEjector this, Object eventFirer);
+
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
@@ -94,8 +88,15 @@ void ProjectileEjector_ready(ProjectileEjector this, bool recursive)
 	// call base
 	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
 
+	if(!this->children)
+	{
+		// add projectile to stage
+		extern PositionedEntityROMDef FLOWER_POT_1;
+		Stage_spawnEntity(Game_getStage(Game_getInstance()), &FLOWER_POT_1, __SAFE_CAST(Container, this), NULL);
+	}
+
 	// send delayed message to self to trigger first shot
-	MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_INITIAL_SHOOT_DELAY * 4, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEjectorShoot, NULL);
+	MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEjectorShoot, NULL);
 }
 
 // state's handle message
@@ -114,49 +115,27 @@ bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram)
 	return false;
 }
 
-// start shooting a cannon ball
+// start shooting a projectile
 void ProjectileEjector_shoot(ProjectileEjector this)
 {
 	ASSERT(this, "ProjectileEjector::shoot: null this");
 
-	if(!this->children)
-	{
-		// add cannon ball as child
-		extern PositionedEntityROMDef FLOWER_POT_1;
-
-		Stage_spawnEntity(Game_getStage(Game_getInstance()), &FLOWER_POT_1, __SAFE_CAST(Container, this), (EventListener)ProjectileEjector_onProjectileSpawned);
-		return;
-	}
-
 	// start shooting sequence
 	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
 
 	// send delayed message to self to trigger next shot
 	MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEjectorShoot, NULL);
-}
 
-static void ProjectileEjector_onProjectileSpawned(ProjectileEjector this, Object eventFirer __attribute__ ((unused)))
-{
-	ASSERT(this, "ProjectileEjector::onProjectileSpawned: null this");
-
-	// start shooting sequence
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
-
-	// send delayed message to self to trigger next shot
-	MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEjectorShoot, NULL);
-}
-
-// spawn a cannon ball, this is the callback of the "Shoot" animation
-void ProjectileEjector_spawnProjectile(ProjectileEjector this)
-{
-	ASSERT(this, "ProjectileEjector::spawnProjectile: null this");
-
-	// start shooting sequence
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
-
-	// set cannon ball to moving state
+	// set projectile to moving state
 	ASSERT(1 == VirtualList_getSize(this->children), "ProjectileEjector::spawnProjectile: no children");
 	Projectile projectile = __SAFE_CAST(Projectile, VirtualList_front(this->children));
-
 	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, projectile), kProjectileEjectorShoot, NULL);
+}
+
+// spawn a projectile, this is the callback of the "Shoot" animation
+void ProjectileEjector_onShootAnimationComplete(ProjectileEjector this)
+{
+	ASSERT(this, "ProjectileEjector::onShootAnimationComplete: null this");
+
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
 }

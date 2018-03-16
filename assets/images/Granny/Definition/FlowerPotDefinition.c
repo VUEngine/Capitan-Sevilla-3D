@@ -129,7 +129,7 @@ BgmapSpriteROMDef FLOWER_POT_1_SPRITE =
 		false,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, -2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -156,7 +156,7 @@ ShapeROMDef FLOWER_POT_1_AC_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{16, 16, 16},
+		{16, 16, 128},
 
 		// displacement (x, y, z, p)
 		{0, 0, 0, 0},
@@ -174,7 +174,7 @@ ShapeROMDef FLOWER_POT_1_AC_SHAPES[] =
 		kEnemiesLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kEnemiesLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
@@ -220,11 +220,5 @@ ActorROMDef FLOWER_POT_1_AC =
 
 PositionedEntityROMDef FLOWER_POT_1 =
 {
-	(EntityDefinition*)&FLOWER_POT_1_AC,
-	{0, 0, -16, 0},
-	0,
-	NULL,
-	NULL,
-	NULL,
-	false
+	(EntityDefinition*)&FLOWER_POT_1_AC, {0, 0, 0, 0}, 0, NULL, NULL, NULL, false
 };

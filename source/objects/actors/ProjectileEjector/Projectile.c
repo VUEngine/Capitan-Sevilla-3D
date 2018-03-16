@@ -76,13 +76,22 @@ void Projectile_destructor(Projectile this)
 // start moving
 void Projectile_startMovement(Projectile this)
 {
-	Velocity velocity = {0, __I_TO_FIX10_6(4), 0};
+	// set back to local position
+	Vector3D position = {0, __PIXELS_TO_METERS(16), 0};
+	Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
+
+	// set to moving
+	Velocity velocity = {0, __F_TO_FIX10_6(3.2f), 0};
 	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
 
 	// show me
 	Entity_show(__SAFE_CAST(Entity, this));
 
-	MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckDisplacement, NULL);
+	// activate shapes
+	Entity_activateShapes(__SAFE_CAST(Entity, this), true);
+
+	// send first message of periodic position check
+	MessageDispatcher_dispatchMessage(PROJECTILE_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckDisplacement, NULL);
 }
 
 // move back to ejector
@@ -91,23 +100,22 @@ void Projectile_stopMovement(Projectile this)
 	// stop movement
 	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
 
-	// set back local position
-	Vector3D position = {0, 0, __F_TO_FIX10_6(-1)};
-	Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
-
 	// hide me
 	Entity_hide(__SAFE_CAST(Entity, this));
+
+	// deactivate shapes
+	Entity_activateShapes(__SAFE_CAST(Entity, this), false);
 }
 
 static void Projectile_checkIfDistanceTraveled(Projectile this)
 {
-	if(this->transformation.globalPosition.y > __PIXELS_TO_METERS(PROJECTILE_EJECTOR_MAX_Y_POS))
+	if(__METERS_TO_PIXELS(this->transformation.globalPosition.y) > PROJECTILE_MAX_Y_POS)
 	{
 		Projectile_stopMovement(this);
 	}
 	else
 	{
-		MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckDisplacement, NULL);
+		MessageDispatcher_dispatchMessage(PROJECTILE_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckDisplacement, NULL);
 	}
 }
 
@@ -131,5 +139,3 @@ bool Projectile_handleMessage(Projectile this, Telegram telegram)
 
 	return false;
 }
-
-

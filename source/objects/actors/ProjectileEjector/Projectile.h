@@ -36,8 +36,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define PROJECTILE_EJECTOR_MAX_Y_POS					128
-#define PROJECTILE_EJECTOR_DISPLACEMENT_CHECK_DELAY		500
+#define PROJECTILE_MAX_Y_POS					164
+#define PROJECTILE_DISPLACEMENT_CHECK_DELAY		100
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -55,6 +55,7 @@ __CLASS(Projectile);
 
 #define Projectile_ATTRIBUTES																			\
 		Actor_ATTRIBUTES																				\
+
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE

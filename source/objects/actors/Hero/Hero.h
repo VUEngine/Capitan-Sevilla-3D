@@ -154,4 +154,5 @@ void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, 
 u16 Hero_getAxesForShapeSyncWithDirection(Hero this);
 void Hero_shoot(Hero this);
 
+
 #endif

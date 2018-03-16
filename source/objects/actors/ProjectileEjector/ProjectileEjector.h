@@ -35,8 +35,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define PROJECTILE_EJECTOR_INITIAL_SHOOT_DELAY 500
-#define PROJECTILE_EJECTOR_SHOOT_DELAY 5000
+#define PROJECTILE_EJECTOR_INITIAL_SHOOT_DELAY 1200
+#define PROJECTILE_EJECTOR_SHOOT_DELAY 2400
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ void ProjectileEjector_destructor(ProjectileEjector this);
 bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram);
 void ProjectileEjector_ready(ProjectileEjector this, bool recursive);
 void ProjectileEjector_shoot(ProjectileEjector this);
-void ProjectileEjector_spawnProjectile(ProjectileEjector this);
+void ProjectileEjector_onShootAnimationComplete(ProjectileEjector this);
 
 
 #endif

@@ -66,19 +66,19 @@ AnimationFunctionROMDef GRANNY_1_IDLE_ANIM =
 AnimationFunctionROMDef GRANNY_1_SHOOT_ANIM =
 {
 	// number of frames of this animation function
-	1,
+	4,
 
 	// frames to play in animation
-	{1},
+	{1, 1, 1, 1},
 
 	// number of cycles a frame of animation is displayed
-	64,
+	16,
 
 	// whether to play it in loop or not
 	false,
 
 	// method to call on function completion
-	(EventListener)&ProjectileEjector_spawnProjectile,
+	(EventListener)&ProjectileEjector_onShootAnimationComplete,
 
 	// function's name
 	"Shoot",
