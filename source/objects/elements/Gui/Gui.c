@@ -34,12 +34,14 @@
 #include <PlatformerLevelState.h>
 #include <ProgressManager.h>
 #include <EventManager.h>
+#include <SoundManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern const u16 JUMP_SND[];
 extern EntityDefinition GAME_OVER_IM;
 
 
@@ -126,10 +128,16 @@ void Gui_resume(Gui this)
 
 void Gui_printClock(Gui this __attribute__ ((unused)))
 {
-	if((this->timeRemaining < 10))
+	if(this->timeRemaining < 10)
 	{
 		Printing_int(Printing_getInstance(), 0, GUI_X_POS + 37, GUI_Y_POS, NULL);
 		Printing_int(Printing_getInstance(), this->timeRemaining, GUI_X_POS + 38, GUI_Y_POS, NULL);
+
+		if(this->timeRemaining <= 5)
+		{
+			// play warn sound
+			SoundManager_playFxSound(SoundManager_getInstance(), JUMP_SND, this->transformation.globalPosition);
+		}
 	}
 	else
 	{

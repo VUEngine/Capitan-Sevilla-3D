@@ -46,9 +46,9 @@ extern EntityDefinition FLAG_UNITED_KINGDOM_IM;
 
 PositionedEntityROMDef LANG_SELECT_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&FLAG_SPAIN_IM, {120, 96, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&FLAG_UNITED_KINGDOM_IM, {120, 96, 0, 0}, 0, NULL, NULL, NULL, false},
 	{&FLAG_CURSOR_IM, {120, 96, 0, 0}, 0, "Cursor", NULL, NULL, false},
-	{&FLAG_UNITED_KINGDOM_IM, {168, 96, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&FLAG_SPAIN_IM, {168, 96, 0, 0}, 0, NULL, NULL, NULL, false},
 	{&FLAG_GERMANY_IM, {216, 96, 0, 0}, 0, NULL, NULL, NULL, false},
 	{&FLAG_FRANCE_IM, {264, 96, 0, 0}, 0, NULL, NULL, NULL, false},
 

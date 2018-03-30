@@ -42,6 +42,7 @@
 // declare the virtual methods which are redefined
 #define LangSelectScreenState_SET_VTABLE(ClassName)														\
 		SplashScreenState_SET_VTABLE(ClassName)															\
+		__VIRTUAL_SET(ClassName, LangSelectScreenState, enter);											\
 		__VIRTUAL_SET(ClassName, LangSelectScreenState, print);											\
 		__VIRTUAL_SET(ClassName, LangSelectScreenState, processInput);									\
 
@@ -49,6 +50,8 @@ __CLASS(LangSelectScreenState);
 
 #define LangSelectScreenState_ATTRIBUTES																\
 		SplashScreenState_ATTRIBUTES																	\
+		/* current active language */																	\
+		u8 language;																					\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -56,6 +59,8 @@ __CLASS(LangSelectScreenState);
 //---------------------------------------------------------------------------------------------------------
 
 LangSelectScreenState LangSelectScreenState_getInstance(void);
+
+void LangSelectScreenState_enter(LangSelectScreenState this, void* owner);
 
 
 #endif

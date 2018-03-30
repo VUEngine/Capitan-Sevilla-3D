@@ -54,12 +54,6 @@ __CLASS(ProgressManager);
 		u32 currentLevelTime;																			\
 		/* time in current level at last checkpoint */													\
 		u32 checkpointCurrentLevelTime;																	\
-		/* best time in current level */																\
-		u32 currentLevelBestTime;																		\
-		/* bitstrings that hold collected coin flags */													\
-		u32 collectedCoins[2];																			\
-		/* bitstrings that hold collected coin flags at last checkpoint */								\
-		u32 checkpointCollectedCoins[2];																\
 		/* bitstring that holds collected item flags */													\
 		u16 collectedItems;																				\
 		/* bitstring that holds collected item flags at last checkpoint */								\
@@ -77,23 +71,6 @@ __CLASS(ProgressManager);
 #define SAVE_STAMP			"VUEngine"
 #define SAVE_STAMP_LENGTH	8
 
-typedef struct LevelStatus
-{
-	// flag that tells whether the level was ever completed
-	u8 levelCompleted;
-
-	// number of collected coins in this level
-	u8 numberOfCollectedCoins;
-
-	// the best time the level was ever completed in
-	u32 bestTime;
-
-	// bitstrings that hold collected coin flags
-	// 0 = not collected, 1 = collected
-	u32 collectedCoins[2];
-
-} LevelStatus;
-
 // this struct is never instantiated, its sole purpose is to determine offsets of its members.
 // therefore it acts as kind of like a map of sram content.
 typedef struct SaveData
@@ -110,15 +87,6 @@ typedef struct SaveData
 	// auto pause status (0: on, 1: off)
 	u8 autoPauseStatus;
 
-	// total number of completed levels
-	u8 numberOfCompletedLevels;
-
-	// total number of collected coins
-	u16 numberOfCollectedCoins;
-
-	// completion statuses for every level in the game
-	LevelStatus levelStatuses[1];
-
 } SaveData;
 
 
@@ -128,22 +96,16 @@ typedef struct SaveData
 
 ProgressManager ProgressManager_getInstance();
 
-void ProgressManager_clearProgress(ProgressManager this);
 void ProgressManager_destructor(ProgressManager this);
 bool ProgressManager_getAutomaticPauseStatus(ProgressManager this);
-bool ProgressManager_getCoinStatus(ProgressManager this, u16 itemNumber);
-u32  ProgressManager_getCurrentLevelBestTime(ProgressManager this);
-u8   ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this);
 u32  ProgressManager_getCurrentLevelTime(ProgressManager this);
 u8   ProgressManager_getHeroCurrentEnergy(ProgressManager this);
 bool ProgressManager_getItemStatus(ProgressManager this, u16 itemNumber);
 u8   ProgressManager_getLanguage(ProgressManager this);
-u16  ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this);
-bool ProgressManager_hasProgress(ProgressManager this);
+void ProgressManager_initialize(ProgressManager this);
 void ProgressManager_loadCheckPointData(ProgressManager this);
 void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 automaticPause);
 void ProgressManager_setCheckPointData(ProgressManager this);
-bool ProgressManager_setCoinStatus(ProgressManager this, u16 itemNumber, bool taken);
 bool ProgressManager_setItemStatus(ProgressManager this, u16 itemNumber, bool taken);
 void ProgressManager_setLanguage(ProgressManager this, u8 languageId);
 void ProgressManager_resetCurrentLevelProgress(ProgressManager this);

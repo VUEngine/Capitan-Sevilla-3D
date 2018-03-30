@@ -73,6 +73,7 @@ static void __attribute__ ((noinline)) LangSelectScreenState_constructor(LangSel
 	__CONSTRUCT_BASE(SplashScreenState);
 
 	// init members
+	this->language = 0;
 	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
 	this->stageDefinition = (StageDefinition*)&LANG_SELECT_SCREEN_STAGE_ST;
 }
@@ -85,28 +86,39 @@ static void LangSelectScreenState_destructor(LangSelectScreenState this)
 	__SINGLETON_DESTROY;
 }
 
+// state's enter
+void LangSelectScreenState_enter(LangSelectScreenState this, void* owner)
+{
+	// call base
+	__CALL_BASE_METHOD(SplashScreenState, enter, this, owner);
+
+	this->language = I18n_getActiveLanguage(I18n_getInstance());
+	LangSelectScreenState_print(this);
+}
+
+void LangSelectScreenState_changeLanguage(LangSelectScreenState this, bool increase)
+{
+	int numLangs = sizeof(*__LANGUAGES);
+	this->language = increase
+		? (this->language < (numLangs - 1)) ? this->language + 1 : 0
+		: (this->language > 0) ? this->language - 1 : numLangs - 1;
+	I18n_setActiveLanguage(I18n_getInstance(), this->language);
+	ProgressManager_setLanguage(ProgressManager_getInstance(), this->language);
+	LangSelectScreenState_print(this);
+}
+
 void LangSelectScreenState_processInput(LangSelectScreenState this, u32 pressedKey)
 {
 	if((pressedKey & K_LL) || (pressedKey & K_RL))
 	{
-		u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
-		int numLangs = sizeof(*__LANGUAGES);
-		activeLanguage = (activeLanguage > 0) ? activeLanguage - 1 : numLangs - 1;
-		I18n_setActiveLanguage(I18n_getInstance(), activeLanguage);
-		LangSelectScreenState_print(this);
+		LangSelectScreenState_changeLanguage(this, false);
 	}
 	else if((pressedKey & K_LR) || (pressedKey & K_RR))
 	{
-		u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
-		int numLangs = sizeof(*__LANGUAGES);
-		activeLanguage = (activeLanguage < (numLangs - 1)) ? activeLanguage + 1 : 0;
-		I18n_setActiveLanguage(I18n_getInstance(), activeLanguage);
-		LangSelectScreenState_print(this);
+		LangSelectScreenState_changeLanguage(this, true);
 	}
 	else if((pressedKey & K_A) || (pressedKey & K_STA))
 	{
-		u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
-		ProgressManager_setLanguage(ProgressManager_getInstance(), activeLanguage);
 		SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
 	}
 }
@@ -114,13 +126,12 @@ void LangSelectScreenState_processInput(LangSelectScreenState this, u32 pressedK
 static void LangSelectScreenState_print(LangSelectScreenState this __attribute__ ((unused)))
 {
 	// move cursor entity
-	u8 activeLanguage = I18n_getActiveLanguage(I18n_getInstance());
 	Entity cursorEntity = __SAFE_CAST(Entity, Container_getChildByName(
 		__SAFE_CAST(Container, Game_getStage(Game_getInstance())),
 		"Cursor",
 		false
 	));
-	Vector3D position = {__PIXELS_TO_METERS(120 + activeLanguage * 48), __PIXELS_TO_METERS(96), 0};
+	Vector3D position = {__PIXELS_TO_METERS(120 + this->language * 48), __PIXELS_TO_METERS(96), 0};
 	Entity_setLocalPosition(cursorEntity, &position);
 
 	/*

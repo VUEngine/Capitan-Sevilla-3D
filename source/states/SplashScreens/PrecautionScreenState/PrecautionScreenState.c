@@ -30,6 +30,7 @@
 #include <KeypadManager.h>
 #include <I18n.h>
 #include <SoundManager.h>
+#include <ProgressManager.h>
 #include <PrecautionScreenState.h>
 #include <AdjustmentScreenState.h>
 #include <Utilities.h>
@@ -116,6 +117,15 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 	}
 
 	return false;
+}
+
+void PrecautionScreenState_enter(PrecautionScreenState this, void* owner)
+{
+	// init progress manager
+	ProgressManager_initialize(ProgressManager_getInstance());
+
+	// call base
+	__CALL_BASE_METHOD(SplashScreenState, enter, this, owner);
 }
 
 static void PrecautionScreenState_print(PrecautionScreenState this __attribute__ ((unused)))

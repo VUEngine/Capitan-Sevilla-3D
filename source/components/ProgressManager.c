@@ -55,7 +55,6 @@ bool ProgressManager_verifySaveStamp(ProgressManager this);
 u32 ProgressManager_computeChecksum(ProgressManager this);
 void ProgressManager_writeChecksum(ProgressManager this);
 bool ProgressManager_verifyChecksum(ProgressManager this);
-static void ProgressManager_initialize(ProgressManager this);
 static void ProgressManager_onSecondChange(ProgressManager this, Object eventFirer);
 static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer);
 static void ProgressManager_onLevelStarted(ProgressManager this, Object eventFirer);
@@ -81,9 +80,6 @@ static void __attribute__ ((noinline)) ProgressManager_constructor(ProgressManag
 	// init class variables
 	this->sramAvailable = false;
 	ProgressManager_resetCurrentLevelProgress(this);
-
-	// init progress
-	ProgressManager_initialize(this);
 
 	// add event listeners
 	Object eventManager = __SAFE_CAST(Object, EventManager_getInstance());
@@ -123,13 +119,9 @@ void ProgressManager_resetCurrentLevelProgress(ProgressManager this)
 
 	this->currentLevelTime = 0;
 	this->collectedItems = 0;
-	this->collectedCoins[0] = 0;
-	this->collectedCoins[1] = 0;
 
 	this->checkpointCurrentLevelTime = 0;
 	this->checkpointCollectedItems = 0;
-	this->checkpointCollectedCoins[0] = 0;
-	this->checkpointCollectedCoins[1] = 0;
 }
 
 // write then immediately read save stamp to validate sram
@@ -191,27 +183,7 @@ bool ProgressManager_verifyChecksum(ProgressManager this)
 	return (computedChecksum == savedChecksum);
 }
 
-void ProgressManager_clearProgress(ProgressManager this)
-{
-	if(this->sramAvailable)
-	{
-		SRAMManager_clear(SRAMManager_getInstance(), offsetof(struct SaveData, numberOfCompletedLevels), (int)sizeof(SaveData));
-	}
-}
-
-bool ProgressManager_hasProgress(ProgressManager this)
-{
-	u8 numberOfCompletedLevels = 0;
-
-	if(this->sramAvailable)
-	{
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCompletedLevels, offsetof(struct SaveData, numberOfCompletedLevels), sizeof(numberOfCompletedLevels));
-	}
-
-	return (numberOfCompletedLevels > 0);
-}
-
-static void ProgressManager_initialize(ProgressManager this)
+void ProgressManager_initialize(ProgressManager this)
 {
 	ASSERT(this, "ProgressManager::initialize: null this");
 
@@ -248,8 +220,6 @@ void ProgressManager_setCheckPointData(ProgressManager this)
 
 	this->checkpointCurrentLevelTime = this->currentLevelTime;
 	this->checkpointCollectedItems = this->collectedItems;
-	this->checkpointCollectedCoins[0] = this->collectedCoins[0];
-	this->checkpointCollectedCoins[1] = this->collectedCoins[1];
 }
 
 void ProgressManager_loadCheckPointData(ProgressManager this)
@@ -258,41 +228,6 @@ void ProgressManager_loadCheckPointData(ProgressManager this)
 
 	this->currentLevelTime = this->checkpointCurrentLevelTime;
 	this->collectedItems = this->checkpointCollectedItems;
-	this->collectedCoins[0] = this->checkpointCollectedCoins[0];
-	this->collectedCoins[1] = this->checkpointCollectedCoins[1];
-}
-
-u8 ProgressManager_getCurrentLevelNumberOfCollectedCoins(ProgressManager this)
-{
-	ASSERT(this, "ProgressManager::getCurrentLevelNumberOfCollectedCoins: null this");
-
-	u8 numberOfCollectedCoins = 0;
-	for(int i = 0; i < COINS_PER_LEVEL; i++)
-	{
-		numberOfCollectedCoins += GET_BIT(this->collectedCoins[i >> 5], i);
-	}
-
-	return numberOfCollectedCoins;
-}
-
-u32 ProgressManager_getCurrentLevelBestTime(ProgressManager this)
-{
-	ASSERT(this, "ProgressManager::getCurrentLevelBestTime: null this");
-
-	return this->currentLevelBestTime;
-}
-
-u16 ProgressManager_getTotalNumberOfCollectedCoins(ProgressManager this)
-{
-	ASSERT(this, "ProgressManager::getTotalNumberOfCollectedCoins: null this");
-
-	u16 numberOfCollectedCoins = 0;
-	if(this->sramAvailable)
-	{
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, offsetof(struct SaveData, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
-	}
-
-	return numberOfCollectedCoins;
 }
 
 u8 ProgressManager_getLanguage(ProgressManager this)
@@ -353,39 +288,6 @@ void ProgressManager_setAutomaticPauseStatus(ProgressManager this, u8 autoPauseS
 	}
 }
 
-bool ProgressManager_getCoinStatus(ProgressManager this, u16 id)
-{
-	ASSERT(this, "ProgressManager::getCoinStatus: null this");
-
-	if(id > 0 && id <= COINS_PER_LEVEL)
-	{
-		return GET_BIT(this->collectedCoins[(id - 1) >> 5], (id - 1));
-	}
-
-	return false;
-}
-
-bool ProgressManager_setCoinStatus(ProgressManager this, u16 id, bool taken)
-{
-	ASSERT(this, "ProgressManager::setCoinStatus: null this");
-
-	if(id > 0 && id <= COINS_PER_LEVEL)
-	{
-		if(taken)
-		{
-			SET_BIT(this->collectedCoins[(id - 1) >> 5], (id - 1));
-		}
-		else
-		{
-			CLEAR_BIT(this->collectedCoins[(id - 1) >> 5], (id - 1));
-		}
-
-		return true;
-	}
-
-	return false;
-}
-
 bool ProgressManager_getItemStatus(ProgressManager this, u16 id)
 {
 	ASSERT(this, "ProgressManager::getItemStatus: null this");
@@ -419,87 +321,6 @@ bool ProgressManager_setItemStatus(ProgressManager this, u16 id, bool taken)
 	return false;
 }
 
-void ProgressManager_loadLevelStatus(ProgressManager this, u8 levelId)
-{
-	ASSERT(this, "ProgressManager::loadLevelStatus: null this");
-
-	u16 currentLevelOffset = 0;
-
-	// reset all unsaved progress for current level
-	ProgressManager_resetCurrentLevelProgress(this);
-
-	if(this->sramAvailable)
-	{
-		// determine offset of current level in sram
-		currentLevelOffset = offsetof(struct SaveData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
-
-		// load collected coin flags
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[0], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[0]), sizeof(this->collectedCoins[0]));
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[1], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[1]), sizeof(this->collectedCoins[1]));
-
-		// load best time
-		SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&this->currentLevelBestTime, currentLevelOffset + offsetof(struct LevelStatus, bestTime), sizeof(this->currentLevelBestTime));
-	}
-}
-
-void ProgressManager_persistLevelStatus(ProgressManager this, u8 levelId)
-{
-	ASSERT(this, "ProgressManager::persistLevelStatus: null this");
-
-	if(this->sramAvailable)
-	{
-		u8 i, numberOfCollectedCoins, levelCompleted, totalNumberOfCompletedLevels;
-		u16 currentLevelOffset, totalNumberOfCollectedCoins;
-
-		// determine offset of current level in sram
-		currentLevelOffset = offsetof(struct SaveData, levelStatuses) + ((levelId - 1) * sizeof(struct LevelStatus));
-
-		// save collected coin flags
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[0], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[0]), sizeof(this->collectedCoins[0]));
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->collectedCoins[1], currentLevelOffset + offsetof(struct LevelStatus, collectedCoins[1]), sizeof(this->collectedCoins[1]));
-
-		// save number of collected coins
-		numberOfCollectedCoins = ProgressManager_getCurrentLevelNumberOfCollectedCoins(this);
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, currentLevelOffset + offsetof(struct LevelStatus, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
-
-		// save level completed flag
-		levelCompleted = 1;
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&levelCompleted, currentLevelOffset + offsetof(struct LevelStatus, levelCompleted), sizeof(levelCompleted));
-
-		// save new best time, if it's the first time beating this level or if time beats the previous time
-		if(!this->currentLevelBestTime || (this->currentLevelBestTime > this->currentLevelTime))
-		{
-			SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&this->currentLevelTime, currentLevelOffset + offsetof(struct LevelStatus, bestTime), sizeof(this->currentLevelTime));
-		}
-
-		// determine and save total number of collected coins and completed levels
-		numberOfCollectedCoins = 0;
-		totalNumberOfCollectedCoins = 0;
-		levelCompleted = 0;
-		totalNumberOfCompletedLevels = 0;
-		for(i = 0; i < LEVELS_IN_GAME; i++)
-		{
-			currentLevelOffset = offsetof(struct SaveData, levelStatuses) + (i * sizeof(struct LevelStatus));
-
-			// collected coins
-			SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&numberOfCollectedCoins, currentLevelOffset + offsetof(struct LevelStatus, numberOfCollectedCoins), sizeof(numberOfCollectedCoins));
-			totalNumberOfCollectedCoins += numberOfCollectedCoins;
-
-			// level completed
-			SRAMManager_read(SRAMManager_getInstance(), (BYTE*)&levelCompleted, currentLevelOffset + offsetof(struct LevelStatus, levelCompleted), sizeof(levelCompleted));
-			if(levelCompleted > 0)
-			{
-				totalNumberOfCompletedLevels++;
-			}
-		}
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&totalNumberOfCompletedLevels, offsetof(struct SaveData, numberOfCompletedLevels), sizeof(totalNumberOfCompletedLevels));
-		SRAMManager_save(SRAMManager_getInstance(), (BYTE*)&totalNumberOfCollectedCoins, offsetof(struct SaveData, numberOfCollectedCoins), sizeof(totalNumberOfCollectedCoins));
-
-		// write checksum
-		ProgressManager_writeChecksum(this);
-	}
-}
-
 // get hero's current energy
 u8 ProgressManager_getHeroCurrentEnergy(ProgressManager this)
 {
@@ -527,9 +348,6 @@ static void ProgressManager_onHitTaken(ProgressManager this, Object eventFirer _
 // handle event
 static void ProgressManager_onLevelStarted(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-//	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
-
-//	ProgressManager_loadLevelStatus(this, platformerLevelDefinition->id);
 }
 
 // handle event
@@ -542,7 +360,7 @@ static void ProgressManager_onCheckpointLoaded(ProgressManager this, Object even
 // handle event
 static void ProgressManager_onLevelCompleted(ProgressManager this, Object eventFirer __attribute__ ((unused)))
 {
-//	PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
+	//PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState_getInstance());
 
-//	ProgressManager_persistLevelStatus(this, platformerLevelDefinition->id);
+	// TODO: write last completed level
 }

@@ -62,6 +62,7 @@ static void IntroState_resume(IntroState this, void* owner);
 static void IntroState_suspend(IntroState this, void* owner);
 static void IntroState_onFadeInComplete(IntroState this, Object eventFirer);
 static void IntroState_onFadeOutComplete(IntroState this, Object eventFirer);
+void IntroState_translateTextEntities(IntroState this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -162,6 +163,9 @@ static void IntroState_enter(IntroState this, void* owner)
     Entity_hide(this->entityText8);
     Entity_hide(this->entityText9);
 
+	// translate text boxes
+	IntroState_translateTextEntities(this);
+
 	// disable user input
 	Game_disableKeypad(Game_getInstance());
 
@@ -228,6 +232,20 @@ bool IntroState_handleMessage(IntroState this, Telegram telegram)
 	}
 
 	return false;
+}
+
+void IntroState_translateTextEntities(IntroState this)
+{
+	char* language = Utilities_itoa(I18n_getActiveLanguage(I18n_getInstance()), 10, 1);
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText1), language);
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText2), language);
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText3), language);
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText4), language);
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText5), language);
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText6), language);
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText7), language);
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText8), language);
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText9), language);
 }
 
 void IntroState_nextImageStep(IntroState this)

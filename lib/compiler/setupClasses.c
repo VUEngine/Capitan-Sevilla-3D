@@ -24,7 +24,6 @@
 #include <Item.h>
 #include <AutoPauseScreenState.h>
 #include <IntroState.h>
-#include <LevelDoneScreenState.h>
 #include <OptionsScreenState.h>
 #include <PauseScreenState.h>
 #include <PlatformerLevelState.h>
@@ -143,7 +142,6 @@ void setupClasses(void)
 	Item_setVTable();
 	AutoPauseScreenState_setVTable();
 	IntroState_setVTable();
-	LevelDoneScreenState_setVTable();
 	OptionsScreenState_setVTable();
 	PauseScreenState_setVTable();
 	PlatformerLevelState_setVTable();
