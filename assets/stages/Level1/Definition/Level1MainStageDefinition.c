@@ -78,6 +78,7 @@ extern EntityDefinition WALL_1_IM;
 
 extern CharSetDefinition BULLY_1_CH;
 extern CharSetDefinition CAR_1_CH;
+extern CharSetDefinition FLOWER_POT_1_CH;
 extern CharSetDefinition GUI_CH;
 extern CharSetDefinition HERO_RIGHT_CH;
 extern CharSetDefinition HERO_RIGHT_BLACK_CH;
@@ -86,6 +87,7 @@ extern CharSetDefinition HOVER_CAR_1_CH;
 extern TextureDefinition BULLY_1_TX;
 extern TextureDefinition CAR_1_TX;
 extern TextureDefinition GUI_TX;
+extern TextureDefinition FLOWER_POT_1_TX;
 extern TextureDefinition HERO_TX;
 extern TextureDefinition HERO_BLACK_TX;
 extern TextureDefinition HOVER_CAR_1_TX;
@@ -213,6 +215,7 @@ CharSetROMDef* const LEVEL_1_MAIN_STAGE_ST_CHARSETS[] =
 {
 	&BULLY_1_CH,
 	&CAR_1_CH,
+	&FLOWER_POT_1_CH,
 	&HOVER_CAR_1_CH,
 	&GUI_CH,
 	&HERO_RIGHT_CH,
@@ -225,6 +228,7 @@ TextureDefinition* const LEVEL_1_MAIN_STAGE_ST_TEXTURES[] =
 {
 	&BULLY_1_TX,
 	&CAR_1_TX,
+	&FLOWER_POT_1_TX,
 	&HOVER_CAR_1_TX,
 	&GUI_TX,
 	&HERO_TX,

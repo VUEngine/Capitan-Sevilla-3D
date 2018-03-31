@@ -27,7 +27,6 @@
 #include <Game.h>
 #include <CollisionManager.h>
 #include <Optics.h>
-#include <PhysicalWorld.h>
 #include <PlatformerLevelState.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
@@ -56,9 +55,6 @@ void Projectile_constructor(Projectile this, ActorDefinition* actorDefinition, s
 
 	// construct base
 	__CONSTRUCT_BASE(Actor, (ActorDefinition*)actorDefinition, id, internalId, name);
-
-	// i start my life hidden
-	this->hidden = true;
 }
 
 // class's constructor
@@ -66,7 +62,7 @@ void Projectile_destructor(Projectile this)
 {
 	ASSERT(this, "Projectile::destructor: null this");
 
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kProjectileCheckDisplacement);
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kProjectileCheckPosition);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -84,14 +80,14 @@ void Projectile_startMovement(Projectile this)
 	Velocity velocity = {0, __F_TO_FIX10_6(3.2f), 0};
 	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
 
-	// show me
-	Entity_show(__SAFE_CAST(Entity, this));
-
 	// activate shapes
 	Entity_activateShapes(__SAFE_CAST(Entity, this), true);
 
+	// show me
+	Entity_show(__SAFE_CAST(Entity, this));
+
 	// send first message of periodic position check
-	MessageDispatcher_dispatchMessage(PROJECTILE_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckDisplacement, NULL);
+	MessageDispatcher_dispatchMessage(PROJECTILE_POSITION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckPosition, NULL);
 }
 
 // move back to ejector
@@ -100,14 +96,14 @@ void Projectile_stopMovement(Projectile this)
 	// stop movement
 	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
 
-	// hide me
-	Entity_hide(__SAFE_CAST(Entity, this));
-
 	// deactivate shapes
 	Entity_activateShapes(__SAFE_CAST(Entity, this), false);
+
+	// hide me
+	Entity_hide(__SAFE_CAST(Entity, this));
 }
 
-static void Projectile_checkIfDistanceTraveled(Projectile this)
+static void Projectile_checkPosition(Projectile this)
 {
 	if(__METERS_TO_PIXELS(this->transformation.globalPosition.y) > PROJECTILE_MAX_Y_POS)
 	{
@@ -115,7 +111,7 @@ static void Projectile_checkIfDistanceTraveled(Projectile this)
 	}
 	else
 	{
-		MessageDispatcher_dispatchMessage(PROJECTILE_DISPLACEMENT_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckDisplacement, NULL);
+		MessageDispatcher_dispatchMessage(PROJECTILE_POSITION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckPosition, NULL);
 	}
 }
 
@@ -126,14 +122,14 @@ bool Projectile_handleMessage(Projectile this, Telegram telegram)
 
 	switch(Telegram_getMessage(telegram))
 	{
-		case kProjectileEjectorShoot:
+		case kProjectileEject:
 
 			Projectile_startMovement(this);
 			break;
 
-		case kProjectileCheckDisplacement:
+		case kProjectileCheckPosition:
 
-			Projectile_checkIfDistanceTraveled(this);
+			Projectile_checkPosition(this);
 			break;
 	}
 

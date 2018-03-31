@@ -37,7 +37,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define PROJECTILE_MAX_Y_POS					168
-#define PROJECTILE_DISPLACEMENT_CHECK_DELAY		100
+#define PROJECTILE_POSITION_CHECK_DELAY		100
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,7 +68,6 @@ void Projectile_constructor(Projectile this, ActorDefinition* actorDefinition, s
 void Projectile_destructor(Projectile this);
 void Projectile_startMovement(Projectile this);
 void Projectile_stopMovement(Projectile this);
-void Projectile_checkPosition(Projectile this);
 bool Projectile_handleMessage(Projectile this, Telegram telegram);
 
 

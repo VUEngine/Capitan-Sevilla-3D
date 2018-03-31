@@ -32,6 +32,7 @@
 #include <I18n.h>
 #include <Languages.h>
 #include <PhysicalWorld.h>
+#include <Utilities.h>
 #include <IntroState.h>
 #include <Hero.h>
 #include <ParticleSystem.h>

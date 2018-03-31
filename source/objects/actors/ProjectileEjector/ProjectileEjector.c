@@ -71,7 +71,7 @@ void ProjectileEjector_destructor(ProjectileEjector this)
 	ASSERT(this, "ProjectileEjector::destructor: null this");
 
 	// discard pending delayed messages
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kProjectileEjectorShoot);
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kProjectileEject);
 
 	// not necessary to manually destroy the Projectile here as all children are automatically
 	// destroyed as well when an entity is unloaded
@@ -96,7 +96,7 @@ void ProjectileEjector_ready(ProjectileEjector this, bool recursive)
 	}
 
 	// send delayed message to self to trigger first shot
-	MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEjectorShoot, NULL);
+	MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
 }
 
 // state's handle message
@@ -106,7 +106,7 @@ bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram)
 
 	switch(Telegram_getMessage(telegram))
 	{
-		case kProjectileEjectorShoot:
+		case kProjectileEject:
 
 			ProjectileEjector_shoot(this);
 			break;
@@ -124,12 +124,12 @@ void ProjectileEjector_shoot(ProjectileEjector this)
 	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
 
 	// send delayed message to self to trigger next shot
-	MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEjectorShoot, NULL);
+	MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
 
 	// set projectile to moving state
 	ASSERT(1 == VirtualList_getSize(this->children), "ProjectileEjector::spawnProjectile: no children");
 	Projectile projectile = __SAFE_CAST(Projectile, VirtualList_front(this->children));
-	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, projectile), kProjectileEjectorShoot, NULL);
+	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, projectile), kProjectileEject, NULL);
 }
 
 // spawn a projectile, this is the callback of the "Shoot" animation
