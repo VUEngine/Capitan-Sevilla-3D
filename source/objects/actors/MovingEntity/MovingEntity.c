@@ -95,7 +95,7 @@ void MovingEntity_destructor(MovingEntity this)
 {
 	ASSERT(this, "MovingEntity::destructor: null this");
 
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kMovingEntityStartMoving);
+	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kMovingEntitystartMovement);
 	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kMovingEntityCheckDirection);
 
 	// delete the super object
@@ -156,7 +156,7 @@ bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram)
 			}
 			break;
 
-		case kMovingEntityStartMoving:
+		case kMovingEntitystartMovement:
 			{
 				Vector3D position = this->transformation.globalPosition;
 
@@ -201,7 +201,7 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 					// make sure that I don't get stuck moving back and forth
 					Body_stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
+					MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntitystartMovement, NULL);
 				}
 				else
 				{
@@ -219,7 +219,7 @@ void MovingEntity_checkDisplacement(MovingEntity this)
 					// make sure that I don't get stuck moving back and forth
 					Body_stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntityStartMoving, NULL);
+					MessageDispatcher_dispatchMessage(this->movingEntityDefinition->idleDuration, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kMovingEntitystartMovement, NULL);
 				}
 				else
 				{

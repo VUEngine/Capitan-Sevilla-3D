@@ -149,7 +149,7 @@ BgmapSpriteROMDef* const FLOWER_POT_1_SPRITES[] =
 	NULL
 };
 
-ShapeROMDef FLOWER_POT_1_AC_SHAPES[] =
+ShapeROMDef FLOWER_POT_1_PR_SHAPES[] =
 {
 	{
 		// shape
@@ -180,45 +180,57 @@ ShapeROMDef FLOWER_POT_1_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-ActorROMDef FLOWER_POT_1_AC =
+ProjectileROMDef FLOWER_POT_1_PR =
 {
+	// actor
 	{
 		{
-			// class allocator
-			__TYPE(Projectile),
+			{
+				// class allocator
+				__TYPE(Projectile),
 
-			// sprites
-			(SpriteROMDef**)FLOWER_POT_1_SPRITES,
+				// sprites
+				(SpriteROMDef**)FLOWER_POT_1_SPRITES,
 
-			// collision shapes
-			(ShapeDefinition*)FLOWER_POT_1_AC_SHAPES,
+				// collision shapes
+				(ShapeDefinition*)FLOWER_POT_1_PR_SHAPES,
 
-			// size
-			// if 0, width and height will be inferred from the first sprite's texture's size
-			{0, 0, 0},
+				// size
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{0, 0, 0},
 
-			// gameworld's character's type
-			kProjectile,
+				// gameworld's character's type
+				kProjectile,
 
-			// physical specification
-			(PhysicalSpecification*)NULL,
+				// physical specification
+				(PhysicalSpecification*)NULL,
+			},
+
+			// pointer to the animation definition for the character
+			(AnimationDescription*)&FLOWER_POT_1_ANIM,
+
+			// initial animation
+			"Default",
 		},
 
-		// pointer to the animation definition for the character
-		(AnimationDescription*)&FLOWER_POT_1_ANIM,
+		// true to create a body
+		true,
 
-		// initial animation
-		"Default",
+		// axes subject to gravity
+		__NO_AXIS
 	},
 
-	// true to create a body
-	true,
+	// velocity
+    {
+    	0,
+    	__F_TO_FIX10_6(3.2f),
+    	0,
+	},
 
-	// axes subject to gravity
-	__NO_AXIS
-};
-
-PositionedEntityROMDef FLOWER_POT_1 =
-{
-	(EntityDefinition*)&FLOWER_POT_1_AC, {0, 0, 0, 0}, 0, NULL, NULL, NULL, false
+	// position
+    {
+    	0,
+    	__PIXELS_TO_METERS(16),
+    	0,
+    },
 };

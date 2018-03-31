@@ -30,8 +30,8 @@
 #include <Box.h>
 #include <Container.h>
 #include <Projectile.h>
-#include "ProjectileEjector.h"
 #include <PlatformerLevelState.h>
+#include "ProjectileEjector.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,27 +42,23 @@ __CLASS_DEFINITION(ProjectileEjector, AnimatedEntity);
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void ProjectileEjector_shoot(ProjectileEjector this);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(ProjectileEjector, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(ProjectileEjector, animatedEntityDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(ProjectileEjector, ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(ProjectileEjector, projectileEjectorDefinition, id, internalId, name);
 
 // class's constructor
-void ProjectileEjector_constructor(ProjectileEjector this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void ProjectileEjector_constructor(ProjectileEjector this, ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "ProjectileEjector::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(AnimatedEntity, (AnimatedEntityDefinition*)&projectileEjectorDefinition->animatedEntityDefinition, id, internalId, name);
+
+	// save definition
+	this->projectileEjectorDefinition = projectileEjectorDefinition;
 }
 
 // class's destructor
@@ -91,12 +87,11 @@ void ProjectileEjector_ready(ProjectileEjector this, bool recursive)
 	if(!this->children)
 	{
 		// add projectile to stage
-		extern PositionedEntityROMDef FLOWER_POT_1;
-		Stage_spawnEntity(Game_getStage(Game_getInstance()), &FLOWER_POT_1, __SAFE_CAST(Container, this), NULL);
+		Stage_spawnEntity(Game_getStage(Game_getInstance()), &this->projectileEjectorDefinition->projectilePositionedEntityDefinition, __SAFE_CAST(Container, this), NULL);
 	}
 
 	// send delayed message to self to trigger first shot
-	MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_INITIAL_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
+	MessageDispatcher_dispatchMessage(this->projectileEjectorDefinition->initialEjectDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
 }
 
 // state's handle message
@@ -108,26 +103,26 @@ bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram)
 	{
 		case kProjectileEject:
 
-			ProjectileEjector_shoot(this);
+			ProjectileEjector_ejectProjectile(this);
 			break;
 	}
 
 	return false;
 }
 
-// start shooting a projectile
-void ProjectileEjector_shoot(ProjectileEjector this)
+// eject a projectile
+void ProjectileEjector_ejectProjectile(ProjectileEjector this)
 {
-	ASSERT(this, "ProjectileEjector::shoot: null this");
+	ASSERT(this, "ProjectileEjector::ejectProjectile: null this");
 
 	// start shooting sequence
 	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
 
 	// send delayed message to self to trigger next shot
-	MessageDispatcher_dispatchMessage(PROJECTILE_EJECTOR_SHOOT_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
+	MessageDispatcher_dispatchMessage(this->projectileEjectorDefinition->ejectDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
 
 	// set projectile to moving state
-	ASSERT(1 == VirtualList_getSize(this->children), "ProjectileEjector::spawnProjectile: no children");
+	ASSERT(1 == VirtualList_getSize(this->children), "ProjectileEjector::ejectProjectile: no children");
 	Projectile projectile = __SAFE_CAST(Projectile, VirtualList_front(this->children));
 	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, projectile), kProjectileEject, NULL);
 }

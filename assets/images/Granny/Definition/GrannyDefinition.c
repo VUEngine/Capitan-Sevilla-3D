@@ -25,15 +25,16 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
-#include <Actor.h>
 #include <macros.h>
 #include <ProjectileEjector.h>
+#include <Actor.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern ActorDefinition FLOWER_POT_1_PR;
 extern BYTE GrannyTiles[];
 extern BYTE GrannyMap[];
 
@@ -172,8 +173,9 @@ BgmapSpriteROMDef* const GRANNY_1_SPRITES[] =
 	NULL
 };
 
-ActorROMDef GRANNY_1_AC =
+ProjectileEjectorROMDef GRANNY_1_PE =
 {
+	// animated entity
 	{
 		{
 			// class allocator
@@ -203,10 +205,14 @@ ActorROMDef GRANNY_1_AC =
 		"Idle"
 	},
 
-	// true to create a body
-	false,
+	// projectile
+    {
+    	(EntityDefinition*)&FLOWER_POT_1_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, false
+    },
 
-	// axes subject to gravity
-	__NO_AXIS
+	// delay of the first projectile ejection
+	1500,
+
+	// pause between projectile ejections
+	2800,
 };
-

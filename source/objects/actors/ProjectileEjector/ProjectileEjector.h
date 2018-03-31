@@ -32,14 +32,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-#define PROJECTILE_EJECTOR_INITIAL_SHOOT_DELAY 1200
-#define PROJECTILE_EJECTOR_SHOOT_DELAY 2800
-
-
-//---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
@@ -55,19 +47,40 @@ __CLASS(ProjectileEjector);
 
 #define ProjectileEjector_ATTRIBUTES																	\
 		AnimatedEntity_ATTRIBUTES																		\
+		/* definition pointer */																		\
+		ProjectileEjectorDefinition* projectileEjectorDefinition;										\
+
+
+typedef struct ProjectileEjectorDefinition
+{
+	// the base animated entity
+	AnimatedEntityDefinition animatedEntityDefinition;
+
+	// projectile positioned entity
+	PositionedEntity projectilePositionedEntityDefinition;
+
+	// delay of the first projectile ejection
+	u16 initialEjectDelay;
+
+	// pause between projectile ejections
+	u16 ejectDelay;
+
+} ProjectileEjectorDefinition;
+
+typedef const ProjectileEjectorDefinition ProjectileEjectorROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(ProjectileEjector, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(ProjectileEjector, ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name);
 
-void ProjectileEjector_constructor(ProjectileEjector this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+void ProjectileEjector_constructor(ProjectileEjector this, ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name);
 void ProjectileEjector_destructor(ProjectileEjector this);
 bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram);
 void ProjectileEjector_ready(ProjectileEjector this, bool recursive);
-void ProjectileEjector_shoot(ProjectileEjector this);
+void ProjectileEjector_ejectProjectile(ProjectileEjector this);
 void ProjectileEjector_onShootAnimationComplete(ProjectileEjector this);
 
 

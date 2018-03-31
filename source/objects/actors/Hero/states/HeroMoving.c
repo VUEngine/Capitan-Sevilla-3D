@@ -105,7 +105,7 @@ bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* o
 	{
 		case kBodyStopped:
 
-			Hero_stopMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
+			Hero_stopMovementOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
 			return true;
 			break;
 

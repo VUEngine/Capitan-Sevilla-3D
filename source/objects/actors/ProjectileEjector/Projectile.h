@@ -29,14 +29,13 @@
 
 #include <Actor.h>
 #include <macros.h>
-#include <Actor.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define PROJECTILE_MAX_Y_POS					168
+#define PROJECTILE_MAX_Y_POS				168
 #define PROJECTILE_POSITION_CHECK_DELAY		100
 
 
@@ -55,6 +54,24 @@ __CLASS(Projectile);
 
 #define Projectile_ATTRIBUTES																			\
 		Actor_ATTRIBUTES																				\
+		/* definition pointer */																		\
+		ProjectileDefinition* projectileDefinition;														\
+
+
+typedef struct ProjectileDefinition
+{
+	// the base animated entity
+	ActorDefinition actorDefinition;
+
+	// velocity when moving
+	Velocity velocity;
+
+	// position relative to ejector
+	Vector3D position;
+
+} ProjectileDefinition;
+
+typedef const ProjectileDefinition ProjectileROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -62,9 +79,9 @@ __CLASS(Projectile);
 //---------------------------------------------------------------------------------------------------------
 
 // allocator
-__CLASS_NEW_DECLARE(Projectile, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
+__CLASS_NEW_DECLARE(Projectile, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
 
-void Projectile_constructor(Projectile this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
+void Projectile_constructor(Projectile this, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
 void Projectile_destructor(Projectile this);
 void Projectile_startMovement(Projectile this);
 void Projectile_stopMovement(Projectile this);

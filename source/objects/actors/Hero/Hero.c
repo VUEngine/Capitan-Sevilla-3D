@@ -356,7 +356,7 @@ void Hero_stopAddingForce(Hero this)
 	}
 	else
 	{
-		Hero_stopMovingOnAxis(this, __X_AXIS | __Z_AXIS);
+		Hero_stopMovementOnAxis(this, __X_AXIS | __Z_AXIS);
 	}
 }
 
@@ -389,9 +389,9 @@ void Hero_startedMovingOnAxis(Hero this, u16 axis)
 }
 
 // stop moving over axis
-bool Hero_stopMovingOnAxis(Hero this, u16 axis)
+bool Hero_stopMovementOnAxis(Hero this, u16 axis)
 {
-	ASSERT(this, "Hero::stopMovingOnAxis: null this");
+	ASSERT(this, "Hero::stopMovementOnAxis: null this");
 
 	// if being hit do nothing
 	if(!Body_isActive(this->body))

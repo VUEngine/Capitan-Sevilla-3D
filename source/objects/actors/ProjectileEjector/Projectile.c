@@ -45,16 +45,19 @@ __CLASS_DEFINITION(Projectile, Actor);
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Projectile, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Projectile, actorDefinition, id, internalId, name);
+__CLASS_NEW_DEFINITION(Projectile, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
+__CLASS_NEW_END(Projectile, projectileDefinition, id, internalId, name);
 
 // class's constructor
-void Projectile_constructor(Projectile this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
+void Projectile_constructor(Projectile this, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
 {
 	ASSERT(this, "Projectile::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, (ActorDefinition*)actorDefinition, id, internalId, name);
+	__CONSTRUCT_BASE(Actor, (ActorDefinition*)&projectileDefinition->actorDefinition, id, internalId, name);
+
+	// save definition
+	this->projectileDefinition = projectileDefinition;
 }
 
 // class's constructor
@@ -73,12 +76,10 @@ void Projectile_destructor(Projectile this)
 void Projectile_startMovement(Projectile this)
 {
 	// set back to local position
-	Vector3D position = {0, __PIXELS_TO_METERS(16), 0};
-	Actor_setLocalPosition(__SAFE_CAST(Actor, this), &position);
+	Actor_setLocalPosition(__SAFE_CAST(Actor, this), &this->projectileDefinition->position);
 
 	// set to moving
-	Velocity velocity = {0, __F_TO_FIX10_6(3.2f), 0};
-	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
+	Actor_moveUniformly(__SAFE_CAST(Actor, this), &this->projectileDefinition->velocity);
 
 	// activate shapes
 	Entity_activateShapes(__SAFE_CAST(Entity, this), true);
