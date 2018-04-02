@@ -132,9 +132,13 @@ void HeroKneel_onKeyPressed(HeroKneel this __attribute__ ((unused)), void* owner
 			if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), acceleration))
 			{
 				Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
-
 				Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
 			}
+		}
+
+		if((K_LU) & (userInput->pressedKey | userInput->holdKey))
+		{
+			//swapstate to idle
 		}
 }
 
