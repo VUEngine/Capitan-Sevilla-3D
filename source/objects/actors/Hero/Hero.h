@@ -83,6 +83,7 @@
 		__VIRTUAL_SET(ClassName, Hero, syncRotationWithBody);											\
 		__VIRTUAL_SET(ClassName, Hero, exitCollision);													\
 		__VIRTUAL_SET(ClassName, Hero, getAxesForShapeSyncWithDirection);								\
+		__VIRTUAL_SET(ClassName, Hero, isVisible);														\
 
 __CLASS(Hero);
 
@@ -152,5 +153,7 @@ bool Hero_isAffectedByRelativity(Hero this);
 void Hero_syncRotationWithBody(Hero this);
 void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
 u16 Hero_getAxesForShapeSyncWithDirection(Hero this);
+bool Hero_isVisible(Hero this, int pad, bool recursive);
+
 
 #endif

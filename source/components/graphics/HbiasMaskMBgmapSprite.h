@@ -100,8 +100,8 @@ __CLASS_NEW_DECLARE(HbiasMaskMBgmapSprite, const HbiasMaskMBgmapSpriteDefinition
 
 void HbiasMaskMBgmapSprite_constructor(HbiasMaskMBgmapSprite this, const HbiasMaskMBgmapSpriteDefinition* hbiasMaskMBgmapSpriteDefinition, Object owner);
 void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this);
-void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* position);
-void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this);
+void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* position, bool reproject);
+void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this, bool eventFrame);
 s16 HbiasMaskMBgmapSprite_wave(HbiasMaskMBgmapSprite this);
 
 

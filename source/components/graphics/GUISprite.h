@@ -56,7 +56,7 @@ __CLASS(GUISprite);
 __CLASS_NEW_DECLARE(GUISprite, const BgmapSpriteDefinition* bgmapSpriteDefinition, Object owner);
 
 void GUISprite_destructor(GUISprite this);
-void GUISprite_render(GUISprite this);
+void GUISprite_render(GUISprite this, bool eventFrame);
 
 
 #endif

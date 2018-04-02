@@ -30,6 +30,7 @@
 #include <CameraMovementManager.h>
 #include <Telegram.h>
 #include <Entity.h>
+#include <Camera.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -62,6 +63,7 @@
 #define CustomCameraMovementManager_ATTRIBUTES															\
 		/* super's attributes */																		\
 		CameraMovementManager_ATTRIBUTES																\
+		Camera camera;																					\
 		/* update axis flag */																			\
 		Vector3DFlag positionFlag;																		\
 		/* pointer to function that implements the required focusing */									\

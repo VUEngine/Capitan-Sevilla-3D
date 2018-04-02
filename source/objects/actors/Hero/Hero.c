@@ -961,3 +961,8 @@ u16 Hero_getAxesForShapeSyncWithDirection(Hero this __attribute__ ((unused)))
 {
 	return __NO_AXIS;
 }
+
+bool Hero_isVisible(Hero this, int pad, bool recursive)
+{
+	return true;
+}
