@@ -120,7 +120,7 @@ BgmapSpriteROMDef FLOWER_POT_1_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapSprite),
+		__TYPE(BgmapAnimatedSprite),
 
 		// texture definition
 		(TextureDefinition*)&FLOWER_POT_1_TX,
