@@ -263,7 +263,7 @@ StageROMDef INTRO_STAGE_ST =
 			// vertical view point center
 			__VERTICAL_VIEW_POINT_CENTER,
 			// scaling factor
-			__SCALING_MODIFIER_FACTOR,
+			__SCALLING_MODIFIER_FACTOR,
 		},
 	},
 
