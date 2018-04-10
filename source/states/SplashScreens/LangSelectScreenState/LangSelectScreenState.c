@@ -154,7 +154,7 @@ static void LangSelectScreenState_print(LangSelectScreenState this __attribute__
 	Printing_text(Printing_getInstance(), "                                                ", 0, 15, NULL);
 	Printing_text(
 		Printing_getInstance(),
-		strActiveLanguageName,
+		Utilities_toUppercase(strActiveLanguageName),
 		(__SCREEN_WIDTH_IN_CHARS - strActiveLanguageNameSize.x) >> 1,
 		15,
 		NULL

@@ -72,6 +72,16 @@ void Projectile_destructor(Projectile this)
 	__DESTROY_BASE;
 }
 
+void Projectile_ready(Projectile this, bool recursive)
+{
+	ASSERT(this, "Projectile::ready: null this");
+
+	// call base
+	__CALL_BASE_METHOD(Actor, ready, this, recursive);
+
+	Projectile_stopMovement(this);
+}
+
 // start moving
 void Projectile_startMovement(Projectile this)
 {
@@ -88,7 +98,10 @@ void Projectile_startMovement(Projectile this)
 	Entity_show(__SAFE_CAST(Entity, this));
 
 	// send first message of periodic position check
-	MessageDispatcher_dispatchMessage(PROJECTILE_POSITION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckPosition, NULL);
+	if(this->projectileDefinition->checkDelay > -1)
+	{
+		MessageDispatcher_dispatchMessage(this->projectileDefinition->checkDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckPosition, NULL);
+	}
 }
 
 // move back to ejector
@@ -106,13 +119,15 @@ void Projectile_stopMovement(Projectile this)
 
 static void Projectile_checkPosition(Projectile this)
 {
-	if(__METERS_TO_PIXELS(this->transformation.globalPosition.y) > PROJECTILE_MAX_Y_POS)
+	if(	(this->projectileDefinition->maxPosition.x && (this->transformation.globalPosition.x > this->projectileDefinition->maxPosition.x)) ||
+		(this->projectileDefinition->maxPosition.y && (this->transformation.globalPosition.y > this->projectileDefinition->maxPosition.y)) ||
+		(this->projectileDefinition->maxPosition.z && (this->transformation.globalPosition.z > this->projectileDefinition->maxPosition.z)))
 	{
 		Projectile_stopMovement(this);
 	}
 	else
 	{
-		MessageDispatcher_dispatchMessage(PROJECTILE_POSITION_CHECK_DELAY, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckPosition, NULL);
+		MessageDispatcher_dispatchMessage(this->projectileDefinition->checkDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckPosition, NULL);
 	}
 }
 

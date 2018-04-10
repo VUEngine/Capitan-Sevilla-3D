@@ -108,7 +108,7 @@ static void AutoPauseSelectScreenState_print(AutoPauseSelectScreenState this)
 	u8 strExplanationXPos = __HALF_SCREEN_WIDTH_IN_CHARS - (strAutomaticPauseExplanationSize.x >> 1);
 	Printing_text(
 		Printing_getInstance(),
-		Utilities_toUppercase(strAutomaticPauseExplanation),
+		strAutomaticPauseExplanation,
 		strExplanationXPos,
 		9 + strAutomaticPauseSize.y,
 		NULL

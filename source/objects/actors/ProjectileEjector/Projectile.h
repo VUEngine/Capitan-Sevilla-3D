@@ -32,14 +32,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-#define PROJECTILE_MAX_Y_POS				168
-#define PROJECTILE_POSITION_CHECK_DELAY		100
-
-
-//---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
@@ -48,6 +40,7 @@
 
 #define Projectile_SET_VTABLE(ClassName)																\
 		Actor_SET_VTABLE(ClassName)																		\
+		__VIRTUAL_SET(ClassName, Projectile, ready);													\
 		__VIRTUAL_SET(ClassName, Projectile, handleMessage);											\
 
 __CLASS(Projectile);
@@ -69,6 +62,12 @@ typedef struct ProjectileDefinition
 	// position relative to ejector
 	Vector3D position;
 
+	// max position relative to ejector before position reset
+	Vector3D maxPosition;
+
+	// delay between position checks (-1 to disable)
+	int checkDelay;
+
 } ProjectileDefinition;
 
 typedef const ProjectileDefinition ProjectileROMDef;
@@ -85,6 +84,7 @@ void Projectile_constructor(Projectile this, ProjectileDefinition* projectileDef
 void Projectile_destructor(Projectile this);
 void Projectile_startMovement(Projectile this);
 void Projectile_stopMovement(Projectile this);
+void Projectile_ready(Projectile this, bool recursive);
 bool Projectile_handleMessage(Projectile this, Telegram telegram);
 
 
