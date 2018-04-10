@@ -26,7 +26,7 @@
 
 #include <BgmapAnimatedSprite.h>
 #include <Box.h>
-#include "Projectile.h"
+#include "FlowerPot.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -168,7 +168,7 @@ ShapeROMDef FLOWER_POT_1_PR_SHAPES[] =
 		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
 
 		// if true this shape checks for collisions against other shapes
-		false,
+		true,
 
 		// layers in which I live
 		kEnemiesLayer,
@@ -187,7 +187,7 @@ ProjectileROMDef FLOWER_POT_1_PR =
 		{
 			{
 				// class allocator
-				__TYPE(Projectile),
+				__TYPE(FlowerPot),
 
 				// sprites
 				(SpriteROMDef**)FLOWER_POT_1_SPRITES,
@@ -200,7 +200,7 @@ ProjectileROMDef FLOWER_POT_1_PR =
 				{0, 0, 0},
 
 				// gameworld's character's type
-				kProjectile,
+				kEnemyProjectile,
 
 				// physical specification
 				(PhysicalSpecification*)NULL,

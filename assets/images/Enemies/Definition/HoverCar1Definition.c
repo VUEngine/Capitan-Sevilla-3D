@@ -200,7 +200,7 @@ ActorROMDef HOVER_CAR_1_AC =
 			{0, 0, 0},
 
 			// gameworld's character's type
-			kHit,
+			kEnemy,
 
 			// physical specification
 			(PhysicalSpecification*)NULL,

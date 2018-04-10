@@ -688,8 +688,8 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 		case kShape:
 			break;
 
-		case kHit:
-		case kProjectile:
+		case kEnemy:
+		case kEnemyProjectile:
 
 			Hero_takeHitFrom(this, collidingObject, 1, true, true);
 			return false;
@@ -721,7 +721,7 @@ bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInform
 
 	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
 	{
-		case kHit:
+		case kEnemy:
 
 			Hero_takeHitFrom(this, collidingObject, 1, true, true);
 			return false;

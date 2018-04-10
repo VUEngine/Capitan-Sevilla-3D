@@ -153,7 +153,7 @@ EntityROMDef CITY_FLOOR_IM =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kFloor,
 
 	// physical specification
 	NULL,
