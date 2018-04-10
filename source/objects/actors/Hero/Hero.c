@@ -713,8 +713,8 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 // process collisions
 bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInformation)
 {
-	ASSERT(this, "Hero::enterCollision: null this");
-	ASSERT(collisionInformation->collidingShape, "Hero::enterCollision: null collidingObjects");
+	ASSERT(this, "Hero::updateCollision: null this");
+	ASSERT(collisionInformation->collidingShape, "Hero::updateCollision: null collidingObjects");
 
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape_getOwner(collidingShape);

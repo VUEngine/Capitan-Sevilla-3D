@@ -26,6 +26,7 @@
 
 #include <Entity.h>
 #include <MBgmapSprite.h>
+#include <Collision.h>
 #include <macros.h>
 
 
@@ -153,8 +154,42 @@ EntityROMDef CITY_FLOOR_IM =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kFloor,
+	kNoType,
 
 	// physical specification
 	NULL,
+};
+
+PhysicalSpecificationROMDef CITY_FLOOR_COLLISION_CL_PHYSICAL_PROPERTIES =
+{
+	// mass
+	__F_TO_FIX10_6(0),
+
+	// friction
+	__F_TO_FIX10_6(0.85f),
+
+	// elasticity
+	__F_TO_FIX10_6(FLOOR_ELASTICITY),
+};
+
+CollisionROMDef CITY_FLOOR_COLLISION_CL =
+{
+	// class allocator
+	__TYPE(Collision),
+
+	// sprites
+	(SpriteROMDef**)NULL,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// pixelSize
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{100, 100, 16},
+
+	// gameworld's character's type
+	kFloor,
+
+	// physical specification
+	(PhysicalSpecification*)&CITY_FLOOR_COLLISION_CL_PHYSICAL_PROPERTIES,
 };

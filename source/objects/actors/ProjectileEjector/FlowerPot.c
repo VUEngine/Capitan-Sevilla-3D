@@ -66,3 +66,33 @@ void FlowerPot_destructor(FlowerPot this)
 	// must always be called at the end of the destructor
 	__DESTROY_BASE;
 }
+
+// process collisions
+bool FlowerPot_enterCollision(FlowerPot this, const CollisionInformation* collisionInformation)
+{
+	ASSERT(this, "FlowerPot::enterCollision: null this");
+	ASSERT(collisionInformation->collidingShape, "FlowerPot::enterCollision: null collidingObjects");
+
+	Shape collidingShape = collisionInformation->collidingShape;
+	SpatialObject collidingObject = Shape_getOwner(collidingShape);
+
+	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
+	{
+		case kFloor:
+		{
+			// stop movement
+			Actor_stopAllMovement(__SAFE_CAST(Actor, this));
+
+			// deactivate shapes
+			Entity_activateShapes(__SAFE_CAST(Entity, this), false);
+
+			// play breaking animation
+			//AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "break");
+
+			return false;
+			break;
+		}
+	}
+
+	return Actor_enterCollision(__SAFE_CAST(Actor, this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
+}

@@ -156,7 +156,7 @@ ShapeROMDef FLOWER_POT_1_PR_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{16, 16, 128},
+		{12, 12, 128},
 
 		// displacement (x, y, z, p)
 		{0, 0, 0, 0},
@@ -237,10 +237,10 @@ ProjectileROMDef FLOWER_POT_1_PR =
 	// max position relative to ejector before position reset
     {
     	0,
-    	__PIXELS_TO_METERS(168),
+    	0,//__PIXELS_TO_METERS(168),
     	0,
     },
 
 	// delay between position checks (-1 to disable)
-	100,
+	-1,
 };

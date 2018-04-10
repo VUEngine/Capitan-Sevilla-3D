@@ -51,6 +51,7 @@ extern EntityDefinition CITY_BG_IM;
 extern EntityDefinition CITY_FLOOR_IM;
 extern EntityDefinition CLOTHES_1_IM;
 extern EntityDefinition COLLISION_CL;
+extern EntityDefinition CITY_FLOOR_COLLISION_CL;
 extern EntityDefinition CONTAINER_1_IM;
 extern EntityDefinition FENCE_1_IM;
 extern EntityDefinition FENCE_2_IM;
@@ -111,7 +112,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CITY_FLOOR_IM,		{0,	178, 0, 0}, 			0, NULL, NULL, NULL, true},
 
 	{&COLLISION_CL,			{-8, 96, 0, 0},				0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
-	{&COLLISION_CL,			{256, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,	{256, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&LANTERN_1_IM,			{32, 123, 0, 0}, 			0, "Start", NULL, NULL, false},
 	{&MOTORBIKE_1_IM,		{104, 158, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
@@ -129,7 +130,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CAR_BG_1_IM,			{704, 150, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 	{&TREE_BG_1_IM,			{752, 130, (LAYER_2)+16, 0}, 0, NULL, NULL, NULL, false},
 
-	{&COLLISION_CL,			{768, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,	{768, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&BULLY_1_AC,			{860, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, false},
 	{&HOUSE_2_IM,			{864, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
@@ -143,7 +144,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&BULLY_1_AC,			{1230, 156, 16, 0}, 		0, NULL, NULL, (void*)-3, false},
 	{&CAR_1_AC,				{1240, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
 
-	{&COLLISION_CL,			{1280, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,	{1280, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&BUSH_BG_2_IM,			{1584, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 	{&TREE_1_IM,			{1272, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
@@ -156,7 +157,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&LANTERN_1_IM,			{1618, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
 
-	{&COLLISION_CL,			{1792, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,	{1792, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&CAR_1_AC,				{1810, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
 	{&BARBER_SHOP_1_IM,		{1810, 95, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
@@ -166,26 +167,26 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CLOTHES_1_IM,			{2322, 52, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
 	{&BIKE_1_IM,			{2367, 159, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
 
-	{&COLLISION_CL,			{2304, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,	{2304, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&HOUSE_4_IM,			{2626, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&GRANNY_1_PE,			{2422, 62, (LAYER_1)-1, 0}, 0, NULL, NULL, NULL, false},
 
 	{&GRANNY_1_PE,			{2644, 34, (LAYER_1)-1, 0}, 0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,				{2700, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
-	{&COLLISION_CL,			{2817, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,	{2817, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&HOUSE_5_IM,			{3098, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 	{&LANTERN_1_IM,			{3354, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
 	{&TREE_1_IM,			{3378, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 	{&BENCH_1_IM,			{3434, 159, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 
-	{&COLLISION_CL,			{3329, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,	{3329, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&CAR_BG_2_IM,			{3671, 147, 0, 0}, 			0, NULL, NULL, NULL, false},
 	{&HOUSE_6_IM,			{3675, 80, 0, 16}, 			0, NULL, NULL, NULL, false},
 
-	{&COLLISION_CL,			{3700, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,	{3700, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&COLLISION_CL,			{3700, 96, 0, 0},			0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
 
