@@ -77,8 +77,7 @@ const char* const LANGUAGE_FR_STRINGS[] =
 
 	/* Levels */
 
-	/* STR_LEVEL_1_NAME */				"Splish Splash Hills",
-	/* STR_LEVEL_1_SLOGAN */			"\"Nuageux avec un\nrisque de pluie\"",
+	/* STR_LEVEL_1_NAME */				"Sevilla, Mission:\nRetrieve the book",
 };
 
 const LangROMDef LANGUAGE_FR =

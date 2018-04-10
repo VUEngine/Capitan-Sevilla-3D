@@ -71,7 +71,6 @@ enum LanguageStrings
 
 	/* Levels */
 	STR_LEVEL_1_NAME,
-	STR_LEVEL_1_SLOGAN,
 };
 
 
