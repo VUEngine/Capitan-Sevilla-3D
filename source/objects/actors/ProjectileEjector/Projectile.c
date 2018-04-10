@@ -88,11 +88,11 @@ void Projectile_startMovement(Projectile this)
 	// set back to local position
 	Actor_setLocalPosition(__SAFE_CAST(Actor, this), &this->projectileDefinition->position);
 
-	// set to moving
-	Actor_moveUniformly(__SAFE_CAST(Actor, this), &this->projectileDefinition->velocity);
-
 	// activate shapes
 	Entity_activateShapes(__SAFE_CAST(Entity, this), true);
+
+	// set to moving
+	Actor_moveUniformly(__SAFE_CAST(Actor, this), &this->projectileDefinition->velocity);
 
 	// show me
 	Entity_show(__SAFE_CAST(Entity, this));
