@@ -233,7 +233,7 @@ ActorROMDef INTRO_TEXT_8_AC =
 			{0, 0, 0},
 
 			// gameworld's character's type
-			kNotShape,
+			kNoType,
 
 			// physical specification
 			(PhysicalSpecification*)NULL,

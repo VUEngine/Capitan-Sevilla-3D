@@ -141,10 +141,10 @@ ShapeROMDef CAR_BG_2_IM_SHAPES[] =
 		false,
 
 		// layers in which I live
-		kPlayerLayer,
+		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kAllLayers,
+		kNoLayer,
 	},
 	{
 		// shape
@@ -166,10 +166,10 @@ ShapeROMDef CAR_BG_2_IM_SHAPES[] =
 		false,
 
 		// layers in which I live
-		kPlayerLayer,
+		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kAllLayers,
+		kNoLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}

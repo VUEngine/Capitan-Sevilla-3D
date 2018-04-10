@@ -192,7 +192,7 @@ ProjectileEjectorROMDef GRANNY_1_PE =
 			{0, 0, 0},
 
 			// gameworld's character's type
-			kNotShape,
+			kNoType,
 
 			// physical specification
 			(PhysicalSpecification*)NULL,

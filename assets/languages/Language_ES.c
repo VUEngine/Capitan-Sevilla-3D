@@ -49,7 +49,7 @@ const char* const LANGUAGE_ES_STRINGS[] =
 	/* STR_CHECKPOINT */				"Punto de control",
 	/* STR_CONTINUE */					"Continuar",
 	/* STR_CREDITS */					"Créditos",
-	/* STR_IMPORTANT */					"Importante",
+	/* STR_IMPORTANT */					"Importante:",
 	/* STR_LANGUAGE */					"Idioma",
 	/* STR_LANGUAGE_SELECT */			"Seleccionar Idioma",
 	/* STR_LEVEL */						"Nivel",
@@ -72,13 +72,14 @@ const char* const LANGUAGE_ES_STRINGS[] =
 
 	/* Splash Screens */
 
-	/* STR_PRECAUTION_SCREEN_TEXT */	"      Lee los libros de\n\nInstrucciones y Precauciones\n\n       antes de jugar",
+	/* STR_PRECAUTION_SCREEN_TEXT */	//"      Lee los libros de\n\nInstrucciones y Precauciones\n\n       antes de jugar",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"  Antes de comenzar  \n\nleer las Indicaciones\n\ndel manual de usuario",
 	/* STR_AUTO_PAUSE_EXPLANATION */	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
 
 	/* Levels */
 
-	/* STR_LEVEL_1_NAME */				"Montanas Splish Splash", //"Montañas Splish Splash",
-	/* STR_LEVEL_1_SLOGAN */			"\"Nublado con pronóstico\n       de lluvia\"",
+	/* STR_LEVEL_1_NAME */				"Sevilla",
+	/* STR_LEVEL_1_SLOGAN */			"Mision: Recuperar el libro",
 };
 
 const LangROMDef LANGUAGE_ES =

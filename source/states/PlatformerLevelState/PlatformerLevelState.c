@@ -431,7 +431,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 					const char* strLevelName = I18n_getText(I18n_getInstance(), (int)this->currentLevel->name);
 					Printing_text(
 						Printing_getInstance(),
-						strLevelName,
+						Utilities_toUppercase(strLevelName),
 						((__SCREEN_WIDTH_IN_CHARS) - strlen(strLevelName)) >> 1,
 						6,
 						NULL
@@ -445,14 +445,14 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 						u8 strLevelIdLength = strlen(strLevelId);
 						Printing_text(
 							Printing_getInstance(),
-							strLevel,
+							Utilities_toUppercase(strLevel),
 							((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1,
 							4,
 							NULL
 						);
 						Printing_text(
 							Printing_getInstance(),
-							strLevelId,
+							Utilities_toUppercase(strLevelId),
 							(((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1) + strLevelLength + 1,
 							4,
 							NULL
@@ -465,7 +465,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 						FontSize strLevelSloganSize = Printing_getTextSize(Printing_getInstance(), strLevelSlogan, NULL);
 						Printing_text(
 							Printing_getInstance(),
-							strLevelSlogan,
+							Utilities_toUppercase(strLevelSlogan),
 							((__SCREEN_WIDTH_IN_CHARS) - strLevelSloganSize.x) >> 1,
 							9,
 							NULL
@@ -481,7 +481,7 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 					const char* strCheckpoint = I18n_getText(I18n_getInstance(), STR_CHECKPOINT);
 					Printing_text(
 						Printing_getInstance(),
-						strCheckpoint,
+						Utilities_toUppercase(strCheckpoint),
 						((__SCREEN_WIDTH_IN_CHARS) - strlen(strCheckpoint)) >> 1,
 						6,
 						NULL
