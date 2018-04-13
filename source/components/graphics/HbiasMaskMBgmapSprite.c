@@ -109,11 +109,11 @@ void HbiasMaskMBgmapSprite_destructor(HbiasMaskMBgmapSprite this)
 	__DESTROY_BASE;
 }
 
-void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* position)
+void HbiasMaskMBgmapSprite_position(HbiasMaskMBgmapSprite this, const Vector3D* position, bool reproject)
 {
 	ASSERT(this, "HbiasMaskMBgmapSprite::position: null this");
 
-	__CALL_BASE_METHOD(MBgmapSprite, position, this, position);
+	__CALL_BASE_METHOD(MBgmapSprite, position, this, position, reproject);
 
 	HbiasMaskMBgmapSprite_getReferenceSprite(this);
 }
@@ -131,13 +131,13 @@ static void HbiasMaskMBgmapSprite_getReferenceSprite(HbiasMaskMBgmapSprite this)
 			if(__IS_OBJECT_ALIVE(referenceSpriteOwnerSpritesList))
 			{
 				this->referenceSprite = __SAFE_CAST(Sprite, VirtualList_front(referenceSpriteOwnerSpritesList));
-				this->drawSpec.position.z = __VIRTUAL_CALL(Sprite, getPosition, this->referenceSprite).z + Sprite_getDisplacement(this->referenceSprite).z - 1;
+				this->position.z = __VIRTUAL_CALL(Sprite, getPosition, this->referenceSprite).z + Sprite_getDisplacement(this->referenceSprite).z - 1;
 			}
 		}
 	}
 	else
 	{
-		this->drawSpec.position.z = __VIRTUAL_CALL(Sprite, getPosition, this->referenceSprite).z + Sprite_getDisplacement(this->referenceSprite).z - 1;
+		this->position.z = __VIRTUAL_CALL(Sprite, getPosition, this->referenceSprite).z + Sprite_getDisplacement(this->referenceSprite).z - 1;
 	}
 }
 
@@ -148,8 +148,9 @@ static void HbiasMaskMBgmapSprite_getReferenceSprite(HbiasMaskMBgmapSprite this)
  * @public
  *
  * @param this		Function scope
+ * @param evenFrame
  */
-void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this)
+void HbiasMaskMBgmapSprite_render(HbiasMaskMBgmapSprite this, bool eventFrame)
 {
 	ASSERT(this, "HbiasMaskMBgmapSprite::render: null this");
 

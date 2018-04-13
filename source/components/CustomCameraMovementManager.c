@@ -44,8 +44,6 @@
 
 __CLASS_DEFINITION(CustomCameraMovementManager, CameraMovementManager);
 
-__CLASS_FRIEND_DEFINITION(Camera);
-
 
 //---------------------------------------------------------------------------------------------------------
 //												PROTOTYPES
@@ -61,8 +59,6 @@ static bool CustomCameraMovementManager_doFocusAndAlertWhenTargetReached(CustomC
 //---------------------------------------------------------------------------------------------------------
 //												GLOBALS
 //---------------------------------------------------------------------------------------------------------
-
-static Camera _camera = NULL;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -87,9 +83,9 @@ static void __attribute__ ((noinline)) CustomCameraMovementManager_constructor(C
 	this->focusFunction = &CustomCameraMovementManager_doFocus;
 	this->previousFocusFunction = this->focusFunction;
 
-	_camera = Camera_getInstance();
+	this->camera = Camera_getInstance();
 
-	NM_ASSERT(_camera, "CustomCameraMovementManager::constructor: null _camera");
+	NM_ASSERT(this->camera, "CustomCameraMovementManager::constructor: null this->camera");
 }
 
 // class's destructor
@@ -101,7 +97,7 @@ void CustomCameraMovementManager_destructor(CustomCameraMovementManager this)
 	__SINGLETON_DESTROY;
 }
 
-// center world's _camera in function of focus actor's position
+// center world's this->camera in function of focus actor's position
 void CustomCameraMovementManager_focus(CustomCameraMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)))
 {
 	ASSERT(this, "CustomCameraMovementManager::focus: null this");
@@ -113,18 +109,22 @@ static bool CustomCameraMovementManager_doFocusWithNoEasing(CustomCameraMovement
 {
 	ASSERT(this, "CustomCameraMovementManager::doFocusWithNoEasing: null this");
 
-	Vector3D focusEntityPosition = *_camera->focusEntityPosition;
-	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, _camera->focusEntity));
-	_camera->position.x = focusEntityPosition.x + direction.x * _camera->focusEntityPositionDisplacement.x - __PIXELS_TO_METERS(__SCREEN_WIDTH / 2);
-	_camera->position.y = focusEntityPosition.y + _camera->focusEntityPositionDisplacement.y - __PIXELS_TO_METERS(__SCREEN_HEIGHT / 2);
+	Vector3D focusEntityPosition = Camera_getFocusEntityPosition(this->camera);
+	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, Camera_getFocusEntity(this->camera)));
 
-	Camera_capPosition(_camera);
-	Camera_forceDisplacement(_camera, true);
+	Vector3D cameraPosition =
+	{
+		focusEntityPosition.x + direction.x * Camera_getFocusEntityPositionDisplacement(this->camera).x - __PIXELS_TO_METERS(__SCREEN_WIDTH / 2),
+		focusEntityPosition.y + Camera_getFocusEntityPositionDisplacement(this->camera).y - __PIXELS_TO_METERS(__SCREEN_HEIGHT / 2),
+		0
+	};
+
+	Camera_setPosition(this->camera, cameraPosition);
 
 	return true;
 }
 
-// center world's _camera in function of focus actor's position
+// center world's this->camera in function of focus actor's position
 static bool CustomCameraMovementManager_dontFocus(CustomCameraMovementManager this __attribute__ ((unused)), u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
 	ASSERT(this, "CustomCameraMovementManager::dontFocus: null this");
@@ -132,33 +132,32 @@ static bool CustomCameraMovementManager_dontFocus(CustomCameraMovementManager th
 	return false;
 }
 
-// center world's _camera in function of focus actor's position
+// center world's this->camera in function of focus actor's position
 static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
 	ASSERT(this, "CustomCameraMovementManager::doFocus: null this");
 
-	_camera->lastDisplacement.x = 0;
-	_camera->lastDisplacement.y = 0;
-	_camera->lastDisplacement.z = 0;
-
 	// if focusEntity is defined
-	if(!_camera->focusEntity)
+	if(!Camera_getFocusEntity(this->camera))
 	{
 		return false;
 	}
 
-	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, _camera->focusEntity));
+	Actor focusActor = __SAFE_CAST(Actor, Camera_getFocusEntity(this->camera));
 
-	ASSERT(__SAFE_CAST(Actor, _camera->focusEntity), "CustomCameraMovementManager::update: focus entity is not an actor");
+	Direction direction = Entity_getDirection(__SAFE_CAST(Entity, focusActor));
 
-	Vector3D screenPreviousPosition = _camera->position;
+	Vector3D cameraNewPosition = Camera_getPosition(this->camera);
 
 	Vector3DFlag reachedTargetFlag = {true, true, true};
 
-	Vector3D focusEntityPosition = *_camera->focusEntityPosition;
+	Vector3D focusEntityPosition = Camera_getFocusEntityPosition(this->camera);
+	Vector3D focusEntityPositionDisplacement = Camera_getFocusEntityPositionDisplacement(this->camera);
 
 	Vector3D position3D = Vector3D_getRelativeToCamera(focusEntityPosition);
 	PixelVector position2D = Vector3D_projectToPixelVector(position3D, 0);
+
+	Size stageSize = Camera_getStageSize(this->camera);
 
 	{
 		bool focusEntityOutOfBounds = (unsigned)(position2D.x - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION) > (unsigned)(_cameraFrustum->x1 - _cameraFrustum->x0 - SCREEN_WIDTH_REDUCTION);
@@ -166,8 +165,8 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 		if(this->positionFlag.x | focusEntityOutOfBounds)
 		{
 			// calculate the target position
-			fix10_6 horizontalPosition = _camera->position.x;
-			fix10_6 horizontalTarget = focusEntityPosition.x + direction.x * _camera->focusEntityPositionDisplacement.x - __PIXELS_TO_METERS(__SCREEN_WIDTH / 2);
+			fix10_6 horizontalPosition = cameraNewPosition.x;
+			fix10_6 horizontalTarget = focusEntityPosition.x + direction.x * focusEntityPositionDisplacement.x - __PIXELS_TO_METERS(__SCREEN_WIDTH / 2);
 
 			fix10_6 easingDisplacement = __PIXELS_TO_METERS(7);
 
@@ -180,30 +179,26 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 
 			if(horizontalPosition + easingDisplacement < horizontalTarget)
 			{
-				_camera->position.x += easingDisplacement;
+				cameraNewPosition.x += easingDisplacement;
 			}
 			else if(horizontalPosition - easingDisplacement > horizontalTarget)
 			{
-				_camera->position.x -= easingDisplacement;
+				cameraNewPosition.x -= easingDisplacement;
 			}
 			else
 			{
-				_camera->position.x = horizontalTarget;
+				cameraNewPosition.x = horizontalTarget;
 				reachedTargetFlag.x = true;
 			}
 
-			if(0 > _camera->position.x)
+			if(0 > cameraNewPosition.x)
 			{
-				_camera->position.x = 0;
 				reachedTargetFlag.x = true;
 			}
-			else if(_camera->stageSize.x < _camera->position.x + __PIXELS_TO_METERS(__SCREEN_WIDTH))
+			else if(stageSize.x < cameraNewPosition.x + __PIXELS_TO_METERS(__SCREEN_WIDTH))
 			{
-				_camera->position.x = _camera->stageSize.x - __PIXELS_TO_METERS(__SCREEN_WIDTH);
 				reachedTargetFlag.x = true;
 			}
-
-			_camera->lastDisplacement.x = (_camera->position.x - screenPreviousPosition.x);
 		}
 	}
 
@@ -213,8 +208,8 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 		if(this->positionFlag.y | focusEntityOutOfBounds)
 		{
 			// calculate the target position
-			fix10_6 verticalPosition = _camera->position.y;
-			fix10_6 verticalTarget = focusEntityPosition.y + _camera->focusEntityPositionDisplacement.y - __PIXELS_TO_METERS(__SCREEN_HEIGHT / 2);
+			fix10_6 verticalPosition = cameraNewPosition.y;
+			fix10_6 verticalTarget = focusEntityPosition.y + focusEntityPositionDisplacement.y - __PIXELS_TO_METERS(__SCREEN_HEIGHT / 2);
 
 			fix10_6 downEasingDisplacement = __PIXELS_TO_METERS(3);
 			fix10_6 upEasingDisplacement = __PIXELS_TO_METERS(3);
@@ -226,7 +221,7 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 			}
 			else
 			{
-				Velocity velocity = Actor_getVelocity(__SAFE_CAST(Actor, _camera->focusEntity));
+				Velocity velocity = Actor_getVelocity(focusActor);
 
 				if(0 < velocity.y)
 				{
@@ -243,33 +238,31 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 
 			if(verticalPosition + downEasingDisplacement < verticalTarget)
 			{
-				_camera->position.y += downEasingDisplacement;
+				cameraNewPosition.y += downEasingDisplacement;
 			}
 			else if(verticalPosition - upEasingDisplacement > verticalTarget)
 			{
-				_camera->position.y -= upEasingDisplacement;
+				cameraNewPosition.y -= upEasingDisplacement;
 			}
 			else
 			{
-				_camera->position.y = verticalTarget;
+				cameraNewPosition.y = verticalTarget;
 				this->positionFlag.y = false;
 				reachedTargetFlag.y = true;
 			}
 
-			if(0 > _camera->position.y)
+			if(0 > cameraNewPosition.y)
 			{
-				_camera->position.y = 0;
 				reachedTargetFlag.y = true;
 			}
-			else if(_camera->stageSize.y < _camera->position.y + __PIXELS_TO_METERS(__SCREEN_HEIGHT))
+			else if(stageSize.y < cameraNewPosition.y + __PIXELS_TO_METERS(__SCREEN_HEIGHT))
 			{
-				_camera->position.y = _camera->stageSize.y - __PIXELS_TO_METERS(__SCREEN_HEIGHT);
 				reachedTargetFlag.y = true;
 			}
-
-			_camera->lastDisplacement.y = _camera->position.y - screenPreviousPosition.y;
 		}
 	}
+
+	Camera_setPosition(this->camera, cameraNewPosition);
 
 	if(reachedTargetFlag.x && reachedTargetFlag.y)
 	{
@@ -279,7 +272,7 @@ static bool CustomCameraMovementManager_doFocus(CustomCameraMovementManager this
 	return false;
 }
 
-// center world's _camera in function of focus actor's position
+// center world's this->camera in function of focus actor's position
 static bool CustomCameraMovementManager_doFocusAndAlertWhenTargetReached(CustomCameraMovementManager this, u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
 	if(CustomCameraMovementManager_doFocus(this, checkIfFocusEntityIsMoving, true))

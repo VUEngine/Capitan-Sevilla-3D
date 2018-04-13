@@ -98,8 +98,9 @@ void GUISprite_destructor(GUISprite this)
  * @public
  *
  * @param this		Function scope
+ * @param evenFrame
  */
-void GUISprite_render(GUISprite this)
+void GUISprite_render(GUISprite this, bool evenFrame)
 {
 	ASSERT(this, "GUISprite::render: null this");
 
@@ -120,9 +121,9 @@ void GUISprite_render(GUISprite this)
 	worldPointer->head = this->head | BgmapTexture_getSegment(__SAFE_CAST(BgmapTexture, this->texture));
 
 	// get coordinates
-	worldPointer->gx = this->drawSpec.position.x + this->displacement.x - this->halfWidth;
-	worldPointer->gy = this->drawSpec.position.y + this->displacement.y - this->halfHeight;
-	worldPointer->gp = this->drawSpec.position.parallax + this->displacement.parallax;
+	worldPointer->gx = this->position.x + this->displacement.x - this->halfWidth;
+	worldPointer->gy = this->position.y + this->displacement.y - this->halfHeight;
+	worldPointer->gp = this->position.parallax + this->displacement.parallax;
 
 	worldPointer->mx = this->drawSpec.textureSource.mx;
 	worldPointer->my = this->drawSpec.textureSource.my;
