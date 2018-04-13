@@ -304,6 +304,8 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		16,
 		// particle removal delay cycles
 		4,
+		// deferred
+		true
 	},
 
 	// rendering
@@ -396,7 +398,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// optical configuration values
 		{
 			// maximum x view distance's power into the horizon (x, y)
-			6, 14,
+			__MAXIMUM_X_VIEW_DISTANCE, __MAXIMUM_Y_VIEW_DISTANCE,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)
