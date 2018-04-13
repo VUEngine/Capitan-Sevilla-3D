@@ -118,6 +118,8 @@ StageROMDef EMPTY_STAGE_ST =
 		24,
 		// particle removal delay cycles
 		0,
+		// deferred
+		false
 	},
 
 	// rendering
