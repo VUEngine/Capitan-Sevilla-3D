@@ -49,6 +49,8 @@ __CLASS(ProjectileEjector);
 		AnimatedEntity_ATTRIBUTES																		\
 		/* definition pointer */																		\
 		ProjectileEjectorDefinition* projectileEjectorDefinition;										\
+		/* number of the current projectile to eject */													\
+		u8 currentProjectileIndex;																		\
 
 
 typedef struct ProjectileEjectorDefinition
@@ -64,6 +66,9 @@ typedef struct ProjectileEjectorDefinition
 
 	// pause between projectile ejections
 	u16 ejectDelay;
+
+	// maximum number of projectiles on screen at the same time
+	u8 maxProjectiles;
 
 } ProjectileEjectorDefinition;
 

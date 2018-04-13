@@ -19,45 +19,71 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef SAUSAGE_H_
-#define SAUSAGE_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MovingOneWayEntity.h>
+#include <BgmapAnimatedSprite.h>
 #include <macros.h>
+#include <ProjectileEjector.h>
+#include <Actor.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-#define Sausage_METHODS(ClassName)																		\
-		MovingOneWayEntity_METHODS(ClassName)															\
-
-#define Sausage_SET_VTABLE(ClassName)																	\
-		MovingOneWayEntity_SET_VTABLE(ClassName)														\
-		__VIRTUAL_SET(ClassName, Sausage, ready);														\
-
-__CLASS(Sausage);
-
-#define Sausage_ATTRIBUTES																				\
-		MovingOneWayEntity_ATTRIBUTES																	\
+extern ActorDefinition SAUSAGE_1_PR;
 
 
 //---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// allocator
-__CLASS_NEW_DECLARE(Sausage, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
+ProjectileEjectorROMDef SAUSAGE_EJECTOR_PE =
+{
+	// animated entity
+	{
+		{
+			// class allocator
+			__TYPE(ProjectileEjector),
 
-void Sausage_constructor(Sausage this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
-void Sausage_destructor(Sausage this);
-void Sausage_ready(Sausage this, bool recursive);
+			// sprites
+			(SpriteROMDef**)NULL,
 
+			// collision shapes
+			(ShapeDefinition*)NULL,
 
-#endif
+			// size
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{0, 0, 0},
+
+			// gameworld's character's type
+			kNoType,
+
+			// physical specification
+			(PhysicalSpecification*)NULL,
+		},
+
+		// pointer to the animation definition for the character
+		(AnimationDescription*)NULL,
+
+		// initial animation
+		NULL
+	},
+
+	// projectile
+    {
+    	(EntityDefinition*)&SAUSAGE_1_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, false
+    },
+
+	// delay of the first projectile ejection
+	0,
+
+	// pause between projectile ejections
+	1000,
+
+	// maximum number of projectiles on screen at the same time
+	3,
+};

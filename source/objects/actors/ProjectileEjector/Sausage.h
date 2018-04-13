@@ -19,65 +19,45 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef SAUSAGE_H_
+#define SAUSAGE_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
-#include <MessageDispatcher.h>
-#include <Optics.h>
-#include <PhysicalWorld.h>
-#include <MessageDispatcher.h>
-#include <PlatformerLevelState.h>
-#include <debugUtilities.h>
-
-
-#include "Sausage.h"
+#include <Projectile.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_DEFINITION(Sausage, MovingOneWayEntity);
+#define Sausage_METHODS(ClassName)																		\
+		Projectile_METHODS(ClassName)																	\
+
+#define Sausage_SET_VTABLE(ClassName)																	\
+		Projectile_SET_VTABLE(ClassName)																\
+		__VIRTUAL_SET(ClassName, Sausage, enterCollision);												\
+
+__CLASS(Sausage);
+
+#define Sausage_ATTRIBUTES																				\
+		Projectile_ATTRIBUTES																			\
 
 
 //---------------------------------------------------------------------------------------------------------
-//												CLASS'S METHODS
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Sausage, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Sausage, actorDefinition, id, internalId, name);
+// allocator
+__CLASS_NEW_DECLARE(Sausage, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
 
-// class's constructor
-void Sausage_constructor(Sausage this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
-{
-	ASSERT(this, "Sausage::constructor: null this");
+void Sausage_constructor(Sausage this, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
+void Sausage_destructor(Sausage this);
+bool Sausage_enterCollision(Sausage this, const CollisionInformation* collisionInformation);
 
-	// construct base
-	__CONSTRUCT_BASE(MovingOneWayEntity, actorDefinition, id, internalId, name);
-}
 
-void Sausage_destructor(Sausage this)
-{
-	ASSERT(this, "Sausage::destructor: null this");
-
-	// destroy the super object
-	// must always be called at the end of the destructor
-	__DESTROY_BASE;
-}
-
-void Sausage_ready(Sausage this, bool recursive)
-{
-	ASSERT(this, "Sausage::ready: null this");
-
-	// call base
-	__CALL_BASE_METHOD(MovingOneWayEntity, ready, this, recursive);
-
-	// stop movement, deactivate shapes and hide sprite
-	MovingOneWayEntity_stopMovement(__SAFE_CAST(MovingOneWayEntity, this));
-	Entity_activateShapes(__SAFE_CAST(Entity, this), false);
-	Entity_hide(__SAFE_CAST(Entity, this));
-}
+#endif

@@ -66,7 +66,7 @@ extern CharSetDefinition HERO_LEFT_CH;
 extern CharSetDefinition HERO_LEFT_BLACK_CH;
 extern CharSetDefinition HERO_RIGHT_CH;
 extern CharSetDefinition HERO_RIGHT_BLACK_CH;
-extern EntityDefinition SAUSAGE_AC;
+extern EntityDefinition SAUSAGE_EJECTOR_PE;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -74,7 +74,7 @@ extern EntityDefinition SAUSAGE_AC;
 //---------------------------------------------------------------------------------------------------------
 
 static void Hero_onUserInput(Hero this, Object eventFirer);
-void Hero_addSausageEntities(Hero this);
+void Hero_addSausageEjectorEntity(Hero this);
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -118,7 +118,7 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 	this->jumps = 0;
 	this->sausages = HERO_INITIAL_SAUSAGES;
 	this->keepAddingForce = false;
-	this->sausageEntities = NULL;
+	this->sausageEjectorEntity = NULL;
 
 	Hero_setInstance(this);
 
@@ -143,10 +143,6 @@ void Hero_destructor(Hero this)
 
 	// free the instance pointers
 	hero = NULL;
-
-	// delete the sausage entities
-	__DELETE(this->sausageEntities);
-	this->sausageEntities = NULL;
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -173,19 +169,16 @@ void Hero_ready(Hero this, bool recursive)
 	// initialize me as idle
 	StateMachine_swapState(this->stateMachine, __SAFE_CAST(State, HeroIdle_getInstance()));
 
-	// add sausage particle system
-	Hero_addSausageEntities(this);
+	// add sausage ejector
+	Hero_addSausageEjectorEntity(this);
 }
 
-void Hero_addSausageEntities(Hero this)
+void Hero_addSausageEjectorEntity(Hero this)
 {
-	ASSERT(this, "Hero::addSausageEntities: null this");
+	ASSERT(this, "Hero::addSausageEjectorEntity: null this");
 
-	this->sausageEntities = __NEW(VirtualList);
-
-	Vector3D position = {__PIXELS_TO_METERS(8), __PIXELS_TO_METERS(-6), 0};
-	Entity newEntity = Entity_addChildEntity(__SAFE_CAST(Entity, this), &SAUSAGE_AC, -1, NULL, &position, (void*)3);
-	VirtualList_pushBack(this->sausageEntities, newEntity);
+	Vector3D position = {__PIXELS_TO_METERS(16), __PIXELS_TO_METERS(-6), 0};
+	this->sausageEjectorEntity = Entity_addChildEntity(__SAFE_CAST(Entity, this), &SAUSAGE_EJECTOR_PE, -1, NULL, &position, (void*)3);
 }
 
 void Hero_shoot(Hero this)

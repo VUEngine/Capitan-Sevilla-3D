@@ -91,7 +91,7 @@ __CLASS(Hero);
 		/* it is derived from */																		\
 		Actor_ATTRIBUTES																				\
 		/* sausage entity references for shooting */													\
-		VirtualList sausageEntities;																	\
+		Entity sausageEjectorEntity;																	\
 		/* used to know if gap must be changed */														\
 		Direction inputDirection;																		\
 		/* hero has energy	*/																			\

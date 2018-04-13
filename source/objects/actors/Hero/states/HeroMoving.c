@@ -92,7 +92,7 @@ void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 void HeroMoving_execute(HeroMoving this __attribute__ ((unused)), void* owner)
 {
 	// keep adding force
-	if(Body_isAwake(Actor_getBody(__SAFE_CAST(Actor, owner))))
+	if(((K_LL | K_LR ) & KeypadManager_getHoldKey(KeypadManager_getInstance())) && Body_isAwake(Actor_getBody(__SAFE_CAST(Actor, owner))))
 	{
 		Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
 	}

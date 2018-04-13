@@ -1,9 +1,9 @@
 
-//{{BLOCK(Sausage)
+//{{BLOCK(Sausage1)
 
 //======================================================================
 //
-//	Sausage, 24x120@2, 
+//	Sausage1, 24x120@2, 
 //	+ 46 tiles not compressed
 //	+ regular map (flat), not compressed, 3x15 
 //	Total size: 736 + 92 = 828
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int SausageTiles[184] __attribute__((aligned(4)))=
+const unsigned int Sausage1Tiles[184] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,
 	0x00000000,0x3C000000,0xD5C0DB00,0x669C5A70,0x00000000,0x00000000,0x00030000,0x00030003,
@@ -42,7 +42,7 @@ const unsigned int SausageTiles[184] __attribute__((aligned(4)))=
 	0x3F55D56A,0x000000FF,0x00000000,0x00000000,0x00000003,0x00000000,0x00000000,0x00000000,
 };
 
-const unsigned short SausageMap[46] __attribute__((aligned(4)))=
+const unsigned short Sausage1Map[46] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
 	0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,0x0010,
@@ -52,4 +52,4 @@ const unsigned short SausageMap[46] __attribute__((aligned(4)))=
 	0x0029,0x002A,0x002B,0x002C,0x002D,0x0000,
 };
 
-//}}BLOCK(Sausage)
+//}}BLOCK(Sausage1)

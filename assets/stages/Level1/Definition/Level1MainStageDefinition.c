@@ -98,104 +98,99 @@ extern Size collision_64_2_8;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												ASSETS
-//---------------------------------------------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------------------------------------------
 //											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
 PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 {
-	{&CITY_BG_IM,			{0,	60, LAYER_4, 0}, 		0, NULL, NULL, NULL, true},
-	{&CITY_FLOOR_IM,		{0,	178, 0, 0}, 			0, NULL, NULL, NULL, true},
+	{&CITY_BG_IM,					{0,	57, LAYER_8, 0}, 		0, NULL, NULL, NULL, true},
+	{&CITY_FLOOR_IM,				{0,	178, 0, 0}, 			0, NULL, NULL, NULL, true},
 
-	{&COLLISION_CL,			{-8, 96, 0, 0},				0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
-	{&CITY_FLOOR_COLLISION_CL,	{256, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&COLLISION_CL,					{-8, 96, 0, 0},				0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
+	{&CITY_FLOOR_COLLISION_CL,		{256, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&LANTERN_1_IM,			{32, 123, 0, 0}, 			0, "Start", NULL, NULL, false},
-	{&MOTORBIKE_1_IM,		{104, 158, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
-	{&HOUSE_1_IM,			{200, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,			{193, 68, (LAYER_1)-1, 0}, 	0, NULL, NULL, NULL, false},
-	{&CONTAINER_1_IM,		{181, 161, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
-	{&TREE_1_IM,			{384, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&LANTERN_1_IM,					{32, 123, 0, 0}, 			0, "Start", NULL, NULL, false},
+	{&MOTORBIKE_1_IM,				{104, 158, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&HOUSE_1_IM,					{200, 96, LAYER_2, 0}, 		0, NULL, NULL, NULL, false},
+	{&GRANNY_1_PE,					{193, 68, LAYER_1_FG, 0}, 	0, NULL, NULL, NULL, false},
+	{&CONTAINER_1_IM,				{181, 161, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,					{384, 127, LAYER_5, 0}, 	0, NULL, NULL, NULL, false},
 
-	{&CAR_1_AC,				{540, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, true},
-	{&BULLY_1_AC,			{640, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, true},
+	{&CAR_1_AC,						{540, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, true},
+	{&BULLY_1_AC,					{640, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, true},
 
-	{&WALL_1_IM,			{552, 140, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&THING_1_IM,			{479, 150, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
-	{&LANTERN_1_IM,			{655, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
-	{&CAR_BG_1_IM,			{704, 150, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
-	{&TREE_BG_1_IM,			{752, 130, (LAYER_2)+16, 0}, 0, NULL, NULL, NULL, false},
+	{&WALL_1_IM,					{552, 140, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&THING_1_IM,					{479, 150, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&LANTERN_1_IM,					{655, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
+	{&CAR_BG_1_IM,					{704, 150, LAYER_5, 0}, 	0, NULL, NULL, NULL, false},
+	{&TREE_BG_1_IM,					{752, 130, LAYER_6, 0}, 	0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,	{768, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{768, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&BULLY_1_AC,			{860, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, false},
-	{&HOUSE_2_IM,			{864, 96, LAYER_1, 0}, 		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,			{909, 67, (LAYER_1)-1, 0}, 	0, NULL, NULL, NULL, false},
-	{&GARAGE_1_IM,			{1040, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,		{1100, 120, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
-	{&TRASH_BIN_1_IM,		{1100, 155, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&FENCE_1_IM,			{1150, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
-	{&BUSH_BG_1_IM,			{1212, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
-	{&LANTERN_1_IM,			{1230, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
-	{&BULLY_1_AC,			{1230, 156, 16, 0}, 		0, NULL, NULL, (void*)-3, false},
-	{&CAR_1_AC,				{1240, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
+	{&BULLY_1_AC,					{860, 156, 16, 0}, 			0, NULL, NULL, (void*)-3, false},
+	{&HOUSE_2_IM,					{864, 96, LAYER_2, 0}, 		0, NULL, NULL, NULL, false},
+	{&GRANNY_1_PE,					{909, 67, LAYER_1_FG, 0}, 	0, NULL, NULL, NULL, false},
+	{&GARAGE_1_IM,					{1040, 118, LAYER_3, 0}, 	0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_1_AC,				{1100, 120, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
+	{&TRASH_BIN_1_IM,				{1100, 155, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&FENCE_1_IM,					{1150, 151, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&BUSH_BG_1_IM,					{1212, 120, LAYER_5, 0}, 	0, NULL, NULL, NULL, false},
+	{&LANTERN_1_IM,					{1230, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
+	{&BULLY_1_AC,					{1230, 156, 16, 0}, 		0, NULL, NULL, (void*)-3, false},
+	{&CAR_1_AC,						{1240, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
 
-	{&CITY_FLOOR_COLLISION_CL,	{1280, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{1280, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&BUSH_BG_2_IM,			{1584, 120, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
-	{&TREE_1_IM,			{1272, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
-	{&TREE_1_IM,			{1328, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
-	{&PLAYGROUND_SIGN_1_IM,	{1320, 100, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&PLAYGROUND_1_IM,		{1422, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&STATUE_1_IM,			{1518, 112, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,		{1518, 120, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
-	{&FENCE_2_IM,			{1414, 151, (LAYER_1)-16, 0}, 0, NULL, NULL, NULL, false},
+	{&BUSH_BG_2_IM,					{1584, 120, LAYER_5, 0}, 	0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,					{1272, 127, LAYER_5, 0}, 	0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,					{1328, 127, LAYER_5, 0}, 	0, NULL, NULL, NULL, false},
+	{&PLAYGROUND_SIGN_1_IM,			{1320, 100, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&PLAYGROUND_1_IM,				{1422, 112, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&STATUE_1_IM,					{1518, 112, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_1_AC,				{1518, 120, 16, 0}, 		0, NULL, NULL, (void*)-5, false},
+	{&FENCE_2_IM,					{1414, 151, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 
-	{&LANTERN_1_IM,			{1618, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
+	{&LANTERN_1_IM,					{1618, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,	{1792, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{1792, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&CAR_1_AC,				{1810, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
-	{&BARBER_SHOP_1_IM,		{1810, 95, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,			{1848, 47, (LAYER_1)-1, 0}, 0, NULL, NULL, NULL, false},
-	{&GARAGE_2_IM,			{1994, 118, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
-	{&HOUSE_3_IM,			{2170, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&CLOTHES_1_IM,			{2322, 52, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
-	{&BIKE_1_IM,			{2367, 159, (LAYER_1)+16, 0}, 0, NULL, NULL, NULL, false},
+	{&CAR_1_AC,						{1810, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
+	{&BARBER_SHOP_1_IM,				{1810, 95, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&GRANNY_1_PE,					{1848, 47, LAYER_1_FG, 0}, 	0, NULL, NULL, NULL, false},
+	{&GARAGE_2_IM,					{1994, 118, LAYER_3, 0}, 	0, NULL, NULL, NULL, false},
+	{&HOUSE_3_IM,					{2170, 96, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&CLOTHES_1_IM,					{2322, 52, LAYER_3, 0}, 	0, NULL, NULL, NULL, false},
+	//{&BIKE_1_IM,					{2367, 159, LAYER_3, 0}, 	0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,	{2304, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{2304, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&HOUSE_4_IM,			{2626, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,			{2422, 62, (LAYER_1)-1, 0}, 0, NULL, NULL, NULL, false},
+	{&HOUSE_4_IM,					{2626, 96, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&GRANNY_1_PE,					{2422, 62, LAYER_1_FG, 0}, 	0, NULL, NULL, NULL, false},
 
-	{&GRANNY_1_PE,			{2644, 34, (LAYER_1)-1, 0}, 0, NULL, NULL, NULL, false},
-	{&CAR_1_AC,				{2700, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
-	{&CITY_FLOOR_COLLISION_CL,	{2817, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&GRANNY_1_PE,					{2644, 34, LAYER_1_FG, 0}, 	0, NULL, NULL, NULL, false},
+	{&CAR_1_AC,						{2700, 164, -16, 0}, 		0, NULL, NULL, (void*)-6, false},
+	{&CITY_FLOOR_COLLISION_CL,		{2817, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&HOUSE_5_IM,			{3098, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&LANTERN_1_IM,			{3354, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
-	{&TREE_1_IM,			{3378, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
-	{&BENCH_1_IM,			{3434, 159, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
+	{&HOUSE_5_IM,					{3098, 96, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
+	{&LANTERN_1_IM,					{3354, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,					{3378, 127, LAYER_5, 0}, 	0, NULL, NULL, NULL, false},
+	{&BENCH_1_IM,					{3434, 159, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,	{3329, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{3329, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&CAR_BG_2_IM,			{3671, 147, 0, 0}, 			0, NULL, NULL, NULL, false},
-	{&HOUSE_6_IM,			{3675, 80, 0, 16}, 			0, NULL, NULL, NULL, false},
+	{&CAR_BG_2_IM,					{3671, 147, 0, 0}, 			0, NULL, NULL, NULL, false},
+	{&HOUSE_6_IM,					{3675, 80, 0, 16}, 			0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,	{3700, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{3700, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&COLLISION_CL,			{3700, 96, 0, 0},			0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
+	{&COLLISION_CL,					{3700, 96, 0, 0},			0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN[] =
 {
-	{&GUI_IM, {192, 204, -1, 0}, 0, NULL, NULL, NULL, true},
+	{&GUI_IM, 						{192, 204, -1, 0}, 			0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -207,7 +202,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN[] =
 
 FontROMDef* const LEVEL_1_MAIN_STAGE_ST_FONTS[] =
 {
-	&CAPITAN_DEFAULT_FONT_PARTIAL,
+	&CAPITAN_DEFAULT_FONT,//_PARTIAL,
 
 	NULL
 };
@@ -297,15 +292,15 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		40,
+		24,
 		// unload padding
-		40,
+		4,
 		// streaming amplitude
 		16,
 		// particle removal delay cycles
 		4,
 		// deferred
-		true
+		false
 	},
 
 	// rendering
@@ -314,7 +309,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		1,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		32,
+		48,
 
 		// maximum number of rows to compute on each call to the affine functions
 		48,
@@ -371,13 +366,13 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// obj segments sizes (must total 1024)
 		{
 			// __spt0
-			0,
+			256,
 			// __spt1
-			0,
+			256,
 			// __spt2
-			64,
+			256,
 			// __spt3
-			64,
+			256,
 		},
 
 		// OBJECT segments z coordinates
@@ -385,14 +380,13 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// since the VIP renders OBJ Worlds in reverse order (__SPT3 to __SPT0)
 		{
 			// __spt0
-			LAYER_0_PARTICLES,
+			0,
 			// __spt1
-			LAYER_0_PARTICLES,
+			0,
 			// __spt2
-			LAYER_0_PARTICLES,
-
+			0,
 			// __spt3
-			20,
+			0,
 		},
 
 		// optical configuration values
@@ -472,7 +466,7 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 	// offset from entry point (x, y, z)
 	{
 		32,
-		-16,
+		0,
 		1,
 		0,
 	},
