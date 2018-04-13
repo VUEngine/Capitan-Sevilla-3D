@@ -36,8 +36,7 @@
 #include <IntroState.h>
 #include <Hero.h>
 #include <ParticleSystem.h>
-#include <PlatformerLevelState.h>
-#include <AdjustmentScreenState.h>
+#include <TitleScreenState.h>
 #include <OptionsScreenState.h>
 #include <ProgressManager.h>
 #include <EventManager.h>
@@ -348,5 +347,5 @@ static void IntroState_onFadeOutComplete(IntroState this __attribute__ ((unused)
 {
 	ASSERT(this, "IntroState::onFadeOutComplete: null this");
 
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, PlatformerLevelState_getInstance()));
+	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
 }

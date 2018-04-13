@@ -432,45 +432,10 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 					Printing_text(
 						Printing_getInstance(),
 						Utilities_toUppercase(strLevelName),
-						((__SCREEN_WIDTH_IN_CHARS) - strlen(strLevelName)) >> 1,
-						6,
+						1,
+						24,
 						NULL
 					);
-
-					if(this->currentLevel->identifier)
-					{
-						const char* strLevel = I18n_getText(I18n_getInstance(), STR_LEVEL);
-						const char* strLevelId = this->currentLevel->identifier;
-						u8 strLevelLength = strlen(strLevel);
-						u8 strLevelIdLength = strlen(strLevelId);
-						Printing_text(
-							Printing_getInstance(),
-							Utilities_toUppercase(strLevel),
-							((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1,
-							4,
-							NULL
-						);
-						Printing_text(
-							Printing_getInstance(),
-							Utilities_toUppercase(strLevelId),
-							(((__SCREEN_WIDTH_IN_CHARS) - strLevelLength - strLevelIdLength) >> 1) + strLevelLength + 1,
-							4,
-							NULL
-						);
-					}
-
-					if(this->currentLevel->slogan)
-					{
-						const char* strLevelSlogan = I18n_getText(I18n_getInstance(), (int)this->currentLevel->slogan);
-						FontSize strLevelSloganSize = Printing_getTextSize(Printing_getInstance(), strLevelSlogan, NULL);
-						Printing_text(
-							Printing_getInstance(),
-							Utilities_toUppercase(strLevelSlogan),
-							((__SCREEN_WIDTH_IN_CHARS) - strLevelSloganSize.x) >> 1,
-							9,
-							NULL
-						);
-					}
 
 					// erase level message in 2 seconds
 					MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
@@ -482,8 +447,8 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 					Printing_text(
 						Printing_getInstance(),
 						Utilities_toUppercase(strCheckpoint),
-						((__SCREEN_WIDTH_IN_CHARS) - strlen(strCheckpoint)) >> 1,
-						6,
+						1,
+						25,
 						NULL
 					);
 
@@ -517,9 +482,9 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 
 		case kHideLevelMessage:
 
-			Printing_text(Printing_getInstance(), "                                                ", 0, 5, NULL);
-			Printing_text(Printing_getInstance(), "                                                ", 0, 6, NULL);
-			Printing_text(Printing_getInstance(), "                                                ", 0, 7, NULL);
+			Printing_text(Printing_getInstance(), "                          ", 0, 24, NULL);
+			Printing_text(Printing_getInstance(), "                          ", 0, 25, NULL);
+			Printing_text(Printing_getInstance(), "                          ", 0, 26, NULL);
 
 			PlatformerLevelState_setPrintingLayerCoordinates(this);
 			break;

@@ -112,14 +112,8 @@ typedef struct PlatformerLevelDefinition
 	// id
 	u8 id;
 
-	// identifier
-	void* identifier;
-
 	// name
 	void* name;
-
-	// slogan
-	void* slogan;
 
 } PlatformerLevelDefinition;
 

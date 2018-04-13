@@ -35,8 +35,7 @@
 #include <TitleScreenState.h>
 #include <Hero.h>
 #include <ParticleSystem.h>
-#include <IntroState.h>
-#include <AdjustmentScreenState.h>
+#include <PlatformerLevelState.h>
 #include <OptionsScreenState.h>
 #include <ProgressManager.h>
 #include <EventManager.h>
@@ -169,5 +168,5 @@ static void TitleScreenState_onFadeOutComplete(TitleScreenState this __attribute
 {
 	ASSERT(this, "TitleScreenState::onFadeOutComplete: null this");
 
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, IntroState_getInstance()));
+	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, PlatformerLevelState_getInstance()));
 }

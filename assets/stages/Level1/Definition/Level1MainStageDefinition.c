@@ -177,7 +177,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CITY_FLOOR_COLLISION_CL,	{2817, 204, 0, 0},			0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&HOUSE_5_IM,			{3098, 96, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
-	{&LANTERN_1_IM,			{3354, 123, 0, 0}, 			0, "Start2", NULL, NULL, false},
+	{&LANTERN_1_IM,			{3354, 123, 0, 0}, 			0, NULL, NULL, NULL, false},
 	{&TREE_1_IM,			{3378, 127, LAYER_2, 0}, 	0, NULL, NULL, NULL, false},
 	{&BENCH_1_IM,			{3434, 159, LAYER_1, 0}, 	0, NULL, NULL, NULL, false},
 
@@ -304,8 +304,6 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		16,
 		// particle removal delay cycles
 		4,
-		// deferred
-		true
 	},
 
 	// rendering
@@ -398,7 +396,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// optical configuration values
 		{
 			// maximum x view distance's power into the horizon (x, y)
-			__MAXIMUM_X_VIEW_DISTANCE, __MAXIMUM_Y_VIEW_DISTANCE,
+			6, 14,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)

@@ -47,12 +47,6 @@ PlatformerLevelROMDef LEVEL_1_LV =
 	// id
 	1,
 
-	// identifier
-	"1",
-
 	// name
 	(void*)STR_LEVEL_1_NAME,
-
-	// slogan
-	(void*)STR_LEVEL_1_SLOGAN,
 };

@@ -78,8 +78,7 @@ const char* const LANGUAGE_ES_STRINGS[] =
 
 	/* Levels */
 
-	/* STR_LEVEL_1_NAME */				"Sevilla",
-	/* STR_LEVEL_1_SLOGAN */			"Mision: Recuperar el libro",
+	/* STR_LEVEL_1_NAME */				"Sevilla,\nMision:\nRecuperar el libro",
 };
 
 const LangROMDef LANGUAGE_ES =
