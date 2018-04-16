@@ -43,7 +43,6 @@
 #include <EventManager.h>
 #include <KeyPadManager.h>
 #include <Utilities.h>
-#include <PostProcessingEffects.h>
 #include <debugUtilities.h>
 
 
