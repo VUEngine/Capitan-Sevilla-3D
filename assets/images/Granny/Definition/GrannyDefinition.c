@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <BgmapAnimatedSprite.h>
+#include <ObjectAnimatedSprite.h>
 #include <macros.h>
 #include <ProjectileEjector.h>
 #include <Actor.h>
@@ -140,11 +140,11 @@ TextureROMDef GRANNY_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef GRANNY_1_SPRITE =
+ObjectSpriteROMDef GRANNY_1_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
 		(TextureDefinition*)&GRANNY_1_TX,
@@ -158,16 +158,13 @@ BgmapSpriteROMDef GRANNY_1_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const GRANNY_1_SPRITES[] =
+ObjectSpriteROMDef* const GRANNY_1_SPRITES[] =
 {
 	&GRANNY_1_SPRITE,
 	NULL

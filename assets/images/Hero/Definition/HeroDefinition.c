@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <BgmapAnimatedSprite.h>
+#include <ObjectAnimatedSprite.h>
 #include <Box.h>
 
 #include "Hero.h"
@@ -332,11 +332,11 @@ TextureROMDef HERO_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMDef HERO_SPRITE =
+ObjectSpriteROMDef HERO_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
 		(TextureDefinition*)&HERO_TX,
@@ -350,20 +350,17 @@ BgmapSpriteROMDef HERO_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef HERO_BLACK_SPRITE =
+ObjectSpriteROMDef HERO_BLACK_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
 		(TextureDefinition*)&HERO_BLACK_TX,
@@ -377,19 +374,16 @@ BgmapSpriteROMDef HERO_BLACK_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const HERO_SPRITES[] =
+ObjectSpriteROMDef* const HERO_SPRITES[] =
 {
-	&HERO_BLACK_SPRITE,
 	&HERO_SPRITE,
+	&HERO_BLACK_SPRITE,
 	NULL
 };
 

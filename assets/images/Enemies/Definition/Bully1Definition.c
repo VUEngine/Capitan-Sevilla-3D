@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <libgccvb.h>
-#include <BgmapAnimatedSprite.h>
+#include <ObjectAnimatedSprite.h>
 #include <Box.h>
 #include <Actor.h>
 #include <MovingOneWayEntity.h>
@@ -118,11 +118,11 @@ TextureROMDef BULLY_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef BULLY_1_SPRITE =
+ObjectSpriteROMDef BULLY_1_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
 		(TextureDefinition*)&BULLY_1_TX,
@@ -136,16 +136,13 @@ BgmapSpriteROMDef BULLY_1_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const BULLY_1_SPRITES[] =
+ObjectSpriteROMDef* const BULLY_1_SPRITES[] =
 {
 	&BULLY_1_SPRITE,
 	NULL

@@ -894,8 +894,8 @@ bool Hero_isAffectedByRelativity(Hero this __attribute__ ((unused)))
 
 void Hero_updateSprite(Hero this, Direction direction)
 {
-	CharSet charSetBlack = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
-	CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_back(this->sprites))), true);
+	CharSet charSet = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_front(this->sprites))), true);
+	CharSet charSetBlack = Texture_getCharSet(Sprite_getTexture(__SAFE_CAST(Sprite, VirtualList_back(this->sprites))), true);
 
 	CharSetDefinition* charSetDefinition = NULL;
 	CharSetDefinition* charSetBlackDefinition = NULL;
@@ -919,6 +919,7 @@ void Hero_updateSprite(Hero this, Direction direction)
 	CharSet_setCharSetDefinition(charSet, charSetDefinition);
 	CharSet_setCharSetDefinition(charSetBlack, charSetBlackDefinition);
 	CharSet_rewrite(charSet);
+	CharSet_rewrite(charSetBlack);
 }
 
 void Hero_syncRotationWithBody(Hero this)

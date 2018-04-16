@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <BgmapAnimatedSprite.h>
+#include <ObjectAnimatedSprite.h>
 #include <Box.h>
 #include "Sausage.h"
 
@@ -116,11 +116,11 @@ TextureROMDef SAUSAGE_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef SAUSAGE_1_SPRITE =
+ObjectSpriteROMDef SAUSAGE_1_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
 		(TextureDefinition*)&SAUSAGE_1_TX,
@@ -134,16 +134,13 @@ BgmapSpriteROMDef SAUSAGE_1_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const SAUSAGE_1_SPRITES[] =
+ObjectSpriteROMDef* const SAUSAGE_1_SPRITES[] =
 {
 	&SAUSAGE_1_SPRITE,
 	NULL

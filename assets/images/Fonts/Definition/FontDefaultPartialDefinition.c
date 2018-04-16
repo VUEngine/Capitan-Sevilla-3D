@@ -30,7 +30,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FontDefaultTiles[];
+extern BYTE FontDefaultPartialTiles[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -40,13 +40,13 @@ extern BYTE FontDefaultTiles[];
 CharSetROMDef CAPITAN_DEFAULT_FONT_PARTIAL_CH =
 {
 	// number of chars
-	96,
+	64,
 
 	// allocation type
 	__NOT_ANIMATED,
 
 	// char definition
-	FontDefaultTiles,
+	FontDefaultPartialTiles,
 };
 
 FontROMDef CAPITAN_DEFAULT_FONT_PARTIAL =
@@ -55,7 +55,7 @@ FontROMDef CAPITAN_DEFAULT_FONT_PARTIAL =
 	(CharSetDefinition*)&CAPITAN_DEFAULT_FONT_PARTIAL_CH,
 
 	// character number at which the font starts, allows you to skip the control characters for example
-	0,
+	32,
 
 	// size of a single character (in chars) (width, height)
 	{1, 1},
