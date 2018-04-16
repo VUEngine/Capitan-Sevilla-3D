@@ -31,7 +31,6 @@
 #include <VIPManager.h>
 #include <Fonts.h>
 #include <Hero.h>
-#include <PostProcessingEffects.h>
 
 
 //---------------------------------------------------------------------------------------------------------
