@@ -12,3 +12,4 @@ build/
 sections*.txt
 setupClasses.c
 headerFiles.txt
+v810_err.txt
