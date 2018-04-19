@@ -454,8 +454,8 @@ PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
 	// friction
 	__F_TO_FIX10_6(0),
 
-	// elasticity
-	__F_TO_FIX10_6(HERO_ELASTICITY),
+	// bounciness
+	__F_TO_FIX10_6(HERO_BOUNCINESS),
 };
 
 HeroROMDef HERO_AC =

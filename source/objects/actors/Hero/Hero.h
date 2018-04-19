@@ -42,7 +42,7 @@
 #define HERO_INITIAL_SAUSAGES				12
 
 #define HERO_MASS							1
-#define HERO_ELASTICITY						0.0f
+#define HERO_BOUNCINESS						0.0f
 #define HERO_FRICTION						0
 
 #define HERO_FLASH_PALETTE					3

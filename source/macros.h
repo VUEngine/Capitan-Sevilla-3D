@@ -85,7 +85,7 @@
 // physics
 #define NO_FRICTION 		0
 #define FLOOR_FRICTION 		0.75f
-#define FLOOR_ELASTICITY 	0.0f
+#define FLOOR_BOUNCINESS 	0.0f
 
 // entity collision types
 enum PlatformerTypes
