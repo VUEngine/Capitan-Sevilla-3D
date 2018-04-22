@@ -229,7 +229,7 @@ StageROMDef LOLA_SOFT_SCREEN_STAGE_ST =
 			// vertical view point center
 			__VERTICAL_VIEW_POINT_CENTER,
 			// scaling factor
-			__SCALLING_MODIFIER_FACTOR,
+			__SCALING_MODIFIER_FACTOR,
 		},
 	},
 
