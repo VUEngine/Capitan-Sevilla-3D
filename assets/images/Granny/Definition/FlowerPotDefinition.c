@@ -125,7 +125,7 @@ ObjectSpriteROMDef FLOWER_POT_1_SPRITE =
 		// texture definition
 		(TextureDefinition*)&FLOWER_POT_1_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement

@@ -93,7 +93,7 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_BG_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&ADJUSTMENT_SCREEN_VUENGINE_BG_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement

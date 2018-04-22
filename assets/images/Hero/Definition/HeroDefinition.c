@@ -341,7 +341,7 @@ ObjectSpriteROMDef HERO_SPRITE =
 		// texture definition
 		(TextureDefinition*)&HERO_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
@@ -365,7 +365,7 @@ ObjectSpriteROMDef HERO_BLACK_SPRITE =
 		// texture definition
 		(TextureDefinition*)&HERO_BLACK_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement

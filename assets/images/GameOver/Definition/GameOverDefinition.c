@@ -94,7 +94,7 @@ BgmapSpriteROMDef GAME_OVER_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&GAME_OVER_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement

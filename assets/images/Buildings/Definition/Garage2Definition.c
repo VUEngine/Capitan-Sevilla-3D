@@ -96,7 +96,7 @@ BgmapSpriteROMDef GARAGE_2_SPRITE =
 		// texture definition
 		(TextureDefinition*)&GARAGE_2_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement

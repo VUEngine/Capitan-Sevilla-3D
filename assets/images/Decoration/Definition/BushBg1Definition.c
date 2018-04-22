@@ -94,7 +94,7 @@ BgmapSpriteROMDef BUSH_BG_1_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&BUSH_BG_1_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement

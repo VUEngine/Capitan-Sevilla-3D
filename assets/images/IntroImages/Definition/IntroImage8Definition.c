@@ -79,7 +79,7 @@ BgmapSpriteROMDef INTRO_IMAGE_8_SPRITE =
 		// texture definition
 		(TextureDefinition*)&INTRO_IMAGE_8_TX,
 
-		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD) (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement

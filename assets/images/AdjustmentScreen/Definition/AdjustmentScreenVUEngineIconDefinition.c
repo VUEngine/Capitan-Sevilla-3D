@@ -93,7 +93,7 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_L_SPRITE =
 		// texture definition
 		(TextureDefinition*)&ADJUSTMENT_SCREEN_VUENGINE_ICON_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
@@ -126,7 +126,7 @@ BgmapSpriteROMDef const ADJUSTMENT_SCREEN_VUENGINE_ICON_IM_R_SPRITE =
 		// texture definition
 		(TextureDefinition*)&ADJUSTMENT_SCREEN_VUENGINE_ICON_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement

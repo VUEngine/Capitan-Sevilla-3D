@@ -94,7 +94,7 @@ BgmapSpriteROMDef FLAG_UNITED_KINGDOM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&FLAG_UNITED_KINGDOM_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement

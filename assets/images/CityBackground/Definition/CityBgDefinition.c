@@ -148,7 +148,7 @@ MBgmapSpriteROMDef CITY_BG_SB_SPRITE =
 			// texture definition
 			NULL,
 
-			// transparent
+			// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 			false,
 
 			// displacement

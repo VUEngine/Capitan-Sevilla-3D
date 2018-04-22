@@ -140,7 +140,7 @@ BgmapSpriteROMDef HOUSE_4_SPRITE =
 		// texture definition
 		(TextureDefinition*)&HOUSE_4_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
@@ -167,7 +167,7 @@ BgmapSpriteROMDef HOUSE_4_BLACK_SPRITE =
 		// texture definition
 		(TextureDefinition*)&HOUSE_4_BLACK_TX,
 
-		// transparent
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
