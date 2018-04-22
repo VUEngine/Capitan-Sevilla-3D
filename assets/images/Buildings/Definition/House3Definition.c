@@ -141,7 +141,7 @@ BgmapSpriteROMDef HOUSE_3_SPRITE =
 		(TextureDefinition*)&HOUSE_3_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},
@@ -168,7 +168,7 @@ BgmapSpriteROMDef HOUSE_3_BLACK_SPRITE =
 		(TextureDefinition*)&HOUSE_3_BLACK_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

@@ -95,7 +95,7 @@ BgmapSpriteROMDef CLOTHES_1_IM_SPRITE =
 		(TextureDefinition*)&CLOTHES_1_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

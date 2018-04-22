@@ -141,7 +141,7 @@ BgmapSpriteROMDef PLAYGROUND_SIGN_1_SPRITE =
 		(TextureDefinition*)&PLAYGROUND_SIGN_1_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},
@@ -168,7 +168,7 @@ BgmapSpriteROMDef PLAYGROUND_SIGN_1_BLACK_SPRITE =
 		(TextureDefinition*)&PLAYGROUND_SIGN_1_BLACK_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

@@ -95,7 +95,7 @@ BgmapSpriteROMDef FLAG_GERMANY_SPRITE =
 		(TextureDefinition*)&FLAG_GERMANY_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

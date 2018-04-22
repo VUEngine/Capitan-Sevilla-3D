@@ -95,7 +95,7 @@ BgmapSpriteROMDef TITLE_EARTH_SPRITE =
 		(TextureDefinition*)&TITLE_EARTH_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

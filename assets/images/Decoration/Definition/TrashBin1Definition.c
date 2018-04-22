@@ -95,7 +95,7 @@ BgmapSpriteROMDef TRASH_BIN_1_SPRITE =
 		(TextureDefinition*)&TRASH_BIN_1_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

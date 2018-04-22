@@ -95,7 +95,7 @@ BgmapSpriteROMDef TITLE_SUBTITLE_SPRITE =
 		(TextureDefinition*)&TITLE_SUBTITLE_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

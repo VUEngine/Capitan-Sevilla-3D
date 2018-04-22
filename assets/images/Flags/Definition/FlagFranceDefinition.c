@@ -95,7 +95,7 @@ BgmapSpriteROMDef FLAG_FRANCE_SPRITE =
 		(TextureDefinition*)&FLAG_FRANCE_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

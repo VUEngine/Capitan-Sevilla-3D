@@ -94,7 +94,7 @@ BgmapSpriteROMDef ADJUSTMENT_SCREEN_VUENGINE_LOGO_IM_SPRITE =
 		(TextureDefinition*)&ADJUSTMENT_SCREEN_VUENGINE_LOGO_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

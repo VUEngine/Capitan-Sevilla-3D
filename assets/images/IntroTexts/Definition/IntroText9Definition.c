@@ -192,7 +192,7 @@ BgmapSpriteROMDef INTRO_TEXT_9_SPRITE =
 		(TextureDefinition*)&INTRO_TEXT_9_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

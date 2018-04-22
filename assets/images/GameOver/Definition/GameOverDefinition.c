@@ -95,7 +95,7 @@ BgmapSpriteROMDef GAME_OVER_IM_SPRITE =
 		(TextureDefinition*)&GAME_OVER_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

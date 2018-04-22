@@ -141,7 +141,7 @@ BgmapSpriteROMDef TITLE_CAPITAN_SPRITE =
 		(TextureDefinition*)&TITLE_CAPITAN_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},
@@ -168,7 +168,7 @@ BgmapSpriteROMDef TITLE_CAPITAN_BLACK_SPRITE =
 		(TextureDefinition*)&TITLE_CAPITAN_BLACK_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

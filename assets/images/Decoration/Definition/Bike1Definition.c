@@ -95,7 +95,7 @@ BgmapSpriteROMDef BIKE_1_IM_SPRITE =
 		(TextureDefinition*)&BIKE_1_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

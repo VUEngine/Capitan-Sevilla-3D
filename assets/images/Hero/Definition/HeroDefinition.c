@@ -342,7 +342,7 @@ ObjectSpriteROMDef HERO_SPRITE =
 		(TextureDefinition*)&HERO_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 1},
@@ -366,7 +366,7 @@ ObjectSpriteROMDef HERO_BLACK_SPRITE =
 		(TextureDefinition*)&HERO_BLACK_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 1},

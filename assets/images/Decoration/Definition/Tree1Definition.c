@@ -95,7 +95,7 @@ BgmapSpriteROMDef TREE_1_IM_SPRITE =
 		(TextureDefinition*)&TREE_1_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

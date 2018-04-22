@@ -96,7 +96,7 @@ BgmapSpriteROMDef CAR_BG_2_IM_SPRITE =
 		(TextureDefinition*)&CAR_BG_2_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

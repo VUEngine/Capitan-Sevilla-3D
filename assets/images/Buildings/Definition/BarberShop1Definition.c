@@ -141,7 +141,7 @@ BgmapSpriteROMDef BARBER_SHOP_1_SPRITE =
 		(TextureDefinition*)&BARBER_SHOP_1_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},
@@ -168,7 +168,7 @@ BgmapSpriteROMDef BARBER_SHOP_1_BLACK_SPRITE =
 		(TextureDefinition*)&BARBER_SHOP_1_BLACK_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

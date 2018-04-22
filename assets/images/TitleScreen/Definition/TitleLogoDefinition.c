@@ -141,7 +141,7 @@ BgmapSpriteROMDef TITLE_LOGO_SPRITE =
 		(TextureDefinition*)&TITLE_LOGO_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},
@@ -168,7 +168,7 @@ BgmapSpriteROMDef TITLE_LOGO_BLACK_SPRITE =
 		(TextureDefinition*)&TITLE_LOGO_BLACK_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

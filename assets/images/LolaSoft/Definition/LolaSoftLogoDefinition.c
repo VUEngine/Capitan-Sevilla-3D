@@ -95,7 +95,7 @@ BgmapSpriteROMDef LOLA_SOFT_LOGO_IM_SPRITE =
 		(TextureDefinition*)&LOLA_SOFT_LOGO_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

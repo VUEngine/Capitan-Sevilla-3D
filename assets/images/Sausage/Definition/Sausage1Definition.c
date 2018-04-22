@@ -126,7 +126,7 @@ ObjectSpriteROMDef SAUSAGE_1_SPRITE =
 		(TextureDefinition*)&SAUSAGE_1_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

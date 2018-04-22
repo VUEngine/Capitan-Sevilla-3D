@@ -95,7 +95,7 @@ BgmapSpriteROMDef FLAG_SPAIN_SPRITE =
 		(TextureDefinition*)&FLAG_SPAIN_TX,
 
 		// transparent
-		false,
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},
