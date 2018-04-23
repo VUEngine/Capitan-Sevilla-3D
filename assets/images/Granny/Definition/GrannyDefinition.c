@@ -79,7 +79,7 @@ AnimationFunctionROMDef GRANNY_1_SHOOT_ANIM =
 	false,
 
 	// method to call on function completion
-	(EventListener)&ProjectileEjector_onShootAnimationComplete,
+	(EventListener)&ProjectileEjector_onEjectAnimationComplete,
 
 	// function's name
 	"Shoot",
@@ -215,4 +215,10 @@ ProjectileEjectorROMDef GRANNY_1_PE =
 
 	// maximum number of projectiles on screen at the same time
 	1,
+
+	// name of animation to play on projectile ejection
+	"Shoot",
+
+	// name of animation to play when idle
+	"Idle",
 };

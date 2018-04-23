@@ -70,6 +70,12 @@ typedef struct ProjectileEjectorDefinition
 	// maximum number of projectiles on screen at the same time
 	u8 maxProjectiles;
 
+	// name of animation to play on projectile ejection
+	char* ejectAnimationName;
+
+	// name of animation to play when idle
+	char* idleAnimationName;
+
 } ProjectileEjectorDefinition;
 
 typedef const ProjectileEjectorDefinition ProjectileEjectorROMDef;
@@ -86,7 +92,7 @@ void ProjectileEjector_destructor(ProjectileEjector this);
 bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram);
 void ProjectileEjector_ready(ProjectileEjector this, bool recursive);
 void ProjectileEjector_ejectProjectile(ProjectileEjector this);
-void ProjectileEjector_onShootAnimationComplete(ProjectileEjector this);
+void ProjectileEjector_onEjectAnimationComplete(ProjectileEjector this);
 
 
 #endif

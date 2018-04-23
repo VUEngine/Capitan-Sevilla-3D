@@ -86,4 +86,10 @@ ProjectileEjectorROMDef SAUSAGE_EJECTOR_PE =
 
 	// maximum number of projectiles on screen at the same time
 	3,
+
+	// name of animation to play on projectile ejection
+	NULL,
+
+	// name of animation to play when idle
+	NULL,
 };
