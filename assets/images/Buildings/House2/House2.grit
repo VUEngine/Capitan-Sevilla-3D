@@ -1,0 +1,4 @@
+-fh! -ftc -gB2 -p!   -mB16:hv_i11 -mRtf -gS
+
+// Creates map and shared reduced tileset (unique and flipped tiles)
+// Use case: multipart images with same tiles
