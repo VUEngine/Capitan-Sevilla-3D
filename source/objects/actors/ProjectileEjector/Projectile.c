@@ -88,14 +88,25 @@ void Projectile_startMovement(Projectile this)
 	// set back to local position
 	Actor_setLocalPosition(__SAFE_CAST(Actor, this), &this->projectileDefinition->position);
 
-	// set to moving
-	Actor_moveUniformly(__SAFE_CAST(Actor, this), &this->projectileDefinition->velocity);
-
 	// activate shapes
 	Entity_activateShapes(__SAFE_CAST(Entity, this), true);
 
 	// show me
 	Entity_show(__SAFE_CAST(Entity, this));
+
+	// set to moving
+	/*
+	if(this->projectileDefinition->movementType == __UNIFORM_MOVEMENT)
+	{
+	*/
+		Actor_moveUniformly(__SAFE_CAST(Actor, this), &this->projectileDefinition->velocity);
+	/*
+	}
+	else
+	{
+		Actor_addForce(__SAFE_CAST(Actor, this), &this->projectileDefinition->velocity);
+	}
+	*/
 
 	// send first message of periodic position check
 	if(this->projectileDefinition->checkDelay > -1)
@@ -119,9 +130,9 @@ void Projectile_stopMovement(Projectile this)
 
 static void Projectile_checkPosition(Projectile this)
 {
-	if(	(this->projectileDefinition->maxPosition.x && (this->transformation.globalPosition.x > this->projectileDefinition->maxPosition.x)) ||
-		(this->projectileDefinition->maxPosition.y && (this->transformation.globalPosition.y > this->projectileDefinition->maxPosition.y)) ||
-		(this->projectileDefinition->maxPosition.z && (this->transformation.globalPosition.z > this->projectileDefinition->maxPosition.z)))
+	if(	(this->projectileDefinition->maxPosition.x && (__ABS(this->transformation.globalPosition.x) > this->projectileDefinition->maxPosition.x)) ||
+		(this->projectileDefinition->maxPosition.y && (__ABS(this->transformation.globalPosition.y) > this->projectileDefinition->maxPosition.y)) ||
+		(this->projectileDefinition->maxPosition.z && (__ABS(this->transformation.globalPosition.z) > this->projectileDefinition->maxPosition.z)))
 	{
 		Projectile_stopMovement(this);
 	}
@@ -138,11 +149,6 @@ bool Projectile_handleMessage(Projectile this, Telegram telegram)
 
 	switch(Telegram_getMessage(telegram))
 	{
-		case kProjectileEject:
-
-			Projectile_startMovement(this);
-			break;
-
 		case kProjectileCheckPosition:
 
 			Projectile_checkPosition(this);
@@ -150,4 +156,11 @@ bool Projectile_handleMessage(Projectile this, Telegram telegram)
 	}
 
 	return false;
+}
+
+bool Projectile_canBeReused(Projectile this)
+{
+	ASSERT(this, "Projectile::handleMessage: null this");
+
+	return !__VIRTUAL_CALL(SpatialObject, isMoving, this);
 }

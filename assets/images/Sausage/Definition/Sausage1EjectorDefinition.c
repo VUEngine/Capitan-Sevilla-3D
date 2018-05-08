@@ -79,10 +79,14 @@ ProjectileEjectorROMDef SAUSAGE_EJECTOR_PE =
     },
 
 	// delay of the first projectile ejection
+	// (only relevant if initially active)
 	0,
 
 	// pause between projectile ejections
 	1000,
+
+	// flag whether the ejector should be active on creation
+	false,
 
 	// maximum number of projectiles on screen at the same time
 	3,

@@ -456,6 +456,9 @@ PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
 
 	// bounciness
 	__F_TO_FIX10_6(HERO_BOUNCINESS),
+
+	// maximum velocity
+	{0, 0, 0},
 };
 
 HeroROMDef HERO_AC =

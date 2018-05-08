@@ -125,6 +125,11 @@ void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* own
 		Hero_jump(__SAFE_CAST(Hero, owner), !this->bouncing);
 	}
 
+	if(K_B & userInput->pressedKey)
+	{
+		Hero_shoot(__SAFE_CAST(Hero, owner), true);
+	}
+
 	// check direction
 	if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
 	{
@@ -143,6 +148,11 @@ void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* ow
 	if((K_LL | K_LR) & userInput->releasedKey)
 	{
 		Hero_stopAddingForce(__SAFE_CAST(Hero, owner));
+	}
+
+	if(K_B & userInput->releasedKey)
+	{
+		Hero_shoot(__SAFE_CAST(Hero, owner), false);
 	}
 }
 

@@ -170,6 +170,9 @@ PhysicalSpecificationROMDef CITY_FLOOR_COLLISION_CL_PHYSICAL_PROPERTIES =
 
 	// bounciness
 	__F_TO_FIX10_6(FLOOR_BOUNCINESS),
+
+	// maximum velocity
+	{0, 0, 0},
 };
 
 CollisionROMDef CITY_FLOOR_COLLISION_CL =

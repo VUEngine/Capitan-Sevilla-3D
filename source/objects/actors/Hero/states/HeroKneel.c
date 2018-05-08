@@ -115,35 +115,44 @@ bool HeroKneel_processMessage(HeroKneel this __attribute__ ((unused)), void* own
 
 void HeroKneel_onKeyPressed(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)
 {
-		if(K_A & userInput->pressedKey)
-		{
-			Hero_jump(__SAFE_CAST(Hero, owner), true);
-		}
+	if(K_A & userInput->pressedKey)
+	{
+		Hero_jump(__SAFE_CAST(Hero, owner), true);
+	}
 
-		if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
-		{
-			Acceleration acceleration =
-			{
-				K_LL & userInput->pressedKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->pressedKey ? __1I_FIX10_6 : 0,
-				K_A & userInput->pressedKey ? __I_TO_FIX10_6(-1) : 0,
-				0,
-			};
+	if(K_B & userInput->pressedKey)
+	{
+		Hero_shoot(__SAFE_CAST(Hero, owner), true);
+	}
 
-			if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), acceleration))
-			{
-				Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
-				Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
-			}
-		}
-
-		if((K_LU) & (userInput->pressedKey | userInput->holdKey))
+	if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
+	{
+		Acceleration acceleration =
 		{
-			//swapstate to idle
+			K_LL & userInput->pressedKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->pressedKey ? __1I_FIX10_6 : 0,
+			K_A & userInput->pressedKey ? __I_TO_FIX10_6(-1) : 0,
+			0,
+		};
+
+		if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), acceleration))
+		{
+			Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
+			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
 		}
+	}
+
+	if((K_LU) & (userInput->pressedKey | userInput->holdKey))
+	{
+		//swapstate to idle
+	}
 }
 
-void HeroKneel_onKeyReleased(HeroKneel this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
+void HeroKneel_onKeyReleased(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)
 {
+	if(K_B & userInput->releasedKey)
+	{
+		Hero_shoot(__SAFE_CAST(Hero, owner), false);
+	}
 }
 
 void HeroKneel_onKeyHold(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)

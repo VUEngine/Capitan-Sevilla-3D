@@ -219,7 +219,7 @@ ProjectileROMDef SAUSAGE_1_PR =
 
 	// velocity
     {
-    	__F_TO_FIX10_6(5.2f),
+    	__F_TO_FIX10_6(6.0f),
     	0,
     	0,
 	},

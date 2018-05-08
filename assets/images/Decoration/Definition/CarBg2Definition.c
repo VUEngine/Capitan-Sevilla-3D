@@ -185,6 +185,9 @@ PhysicalSpecificationROMDef CAR_BG_2_IM_PHYSICAL_PROPERTIES =
 
 	// bounciness
 	__F_TO_FIX10_6(FLOOR_BOUNCINESS),
+
+	// maximum velocity
+	{0, 0, 0},
 };
 
 EntityROMDef CAR_BG_2_IM =

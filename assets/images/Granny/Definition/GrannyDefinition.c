@@ -208,10 +208,14 @@ ProjectileEjectorROMDef GRANNY_1_PE =
     },
 
 	// delay of the first projectile ejection
+	// (only relevant if initially active)
 	1500,
 
 	// pause between projectile ejections
 	2800,
+
+	// flag whether the ejector should be active on creation
+	true,
 
 	// maximum number of projectiles on screen at the same time
 	1,
