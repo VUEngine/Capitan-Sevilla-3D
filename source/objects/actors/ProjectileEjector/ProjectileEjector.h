@@ -49,8 +49,8 @@ __CLASS(ProjectileEjector);
 		AnimatedEntity_ATTRIBUTES																		\
 		/* definition pointer */																		\
 		ProjectileEjectorDefinition* projectileEjectorDefinition;										\
-		/* number of the current projectile to eject */													\
-		u8 currentProjectileIndex;																		\
+		/* ejection flag */																				\
+		u8 active;																						\
 
 
 typedef struct ProjectileEjectorDefinition
@@ -62,13 +62,23 @@ typedef struct ProjectileEjectorDefinition
 	PositionedEntity projectilePositionedEntityDefinition;
 
 	// delay of the first projectile ejection
+	// (only relevant if initially active)
 	u16 initialEjectDelay;
 
 	// pause between projectile ejections
 	u16 ejectDelay;
 
+	// flag whether the ejector should be active on creation
+	u8 initiallyActive;
+
 	// maximum number of projectiles on screen at the same time
 	u8 maxProjectiles;
+
+	// name of animation to play on projectile ejection
+	char* ejectAnimationName;
+
+	// name of animation to play when idle
+	char* idleAnimationName;
 
 } ProjectileEjectorDefinition;
 
@@ -83,10 +93,13 @@ __CLASS_NEW_DECLARE(ProjectileEjector, ProjectileEjectorDefinition* projectileEj
 
 void ProjectileEjector_constructor(ProjectileEjector this, ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name);
 void ProjectileEjector_destructor(ProjectileEjector this);
-bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram);
-void ProjectileEjector_ready(ProjectileEjector this, bool recursive);
+
 void ProjectileEjector_ejectProjectile(ProjectileEjector this);
-void ProjectileEjector_onShootAnimationComplete(ProjectileEjector this);
+bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram);
+bool ProjectileEjector_isActive(ProjectileEjector this);
+void ProjectileEjector_onEjectAnimationComplete(ProjectileEjector this);
+void ProjectileEjector_ready(ProjectileEjector this, bool recursive);
+void ProjectileEjector_setActive(ProjectileEjector this, bool active);
 
 
 #endif

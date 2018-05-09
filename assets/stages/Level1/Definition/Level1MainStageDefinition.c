@@ -51,8 +51,6 @@ extern EntityDefinition CITY_FLOOR_IM;
 extern EntityDefinition CLOTHES_1_IM;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition CITY_FLOOR_COLLISION_CL;
-extern EntityDefinition CONTAINER_1_IM;
-extern EntityDefinition FENCE_1_IM;
 extern EntityDefinition FENCE_2_IM;
 extern EntityDefinition GARAGE_1_IM;
 extern EntityDefinition GARAGE_2_IM;
@@ -66,12 +64,9 @@ extern EntityDefinition HOUSE_5_IM;
 extern EntityDefinition HOUSE_6_IM;
 extern EntityDefinition HOVER_CAR_1_AC;
 extern EntityDefinition LANTERN_1_IM;
-extern EntityDefinition MOTORBIKE_1_IM;
 extern EntityDefinition PLAYGROUND_1_IM;
 extern EntityDefinition PLAYGROUND_SIGN_1_IM;
 extern EntityDefinition STATUE_1_IM;
-extern EntityDefinition THING_1_IM;
-extern EntityDefinition TRASH_BIN_1_IM;
 extern EntityDefinition TREE_1_IM;
 extern EntityDefinition TREE_BG_1_IM;
 extern EntityDefinition WALL_1_IM;
@@ -102,85 +97,80 @@ extern Size collision_64_2_8;
 
 PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 {
-	{&CITY_BG_IM,					{   0,  39, 320,   0}, 		0, NULL, NULL, NULL, true},
+	{&CITY_BG_IM,					{   0,  57, 256,   0}, 		0, NULL, NULL, NULL, true},
 	{&CITY_FLOOR_IM,				{   0, 178,   0,   0}, 		0, NULL, NULL, NULL, true},
 
 	{&COLLISION_CL,					{  -8,  96,   0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
-	{&CITY_FLOOR_COLLISION_CL,		{ 256, 198,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{ 256, 204,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&LANTERN_1_IM,					{  32, 123,   0,   0}, 		0, "Start", NULL, NULL, false},
-	{&MOTORBIKE_1_IM,				{ 104, 142,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&HOUSE_1_IM,					{ 200,  80,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,					{ 193,  52,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&CONTAINER_1_IM,				{ 181, 145,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&TREE_1_IM,					{ 384, 111,  96,   0}, 		0, NULL, NULL, NULL, false},
+	{&HOUSE_1_IM,					{ 200,  96,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&GRANNY_1_PE,					{ 193,  52+16,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,					{ 384, 111+16,   0,   0}, 		0, NULL, NULL, NULL, false},
 
 	{&CAR_1_AC,						{ 540, 168,   0,   0}, 		0, NULL, NULL, (void*)-6, true},
-	{&BULLY_1_AC,					{ 640, 150,   0,   0}, 		0, NULL, NULL, (void*)-3, true},
+	{&BULLY_1_AC,					{ 640, 155,   0,   0}, 		0, NULL, NULL, (void*)-3, true},
 
-	{&WALL_1_IM,					{ 552, 124,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&THING_1_IM,					{ 479, 134,  96,   0}, 		0, NULL, NULL, NULL, false},
+	{&WALL_1_IM,					{ 552, 140,   0,   0}, 		0, NULL, NULL, NULL, false},
 	{&LANTERN_1_IM,					{ 655, 123,   0,   0}, 		0, NULL, NULL, NULL, false},
-	{&CAR_BG_1_IM,					{ 704, 134,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&TREE_BG_1_IM,					{ 752, 114,  96,   0}, 		0, NULL, NULL, NULL, false},
+	{&CAR_BG_1_IM,					{ 704, 134,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&TREE_BG_1_IM,					{ 752, 114,   0,   0}, 		0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{ 768, 198,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{ 768, 204,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&BULLY_1_AC,					{ 860, 150,   0,   0}, 		0, NULL, NULL, (void*)-3, false},
-	{&HOUSE_2_IM,					{ 864,  80,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,					{ 909,  51,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&GARAGE_1_IM,					{1040, 102,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,				{1100, 114,   0,   0}, 		0, NULL, NULL, (void*)-5, false},
-	{&TRASH_BIN_1_IM,				{1100, 139,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&FENCE_1_IM,					{1150, 135,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&BUSH_BG_1_IM,					{1212, 104,  96,   0}, 		0, NULL, NULL, NULL, false},
+	{&BULLY_1_AC,					{ 860, 155,   0,   0}, 		0, NULL, NULL, (void*)-3, false},
+	{&HOUSE_2_IM,					{ 864,  96,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&GRANNY_1_PE,					{ 909,  51,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&GARAGE_1_IM,					{1056, 118,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_1_AC,				{1200, 114,   0,   0}, 		0, NULL, NULL, (void*)-5, false},
+	{&BUSH_BG_1_IM,					{1212, 104,   0,   0}, 		0, NULL, NULL, NULL, false},
 	{&LANTERN_1_IM,					{1230, 123,   0,   0}, 		0, NULL, NULL, NULL, false},
-	{&BULLY_1_AC,					{1230, 150,  16,   0}, 		0, NULL, NULL, (void*)-3, false},
+	{&BULLY_1_AC,					{1230, 155,   0,   0}, 		0, NULL, NULL, (void*)-3, false},
 	{&CAR_1_AC,						{1240, 168,   0,   0}, 		0, NULL, NULL, (void*)-6, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{1280, 198,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{1280, 204,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&BUSH_BG_2_IM,					{1584, 104,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&TREE_1_IM,					{1272, 111,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&TREE_1_IM,					{1328, 111,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&PLAYGROUND_SIGN_1_IM,			{1320,  84,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&PLAYGROUND_1_IM,				{1422,  96,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&STATUE_1_IM,					{1518,  96,  96,   0}, 		0, NULL, NULL, NULL, false},
+	{&BUSH_BG_2_IM,					{1584, 104,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,					{1272, 111,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,					{1328, 111,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&PLAYGROUND_SIGN_1_IM,			{1320,  84,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&PLAYGROUND_1_IM,				{1422,  96,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&STATUE_1_IM,					{1518,  96,   0,   0}, 		0, NULL, NULL, NULL, false},
 	{&HOVER_CAR_1_AC,				{1518, 114,   0,   0}, 		0, NULL, NULL, (void*)-5, false},
-	{&FENCE_2_IM,					{1414, 135,  96,   0}, 		0, NULL, NULL, NULL, false},
+	{&FENCE_2_IM,					{1414, 135,   0,   0}, 		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_IM,					{1618, 123,   0,   0}, 		0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{1792, 198,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{1792, 204,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&CAR_1_AC,						{1810, 168,   0,   0}, 		0, NULL, NULL, (void*)-6, false},
-	{&BARBER_SHOP_1_IM,				{1810,  79,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,					{1848,  31,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&GARAGE_2_IM,					{1994, 102,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&HOUSE_3_IM,					{2170,  80,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&CLOTHES_1_IM,					{2322,  36,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&BIKE_1_IM,					{2367, 143,  96,   0}, 		0, NULL, NULL, NULL, false},
+	{&BARBER_SHOP_1_IM,				{1810,  79,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&GRANNY_1_PE,					{1848,  31,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&GARAGE_2_IM,					{1994, 102,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&HOUSE_3_IM,					{2170,  80,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&CLOTHES_1_IM,					{2322,  36,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&BIKE_1_IM,					{2367, 143,   0,   0}, 		0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{2304, 198,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{2304, 204,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&HOUSE_4_IM,					{2626,  80,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,					{2422,  46,  96,   0}, 		0, NULL, NULL, NULL, false},
+	{&HOUSE_4_IM,					{2626,  80,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&GRANNY_1_PE,					{2422,  46,   0,   0}, 		0, NULL, NULL, NULL, false},
 
-	{&GRANNY_1_PE,					{2644,  18,  96,   0}, 		0, NULL, NULL, NULL, false},
+	{&GRANNY_1_PE,					{2644,  18,   0,   0}, 		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,						{2700, 168,   0,   0}, 		0, NULL, NULL, (void*)-6, false},
-	{&CITY_FLOOR_COLLISION_CL,		{2817, 198,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{2817, 204,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
-	{&HOUSE_5_IM,					{3098,  80,  96,   0}, 		0, NULL, NULL, NULL, false},
+	{&HOUSE_5_IM,					{3098,  80,   0,   0}, 		0, NULL, NULL, NULL, false},
 	{&LANTERN_1_IM,					{3354, 123,   0,   0}, 		0, NULL, NULL, NULL, false},
-	{&TREE_1_IM,					{3378, 111,  96,   0}, 		0, NULL, NULL, NULL, false},
-	{&BENCH_1_IM,					{3434, 143,  96,   0}, 		0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,					{3378, 111,   0,   0}, 		0, NULL, NULL, NULL, false},
+	{&BENCH_1_IM,					{3434, 143,   0,   0}, 		0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{3329, 198,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{3329, 204,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&CAR_BG_2_IM,					{3671, 144,   0,   0}, 		0, NULL, NULL, NULL, false},
 	{&HOUSE_6_IM,					{3675,  64,   0,   1}, 		0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{3700, 198,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{3700, 204,   0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
 
 	{&COLLISION_CL,					{3700,  96,   0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
 

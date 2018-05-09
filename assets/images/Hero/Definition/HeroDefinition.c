@@ -341,8 +341,8 @@ ObjectSpriteROMDef HERO_SPRITE =
 		// texture definition
 		(TextureDefinition*)&HERO_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 1},
@@ -365,8 +365,8 @@ ObjectSpriteROMDef HERO_BLACK_SPRITE =
 		// texture definition
 		(TextureDefinition*)&HERO_BLACK_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 1},
@@ -456,6 +456,9 @@ PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
 
 	// bounciness
 	__F_TO_FIX10_6(HERO_BOUNCINESS),
+
+	// maximum velocity
+	{0, 0, 0},
 };
 
 HeroROMDef HERO_AC =

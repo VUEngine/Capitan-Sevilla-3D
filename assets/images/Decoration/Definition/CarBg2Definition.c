@@ -95,8 +95,8 @@ BgmapSpriteROMDef CAR_BG_2_IM_SPRITE =
 		// texture definition
 		(TextureDefinition*)&CAR_BG_2_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},
@@ -185,6 +185,9 @@ PhysicalSpecificationROMDef CAR_BG_2_IM_PHYSICAL_PROPERTIES =
 
 	// bounciness
 	__F_TO_FIX10_6(FLOOR_BOUNCINESS),
+
+	// maximum velocity
+	{0, 0, 0},
 };
 
 EntityROMDef CAR_BG_2_IM =

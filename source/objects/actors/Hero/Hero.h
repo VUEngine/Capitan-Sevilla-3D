@@ -151,7 +151,7 @@ bool Hero_isAffectedByRelativity(Hero this);
 void Hero_syncRotationWithBody(Hero this);
 void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
 u16 Hero_getAxesForShapeSyncWithDirection(Hero this);
-void Hero_shoot(Hero this);
+void Hero_shoot(Hero this, bool active);
 
 
 #endif

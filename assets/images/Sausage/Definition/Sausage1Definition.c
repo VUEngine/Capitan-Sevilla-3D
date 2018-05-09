@@ -125,8 +125,8 @@ ObjectSpriteROMDef SAUSAGE_1_SPRITE =
 		// texture definition
 		(TextureDefinition*)&SAUSAGE_1_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},
@@ -219,7 +219,7 @@ ProjectileROMDef SAUSAGE_1_PR =
 
 	// velocity
     {
-    	__F_TO_FIX10_6(5.2f),
+    	__F_TO_FIX10_6(6.0f),
     	0,
     	0,
 	},

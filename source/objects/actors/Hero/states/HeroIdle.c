@@ -127,7 +127,7 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, 
 
 	if(K_B & userInput->pressedKey)
 	{
-		Hero_shoot(__SAFE_CAST(Hero, owner));
+		Hero_shoot(__SAFE_CAST(Hero, owner), true);
 	}
 
 	if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
@@ -153,8 +153,12 @@ void HeroIdle_onKeyPressed(HeroIdle this __attribute__ ((unused)), void* owner, 
 	}
 }
 
-void HeroIdle_onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
+void HeroIdle_onKeyReleased(HeroIdle this __attribute__ ((unused)), void* owner, const UserInput* userInput)
 {
+	if(K_B & userInput->releasedKey)
+	{
+		Hero_shoot(__SAFE_CAST(Hero, owner), false);
+	}
 }
 
 void HeroIdle_onKeyHold(HeroIdle this __attribute__ ((unused)), void* owner, const UserInput* userInput)

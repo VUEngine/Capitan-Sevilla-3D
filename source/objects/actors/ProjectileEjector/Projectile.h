@@ -86,6 +86,7 @@ void Projectile_startMovement(Projectile this);
 void Projectile_stopMovement(Projectile this);
 void Projectile_ready(Projectile this, bool recursive);
 bool Projectile_handleMessage(Projectile this, Telegram telegram);
+bool Projectile_canBeReused(Projectile this);
 
 
 #endif

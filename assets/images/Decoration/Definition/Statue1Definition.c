@@ -94,8 +94,8 @@ BgmapSpriteROMDef STATUE_1_SPRITE =
 		// texture definition
 		(TextureDefinition*)&STATUE_1_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},

@@ -181,8 +181,9 @@ void Hero_addSausageEjectorEntity(Hero this)
 	this->sausageEjectorEntity = Entity_addChildEntity(__SAFE_CAST(Entity, this), &SAUSAGE_EJECTOR_PE, -1, NULL, &position, (void*)3);
 }
 
-void Hero_shoot(Hero this)
+void Hero_shoot(Hero this, bool active)
 {
+	ProjectileEjector_setActive(this->sausageEjectorEntity, active);
 }
 
 void Hero_kneel(Hero this)

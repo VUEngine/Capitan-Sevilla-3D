@@ -61,7 +61,7 @@ void ProjectileEjector_constructor(ProjectileEjector this, ProjectileEjectorDefi
 	this->projectileEjectorDefinition = projectileEjectorDefinition;
 
 	// initialize members
-	this->currentProjectileIndex = 0;
+	this->active = this->projectileEjectorDefinition->initiallyActive;
 }
 
 // class's destructor
@@ -87,18 +87,14 @@ void ProjectileEjector_ready(ProjectileEjector this, bool recursive)
 	// call base
 	Base_ready(this, recursive);
 
-	if(!this->children)
-	{
-		u8 i;
-		for(i = 0; i < this->projectileEjectorDefinition->maxProjectiles; i++)
-		{
-			// add projectile to stage
-			Stage_spawnEntity(Game_getStage(Game_getInstance()), &this->projectileEjectorDefinition->projectilePositionedEntityDefinition, __SAFE_CAST(Container, this), NULL);
-		}
-	}
+	// play idle animation
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), this->projectileEjectorDefinition->idleAnimationName);
 
 	// send delayed message to self to trigger first shot
-	MessageDispatcher_dispatchMessage(this->projectileEjectorDefinition->initialEjectDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
+	if(this->active)
+	{
+		MessageDispatcher_dispatchMessage(this->projectileEjectorDefinition->initialEjectDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
+	}
 }
 
 // state's handle message
@@ -122,29 +118,71 @@ void ProjectileEjector_ejectProjectile(ProjectileEjector this)
 {
 	ASSERT(this, "ProjectileEjector::ejectProjectile: null this");
 
-	// start shooting sequence
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Shoot");
-
-	// send delayed message to self to trigger next shot
-	MessageDispatcher_dispatchMessage(this->projectileEjectorDefinition->ejectDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
-
-	// set projectile to moving state
-	ASSERT(0 < VirtualList_getSize(this->children), "ProjectileEjector::ejectProjectile: no children");
-	Projectile projectile = __SAFE_CAST(Projectile, VirtualList_getObjectAtPosition(this->children, this->currentProjectileIndex));
-	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, projectile), kProjectileEject, NULL);
-
-	// increase projectile index
-	if(++this->currentProjectileIndex >= this->projectileEjectorDefinition->maxProjectiles)
+	if(this->active)
 	{
-		this->currentProjectileIndex = 0;
+		// construct projectile entities if they don't exist yet
+		if(!this->children)
+		{
+			// add projectiles to stage
+			for(u8 i = 0; i < this->projectileEjectorDefinition->maxProjectiles; i++)
+			{
+				Stage_spawnEntity(Game_getStage(Game_getInstance()), &this->projectileEjectorDefinition->projectilePositionedEntityDefinition, __SAFE_CAST(Container, this), (EventListener)ProjectileEjector_ejectProjectile);
+			}
+		}
+		else
+		{
+			// poll all projectiles to find a (re)useable one
+			VirtualNode node = VirtualList_begin(this->children);
+			Projectile projectile = NULL;
+			for(; node; node = VirtualNode_getNext(node))
+			{
+				projectile = __SAFE_CAST(Projectile, VirtualNode_getData(node));
+				if(Projectile_canBeReused(projectile))
+				{
+					// start ejection sequence
+					AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), this->projectileEjectorDefinition->ejectAnimationName);
+
+					// set projectile to moving state
+					Projectile_startMovement(projectile);
+
+					break;
+				}
+			}
+
+			// send delayed message to self to trigger next shot
+			MessageDispatcher_dispatchMessage(this->projectileEjectorDefinition->ejectDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
+		}
 	}
 }
 
-// spawn a projectile, this is the callback of the "Shoot" animation
-void ProjectileEjector_onShootAnimationComplete(ProjectileEjector this)
+void ProjectileEjector_setActive(ProjectileEjector this, bool active)
 {
-	ASSERT(this, "ProjectileEjector::onShootAnimationComplete: null this");
+	ASSERT(this, "ProjectileEjector::setActive: null this");
 
-	// TODO: add shoot and idle animations to projectile ejector definition?
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "Idle");
+	this->active = active;
+
+	if(this->active)
+	{
+		MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
+	}
+	else
+	{
+		MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kProjectileEject);
+	}
+}
+
+bool ProjectileEjector_isActive(ProjectileEjector this)
+{
+	ASSERT(this, "ProjectileEjector::isActive: null this");
+
+	return this->active;
+}
+
+// spawn a projectile, this is the callback of the "Eject" animation
+void ProjectileEjector_onEjectAnimationComplete(ProjectileEjector this)
+{
+	ASSERT(this, "ProjectileEjector::onEjectAnimationComplete: null this");
+
+	// play idle animation
+	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), this->projectileEjectorDefinition->idleAnimationName);
 }

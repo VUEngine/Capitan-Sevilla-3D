@@ -79,7 +79,7 @@ AnimationFunctionROMDef GRANNY_1_SHOOT_ANIM =
 	false,
 
 	// method to call on function completion
-	(EventListener)&ProjectileEjector_onShootAnimationComplete,
+	(EventListener)&ProjectileEjector_onEjectAnimationComplete,
 
 	// function's name
 	"Shoot",
@@ -149,8 +149,8 @@ ObjectSpriteROMDef GRANNY_1_SPRITE =
 		// texture definition
 		(TextureDefinition*)&GRANNY_1_TX,
 
-		// transparent
-		false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
 		// displacement
 		{0, 0, 0, 0},
@@ -208,11 +208,21 @@ ProjectileEjectorROMDef GRANNY_1_PE =
     },
 
 	// delay of the first projectile ejection
+	// (only relevant if initially active)
 	1500,
 
 	// pause between projectile ejections
 	2800,
 
+	// flag whether the ejector should be active on creation
+	true,
+
 	// maximum number of projectiles on screen at the same time
 	1,
+
+	// name of animation to play on projectile ejection
+	"Shoot",
+
+	// name of animation to play when idle
+	"Idle",
 };
