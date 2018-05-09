@@ -134,7 +134,7 @@ void CustomCameraEffectManager_startEffect(CustomCameraEffectManager this, int e
 
 		default:
 
-			CameraEffectManager_startEffect(CameraEffectManager_getInstance(), effect, args);
+			Base_startEffect(CameraEffectManager_getInstance(), effect, args);
 			break;
 	}
 }

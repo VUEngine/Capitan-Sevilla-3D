@@ -162,5 +162,5 @@ bool Projectile_canBeReused(Projectile this)
 {
 	ASSERT(this, "Projectile::handleMessage: null this");
 
-	return !__VIRTUAL_CALL(SpatialObject, isMoving, this);
+	return !SpatialObject_isMoving(this);
 }

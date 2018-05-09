@@ -664,7 +664,7 @@ fix10_6 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, co
 		return 0;
 	}
 
-	return Actor_getFrictionOnCollision(__SAFE_CAST(Actor, this), collidingObject, collidingObjectNormal);
+	return Base_getFrictionOnCollision(__SAFE_CAST(Actor, this), collidingObject, collidingObjectNormal);
 }
 
 // process collisions
@@ -701,7 +701,7 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 			break;
 	}
 
-	return Actor_enterCollision(__SAFE_CAST(Actor, this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
+	return Base_enterCollision(__SAFE_CAST(Actor, this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
 }
 
 // process collisions
@@ -824,7 +824,7 @@ bool Hero_handleMessage(Hero this, Telegram telegram)
 			break;
 	}
 
-	return Actor_handleMessage(__SAFE_CAST(Actor, this), telegram);
+	return Base_handleMessage(__SAFE_CAST(Actor, this), telegram);
 }
 
 // process message
