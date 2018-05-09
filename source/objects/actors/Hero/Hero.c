@@ -107,7 +107,7 @@ void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 int
 	ASSERT(this, "Hero::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, (ActorDefinition*)heroDefinition, id, internalId, name);
+	Base_constructor(this, (ActorDefinition*)heroDefinition, id, internalId, name);
 
 	// construct the hero's state machine
 	this->stateMachine = __NEW(StateMachine, this);
@@ -146,7 +146,7 @@ void Hero_destructor(Hero this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void Hero_ready(Hero this, bool recursive)
@@ -156,7 +156,7 @@ void Hero_ready(Hero this, bool recursive)
 	Entity_informShapesThatStartedMoving(__SAFE_CAST(Entity, this));
 
 	// call base
-	__CALL_BASE_METHOD(Actor, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	// override with progress from progress manager
 	ProgressManager progressManager = ProgressManager_getInstance();
@@ -617,17 +617,17 @@ static void Hero_onUserInput(Hero this, Object eventFirer __attribute__ ((unused
 
 	if(userInput.pressedKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyPressed, currentState, this, &userInput);
+		HeroState_onKeyPressed(currentState, this, &userInput);
 	}
 
 	if(userInput.releasedKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyReleased, currentState, this, &userInput);
+		HeroState_onKeyReleased(currentState, this, &userInput);
 	}
 
 	if(userInput.holdKey)
 	{
-		__VIRTUAL_CALL(HeroState, onKeyHold, currentState, this, &userInput);
+		HeroState_onKeyHold(currentState, this, &userInput);
 	}
 }
 
@@ -675,7 +675,7 @@ bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInforma
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape_getOwner(collidingShape);
 
-	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
+	switch(SpatialObject_getInGameType(collidingObject))
 	{
 		// speed things up by breaking early
 		case kShape:
@@ -712,7 +712,7 @@ bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInform
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape_getOwner(collidingShape);
 
-	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
+	switch(SpatialObject_getInGameType(collidingObject))
 	{
 		case kEnemy:
 
@@ -872,8 +872,8 @@ bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionI
 {
 	ASSERT(this, "Hero::isAboveEntity: null this");
 
-	RightBox shapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, shape);
-	RightBox collidingShapeRightBox = __VIRTUAL_CALL(Shape, getSurroundingRightBox, collisionInformation->collidingShape);
+	RightBox shapeRightBox = Shape_getSurroundingRightBox(shape);
+	RightBox collidingShapeRightBox = Shape_getSurroundingRightBox(collisionInformation->collidingShape);
 
 	fix10_6 heroBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body_getLastDisplacement(this->body).y << 1) / 2;
 
@@ -948,7 +948,7 @@ void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, 
 {
 	ASSERT(this, "Hero::exitCollision: null this");
 
-	__CALL_BASE_METHOD(Actor, exitCollision, this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
+	Base_exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
 u16 Hero_getAxesForShapeSyncWithDirection(Hero this __attribute__ ((unused)))
