@@ -81,7 +81,7 @@ static void AdjustmentScreenState_destructor(AdjustmentScreenState this)
 void AdjustmentScreenState_enter(AdjustmentScreenState this, void* owner)
 {
 	// call base
-	__CALL_BASE_METHOD(SplashScreenState, enter, this, owner);
+	Base_enter(this, owner);
 
 	// move the printing area out of the visible screen to save CPU resources
 	Printing_setWorldCoordinates(Printing_getInstance(), __SCREEN_WIDTH, __SCREEN_HEIGHT);

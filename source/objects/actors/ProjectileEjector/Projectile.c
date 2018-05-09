@@ -54,7 +54,7 @@ void Projectile_constructor(Projectile this, ProjectileDefinition* projectileDef
 	ASSERT(this, "Projectile::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, (ActorDefinition*)&projectileDefinition->actorDefinition, id, internalId, name);
+	Base_constructor(this, (ActorDefinition*)&projectileDefinition->actorDefinition, id, internalId, name);
 
 	// save definition
 	this->projectileDefinition = projectileDefinition;
@@ -69,7 +69,7 @@ void Projectile_destructor(Projectile this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void Projectile_ready(Projectile this, bool recursive)
@@ -77,7 +77,7 @@ void Projectile_ready(Projectile this, bool recursive)
 	ASSERT(this, "Projectile::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(Actor, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	Projectile_stopMovement(this);
 }

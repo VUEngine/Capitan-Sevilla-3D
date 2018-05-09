@@ -54,7 +54,7 @@ void FlowerPot_constructor(FlowerPot this, ProjectileDefinition* projectileDefin
 	ASSERT(this, "FlowerPot::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Projectile, projectileDefinition, id, internalId, name);
+	Base_constructor(this, projectileDefinition, id, internalId, name);
 }
 
 // class's constructor
@@ -64,7 +64,7 @@ void FlowerPot_destructor(FlowerPot this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // process collisions
@@ -76,7 +76,7 @@ bool FlowerPot_enterCollision(FlowerPot this, const CollisionInformation* collis
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape_getOwner(collidingShape);
 
-	switch(__VIRTUAL_CALL(SpatialObject, getInGameType, collidingObject))
+	switch(SpatialObject_getInGameType(collidingObject))
 	{
 		case kFloor:
 		{

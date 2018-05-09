@@ -82,7 +82,7 @@ static void LolaSoftScreenState_destructor(LolaSoftScreenState this)
 void LolaSoftScreenState_enter(LolaSoftScreenState this, void* owner)
 {
 	// call base
-	__CALL_BASE_METHOD(SplashScreenState, enter, this, owner);
+	Base_enter(this, owner);
 
 	// print "presents"
 	const char* strPresents = I18n_getText(I18n_getInstance(), STR_PRESENTS);

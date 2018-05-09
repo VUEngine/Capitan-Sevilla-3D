@@ -52,7 +52,7 @@ void __attribute__ ((noinline)) HeroState_constructor(HeroState this)
 void HeroState_destructor(HeroState this)
 {
 	// destroy base
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void HeroState_onKeyHold(HeroState this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))

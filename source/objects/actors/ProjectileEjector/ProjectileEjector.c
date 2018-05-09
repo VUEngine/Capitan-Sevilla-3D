@@ -55,7 +55,7 @@ void ProjectileEjector_constructor(ProjectileEjector this, ProjectileEjectorDefi
 	ASSERT(this, "ProjectileEjector::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(AnimatedEntity, (AnimatedEntityDefinition*)&projectileEjectorDefinition->animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, (AnimatedEntityDefinition*)&projectileEjectorDefinition->animatedEntityDefinition, id, internalId, name);
 
 	// save definition
 	this->projectileEjectorDefinition = projectileEjectorDefinition;
@@ -77,7 +77,7 @@ void ProjectileEjector_destructor(ProjectileEjector this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void ProjectileEjector_ready(ProjectileEjector this, bool recursive)
@@ -85,7 +85,7 @@ void ProjectileEjector_ready(ProjectileEjector this, bool recursive)
 	ASSERT(this, "ProjectileEjector::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(AnimatedEntity, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	if(!this->children)
 	{

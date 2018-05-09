@@ -66,7 +66,7 @@ void Collectable_constructor(Collectable this, AnimatedEntityDefinition* animate
 	ASSERT(this, "Collectable::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(AnimatedEntity, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -76,7 +76,7 @@ void Collectable_destructor(Collectable this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // state's handle message
@@ -97,7 +97,7 @@ bool Collectable_handleMessage(Collectable this, Telegram telegram)
 			Entity_activateShapes(__SAFE_CAST(Entity, this), false);
 
 			// additional action
-			__VIRTUAL_CALL(Collectable, collect, this);
+			Collectable_collect(this);
 
 			// delete myself now
 			Container_deleteMyself(__SAFE_CAST(Container, this));

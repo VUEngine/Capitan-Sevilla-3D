@@ -102,7 +102,7 @@ static bool PrecautionScreenState_processMessage(PrecautionScreenState this, voi
 				MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenAllowUserInput, NULL);
 
 				// call base class' method
-				__CALL_BASE_METHOD(SplashScreenState, processMessage, this, owner, telegram);
+				Base_processMessage(this, owner, telegram);
 
 				// make sure that keypad is not yet enabled
 				Game_disableKeypad(Game_getInstance());
@@ -125,7 +125,7 @@ void PrecautionScreenState_enter(PrecautionScreenState this, void* owner)
 	ProgressManager_initialize(ProgressManager_getInstance());
 
 	// call base
-	__CALL_BASE_METHOD(SplashScreenState, enter, this, owner);
+	Base_enter(this, owner);
 }
 
 static void PrecautionScreenState_print(PrecautionScreenState this __attribute__ ((unused)))

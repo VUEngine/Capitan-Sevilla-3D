@@ -86,7 +86,7 @@ void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
 	Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
 
 	// manipulate hero's shape
-	__VIRTUAL_CALL(HeroState, toggleShapes, this, owner, false);
+	HeroState_toggleShapes(this, owner, false);
 }
 
 void HeroMoving_execute(HeroMoving this __attribute__ ((unused)), void* owner)

@@ -61,7 +61,7 @@ __CLASS_NEW_END(Collision, inGameEntityDefinition, id, internalId, name);
 void Collision_constructor(Collision this, EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Entity, inGameEntityDefinition, id, internalId, name);
+	Base_constructor(this, inGameEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -69,7 +69,7 @@ void Collision_destructor(Collision this)
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // set extra info
@@ -84,7 +84,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 {
 	ASSERT(this, "Collision::setExtraInfo: null this");
 
-	__CALL_BASE_METHOD(Entity, initialTransform, this, environmentTransform, recursive);
+	Base_initialTransform(this, environmentTransform, recursive);
 
 	if(!this->shapes)
 	{
@@ -123,7 +123,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 		const Rotation* myRotation = Entity_getRotation(__SAFE_CAST(Entity, this));
 		const Scale* myScale = Entity_getScale(__SAFE_CAST(Entity, this));
 
-		__VIRTUAL_CALL(Shape, position, shape, myPosition, myRotation, myScale, &this->size);
+		Shape_position(shape, myPosition, myRotation, myScale, &this->size);
 
 		VirtualList_pushBack(this->shapes, shape);
 	}

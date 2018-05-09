@@ -80,7 +80,7 @@ void HeroKneel_enter(HeroKneel this __attribute__ ((unused)), void* owner)
 	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
 
 	// manipulate hero's shape
-	__VIRTUAL_CALL(HeroState, toggleShapes, this, owner, true);
+	HeroState_toggleShapes(this, owner, true);
 }
 
 // state's exit

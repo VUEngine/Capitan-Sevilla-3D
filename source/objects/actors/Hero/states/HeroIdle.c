@@ -83,7 +83,7 @@ void HeroIdle_enter(HeroIdle this __attribute__ ((unused)), void* owner)
 	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
 
 	// manipulate hero's shape
-	__VIRTUAL_CALL(HeroState, toggleShapes, __SAFE_CAST(HeroState, this), owner, false);
+	HeroState_toggleShapes(__SAFE_CAST(HeroState, this), owner, false);
 }
 
 // state's exit

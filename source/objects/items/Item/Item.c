@@ -66,7 +66,7 @@ void Item_constructor(Item this, AnimatedEntityDefinition* animatedEntityDefinit
 	ASSERT(this, "Item::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Collectable, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
@@ -76,7 +76,7 @@ void Item_destructor(Item this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void Item_collect(Item this)

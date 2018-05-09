@@ -125,7 +125,7 @@ static void PlatformerLevelState_getPositionedEntitiesToIgnore(PlatformerLevelSt
 static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 {
 	// call base
-	__CALL_BASE_METHOD(GameState, enter, this, owner);
+	Base_enter(this, owner);
 
 	// set the custom screen managers
 	Camera_setCameraMovementManager(Camera_getInstance(), __SAFE_CAST(CameraMovementManager, CustomCameraMovementManager_getInstance()));
@@ -263,7 +263,7 @@ static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
 	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, kEventHeroDied);
 
 	// call base
-	__CALL_BASE_METHOD(GameState, exit, this, owner);
+	Base_exit(this, owner);
 }
 
 static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
@@ -305,7 +305,7 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 #endif
 
 	// call base
-	__CALL_BASE_METHOD(GameState, suspend, this, owner);
+	Base_suspend(this, owner);
 }
 
 static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
@@ -315,7 +315,7 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 	Clock_pause(this->clock, false);
 
 	// call base
-	__CALL_BASE_METHOD(GameState, resume, this, owner);
+	Base_resume(this, owner);
 
 #ifdef __DEBUG_TOOLS
 	if(!Game_isExitingSpecialMode(Game_getInstance()))

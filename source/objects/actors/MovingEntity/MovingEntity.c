@@ -63,7 +63,7 @@ void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* movingE
 	ASSERT(this, "MovingEntity::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, (ActorDefinition*)&movingEntityDefinition->actorDefinition, id, internalId, name);
+	Base_constructor(this, (ActorDefinition*)&movingEntityDefinition->actorDefinition, id, internalId, name);
 
 	this->movingEntityDefinition = movingEntityDefinition;
 
@@ -100,7 +100,7 @@ void MovingEntity_destructor(MovingEntity this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // set definition
@@ -112,7 +112,7 @@ void MovingEntity_setDefinition(MovingEntity this, void* movingEntityDefinition)
 	// save definition
 	this->movingEntityDefinition = movingEntityDefinition;
 
-	__CALL_BASE_METHOD(Actor, setDefinition, this, &((MovingEntityDefinition*)movingEntityDefinition)->actorDefinition);
+	Base_setDefinition(this, &((MovingEntityDefinition*)movingEntityDefinition)->actorDefinition);
 }
 
 // ready method
@@ -121,7 +121,7 @@ void MovingEntity_ready(MovingEntity this, bool recursive)
 	ASSERT(this, "MovingEntity::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(Actor, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	// save initial position
 	switch(this->movingEntityDefinition->axis)

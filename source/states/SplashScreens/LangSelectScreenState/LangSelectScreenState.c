@@ -90,7 +90,7 @@ static void LangSelectScreenState_destructor(LangSelectScreenState this)
 void LangSelectScreenState_enter(LangSelectScreenState this, void* owner)
 {
 	// call base
-	__CALL_BASE_METHOD(SplashScreenState, enter, this, owner);
+	Base_enter(this, owner);
 
 	this->language = I18n_getActiveLanguage(I18n_getInstance());
 	LangSelectScreenState_print(this);

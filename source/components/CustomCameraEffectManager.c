@@ -157,7 +157,7 @@ void CustomCameraEffectManager_stopEffect(CustomCameraEffectManager this, int ef
 
 		default:
 
-			__CALL_BASE_METHOD(CameraEffectManager, stopEffect, this, effect);
+			Base_stopEffect(this, effect);
 			break;
 	}
 }

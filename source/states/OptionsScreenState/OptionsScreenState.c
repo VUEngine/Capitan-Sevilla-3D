@@ -97,7 +97,7 @@ static void OptionsScreenState_destructor(OptionsScreenState this)
 static void OptionsScreenState_enter(OptionsScreenState this, void* owner __attribute__ ((unused)))
 {
 	// call base
-	__CALL_BASE_METHOD(GameState, enter, this, owner);
+	Base_enter(this, owner);
 
 	// load stage
 	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&EMPTY_STAGE_ST, NULL, true);
@@ -123,7 +123,7 @@ static void OptionsScreenState_enter(OptionsScreenState this, void* owner __attr
 static void OptionsScreenState_exit(OptionsScreenState this, void* owner __attribute__ ((unused)))
 {
 	// call base
-	__CALL_BASE_METHOD(GameState, exit, this, owner);
+	Base_exit(this, owner);
 }
 
 // set next state

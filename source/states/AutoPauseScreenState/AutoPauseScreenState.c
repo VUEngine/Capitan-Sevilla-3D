@@ -125,7 +125,7 @@ static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner __
 static void AutoPauseScreenState_exit(AutoPauseScreenState this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
 {
 	// call base
-	__CALL_BASE_METHOD(GameState, exit, this, owner);
+	Base_exit(this, owner);
 
 	// destroy the state
 	__DELETE(this);

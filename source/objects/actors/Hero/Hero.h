@@ -71,7 +71,6 @@
 #define Hero_SET_VTABLE(ClassName)																		\
 		Actor_SET_VTABLE(ClassName)																		\
 		__VIRTUAL_SET(ClassName, Hero, ready);															\
-		__VIRTUAL_SET(ClassName, Hero, takeHitFrom);													\
 		__VIRTUAL_SET(ClassName, Hero, handlePropagatedMessage);										\
 		__VIRTUAL_SET(ClassName, Hero, handleMessage);													\
 		__VIRTUAL_SET(ClassName, Hero, suspend);														\

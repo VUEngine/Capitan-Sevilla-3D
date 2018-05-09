@@ -57,7 +57,7 @@ void MovingOneWayEntity_constructor(MovingOneWayEntity this, ActorDefinition* ac
 	ASSERT(this, "MovingOneWayEntity::constructor: null this");
 
 	// construct base
-	__CONSTRUCT_BASE(Actor, actorDefinition, id, internalId, name);
+	Base_constructor(this, actorDefinition, id, internalId, name);
 }
 
 void MovingOneWayEntity_destructor(MovingOneWayEntity this)
@@ -66,7 +66,7 @@ void MovingOneWayEntity_destructor(MovingOneWayEntity this)
 
 	// destroy the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 // set extra info
@@ -84,7 +84,7 @@ void MovingOneWayEntity_ready(MovingOneWayEntity this, bool recursive)
 	ASSERT(this, "MovingOneWayEntity::ready: null this");
 
 	// call base
-	__CALL_BASE_METHOD(Actor, ready, this, recursive);
+	Base_ready(this, recursive);
 
 	// start movement
 	MovingOneWayEntity_startMovement(this);

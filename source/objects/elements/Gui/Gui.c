@@ -81,7 +81,7 @@ __CLASS_NEW_END(Gui, animatedEntityDefinition, id, internalId, name);
 void Gui_constructor(Gui this, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	__CONSTRUCT_BASE(Entity, animatedEntityDefinition, id, internalId, name);
+	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
 
 	this->timeRemaining = 90;
 
@@ -104,7 +104,7 @@ void Gui_destructor(Gui this)
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__DESTROY_BASE;
+	Base_destructor();
 }
 
 void Gui_ready(Gui this, bool recursive)
@@ -114,7 +114,7 @@ void Gui_ready(Gui this, bool recursive)
 	Gui_printAll(this);
 
 	// call base
-	__CALL_BASE_METHOD(Entity, ready, this, recursive);
+	Base_ready(this, recursive);
 }
 
 void Gui_resume(Gui this)

@@ -92,7 +92,7 @@ static void TitleScreenState_destructor(TitleScreenState this)
 static void TitleScreenState_enter(TitleScreenState this, void* owner)
 {
 	// call base
-	__CALL_BASE_METHOD(GameState, enter, this, owner);
+	Base_enter(this, owner);
 
 	// disable user input
 	Game_disableKeypad(Game_getInstance());
@@ -115,13 +115,13 @@ static void TitleScreenState_enter(TitleScreenState this, void* owner)
 static void TitleScreenState_exit(TitleScreenState this, void* owner)
 {
 	// call base
-	__CALL_BASE_METHOD(GameState, exit, this, owner);
+	Base_exit(this, owner);
 }
 
 // state's resume
 static void TitleScreenState_resume(TitleScreenState this, void* owner)
 {
-	__CALL_BASE_METHOD(GameState, resume, this, owner);
+	Base_resume(this, owner);
 
 	Camera_startEffect(Camera_getInstance(), kFadeIn, __FADE_DELAY);
 }
@@ -131,7 +131,7 @@ static void TitleScreenState_suspend(TitleScreenState this, void* owner)
 {
 	Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
 
-	__CALL_BASE_METHOD(GameState, suspend, this, owner);
+	Base_suspend(this, owner);
 }
 
 void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInput)
