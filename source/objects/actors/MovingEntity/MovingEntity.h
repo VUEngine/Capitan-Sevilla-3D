@@ -43,25 +43,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define MovingEntity_METHODS(ClassName)																	\
-		Actor_METHODS(ClassName)																		\
-
-#define MovingEntity_SET_VTABLE(ClassName)																\
-		Actor_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, MovingEntity, ready);													\
-		__VIRTUAL_SET(ClassName, MovingEntity, handleMessage);											\
-		__VIRTUAL_SET(ClassName, MovingEntity, setDefinition);											\
-		__VIRTUAL_SET(ClassName, MovingEntity, getAxesForShapeSyncWithDirection);						\
-
-__CLASS(MovingEntity);
-
-#define MovingEntity_ATTRIBUTES																			\
-		/* it is derived from */																		\
-		Actor_ATTRIBUTES																				\
-		/* save my initial position */																	\
-		int initialPosition;																			\
-		/* definition pointer */																		\
-		MovingEntityDefinition* movingEntityDefinition;													\
 
 // definition in ROM memory
 typedef struct MovingEntityDefinition
@@ -97,16 +78,25 @@ typedef const MovingEntityDefinition MovingEntityROMDef;
 //---------------------------------------------------------------------------------------------------------
 
 // allocator
-__CLASS_NEW_DECLARE(MovingEntity, MovingEntityDefinition* MovingEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void MovingEntity_constructor(MovingEntity this, MovingEntityDefinition* MovingEntityDefinition, s16 id, s16 internalId, const char* const name);
-void MovingEntity_destructor(MovingEntity this);
-void MovingEntity_setDefinition(MovingEntity this, void* movingEntityDefinition);
-void MovingEntity_ready(MovingEntity this, bool recursive);
-bool MovingEntity_handleMessage(MovingEntity this, Telegram telegram);
-void MovingEntity_startMovement(MovingEntity this);
-void MovingEntity_checkDisplacement(MovingEntity this);
-u16 MovingEntity_getAxesForShapeSyncWithDirection(MovingEntity this);
+
+
+
+class MovingEntity : Actor
+{
+	/* save my initial position */																	
+	int initialPosition;																			
+	/* definition pointer */																		
+	MovingEntityDefinition* movingEntityDefinition;													
+	
+	void constructor(MovingEntityDefinition* MovingEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void startMovement();
+	void checkDisplacement();
+	override void ready(bool recursive);
+	override bool handleMessage(Telegram telegram);
+	override void setDefinition(void* movingEntityDefinition);
+	override u16 getAxesForShapeSyncWithDirection();
+}
 
 
 #endif

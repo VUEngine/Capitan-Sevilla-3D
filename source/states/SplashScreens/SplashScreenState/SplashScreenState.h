@@ -45,48 +45,24 @@ enum SplashScreensMessageTypes
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define SplashScreenState_METHODS(ClassName)															\
-		GameState_METHODS(ClassName)																	\
-		__VIRTUAL_DEC(ClassName, void, print);															\
-		__VIRTUAL_DEC(ClassName, void, processInput, u32 releasedKey);									\
+class SplashScreenState : GameState
+{
+	/* state to enter after this one */
+	GameState nextState;
+	/* definition of screen's stage */
+	StageDefinition* stageDefinition;
 
-// declare the virtual methods which are redefined
-#define SplashScreenState_SET_VTABLE(ClassName)															\
-		GameState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, SplashScreenState, enter);												\
-		__VIRTUAL_SET(ClassName, SplashScreenState, exit);												\
-		__VIRTUAL_SET(ClassName, SplashScreenState, resume);											\
-		__VIRTUAL_SET(ClassName, SplashScreenState, processMessage);									\
-		__VIRTUAL_SET(ClassName, SplashScreenState, processInput);										\
-		__VIRTUAL_SET(ClassName, SplashScreenState, print);												\
-		__VIRTUAL_SET(ClassName, SplashScreenState, processUserInput);									\
+	void constructor();
+	void setNextState(GameState nextState);
+	void loadNextState();
+	virtual void print();
+	virtual void processInput(u32 releasedKey);
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void resume(void* owner);
+	override bool processMessage(void* owner, Telegram telegram);
+	override void processUserInput(UserInput userInput);
+}
 
-__CLASS(SplashScreenState);
-
-#define SplashScreenState_ATTRIBUTES																	\
-		/* inherits */																					\
-		GameState_ATTRIBUTES																			\
-		/* state to enter after this one */																\
-		GameState nextState;																			\
-		/* definition of screen's stage */																\
-		StageDefinition* stageDefinition;																\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-void SplashScreenState_constructor(SplashScreenState this);
-void SplashScreenState_destructor(SplashScreenState this);
-void SplashScreenState_enter(SplashScreenState this, void* owner);
-void SplashScreenState_exit(SplashScreenState this, void* owner);
-void SplashScreenState_resume(SplashScreenState this, void* owner);
-bool SplashScreenState_processMessage(SplashScreenState this, void* owner, Telegram telegram);
-void SplashScreenState_processInput(SplashScreenState this, u32 releasedKey);
-void SplashScreenState_print(SplashScreenState this);
-void SplashScreenState_setNextState(SplashScreenState this, GameState nextState);
-void SplashScreenState_loadNextState(SplashScreenState this);
-void SplashScreenState_processUserInput(SplashScreenState this, UserInput userInput);
 
 #endif

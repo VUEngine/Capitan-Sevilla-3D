@@ -34,31 +34,16 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define TitleScreenState_METHODS(ClassName)																\
- 		GameState_METHODS(ClassName)											 						\
 
-// declare the virtual methods which are redefined
-#define TitleScreenState_SET_VTABLE(ClassName)															\
-		GameState_SET_VTABLE(ClassName)								 									\
-		__VIRTUAL_SET(ClassName, TitleScreenState, enter);												\
-		__VIRTUAL_SET(ClassName, TitleScreenState, exit);												\
-		__VIRTUAL_SET(ClassName, TitleScreenState, resume);												\
-		__VIRTUAL_SET(ClassName, TitleScreenState, suspend);											\
-		__VIRTUAL_SET(ClassName, TitleScreenState, processUserInput);									\
-
-__CLASS(TitleScreenState);
-
-#define TitleScreenState_ATTRIBUTES								 										\
-		GameState_ATTRIBUTES																			\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-TitleScreenState TitleScreenState_getInstance(void);
-void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInput);
+singleton class TitleScreenState : GameState
+{
+	static TitleScreenState getInstance();
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void resume(void* owner);
+	override void suspend(void* owner);
+	override void processUserInput(UserInput userInput);
+}
 
 
 #endif

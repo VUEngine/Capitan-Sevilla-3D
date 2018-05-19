@@ -43,48 +43,37 @@ const PixelSize collision_64_2_8 = 	{64 * 8, 	8 * 8, 		8 * 8};
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(Collision, Entity);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Collision, EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Collision, inGameEntityDefinition, id, internalId, name);
-
 // class's constructor
-void Collision_constructor(Collision this, EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Collision::constructor(EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, inGameEntityDefinition, id, internalId, name);
+	Base::constructor(inGameEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Collision_destructor(Collision this)
+void Collision::destructor()
 {
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // set extra info
-void Collision_setExtraInfo(Collision this, void* extraInfo)
+void Collision::setExtraInfo(void* extraInfo)
 {
-	ASSERT(this, "Collision::setExtraInfo: null this");
 
-	this->size = Size_getFromPixelSize(*((PixelSize*)extraInfo));
+
+	this->size = Size::getFromPixelSize(*((PixelSize*)extraInfo));
 }
 
-void Collision_initialTransform(Collision this, Transformation* environmentTransform, u32 recursive)
+void Collision::initialTransform(Transformation* environmentTransform, u32 recursive)
 {
-	ASSERT(this, "Collision::setExtraInfo: null this");
 
-	Base_initialTransform(this, environmentTransform, recursive);
+
+	Base::initialTransform(this, environmentTransform, recursive);
 
 	if(!this->shapes)
 	{
@@ -96,7 +85,7 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 			__TYPE(Box),
 
 			// size
-			PixelSize_getFromSize(this->size),
+			PixelSize::getFromSize(this->size),
 
 			// displacement modifier
 			{0, 0, -1, 0},
@@ -117,14 +106,14 @@ void Collision_initialTransform(Collision this, Transformation* environmentTrans
 			kNoLayer,
 		};
 
-		Shape shape = CollisionManager_createShape(Game_getCollisionManager(Game_getInstance()), __SAFE_CAST(SpatialObject, this), &shapeDefinition);
+		Shape shape = CollisionManager::createShape(Game::getCollisionManager(Game::getInstance()), SpatialObject::safeCast(this), &shapeDefinition);
 
-		const Vector3D* myPosition = Entity_getPosition(__SAFE_CAST(Entity, this));
-		const Rotation* myRotation = Entity_getRotation(__SAFE_CAST(Entity, this));
-		const Scale* myScale = Entity_getScale(__SAFE_CAST(Entity, this));
+		const Vector3D* myPosition = Entity::getPosition(Entity::safeCast(this));
+		const Rotation* myRotation = Entity::getRotation(Entity::safeCast(this));
+		const Scale* myScale = Entity::getScale(Entity::safeCast(this));
 
-		Shape_position(shape, myPosition, myRotation, myScale, &this->size);
+		Shape::position(shape, myPosition, myRotation, myScale, &this->size);
 
-		VirtualList_pushBack(this->shapes, shape);
+		VirtualList::pushBack(this->shapes, shape);
 	}
 }

@@ -34,133 +34,122 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(Projectile, Actor);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Projectile, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Projectile, projectileDefinition, id, internalId, name);
-
 // class's constructor
-void Projectile_constructor(Projectile this, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
+void Projectile::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "Projectile::constructor: null this");
+
 
 	// construct base
-	Base_constructor(this, (ActorDefinition*)&projectileDefinition->actorDefinition, id, internalId, name);
+	Base::constructor((ActorDefinition*)&projectileDefinition->actorDefinition, id, internalId, name);
 
 	// save definition
 	this->projectileDefinition = projectileDefinition;
 }
 
 // class's constructor
-void Projectile_destructor(Projectile this)
+void Projectile::destructor()
 {
-	ASSERT(this, "Projectile::destructor: null this");
 
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kProjectileCheckPosition);
+
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileCheckPosition);
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void Projectile_ready(Projectile this, bool recursive)
+void Projectile::ready(bool recursive)
 {
-	ASSERT(this, "Projectile::ready: null this");
+
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 
-	Projectile_stopMovement(this);
+	Projectile::stopMovement(this);
 }
 
 // start moving
-void Projectile_startMovement(Projectile this)
+void Projectile::startMovement()
 {
 	// set back to local position
-	Actor_setLocalPosition(__SAFE_CAST(Actor, this), &this->projectileDefinition->position);
+	Actor::setLocalPosition(Actor::safeCast(this), &this->projectileDefinition->position);
 
 	// activate shapes
-	Entity_activateShapes(__SAFE_CAST(Entity, this), true);
+	Entity::activateShapes(Entity::safeCast(this), true);
 
 	// show me
-	Entity_show(__SAFE_CAST(Entity, this));
+	Entity::show(Entity::safeCast(this));
 
 	// set to moving
 	/*
 	if(this->projectileDefinition->movementType == __UNIFORM_MOVEMENT)
 	{
 	*/
-		Actor_moveUniformly(__SAFE_CAST(Actor, this), &this->projectileDefinition->velocity);
+		Actor::moveUniformly(Actor::safeCast(this), &this->projectileDefinition->velocity);
 	/*
 	}
 	else
 	{
-		Actor_addForce(__SAFE_CAST(Actor, this), &this->projectileDefinition->velocity);
+		Actor::addForce(Actor::safeCast(this), &this->projectileDefinition->velocity);
 	}
 	*/
 
 	// send first message of periodic position check
 	if(this->projectileDefinition->checkDelay > -1)
 	{
-		MessageDispatcher_dispatchMessage(this->projectileDefinition->checkDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckPosition, NULL);
+		MessageDispatcher::dispatchMessage(this->projectileDefinition->checkDelay, Object::safeCast(this), Object::safeCast(this), kProjectileCheckPosition, NULL);
 	}
 }
 
 // move back to ejector
-void Projectile_stopMovement(Projectile this)
+void Projectile::stopMovement()
 {
 	// stop movement
-	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
+	Actor::stopAllMovement(Actor::safeCast(this));
 
 	// deactivate shapes
-	Entity_activateShapes(__SAFE_CAST(Entity, this), false);
+	Entity::activateShapes(Entity::safeCast(this), false);
 
 	// hide me
-	Entity_hide(__SAFE_CAST(Entity, this));
+	Entity::hide(Entity::safeCast(this));
 }
 
-static void Projectile_checkPosition(Projectile this)
+void Projectile::checkPosition()
 {
 	if(	(this->projectileDefinition->maxPosition.x && (__ABS(this->transformation.globalPosition.x) > this->projectileDefinition->maxPosition.x)) ||
 		(this->projectileDefinition->maxPosition.y && (__ABS(this->transformation.globalPosition.y) > this->projectileDefinition->maxPosition.y)) ||
 		(this->projectileDefinition->maxPosition.z && (__ABS(this->transformation.globalPosition.z) > this->projectileDefinition->maxPosition.z)))
 	{
-		Projectile_stopMovement(this);
+		Projectile::stopMovement(this);
 	}
 	else
 	{
-		MessageDispatcher_dispatchMessage(this->projectileDefinition->checkDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileCheckPosition, NULL);
+		MessageDispatcher::dispatchMessage(this->projectileDefinition->checkDelay, Object::safeCast(this), Object::safeCast(this), kProjectileCheckPosition, NULL);
 	}
 }
 
 // state's handle message
-bool Projectile_handleMessage(Projectile this, Telegram telegram)
+bool Projectile::handleMessage(Telegram telegram)
 {
-	ASSERT(this, "Projectile::handleMessage: null this");
 
-	switch(Telegram_getMessage(telegram))
+
+	switch(Telegram::getMessage(telegram))
 	{
 		case kProjectileCheckPosition:
 
-			Projectile_checkPosition(this);
+			Projectile::checkPosition(this);
 			break;
 	}
 
 	return false;
 }
 
-bool Projectile_canBeReused(Projectile this)
+bool Projectile::canBeReused()
 {
-	ASSERT(this, "Projectile::handleMessage: null this");
 
-	return !SpatialObject_isMoving(this);
+
+	return !SpatialObject::isMoving(this);
 }

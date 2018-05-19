@@ -35,27 +35,20 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define EventManager_METHODS(ClassName)																	\
-		Object_METHODS(ClassName)																		\
-
-// declare the virtual methods which are redefined
-#define EventManager_SET_VTABLE(ClassName)																\
-		Object_SET_VTABLE(ClassName)																	\
-
-// declare a EventManager
-__CLASS(EventManager);
-
-#define EventManager_ATTRIBUTES																			\
-		Object_ATTRIBUTES																				\
-
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-EventManager EventManager_getInstance();
 
-void EventManager_destructor(EventManager this);
+
+
+
+singleton class EventManager : Object
+{
+
+	static EventManager getInstance();
+}
 
 
 #endif

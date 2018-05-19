@@ -38,92 +38,73 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(Collectable, AnimatedEntity);
-
-
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void Collectable_collect(Collectable this);
-void Collectable_removeFromStage(Collectable this);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Collectable, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Collectable, animatedEntityDefinition, id, internalId, name);
-
 // class's constructor
-void Collectable_constructor(Collectable this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Collectable::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "Collectable::constructor: null this");
+
 
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Collectable_destructor(Collectable this)
+void Collectable::destructor()
 {
-	ASSERT(this, "Collectable::destructor: null this");
+
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // state's handle message
-bool Collectable_handleMessage(Collectable this, Telegram telegram)
+bool Collectable::handleMessage(Telegram telegram)
 {
-	ASSERT(this, "Collectable::handleMessage: null this");
+
 
 	extern const u16 COLLECT_SND[];
 
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kItemTaken:
 
 			// play collect sound
-			SoundManager_playFxSound(SoundManager_getInstance(), COLLECT_SND, this->transformation.globalPosition);
+			SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 
 			// set shape to inactive so no other hits with this item can occur
-			Entity_activateShapes(__SAFE_CAST(Entity, this), false);
+			Entity::activateShapes(Entity::safeCast(this), false);
 
 			// additional action
-			Collectable_collect(this);
+			Collectable::collect(this);
 
 			// delete myself now
-			Container_deleteMyself(__SAFE_CAST(Container, this));
+			Container::deleteMyself(Container::safeCast(this));
 
 			// send message to remove item in next game frame
-			//MessageDispatcher_dispatchMessage(__GAME_FRAME_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kRemoveFromStage, NULL);
+			//MessageDispatcher::dispatchMessage(__GAME_FRAME_DURATION, Object::safeCast(this), Object::safeCast(this), kRemoveFromStage, NULL);
 			break;
 /*
 		case kRemoveFromStage:
 
-			Collectable_removeFromStage(this);
+			Collectable::removeFromStage(this);
 			break;
 */	}
 
 	return false;
 }
 
-void Collectable_collect(Collectable this __attribute__ ((unused)))
+void Collectable::collect()
 {
-	ASSERT(this, "Collectable::collect: null this");
+
 }
 /*
-void Collectable_removeFromStage(Collectable this)
+void Collectable::removeFromStage()
 {
-	ASSERT(this, "Collectable::removeFromStage: null this");
 
-	Container_deleteMyself(__SAFE_CAST(Container, this));
+
+	Container::deleteMyself(Container::safeCast(this));
 }
 */

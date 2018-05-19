@@ -34,31 +34,14 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define HeroDead_METHODS(ClassName)																		\
-		HeroState_METHODS(ClassName)																	\
 
-// declare the virtual methods which are redefined
-#define HeroDead_SET_VTABLE(ClassName)																	\
-		HeroState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, HeroDead, enter);														\
-		__VIRTUAL_SET(ClassName, HeroDead, exit);														\
-		__VIRTUAL_SET(ClassName, HeroDead, onKeyPressed);												\
-
-__CLASS(HeroDead);
-
-#define HeroDead_ATTRIBUTES																				\
-		/* inherits */																					\
-		HeroState_ATTRIBUTES																			\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-HeroDead HeroDead_getInstance();
-
-void HeroDead_onKeyPressed(HeroDead this, void* owner, const UserInput* userInput);
+singleton class HeroDead : HeroState
+{
+	static HeroDead getInstance();
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void onKeyPressed(void* owner, const UserInput* userInput);
+}
 
 
 #endif

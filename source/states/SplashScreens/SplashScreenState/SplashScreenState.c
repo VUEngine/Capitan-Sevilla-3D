@@ -32,92 +32,76 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void SplashScreenState_onFadeInComplete(SplashScreenState this, Object eventFirer);
-static void SplashScreenState_onFadeOutComplete(SplashScreenState this, Object eventFirer);
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(SplashScreenState, GameState);
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void SplashScreenState_constructor(SplashScreenState this)
+void SplashScreenState::constructor()
 {
-	__CONSTRUCT_BASE(GameState);
+	Base::constructor();
 
 	this->stageDefinition = NULL;
 }
 
 // class's destructor
-void SplashScreenState_destructor(SplashScreenState this)
+void SplashScreenState::destructor()
 {
 	// destroy the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // state's enter
-void SplashScreenState_enter(SplashScreenState this, void* owner)
+void SplashScreenState::enter(void* owner)
 {
 	// call base
-	Base_enter(this, owner);
+	Base::enter(this, owner);
 
 	if(this->stageDefinition)
 	{
-		GameState_loadStage(__SAFE_CAST(GameState, this), this->stageDefinition, NULL, true);
+		GameState::loadStage(GameState::safeCast(this), this->stageDefinition, NULL, true);
 	}
 
-	SplashScreenState_print(this);
+	SplashScreenState::print(this);
 
 	// start fade in effect in 1 ms, because a full render cycle is needed to put everything in place
-	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenStarted, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kScreenStarted, NULL);
 
-	Game_disableKeypad(Game_getInstance());
+	Game::disableKeypad(Game::getInstance());
 }
 
 // state's exit
-void SplashScreenState_exit(SplashScreenState this, void* owner)
+void SplashScreenState::exit(void* owner)
 {
 	// call base
-	Base_exit(this, owner);
+	Base::exit(this, owner);
 
 	// destroy the state
 	__DELETE(this);
 }
 
 // state's resume
-void SplashScreenState_resume(SplashScreenState this, void* owner)
+void SplashScreenState::resume(void* owner)
 {
-	Base_resume(this, owner);
+	Base::resume(this, owner);
 
-	SplashScreenState_print(this);
+	SplashScreenState::print(this);
 
 #ifdef __DEBUG_TOOLS
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 
 	// start a fade in effect
-	Camera_startEffect(Camera_getInstance(), kFadeIn, __FADE_DELAY);
+	Camera::startEffect(Camera::getInstance(), kFadeIn, __FADE_DELAY);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -130,29 +114,29 @@ void SplashScreenState_resume(SplashScreenState this, void* owner)
 #endif
 }
 
-void SplashScreenState_processUserInput(SplashScreenState this, UserInput userInput)
+void SplashScreenState::processUserInput(UserInput userInput)
 {
 	if(userInput.pressedKey & ~K_PWR)
 	{
-		SplashScreenState_processInput(this, userInput.pressedKey);
+		SplashScreenState::processInput(this, userInput.pressedKey);
 	}
 }
 
 // state's handle message
-bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attribute__ ((unused)), Telegram telegram)
+bool SplashScreenState::processMessage(void* owner __attribute__ ((unused)), Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kScreenStarted:
 
 			// start fade in effect
-			Camera_startEffect(Camera_getInstance(),
+			Camera::startEffect(Camera::getInstance(),
 				kFadeTo, // effect type
 				0, // initial delay (in ms)
 				NULL, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))SplashScreenState_onFadeInComplete, // callback function
-				__SAFE_CAST(Object, this) // callback scope
+				(void (*)(Object, Object))SplashScreenState::onFadeInComplete, // callback function
+				Object::safeCast(this) // callback scope
 			);
 
 			break;
@@ -161,51 +145,51 @@ bool SplashScreenState_processMessage(SplashScreenState this, void* owner __attr
 	return false;
 }
 
-void SplashScreenState_processInput(SplashScreenState this, u32 pressedKey __attribute__ ((unused)))
+void SplashScreenState::processInput(u32 pressedKey __attribute__ ((unused)))
 {
-	SplashScreenState_loadNextState(this);
+	SplashScreenState::loadNextState(this);
 }
 
-void SplashScreenState_print(SplashScreenState this __attribute__ ((unused)))
+void SplashScreenState::print()
 {
 }
 
-void SplashScreenState_setNextState(SplashScreenState this, GameState nextState)
+void SplashScreenState::setNextState(GameState nextState)
 {
 	this->nextState = nextState;
 }
 
-void SplashScreenState_loadNextState(SplashScreenState this)
+void SplashScreenState::loadNextState()
 {
 	// disable user input
-	Game_disableKeypad(Game_getInstance());
+	Game::disableKeypad(Game::getInstance());
 
 	// start fade out effect
 	Brightness brightness = (Brightness){0, 0, 0};
-	Camera_startEffect(Camera_getInstance(),
+	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		&brightness, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))SplashScreenState_onFadeOutComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		(void (*)(Object, Object))SplashScreenState::onFadeOutComplete, // callback function
+		Object::safeCast(this) // callback scope
 	);
 }
 
 // handle event
-static void SplashScreenState_onFadeInComplete(SplashScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void SplashScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "SplashScreenState::onFadeInComplete: null this");
+
 
 	// enable user input
-	Game_enableKeypad(Game_getInstance());
+	Game::enableKeypad(Game::getInstance());
 }
 
 // handle event
-static void SplashScreenState_onFadeOutComplete(SplashScreenState this, Object eventFirer __attribute__ ((unused)))
+void SplashScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "SplashScreenState::onFadeOutComplete: null this");
+
 
 	// change to next stage
-	Game_changeState(Game_getInstance(), this->nextState);
+	Game::changeState(Game::getInstance(), this->nextState);
 }

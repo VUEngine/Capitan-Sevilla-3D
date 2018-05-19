@@ -35,21 +35,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Projectile_METHODS(ClassName)																	\
-		Actor_METHODS(ClassName)																		\
-
-#define Projectile_SET_VTABLE(ClassName)																\
-		Actor_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, Projectile, ready);													\
-		__VIRTUAL_SET(ClassName, Projectile, handleMessage);											\
-
-__CLASS(Projectile);
-
-#define Projectile_ATTRIBUTES																			\
-		Actor_ATTRIBUTES																				\
-		/* definition pointer */																		\
-		ProjectileDefinition* projectileDefinition;														\
-
 
 typedef struct ProjectileDefinition
 {
@@ -78,15 +63,22 @@ typedef const ProjectileDefinition ProjectileROMDef;
 //---------------------------------------------------------------------------------------------------------
 
 // allocator
-__CLASS_NEW_DECLARE(Projectile, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
 
-void Projectile_constructor(Projectile this, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
-void Projectile_destructor(Projectile this);
-void Projectile_startMovement(Projectile this);
-void Projectile_stopMovement(Projectile this);
-void Projectile_ready(Projectile this, bool recursive);
-bool Projectile_handleMessage(Projectile this, Telegram telegram);
-bool Projectile_canBeReused(Projectile this);
+
+
+
+class Projectile : Actor
+{
+	/* definition pointer */																		
+	ProjectileDefinition* projectileDefinition;														
+	
+	void constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
+	void startMovement();
+	void stopMovement();
+	bool canBeReused();
+	override void ready(bool recursive);
+	override bool handleMessage(Telegram telegram);
+}
 
 
 #endif

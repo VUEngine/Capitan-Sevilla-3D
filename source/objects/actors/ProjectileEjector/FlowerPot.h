@@ -35,29 +35,22 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define FlowerPot_METHODS(ClassName)																	\
-		Projectile_METHODS(ClassName)																	\
-
-#define FlowerPot_SET_VTABLE(ClassName)																	\
-		Projectile_SET_VTABLE(ClassName)																\
-		__VIRTUAL_SET(ClassName, FlowerPot, enterCollision);											\
-
-__CLASS(FlowerPot);
-
-#define FlowerPot_ATTRIBUTES																			\
-		Projectile_ATTRIBUTES																			\
-
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 // allocator
-__CLASS_NEW_DECLARE(FlowerPot, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
 
-void FlowerPot_constructor(FlowerPot this, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
-void FlowerPot_destructor(FlowerPot this);
-bool FlowerPot_enterCollision(FlowerPot this, const CollisionInformation* collisionInformation);
+
+
+
+class FlowerPot : Projectile
+{
+	
+	void constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
+	override bool enterCollision(const CollisionInformation* collisionInformation);
+}
 
 
 #endif

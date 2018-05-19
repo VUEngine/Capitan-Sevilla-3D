@@ -45,103 +45,85 @@ extern LangROMDef* __LANGUAGES[];
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void LangSelectScreenState_destructor(LangSelectScreenState this);
-static void LangSelectScreenState_constructor(LangSelectScreenState this);
-static void LangSelectScreenState_processInput(LangSelectScreenState this, u32 pressedKey);
-static void LangSelectScreenState_print(LangSelectScreenState this);
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(LangSelectScreenState, SplashScreenState);
-__SINGLETON_DYNAMIC(LangSelectScreenState);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-static void __attribute__ ((noinline)) LangSelectScreenState_constructor(LangSelectScreenState this)
+void LangSelectScreenState::constructor()
 {
-	ASSERT(this, "LangSelectScreenState::constructor: null this");
 
-	__CONSTRUCT_BASE(SplashScreenState);
+
+	Base::constructor();
 
 	// init members
 	this->language = 0;
-	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, AutoPauseSelectScreenState_getInstance()));
+	SplashScreenState::setNextState(SplashScreenState::safeCast(this), GameState::safeCast(AutoPauseSelectScreenState::getInstance()));
 	this->stageDefinition = (StageDefinition*)&LANG_SELECT_SCREEN_STAGE_ST;
 }
 
-static void LangSelectScreenState_destructor(LangSelectScreenState this)
+void LangSelectScreenState::destructor()
 {
-	ASSERT(this, "LangSelectScreenState::destructor: null this");
+
 
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-void LangSelectScreenState_enter(LangSelectScreenState this, void* owner)
+void LangSelectScreenState::enter(void* owner)
 {
 	// call base
-	Base_enter(this, owner);
+	Base::enter(this, owner);
 
-	this->language = I18n_getActiveLanguage(I18n_getInstance());
-	LangSelectScreenState_print(this);
+	this->language = I18n::getActiveLanguage(I18n::getInstance());
+	LangSelectScreenState::print(this);
 }
 
-void LangSelectScreenState_changeLanguage(LangSelectScreenState this, bool increase)
+void LangSelectScreenState::changeLanguage(bool increase)
 {
 	int numLangs = sizeof(*__LANGUAGES);
 	this->language = increase
 		? (this->language < (numLangs - 1)) ? this->language + 1 : 0
 		: (this->language > 0) ? this->language - 1 : numLangs - 1;
-	I18n_setActiveLanguage(I18n_getInstance(), this->language);
-	ProgressManager_setLanguage(ProgressManager_getInstance(), this->language);
-	LangSelectScreenState_print(this);
+	I18n::setActiveLanguage(I18n::getInstance(), this->language);
+	ProgressManager::setLanguage(ProgressManager::getInstance(), this->language);
+	LangSelectScreenState::print(this);
 }
 
-void LangSelectScreenState_processInput(LangSelectScreenState this, u32 pressedKey)
+void LangSelectScreenState::processInput(u32 pressedKey)
 {
 	if((pressedKey & K_LL) || (pressedKey & K_RL))
 	{
-		LangSelectScreenState_changeLanguage(this, false);
+		LangSelectScreenState::changeLanguage(this, false);
 	}
 	else if((pressedKey & K_LR) || (pressedKey & K_RR))
 	{
-		LangSelectScreenState_changeLanguage(this, true);
+		LangSelectScreenState::changeLanguage(this, true);
 	}
 	else if((pressedKey & K_A) || (pressedKey & K_STA))
 	{
-		SplashScreenState_loadNextState(__SAFE_CAST(SplashScreenState, this));
+		SplashScreenState::loadNextState(SplashScreenState::safeCast(this));
 	}
 }
 
-static void LangSelectScreenState_print(LangSelectScreenState this __attribute__ ((unused)))
+void LangSelectScreenState::print()
 {
 	// move cursor entity
-	Entity cursorEntity = __SAFE_CAST(Entity, Container_getChildByName(
-		__SAFE_CAST(Container, Game_getStage(Game_getInstance())),
+	Entity cursorEntity = Entity::safeCast(Container::getChildByName(
+		Container::safeCast(Game::getStage(Game::getInstance())),
 		"Cursor",
 		false
 	));
 	Vector3D position = {__PIXELS_TO_METERS(120 + this->language * 48), __PIXELS_TO_METERS(96), 0};
-	Entity_setLocalPosition(cursorEntity, &position);
+	Entity::setLocalPosition(cursorEntity, &position);
 
 	/*
 	// print header
-	const char* strLanguageSelectTitle = I18n_getText(I18n_getInstance(), STR_LANGUAGE);
-	FontSize strLanguageSelectTitleSize = Printing_getTextSize(Printing_getInstance(), strLanguageSelectTitle, NULL);
-	Printing_text(Printing_getInstance(), "                                                ", 0, 8, NULL);
-	Printing_text(
-		Printing_getInstance(),
-		Utilities_toUppercase(strLanguageSelectTitle),
+	const char* strLanguageSelectTitle = I18n::getText(I18n::getInstance(), STR_LANGUAGE);
+	FontSize strLanguageSelectTitleSize = Printing::getTextSize(Printing::getInstance(), strLanguageSelectTitle, NULL);
+	Printing::text(Printing::getInstance(), "                                                ", 0, 8, NULL);
+	Printing::text(
+		Printing::getInstance(),
+		Utilities::toUppercase(strLanguageSelectTitle),
 		(__SCREEN_WIDTH_IN_CHARS - strLanguageSelectTitleSize.x) >> 1,
 		8,
 		NULL
@@ -149,12 +131,12 @@ static void LangSelectScreenState_print(LangSelectScreenState this __attribute__
 	*/
 
 	// print current language
-	const char* strActiveLanguageName = (char*)I18n_getActiveLanguageName(I18n_getInstance());
-	FontSize strActiveLanguageNameSize = Printing_getTextSize(Printing_getInstance(), strActiveLanguageName, NULL);
-	Printing_text(Printing_getInstance(), "                                                ", 0, 15, NULL);
-	Printing_text(
-		Printing_getInstance(),
-		Utilities_toUppercase(strActiveLanguageName),
+	const char* strActiveLanguageName = (char*)I18n::getActiveLanguageName(I18n::getInstance());
+	FontSize strActiveLanguageNameSize = Printing::getTextSize(Printing::getInstance(), strActiveLanguageName, NULL);
+	Printing::text(Printing::getInstance(), "                                                ", 0, 15, NULL);
+	Printing::text(
+		Printing::getInstance(),
+		Utilities::toUppercase(strActiveLanguageName),
 		(__SCREEN_WIDTH_IN_CHARS - strActiveLanguageNameSize.x) >> 1,
 		15,
 		NULL

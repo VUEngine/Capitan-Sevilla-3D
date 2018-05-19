@@ -35,20 +35,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Collectable_METHODS(ClassName)																	\
-		AnimatedEntity_METHODS(ClassName)																\
-		__VIRTUAL_DEC(ClassName, void, collect);														\
-
-#define Collectable_SET_VTABLE(ClassName)																\
-		AnimatedEntity_SET_VTABLE(ClassName)															\
-		__VIRTUAL_SET(ClassName, Collectable, handleMessage);											\
-		__VIRTUAL_SET(ClassName, Collectable, collect);													\
-
-__CLASS(Collectable);
-
-#define Collectable_ATTRIBUTES																			\
-		/* it is derived from */																		\
-		AnimatedEntity_ATTRIBUTES																		\
 
 typedef const AnimatedEntityDefinition CollectableDefinition;
 typedef const CollectableDefinition CollectableROMDef;
@@ -58,13 +44,18 @@ typedef const CollectableDefinition CollectableROMDef;
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Collectable, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Collectable_constructor(Collectable this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-void Collectable_destructor(Collectable this);
-void Collectable_collect(Collectable this);
-bool Collectable_handleMessage(Collectable this, Telegram telegram);
-void Collectable_removeFromStage(Collectable this);
+
+
+
+class Collectable : AnimatedEntity
+{
+	
+	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void removeFromStage();
+	virtual void collect();
+	override bool handleMessage(Telegram telegram);
+}
 
 
 #endif

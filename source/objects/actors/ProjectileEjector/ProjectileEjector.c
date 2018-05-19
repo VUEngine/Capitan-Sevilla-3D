@@ -35,27 +35,16 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(ProjectileEjector, AnimatedEntity);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-__CLASS_NEW_DEFINITION(ProjectileEjector, ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(ProjectileEjector, projectileEjectorDefinition, id, internalId, name);
-
 // class's constructor
-void ProjectileEjector_constructor(ProjectileEjector this, ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name)
+void ProjectileEjector::constructor(ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "ProjectileEjector::constructor: null this");
+
 
 	// construct base
-	Base_constructor(this, (AnimatedEntityDefinition*)&projectileEjectorDefinition->animatedEntityDefinition, id, internalId, name);
+	Base::constructor((AnimatedEntityDefinition*)&projectileEjectorDefinition->animatedEntityDefinition, id, internalId, name);
 
 	// save definition
 	this->projectileEjectorDefinition = projectileEjectorDefinition;
@@ -65,48 +54,48 @@ void ProjectileEjector_constructor(ProjectileEjector this, ProjectileEjectorDefi
 }
 
 // class's destructor
-void ProjectileEjector_destructor(ProjectileEjector this)
+void ProjectileEjector::destructor()
 {
-	ASSERT(this, "ProjectileEjector::destructor: null this");
+
 
 	// discard pending delayed messages
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kProjectileEject);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileEject);
 
 	// not necessary to manually destroy the Projectile here as all children are automatically
 	// destroyed as well when an entity is unloaded
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void ProjectileEjector_ready(ProjectileEjector this, bool recursive)
+void ProjectileEjector::ready(bool recursive)
 {
-	ASSERT(this, "ProjectileEjector::ready: null this");
+
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 
 	// play idle animation
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), this->projectileEjectorDefinition->idleAnimationName);
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->idleAnimationName);
 
 	// send delayed message to self to trigger first shot
 	if(this->active)
 	{
-		MessageDispatcher_dispatchMessage(this->projectileEjectorDefinition->initialEjectDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
+		MessageDispatcher::dispatchMessage(this->projectileEjectorDefinition->initialEjectDelay, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
 	}
 }
 
 // state's handle message
-bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram)
+bool ProjectileEjector::handleMessage(Telegram telegram)
 {
-	ASSERT(this, "ProjectileEjector::handleMessage: null this");
 
-	switch(Telegram_getMessage(telegram))
+
+	switch(Telegram::getMessage(telegram))
 	{
 		case kProjectileEject:
 
-			ProjectileEjector_ejectProjectile(this);
+			ProjectileEjector::ejectProjectile(this);
 			break;
 	}
 
@@ -114,9 +103,9 @@ bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram)
 }
 
 // eject a projectile
-void ProjectileEjector_ejectProjectile(ProjectileEjector this)
+void ProjectileEjector::ejectProjectile()
 {
-	ASSERT(this, "ProjectileEjector::ejectProjectile: null this");
+
 
 	if(this->active)
 	{
@@ -126,63 +115,63 @@ void ProjectileEjector_ejectProjectile(ProjectileEjector this)
 			// add projectiles to stage
 			for(u8 i = 0; i < this->projectileEjectorDefinition->maxProjectiles; i++)
 			{
-				Stage_spawnEntity(Game_getStage(Game_getInstance()), &this->projectileEjectorDefinition->projectilePositionedEntityDefinition, __SAFE_CAST(Container, this), (EventListener)ProjectileEjector_ejectProjectile);
+				Stage::spawnEntity(Game::getStage(Game::getInstance()), &this->projectileEjectorDefinition->projectilePositionedEntityDefinition, Container::safeCast(this), (EventListener)ProjectileEjector::ejectProjectile);
 			}
 		}
 		else
 		{
 			// poll all projectiles to find a (re)useable one
-			VirtualNode node = VirtualList_begin(this->children);
+			VirtualNode node = VirtualList::begin(this->children);
 			Projectile projectile = NULL;
-			for(; node; node = VirtualNode_getNext(node))
+			for(; node; node = VirtualNode::getNext(node))
 			{
-				projectile = __SAFE_CAST(Projectile, VirtualNode_getData(node));
-				if(Projectile_canBeReused(projectile))
+				projectile = Projectile::safeCast(VirtualNode::getData(node));
+				if(Projectile::canBeReused(projectile))
 				{
 					// start ejection sequence
-					AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), this->projectileEjectorDefinition->ejectAnimationName);
+					AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->ejectAnimationName);
 
 					// set projectile to moving state
-					Projectile_startMovement(projectile);
+					Projectile::startMovement(projectile);
 
 					break;
 				}
 			}
 
 			// send delayed message to self to trigger next shot
-			MessageDispatcher_dispatchMessage(this->projectileEjectorDefinition->ejectDelay, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
+			MessageDispatcher::dispatchMessage(this->projectileEjectorDefinition->ejectDelay, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
 		}
 	}
 }
 
-void ProjectileEjector_setActive(ProjectileEjector this, bool active)
+void ProjectileEjector::setActive(bool active)
 {
-	ASSERT(this, "ProjectileEjector::setActive: null this");
+
 
 	this->active = active;
 
 	if(this->active)
 	{
-		MessageDispatcher_dispatchMessage(0, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kProjectileEject, NULL);
+		MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
 	}
 	else
 	{
-		MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kProjectileEject);
+		MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileEject);
 	}
 }
 
-bool ProjectileEjector_isActive(ProjectileEjector this)
+bool ProjectileEjector::isActive()
 {
-	ASSERT(this, "ProjectileEjector::isActive: null this");
+
 
 	return this->active;
 }
 
 // spawn a projectile, this is the callback of the "Eject" animation
-void ProjectileEjector_onEjectAnimationComplete(ProjectileEjector this)
+void ProjectileEjector::onEjectAnimationComplete()
 {
-	ASSERT(this, "ProjectileEjector::onEjectAnimationComplete: null this");
+
 
 	// play idle animation
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), this->projectileEjectorDefinition->idleAnimationName);
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->idleAnimationName);
 }

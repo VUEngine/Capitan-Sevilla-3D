@@ -34,65 +34,58 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(FlowerPot, Projectile);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(FlowerPot, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(FlowerPot, projectileDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void FlowerPot_constructor(FlowerPot this, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
+void FlowerPot::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "FlowerPot::constructor: null this");
+
 
 	// construct base
-	Base_constructor(this, projectileDefinition, id, internalId, name);
+	Base::constructor(projectileDefinition, id, internalId, name);
 }
 
 // class's constructor
-void FlowerPot_destructor(FlowerPot this)
+void FlowerPot::destructor()
 {
-	ASSERT(this, "FlowerPot::destructor: null this");
+
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // process collisions
-bool FlowerPot_enterCollision(FlowerPot this, const CollisionInformation* collisionInformation)
+bool FlowerPot::enterCollision(const CollisionInformation* collisionInformation)
 {
-	ASSERT(this, "FlowerPot::enterCollision: null this");
+
 	ASSERT(collisionInformation->collidingShape, "FlowerPot::enterCollision: null collidingObjects");
 
 	Shape collidingShape = collisionInformation->collidingShape;
-	SpatialObject collidingObject = Shape_getOwner(collidingShape);
+	SpatialObject collidingObject = Shape::getOwner(collidingShape);
 
-	switch(SpatialObject_getInGameType(collidingObject))
+	switch(SpatialObject::getInGameType(collidingObject))
 	{
 		case kFloor:
 		{
 			// stop movement
-			Actor_stopAllMovement(__SAFE_CAST(Actor, this));
+			Actor::stopAllMovement(Actor::safeCast(this));
 
 			// deactivate shapes
-			Entity_activateShapes(__SAFE_CAST(Entity, this), false);
+			Entity::activateShapes(Entity::safeCast(this), false);
 
 			// play breaking animation
-			//AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "break");
+			//AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "break");
 
 			return false;
 			break;
 		}
 	}
 
-	return Base_enterCollision(__SAFE_CAST(Actor, this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
+	return Base::enterCollision(Actor::safeCast(this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
 }

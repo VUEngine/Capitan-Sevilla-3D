@@ -38,51 +38,36 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(Item, Collectable);
-
-
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void Item_collect(Item this);
-void Item_removeFromStage(Item this);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Item, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Item, animatedEntityDefinition, id, internalId, name);
+
+
 
 // class's constructor
-void Item_constructor(Item this, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Item::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "Item::constructor: null this");
+
 
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
 // class's destructor
-void Item_destructor(Item this)
+void Item::destructor()
 {
-	ASSERT(this, "Item::destructor: null this");
+
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void Item_collect(Item this)
+void Item::collect()
 {
-	ASSERT(this, "Item::collect: null this");
+
 
 	// set item status to taken
-	ProgressManager_setItemStatus(ProgressManager_getInstance(), this->id, true);
+	ProgressManager::setItemStatus(ProgressManager::getInstance(), this->id, true);
 }

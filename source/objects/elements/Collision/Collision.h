@@ -35,19 +35,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Collision_METHODS(ClassName)																	\
-		Entity_METHODS(ClassName)																		\
-
-#define Collision_SET_VTABLE(ClassName)																	\
-		Entity_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, Collision, setExtraInfo);												\
-		__VIRTUAL_SET(ClassName, Collision, initialTransform);											\
-
-__CLASS(Collision);
-
-#define Collision_ATTRIBUTES																			\
-		Entity_ATTRIBUTES																				\
-
 
 typedef const EntityDefinition CollisionDefinition;
 typedef const CollisionDefinition CollisionROMDef;
@@ -57,12 +44,17 @@ typedef const CollisionDefinition CollisionROMDef;
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Collision, EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Collision_constructor(Collision this, EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name);
-void Collision_destructor(Collision this);
-void Collision_setExtraInfo(Collision this, void* extraInfo);
-void Collision_initialTransform(Collision this, Transformation* environmentTransform, u32 recursive);
+
+
+
+class Collision : Entity
+{
+	
+	void constructor(EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+	override void setExtraInfo(void* extraInfo);
+	override void initialTransform(Transformation* environmentTransform, u32 recursive);
+}
 
 
 #endif

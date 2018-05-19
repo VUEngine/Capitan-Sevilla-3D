@@ -43,50 +43,34 @@ extern StageROMDef LOLA_SOFT_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void LolaSoftScreenState_destructor(LolaSoftScreenState this);
-static void LolaSoftScreenState_constructor(LolaSoftScreenState this);
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(LolaSoftScreenState, SplashScreenState);
-__SINGLETON_DYNAMIC(LolaSoftScreenState);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void __attribute__ ((noinline)) LolaSoftScreenState_constructor(LolaSoftScreenState this)
+void LolaSoftScreenState::constructor()
 {
-	__CONSTRUCT_BASE(SplashScreenState);
+	Base::constructor();
 
-	SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, this), __SAFE_CAST(GameState, IntroState_getInstance()));
+	SplashScreenState::setNextState(SplashScreenState::safeCast(this), GameState::safeCast(IntroState::getInstance()));
 	this->stageDefinition = (StageDefinition*)&LOLA_SOFT_SCREEN_STAGE_ST;
 }
 
 // class's destructor
-static void LolaSoftScreenState_destructor(LolaSoftScreenState this)
+void LolaSoftScreenState::destructor()
 {
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-void LolaSoftScreenState_enter(LolaSoftScreenState this, void* owner)
+void LolaSoftScreenState::enter(void* owner)
 {
 	// call base
-	Base_enter(this, owner);
+	Base::enter(this, owner);
 
 	// print "presents"
-	const char* strPresents = I18n_getText(I18n_getInstance(), STR_PRESENTS);
-	FontSize strPresentsSize = Printing_getTextSize(Printing_getInstance(), strPresents, NULL);
+	const char* strPresents = I18n::getText(I18n::getInstance(), STR_PRESENTS);
+	FontSize strPresentsSize = Printing::getTextSize(Printing::getInstance(), strPresents, NULL);
 	u8 strPresentsXPos = __HALF_SCREEN_WIDTH_IN_CHARS - (strPresentsSize.x >> 1);
-	Printing_text(Printing_getInstance(), Utilities_toUppercase(strPresents), strPresentsXPos, 18, NULL);
+	Printing::text(Printing::getInstance(), Utilities::toUppercase(strPresents), strPresentsXPos, 18, NULL);
 }

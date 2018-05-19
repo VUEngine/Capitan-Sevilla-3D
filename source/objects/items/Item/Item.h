@@ -36,29 +36,21 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Item_METHODS(ClassName)																			\
-		Collectable_METHODS(ClassName)																	\
-
-#define Item_SET_VTABLE(ClassName)																		\
-		Collectable_SET_VTABLE(ClassName)																\
-		__VIRTUAL_SET(ClassName, Item, collect);														\
-
-__CLASS(Item);
-
-#define Item_ATTRIBUTES																					\
-		/* it is derived from */																		\
-		Collectable_ATTRIBUTES																			\
-
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Item, AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Item_constructor(Item this, AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
-void Item_destructor(Item this);
-void Item_collect(Item this);
+
+
+
+class Item : Collectable
+{
+	
+	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	override void collect();
+}
 
 
 #endif

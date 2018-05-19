@@ -35,29 +35,22 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Sausage_METHODS(ClassName)																		\
-		Projectile_METHODS(ClassName)																	\
-
-#define Sausage_SET_VTABLE(ClassName)																	\
-		Projectile_SET_VTABLE(ClassName)																\
-		__VIRTUAL_SET(ClassName, Sausage, enterCollision);												\
-
-__CLASS(Sausage);
-
-#define Sausage_ATTRIBUTES																				\
-		Projectile_ATTRIBUTES																			\
-
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 // allocator
-__CLASS_NEW_DECLARE(Sausage, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
 
-void Sausage_constructor(Sausage this, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
-void Sausage_destructor(Sausage this);
-bool Sausage_enterCollision(Sausage this, const CollisionInformation* collisionInformation);
+
+
+
+class Sausage : Projectile
+{
+	
+	void constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
+	override bool enterCollision(const CollisionInformation* collisionInformation);
+}
 
 
 #endif

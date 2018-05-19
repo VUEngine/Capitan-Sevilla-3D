@@ -32,62 +32,50 @@
 #include <MessageDispatcher.h>
 #include "Sausage.h"
 
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(Sausage, Projectile);
-
-
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Sausage, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Sausage, projectileDefinition, id, internalId, name);
-
 // class's constructor
-void Sausage_constructor(Sausage this, ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
+void Sausage::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "Sausage::constructor: null this");
+
 
 	// construct base
-	Base_constructor(this, projectileDefinition, id, internalId, name);
+	Base::constructor(projectileDefinition, id, internalId, name);
 }
 
 // class's constructor
-void Sausage_destructor(Sausage this)
+void Sausage::destructor()
 {
-	ASSERT(this, "Sausage::destructor: null this");
+
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // process collisions
-bool Sausage_enterCollision(Sausage this, const CollisionInformation* collisionInformation)
+bool Sausage::enterCollision(const CollisionInformation* collisionInformation)
 {
-	ASSERT(this, "Sausage::enterCollision: null this");
+
 	ASSERT(collisionInformation->collidingShape, "Sausage::enterCollision: null collidingObjects");
 
 	Shape collidingShape = collisionInformation->collidingShape;
-	SpatialObject collidingObject = Shape_getOwner(collidingShape);
+	SpatialObject collidingObject = Shape::getOwner(collidingShape);
 
-	switch(SpatialObject_getInGameType(collidingObject))
+	switch(SpatialObject::getInGameType(collidingObject))
 	{
 		case kEnemy:
 		{
 			// stop movement
-			Actor_stopAllMovement(__SAFE_CAST(Actor, this));
+			Actor::stopAllMovement(Actor::safeCast(this));
 
 			// deactivate shapes
-			Entity_activateShapes(__SAFE_CAST(Entity, this), false);
+			Entity::activateShapes(Entity::safeCast(this), false);
 
 			// play hitting animation
-			//AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this), "hit");
+			//AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "hit");
 
 			return false;
 			break;

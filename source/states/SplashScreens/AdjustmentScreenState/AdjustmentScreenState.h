@@ -41,30 +41,12 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define AdjustmentScreenState_METHODS(ClassName)														\
-		SplashScreenState_METHODS(ClassName)															\
-
-// declare the virtual methods which are redefined
-#define AdjustmentScreenState_SET_VTABLE(ClassName)														\
-		SplashScreenState_SET_VTABLE(ClassName)															\
-		__VIRTUAL_SET(ClassName, AdjustmentScreenState, enter);											\
-		__VIRTUAL_SET(ClassName, AdjustmentScreenState, processInput);									\
-
-
-__CLASS(AdjustmentScreenState);
-
-#define AdjustmentScreenState_ATTRIBUTES																\
-		SplashScreenState_ATTRIBUTES																	\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-AdjustmentScreenState AdjustmentScreenState_getInstance(void);
-
-void AdjustmentScreenState_enter(AdjustmentScreenState this, void* owner);
+singleton class AdjustmentScreenState : SplashScreenState
+{
+	static AdjustmentScreenState getInstance();
+	override void enter(void* owner);
+	override void processInput(u32 releasedKey);
+}
 
 
 #endif

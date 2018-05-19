@@ -35,58 +35,39 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void HeroDead_constructor(HeroDead this);
-void HeroDead_destructor(HeroDead this);
-void HeroDead_enter(HeroDead this, void* owner);
-void HeroDead_exit(HeroDead this, void* owner);
-bool HeroDead_processMessage(HeroDead this, void* owner, Telegram telegram);
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(HeroDead, HeroState);
-__SINGLETON(HeroDead);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) HeroDead_constructor(HeroDead this)
+void HeroDead::constructor()
 {
 	// construct base
-	__CONSTRUCT_BASE(HeroState);
+	Base::constructor();
 }
 
 // class's destructor
-void HeroDead_destructor(HeroDead this)
+void HeroDead::destructor()
 {
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-void HeroDead_enter(HeroDead this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
+void HeroDead::enter(void* owner __attribute__ ((unused)))
 {
-	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED);
+	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED);
 }
 
 // state's exit
-void HeroDead_exit(HeroDead this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
+void HeroDead::exit(void* owner __attribute__ ((unused)))
 {
 }
 
-void HeroDead_onKeyPressed(HeroDead this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput)
+void HeroDead::onKeyPressed(void* owner __attribute__ ((unused)), const UserInput* userInput)
 {
 	if((K_LL | K_LR | K_A) & userInput->pressedKey)
 	{
-		//Container_deleteMyself(__SAFE_CAST(Container, &owner));
+		//Container::deleteMyself(Container::safeCast(&owner));
 		return;
 	}
 }

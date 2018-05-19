@@ -43,29 +43,6 @@
 
 extern const u16 JUMP_SND[];
 extern EntityDefinition GAME_OVER_IM;
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(Gui, Entity);
-
-
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void Gui_printAll(Gui this);
-static void Gui_onSecondChange(Gui this, Object eventFirer);
-static void Gui_onHitTaken(Gui this, Object eventFirer);
-static void Gui_onHeroDied(Gui this, Object eventFirer);
-
-
-//---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
 extern CharSetDefinition GUI_CH;
 
 
@@ -73,124 +50,120 @@ extern CharSetDefinition GUI_CH;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-__CLASS_NEW_DEFINITION(Gui, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(Gui, animatedEntityDefinition, id, internalId, name);
-
 // class's constructor
-void Gui_constructor(Gui this, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Gui::constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base_constructor(this, animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 
 	this->timeRemaining = 90;
 
 	// add event listeners
-	Object_addEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui_onSecondChange, kEventSecondChanged);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHitTaken, kEventHitTaken);
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHeroDied, kEventHeroDied);
+	Object::addEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
+	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onHeroDied, kEventHeroDied);
 }
 
 // class's destructor
-void Gui_destructor(Gui this)
+void Gui::destructor()
 {
 	// clear printing layer
-	Printing_text(Printing_getInstance(), "                                                ", GUI_X_POS, GUI_Y_POS, NULL);
+	Printing::text(Printing::getInstance(), "                                                ", GUI_X_POS, GUI_Y_POS, NULL);
 
 	// remove event listeners
-	Object_removeEventListener(__SAFE_CAST(Object, PlatformerLevelState_getClock(PlatformerLevelState_getInstance())), __SAFE_CAST(Object, this), (EventListener)Gui_onSecondChange, kEventSecondChanged);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHitTaken, kEventHitTaken);
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)Gui_onHeroDied, kEventHeroDied);
+	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
+	Object::removeEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	Object::removeEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onHeroDied, kEventHeroDied);
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
-void Gui_ready(Gui this, bool recursive)
+void Gui::ready(bool recursive)
 {
-	ASSERT(this, "Gui::ready: null this");
 
-	Gui_printAll(this);
+
+	Gui::printAll(this);
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 }
 
-void Gui_resume(Gui this)
+void Gui::resume()
 {
-	ASSERT(this, "Gui::resume: null this");
+
 
 	__CALL_BASE_METHOD(Entity, resume, this);
 
-	Gui_printAll(this);
+	Gui::printAll(this);
 }
 
-void Gui_printClock(Gui this __attribute__ ((unused)))
+void Gui::printClock()
 {
 	if(this->timeRemaining < 10)
 	{
-		Printing_int(Printing_getInstance(), 0, GUI_X_POS + 37, GUI_Y_POS, NULL);
-		Printing_int(Printing_getInstance(), this->timeRemaining, GUI_X_POS + 38, GUI_Y_POS, NULL);
+		Printing::int(Printing::getInstance(), 0, GUI_X_POS + 37, GUI_Y_POS, NULL);
+		Printing::int(Printing::getInstance(), this->timeRemaining, GUI_X_POS + 38, GUI_Y_POS, NULL);
 
 		if(this->timeRemaining <= 5)
 		{
 			// play warn sound
-			SoundManager_playFxSound(SoundManager_getInstance(), JUMP_SND, this->transformation.globalPosition);
+			SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
 		}
 	}
 	else
 	{
-		Printing_int(Printing_getInstance(), this->timeRemaining, GUI_X_POS + 37, GUI_Y_POS, NULL);
+		Printing::int(Printing::getInstance(), this->timeRemaining, GUI_X_POS + 37, GUI_Y_POS, NULL);
 	}
 }
 
-void Gui_printSausages(Gui this __attribute__ ((unused)))
+void Gui::printSausages()
 {
-	Printing_text(Printing_getInstance(), "X00", GUI_X_POS + 28, GUI_Y_POS, NULL);
-	Printing_int(Printing_getInstance(), Hero_getSausages(Hero_getInstance()), GUI_X_POS + 28, GUI_Y_POS, NULL);
+	Printing::text(Printing::getInstance(), "X00", GUI_X_POS + 28, GUI_Y_POS, NULL);
+	Printing::int(Printing::getInstance(), Hero::getSausages(Hero::getInstance()), GUI_X_POS + 28, GUI_Y_POS, NULL);
 }
 
-void Gui_printLives(Gui this __attribute__ ((unused)))
+void Gui::printLives()
 {
-	Printing_text(Printing_getInstance(), "X00", GUI_X_POS + 44, GUI_Y_POS, NULL);
-	Printing_int(Printing_getInstance(), Hero_getEnergy(Hero_getInstance()), GUI_X_POS + 46, GUI_Y_POS, NULL);
+	Printing::text(Printing::getInstance(), "X00", GUI_X_POS + 44, GUI_Y_POS, NULL);
+	Printing::int(Printing::getInstance(), Hero::getEnergy(Hero::getInstance()), GUI_X_POS + 46, GUI_Y_POS, NULL);
 }
 
-void Gui_printAll(Gui this)
+void Gui::printAll()
 {
-	Gui_printClock(this);
-	Gui_printLives(this);
-	Gui_printSausages(this);
+	Gui::printClock(this);
+	Gui::printLives(this);
+	Gui::printSausages(this);
 }
 
 // handle event
-static void Gui_onSecondChange(Gui this, Object eventFirer __attribute__ ((unused)))
+void Gui::onSecondChange(Object eventFirer __attribute__ ((unused)))
 {
 	if(this->timeRemaining > 0)
 	{
 		this->timeRemaining--;
-		Gui_printClock(this);
+		Gui::printClock(this);
 	}
 	else
 	{
-		Hero_die(Hero_getInstance());
+		Hero::die(Hero::getInstance());
 	}
 }
 
 // handle event
-static void Gui_onHitTaken(Gui this, Object eventFirer __attribute__ ((unused)))
+void Gui::onHitTaken(Object eventFirer __attribute__ ((unused)))
 {
-	Gui_printLives(this);
+	Gui::printLives(this);
 }
 
 // handle event
-static void Gui_onHeroDied(Gui this, Object eventFirer __attribute__ ((unused)))
+void Gui::onHeroDied(Object eventFirer __attribute__ ((unused)))
 {
-	Container_deleteMyself(__SAFE_CAST(Container, this));
+	Container::deleteMyself(Container::safeCast(this));
 
 	// add "game over"
-	Vector3D cameraPosition = Camera_getPosition(Camera_getInstance());
+	Vector3D cameraPosition = Camera::getPosition(Camera::getInstance());
 	PositionedEntity gameOverPositionedEntity = {&GAME_OVER_IM, {__METERS_TO_PIXELS(cameraPosition.x) + 192, 112, 0, 0}, 0, NULL, NULL, NULL, false};
-	Stage_addChildEntity(Game_getStage(Game_getInstance()), &gameOverPositionedEntity, true);
+	Stage::addChildEntity(Game::getStage(Game::getInstance()), &gameOverPositionedEntity, true);
 }

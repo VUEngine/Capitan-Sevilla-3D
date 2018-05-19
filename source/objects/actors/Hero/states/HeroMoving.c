@@ -35,124 +35,105 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-void HeroMoving_constructor(HeroMoving this);
-void HeroMoving_destructor(HeroMoving this);
-void HeroMoving_enter(HeroMoving this, void* owner);
-void HeroMoving_execute(HeroMoving this, void* owner);
-bool HeroMoving_processMessage(HeroMoving this, void* owner, Telegram telegram);
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(HeroMoving, HeroState);
-__SINGLETON(HeroMoving);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) HeroMoving_constructor(HeroMoving this)
+void HeroMoving::constructor()
 {
 	// construct base
-	__CONSTRUCT_BASE(HeroState);
+	Base::constructor();
 
 	this->bouncing = false;
 }
 
 // class's destructor
-void HeroMoving_destructor(HeroMoving this)
+void HeroMoving::destructor()
 {
 	// discard pending delayed messages
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kDisallowJumpOnBouncing);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kDisallowJumpOnBouncing);
 
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-void HeroMoving_enter(HeroMoving this __attribute__ ((unused)), void* owner)
+void HeroMoving::enter(void* owner)
 {
-	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED);
+	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED);
 
 	// make sure that the hero's body is awaken right now so the check during
 	// the execute method doesn't fail
-	Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
+	Hero::addForce(Hero::safeCast(owner), __X_AXIS, false);
 
 	// manipulate hero's shape
-	HeroState_toggleShapes(this, owner, false);
+	HeroState::toggleShapes(this, owner, false);
 }
 
-void HeroMoving_execute(HeroMoving this __attribute__ ((unused)), void* owner)
+void HeroMoving::execute(void* owner)
 {
 	// keep adding force
-	if(((K_LL | K_LR ) & KeypadManager_getHoldKey(KeypadManager_getInstance())) && Body_isAwake(Actor_getBody(__SAFE_CAST(Actor, owner))))
+	if(((K_LL | K_LR ) & KeypadManager::getHoldKey(KeypadManager::getInstance())) && Body::isAwake(Actor::getBody(Actor::safeCast(owner))))
 	{
-		Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, false);
+		Hero::addForce(Hero::safeCast(owner), __X_AXIS, false);
 	}
 }
 
 // state's handle message
-bool HeroMoving_processMessage(HeroMoving this __attribute__ ((unused)), void* owner, Telegram telegram)
+bool HeroMoving::processMessage(void* owner, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kBodyStopped:
 
-			Hero_stopMovementOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
+			Hero::stopMovementOnAxis(Hero::safeCast(owner), *(int*)Telegram::getExtraInfo(telegram));
 			return true;
 			break;
 
 		case kBodyStartedMoving:
 
-			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(int*)Telegram_getExtraInfo(telegram));
+			Hero::startedMovingOnAxis(Hero::safeCast(owner), *(int*)Telegram::getExtraInfo(telegram));
 			break;
 	}
 
 	return false;
 }
 
-void HeroMoving_onKeyPressed(HeroMoving this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroMoving::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if(K_A & userInput->pressedKey)
 	{
-		Hero_jump(__SAFE_CAST(Hero, owner), !this->bouncing);
+		Hero::jump(Hero::safeCast(owner), !this->bouncing);
 	}
 
 	if(K_B & userInput->pressedKey)
 	{
-		Hero_shoot(__SAFE_CAST(Hero, owner), true);
+		Hero::shoot(Hero::safeCast(owner), true);
 	}
 
 	// check direction
 	if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
 	{
-		Hero_addForce(__SAFE_CAST(Hero, owner), __X_AXIS, true);
+		Hero::addForce(Hero::safeCast(owner), __X_AXIS, true);
 
-		Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Walk");
+		Hero::checkDirection(Hero::safeCast(owner), userInput->pressedKey, "Walk");
 	}
 	else if(K_LD & userInput->pressedKey)
 	{
-		Hero_kneel(__SAFE_CAST(Hero, owner));
+		Hero::kneel(Hero::safeCast(owner));
 	}
 }
 
-void HeroMoving_onKeyReleased(HeroMoving this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroMoving::onKeyReleased(void* owner, const UserInput* userInput)
 {
 	if((K_LL | K_LR) & userInput->releasedKey)
 	{
-		Hero_stopAddingForce(__SAFE_CAST(Hero, owner));
+		Hero::stopAddingForce(Hero::safeCast(owner));
 	}
 
 	if(K_B & userInput->releasedKey)
 	{
-		Hero_shoot(__SAFE_CAST(Hero, owner), false);
+		Hero::shoot(Hero::safeCast(owner), false);
 	}
 }
 

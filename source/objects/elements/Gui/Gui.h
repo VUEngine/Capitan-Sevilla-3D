@@ -35,20 +35,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Gui_METHODS(ClassName)																			\
-		Entity_METHODS(ClassName)																		\
-
-#define Gui_SET_VTABLE(ClassName)																		\
-		Entity_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, Gui, ready);															\
-		__VIRTUAL_SET(ClassName, Gui, resume);															\
-
-__CLASS(Gui);
-
-#define Gui_ATTRIBUTES																					\
-		Entity_ATTRIBUTES																				\
-		u8 timeRemaining;																				\
-
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
@@ -62,16 +48,22 @@ __CLASS(Gui);
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(Gui, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 
-void Gui_constructor(Gui this, EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
-void Gui_destructor(Gui this);
-void Gui_ready(Gui this, bool recursive);
-void Gui_resume(Gui this);
-void Gui_printClock(Gui this);
-void Gui_printLives(Gui this);
-void Gui_printSausages(Gui this);
-void Gui_printAll(Gui this);
+
+
+
+class Gui : Entity
+{
+	u8 timeRemaining;																				
+	
+	void constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void printClock();
+	void printLives();
+	void printSausages();
+	void printAll();
+	override void ready(bool recursive);
+	override void resume();
+}
 
 
 #endif

@@ -29,39 +29,22 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(EventManager, Object);
-
-
-//---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void EventManager_constructor(EventManager this);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// it's a singleton
-__SINGLETON(EventManager);
-
 // class's constructor
-static void __attribute__ ((noinline)) EventManager_constructor(EventManager this)
+void EventManager::constructor()
 {
-	ASSERT(this, "EventManager::constructor: null this");
+
 
 	// construct base object
-	__CONSTRUCT_BASE(Object);
+	Base::constructor();
 }
 
 // class's destructor
-void EventManager_destructor(EventManager this)
+void EventManager::destructor()
 {
-	ASSERT(this, "EventManager::destructor: null this");
+
 
 	// destroy base
 	__SINGLETON_DESTROY;

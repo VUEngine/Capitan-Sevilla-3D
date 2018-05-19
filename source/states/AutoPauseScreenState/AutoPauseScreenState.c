@@ -44,130 +44,110 @@ extern StageROMDef PAUSE_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void AutoPauseScreenState_destructor(AutoPauseScreenState this);
-static void AutoPauseScreenState_constructor(AutoPauseScreenState this);
-static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner);
-static void AutoPauseScreenState_exit(AutoPauseScreenState this, void* owner);
-static void AutoPauseScreenState_onFadeOutComplete(AutoPauseScreenState this, Object eventFirer);
-static void AutoPauseScreenState_onFadeInComplete(AutoPauseScreenState this, Object eventFirer);
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(AutoPauseScreenState, GameState);
-__SINGLETON_DYNAMIC(AutoPauseScreenState);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void __attribute__ ((noinline)) AutoPauseScreenState_constructor(AutoPauseScreenState this)
+void AutoPauseScreenState::constructor()
 {
-	__CONSTRUCT_BASE(GameState);
+	Base::constructor();
 }
 
 // class's destructor
-static void AutoPauseScreenState_destructor(AutoPauseScreenState this)
+void AutoPauseScreenState::destructor()
 {
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-static void AutoPauseScreenState_enter(AutoPauseScreenState this, void* owner __attribute__ ((unused)))
+void AutoPauseScreenState::enter(void* owner __attribute__ ((unused)))
 {
 	// load stage
-	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&PAUSE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(GameState::safeCast(this), (StageDefinition*)&PAUSE_SCREEN_STAGE_ST, NULL, true);
 
 	// print text
-	const char* strAutomaticPauseTitle = I18n_getText(I18n_getInstance(), STR_AUTOMATIC_PAUSE);
-	const char* strAutomaticPauseText = I18n_getText(I18n_getInstance(), STR_TAKE_A_REST);
-	FontSize strAutomaticPauseSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseTitle, NULL);
-	FontSize strAutomaticPauseTextSize = Printing_getTextSize(Printing_getInstance(), strAutomaticPauseText, NULL);
+	const char* strAutomaticPauseTitle = I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
+	const char* strAutomaticPauseText = I18n::getText(I18n::getInstance(), STR_TAKE_A_REST);
+	FontSize strAutomaticPauseSize = Printing::getTextSize(Printing::getInstance(), strAutomaticPauseTitle, NULL);
+	FontSize strAutomaticPauseTextSize = Printing::getTextSize(Printing::getInstance(), strAutomaticPauseText, NULL);
 
 	u8 strHeaderXPos = (__HALF_SCREEN_WIDTH_IN_CHARS - (strAutomaticPauseSize.x >> 1));
-	Printing_text(
-		Printing_getInstance(),
-		Utilities_toUppercase(strAutomaticPauseTitle),
+	Printing::text(
+		Printing::getInstance(),
+		Utilities::toUppercase(strAutomaticPauseTitle),
 		strHeaderXPos,
 		14,
 		NULL
 	);
 
 	u8 strTextXPos = __HALF_SCREEN_WIDTH_IN_CHARS - (strAutomaticPauseTextSize.x >> 1);
-	Printing_text(Printing_getInstance(), strAutomaticPauseText, strTextXPos, 15 + strAutomaticPauseSize.y, NULL);
+	Printing::text(Printing::getInstance(), strAutomaticPauseText, strTextXPos, 15 + strAutomaticPauseSize.y, NULL);
 
 	// disable user input
-	Game_disableKeypad(Game_getInstance());
+	Game::disableKeypad(Game::getInstance());
 
 	// start clocks to start animations
-	GameState_startClocks(__SAFE_CAST(GameState, this));
+	GameState::startClocks(GameState::safeCast(this));
 
 	// fade in screen
-	Camera_startEffect(Camera_getInstance(),
+	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))AutoPauseScreenState_onFadeInComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		(void (*)(Object, Object))AutoPauseScreenState::onFadeInComplete, // callback function
+		Object::safeCast(this) // callback scope
 	);
 }
 
 // state's exit
-static void AutoPauseScreenState_exit(AutoPauseScreenState this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
+void AutoPauseScreenState::exit(void* owner __attribute__ ((unused)))
 {
 	// call base
-	Base_exit(this, owner);
+	Base::exit(this, owner);
 
 	// destroy the state
 	__DELETE(this);
 }
 
-void AutoPauseScreenState_processUserInput(AutoPauseScreenState this, UserInput userInput)
+void AutoPauseScreenState::processUserInput(UserInput userInput)
 {
 	if(K_STA & userInput.pressedKey)
 	{
 		// disable user input
-		Game_disableKeypad(Game_getInstance());
+		Game::disableKeypad(Game::getInstance());
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
-		Camera_startEffect(Camera_getInstance(),
+		Camera::startEffect(Camera::getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))AutoPauseScreenState_onFadeOutComplete, // callback function
-			__SAFE_CAST(Object, this) // callback scope
+			(void (*)(Object, Object))AutoPauseScreenState::onFadeOutComplete, // callback function
+			Object::safeCast(this) // callback scope
 		);
 	}
 }
 
 // handle event
-static void AutoPauseScreenState_onFadeInComplete(AutoPauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void AutoPauseScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "AutoPauseScreenState::onFadeOutComplete: null this");
+
 
 	// re-enable user input
-	Game_enableKeypad(Game_getInstance());
+	Game::enableKeypad(Game::getInstance());
 }
 
 // handle event
-static void AutoPauseScreenState_onFadeOutComplete(AutoPauseScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void AutoPauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "AutoPauseScreenState::onFadeOutComplete: null this");
+
 
 	// re-enable user input
-	Game_enableKeypad(Game_getInstance());
+	Game::enableKeypad(Game::getInstance());
 
 	// resume game
-	Game_unpause(Game_getInstance(), __SAFE_CAST(GameState, this));
+	Game::unpause(Game::getInstance(), GameState::safeCast(this));
 }

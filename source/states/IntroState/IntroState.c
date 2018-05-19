@@ -51,36 +51,13 @@ extern StageROMDef INTRO_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void IntroState_destructor(IntroState this);
-static void IntroState_constructor(IntroState this);
-static void IntroState_enter(IntroState this, void* owner);
-static void IntroState_exit(IntroState this, void* owner);
-static void IntroState_resume(IntroState this, void* owner);
-static void IntroState_suspend(IntroState this, void* owner);
-static void IntroState_onFadeInComplete(IntroState this, Object eventFirer);
-static void IntroState_onFadeOutComplete(IntroState this, Object eventFirer);
-void IntroState_translateTextEntities(IntroState this);
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(IntroState, GameState);
-__SINGLETON(IntroState);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void __attribute__ ((noinline)) IntroState_constructor(IntroState this)
+void IntroState::constructor()
 {
-	__CONSTRUCT_BASE(GameState);
+	Base::constructor();
 
 	// init members
 	this->currentStep = 0;
@@ -104,10 +81,10 @@ static void __attribute__ ((noinline)) IntroState_constructor(IntroState this)
 }
 
 // class's destructor
-static void IntroState_destructor(IntroState this)
+void IntroState::destructor()
 {
 	// discard pending messages
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kIntroNextImage);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kIntroNextImage);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -115,98 +92,98 @@ static void IntroState_destructor(IntroState this)
 }
 
 // state's enter
-static void IntroState_enter(IntroState this, void* owner)
+void IntroState::enter(void* owner)
 {
 	// call base
-	Base_enter(this, owner);
+	Base::enter(this, owner);
 
 	// load stage
-	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&INTRO_STAGE_ST, NULL, true);
+	GameState::loadStage(GameState::safeCast(this), (StageDefinition*)&INTRO_STAGE_ST, NULL, true);
 
 	// init members
 	this->currentStep = 0;
 
 	// get entity references
-	this->entityImage1 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "IMAGE1", true));
-	this->entityImage2 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "IMAGE2", true));
-	this->entityImage3 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "IMAGE3", true));
-	this->entityImage4 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "IMAGE4", true));
-	this->entityImage5 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "IMAGE5", true));
-	this->entityImage6 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "IMAGE6", true));
-	this->entityImage7 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "IMAGE7", true));
-	this->entityImage8 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "IMAGE8", true));
-	this->entityText1 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "TEXT1", true));
-	this->entityText2 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "TEXT2", true));
-	this->entityText3 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "TEXT3", true));
-	this->entityText4 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "TEXT4", true));
-	this->entityText5 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "TEXT5", true));
-	this->entityText6 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "TEXT6", true));
-	this->entityText7 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "TEXT7", true));
-	this->entityText8 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "TEXT8", true));
-	this->entityText9 = __SAFE_CAST(Entity, Container_getChildByName(__SAFE_CAST(Container, Game_getStage(Game_getInstance())), "TEXT9", true));
+	this->entityImage1 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE1", true));
+	this->entityImage2 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE2", true));
+	this->entityImage3 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE3", true));
+	this->entityImage4 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE4", true));
+	this->entityImage5 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE5", true));
+	this->entityImage6 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE6", true));
+	this->entityImage7 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE7", true));
+	this->entityImage8 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE8", true));
+	this->entityText1 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT1", true));
+	this->entityText2 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT2", true));
+	this->entityText3 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT3", true));
+	this->entityText4 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT4", true));
+	this->entityText5 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT5", true));
+	this->entityText6 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT6", true));
+	this->entityText7 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT7", true));
+	this->entityText8 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT8", true));
+	this->entityText9 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT9", true));
 
 	// hide most entities initially
-	Entity_hide(this->entityImage2);
-    Entity_hide(this->entityImage3);
-    Entity_hide(this->entityImage4);
-    Entity_hide(this->entityImage5);
-    Entity_hide(this->entityImage6);
-    Entity_hide(this->entityImage7);
-    Entity_hide(this->entityImage8);
-    Entity_hide(this->entityText1);
-    Entity_hide(this->entityText2);
-    Entity_hide(this->entityText3);
-    Entity_hide(this->entityText4);
-    Entity_hide(this->entityText5);
-    Entity_hide(this->entityText6);
-    Entity_hide(this->entityText7);
-    Entity_hide(this->entityText8);
-    Entity_hide(this->entityText9);
+	Entity::hide(this->entityImage2);
+    Entity::hide(this->entityImage3);
+    Entity::hide(this->entityImage4);
+    Entity::hide(this->entityImage5);
+    Entity::hide(this->entityImage6);
+    Entity::hide(this->entityImage7);
+    Entity::hide(this->entityImage8);
+    Entity::hide(this->entityText1);
+    Entity::hide(this->entityText2);
+    Entity::hide(this->entityText3);
+    Entity::hide(this->entityText4);
+    Entity::hide(this->entityText5);
+    Entity::hide(this->entityText6);
+    Entity::hide(this->entityText7);
+    Entity::hide(this->entityText8);
+    Entity::hide(this->entityText9);
 
 	// translate text boxes
-	IntroState_translateTextEntities(this);
+	IntroState::translateTextEntities(this);
 
 	// disable user input
-	Game_disableKeypad(Game_getInstance());
+	Game::disableKeypad(Game::getInstance());
 
 	// send delayed message to self to trigger next image
-	MessageDispatcher_dispatchMessage(INTRO_IMAGE_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kIntroNextImage, NULL);
+	MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 
 	// fade in screen
-	Camera_startEffect(Camera_getInstance(),
+	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))IntroState_onFadeInComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		(void (*)(Object, Object))IntroState::onFadeInComplete, // callback function
+		Object::safeCast(this) // callback scope
 	);
 }
 
 // state's exit
-static void IntroState_exit(IntroState this, void* owner)
+void IntroState::exit(void* owner)
 {
 	// call base
-	Base_exit(this, owner);
+	Base::exit(this, owner);
 }
 
 // state's resume
-static void IntroState_resume(IntroState this, void* owner)
+void IntroState::resume(void* owner)
 {
-	Base_resume(this, owner);
+	Base::resume(this, owner);
 
-	Camera_startEffect(Camera_getInstance(), kFadeIn, __FADE_DELAY);
+	Camera::startEffect(Camera::getInstance(), kFadeIn, __FADE_DELAY);
 }
 
 // state's suspend
-static void IntroState_suspend(IntroState this, void* owner)
+void IntroState::suspend(void* owner)
 {
-	Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
+	Camera::startEffect(Camera::getInstance(), kFadeOut, __FADE_DELAY);
 
-	Base_suspend(this, owner);
+	Base::suspend(this, owner);
 }
 
-void IntroState_processUserInput(IntroState this, UserInput userInput)
+void IntroState::processUserInput(UserInput userInput)
 {
 	if(userInput.pressedKey & ~K_PWR)
 	{
@@ -215,137 +192,137 @@ void IntroState_processUserInput(IntroState this, UserInput userInput)
 			this->currentStep = 128;
 		}
 
-		IntroState_nextImageStep(this);
+		IntroState::nextImageStep(this);
 	}
 }
 
-bool IntroState_handleMessage(IntroState this, Telegram telegram)
+bool IntroState::handleMessage(Telegram telegram)
 {
-	ASSERT(this, "IntroState::handleMessage: null this");
 
-	switch(Telegram_getMessage(telegram))
+
+	switch(Telegram::getMessage(telegram))
 	{
 		case kIntroNextImage:
 
-			IntroState_nextImageStep(this);
+			IntroState::nextImageStep(this);
 			break;
 	}
 
 	return false;
 }
 
-void IntroState_translateTextEntities(IntroState this)
+void IntroState::translateTextEntities()
 {
-	char* language = Utilities_itoa(I18n_getActiveLanguage(I18n_getInstance()), 10, 1);
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText1), language);
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText2), language);
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText3), language);
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText4), language);
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText5), language);
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText6), language);
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText7), language);
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText8), language);
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, this->entityText9), language);
+	char* language = Utilities::itoa(I18n::getActiveLanguage(I18n::getInstance()), 10, 1);
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText1), language);
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText2), language);
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText3), language);
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText4), language);
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText5), language);
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText6), language);
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText7), language);
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText8), language);
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText9), language);
 }
 
-void IntroState_nextImageStep(IntroState this)
+void IntroState::nextImageStep()
 {
-	ASSERT(this, "IntroState::handleImageStep: null this");
 
-	MessageDispatcher_discardDelayedMessagesFromSender(MessageDispatcher_getInstance(), __SAFE_CAST(Object, this), kIntroNextImage);
-	MessageDispatcher_dispatchMessage(INTRO_IMAGE_DURATION, __SAFE_CAST(Object, this), __SAFE_CAST(Object, this), kIntroNextImage, NULL);
+
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kIntroNextImage);
+	MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 
 	switch(this->currentStep++)
 	{
 		case 0:
-			Entity_show(this->entityText1);
+			Entity::show(this->entityText1);
 			break;
 		case 1:
-			Entity_show(this->entityImage2);
+			Entity::show(this->entityImage2);
 			break;
 		case 2:
-			Entity_show(this->entityText2);
+			Entity::show(this->entityText2);
 			break;
 		case 3:
-			Entity_show(this->entityImage3);
+			Entity::show(this->entityImage3);
 			break;
 		case 4:
-			Entity_show(this->entityText3);
+			Entity::show(this->entityText3);
 			break;
 		case 5:
-			Entity_show(this->entityImage4);
+			Entity::show(this->entityImage4);
 			break;
 		case 6:
-			Entity_show(this->entityText4);
+			Entity::show(this->entityText4);
 			break;
 		case 7:
-			Entity_show(this->entityText5);
+			Entity::show(this->entityText5);
 			break;
 		case 8:
-			Entity_hide(this->entityImage1);
-			Entity_hide(this->entityText1);
-			Entity_hide(this->entityImage2);
-			Entity_hide(this->entityText2);
-			Entity_hide(this->entityImage3);
-			Entity_hide(this->entityText3);
-			Entity_hide(this->entityImage4);
-			Entity_hide(this->entityText4);
-			Entity_hide(this->entityText5);
-			Entity_show(this->entityImage5);
+			Entity::hide(this->entityImage1);
+			Entity::hide(this->entityText1);
+			Entity::hide(this->entityImage2);
+			Entity::hide(this->entityText2);
+			Entity::hide(this->entityImage3);
+			Entity::hide(this->entityText3);
+			Entity::hide(this->entityImage4);
+			Entity::hide(this->entityText4);
+			Entity::hide(this->entityText5);
+			Entity::show(this->entityImage5);
 			break;
 		case 9:
-			Entity_show(this->entityText6);
+			Entity::show(this->entityText6);
 			break;
 		case 10:
-			Entity_show(this->entityImage6);
+			Entity::show(this->entityImage6);
 			break;
 		case 11:
-			Entity_show(this->entityText7);
+			Entity::show(this->entityText7);
 			break;
 		case 12:
-			Entity_show(this->entityImage7);
+			Entity::show(this->entityImage7);
 			break;
 		case 13:
-			Entity_show(this->entityText8);
+			Entity::show(this->entityText8);
 			break;
 		case 14:
-			Entity_show(this->entityImage8);
+			Entity::show(this->entityImage8);
 			break;
 		case 15:
-			Entity_show(this->entityText9);
+			Entity::show(this->entityText9);
 			break;
 		default:
 		{
 			// disable user input
-			Game_disableKeypad(Game_getInstance());
+			Game::disableKeypad(Game::getInstance());
 
 			// fade out screen
 			Brightness brightness = (Brightness){0, 0, 0};
-			Camera_startEffect(Camera_getInstance(),
+			Camera::startEffect(Camera::getInstance(),
 				kFadeTo, // effect type
 				0, // initial delay (in ms)
 				&brightness, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))IntroState_onFadeOutComplete, // callback function
-				__SAFE_CAST(Object, this) // callback scope
+				(void (*)(Object, Object))IntroState::onFadeOutComplete, // callback function
+				Object::safeCast(this) // callback scope
 			);
 		}
 	}
 }
 
 // handle event
-static void IntroState_onFadeInComplete(IntroState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void IntroState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "IntroState::onFadeInComplete: null this");
+
 
 	// enable user input
-	Game_enableKeypad(Game_getInstance());
+	Game::enableKeypad(Game::getInstance());
 }
 
 // handle event
-static void IntroState_onFadeOutComplete(IntroState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void IntroState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "IntroState::onFadeOutComplete: null this");
 
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, TitleScreenState_getInstance()));
+
+	Game::changeState(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
 }

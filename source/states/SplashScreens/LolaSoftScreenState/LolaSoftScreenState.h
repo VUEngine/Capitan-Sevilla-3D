@@ -35,28 +35,21 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define LolaSoftScreenState_METHODS(ClassName)															\
-		SplashScreenState_METHODS(ClassName)															\
-
-// declare the virtual methods which are redefined
-#define LolaSoftScreenState_SET_VTABLE(ClassName)														\
-		SplashScreenState_SET_VTABLE(ClassName)															\
-		__VIRTUAL_SET(ClassName, LolaSoftScreenState, enter);											\
-
-
-__CLASS(LolaSoftScreenState);
-
-#define LolaSoftScreenState_ATTRIBUTES																	\
-		SplashScreenState_ATTRIBUTES																	\
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-LolaSoftScreenState LolaSoftScreenState_getInstance(void);
 
-void LolaSoftScreenState_enter(LolaSoftScreenState this, void* owner);
+
+
+
+singleton class LolaSoftScreenState : SplashScreenState
+{
+	static LolaSoftScreenState getInstance();
+	override void enter(void* owner);
+}
 
 
 #endif

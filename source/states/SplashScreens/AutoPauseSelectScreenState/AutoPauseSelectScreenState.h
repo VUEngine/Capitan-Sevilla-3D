@@ -42,30 +42,15 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define AutoPauseSelectScreenState_METHODS(ClassName)													\
-		SplashScreenState_METHODS(ClassName)															\
 
-// declare the virtual methods which are redefined
-#define AutoPauseSelectScreenState_SET_VTABLE(ClassName)												\
-		SplashScreenState_SET_VTABLE(ClassName)															\
-		__VIRTUAL_SET(ClassName, AutoPauseSelectScreenState, print);									\
-		__VIRTUAL_SET(ClassName, AutoPauseSelectScreenState, processInput);								\
+singleton class AutoPauseSelectScreenState : SplashScreenState
+{
+	bool selection;
 
-
-__CLASS(AutoPauseSelectScreenState);
-
-#define AutoPauseSelectScreenState_ATTRIBUTES															\
-		/* inherits */																					\
-		SplashScreenState_ATTRIBUTES																	\
-		bool selection;																					\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-AutoPauseSelectScreenState AutoPauseSelectScreenState_getInstance(void);
+	static AutoPauseSelectScreenState getInstance();
+	override void print();
+	override void processInput(u32 releasedKey);
+}
 
 
 #endif

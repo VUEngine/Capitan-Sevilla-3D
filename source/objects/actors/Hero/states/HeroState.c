@@ -31,39 +31,32 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(HeroState, State);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) HeroState_constructor(HeroState this)
+void HeroState::constructor()
 {
 	// construct base
-	__CONSTRUCT_BASE(State);
+	Base::constructor();
 }
 
 // class's destructor
-void HeroState_destructor(HeroState this)
+void HeroState::destructor()
 {
 	// destroy base
-	Base_destructor();
+	Base::destructor();
 }
 
-void HeroState_onKeyHold(HeroState this __attribute__ ((unused)), void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
+void HeroState::onKeyHold(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
 {
 }
 
-void HeroState_toggleShapes(HeroState this __attribute__ ((unused)), void* owner, bool kneeling)
+void HeroState::toggleShapes(void* owner, bool kneeling)
 {
-	VirtualList shapes = Entity_getShapes(__SAFE_CAST(Entity, owner));
-	Shape shapeStanding = __SAFE_CAST(Shape, VirtualList_front(shapes));
-	Shape shapeKneeling = __SAFE_CAST(Shape, VirtualList_back(shapes));
-	Shape_setActive(shapeStanding, !kneeling);
-	Shape_setActive(shapeKneeling, kneeling);
+	VirtualList shapes = Entity::getShapes(Entity::safeCast(owner));
+	Shape shapeStanding = Shape::safeCast(VirtualList::front(shapes));
+	Shape shapeKneeling = Shape::safeCast(VirtualList::back(shapes));
+	Shape::setActive(shapeStanding, !kneeling);
+	Shape::setActive(shapeKneeling, kneeling);
 }

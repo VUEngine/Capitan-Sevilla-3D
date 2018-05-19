@@ -35,34 +35,14 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define HeroState_METHODS(ClassName)																	\
-		State_METHODS(ClassName)																		\
-		__VIRTUAL_DEC(ClassName, void, onKeyPressed, void* owner, const UserInput* userInput);			\
-		__VIRTUAL_DEC(ClassName, void, onKeyReleased, void* owner, const UserInput* userInput);			\
-		__VIRTUAL_DEC(ClassName, void, onKeyHold, void* owner, const UserInput* userInput);				\
-		__VIRTUAL_DEC(ClassName, void, toggleShapes, void* owner, bool kneeling);						\
-
-// declare the virtual methods which are redefined
-#define HeroState_SET_VTABLE(ClassName)																	\
-		State_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, HeroState, onKeyHold);													\
-		__VIRTUAL_SET(ClassName, HeroState, toggleShapes);												\
-
-__CLASS(HeroState);
-
-#define HeroState_ATTRIBUTES																			\
-		State_ATTRIBUTES																				\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-void HeroState_constructor(HeroState this);
-void HeroState_destructor(HeroState this);
-void HeroState_onKeyHold(HeroState this, void* owner, const UserInput* userInput);
-void HeroState_toggleShapes(HeroState this, void* owner, bool kneeling);
+class HeroState : State
+{
+	void constructor();
+	virtual void onKeyPressed(void* owner, const UserInput* userInput) = 0;
+	virtual void onKeyReleased(void* owner, const UserInput* userInput) = 0;
+	virtual void onKeyHold(void* owner, const UserInput* userInput);
+	virtual void toggleShapes(void* owner, bool kneeling);
+}
 
 
 #endif

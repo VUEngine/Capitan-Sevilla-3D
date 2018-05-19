@@ -65,93 +65,65 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define Hero_METHODS(ClassName)																			\
-		Actor_METHODS(ClassName)																		\
-
-#define Hero_SET_VTABLE(ClassName)																		\
-		Actor_SET_VTABLE(ClassName)																		\
-		__VIRTUAL_SET(ClassName, Hero, ready);															\
-		__VIRTUAL_SET(ClassName, Hero, handlePropagatedMessage);										\
-		__VIRTUAL_SET(ClassName, Hero, handleMessage);													\
-		__VIRTUAL_SET(ClassName, Hero, suspend);														\
-		__VIRTUAL_SET(ClassName, Hero, resume);															\
-		__VIRTUAL_SET(ClassName, Hero, getAxisForFlipping);												\
-		__VIRTUAL_SET(ClassName, Hero, isAffectedByRelativity);											\
-		__VIRTUAL_SET(ClassName, Hero, getFrictionOnCollision);											\
-		__VIRTUAL_SET(ClassName, Hero, enterCollision);													\
-		__VIRTUAL_SET(ClassName, Hero, updateCollision);												\
-		__VIRTUAL_SET(ClassName, Hero, syncRotationWithBody);											\
-		__VIRTUAL_SET(ClassName, Hero, exitCollision);													\
-		__VIRTUAL_SET(ClassName, Hero, getAxesForShapeSyncWithDirection);								\
-
-__CLASS(Hero);
-
-#define Hero_ATTRIBUTES																					\
-		/* it is derived from */																		\
-		Actor_ATTRIBUTES																				\
-		/* sausage entity references for shooting */													\
-		Entity sausageEjectorEntity;																	\
-		/* used to know if gap must be changed */														\
-		Direction inputDirection;																		\
-		/* hero has energy	*/																			\
-		u8 energy;																						\
-		/* number of jumps performed (for double jump) */												\
-		s8 jumps;																						\
-		/* number of sausages */																		\
-		u8 sausages;																					\
-		/* flag for invincible mode (after being hit) */												\
-		bool invincible;																				\
-		/* flag to keep applying force to the x axis */													\
-		bool keepAddingForce;																			\
 
 typedef const ActorDefinition HeroDefinition;
 typedef const HeroDefinition HeroROMDef;
 
 
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
+class Hero : Actor
+{
+	/* sausage entity references for shooting */
+	Entity sausageEjectorEntity;
+	/* used to know if gap must be changed */
+	Direction inputDirection;
+	/* hero has energy	*/
+	u8 energy;
+	/* number of jumps performed (for double jump) */
+	s8 jumps;
+	/* number of sausages */
+	u8 sausages;
+	/* flag for invincible mode (after being hit) */
+	bool invincible;
+	/* flag to keep applying force to the x axis */
+	bool keepAddingForce;
 
-Hero Hero_getInstance();
-
-__CLASS_NEW_DECLARE(Hero, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name);
-
-void Hero_constructor(Hero this, HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name);
-void Hero_destructor(Hero this);
-void Hero_ready(Hero this, bool recursive);
-void Hero_addForce(Hero this, u16 axis, bool enableAddingForce);
-void Hero_stopAddingForce(Hero this);
-void Hero_startedMovingOnAxis(Hero this, u16 axis);
-bool Hero_stopMovementOnAxis(Hero this, u16 axis);
-void Hero_kneel(Hero this);
-void Hero_jump(Hero this, bool checkIfYMovement);
-void Hero_addMomentumToJump(Hero this);
-void Hero_checkDirection(Hero this, u32 currentPressedKey, char * animation);
-void Hero_takeHitFrom(Hero this, SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins);
-void Hero_flash(Hero this);
-void Hero_toggleFlashPalette(Hero this);
-void Hero_resetPalette(Hero this);
-void Hero_die(Hero this);
-u8 Hero_getEnergy(Hero this);
-u8 Hero_getSausages(Hero this);
-void Hero_setInvincible(Hero this, bool invincible);
-bool Hero_isInvincible(Hero this);
-fix10_6 Hero_getFrictionOnCollision(Hero this, SpatialObject collidingObject, const Vector3D* collidingObjectNormal);
-bool Hero_enterCollision(Hero this, const CollisionInformation* collisionInformation);
-bool Hero_updateCollision(Hero this, const CollisionInformation* collisionInformation);
-bool Hero_handleMessage(Hero this, Telegram telegram);
-bool Hero_handlePropagatedMessage(Hero this, int message);
-void Hero_suspend(Hero this);
-void Hero_resume(Hero this);
-void Hero_lockCameraTriggerMovement(Hero this, u8 axisToLockUp, bool locked);
-bool Hero_isBelow(Hero this, Shape shape, const CollisionInformation* collisionInformation);
-u16 Hero_getAxisForFlipping(Hero this);
-void Hero_capVelocity(Hero this, bool discardPreviousMessages);
-bool Hero_isAffectedByRelativity(Hero this);
-void Hero_syncRotationWithBody(Hero this);
-void Hero_exitCollision(Hero this, Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
-u16 Hero_getAxesForShapeSyncWithDirection(Hero this);
-void Hero_shoot(Hero this, bool active);
+	static Hero getInstance();
+	void constructor(HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name);
+	void addForce(u16 axis, bool enableAddingForce);
+	void stopAddingForce();
+	void startedMovingOnAxis(u16 axis);
+	bool stopMovementOnAxis(u16 axis);
+	void kneel();
+	void jump(bool checkIfYMovement);
+	void addMomentumToJump();
+	void checkDirection(u32 currentPressedKey, char * animation);
+	void takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins);
+	void flash();
+	void toggleFlashPalette();
+	void resetPalette();
+	void die();
+	u8 getEnergy();
+	u8 getSausages();
+	void setInvincible(bool invincible);
+	bool isInvincible();
+	void lockCameraTriggerMovement(u8 axisToLockUp, bool locked);
+	bool isBelow(Shape shape, const CollisionInformation* collisionInformation);
+	void capVelocity(bool discardPreviousMessages);
+	void shoot(bool active);
+	override void ready(bool recursive);
+	override bool handlePropagatedMessage(int message);
+	override bool handleMessage(Telegram telegram);
+	override void suspend();
+	override void resume();
+	override u16 getAxisForFlipping();
+	override bool isAffectedByRelativity();
+	override fix10_6 getFrictionOnCollision(SpatialObject collidingObject, const Vector3D* collidingObjectNormal);
+	override bool enterCollision(const CollisionInformation* collisionInformation);
+	override bool updateCollision(const CollisionInformation* collisionInformation);
+	override void syncRotationWithBody();
+	override void exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
+	override u16 getAxesForShapeSyncWithDirection();
+}
 
 
 #endif

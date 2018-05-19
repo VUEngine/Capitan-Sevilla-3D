@@ -36,31 +36,25 @@
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define OptionsScreenState_METHODS(ClassName)															\
-		GameState_METHODS(ClassName)																	\
-
-// declare the virtual methods which are redefined
-#define OptionsScreenState_SET_VTABLE(ClassName)														\
-		GameState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, OptionsScreenState, enter);											\
-		__VIRTUAL_SET(ClassName, OptionsScreenState, exit);												\
-		__VIRTUAL_SET(ClassName, OptionsScreenState, processUserInput);									\
-
-__CLASS(OptionsScreenState);
-
-// declare the class attributes
-#define OptionsScreenState_ATTRIBUTES																	\
-		GameState_ATTRIBUTES																			\
-		GameState nextState;																			\
-		OptionsSelector optionsSelector;																\
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-OptionsScreenState OptionsScreenState_getInstance(void);
-void OptionsScreenState_setNextState(OptionsScreenState this, GameState nextState);
-void OptionsScreenState_processUserInput(OptionsScreenState this, UserInput userInput);
+
+
+singleton class OptionsScreenState : GameState
+{
+	GameState nextState;
+	OptionsSelector optionsSelector;
+
+	static OptionsScreenState getInstance();
+	void setNextState(GameState nextState);
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void processUserInput(UserInput userInput);
+}
+
 
 #endif

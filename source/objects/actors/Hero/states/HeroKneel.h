@@ -34,36 +34,15 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-#define HeroKneel_METHODS(ClassName)																	\
-		HeroState_METHODS(ClassName)																	\
-
-// declare the virtual methods which are redefined
-#define HeroKneel_SET_VTABLE(ClassName)																	\
-		HeroState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, HeroKneel, enter);														\
-		__VIRTUAL_SET(ClassName, HeroKneel, exit);														\
-		__VIRTUAL_SET(ClassName, HeroKneel, processMessage);											\
-		__VIRTUAL_SET(ClassName, HeroKneel, onKeyPressed);												\
-		__VIRTUAL_SET(ClassName, HeroKneel, onKeyReleased);												\
-		__VIRTUAL_SET(ClassName, HeroKneel, onKeyHold);													\
-
-__CLASS(HeroKneel);
-
-#define HeroKneel_ATTRIBUTES																			\
-		/* inherits */																					\
-		HeroState_ATTRIBUTES																			\
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-HeroKneel HeroKneel_getInstance();
-
-void HeroKneel_onKeyPressed(HeroKneel this, void* owner, const UserInput* userInput);
-void HeroKneel_onKeyReleased(HeroKneel this, void* owner, const UserInput* userInput);
-void HeroKneel_onKeyHold(HeroKneel this, void* owner, const UserInput* userInput);
+singleton class HeroKneel : HeroState
+{
+	static HeroKneel getInstance();
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void onKeyPressed(void* owner, const UserInput* userInput);
+	override void onKeyReleased(void* owner, const UserInput* userInput);
+	override void onKeyHold(void* owner, const UserInput* userInput);
+}
 
 
 #endif

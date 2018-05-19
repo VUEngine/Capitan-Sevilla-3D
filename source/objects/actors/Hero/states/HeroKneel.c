@@ -35,67 +35,48 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void HeroKneel_constructor(HeroKneel this);
-void HeroKneel_destructor(HeroKneel this);
-void HeroKneel_enter(HeroKneel this, void* owner);
-void HeroKneel_exit(HeroKneel this, void* owner);
-bool HeroKneel_processMessage(HeroKneel this, void* owner, Telegram telegram);
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(HeroKneel, HeroState);
-__SINGLETON(HeroKneel);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void __attribute__ ((noinline)) HeroKneel_constructor(HeroKneel this)
+void HeroKneel::constructor()
 {
 	// construct base
-	__CONSTRUCT_BASE(HeroState);
+	Base::constructor();
 }
 
 // class's destructor
-void HeroKneel_destructor(HeroKneel this)
+void HeroKneel::destructor()
 {
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-void HeroKneel_enter(HeroKneel this __attribute__ ((unused)), void* owner)
+void HeroKneel::enter(void* owner)
 {
 	// show animation
-	AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Kneel");
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(owner), "Kneel");
 
-	KeypadManager_registerInput(KeypadManager_getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
+	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
 
 	// manipulate hero's shape
-	HeroState_toggleShapes(this, owner, true);
+	HeroState::toggleShapes(this, owner, true);
 }
 
 // state's exit
-void HeroKneel_exit(HeroKneel this __attribute__ ((unused)), void* owner __attribute__ ((unused)))
+void HeroKneel::exit(void* owner __attribute__ ((unused)))
 {
 }
 
 // state's handle message
-bool HeroKneel_processMessage(HeroKneel this __attribute__ ((unused)), void* owner, Telegram telegram)
+bool HeroKneel::processMessage(void* owner, Telegram telegram)
 {
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kBodyStartedMoving:
 
-			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), *(u16*)Telegram_getExtraInfo(telegram));
+			Hero::startedMovingOnAxis(Hero::safeCast(owner), *(u16*)Telegram::getExtraInfo(telegram));
 			break;
 
 		case kBodyStopped:
@@ -105,7 +86,7 @@ bool HeroKneel_processMessage(HeroKneel this __attribute__ ((unused)), void* own
 
 		case kHeroSleep:
 
-			AnimatedEntity_playAnimation(__SAFE_CAST(AnimatedEntity, owner), "Sleep");
+			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(owner), "Sleep");
 			return true;
 			break;
 	}
@@ -113,16 +94,16 @@ bool HeroKneel_processMessage(HeroKneel this __attribute__ ((unused)), void* own
 	return false;
 }
 
-void HeroKneel_onKeyPressed(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroKneel::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if(K_A & userInput->pressedKey)
 	{
-		Hero_jump(__SAFE_CAST(Hero, owner), true);
+		Hero::jump(Hero::safeCast(owner), true);
 	}
 
 	if(K_B & userInput->pressedKey)
 	{
-		Hero_shoot(__SAFE_CAST(Hero, owner), true);
+		Hero::shoot(Hero::safeCast(owner), true);
 	}
 
 	if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
@@ -134,10 +115,10 @@ void HeroKneel_onKeyPressed(HeroKneel this __attribute__ ((unused)), void* owner
 			0,
 		};
 
-		if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), acceleration))
+		if(Actor::canMoveTowards(Actor::safeCast(owner), acceleration))
 		{
-			Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->pressedKey, "Idle");
-			Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
+			Hero::checkDirection(Hero::safeCast(owner), userInput->pressedKey, "Idle");
+			Hero::startedMovingOnAxis(Hero::safeCast(owner), __X_AXIS);
 		}
 	}
 
@@ -147,15 +128,15 @@ void HeroKneel_onKeyPressed(HeroKneel this __attribute__ ((unused)), void* owner
 	}
 }
 
-void HeroKneel_onKeyReleased(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroKneel::onKeyReleased(void* owner, const UserInput* userInput)
 {
 	if(K_B & userInput->releasedKey)
 	{
-		Hero_shoot(__SAFE_CAST(Hero, owner), false);
+		Hero::shoot(Hero::safeCast(owner), false);
 	}
 }
 
-void HeroKneel_onKeyHold(HeroKneel this __attribute__ ((unused)), void* owner, const UserInput* userInput)
+void HeroKneel::onKeyHold(void* owner, const UserInput* userInput)
 {
     if((K_LL | K_LR) & userInput->holdKey)
     {
@@ -166,11 +147,11 @@ void HeroKneel_onKeyHold(HeroKneel this __attribute__ ((unused)), void* owner, c
             0,
         };
 
-		if(Actor_canMoveTowards(__SAFE_CAST(Actor, owner), direction))
+		if(Actor::canMoveTowards(Actor::safeCast(owner), direction))
         {
-            Hero_checkDirection(__SAFE_CAST(Hero, owner), userInput->holdKey, "Idle");
+            Hero::checkDirection(Hero::safeCast(owner), userInput->holdKey, "Idle");
 
-            Hero_startedMovingOnAxis(__SAFE_CAST(Hero, owner), __X_AXIS);
+            Hero::startedMovingOnAxis(Hero::safeCast(owner), __X_AXIS);
         }
     }
 }

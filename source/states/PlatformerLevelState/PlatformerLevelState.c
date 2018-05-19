@@ -47,31 +47,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void PlatformerLevelState_constructor(PlatformerLevelState this);
-static void PlatformerLevelState_destructor(PlatformerLevelState this);
-static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner);
-static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner);
-static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner);
-static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner);
-static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void* owner, Telegram telegram);
-static void PlatformerLevelState_getPositionedEntitiesToIgnore(PlatformerLevelState this, VirtualList positionedEntitiesToIgnore);
-bool PlatformerLevelState_isStartingLevel(PlatformerLevelState this);
-void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
-void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
-void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer);
-void PlatformerLevelState_onHeroDied(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onStartStageFadeOutComplete(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this, Object eventFirer);
-static void PlatformerLevelState_onHeroStreamedOut(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)));
-void PlatformerLevelState_setPrintingLayerCoordinates(PlatformerLevelState this);
-void PlatformerLevelState_startStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);
-
-
-//---------------------------------------------------------------------------------------------------------
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
@@ -80,21 +55,13 @@ extern EntityDefinition HERO_AC;
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(PlatformerLevelState, GameState);
-__SINGLETON(PlatformerLevelState);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void __attribute__ ((noinline)) PlatformerLevelState_constructor(PlatformerLevelState this)
+void PlatformerLevelState::constructor()
 {
-	__CONSTRUCT_BASE(GameState);
+	Base::constructor();
 
 	// clock
 	this->clock = __NEW(Clock);
@@ -107,7 +74,7 @@ static void __attribute__ ((noinline)) PlatformerLevelState_constructor(Platform
 }
 
 // class's destructor
-static void PlatformerLevelState_destructor(PlatformerLevelState this)
+void PlatformerLevelState::destructor()
 {
 	__DELETE(this->clock);
 
@@ -115,35 +82,35 @@ static void PlatformerLevelState_destructor(PlatformerLevelState this)
 	__SINGLETON_DESTROY;
 }
 
-static void PlatformerLevelState_getPositionedEntitiesToIgnore(PlatformerLevelState this __attribute__ ((unused)), VirtualList positionedEntitiesToIgnore __attribute__ ((unused)))
+void PlatformerLevelState::getPositionedEntitiesToIgnore(VirtualList positionedEntitiesToIgnore __attribute__ ((unused)))
 {
-	ASSERT(this, "PlatformerLevelState::getPositionedEntitiesToIgnore: null this");
+
 	ASSERT(positionedEntitiesToIgnore, "PlatformerLevelState::getPositionedEntitiesToIgnore: null positionedEntitiesToIgnore");
 }
 
 // state's enter
-static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
+void PlatformerLevelState::enter(void* owner)
 {
 	// call base
-	Base_enter(this, owner);
+	Base::enter(this, owner);
 
 	// set the custom screen managers
-	Camera_setCameraMovementManager(Camera_getInstance(), __SAFE_CAST(CameraMovementManager, CustomCameraMovementManager_getInstance()));
-	Camera_setCameraEffectManager(Camera_getInstance(), __SAFE_CAST(CameraEffectManager, CustomCameraEffectManager_getInstance()));
+	Camera::setCameraMovementManager(Camera::getInstance(), CameraMovementManager::safeCast(CustomCameraMovementManager::getInstance()));
+	Camera::setCameraEffectManager(Camera::getInstance(), CameraEffectManager::safeCast(CustomCameraEffectManager::getInstance()));
 
 	// disable user input
-	Game_disableKeypad(Game_getInstance());
+	Game::disableKeypad(Game::getInstance());
 
 	// get list of entities that should not be loaded
 	VirtualList positionedEntitiesToIgnore = __NEW(VirtualList);
-	PlatformerLevelState_getPositionedEntitiesToIgnore(this, positionedEntitiesToIgnore);
+	PlatformerLevelState::getPositionedEntitiesToIgnore(this, positionedEntitiesToIgnore);
 
 	// check if destination entity name is given
 	if(this->currentStageEntryPoint->destinationName)
 	{
 		// iterate stage definition to find global position of destination entity
 		Vector3D environmentPosition = {0, 0, 0};
-		Vector3D* initialPosition = Entity_calculateGlobalPositionFromDefinitionByName(this->currentStageEntryPoint->stageDefinition->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
+		Vector3D* initialPosition = Entity::calculateGlobalPositionFromDefinitionByName(this->currentStageEntryPoint->stageDefinition->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
 
 //		ASSERT(initialPosition, "PlatormerLevelState::enter: no initial position");
 
@@ -156,7 +123,7 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 			initialPosition->z += __PIXELS_TO_METERS(this->currentStageEntryPoint->offset.z + this->currentStageEntryPoint->offset.zDisplacement);
 
 			// set world's limits
-			Camera_setStageSize(Camera_getInstance(), Size_getFromPixelSize(this->currentStageEntryPoint->stageDefinition->level.pixelSize));
+			Camera::setStageSize(Camera::getInstance(), Size::getFromPixelSize(this->currentStageEntryPoint->stageDefinition->level.pixelSize));
 
 			// focus screen on new position
 			Vector3D screenPosition =
@@ -166,13 +133,13 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 				__PIXELS_TO_METERS(this->currentStageEntryPoint->stageDefinition->level.cameraInitialPosition.z)
 			};
 
-			Camera_setPosition(Camera_getInstance(), screenPosition);
+			Camera::setPosition(Camera::getInstance(), screenPosition);
 
 			// load stage
-			GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, false);
+			GameState::loadStage(GameState::safeCast(this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, false);
 
 			// get hero entity
-			Container hero = Container_getChildByName(__SAFE_CAST(Container, this->stage), HERO_NAME, true);
+			Container hero = Container::getChildByName(Container::safeCast(this->stage), HERO_NAME, true);
 
 			// if no hero could be found, create one. otherwise, move found hero.
 			if(!hero)
@@ -193,106 +160,106 @@ static void PlatformerLevelState_enter(PlatformerLevelState this, void* owner)
 					false
 				};
 
-				hero = __SAFE_CAST(Container, Stage_addChildEntity(this->stage, &positionedEntity, true));
+				hero = Container::safeCast(Stage::addChildEntity(this->stage, &positionedEntity, true));
 
 				// make sure that the streaming doesn't load the hero again
-				Stage_registerEntityId(this->stage, Entity_getInternalId(__SAFE_CAST(Entity, hero)), &HERO_AC);
+				Stage::registerEntityId(this->stage, Entity::getInternalId(Entity::safeCast(hero)), &HERO_AC);
 			}
 
 			// set hero's position
-			Actor_setPosition(__SAFE_CAST(Actor, hero), initialPosition);
+			Actor::setPosition(Actor::safeCast(hero), initialPosition);
 
-			Object_addEventListener(__SAFE_CAST(Object, hero), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroStreamedOut, kStageChildStreamedOut);
+			Object::addEventListener(Object::safeCast(hero), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroStreamedOut, kStageChildStreamedOut);
 
 			// make sure that focusing gets completed immediately
-			CustomCameraMovementManager_enable(CustomCameraMovementManager_getInstance());
-			CustomCameraMovementManager_disableFocusEasing(CustomCameraMovementManager_getInstance());
+			CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());
+			CustomCameraMovementManager::disableFocusEasing(CustomCameraMovementManager::getInstance());
 
 			// update actor's global transformations
-			GameState_transform(__SAFE_CAST(GameState, this));
+			GameState::transform(GameState::safeCast(this));
 
 			// set focus on the hero
-			Camera_setFocusGameEntity(Camera_getInstance(), __SAFE_CAST(Entity, hero));
+			Camera::setFocusGameEntity(Camera::getInstance(), Entity::safeCast(hero));
 			Vector3D screenDisplacement = {__PIXELS_TO_METERS(50), __PIXELS_TO_METERS(-30), 0};
-			Camera_setFocusEntityPositionDisplacement(Camera_getInstance(), screenDisplacement);
+			Camera::setFocusEntityPositionDisplacement(Camera::getInstance(), screenDisplacement);
 
 			// apply changes to the visuals
-			GameState_synchronizeGraphics(__SAFE_CAST(GameState, this));
+			GameState::synchronizeGraphics(GameState::safeCast(this));
 		}
 		else
 		{
 			// load stage
-			GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
+			GameState::loadStage(GameState::safeCast(this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
 		}
 	}
 	else
 	{
 		// load stage
-		GameState_loadStage(__SAFE_CAST(GameState, this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
+		GameState::loadStage(GameState::safeCast(this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
 	}
 
-	CustomCameraMovementManager_disable(CustomCameraMovementManager_getInstance());
+	CustomCameraMovementManager::disable(CustomCameraMovementManager::getInstance());
 
 	// free some memory
 	__DELETE(positionedEntitiesToIgnore);
 
 	// level is paused
-	PlatformerLevelState_setModeToPaused(this);
+	PlatformerLevelState::setModeToPaused(this);
 
 	// show up level after a little delay
-	MessageDispatcher_dispatchMessage(200, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelSetUp, NULL);
+	MessageDispatcher::dispatchMessage(200, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelSetUp, NULL);
 
 	// start clocks
-	Clock_start(this->clock);
-	Clock_setTimeInMilliSeconds(this->clock, ProgressManager_getCurrentLevelTime(ProgressManager_getInstance()));
-	GameState_startClocks(__SAFE_CAST(GameState, this));
+	Clock::start(this->clock);
+	Clock::setTimeInMilliSeconds(this->clock, ProgressManager::getCurrentLevelTime(ProgressManager::getInstance()));
+	GameState::startClocks(GameState::safeCast(this));
 
 	// register event listeners
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, kEventHeroDied);
+	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
 
 	// activate pulsating effect in indoor stages
 	if(this->currentStageEntryPoint->stageDefinition->rendering.colorConfig.brightnessRepeat != NULL)
 	{
-		Camera_startEffect(Camera_getInstance(), kScreenPulsate);
+		Camera::startEffect(Camera::getInstance(), kScreenPulsate);
 	}
 }
 
 // state's exit
-static void PlatformerLevelState_exit(PlatformerLevelState this, void* owner)
+void PlatformerLevelState::exit(void* owner)
 {
-	Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onHeroDied, kEventHeroDied);
+	Object::removeEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
 
 	// call base
-	Base_exit(this, owner);
+	Base::exit(this, owner);
 }
 
-static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
+void PlatformerLevelState::suspend(void* owner)
 {
 	// set pause mode
-	PlatformerLevelState_setModeToPaused(this);
+	PlatformerLevelState::setModeToPaused(this);
 
 	// pause clocks
-	Clock_pause(this->messagingClock, true);
-	Clock_pause(this->clock, true);
+	Clock::pause(this->messagingClock, true);
+	Clock::pause(this->clock, true);
 
 	// pause physical simulations
-	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
+	GameState::pausePhysics(GameState::safeCast(this), true);
 
 #ifdef __DEBUG_TOOLS
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 
 	// do a fade out effect
-	Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
+	Camera::startEffect(Camera::getInstance(), kFadeOut, __FADE_DELAY);
 
 #ifdef __DEBUG_TOOLS
 	}
@@ -305,36 +272,36 @@ static void PlatformerLevelState_suspend(PlatformerLevelState this, void* owner)
 #endif
 
 	// call base
-	Base_suspend(this, owner);
+	Base::suspend(this, owner);
 }
 
-static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
+void PlatformerLevelState::resume(void* owner)
 {
 	// resume in-game clock
-	Clock_pause(this->messagingClock, false);
-	Clock_pause(this->clock, false);
+	Clock::pause(this->messagingClock, false);
+	Clock::pause(this->clock, false);
 
 	// call base
-	Base_resume(this, owner);
+	Base::resume(this, owner);
 
 #ifdef __DEBUG_TOOLS
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 #ifdef __STAGE_EDITOR
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 #ifdef __ANIMATION_INSPECTOR
-	if(!Game_isExitingSpecialMode(Game_getInstance()))
+	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
 #endif
 
 	// tell any interested entity
-	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelResumed);
+	GameState::propagateMessage(GameState::safeCast(this), kLevelResumed);
 
 	// start a fade in effect
-	Camera_startEffect(Camera_getInstance(),
+	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		NULL, // target brightness
@@ -354,34 +321,34 @@ static void PlatformerLevelState_resume(PlatformerLevelState this, void* owner)
 #endif
 
 	// pause physical simulations
-	GameState_pausePhysics(__SAFE_CAST(GameState, this), false);
+	GameState::pausePhysics(GameState::safeCast(this), false);
 
-	PlatformerLevelState_setModeToPlaying(this);
+	PlatformerLevelState::setModeToPlaying(this);
 
-	UserInput userInput = KeypadManager_getUserInput(KeypadManager_getInstance());
+	UserInput userInput = KeypadManager::getUserInput(KeypadManager::getInstance());
 
 	this->userInput.pressedKey 	= userInput.allKeys & ~this->userInput.previousKey;
 	this->userInput.releasedKey = ~userInput.allKeys & this->userInput.previousKey;
 	this->userInput.holdKey 	= userInput.allKeys & this->userInput.previousKey;
 
 	// make sure that user input is taken into account
-	Object_fireEvent(__SAFE_CAST(Object, this), kEventUserInput);
+	Object::fireEvent(Object::safeCast(this), kEventUserInput);
 
-	PlatformerLevelState_setPrintingLayerCoordinates(this);
+	PlatformerLevelState::setPrintingLayerCoordinates(this);
 }
 
-void PlatformerLevelState_setPrintingLayerCoordinates(PlatformerLevelState this __attribute__ ((unused)))
+void PlatformerLevelState::setPrintingLayerCoordinates()
 {
 	extern TextureROMDef GUI_TX;
-	Printing_setWorldCoordinates(Printing_getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8);
+	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8);
 }
 
-UserInput PlatformerLevelState_getUserInput(PlatformerLevelState this)
+UserInput PlatformerLevelState::getUserInput()
 {
 	return this->userInput;
 }
 
-void PlatformerLevelState_processUserInput(PlatformerLevelState this, UserInput userInput)
+void PlatformerLevelState::processUserInput(UserInput userInput)
 {
 	if(kPlaying == this->mode)
 	{
@@ -392,74 +359,74 @@ void PlatformerLevelState_processUserInput(PlatformerLevelState this, UserInput 
 			if(K_SEL & this->userInput.pressedKey)
 			{
 				// adjustment screen
-				PlatformerLevelState_setModeToPaused(this);
+				PlatformerLevelState::setModeToPaused(this);
 
 				// set next state of adjustment screen state to null so it can differentiate between
 				// being called the splash screen sequence or from within the game (a bit hacky...)
-				SplashScreenState_setNextState(__SAFE_CAST(SplashScreenState, AdjustmentScreenState_getInstance()), NULL);
+				SplashScreenState::setNextState(SplashScreenState::safeCast(AdjustmentScreenState::getInstance()), NULL);
 
 				// pause game and switch to adjustment screen state
-				Game_pause(Game_getInstance(), __SAFE_CAST(GameState, AdjustmentScreenState_getInstance()));
+				Game::pause(Game::getInstance(), GameState::safeCast(AdjustmentScreenState::getInstance()));
 
 				return;
 			}
 			else if(K_STA & this->userInput.pressedKey)
 			{
 				// pause game and switch to pause screen state
-				Game_pause(Game_getInstance(), __SAFE_CAST(GameState, PauseScreenState_getInstance()));
+				Game::pause(Game::getInstance(), GameState::safeCast(PauseScreenState::getInstance()));
 
 				return;
 			}
 		}
 
-		Object_fireEvent(__SAFE_CAST(Object, this), kEventUserInput);
+		Object::fireEvent(Object::safeCast(this), kEventUserInput);
 	}
 }
 
 // state's handle message
-static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void* owner __attribute__ ((unused)), Telegram telegram)
+bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	// process message
-	switch(Telegram_getMessage(telegram))
+	switch(Telegram::getMessage(telegram))
 	{
 		case kLevelSetUp:
 			{
 				// print level name if at level start point
-				if(PlatformerLevelState_isStartingLevel(this) && this->currentLevel->name)
+				if(PlatformerLevelState::isStartingLevel(this) && this->currentLevel->name)
 				{
-					const char* strLevelName = I18n_getText(I18n_getInstance(), (int)this->currentLevel->name);
-					Printing_text(
-						Printing_getInstance(),
-						Utilities_toUppercase(strLevelName),
+					const char* strLevelName = I18n::getText(I18n::getInstance(), (int)this->currentLevel->name);
+					Printing::text(
+						Printing::getInstance(),
+						Utilities::toUppercase(strLevelName),
 						1,
 						24,
 						NULL
 					);
 
 					// erase level message in 2 seconds
-					MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
+					MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
 				}
 				else if(this->currentStageEntryPoint->isCheckPoint)
 				{
 					// write checkpoint message to screen
-					const char* strCheckpoint = I18n_getText(I18n_getInstance(), STR_CHECKPOINT);
-					Printing_text(
-						Printing_getInstance(),
-						Utilities_toUppercase(strCheckpoint),
+					const char* strCheckpoint = I18n::getText(I18n::getInstance(), STR_CHECKPOINT);
+					Printing::text(
+						Printing::getInstance(),
+						Utilities::toUppercase(strCheckpoint),
 						1,
 						25,
 						NULL
 					);
 
 					// erase checkpoint message in 2 second
-					MessageDispatcher_dispatchMessage(2000, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kHideLevelMessage, NULL);
+					MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
 				}
 
 				// tell any interested entity
-				GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelSetUp);
+				GameState::propagateMessage(GameState::safeCast(this), kLevelSetUp);
 
 				// show level after a little delay
-				MessageDispatcher_dispatchMessage(200, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLevelStarted, NULL);
+				MessageDispatcher::dispatchMessage(200, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelStarted, NULL);
 
 				this->mode = kShowingUp;
 			}
@@ -468,184 +435,184 @@ static bool PlatformerLevelState_processMessage(PlatformerLevelState this, void*
 		case kLevelStarted:
 
 			// fade in screen
-			Camera_startEffect(Camera_getInstance(),
+			Camera::startEffect(Camera::getInstance(),
 				kFadeTo, // effect type
 				0, // initial delay (in ms)
 				NULL, // target brightness
 				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))PlatformerLevelState_onLevelStartedFadeInComplete, // callback function
-				__SAFE_CAST(Object, this) // callback scope
+				(void (*)(Object, Object))PlatformerLevelState::onLevelStartedFadeInComplete, // callback function
+				Object::safeCast(this) // callback scope
 			);
 
 			break;
 
 		case kHideLevelMessage:
 
-			Printing_text(Printing_getInstance(), "                          ", 0, 24, NULL);
-			Printing_text(Printing_getInstance(), "                          ", 0, 25, NULL);
-			Printing_text(Printing_getInstance(), "                          ", 0, 26, NULL);
+			Printing::text(Printing::getInstance(), "                          ", 0, 24, NULL);
+			Printing::text(Printing::getInstance(), "                          ", 0, 25, NULL);
+			Printing::text(Printing::getInstance(), "                          ", 0, 26, NULL);
 
-			PlatformerLevelState_setPrintingLayerCoordinates(this);
+			PlatformerLevelState::setPrintingLayerCoordinates(this);
 			break;
 
 		case kScreenFocused:
 
-			Object_removeEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, kEventScreenFocused);
+			Object::removeEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
 			break;
 
 		case kLoadCheckPoint:
 
-			PlatformerLevelState_startStage(this, this->currentCheckPoint);
+			PlatformerLevelState::startStage(this, this->currentCheckPoint);
 
 			// announce checkpoint loaded
-			Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventCheckpointLoaded);
+			Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventCheckpointLoaded);
 			break;
 	}
 
 	return false;
 }
 
-void PlatformerLevelState_onScreenFocused(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
+void PlatformerLevelState::onScreenFocused(Object eventFirer __attribute__ ((unused)))
 {
-	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kScreenFocused, NULL);
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kScreenFocused, NULL);
 
-	CustomCameraMovementManager_dontAlertWhenTargetFocused(CustomCameraMovementManager_getInstance());
+	CustomCameraMovementManager::dontAlertWhenTargetFocused(CustomCameraMovementManager::getInstance());
 
-	Game_enableKeypad(Game_getInstance());
+	Game::enableKeypad(Game::getInstance());
 }
 
-void PlatformerLevelState_onHeroDied(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void PlatformerLevelState::onHeroDied(Object eventFirer __attribute__ ((unused)))
 {
 	// start a fade out effect
 	Brightness brightness = (Brightness){0, 0, 0};
-	Camera_startEffect(Camera_getInstance(),
+	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		5000, // initial delay (in ms)
 		&brightness, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))PlatformerLevelState_onHeroDiedFadeOutComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		(void (*)(Object, Object))PlatformerLevelState::onHeroDiedFadeOutComplete, // callback function
+		Object::safeCast(this) // callback scope
 	);
 
-	Game_disableKeypad(Game_getInstance());
+	Game::disableKeypad(Game::getInstance());
 }
 
-static void PlatformerLevelState_onHeroStreamedOut(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
+void PlatformerLevelState::onHeroStreamedOut(Object eventFirer __attribute__ ((unused)))
 {
-	PlatformerLevelState_setModeToPaused(this);
+	PlatformerLevelState::setModeToPaused(this);
 }
 
 // get in-game clock
-Clock PlatformerLevelState_getClock(PlatformerLevelState this)
+Clock PlatformerLevelState::getClock()
 {
 	return this->clock;
 }
 
 // get current level's definition
-PlatformerLevelDefinition* PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState this)
+PlatformerLevelDefinition* PlatformerLevelState::getCurrentLevelDefinition()
 {
 	return this->currentLevel;
 }
 
 // start a given level
-void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelDefinition* platformerLevelDefinition)
+void PlatformerLevelState::startLevel(PlatformerLevelDefinition* platformerLevelDefinition)
 {
 	this->currentLevel = platformerLevelDefinition;
 	this->currentCheckPoint = this->currentStageEntryPoint = this->currentLevel->entryPoint;
 
 	// announce level start
-	Object_fireEvent(__SAFE_CAST(Object, EventManager_getInstance()), kEventLevelStarted);
+	Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventLevelStarted);
 
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
+	Game::changeState(Game::getInstance(), GameState::safeCast(this));
 }
 
 // enter a given stage
-void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition)
+void PlatformerLevelState::enterStage(StageEntryPointDefinition* entryPointDefinition)
 {
 	// save stats if is checkpoint
 	if(entryPointDefinition->isCheckPoint)
 	{
 		// write checkpoint stats
-		ProgressManager_setCheckPointData(ProgressManager_getInstance());
+		ProgressManager::setCheckPointData(ProgressManager::getInstance());
 
 		// set current checkpoint
 		this->currentCheckPoint = entryPointDefinition;
 	}
 
-	PlatformerLevelState_startStage(this, entryPointDefinition);
+	PlatformerLevelState::startStage(this, entryPointDefinition);
 }
 
 // start a given stage
-void PlatformerLevelState_startStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition)
+void PlatformerLevelState::startStage(StageEntryPointDefinition* entryPointDefinition)
 {
 	// set current entry point
 	this->currentStageEntryPoint = entryPointDefinition;
 
 	// disable user input
-	Game_disableKeypad(Game_getInstance());
+	Game::disableKeypad(Game::getInstance());
 
 	// pause physical simulations
-	GameState_pausePhysics(__SAFE_CAST(GameState, this), true);
+	GameState::pausePhysics(GameState::safeCast(this), true);
 
 	// start a fade out effect
 	Brightness brightness = (Brightness){0, 0, 0};
-	Camera_startEffect(Camera_getInstance(),
+	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		&brightness, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))PlatformerLevelState_onStartStageFadeOutComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		(void (*)(Object, Object))PlatformerLevelState::onStartStageFadeOutComplete, // callback function
+		Object::safeCast(this) // callback scope
 	);
 }
 
 // determine if starting a new level
-bool PlatformerLevelState_isStartingLevel(PlatformerLevelState this)
+bool PlatformerLevelState::isStartingLevel()
 {
 	return (this->currentStageEntryPoint == this->currentLevel->entryPoint);
 }
 
 // set paused mode
-void PlatformerLevelState_setModeToPaused(PlatformerLevelState this)
+void PlatformerLevelState::setModeToPaused()
 {
 	this->mode = kPaused;
 }
 
 // set playing mode
-void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this)
+void PlatformerLevelState::setModeToPlaying()
 {
 	this->mode = kPlaying;
 }
 
 // handle event
-static void PlatformerLevelState_onLevelStartedFadeInComplete(PlatformerLevelState this, Object eventFirer __attribute__ ((unused)))
+void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "PlatformerLevelState::onLevelStartedFadeInComplete: null this");
+
 
 	// tell any interested entity
-	GameState_propagateMessage(__SAFE_CAST(GameState, this), kLevelStarted);
+	GameState::propagateMessage(GameState::safeCast(this), kLevelStarted);
 
-	PlatformerLevelState_setModeToPlaying(this);
+	PlatformerLevelState::setModeToPlaying(this);
 
 	// enable focus easing
-	Object_addEventListener(__SAFE_CAST(Object, EventManager_getInstance()), __SAFE_CAST(Object, this), (EventListener)PlatformerLevelState_onScreenFocused, kEventScreenFocused);
-	CustomCameraMovementManager_enableFocusEasing(CustomCameraMovementManager_getInstance());
-	CustomCameraMovementManager_enable(CustomCameraMovementManager_getInstance());
-	CustomCameraMovementManager_alertWhenTargetFocused(CustomCameraMovementManager_getInstance());
+	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
+	CustomCameraMovementManager::enableFocusEasing(CustomCameraMovementManager::getInstance());
+	CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());
+	CustomCameraMovementManager::alertWhenTargetFocused(CustomCameraMovementManager::getInstance());
 }
 
 // handle event
-static void PlatformerLevelState_onStartStageFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void PlatformerLevelState::onStartStageFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "PlatformerLevelState::onEnterStageFadeOutComplete: null this");
 
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, this));
+
+	Game::changeState(Game::getInstance(), GameState::safeCast(this));
 }
 
 // handle event
-static void PlatformerLevelState_onHeroDiedFadeOutComplete(PlatformerLevelState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void PlatformerLevelState::onHeroDiedFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "PlatformerLevelState::onHeroDiedFadeOutComplete: null this");
 
-	MessageDispatcher_dispatchMessage(1, __SAFE_CAST(Object, this), __SAFE_CAST(Object, Game_getInstance()), kLoadCheckPoint, NULL);
+
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLoadCheckPoint, NULL);
 }

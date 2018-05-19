@@ -31,79 +31,66 @@
 #include <MessageDispatcher.h>
 #include <PlatformerLevelState.h>
 #include <debugUtilities.h>
-
-
 #include "MovingOneWayEntity.h"
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(MovingOneWayEntity, Actor);
 
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-__CLASS_NEW_DEFINITION(MovingOneWayEntity, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
-__CLASS_NEW_END(MovingOneWayEntity, actorDefinition, id, internalId, name);
-
 // class's constructor
-void MovingOneWayEntity_constructor(MovingOneWayEntity this, ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
+void MovingOneWayEntity::constructor(ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
 {
-	ASSERT(this, "MovingOneWayEntity::constructor: null this");
+
 
 	// construct base
-	Base_constructor(this, actorDefinition, id, internalId, name);
+	Base::constructor(actorDefinition, id, internalId, name);
 }
 
-void MovingOneWayEntity_destructor(MovingOneWayEntity this)
+void MovingOneWayEntity::destructor()
 {
-	ASSERT(this, "MovingOneWayEntity::destructor: null this");
+
 
 	// destroy the super object
 	// must always be called at the end of the destructor
-	Base_destructor();
+	Base::destructor();
 }
 
 // set extra info
-void MovingOneWayEntity_setExtraInfo(MovingOneWayEntity this, void* extraInfo)
+void MovingOneWayEntity::setExtraInfo(void* extraInfo)
 {
-	ASSERT(this, "MovingOneWayEntity::setExtraInfo: null this");
+
 
 	this->speed = (extraInfo != NULL)
 		? __I_TO_FIX10_6((int)extraInfo)
 		: __I_TO_FIX10_6(-4);
 }
 
-void MovingOneWayEntity_ready(MovingOneWayEntity this, bool recursive)
+void MovingOneWayEntity::ready(bool recursive)
 {
-	ASSERT(this, "MovingOneWayEntity::ready: null this");
+
 
 	// call base
-	Base_ready(this, recursive);
+	Base::ready(this, recursive);
 
 	// start movement
-	MovingOneWayEntity_startMovement(this);
+	MovingOneWayEntity::startMovement(this);
 }
 
-void MovingOneWayEntity_startMovement(MovingOneWayEntity this)
+void MovingOneWayEntity::startMovement()
 {
 	Velocity velocity = {this->speed, 0, 0};
-	Actor_moveUniformly(__SAFE_CAST(Actor, this), &velocity);
+	Actor::moveUniformly(Actor::safeCast(this), &velocity);
 }
 
-void MovingOneWayEntity_stopMovement(MovingOneWayEntity this)
+void MovingOneWayEntity::stopMovement()
 {
-	Actor_stopAllMovement(__SAFE_CAST(Actor, this));
+	Actor::stopAllMovement(Actor::safeCast(this));
 }
 
-bool MovingOneWayEntity_respawn(MovingOneWayEntity this __attribute__ ((unused)))
+bool MovingOneWayEntity::respawn()
 {
-	ASSERT(this, "MovingOneWayEntity::respawn: null this");
+
 
 	return false;
 }

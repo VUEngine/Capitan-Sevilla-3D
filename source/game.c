@@ -32,10 +32,10 @@
 //											GAME'S MAIN LOOP
 //---------------------------------------------------------------------------------------------------------
 
-int main(void)
+int main()
 {
 	// start the game
-	Game_start(Game_getInstance(), __SAFE_CAST(GameState, PlatformerLevelState_getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
 
 	// end program
 	return true;

@@ -50,123 +50,101 @@ extern StageROMDef TITLE_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												PROTOTYPES
-//---------------------------------------------------------------------------------------------------------
-
-static void TitleScreenState_destructor(TitleScreenState this);
-static void TitleScreenState_constructor(TitleScreenState this);
-static void TitleScreenState_enter(TitleScreenState this, void* owner);
-static void TitleScreenState_exit(TitleScreenState this, void* owner);
-static void TitleScreenState_resume(TitleScreenState this, void* owner);
-static void TitleScreenState_suspend(TitleScreenState this, void* owner);
-static void TitleScreenState_onFadeInComplete(TitleScreenState this, Object eventFirer);
-static void TitleScreenState_onFadeOutComplete(TitleScreenState this, Object eventFirer);
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-__CLASS_DEFINITION(TitleScreenState, GameState);
-__SINGLETON(TitleScreenState);
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-static void __attribute__ ((noinline)) TitleScreenState_constructor(TitleScreenState this)
+void TitleScreenState::constructor()
 {
-	__CONSTRUCT_BASE(GameState);
+	Base::constructor();
 }
 
 // class's destructor
-static void TitleScreenState_destructor(TitleScreenState this)
+void TitleScreenState::destructor()
 {
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 // state's enter
-static void TitleScreenState_enter(TitleScreenState this, void* owner)
+void TitleScreenState::enter(void* owner)
 {
 	// call base
-	Base_enter(this, owner);
+	Base::enter(this, owner);
 
 	// disable user input
-	Game_disableKeypad(Game_getInstance());
+	Game::disableKeypad(Game::getInstance());
 
 	// load stage
-	GameState_loadStage(__SAFE_CAST(GameState, this), (StageDefinition*)&TITLE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(GameState::safeCast(this), (StageDefinition*)&TITLE_SCREEN_STAGE_ST, NULL, true);
 
 	// fade in screen
-	Camera_startEffect(Camera_getInstance(),
+	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))TitleScreenState_onFadeInComplete, // callback function
-		__SAFE_CAST(Object, this) // callback scope
+		(void (*)(Object, Object))TitleScreenState::onFadeInComplete, // callback function
+		Object::safeCast(this) // callback scope
 	);
 }
 
 // state's exit
-static void TitleScreenState_exit(TitleScreenState this, void* owner)
+void TitleScreenState::exit(void* owner)
 {
 	// call base
-	Base_exit(this, owner);
+	Base::exit(this, owner);
 }
 
 // state's resume
-static void TitleScreenState_resume(TitleScreenState this, void* owner)
+void TitleScreenState::resume(void* owner)
 {
-	Base_resume(this, owner);
+	Base::resume(this, owner);
 
-	Camera_startEffect(Camera_getInstance(), kFadeIn, __FADE_DELAY);
+	Camera::startEffect(Camera::getInstance(), kFadeIn, __FADE_DELAY);
 }
 
 // state's suspend
-static void TitleScreenState_suspend(TitleScreenState this, void* owner)
+void TitleScreenState::suspend(void* owner)
 {
-	Camera_startEffect(Camera_getInstance(), kFadeOut, __FADE_DELAY);
+	Camera::startEffect(Camera::getInstance(), kFadeOut, __FADE_DELAY);
 
-	Base_suspend(this, owner);
+	Base::suspend(this, owner);
 }
 
-void TitleScreenState_processUserInput(TitleScreenState this, UserInput userInput)
+void TitleScreenState::processUserInput(UserInput userInput)
 {
 	if(userInput.pressedKey & ~K_PWR)
 	{
 		// disable user input
-		Game_disableKeypad(Game_getInstance());
+		Game::disableKeypad(Game::getInstance());
 
 		// fade out screen
 		Brightness brightness = (Brightness){0, 0, 0};
-		Camera_startEffect(Camera_getInstance(),
+		Camera::startEffect(Camera::getInstance(),
 			kFadeTo, // effect type
 			0, // initial delay (in ms)
 			&brightness, // target brightness
 			__FADE_DELAY, // delay between fading steps (in ms)
-			(void (*)(Object, Object))TitleScreenState_onFadeOutComplete, // callback function
-			__SAFE_CAST(Object, this) // callback scope
+			(void (*)(Object, Object))TitleScreenState::onFadeOutComplete, // callback function
+			Object::safeCast(this) // callback scope
 		);
 	}
 }
 
 // handle event
-static void TitleScreenState_onFadeInComplete(TitleScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void TitleScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "TitleScreenState::onFadeInComplete: null this");
+
 
 	// enable user input
-	Game_enableKeypad(Game_getInstance());
+	Game::enableKeypad(Game::getInstance());
 }
 
 // handle event
-static void TitleScreenState_onFadeOutComplete(TitleScreenState this __attribute__ ((unused)), Object eventFirer __attribute__ ((unused)))
+void TitleScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	ASSERT(this, "TitleScreenState::onFadeOutComplete: null this");
 
-	Game_changeState(Game_getInstance(), __SAFE_CAST(GameState, PlatformerLevelState_getInstance()));
+
+	Game::changeState(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
 }

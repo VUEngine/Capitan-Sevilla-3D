@@ -49,36 +49,6 @@ enum PlatformerLevelModes
 //---------------------------------------------------------------------------------------------------------
 
 // declare the virtual methods
-#define PlatformerLevelState_METHODS(ClassName)															\
-		GameState_METHODS(ClassName)																	\
-
-// declare the virtual methods which are redefined
-#define PlatformerLevelState_SET_VTABLE(ClassName)														\
-		GameState_SET_VTABLE(ClassName)																	\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, enter);											\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, exit);											\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, suspend);										\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, resume);											\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, processMessage);									\
-		__VIRTUAL_SET(ClassName, PlatformerLevelState, processUserInput);								\
-
-__CLASS(PlatformerLevelState);
-
-#define PlatformerLevelState_ATTRIBUTES																	\
-		/* inherits */																					\
-		GameState_ATTRIBUTES																			\
-		/* the currently loaded level */																\
-		PlatformerLevelDefinition* currentLevel;														\
-		/* the currently loaded entry point */															\
-		StageEntryPointDefinition* currentStageEntryPoint;												\
-		/* the last reached checkpoint */																\
-		StageEntryPointDefinition* currentCheckPoint;													\
-		/* to allow moving the screen */																\
-		u8 mode;																						\
-		/* in-game clock */																				\
-		Clock clock;																					\
-		/* previous user input */																		\
-		UserInput userInput;																			\
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -161,16 +131,36 @@ enum PlatformerLevelStateMessageTypes
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-PlatformerLevelState PlatformerLevelState_getInstance(void);
+singleton class PlatformerLevelState : GameState
+{
+	/* the currently loaded level */
+	PlatformerLevelDefinition* currentLevel;
+	/* the currently loaded entry point */
+	StageEntryPointDefinition* currentStageEntryPoint;
+	/* the last reached checkpoint */
+	StageEntryPointDefinition* currentCheckPoint;
+	/* to allow moving the screen */
+	u8 mode;
+	/* in-game clock */
+	Clock clock;
+	/* previous user input */
+	UserInput userInput;
 
-Clock PlatformerLevelState_getClock(PlatformerLevelState this);
-PlatformerLevelDefinition* PlatformerLevelState_getCurrentLevelDefinition(PlatformerLevelState this);
-void PlatformerLevelState_startLevel(PlatformerLevelState this, PlatformerLevelDefinition* platformerLevelDefinition);
-void PlatformerLevelState_enterStage(PlatformerLevelState this, StageEntryPointDefinition* entryPointDefinition);
-void PlatformerLevelState_setModeToPaused(PlatformerLevelState this);
-void PlatformerLevelState_setModeToPlaying(PlatformerLevelState this);
-UserInput PlatformerLevelState_getUserInput(PlatformerLevelState this);
-void PlatformerLevelState_processUserInput(PlatformerLevelState this, UserInput userInput);
+	static PlatformerLevelState getInstance();
+	Clock getClock();
+	PlatformerLevelDefinition* getCurrentLevelDefinition();
+	void startLevel(PlatformerLevelDefinition* platformerLevelDefinition);
+	void enterStage(StageEntryPointDefinition* entryPointDefinition);
+	void setModeToPaused();
+	void setModeToPlaying();
+	UserInput getUserInput();
+	override void enter(void* owner);
+	override void exit(void* owner);
+	override void resume(void* owner);
+	override void suspend(void* owner);
+	override bool processMessage(void* owner, Telegram telegram);
+	override void processUserInput(UserInput userInput);
+}
 
 
 #endif

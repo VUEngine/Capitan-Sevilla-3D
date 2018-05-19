@@ -35,22 +35,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-#define ProjectileEjector_METHODS(ClassName)															\
-		AnimatedEntity_METHODS(ClassName)																\
-
-#define ProjectileEjector_SET_VTABLE(ClassName)															\
-		AnimatedEntity_SET_VTABLE(ClassName)															\
-		__VIRTUAL_SET(ClassName, ProjectileEjector, handleMessage);										\
-		__VIRTUAL_SET(ClassName, ProjectileEjector, ready);												\
-
-__CLASS(ProjectileEjector);
-
-#define ProjectileEjector_ATTRIBUTES																	\
-		AnimatedEntity_ATTRIBUTES																		\
-		/* definition pointer */																		\
-		ProjectileEjectorDefinition* projectileEjectorDefinition;										\
-		/* ejection flag */																				\
-		u8 active;																						\
 
 
 typedef struct ProjectileEjectorDefinition
@@ -89,17 +73,22 @@ typedef const ProjectileEjectorDefinition ProjectileEjectorROMDef;
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-__CLASS_NEW_DECLARE(ProjectileEjector, ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name);
 
-void ProjectileEjector_constructor(ProjectileEjector this, ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name);
-void ProjectileEjector_destructor(ProjectileEjector this);
+class ProjectileEjector : AnimatedEntity
+{
+	/* definition pointer */
+	ProjectileEjectorDefinition* projectileEjectorDefinition;
+	/* ejection flag */
+	u8 active;
 
-void ProjectileEjector_ejectProjectile(ProjectileEjector this);
-bool ProjectileEjector_handleMessage(ProjectileEjector this, Telegram telegram);
-bool ProjectileEjector_isActive(ProjectileEjector this);
-void ProjectileEjector_onEjectAnimationComplete(ProjectileEjector this);
-void ProjectileEjector_ready(ProjectileEjector this, bool recursive);
-void ProjectileEjector_setActive(ProjectileEjector this, bool active);
+	void constructor(ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name);
+	void ejectProjectile();
+	bool isActive();
+	void onEjectAnimationComplete();
+	void setActive(bool active);
+	override bool handleMessage(Telegram telegram);
+	override void ready(bool recursive);
+}
 
 
 #endif
