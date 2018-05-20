@@ -7,11 +7,28 @@ TYPE = debug
 #TYPE = tools
 #TYPE = preprocessor
 
+# engine's home
+VUENGINE_HOME = $(VBDE)libs/vuengine
+
 # Where I live
 GAME_HOME = $(shell pwd)
 
 # output dir
 BUILD_DIR = build
+
+# linked engine's home
+VUENGINE_LIBRARY_PATH = $(BUILD_DIR)/
+
+# Where to preprocess source files
+PREPROCESSOR_WORKING_FOLDER = $(BUILD_DIR)/working
+
+# Add directories to the include and library paths
+GAME_HEADERS_DIRS = $(shell find source assets -type d -print)
+VUENGINE_HEADERS_DIRS = $(shell find $(VUENGINE_HOME)/source $(VUENGINE_HOME)/assets -type d -print)
+
+GAME_INCLUDE_PATHS = $(foreach DIR,$(GAME_HEADERS_DIRS), $(PREPROCESSOR_WORKING_FOLDER)/headers/game/$(DIR))
+GAME_INCLUDE_PATHS := $(GAME_INCLUDE_PATHS) $(foreach DIR,$(VUENGINE_HEADERS_DIRS), $(PREPROCESSOR_WORKING_FOLDER)/headers/vuengine/$(DIR))
+
 
 # target's needed steps
 ALL_TARGET_PREREQUISITES = dirs $(TARGET).vb $(PAD) $(DUMP_TARGET)
@@ -119,14 +136,12 @@ ifneq ($(USE_CUSTOM_LINKER_SCRIPT),)
 LINKER_SCRIPT = $(shell pwd)/lib/compiler/linker/vb.ld
 endif
 
-# engine's home
-VUENGINE_HOME = $(VBDE)libs/vuengine
+# Where to store object and dependency files.
+STORE = $(BUILD_DIR)/$(TYPE)$(STORE_SUFFIX)
 
 # Which directories contain source files
-DIRS = $(shell find source assets -type d -print)
-
-HEADER_DIRS = $(shell find ./source -type d -print)
-HEADER_DIRS := $(HEADER_DIRS) $(shell find ./assets -type d -print)
+SOURCES_DIRS = $(shell find source assets -type d -print)
+HEADERS_DIRS = $(shell find source assets -type d -print)
 
 # Which libraries are linked
 LIBS = vuengine
@@ -171,39 +186,24 @@ C_PARAMS = -std=gnu99 -mv810 -nodefaultlibs -Wall -Wextra -E
 MACROS = $(COMMON_MACROS)
 endif
 
-# linked engine's home
-VUENGINE_LIBRARY_PATH = $(BUILD_DIR)/
-
-# Where to store object and dependency files.
-STORE = $(BUILD_DIR)/$(TYPE)$(STORE_SUFFIX)
-
-# Where to preprocess source files
-WORKING_FOLDER = $(STORE)/compiler
-
-# Add directories to the include and library paths
-INCLUDE_DIRS = $(shell find $(VUENGINE_HOME)/source -type d -print)
-INCLUDE_DIRS := $(INCLUDE_DIRS) $(shell find source assets/fonts assets/languages -type d -print)
-
-GAME_INCLUDE_PATHS =$(foreach DIR,$(INCLUDE_DIRS), $(WORKING_FOLDER)/source/$(DIR))
-
 # Makefs a list of the source (.cpp) files.
-C_SOURCE = $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.c))
+C_SOURCE = $(foreach DIR,$(SOURCES_DIRS),$(wildcard $(DIR)/*.c))
 
 # Makes a list of the source (.s) files.
-ASSEMBLY_SOURCE = $(foreach DIR,$(DIRS),$(wildcard $(DIR)/*.s))
+ASSEMBLY_SOURCE = $(foreach DIR,$(SOURCES_DIRS),$(wildcard $(DIR)/*.s))
 
 # List of header files.
-HEADERS = $(foreach DIR,$(HEADER_DIRS),$(wildcard $(DIR)/*.h))
+HEADERS = $(foreach DIR,$(HEADERS_DIRS),$(wildcard $(DIR)/*.h))
 
 # Makes a list of the header files that will have to be created.
-H_FILES = $(addprefix $(WORKING_FOLDER)/source/, $(HEADERS:.h=.h))
+H_FILES = $(addprefix $(PREPROCESSOR_WORKING_FOLDER)/headers/game/, $(HEADERS:.h=.h))
 
 # Makes a list of the object files that will have to be created.
-C_OBJECTS = $(addprefix $(STORE)/objects/, $(C_SOURCE:.c=.o))
-C_INTERMEDIATE_SOURCES = $(addprefix $(WORKING_FOLDER)/source/, $(C_SOURCE:.c=.c))
+C_OBJECTS = $(addprefix $(STORE)/objects/game/, $(C_SOURCE:.c=.o))
+C_INTERMEDIATE_SOURCES = $(addprefix $(STORE)/sources/game/, $(C_SOURCE:.c=.c))
 
 # Makes a list of the object files that will have to be created.
-ASSEMBLY_OBJECTS = $(addprefix $(STORE)/objects/, $(ASSEMBLY_SOURCE:.s=.o))
+ASSEMBLY_OBJECTS = $(addprefix $(STORE)/objects/game/, $(ASSEMBLY_SOURCE:.s=.o))
 
 # Same for the .d (dependency) files.
 D_FILES = $(addprefix $(STORE)/,$(C_SOURCE:.c=.d))
@@ -211,17 +211,18 @@ D_FILES = $(addprefix $(STORE)/,$(C_SOURCE:.c=.d))
 HELPERS_PREFIX=game
 
 # Class setup file
+SETUP_CLASSES = $(HELPERS_PREFIX)SetupClasses
+SETUP_CLASSES_OBJECT = $(STORE)/objects/game/$(SETUP_CLASSES)
 FINAL_SETUP_CLASSES = setupClasses
 FINAL_SETUP_CLASSES_OBJECT = $(STORE)/objects/$(FINAL_SETUP_CLASSES)
 
-SETUP_CLASSES = $(HELPERS_PREFIX)SetupClasses
-SETUP_CLASSES_OBJECT = $(STORE)/objects/$(SETUP_CLASSES)
+
 
 # Virtual methods preprocessor file
-VIRTUAL_METHODS_HELPER=$(WORKING_FOLDER)/preprocessor/$(HELPERS_PREFIX)VirtualMethods.txt
+VIRTUAL_METHODS_HELPER=$(PREPROCESSOR_WORKING_FOLDER)/$(HELPERS_PREFIX)VirtualMethods.txt
 
 # File that holds the classes hierarchy
-CLASSES_HIERARCHY_FILE=$(WORKING_FOLDER)/preprocessor/$(HELPERS_PREFIX)ClassesHierarchy.txt
+CLASSES_HIERARCHY_FILE=$(PREPROCESSOR_WORKING_FOLDER)/$(HELPERS_PREFIX)ClassesHierarchy.txt
 
 # Main target. The @ in front of a command prevents make from displaying it to the standard output.
 
@@ -244,13 +245,13 @@ printBuildingInfo:
 	@echo Compiler\'s output: $(COMPILER_OUTPUT)
 
 portToNewSyntax: dirs
-	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/cleanSyntax.sh $(VUENGINE_HOME) $(GAME_HOME)/source $(WORKING_FOLDER)/preprocessor
+	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/cleanSyntax.sh $(VUENGINE_HOME) $(GAME_HOME)/source $(PREPROCESSOR_WORKING_FOLDER)
 
 printPostPreprocessorInfo:
 	@echo Done compiling in $(TYPE) mode with GCC $(COMPILER_VERSION)
 
 setupClasses:
-	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/setupClasses.sh -h $(WORKING_FOLDER)/source -o $(SETUP_CLASSES).c -w $(WORKING_FOLDER)/preprocessor
+	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/setupClasses.sh -h $(PREPROCESSOR_WORKING_FOLDER)/headers/game/ -o $(SETUP_CLASSES).c -w $(PREPROCESSOR_WORKING_FOLDER)
 	@echo Classes processing done
 
 dump: $(TARGET).elf
@@ -276,43 +277,41 @@ $(TARGET).elf: $(VUENGINE) $(VIRTUAL_METHODS_HELPER) $(C_OBJECTS) $(C_INTERMEDIA
 		$(foreach LIBRARY, $(LIBS),-l$(LIBRARY)) $(foreach LIB,$(VUENGINE_LIBRARY_PATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
 
 $(VIRTUAL_METHODS_HELPER): $(H_FILES)
-	@echo "Preparing virtual methods in game"
-	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/analyzeHeaderFile.sh -w $(WORKING_FOLDER)/preprocessor -h $(WORKING_FOLDER)/source -p $(HELPERS_PREFIX) -d
+#	@echo "Preparing virtual methods in game"
+	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/analyzeHeaderFile.sh -w $(PREPROCESSOR_WORKING_FOLDER) -h $(PREPROCESSOR_WORKING_FOLDER)/headers/game/source -p $(HELPERS_PREFIX) -d
 
-$(SETUP_CLASSES_OBJECT).o: $(WORKING_FOLDER)/preprocessor/$(SETUP_CLASSES).c
+$(SETUP_CLASSES_OBJECT).o: $(PREPROCESSOR_WORKING_FOLDER)/$(SETUP_CLASSES).c
 	@echo Compiling $<
 	@$(GCC) $(foreach INC,$(GAME_INCLUDE_PATHS),-I$(INC))\
         $(foreach MACRO,$(MACROS),-D$(MACRO)) $(C_PARAMS) -$(COMPILER_OUTPUT) $< -o $@
 
-$(WORKING_FOLDER)/preprocessor/$(SETUP_CLASSES).c: setupClasses
+$(PREPROCESSOR_WORKING_FOLDER)/$(SETUP_CLASSES).c: setupClasses
 
-$(FINAL_SETUP_CLASSES_OBJECT).o: $(WORKING_FOLDER)/preprocessor/$(FINAL_SETUP_CLASSES).c
+$(FINAL_SETUP_CLASSES_OBJECT).o: $(PREPROCESSOR_WORKING_FOLDER)/$(FINAL_SETUP_CLASSES).c
 	@echo Compiling $<
 	@$(GCC) $(foreach INC,$(GAME_INCLUDE_PATHS),-I$(INC))\
         $(foreach MACRO,$(MACROS),-D$(MACRO)) $(C_PARAMS) -$(COMPILER_OUTPUT) $< -o $@
 
 # Rule for creating object file and .d file, the sed magic is to add the object path at the start of the file
 # because the files gcc outputs assume it will be in the same dir as the source file.
-$(STORE)/objects/%.o: $(WORKING_FOLDER)/source/%.c
+$(STORE)/objects/game/%.o: $(STORE)/sources/game/%.c
 	@echo -n "Compiling "
-	@sed -e 's#'"$(WORKING_FOLDER)"/source/'##g' <<< $<
-	@$(GCC) -Wp,-MD,$(STORE)/objects/$*.dd $(foreach INC,$(GAME_INCLUDE_PATHS),-I$(INC))\
+	@sed -e 's#'"$(STORE)"/sources/game/'##g' <<< $<
+	@$(GCC) -Wp,-MD,$(STORE)/objects/game/$*.dd $(foreach INC,$(GAME_INCLUDE_PATHS),-I$(INC))\
         $(foreach MACRO,$(MACROS),-D$(MACRO)) $(C_PARAMS) -$(COMPILER_OUTPUT) $< -o $@
-	@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/objects/$*.dd > $(STORE)/objects/$*.d
-	@rm -f $(STORE)/objects/$*.dd
+	@sed -e '1s/^\(.*\)$$/$(subst /,\/,$(dir $@))\1/' $(STORE)/objects/game/$*.dd > $(STORE)/objects/game/$*.d
+	@rm -f $(STORE)/objects/game/$*.dd
 
-$(WORKING_FOLDER)/source/%.c: %.c
-	@echo Compiling $<
-	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/processSourceFile.sh -i $< -o $@ -d -w $(WORKING_FOLDER)/preprocessor -p engine -p $(HELPERS_PREFIX) -c $(CLASSES_HIERARCHY_FILE)
+$(STORE)/sources/game/%.c: %.c
+	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/processSourceFile.sh -i $< -o $@ -d -w $(PREPROCESSOR_WORKING_FOLDER) -p engine -p $(HELPERS_PREFIX) -c $(CLASSES_HIERARCHY_FILE)
 
-$(STORE)/objects/%.o: %.s
+$(STORE)/objects/game/%.o: %.s
 	@echo Creating object file for $*
 	@$(AS) -o $@ $<
 
-$(WORKING_FOLDER)/source/%.h: %.h
+$(PREPROCESSOR_WORKING_FOLDER)/headers/game/%.h: %.h
 #	@echo Analysing $<
-#	@echo into $@
-	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/processHeaderFile.sh -i $< -o $@ -w $(WORKING_FOLDER)/preprocessor -c $(CLASSES_HIERARCHY_FILE)
+	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/processHeaderFile.sh -i $< -o $@ -w $(PREPROCESSOR_WORKING_FOLDER) -c $(CLASSES_HIERARCHY_FILE)
 
 $(VUENGINE): deleteEngine
 	@echo
@@ -329,21 +328,24 @@ deleteEngine:
 
 # Cleans up the objects, .d files and executables.
 clean:
-	@echo Cleaning $(TYPE)...
-	@find $(BUILD_DIR) -maxdepth 1 -type f -exec rm -f {} \;
+	@echo Cleaning $(TYPE)...$(STORE)
+#	@find $(BUILD_DIR) -maxdepth 1 -type f -exec rm -f {} \;
 	@rm -Rf $(STORE)
 	@echo Cleaning done.
 
 # Create necessary directories
 dirs:
 	@echo Checking working dirs..
-	@-if [ ! -e $(STORE) ]; then mkdir -p $(STORE); fi;
-	@-$(foreach DIR,$(DIRS), if [ ! -e $(STORE)/objects/$(DIR) ]; \
-         then mkdir -p $(STORE)/objects/$(DIR); fi; )
-	@-if [ ! -e $(WORKING_FOLDER)/source ]; then mkdir -p $(WORKING_FOLDER)/source; fi;
-	@-$(foreach DIR,$(DIRS), if [ ! -e $(WORKING_FOLDER)/source/$(DIR) ]; \
-         then mkdir -p $(WORKING_FOLDER)/source/$(DIR); fi; )
-	@-if [ ! -e $(WORKING_FOLDER)/preprocessor ]; then mkdir -p $(WORKING_FOLDER)/preprocessor; fi;
+	@-if [ ! -e $(PREPROCESSOR_WORKING_FOLDER)/headers/game ]; then mkdir -p $(PREPROCESSOR_WORKING_FOLDER)/headers/game; fi;
+	@-$(foreach DIR,$(HEADERS_DIRS), if [ ! -e $(PREPROCESSOR_WORKING_FOLDER)/headers/game/$(DIR) ]; \
+         then mkdir -p $(PREPROCESSOR_WORKING_FOLDER)/headers/game/$(DIR); fi; )
+	@-if [ ! -e $(STORE)/sources/game ]; then mkdir -p $(STORE)/sources/game; fi;
+	@-$(foreach DIR,$(SOURCES_DIRS), if [ ! -e $(STORE)/sources/game/$(DIR) ]; \
+         then mkdir -p $(STORE)/sources/game/$(DIR); fi; )
+	@-if [ ! -e $(STORE)/objects/game ]; then mkdir -p $(STORE)/objects/game; fi;
+	@-$(foreach DIR,$(SOURCES_DIRS), if [ ! -e $(STORE)/objects/game/$(DIR) ]; \
+         then mkdir -p $(STORE)/objects/game/$(DIR); fi; )
+
 
 # Includes the .d files so it knows the exact dependencies for every source
 -include $(D_FILES)
