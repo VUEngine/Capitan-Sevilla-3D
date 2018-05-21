@@ -314,11 +314,11 @@ libraries: deleteLibraries
 				-e TYPE=$(TYPE) 														\
 				-e CONFIG_FILE=$(CONFIG_FILE) 											\
 				-e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE) 								\
-				-e GAME_HOME=$(MY_HOME)													\
+				-e GAME_HOME=$(MY_HOME);												\
 	)
 
 deleteLibraries:
-	-$(foreach LIBRARY, $(LIBRARIES), rm -f $(LIBRARIES_PATH)/$(LIBRARY))
+	-$(foreach LIBRARY, $(LIBRARIES), $(shell rm -f $(LIBRARIES_PATH)/$(LIBRARY)))
 
 
 # Empty rule to prevent problems when a header is deleted.
