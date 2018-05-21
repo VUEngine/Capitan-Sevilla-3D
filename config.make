@@ -1,3 +1,6 @@
+# VUEngine based components that the project uses
+COMPONENTS =
+
 # Compiler's output
 COMPILER_OUTPUT         = c
 

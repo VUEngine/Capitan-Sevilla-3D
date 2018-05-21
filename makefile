@@ -10,13 +10,13 @@ TYPE = debug
 #TYPE = preprocessor
 
 # Which libraries are linked
-LIBRARIES = vuengine
+LIBRARIES = vuengine $(COMPONENTS)
 
 # engine's home
 VUENGINE_HOME = $(VBDE)libs/vuengine
 
-# Where I live
-GAME_HOME = $(shell pwd)
+# My home
+MY_HOME = $(shell pwd)
 
 # output dir
 BUILD_DIR = build
@@ -27,13 +27,11 @@ LIBRARIES_PATH = $(BUILD_DIR)/
 # Where to preprocess source files
 PREPROCESSOR_WORKING_FOLDER = $(BUILD_DIR)/working
 
+# All the modules
+MODULES = $(NAME) $(LIBRARIES)
+
 # Add directories to the include and library paths
-MODULES = $(NAME) vuengine
-game_DIRS = source assets/fonts assets/languages
-vuengine_DIRS = $(VUENGINE_HOME)/source $(VUENGINE_HOME)/assets
-
-INCLUDE_PATHS = $(foreach MODULE, $(MODULES), $(foreach DIR, $(shell find $($(MODULE)_DIRS) -type d -print), $(PREPROCESSOR_WORKING_FOLDER)/headers/$(MODULE)/$(DIR)))
-
+INCLUDE_PATHS = $(shell find $(PREPROCESSOR_WORKING_FOLDER)/headers -type d -print)
 
 # target's needed steps
 ALL_TARGET_PREREQUISITES = dirs $(TARGET).vb $(PAD) $(DUMP_TARGET)
@@ -146,7 +144,7 @@ STORE = $(BUILD_DIR)/$(TYPE)$(STORE_SUFFIX)
 
 # Which directories contain source files
 SOURCES_DIRS = $(shell find source assets -type d -print)
-HEADERS_DIRS = $(shell find source assets/fonts assets/languages -type d -print)
+HEADERS_DIRS = $(shell find source -type d -print)
 
 # Obligatory headers
 CONFIG_FILE =       $(shell pwd)/source/config.h
@@ -242,7 +240,7 @@ printBuildingInfo:
 	@echo Compiler\'s output: $(COMPILER_OUTPUT)
 
 portToNewSyntax: dirs
-	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/cleanSyntax.sh $(VUENGINE_HOME) $(GAME_HOME)/source $(PREPROCESSOR_WORKING_FOLDER)
+	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/cleanSyntax.sh $(VUENGINE_HOME) $(MY_HOME)/source $(PREPROCESSOR_WORKING_FOLDER)
 
 printPostPreprocessorInfo:
 	@echo Done compiling in $(TYPE) mode with GCC $(COMPILER_VERSION)
@@ -264,7 +262,7 @@ $(TARGET).vb: $(TARGET).elf
 	@cp $(TARGET).vb $(BUILD_DIR)/$(TARGET_FILE).vb
 	@echo Done creating $(BUILD_DIR)/$(TARGET_FILE).vb in $(TYPE) mode with GCC $(COMPILER_VERSION)
 
-$(TARGET).elf: $(VUENGINE) $(H_FILES) $(C_OBJECTS) $(C_INTERMEDIATE_SOURCES) $(ASSEMBLY_OBJECTS) $(SETUP_CLASSES_OBJECT).o $(FINAL_SETUP_CLASSES_OBJECT).o
+$(TARGET).elf: libraries $(H_FILES) $(C_OBJECTS) $(C_INTERMEDIATE_SOURCES) $(ASSEMBLY_OBJECTS) $(SETUP_CLASSES_OBJECT).o $(FINAL_SETUP_CLASSES_OBJECT).o
 	@echo Linking $(TARGET).elf
 	@$(GCC) -o $@ -nostartfiles $(C_OBJECTS) $(ASSEMBLY_OBJECTS) $(FINAL_SETUP_CLASSES_OBJECT).o $(SETUP_CLASSES_OBJECT).o $(LD_PARAMS) \
 		$(foreach LIBRARY, $(LIBRARIES),-l$(LIBRARY)) $(foreach LIB,$(LIBRARIES_PATH),-L$(LIB)) -Wl,-Map=$(TARGET).map
@@ -307,17 +305,20 @@ $(STORE)/objects/$(NAME)/%.o: %.s
 
 $(PREPROCESSOR_WORKING_FOLDER)/headers/$(NAME)/%.h: %.h
 	@echo Preprocessing $<
-	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/processHeaderFile.sh -i $< -o $@ -w $(PREPROCESSOR_WORKING_FOLDER) -c $(CLASSES_HIERARCHY_FILE) -p $(NAME)
+	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/processHeaderFile.sh -i $< -o $@ -w $(PREPROCESSOR_WORKING_FOLDER) -c $(CLASSES_HIERARCHY_FILE) -p $(HELPERS_PREFIX)
 
-$(VUENGINE): deleteEngine
-	@echo
-	@echo Building VUEngine...
-	@$(MAKE) all -f $(VUENGINE_HOME)/makefile $@ -e TYPE=$(TYPE) -e CONFIG_FILE=$(CONFIG_FILE) -e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE) -e GAME_HOME=$(GAME_HOME)
-	@echo VUEngine built into libvuengine.a
-	@echo
+libraries: deleteLibraries
+	@-$(foreach LIBRARY, $(LIBRARIES), echo; 											\
+		echo Building $(LIBRARY);														\
+		$(MAKE) all -f $(VBDE)libs/$(LIBRARY)/makefile $(BUILD_DIR)/lib$(LIBRARY).a 	\
+				-e TYPE=$(TYPE) 														\
+				-e CONFIG_FILE=$(CONFIG_FILE) 											\
+				-e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE) 								\
+				-e GAME_HOME=$(MY_HOME)													\
+	)
 
-deleteEngine:
-	@rm -f $(VUENGINE)
+deleteLibraries:
+	-$(foreach LIBRARY, $(LIBRARIES), rm -f $(LIBRARIES_PATH)/$(LIBRARY))
 
 
 # Empty rule to prevent problems when a header is deleted.
