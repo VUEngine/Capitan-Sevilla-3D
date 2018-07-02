@@ -33,7 +33,7 @@
 
 FontDefinition* const __FONTS[] =
 {
-	(FontDefinition*)&CAPITAN_DEFAULT_FONT_PARTIAL,
 	(FontDefinition*)&CAPITAN_DEFAULT_FONT,
+	(FontDefinition*)&CAPITAN_DEFAULT_FONT_PARTIAL,
 	NULL
 };

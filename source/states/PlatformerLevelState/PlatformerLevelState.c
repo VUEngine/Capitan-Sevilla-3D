@@ -42,7 +42,6 @@
 #include <CustomCameraEffectManager.h>
 #include <EventManager.h>
 #include <KeyPadManager.h>
-#include <Utilities.h>
 #include <debugUtilities.h>
 
 
@@ -397,7 +396,7 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 					const char* strLevelName = I18n::getText(I18n::getInstance(), (int)this->currentLevel->name);
 					Printing::text(
 						Printing::getInstance(),
-						Utilities::toUppercase(strLevelName),
+						strLevelName,
 						1,
 						24,
 						NULL
@@ -412,7 +411,7 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 					const char* strCheckpoint = I18n::getText(I18n::getInstance(), STR_CHECKPOINT);
 					Printing::text(
 						Printing::getInstance(),
-						Utilities::toUppercase(strCheckpoint),
+						strCheckpoint,
 						1,
 						25,
 						NULL

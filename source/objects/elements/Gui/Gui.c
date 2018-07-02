@@ -35,6 +35,7 @@
 #include <ProgressManager.h>
 #include <EventManager.h>
 #include <SoundManager.h>
+#include <Hero.h>
 
 
 //---------------------------------------------------------------------------------------------------------

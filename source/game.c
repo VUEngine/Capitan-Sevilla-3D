@@ -25,7 +25,12 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
-#include <PlatformerLevelState.h>
+#include <ProgressManager.h>
+#include <AutoPauseManager.h>
+#include <LowBatteryIndicatorManager.h>
+#include <PrecautionScreenState.h>
+#include <LangSelectScreenState.h>
+#include <LolaSoftScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -34,8 +39,17 @@
 
 int main()
 {
+	// initialize components
+	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
+	LowBatteryIndicatorManager::setActive(LowBatteryIndicatorManager::getInstance(), true);
+	ProgressManager::restoreSettings(ProgressManager::getInstance());
+	SplashScreenState::setNextState(
+		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),
+		GameState::safeCast(LolaSoftScreenState::getInstance())
+	);
+
 	// start the game
-	Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
 
 	// end program
 	return true;

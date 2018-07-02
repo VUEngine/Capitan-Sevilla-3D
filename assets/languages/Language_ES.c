@@ -41,25 +41,30 @@
 
 const char* const LANGUAGE_ES_STRINGS[] =
 {
-	/* General */
+	/* Components */
+
+	/* STR_AUTOMATIC_PAUSE */			"Pausa Automatica", //"Pausa Automática",
+	/* STR_AUTO_PAUSE_EXPLANATION */	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
+	/* STR_LANGUAGE_SELECT */			"Seleccionar Idioma",
+	/* STR_OFF */						"Apagado",
+	/* STR_ON */						"Encendido",
+	/* STR_PRECAUTION_SCREEN_TEXT */	//"         Importante\n      Lee los libros de\n\nInstrucciones y Precauciones\n\n       antes de jugar",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"     Importante\n\n  Antes de comenzar  \n\nleer las Indicaciones\n\ndel manual de usuario",
+
+    /* General */
 
 	/* STR_ARE_YOU_SURE */				"¿Estás seguro?",
-	/* STR_AUTOMATIC_PAUSE */			"Pausa Automatica", //"Pausa Automática",
 	/* STR_BACK */						"Regresar",
 	/* STR_CHECKPOINT */				"Punto de control",
 	/* STR_CONTINUE */					"Continuar",
 	/* STR_CREDITS */					"Créditos",
-	/* STR_IMPORTANT */					"Importante:",
 	/* STR_LANGUAGE */					"Idioma",
-	/* STR_LANGUAGE_SELECT */			"Seleccionar Idioma",
 	/* STR_LEVEL */						"Nivel",
 	/* STR_LEVEL_CONQUERED */			"¡Nivel conquistado!",
 	/* STR_LEVEL_DONE */				"¡Nivel completo!",
 	/* STR_NEW_BEST */					"¡Nuevo récord!",
 	/* STR_NEW_GAME */					"Nuevo Juego",
 	/* STR_NO */						"No",
-	/* STR_OFF */						"Apagado",
-	/* STR_ON */						"Encendido",
 	/* STR_OPTIONS */					"Opciones",
 	/* STR_PAUSE */						"Pausa",
 	/* STR_PRESENTS */					"Presenta",
@@ -69,12 +74,6 @@ const char* const LANGUAGE_ES_STRINGS[] =
 	/* STR_SELECT */					"Seleccionar",
 	/* STR_TAKE_A_REST */				"¡Por favor, tómate un descanso!",
 	/* STR_YES */						"Sí",
-
-	/* Splash Screens */
-
-	/* STR_PRECAUTION_SCREEN_TEXT */	//"      Lee los libros de\n\nInstrucciones y Precauciones\n\n       antes de jugar",
-	/* STR_PRECAUTION_SCREEN_TEXT */	"  Antes de comenzar  \n\nleer las Indicaciones\n\ndel manual de usuario",
-	/* STR_AUTO_PAUSE_EXPLANATION */	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
 
 	/* Levels */
 

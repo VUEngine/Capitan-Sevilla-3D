@@ -41,25 +41,30 @@
 
 const char* const LANGUAGE_DE_STRINGS[] =
 {
+	/* Components */
+
+	/* STR_AUTOMATIC_PAUSE */			"Automatische Pause",
+	/* STR_AUTO_PAUSE_EXPLANATION */	" Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
+	/* STR_LANGUAGE_SELECT */			"Sprachauswahl",
+	/* STR_OFF */						"Aus",
+	/* STR_ON */						"An",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"        Wichtig\n\n   Lesen Sie vor dem\n\n Spielen die Anleitung\n\nund Sicherheitshinweise",
+
+
 	/* General */
 
 	/* STR_ARE_YOU_SURE */				"Bist Du sicher?",
-	/* STR_AUTOMATIC_PAUSE */			"Automatische Pause",
 	/* STR_BACK */						"Zurück",
 	/* STR_CHECKPOINT */				"Kontrollpunkt",
 	/* STR_CONTINUE */					"Fortsetzen",
 	/* STR_CREDITS */					"Mitwirkende",
-	/* STR_IMPORTANT */					"Wichtig",
 	/* STR_LANGUAGE */					"Sprache",
-	/* STR_LANGUAGE_SELECT */			"Sprachauswahl",
 	/* STR_LEVEL */						"Level",
 	/* STR_LEVEL_CONQUERED */			"Level gemeistert!",
 	/* STR_LEVEL_DONE */				"Level geschafft!",
 	/* STR_NEW_BEST */					"Neue Bestleistung!",
 	/* STR_NEW_GAME */					"Neues Spiel",
 	/* STR_NO */						"Nein",
-	/* STR_OFF */						"Aus",
-	/* STR_ON */						"An",
 	/* STR_OPTIONS */					"Optionen",
 	/* STR_PAUSE */						"Pause",
 	/* STR_PRESENTS */					"Präsentiert",
@@ -69,11 +74,6 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	/* STR_SELECT */					"Auswählen",
 	/* STR_TAKE_A_REST */				"Bitte mache eine Pause!",
 	/* STR_YES */						"Ja",
-
-	/* Splash Screens */
-
-	/* STR_PRECAUTION_SCREEN_TEXT */	"   Lesen Sie vor dem\n\n Spielen die Anleitung\n\nund Sicherheitshinweise",
-	/* STR_AUTO_PAUSE_EXPLANATION */	" Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
 
 	/* Levels */
 

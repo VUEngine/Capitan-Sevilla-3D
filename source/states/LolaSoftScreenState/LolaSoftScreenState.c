@@ -30,7 +30,6 @@
 #include <LolaSoftScreenState.h>
 #include <IntroState.h>
 #include <I18n.h>
-#include <Utilities.h>
 #include <Languages.h>
 #include <DirectDraw.h>
 
@@ -72,5 +71,5 @@ void LolaSoftScreenState::enter(void* owner)
 	const char* strPresents = I18n::getText(I18n::getInstance(), STR_PRESENTS);
 	FontSize strPresentsSize = Printing::getTextSize(Printing::getInstance(), strPresents, NULL);
 	u8 strPresentsXPos = __HALF_SCREEN_WIDTH_IN_CHARS - (strPresentsSize.x >> 1);
-	Printing::text(Printing::getInstance(), Utilities::toUppercase(strPresents), strPresentsXPos, 18, NULL);
+	Printing::text(Printing::getInstance(), strPresents, strPresentsXPos, 18, NULL);
 }

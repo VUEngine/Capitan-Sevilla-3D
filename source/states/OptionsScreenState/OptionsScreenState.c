@@ -29,7 +29,6 @@
 #include <Game.h>
 #include <Camera.h>
 #include <I18n.h>
-#include <Utilities.h>
 #include <Languages.h>
 #include <SplashScreenState.h>
 #include <AutoPauseSelectScreenState.h>
@@ -118,7 +117,7 @@ void OptionsScreenState::print()
 	FontSize strOptionsTextSize = Printing::getTextSize(Printing::getInstance(), strOptionsTitle, NULL);
 	Printing::text(
 		Printing::getInstance(),
-		Utilities::toUppercase(strOptionsTitle),
+		strOptionsTitle,
 		((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1,
 		8,
 		NULL

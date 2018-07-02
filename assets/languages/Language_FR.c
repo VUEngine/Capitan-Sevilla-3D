@@ -41,25 +41,29 @@
 
 const char* const LANGUAGE_FR_STRINGS[] =
 {
-	/* General */
+	/* Components */
+
+	/* STR_AUTOMATIC_PAUSE */			"Pause Automatique",
+	/* STR_AUTO_PAUSE_EXPLANATION */	"  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
+	/* STR_LANGUAGE_SELECT */			"Choix de la langue",
+	/* STR_OFF */						"Desactivé",
+	/* STR_ON */						"Activé",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"        Important\n\nPrenez conaissance de la\n\nnotice et des précautions\n\na avant de jouer",
+
+    /* General */
 
 	/* STR_ARE_YOU_SURE */				"Es tu sûr?",
-	/* STR_AUTOMATIC_PAUSE */			"Pause Automatique",
 	/* STR_BACK */						"Arrière",
 	/* STR_CHECKPOINT */				"Poste de contrôle",
 	/* STR_CONTINUE */					"Continuer",
 	/* STR_CREDITS */					"Crédits",
-	/* STR_IMPORTANT */					"Important",
 	/* STR_LANGUAGE */					"Langue",
-	/* STR_LANGUAGE_SELECT */			"Choix de la langue",
 	/* STR_LEVEL */						"Niveau",
 	/* STR_LEVEL_CONQUERED */			"Niveau conquis!",
 	/* STR_LEVEL_DONE */				"Niveau terminé!",
 	/* STR_NEW_BEST */					"Nouveau Record!",
 	/* STR_NEW_GAME */					"Nouveau Jeu",
 	/* STR_NO */						"Non",
-	/* STR_OFF */						"Desactivé",
-	/* STR_ON */						"Activé",
 	/* STR_OPTIONS */					"Options",
 	/* STR_PAUSE */						"Pause",
 	/* STR_PRESENTS */					"Présente",
@@ -69,11 +73,6 @@ const char* const LANGUAGE_FR_STRINGS[] =
 	/* STR_SELECT */					"Sélectionner",
 	/* STR_TAKE_A_REST */				"Se il vous plaît, prendre un repos!",
 	/* STR_YES */						"Oui",
-
-	/* Splash Screens */
-
-	/* STR_PRECAUTION_SCREEN_TEXT */	"Prenez conaissance de la\n\nnotice et des précautions\n\na avant de jouer",
-	/* STR_AUTO_PAUSE_EXPLANATION */	"  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
 
 	/* Levels */
 

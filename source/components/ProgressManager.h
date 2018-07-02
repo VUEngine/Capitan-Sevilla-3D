@@ -27,79 +27,55 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Object.h>
+#include <SaveDataManager.h>
 #include <PlatformerLevelState.h>
-#include <Hero.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-
-//---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-#define SAVE_STAMP			"VUEngine"
-#define SAVE_STAMP_LENGTH	8
-
 // this struct is never instantiated, its sole purpose is to determine offsets of its members.
 // therefore it acts as kind of like a map of sram content.
-typedef struct SaveData
+typedef struct GameSaveData
 {
-	// flag to know if there is data saved
-	u8 saveStamp[SAVE_STAMP_LENGTH];
+	// save data handled by base class
+	SaveData baseSaveData;
 
-	// checksum over sram content to prevent save data manipulation
-	u32 checksum;
+	// brightness factor
+	u8 brightnessFactor;
 
-	// active language id
-	u8 languageId;
-
-	// auto pause status (0: on, 1: off)
-	u8 autoPauseStatus;
-
-} SaveData;
+} GameSaveData;
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-
-
-
-
-singleton class ProgressManager : Object
+singleton class ProgressManager : SaveDataManager
 {
-	/* time in current level */
+	// time in current level
 	u32 currentLevelTime;
-	/* time in current level at last checkpoint */
+	// time in current level at last checkpoint
 	u32 checkpointCurrentLevelTime;
-	/* bitstring that holds collected item flags */
+	// bitstring that holds collected item flags
 	u16 collectedItems;
-	/* bitstring that holds collected item flags at last checkpoint */
+	// bitstring that holds collected item flags at last checkpoint
 	u16 checkpointCollectedItems;
-	/* flag that tells if sram is available on the current cartridge */
-	bool sramAvailable;
-	/* hero's current energy */
+	// hero's current energy
 	u8 heroCurrentEnergy;
 
 	static ProgressManager getInstance();
-	bool getAutomaticPauseStatus();
 	u32  getCurrentLevelTime();
 	u8   getHeroCurrentEnergy();
 	bool getItemStatus(u16 itemNumber);
-	u8   getLanguage();
 	void initialize();
 	void loadCheckPointData();
-	void setAutomaticPauseStatus(u8 automaticPause);
 	void setCheckPointData();
 	bool setItemStatus(u16 itemNumber, bool taken);
-	void setLanguage(u8 languageId);
 	void resetCurrentLevelProgress();
+	override void restoreSettings();
 }
 
 
