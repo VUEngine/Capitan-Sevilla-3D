@@ -149,7 +149,8 @@ HEADERS_DIRS = $(shell find source -type d -print)
 # Obligatory headers
 CONFIG_FILE =       $(shell pwd)/source/config.h
 ESSENTIAL_HEADERS = -include $(CONFIG_FILE) \
-					-include $(VUENGINE_HOME)/source/libvuengine.h
+                    -include $(VUENGINE_HOME)/source/libvuengine.h \
+                    $(foreach COMPONENT, $(COMPONENTS), $(shell if [ -f $(VBDE)libs/$(COMPONENT)/source/config.h ]; then echo -include $(VBDE)libs/$(COMPONENT)/source/config.h; fi; )) \
 
 # Common macros for all build types
 COMMON_MACROS = $(DATA_SECTION_ATTRIBUTES)
@@ -308,14 +309,14 @@ $(PREPROCESSOR_WORKING_FOLDER)/headers/$(NAME)/%.h: %.h
 	@sh $(VUENGINE_HOME)/lib/compiler/preprocessor/processHeaderFile.sh -i $< -o $@ -w $(PREPROCESSOR_WORKING_FOLDER) -c $(CLASSES_HIERARCHY_FILE) -p $(HELPERS_PREFIX)
 
 libraries: deleteLibraries
-	@-$(foreach LIBRARY, $(LIBRARIES), echo; 																							\
-		echo Building $(LIBRARY);																										\
-		$(MAKE) all -f $(VBDE)libs/$(LIBRARY)/makefile $(BUILD_DIR)/lib$(shell sed -e "s@.*/@@" <<< $(LIBRARY)).a 						\
-				-e TYPE=$(TYPE) 																										\
-				-e CONFIG_FILE=$(CONFIG_FILE) 																							\
-				-e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE) 																				\
-				-e COMPONENTS= 																				\
-				-e GAME_HOME=$(MY_HOME);																								\
+	@-$(foreach LIBRARY, $(LIBRARIES), echo; 																			\
+		echo Building $(LIBRARY);																						\
+		$(MAKE) all -f $(VBDE)libs/$(LIBRARY)/makefile $(BUILD_DIR)/lib$(shell sed -e "s@.*/@@" <<< $(LIBRARY)).a 		\
+				-e TYPE=$(TYPE) 																						\
+				-e CONFIG_FILE=$(CONFIG_FILE) 																			\
+				-e CONFIG_MAKE_FILE=$(CONFIG_MAKE_FILE) 																\
+				-e COMPONENTS="$(COMPONENTS)"												 							\
+				-e GAME_HOME=$(MY_HOME);																				\
 	)
 
 deleteLibraries:
