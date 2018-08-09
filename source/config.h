@@ -24,11 +24,8 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												COMPONENTS
+//												PLUGINS
 //---------------------------------------------------------------------------------------------------------
-
-#define __SAVE_DATA_MANAGER_ENABLED
-#define __AUTOMATIC_PAUSE_MANAGER_ENABLED
 
 #define __SAVE_DATA_MANAGER_SAVE_STAMP						"CSevilla"
 

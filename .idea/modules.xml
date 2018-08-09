@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/capitan-sevilla.iml" filepath="$PROJECT_DIR$/.idea/capitan-sevilla.iml" />
-      <module fileurl="file://C:/vbde/libs/vuengine/.idea/vuengine.iml" filepath="C:/vbde/libs/vuengine/.idea/vuengine.iml" />
-      <module fileurl="file://C:/vbde/libs/vuengine-components/.idea/vuengine-components.iml" filepath="C:/vbde/libs/vuengine-components/.idea/vuengine-components.iml" />
+      <module fileurl="file://C:/vbde/libs/vuengine/core/.idea/core.iml" filepath="C:/vbde/libs/vuengine/core/.idea/core.iml" />
+      <module fileurl="file://C:/vbde/libs/vuengine/plugins/.idea/plugins.iml" filepath="C:/vbde/libs/vuengine/plugins/.idea/plugins.iml" />
     </modules>
   </component>
 </project>

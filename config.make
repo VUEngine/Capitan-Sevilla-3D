@@ -1,8 +1,8 @@
-# VUEngine based components that the project uses
-COMPONENTS = 	vuengine-components/other/AutomaticPause												\
-				vuengine-components/other/LowBatteryIndicator											\
-				vuengine-components/other/SaveDataManager												\
-				vuengine-components/states/SplashScreens												\
+# VUEngine based plugins that the project uses
+PLUGINS = 	vuengine/plugins/other/AutomaticPause															\
+			vuengine/plugins/other/LowPowerIndicator														\
+			vuengine/plugins/other/SaveDataManager															\
+			vuengine/plugins/states/SplashScreens															\
 
 # Compiler's output
 COMPILER_OUTPUT         = c

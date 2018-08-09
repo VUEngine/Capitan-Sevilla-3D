@@ -46,7 +46,7 @@ extern EntityDefinition FLAG_UNITED_KINGDOM_EN;
 
 const char* const LANGUAGE_EN_STRINGS[] =
 {
-	/* Components */
+	/* Plugins */
 
 	/* STR_AUTOMATIC_PAUSE */			"Automatic Pause",
 	/* STR_AUTO_PAUSE_EXPLANATION */	"The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",

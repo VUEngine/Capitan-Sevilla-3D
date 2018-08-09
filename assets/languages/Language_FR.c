@@ -46,7 +46,7 @@ extern EntityDefinition FLAG_FRANCE_EN;
 
 const char* const LANGUAGE_FR_STRINGS[] =
 {
-	/* Components */
+	/* Plugins */
 
 	/* STR_AUTOMATIC_PAUSE */			"Pause Automatique",
 	/* STR_AUTO_PAUSE_EXPLANATION */	"  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",

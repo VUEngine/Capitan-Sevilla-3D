@@ -27,7 +27,7 @@
 #include <Game.h>
 #include <ProgressManager.h>
 #include <AutoPauseManager.h>
-#include <LowBatteryIndicatorManager.h>
+#include <LowPowerManager.h>
 #include <PrecautionScreenState.h>
 #include <LangSelectScreenState.h>
 #include <LolaSoftScreenState.h>
@@ -39,9 +39,9 @@
 
 int main()
 {
-	// initialize components
+	// initialize plugins
 	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
-	LowBatteryIndicatorManager::setActive(LowBatteryIndicatorManager::getInstance(), true);
+	LowPowerManager::setActive(LowPowerManager::getInstance(), true);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
 	SplashScreenState::setNextState(
 		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),

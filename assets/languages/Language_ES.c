@@ -46,7 +46,7 @@ extern EntityDefinition FLAG_SPAIN_EN;
 
 const char* const LANGUAGE_ES_STRINGS[] =
 {
-	/* Components */
+	/* Plugins */
 
 	/* STR_AUTOMATIC_PAUSE */			"Pausa Automatica", //"Pausa Automática",
 	/* STR_AUTO_PAUSE_EXPLANATION */	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
