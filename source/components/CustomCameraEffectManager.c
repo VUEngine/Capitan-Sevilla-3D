@@ -91,16 +91,12 @@ void CustomCameraEffectManager::constructor()
 // class's destructor
 void CustomCameraEffectManager::destructor()
 {
-
-
 	// destroy base
 	__SINGLETON_DESTROY;
 }
 
 void CustomCameraEffectManager::startEffect(int effect, va_list args)
 {
-
-
 	switch(effect)
 	{
 		case kShake:
@@ -122,8 +118,6 @@ void CustomCameraEffectManager::startEffect(int effect, va_list args)
 
 void CustomCameraEffectManager::stopEffect(int effect)
 {
-
-
 	switch(effect)
 	{
 		case kShake:
@@ -145,8 +139,6 @@ void CustomCameraEffectManager::stopEffect(int effect)
 
 bool CustomCameraEffectManager::handleMessage(Telegram telegram)
 {
-
-
 	switch(Telegram::getMessage(telegram))
 	{
 		case kShake:
@@ -166,8 +158,6 @@ bool CustomCameraEffectManager::handleMessage(Telegram telegram)
 // start shaking the screen
 void CustomCameraEffectManager::fxShakeStart(u16 duration)
 {
-
-
 	// don't follow the focus entity while shaking
 	//Camera _camera = Camera::getInstance();
 	CustomCameraMovementManager::disable(CustomCameraMovementManager::getInstance());
@@ -187,8 +177,6 @@ void CustomCameraEffectManager::fxShakeStart(u16 duration)
 // start screen pulsating effect
 void CustomCameraEffectManager::fxScreenPulsateStart()
 {
-
-
 	// discard pending messages from previously started fx
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kScreenPulsate);
 
@@ -201,16 +189,12 @@ void CustomCameraEffectManager::fxScreenPulsateStart()
 // stop shaking the _camera
 void CustomCameraEffectManager::fxShakeStop()
 {
-
-
 	this->shakeTimeLeft = 0;
 }
 
 // stop shaking the _camera
 void CustomCameraEffectManager::fxScreenPulsateStop()
 {
-
-
 	this->pulsateNextStep = 0;
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kScreenPulsate);
 }
@@ -218,8 +202,6 @@ void CustomCameraEffectManager::fxScreenPulsateStop()
 // shake the _camera
 void CustomCameraEffectManager::onScreenShake()
 {
-
-
 	// stop if no shaking time left
 	if(this->shakeTimeLeft == 0)
 	{
@@ -253,8 +235,6 @@ void CustomCameraEffectManager::onScreenShake()
 // write new brightness repeat values
 void CustomCameraEffectManager::onScreenPulsate()
 {
-
-
 	VIPManager::setupBrightnessRepeat(VIPManager::getInstance(), (BrightnessRepeatDefinition*)SCREEN_PULSATE_STEPS[this->pulsateNextStep]);
 
 	// send message for next fx step

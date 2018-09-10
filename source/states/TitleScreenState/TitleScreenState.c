@@ -135,8 +135,6 @@ void TitleScreenState::processUserInput(UserInput userInput)
 // handle event
 void TitleScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	// enable user input
 	Game::enableKeypad(Game::getInstance());
 }
@@ -144,7 +142,5 @@ void TitleScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused
 // handle event
 void TitleScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	Game::changeState(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
 }

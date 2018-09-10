@@ -44,8 +44,6 @@
 // class's constructor
 void MovingEntity::constructor(MovingEntityDefinition* movingEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-
-
 	// construct base
 	Base::constructor((ActorDefinition*)&movingEntityDefinition->actorDefinition, id, internalId, name);
 
@@ -77,8 +75,6 @@ void MovingEntity::constructor(MovingEntityDefinition* movingEntityDefinition, s
 // class's constructor
 void MovingEntity::destructor()
 {
-
-
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMovingEntitystartMovement);
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMovingEntityCheckDirection);
 
@@ -102,8 +98,6 @@ void MovingEntity::setDefinition(void* movingEntityDefinition)
 // ready method
 void MovingEntity::ready(bool recursive)
 {
-
-
 	// call base
 	Base::ready(this, recursive);
 
@@ -126,8 +120,6 @@ void MovingEntity::ready(bool recursive)
 
 bool MovingEntity::handleMessage(Telegram telegram)
 {
-
-
 	Direction direction = Entity::getDirection(Entity::safeCast(this));
 
 	switch(Telegram::getMessage(telegram))

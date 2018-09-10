@@ -44,8 +44,6 @@
 // class's constructor
 void Collectable::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-
-
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
@@ -53,8 +51,6 @@ void Collectable::constructor(AnimatedEntityDefinition* animatedEntityDefinition
 // class's destructor
 void Collectable::destructor()
 {
-
-
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
@@ -63,8 +59,6 @@ void Collectable::destructor()
 // state's handle message
 bool Collectable::handleMessage(Telegram telegram)
 {
-
-
 	extern const u16 COLLECT_SND[];
 
 	switch(Telegram::getMessage(telegram))
@@ -103,8 +97,6 @@ void Collectable::collect()
 /*
 void Collectable::removeFromStage()
 {
-
-
 	Container::deleteMyself(Container::safeCast(this));
 }
 */

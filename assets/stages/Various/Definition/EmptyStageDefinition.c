@@ -199,13 +199,13 @@ StageROMDef EMPTY_STAGE_ST =
 		// since the vip renders obj worlds in reverse order (__spt3 to __spt0)
 		{
 			// __spt0
-			LAYER_0_PARTICLES,
+			0,
 			// __spt1
-			LAYER_0_PARTICLES,
+			0,
 			// __spt2
-			LAYER_0_PARTICLES,
+			0,
 			// __spt3
-			LAYER_0_PARTICLES,
+			0,
 		},
 
 		// optical configuration values

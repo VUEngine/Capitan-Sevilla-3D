@@ -39,8 +39,6 @@
 // class's constructor
 void Sausage::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
 {
-
-
 	// construct base
 	Base::constructor(projectileDefinition, id, internalId, name);
 }
@@ -48,8 +46,6 @@ void Sausage::constructor(ProjectileDefinition* projectileDefinition, s16 id, s1
 // class's constructor
 void Sausage::destructor()
 {
-
-
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();

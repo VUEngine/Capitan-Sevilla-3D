@@ -41,16 +41,12 @@
 // class's constructor
 void MovingOneWayEntity::constructor(ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
 {
-
-
 	// construct base
 	Base::constructor(actorDefinition, id, internalId, name);
 }
 
 void MovingOneWayEntity::destructor()
 {
-
-
 	// destroy the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
@@ -59,8 +55,6 @@ void MovingOneWayEntity::destructor()
 // set extra info
 void MovingOneWayEntity::setExtraInfo(void* extraInfo)
 {
-
-
 	this->speed = (extraInfo != NULL)
 		? __I_TO_FIX10_6((int)extraInfo)
 		: __I_TO_FIX10_6(-4);
@@ -68,8 +62,6 @@ void MovingOneWayEntity::setExtraInfo(void* extraInfo)
 
 void MovingOneWayEntity::ready(bool recursive)
 {
-
-
 	// call base
 	Base::ready(this, recursive);
 
@@ -90,7 +82,5 @@ void MovingOneWayEntity::stopMovement()
 
 bool MovingOneWayEntity::respawn()
 {
-
-
 	return false;
 }

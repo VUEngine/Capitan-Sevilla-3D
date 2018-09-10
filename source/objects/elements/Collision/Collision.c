@@ -64,15 +64,11 @@ void Collision::destructor()
 // set extra info
 void Collision::setExtraInfo(void* extraInfo)
 {
-
-
 	this->size = Size::getFromPixelSize(*((PixelSize*)extraInfo));
 }
 
 void Collision::initialTransform(Transformation* environmentTransform, u32 recursive)
 {
-
-
 	Base::initialTransform(this, environmentTransform, recursive);
 
 	if(!this->shapes)

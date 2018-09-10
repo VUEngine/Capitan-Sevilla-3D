@@ -83,8 +83,6 @@ void Gui::destructor()
 
 void Gui::ready(bool recursive)
 {
-
-
 	Gui::printAll(this);
 
 	// call base
@@ -93,8 +91,6 @@ void Gui::ready(bool recursive)
 
 void Gui::resume()
 {
-
-
 	__CALL_BASE_METHOD(Entity, resume, this);
 
 	Gui::printAll(this);

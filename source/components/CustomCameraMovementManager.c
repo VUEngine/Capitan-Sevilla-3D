@@ -63,8 +63,6 @@ void CustomCameraMovementManager::constructor()
 // class's destructor
 void CustomCameraMovementManager::destructor()
 {
-
-
 	// destroy base
 	__SINGLETON_DESTROY;
 }
@@ -72,15 +70,11 @@ void CustomCameraMovementManager::destructor()
 // center world's this->camera in function of focus actor's position
 void CustomCameraMovementManager::focus(u32 checkIfFocusEntityIsMoving __attribute__ ((unused)))
 {
-
-
 	this->focusFunction(this, checkIfFocusEntityIsMoving, false);
 }
 
 bool CustomCameraMovementManager::doFocusWithNoEasing(u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
-
-
 	Vector3D focusEntityPosition = Camera::getFocusEntityPosition(this->camera);
 	Direction direction = Entity::getDirection(Entity::safeCast(Camera::getFocusEntity(this->camera)));
 
@@ -99,16 +93,12 @@ bool CustomCameraMovementManager::doFocusWithNoEasing(u32 checkIfFocusEntityIsMo
 // center world's this->camera in function of focus actor's position
 bool CustomCameraMovementManager::dontFocus(u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
-
-
 	return false;
 }
 
 // center world's this->camera in function of focus actor's position
 bool CustomCameraMovementManager::doFocus(u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
-
-
 	// if focusEntity is defined
 	if(!Camera::getFocusEntity(this->camera))
 	{
@@ -259,30 +249,22 @@ bool CustomCameraMovementManager::doFocusAndAlertWhenTargetReached(u32 checkIfFo
 
 void CustomCameraMovementManager::setPositionFlag(Vector3DFlag positionFlag)
 {
-
-
 	this->positionFlag = positionFlag;
 }
 
 Vector3DFlag CustomCameraMovementManager::getPositionFlag()
 {
-
-
 	return this->positionFlag;
 }
 
 void CustomCameraMovementManager::enable()
 {
-
-
 	this->focusFunction = this->previousFocusFunction;
 	this->previousFocusFunction = this->focusFunction;
 }
 
 void CustomCameraMovementManager::disable()
 {
-
-
 	if(&CustomCameraMovementManager::dontFocus != this->focusFunction)
 	{
 		this->previousFocusFunction = this->focusFunction;
@@ -293,24 +275,18 @@ void CustomCameraMovementManager::disable()
 
 void CustomCameraMovementManager::enableFocusEasing()
 {
-
-
 	this->focusFunction = &CustomCameraMovementManager::doFocus;
 	this->previousFocusFunction = this->focusFunction;
 }
 
 void CustomCameraMovementManager::disableFocusEasing()
 {
-
-
 	this->focusFunction = &CustomCameraMovementManager::doFocusWithNoEasing;
 	this->previousFocusFunction = this->focusFunction;
 }
 
 void CustomCameraMovementManager::alertWhenTargetFocused()
 {
-
-
 	if(&CustomCameraMovementManager::doFocusAndAlertWhenTargetReached != this->focusFunction)
 	{
 		this->previousFocusFunction = this->focusFunction;
@@ -321,7 +297,5 @@ void CustomCameraMovementManager::alertWhenTargetFocused()
 
 void CustomCameraMovementManager::dontAlertWhenTargetFocused()
 {
-
-
 	this->focusFunction = this->previousFocusFunction;
 }

@@ -246,16 +246,12 @@ void PauseScreenState::processUserInput(UserInput userInput)
 // handle event
 void PauseScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	Game::enableKeypad(Game::getInstance());
 }
 
 // handle event
 void PauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	// re-enable user input
 	Game::enableKeypad(Game::getInstance());
 

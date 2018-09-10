@@ -41,8 +41,6 @@
 // class's constructor
 void ProjectileEjector::constructor(ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name)
 {
-
-
 	// construct base
 	Base::constructor((AnimatedEntityDefinition*)&projectileEjectorDefinition->animatedEntityDefinition, id, internalId, name);
 
@@ -56,8 +54,6 @@ void ProjectileEjector::constructor(ProjectileEjectorDefinition* projectileEject
 // class's destructor
 void ProjectileEjector::destructor()
 {
-
-
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileEject);
 
@@ -71,8 +67,6 @@ void ProjectileEjector::destructor()
 
 void ProjectileEjector::ready(bool recursive)
 {
-
-
 	// call base
 	Base::ready(this, recursive);
 
@@ -89,8 +83,6 @@ void ProjectileEjector::ready(bool recursive)
 // state's handle message
 bool ProjectileEjector::handleMessage(Telegram telegram)
 {
-
-
 	switch(Telegram::getMessage(telegram))
 	{
 		case kProjectileEject:
@@ -105,8 +97,6 @@ bool ProjectileEjector::handleMessage(Telegram telegram)
 // eject a projectile
 void ProjectileEjector::ejectProjectile()
 {
-
-
 	if(this->active)
 	{
 		// construct projectile entities if they don't exist yet
@@ -146,8 +136,6 @@ void ProjectileEjector::ejectProjectile()
 
 void ProjectileEjector::setActive(bool active)
 {
-
-
 	this->active = active;
 
 	if(this->active)
@@ -162,16 +150,12 @@ void ProjectileEjector::setActive(bool active)
 
 bool ProjectileEjector::isActive()
 {
-
-
 	return this->active;
 }
 
 // spawn a projectile, this is the callback of the "Eject" animation
 void ProjectileEjector::onEjectAnimationComplete()
 {
-
-
 	// play idle animation
 	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->idleAnimationName);
 }

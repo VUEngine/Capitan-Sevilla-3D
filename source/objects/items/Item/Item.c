@@ -48,8 +48,6 @@
 // class's constructor
 void Item::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-
-
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
@@ -57,8 +55,6 @@ void Item::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 i
 // class's destructor
 void Item::destructor()
 {
-
-
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
@@ -66,8 +62,6 @@ void Item::destructor()
 
 void Item::collect()
 {
-
-
 	// set item status to taken
 	ProgressManager::setItemStatus(ProgressManager::getInstance(), this->id, true);
 }

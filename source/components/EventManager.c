@@ -35,8 +35,6 @@
 // class's constructor
 void EventManager::constructor()
 {
-
-
 	// construct base object
 	Base::constructor();
 }
@@ -44,8 +42,6 @@ void EventManager::constructor()
 // class's destructor
 void EventManager::destructor()
 {
-
-
 	// destroy base
 	__SINGLETON_DESTROY;
 }

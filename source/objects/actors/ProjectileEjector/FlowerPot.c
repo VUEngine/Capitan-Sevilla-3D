@@ -44,8 +44,6 @@
 // class's constructor
 void FlowerPot::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
 {
-
-
 	// construct base
 	Base::constructor(projectileDefinition, id, internalId, name);
 }
@@ -53,8 +51,6 @@ void FlowerPot::constructor(ProjectileDefinition* projectileDefinition, s16 id, 
 // class's constructor
 void FlowerPot::destructor()
 {
-
-
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();

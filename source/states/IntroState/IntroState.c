@@ -198,8 +198,6 @@ void IntroState::processUserInput(UserInput userInput)
 
 bool IntroState::handleMessage(Telegram telegram)
 {
-
-
 	switch(Telegram::getMessage(telegram))
 	{
 		case kIntroNextImage:
@@ -227,8 +225,6 @@ void IntroState::translateTextEntities()
 
 void IntroState::nextImageStep()
 {
-
-
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kIntroNextImage);
 	MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 
@@ -313,8 +309,6 @@ void IntroState::nextImageStep()
 // handle event
 void IntroState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	// enable user input
 	Game::enableKeypad(Game::getInstance());
 }
@@ -322,7 +316,5 @@ void IntroState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 // handle event
 void IntroState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	Game::changeState(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
 }

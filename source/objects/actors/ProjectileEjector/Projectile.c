@@ -40,8 +40,6 @@
 // class's constructor
 void Projectile::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
 {
-
-
 	// construct base
 	Base::constructor((ActorDefinition*)&projectileDefinition->actorDefinition, id, internalId, name);
 
@@ -52,8 +50,6 @@ void Projectile::constructor(ProjectileDefinition* projectileDefinition, s16 id,
 // class's constructor
 void Projectile::destructor()
 {
-
-
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileCheckPosition);
 
 	// delete the super object
@@ -63,8 +59,6 @@ void Projectile::destructor()
 
 void Projectile::ready(bool recursive)
 {
-
-
 	// call base
 	Base::ready(this, recursive);
 
@@ -134,8 +128,6 @@ void Projectile::checkPosition()
 // state's handle message
 bool Projectile::handleMessage(Telegram telegram)
 {
-
-
 	switch(Telegram::getMessage(telegram))
 	{
 		case kProjectileCheckPosition:
@@ -149,7 +141,5 @@ bool Projectile::handleMessage(Telegram telegram)
 
 bool Projectile::canBeReused()
 {
-
-
 	return !SpatialObject::isMoving(this);
 }

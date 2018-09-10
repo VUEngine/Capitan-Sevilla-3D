@@ -41,7 +41,7 @@ int main()
 {
 	// initialize plugins
 	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
-	LowPowerManager::setActive(LowPowerManager::getInstance(), true);
+	//LowPowerManager::setActive(LowPowerManager::getInstance(), true);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
 	SplashScreenState::setNextState(
 		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),

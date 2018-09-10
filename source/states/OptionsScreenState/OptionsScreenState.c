@@ -110,8 +110,6 @@ void OptionsScreenState::setNextState(GameState nextState)
 // print level stats
 void OptionsScreenState::print()
 {
-
-
 	// title
 	const char* strOptionsTitle = I18n::getText(I18n::getInstance(), STR_OPTIONS);
 	FontSize strOptionsTextSize = Printing::getTextSize(Printing::getInstance(), strOptionsTitle, NULL);
@@ -211,38 +209,28 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 // handle event
 void OptionsScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	Game::enableKeypad(Game::getInstance());
 }
 
 void OptionsScreenState::onExitFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	// switch to next screen
 	Game::changeState(Game::getInstance(), this->nextState);
 }
 
 void OptionsScreenState::onOptionSelectedFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	OptionsSelector::doCurrentSelectionCallback(this->optionsSelector);
 }
 
 void OptionsScreenState::onOptionAutoPauseSelect()
 {
-
-
 	SplashScreenState::setNextState(SplashScreenState::safeCast(AutoPauseSelectScreenState::getInstance()), GameState::safeCast(this));
 	Game::changeState(Game::getInstance(), GameState::safeCast(AutoPauseSelectScreenState::getInstance()));
 }
 
 void OptionsScreenState::onOptionLanguageSelect()
 {
-
-
 	SplashScreenState::setNextState(SplashScreenState::safeCast(LangSelectScreenState::getInstance()), GameState::safeCast(this));
 	Game::changeState(Game::getInstance(), GameState::safeCast(LangSelectScreenState::getInstance()));
 }

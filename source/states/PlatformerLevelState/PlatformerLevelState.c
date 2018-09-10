@@ -586,8 +586,6 @@ void PlatformerLevelState::setModeToPlaying()
 // handle event
 void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	// tell any interested entity
 	GameState::propagateMessage(GameState::safeCast(this), kLevelStarted);
 
@@ -603,15 +601,11 @@ void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attr
 // handle event
 void PlatformerLevelState::onStartStageFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	Game::changeState(Game::getInstance(), GameState::safeCast(this));
 }
 
 // handle event
 void PlatformerLevelState::onHeroDiedFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-
-
 	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLoadCheckPoint, NULL);
 }

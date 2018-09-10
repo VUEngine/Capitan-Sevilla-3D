@@ -130,8 +130,6 @@ void Hero::destructor()
 
 void Hero::ready(bool recursive)
 {
-
-
 	Entity::informShapesThatStartedMoving(Entity::safeCast(this));
 
 	// call base
@@ -154,8 +152,6 @@ void Hero::ready(bool recursive)
 
 void Hero::addSausageEjectorEntity()
 {
-
-
 	Vector3D position = {__PIXELS_TO_METERS(16), __PIXELS_TO_METERS(-6), 0};
 	this->sausageEjectorEntity = Entity::addChildEntity(Entity::safeCast(this), &SAUSAGE_EJECTOR_PE, -1, NULL, &position, (void*)3);
 }
@@ -177,8 +173,6 @@ void Hero::kneel()
 // make him jump
 void Hero::jump(bool checkIfYMovement)
 {
-
-
 	if(this->body)
 	{
 		// determine the maximum number of possible jumps before reaching ground again
@@ -242,8 +236,6 @@ void Hero::jump(bool checkIfYMovement)
 // keep movement
 void Hero::addForce(u16 axis, bool enableAddingForce)
 {
-
-
 	if(enableAddingForce)
 	{
 		this->keepAddingForce = true;
@@ -297,8 +289,6 @@ void Hero::addForce(u16 axis, bool enableAddingForce)
 // start movement
 void Hero::stopAddingForce()
 {
-
-
 	Velocity velocity = Body::getVelocity(this->body);
 
 	this->keepAddingForce = false;
@@ -364,8 +354,6 @@ void Hero::startedMovingOnAxis(u16 axis)
 // stop moving over axis
 bool Hero::stopMovementOnAxis(u16 axis)
 {
-
-
 	// if being hit do nothing
 	if(!Body::isActive(this->body))
 	{
@@ -420,8 +408,6 @@ bool Hero::stopMovementOnAxis(u16 axis)
 // check direction
 void Hero::checkDirection(u32 pressedKey, char* animation)
 {
-
-
 	bool movementState = Body::getMovementOnAllAxes(this->body);
 	//Direction direction = Entity::getDirection(Entity::safeCast(this));
 
@@ -497,8 +483,6 @@ void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool p
 // flash after being hit
 void Hero::flash()
 {
-
-
 	// only flash as long as hero is invincible
 	if(Hero::isInvincible(this))
 	{
@@ -706,8 +690,6 @@ bool Hero::updateCollision(const CollisionInformation* collisionInformation)
 
 void Hero::capVelocity(bool discardPreviousMessages)
 {
-
-
 	if(discardPreviousMessages)
 	{
 		MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroCheckVelocity);
@@ -741,8 +723,6 @@ void Hero::capVelocity(bool discardPreviousMessages)
 
 bool Hero::handleMessage(Telegram telegram)
 {
-
-
 	// handle messages that any state would handle here
 	switch(Telegram::getMessage(telegram))
 	{
@@ -809,8 +789,6 @@ bool Hero::handleMessage(Telegram telegram)
 // process message
 bool Hero::handlePropagatedMessage(int message)
 {
-
-
 	switch(message)
 	{
 		case kLevelSetUp:
@@ -831,15 +809,11 @@ bool Hero::handlePropagatedMessage(int message)
 
 void Hero::suspend()
 {
-
-
 	__CALL_BASE_METHOD(Actor, suspend, this);
 }
 
 void Hero::resume()
 {
-
-
 	__CALL_BASE_METHOD(Actor, resume, this);
 
 	Camera::focus(Camera::getInstance(), false);
@@ -850,8 +824,6 @@ void Hero::resume()
 
 bool Hero::isBelow(Shape shape, const CollisionInformation* collisionInformation)
 {
-
-
 	RightBox shapeRightBox = Shape::getSurroundingRightBox(shape);
 	RightBox collidingShapeRightBox = Shape::getSurroundingRightBox(collisionInformation->collidingShape);
 
@@ -860,15 +832,8 @@ bool Hero::isBelow(Shape shape, const CollisionInformation* collisionInformation
 	return heroBottomPosition > collidingShapeRightBox.y0 || __ABS(collisionInformation->solutionVector.direction.y) < __ABS(collisionInformation->solutionVector.direction.x);
 }
 
-u16 Hero::getAxisForFlipping()
-{
-	return __X_AXIS;
-}
-
 bool Hero::isAffectedByRelativity()
 {
-
-
 	return true;
 }
 
@@ -904,8 +869,6 @@ void Hero::updateSprite(Direction direction)
 
 void Hero::syncRotationWithBody()
 {
-
-
 	fix10_6 xLastDisplacement = Body::getLastDisplacement(this->body).x;
 
 	Direction direction = Entity::getDirection(Entity::safeCast(this));
@@ -926,8 +889,6 @@ void Hero::syncRotationWithBody()
 
 void Hero::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable)
 {
-
-
 	Base::exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
