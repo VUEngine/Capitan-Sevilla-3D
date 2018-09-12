@@ -129,7 +129,7 @@ ObjectSpriteROMDef FLOWER_POT_1_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, -2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -228,7 +228,7 @@ ProjectileROMDef FLOWER_POT_1_PR =
     {
     	0,
     	__PIXELS_TO_METERS(16),
-    	__PIXELS_TO_METERS(-24),
+    	0,
     },
 
 	// max position relative to ejector before position reset

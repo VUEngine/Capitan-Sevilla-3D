@@ -33,42 +33,44 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Fence2Tiles[];
-extern BYTE Fence2Map[];
+extern BYTE Playground1Tiles[];
+extern BYTE Playground1Map[];
+extern BYTE Playground1BlackTiles[];
+extern BYTE Playground1BlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef FENCE_2_CH =
+CharSetROMDef PLAYGROUND_1_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	192,
+	68,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	Fence2Tiles,
+	Playground1Tiles,
 };
 
-TextureROMDef FENCE_2_TX =
+TextureROMDef PLAYGROUND_1_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&FENCE_2_CH,
+	(CharSetDefinition*)&PLAYGROUND_1_CH,
 
 	// bgmap definition
-	Fence2Map,
+	Playground1Map,
 
 	// cols (max 64)
-	38,
+	13,
 
 	// rows (max 64)
-	6,
+	10,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -85,14 +87,14 @@ TextureROMDef FENCE_2_TX =
 	false,
 };
 
-BgmapSpriteROMDef FENCE_2_SPRITE =
+BgmapSpriteROMDef PLAYGROUND_1_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&FENCE_2_TX,
+		(TextureDefinition*)&PLAYGROUND_1_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -112,19 +114,19 @@ BgmapSpriteROMDef FENCE_2_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const FENCE_2_SPRITES[] =
+BgmapSpriteROMDef* const PLAYGROUND_1_SPRITES[] =
 {
-	&FENCE_2_SPRITE,
+	&PLAYGROUND_1_SPRITE,
 	NULL
 };
 
-EntityROMDef FENCE_2_IM =
+EntityROMDef PLAYGROUND_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)FENCE_2_SPRITES,
+	(SpriteROMDef**)PLAYGROUND_1_SPRITES,
 
 	// collision shapes
 	NULL,

@@ -102,7 +102,7 @@ BgmapSpriteROMDef LEVEL_1_BUILDING_4_BLACK_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, BUILDINGS_DSPL, 0}
+		{-21, 0, BUILDINGS_DSPL, 0}
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

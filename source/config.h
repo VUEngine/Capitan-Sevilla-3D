@@ -89,7 +89,7 @@
 #ifdef __TOOLS
 
 // Print frame rate
-#define __PRINT_FRAMERATE
+//#define __PRINT_FRAMERATE
 
 /* Enable detailed profiling of each of the game's main processes
  * it is more useful when __TIMER_RESOLUTION approaches 1
@@ -105,6 +105,7 @@
 #define __ANIMATION_INSPECTOR
 
 #endif
+
 
 //---------------------------------------------------------------------------------------------------------
 //											OPTICS / PROJECTION
@@ -145,6 +146,7 @@
 
 // minimum number of pixels that the camera can move
 #define __CAMERA_MINIMUM_DISPLACEMENT_PIXELS_POWER	1
+
 
 //---------------------------------------------------------------------------------------------------------
 //											FRAME RATE CONTROL
@@ -213,7 +215,7 @@
 	__BLOCK_DEFINITION(80, 50)																			\
 	__BLOCK_DEFINITION(68, 60)																			\
 	__BLOCK_DEFINITION(40, 30)																			\
-	__BLOCK_DEFINITION(28, 360)																			\
+	__BLOCK_DEFINITION(24, 400)																			\
 	__BLOCK_DEFINITION(20, 700)																			\
 	__BLOCK_DEFINITION(16, 450)																			\
 
@@ -227,10 +229,9 @@
 	__SET_MEMORY_POOL_ARRAY(80)																			\
 	__SET_MEMORY_POOL_ARRAY(68)																			\
 	__SET_MEMORY_POOL_ARRAY(40)																			\
-	__SET_MEMORY_POOL_ARRAY(28)																			\
+	__SET_MEMORY_POOL_ARRAY(24)																			\
 	__SET_MEMORY_POOL_ARRAY(20)																			\
 	__SET_MEMORY_POOL_ARRAY(16)
-
 
 // Percentage (0-100) above which the memory pool's status shows the pool usage
 #define __MEMORY_POOL_WARNING_THRESHOLD			85

@@ -85,7 +85,7 @@ TextureROMDef BIKE_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef BIKE_1_IM_SPRITE =
+BgmapSpriteROMDef BIKE_1_SPRITE =
 {
 	{
 		// sprite's type
@@ -112,19 +112,19 @@ BgmapSpriteROMDef BIKE_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const BIKE_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const BIKE_1_SPRITES[] =
 {
-	&BIKE_1_IM_SPRITE,
+	&BIKE_1_SPRITE,
 	NULL
 };
 
-EntityROMDef BIKE_1_IM =
+EntityROMDef BIKE_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)BIKE_1_IM_SPRITES,
+	(SpriteROMDef**)BIKE_1_SPRITES,
 
 	// collision shapes
 	NULL,

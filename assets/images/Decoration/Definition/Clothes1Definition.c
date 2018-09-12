@@ -85,7 +85,7 @@ TextureROMDef CLOTHES_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef CLOTHES_1_IM_SPRITE =
+BgmapSpriteROMDef CLOTHES_1_SPRITE =
 {
 	{
 		// sprite's type
@@ -112,19 +112,19 @@ BgmapSpriteROMDef CLOTHES_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const CLOTHES_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const CLOTHES_1_SPRITES[] =
 {
-	&CLOTHES_1_IM_SPRITE,
+	&CLOTHES_1_SPRITE,
 	NULL
 };
 
-EntityROMDef CLOTHES_1_IM =
+EntityROMDef CLOTHES_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)CLOTHES_1_IM_SPRITES,
+	(SpriteROMDef**)CLOTHES_1_SPRITES,
 
 	// collision shapes
 	NULL,

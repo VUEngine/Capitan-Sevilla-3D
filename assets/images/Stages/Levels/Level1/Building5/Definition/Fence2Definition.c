@@ -33,88 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE PlaygroundSign1Tiles[];
-extern BYTE PlaygroundSign1Map[];
-extern BYTE PlaygroundSign1BlackTiles[];
-extern BYTE PlaygroundSign1BlackMap[];
+extern BYTE Fence2Tiles[];
+extern BYTE Fence2Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef PLAYGROUND_SIGN_1_CH =
+CharSetROMDef FENCE_2_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	78,
+	192,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	PlaygroundSign1Tiles,
+	Fence2Tiles,
 };
 
-CharSetROMDef PLAYGROUND_SIGN_1_BLACK_CH =
-{
-	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
-	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	31,
-
-	// allocation type
-	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
-
-	// char definition
-	PlaygroundSign1BlackTiles,
-};
-
-TextureROMDef PLAYGROUND_SIGN_1_TX =
+TextureROMDef FENCE_2_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&PLAYGROUND_SIGN_1_CH,
+	(CharSetDefinition*)&FENCE_2_CH,
 
 	// bgmap definition
-	PlaygroundSign1Map,
+	Fence2Map,
 
 	// cols (max 64)
-	11,
+	38,
 
 	// rows (max 64)
-	19,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
-	1,
-
-	// palette number (0-3)
-	0,
-
-	// recyclable
-	false,
-};
-
-TextureROMDef PLAYGROUND_SIGN_1_BLACK_TX =
-{
-	// charset definition
-	(CharSetDefinition*)&PLAYGROUND_SIGN_1_BLACK_CH,
-
-	// bgmap definition
-	PlaygroundSign1BlackMap,
-
-	// cols (max 64)
-	11,
-
-	// rows (max 64)
-	19,
+	6,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -131,14 +85,14 @@ TextureROMDef PLAYGROUND_SIGN_1_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMDef PLAYGROUND_SIGN_1_SPRITE =
+BgmapSpriteROMDef FENCE_2_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&PLAYGROUND_SIGN_1_TX,
+		(TextureDefinition*)&FENCE_2_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -158,47 +112,19 @@ BgmapSpriteROMDef PLAYGROUND_SIGN_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef PLAYGROUND_SIGN_1_BLACK_SPRITE =
+BgmapSpriteROMDef* const FENCE_2_SPRITES[] =
 {
-	{
-		// sprite's type
-		__TYPE(BgmapSprite),
-
-		// texture definition
-		(TextureDefinition*)&PLAYGROUND_SIGN_1_BLACK_TX,
-
-		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-		__TRANSPARENCY_NONE,
-
-		// displacement
-		{0, 0, 0, 0},
-	},
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
-};
-
-BgmapSpriteROMDef* const PLAYGROUND_SIGN_1_SPRITES[] =
-{
-	&PLAYGROUND_SIGN_1_BLACK_SPRITE,
-	&PLAYGROUND_SIGN_1_SPRITE,
+	&FENCE_2_SPRITE,
 	NULL
 };
 
-EntityROMDef PLAYGROUND_SIGN_1_IM =
+EntityROMDef FENCE_2_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)PLAYGROUND_SIGN_1_SPRITES,
+	(SpriteROMDef**)FENCE_2_SPRITES,
 
 	// collision shapes
 	NULL,

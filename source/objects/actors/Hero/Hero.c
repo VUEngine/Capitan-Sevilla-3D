@@ -250,8 +250,6 @@ void Hero::addForce(u16 axis, bool enableAddingForce)
 
 	Velocity velocity = Body::getVelocity(this->body);
 
-	Direction direction = Entity::getDirection(Entity::safeCast(this));
-
 	if(
 		((__X_AXIS & axis) && maxVelocity > __ABS(velocity.x)) ||
 		((__Z_AXIS & axis) && maxVelocity > __ABS(velocity.z)) ||
@@ -877,13 +875,13 @@ void Hero::syncRotationWithBody()
 	{
 		direction.x = __RIGHT;
 		//Entity::setDirection(Entity::safeCast(this), direction);
-		//Hero::updateSprite(this, direction);
+		Hero::updateSprite(this, direction);
 	}
 	else if(0 > xLastDisplacement)
 	{
 		direction.x = __LEFT;
 		//Entity::setDirection(Entity::safeCast(this), direction);
-		//Hero::updateSprite(this, direction);
+		Hero::updateSprite(this, direction);
 	}
 }
 

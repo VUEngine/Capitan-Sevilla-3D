@@ -85,7 +85,7 @@ TextureROMDef BUSH_BG_2_TX =
 	false,
 };
 
-BgmapSpriteROMDef BUSH_BG_2_IM_SPRITE =
+BgmapSpriteROMDef BUSH_BG_2_SPRITE =
 {
 	{
 		// sprite's type
@@ -112,19 +112,19 @@ BgmapSpriteROMDef BUSH_BG_2_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const BUSH_BG_2_IM_SPRITES[] =
+BgmapSpriteROMDef* const BUSH_BG_2_SPRITES[] =
 {
-	&BUSH_BG_2_IM_SPRITE,
+	&BUSH_BG_2_SPRITE,
 	NULL
 };
 
-EntityROMDef BUSH_BG_2_IM =
+EntityROMDef BUSH_BG_2_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)BUSH_BG_2_IM_SPRITES,
+	(SpriteROMDef**)BUSH_BG_2_SPRITES,
 
 	// collision shapes
 	NULL,

@@ -118,7 +118,7 @@ BgmapSpriteROMDef* const STATUE_1_SPRITES[] =
 	NULL
 };
 
-EntityROMDef STATUE_1_IM =
+EntityROMDef STATUE_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),
