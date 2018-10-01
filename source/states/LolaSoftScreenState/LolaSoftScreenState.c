@@ -69,7 +69,7 @@ void LolaSoftScreenState::enter(void* owner)
 
 	// print "presents"
 	const char* strPresents = I18n::getText(I18n::getInstance(), STR_PRESENTS);
-	FontSize strPresentsSize = Printing::getTextSize(Printing::getInstance(), strPresents, NULL);
+	FontSize strPresentsSize = Printing::getTextSize(Printing::getInstance(), strPresents, "DefaultFont");
 	u8 strPresentsXPos = __HALF_SCREEN_WIDTH_IN_CHARS - (strPresentsSize.x >> 1);
-	Printing::text(Printing::getInstance(), strPresents, strPresentsXPos, 18, NULL);
+	Printing::text(Printing::getInstance(), strPresents, strPresentsXPos, 18, "DefaultFont");
 }

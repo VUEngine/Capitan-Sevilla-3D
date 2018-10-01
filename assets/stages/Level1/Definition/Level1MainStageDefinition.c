@@ -88,7 +88,7 @@ extern TextureDefinition HERO_BLACK_TX;
 extern TextureDefinition HOVER_CAR_1_TX;
 
 extern Size collision_2_28_8;
-extern Size collision_64_2_8;
+extern Size collision_48_2_8;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -101,78 +101,104 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CITY_FLOOR_IM,				{   0, 178,    0,   0},		0, NULL, NULL, NULL, true},
 
 	{&COLLISION_CL,					{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
-	{&CITY_FLOOR_COLLISION_CL,		{ 256, 204,    0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{ 192, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
 
-	{&LANTERN_1_IM,					{  32, 123,    0,   0},		0, "StartO", NULL, NULL, false},
+	{&LANTERN_1_IM,					{  32, 123,    0,   0},		0, "Start", NULL, NULL, false},
 	{&LEVEL_1_BUILDING_1_EN,		{ 200,  96,   64,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_1_PE,					{ 193,  68,   64,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_1_IM,					{ 356, 127,   48,   0},		0, NULL, NULL, NULL, false},
 
-	{&CAR_1_AC,						{ 540, 168,    0,   0},		0, NULL, NULL, (void*)-6, true},
-	{&BULLY_1_AC,					{ 640, 155,    0,   0},		0, NULL, NULL, (void*)-3, true},
+	{&CITY_FLOOR_COLLISION_CL,		{ 372, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
+
+	{&CAR_1_AC,						{ 540, 168,   -8,   0},		0, NULL, NULL, (void*)-6, true},
+	{&BULLY_1_AC,					{ 640, 156,    0,   0},		0, NULL, NULL, (void*)-3, true},
+
+	{&CITY_FLOOR_COLLISION_CL,		{ 552, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
 
 	{&LEVEL_1_BUILDING_2_EN,		{ 520, 140,   64,   0},		0, NULL, NULL, NULL, false},
 	{&LANTERN_1_IM,					{ 616, 123,    0,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_BG_1_IM,					{ 664, 152,   80,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_BG_1_IM,					{ 704, 128,   96,   0},		0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{ 768, 204,    0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{ 732, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
 
-	{&BULLY_1_AC,					{ 860, 155,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&BULLY_1_AC,					{ 860, 156,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&LEVEL_1_BUILDING_3_EN,		{ 808,  96,   64,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_1_PE,					{ 853,  66,   64,   0},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_BUILDING_4_EN,		{ 996, 118,   96,   0},		0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,				{1200, 114,    0,   0},		0, NULL, NULL, (void*)-5, false},
-	{&BUSH_BG_1_EN,					{1132, 104,  128,   0},		0, NULL, NULL, NULL, false},
-	{&LANTERN_1_IM,					{1166, 123,    0,   0},		0, "Start", NULL, NULL, false},
-	{&BULLY_1_AC,					{1230, 155,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&CAR_1_AC,						{1240, 168,    0,   0},		0, NULL, NULL, (void*)-6, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{1280, 204,    0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{ 912, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
+
+	{&LEVEL_1_BUILDING_4_EN,		{ 996, 118,   96,   0},		0, NULL, NULL, NULL, false},
+
+	{&CITY_FLOOR_COLLISION_CL,		{1092, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
+
+	{&HOVER_CAR_1_AC,				{1200, 120,    0,   0},		0, NULL, NULL, (void*)-5, false},
+	{&BUSH_BG_1_EN,					{1132, 104,  128,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_IM,					{1166, 123,    0,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_1_AC,					{1230, 156,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&CAR_1_AC,						{1240, 168,   -8,   0},		0, NULL, NULL, (void*)-6, false},
+
+	{&CITY_FLOOR_COLLISION_CL,		{1272, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
 
 	{&TREE_1_IM,					{1256, 120,   80,   0},		0, NULL, NULL, NULL, false},
-	{&TREE_1_IM,					{1312, 110,   96,   0},		0, NULL, NULL, NULL, false},
 	{&PLAYGROUND_SIGN_1_EN,			{1288,  84,   64,   0},		0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,					{1312, 110,   96,   0},		0, NULL, NULL, NULL, false},
+	{&FENCE_2_EN,					{1376, 151,   32,   0},		0, NULL, NULL, NULL, false},
 	{&PLAYGROUND_1_EN,				{1390, 108,   80,   0},		0, NULL, NULL, NULL, false},
 	{&STATUE_1_EN,					{1486,  96,   64,   0},		0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,				{1486, 114,    0,   0},		0, NULL, NULL, (void*)-5, false},
-	{&FENCE_2_EN,					{1376, 151,   32,   0},		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_1_AC,				{1486, 120,    0,   0},		0, NULL, NULL, (void*)-5, false},
 	{&BUSH_BG_2_EN,					{1552, 104,  128,   0},		0, NULL, NULL, NULL, false},
+
+	{&CITY_FLOOR_COLLISION_CL,		{1452, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
 
 	{&LANTERN_1_IM,					{1570, 123,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{1792, 204,    0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{1632, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
 
-	{&CAR_1_AC,						{1810, 168,    0,   0},		0, NULL, NULL, (void*)-6, false},
+	{&CAR_1_AC,						{1810, 168,   -8,   0},		0, NULL, NULL, (void*)-6, false},
 	{&LEVEL_1_BUILDING_6_EN,		{1746,  95,   64,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_1_PE,					{1784,  47,   64,   0},		0, NULL, NULL, NULL, false},
+
+	{&CITY_FLOOR_COLLISION_CL,		{1812, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
+
 	{&LEVEL_1_BUILDING_7_EN,		{1922, 118,   64,   0},		0, NULL, NULL, NULL, false},
+
+	{&CITY_FLOOR_COLLISION_CL,		{1992, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
+
 	{&LEVEL_1_BUILDING_8_EN,		{2106,  96,   64,   0},		0, NULL, NULL, NULL, false},
-	{&CLOTHES_1_EN,					{2258,  36,   96,   0},		0, NULL, NULL, NULL, false},
-	{&BIKE_1_EN,					{2303, 143,   80,   0},		0, NULL, NULL, NULL, false},
+	{&CLOTHES_1_EN,					{2254,  55,   96,   0},		0, NULL, NULL, NULL, false},
+	{&BIKE_1_EN,					{2288, 159,   48,   0},		0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{2304, 204,    0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{2172, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
 
-	{&LEVEL_1_BUILDING_9_EN,		{2626,  80,    0,   0},		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,					{2422,  46,   64,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_BUILDING_9_EN,		{2534,  96,   64,   0},		0, NULL, NULL, NULL, false},
+	{&GRANNY_1_PE,					{2340,  62,   64,   0},		0, NULL, NULL, NULL, false},
 
-	{&GRANNY_1_PE,					{2644,  18,   64,   0},		0, NULL, NULL, NULL, false},
-	{&CAR_1_AC,						{2700, 168,    0,   0},		0, NULL, NULL, (void*)-6, false},
-	{&CITY_FLOOR_COLLISION_CL,		{2817, 204,    0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{2352, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
 
-	{&LEVEL_1_BUILDING_10_EN,		{3098,  80,    0,   0},		0, NULL, NULL, NULL, false},
-	{&LANTERN_1_IM,					{3354, 123,    0,   0},		0, NULL, NULL, NULL, false},
-	{&TREE_1_IM,					{3378, 111,    0,   0},		0, NULL, NULL, NULL, false},
-	{&BENCH_1_IM,					{3434, 143,    0,   0},		0, NULL, NULL, NULL, false},
+	{&GRANNY_1_PE,					{2552,  34,   64,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_1_AC,						{2608, 168,   -8,   0},		0, NULL, NULL, (void*)-6, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{3329, 204,    0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{2532, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{2712, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{2892, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
 
-	{&CAR_BG_2_IM,					{3671, 144,    0,   0},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_BUILDING_11_EN,		{3675,  64,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_BUILDING_10_EN,		{3006,  96,   64,   0},		0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,		{3700, 204,    0,   0},		0, NULL, NULL, (void*)&collision_64_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{3072, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
 
-	{&COLLISION_CL,					{3700,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
+	{&LANTERN_1_IM,					{3262, 123,    0,   0},		0, NULL, NULL, NULL, false},
+	{&TREE_1_IM,					{3286, 127,   80,   0},		0, NULL, NULL, NULL, false},
+	{&BENCH_1_IM,					{3342, 159,   64,   0},		0, NULL, NULL, NULL, false},
+
+	{&CITY_FLOOR_COLLISION_CL,		{3252, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
+	{&CITY_FLOOR_COLLISION_CL,		{3432, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
+
+	{&CAR_BG_2_IM,					{3579, 146,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_BUILDING_11_EN,		{3583,  80,    4,   0},		0, NULL, NULL, NULL, false},
+
+	{&CITY_FLOOR_COLLISION_CL,		{3612, 204,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // bottom border
+	{&COLLISION_CL,					{3608,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -242,7 +268,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
 		// size
 		{
 			// x
-			3700,
+			3608,
 			// y
 			__SCREEN_HEIGHT,
 			// z
@@ -266,7 +292,7 @@ StageROMDef LEVEL_1_MAIN_STAGE_ST =
         	// x0
         	0,
         	// y0
-			0,
+			-16,
 			// z0
 			-16,
         	// x1
