@@ -45,14 +45,13 @@ typedef struct ProjectileEjectorDefinition
 	// projectile positioned entity
 	PositionedEntity projectilePositionedEntityDefinition;
 
-	// delay of the first projectile ejection
-	// (only relevant if initially active)
+	// delay of the first projectile ejection (only relevant if initially active)
 	u16 initialEjectDelay;
 
 	// pause between projectile ejections
 	u16 ejectDelay;
 
-	// flag whether the ejector should be active on creation
+	// whether the ejector should be active on creation
 	u8 initiallyActive;
 
 	// maximum number of projectiles on screen at the same time

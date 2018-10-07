@@ -85,7 +85,7 @@ TextureROMDef BENCH_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef BENCH_1_IM_SPRITE =
+BgmapSpriteROMDef BENCH_1_SPRITE =
 {
 	{
 		// sprite's type
@@ -112,19 +112,19 @@ BgmapSpriteROMDef BENCH_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const BENCH_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const BENCH_1_SPRITES[] =
 {
-	&BENCH_1_IM_SPRITE,
+	&BENCH_1_SPRITE,
 	NULL
 };
 
-EntityROMDef BENCH_1_IM =
+EntityROMDef BENCH_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)BENCH_1_IM_SPRITES,
+	(SpriteROMDef**)BENCH_1_SPRITES,
 
 	// collision shapes
 	NULL,

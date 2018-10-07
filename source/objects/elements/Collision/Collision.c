@@ -90,7 +90,7 @@ void Collision::initialTransform(Transformation* environmentTransform, u32 recur
 			{0, 0, 0},
 
 			// scale modifier
-			{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+			{1, 1, 1},
 
 			// if true this shape checks for collisions against other shapes
 			false,

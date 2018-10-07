@@ -109,7 +109,6 @@ void Hero::constructor(HeroDefinition* heroDefinition, s16 id, s16 internalId, c
 // class's destructor
 void Hero::destructor()
 {
-
 	ASSERT(hero, "Hero::destructor: already deleted");
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
@@ -631,9 +630,6 @@ fix10_6 Hero::getFrictionOnCollision(SpatialObject collidingObject, const Vector
 // process collisions
 bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 {
-
-	ASSERT(collisionInformation->collidingShape, "Hero::enterCollision: null collidingObjects");
-
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape::getOwner(collidingShape);
 
@@ -668,9 +664,6 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 // process collisions
 bool Hero::updateCollision(const CollisionInformation* collisionInformation)
 {
-
-	ASSERT(collisionInformation->collidingShape, "Hero::updateCollision: null collidingObjects");
-
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape::getOwner(collidingShape);
 

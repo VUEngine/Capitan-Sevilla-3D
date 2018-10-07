@@ -404,7 +404,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		{0, 0, 0},
 
 		// scale (x, y, z)
-		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+		{1, 1, 1},
 
 		// if true this shape checks for collisions against other shapes
 		true,
@@ -431,7 +431,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		{0, 0, 0},
 
 		// scale (x, y, z)
-		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+		{1, 1, 1},
 
 		// if true this shape checks for collisions against other shapes
 		true,

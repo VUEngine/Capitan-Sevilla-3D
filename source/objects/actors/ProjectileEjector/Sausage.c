@@ -54,9 +54,6 @@ void Sausage::destructor()
 // process collisions
 bool Sausage::enterCollision(const CollisionInformation* collisionInformation)
 {
-
-	ASSERT(collisionInformation->collidingShape, "Sausage::enterCollision: null collidingObjects");
-
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape::getOwner(collidingShape);
 
@@ -71,7 +68,7 @@ bool Sausage::enterCollision(const CollisionInformation* collisionInformation)
 			Entity::activateShapes(Entity::safeCast(this), false);
 
 			// play hitting animation
-			//AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "hit");
+			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Pap");
 
 			return false;
 			break;

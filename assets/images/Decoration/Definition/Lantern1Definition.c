@@ -192,7 +192,7 @@ BgmapSpriteROMDef* const LANTERN_1_SPRITES[] =
 	NULL
 };
 
-EntityROMDef LANTERN_1_IM =
+EntityROMDef LANTERN_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),

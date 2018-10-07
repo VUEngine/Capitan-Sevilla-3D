@@ -83,8 +83,6 @@ void PlatformerLevelState::destructor()
 
 void PlatformerLevelState::getPositionedEntitiesToIgnore(VirtualList positionedEntitiesToIgnore __attribute__ ((unused)))
 {
-
-	ASSERT(positionedEntitiesToIgnore, "PlatformerLevelState::getPositionedEntitiesToIgnore: null positionedEntitiesToIgnore");
 }
 
 // state's enter

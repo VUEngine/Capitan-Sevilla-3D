@@ -74,6 +74,9 @@ void Projectile::startMovement()
 	// activate shapes
 	Entity::activateShapes(Entity::safeCast(this), true);
 
+	// play default animation
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileDefinition->actorDefinition.animatedEntityDefinition.initialAnimation);
+
 	// show me
 	Entity::show(Entity::safeCast(this));
 

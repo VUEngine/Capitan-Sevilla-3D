@@ -86,7 +86,7 @@ TextureROMDef CAR_BG_2_TX =
 	false,
 };
 
-BgmapSpriteROMDef CAR_BG_2_IM_SPRITE =
+BgmapSpriteROMDef CAR_BG_2_SPRITE =
 {
 	{
 		// sprite's type
@@ -113,13 +113,13 @@ BgmapSpriteROMDef CAR_BG_2_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const CAR_BG_2_IM_SPRITES[] =
+BgmapSpriteROMDef* const CAR_BG_2_SPRITES[] =
 {
-	&CAR_BG_2_IM_SPRITE,
+	&CAR_BG_2_SPRITE,
 	NULL
 };
 
-ShapeROMDef CAR_BG_2_IM_SHAPES[] =
+ShapeROMDef CAR_BG_2_SHAPES[] =
 {
 	{
 		// shape
@@ -175,7 +175,7 @@ ShapeROMDef CAR_BG_2_IM_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-PhysicalSpecificationROMDef CAR_BG_2_IM_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMDef CAR_BG_2_PHYSICAL_PROPERTIES =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -190,16 +190,16 @@ PhysicalSpecificationROMDef CAR_BG_2_IM_PHYSICAL_PROPERTIES =
 	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
 };
 
-EntityROMDef CAR_BG_2_IM =
+EntityROMDef CAR_BG_2_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)CAR_BG_2_IM_SPRITES,
+	(SpriteROMDef**)CAR_BG_2_SPRITES,
 
 	// collision shapes
-	(ShapeDefinition*)CAR_BG_2_IM_SHAPES,
+	(ShapeDefinition*)CAR_BG_2_SHAPES,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
@@ -209,5 +209,5 @@ EntityROMDef CAR_BG_2_IM =
 	kNoType,
 
 	// physical specification
-	(PhysicalSpecification*)&CAR_BG_2_IM_PHYSICAL_PROPERTIES,
+	(PhysicalSpecification*)&CAR_BG_2_PHYSICAL_PROPERTIES,
 };

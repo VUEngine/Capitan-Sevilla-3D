@@ -24,106 +24,51 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <ObjectAnimatedSprite.h>
+#include <Entity.h>
+#include <BgmapSprite.h>
 #include <macros.h>
-#include <ProjectileEjector.h>
-#include <Actor.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern ActorDefinition FLOWER_POT_1_PR;
-extern BYTE GrannyTiles[];
-extern BYTE GrannyMap[];
+extern BYTE ComicNivel1Tiles[];
+extern BYTE ComicNivel1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef GRANNY_1_IDLE_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{0},
-
-	// number of cycles a frame of animation is displayed
-	2,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Idle",
-};
-
-AnimationFunctionROMDef GRANNY_1_SHOOT_ANIM =
-{
-	// number of frames of this animation function
-	4,
-
-	// frames to play in animation
-	{1, 1, 1, 1},
-
-	// number of cycles a frame of animation is displayed
-	16,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	(EventListener)&ProjectileEjector_onEjectAnimationComplete,
-
-	// function's name
-	"Shoot",
-};
-
-// an animation definition
-AnimationDescriptionROMDef GRANNY_1_ANIM =
-{
-	// animation functions
-	{
-		(AnimationFunction*)&GRANNY_1_IDLE_ANIM,
-		(AnimationFunction*)&GRANNY_1_SHOOT_ANIM,
-		NULL,
-	}
-};
-
-CharSetROMDef GRANNY_1_CH =
+CharSetROMDef COMIC_NIVEL_1_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	2 * 20,
+	614,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_MULTI,
+	__NOT_ANIMATED,
 
 	// char definition
-	GrannyTiles,
+	ComicNivel1Tiles,
 };
 
-TextureROMDef GRANNY_1_TX =
+TextureROMDef COMIC_NIVEL_1_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&GRANNY_1_CH,
+	(CharSetDefinition*)&COMIC_NIVEL_1_CH,
 
 	// bgmap definition
-	GrannyMap,
+	ComicNivel1Map,
 
 	// cols (max 64)
-	4,
+	48,
 
 	// rows (max 64)
-	5,
+	64,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -131,7 +76,7 @@ TextureROMDef GRANNY_1_TX =
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
-	2,
+	1,
 
 	// palette number (0-3)
 	1,
@@ -140,88 +85,57 @@ TextureROMDef GRANNY_1_TX =
 	false,
 };
 
-ObjectSpriteROMDef GRANNY_1_SPRITE =
+BgmapSpriteROMDef COMIC_NIVEL_1_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(ObjectAnimatedSprite),
+		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&GRANNY_1_TX,
+		(TextureDefinition*)&COMIC_NIVEL_1_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, -144, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_OBJECT,
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const GRANNY_1_SPRITES[] =
+BgmapSpriteROMDef* const COMIC_NIVEL_1_SPRITES[] =
 {
-	&GRANNY_1_SPRITE,
+	&COMIC_NIVEL_1_SPRITE,
 	NULL
 };
 
-ProjectileEjectorROMDef GRANNY_1_PE =
+EntityROMDef COMIC_NIVEL_1_EN =
 {
-	// animated entity
-	{
-		{
-			// class allocator
-			__TYPE(ProjectileEjector),
+	// class allocator
+	__TYPE(Entity),
 
-			// sprites
-			(SpriteROMDef**)GRANNY_1_SPRITES,
+	// sprites
+	(SpriteROMDef**)COMIC_NIVEL_1_SPRITES,
 
-			// collision shapes
-			(ShapeDefinition*)NULL,
+	// collision shapes
+	NULL,
 
-			// size
-			// if 0, width and height will be inferred from the first sprite's texture's size
-			{0, 0, 0},
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
 
-			// gameworld's character's type
-			kNoType,
+	// gameworld's character's type
+	kNoType,
 
-			// physical specification
-			(PhysicalSpecification*)NULL,
-		},
-
-		// pointer to the animation definition for the character
-		(AnimationDescription*)&GRANNY_1_ANIM,
-
-		// initial animation
-		"Idle"
-	},
-
-	// projectile
-    {
-    	(EntityDefinition*)&FLOWER_POT_1_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, false
-    },
-
-	// delay of the first projectile ejection (only relevant if initially active)
-	1500,
-
-	// pause between projectile ejections
-	2800,
-
-	// whether the ejector should be active on creation
-	true,
-
-	// maximum number of projectiles on screen at the same time
-	1,
-
-	// name of animation to play on projectile ejection
-	"Shoot",
-
-	// name of animation to play when idle
-	"Idle",
+	// physical specification
+	NULL,
 };

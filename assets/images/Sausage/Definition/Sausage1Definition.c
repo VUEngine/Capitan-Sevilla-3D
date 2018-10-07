@@ -62,12 +62,34 @@ AnimationFunctionROMDef SAUSAGE_1_DEFAULT_ANIM =
 	"Default",
 };
 
+AnimationFunctionROMDef SAUSAGE_1_PAP_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{5},
+
+	// number of cycles a frame of animation is displayed
+	64,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Pap",
+};
+
 // an animation definition
 AnimationDescriptionROMDef SAUSAGE_1_ANIM =
 {
 	// animation functions
 	{
 		(AnimationFunction*)&SAUSAGE_1_DEFAULT_ANIM,
+		(AnimationFunction*)&SAUSAGE_1_PAP_ANIM,
 		NULL,
 	}
 };
@@ -77,7 +99,7 @@ CharSetROMDef SAUSAGE_1_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	9,
+	4 * 3,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -96,7 +118,7 @@ TextureROMDef SAUSAGE_1_TX =
 	Sausage1Map,
 
 	// cols (max 64)
-	3,
+	4,
 
 	// rows (max 64)
 	3,
@@ -162,7 +184,7 @@ ShapeROMDef SAUSAGE_1_PR_SHAPES[] =
 		{0, 0, 0},
 
 		// scale (x, y, z)
-		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+		{1, 1, 1},
 
 		// if true this shape checks for collisions against other shapes
 		true,
@@ -190,7 +212,8 @@ ProjectileROMDef SAUSAGE_1_PR =
 				(SpriteROMDef**)SAUSAGE_1_SPRITES,
 
 				// collision shapes
-				(ShapeDefinition*)SAUSAGE_1_PR_SHAPES,
+				//(ShapeDefinition*)SAUSAGE_1_PR_SHAPES,
+				(ShapeDefinition*)NULL,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -226,7 +249,7 @@ ProjectileROMDef SAUSAGE_1_PR =
 
 	// position relative to ejector
     {
-    	0,
+    	__PIXELS_TO_METERS(16),
     	0,
     	0,
     },
@@ -234,10 +257,10 @@ ProjectileROMDef SAUSAGE_1_PR =
 	// max position relative to ejector before position reset
     {
     	0,
-    	__PIXELS_TO_METERS(80),
+    	__PIXELS_TO_METERS(212),
     	0,
     },
 
 	// delay between position checks (-1 to disable)
-	-1,
+	200,
 };

@@ -85,7 +85,7 @@ TextureROMDef CAR_BG_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef CAR_BG_1_IM_SPRITE =
+BgmapSpriteROMDef CAR_BG_1_SPRITE =
 {
 	{
 		// sprite's type
@@ -112,19 +112,19 @@ BgmapSpriteROMDef CAR_BG_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const CAR_BG_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const CAR_BG_1_SPRITES[] =
 {
-	&CAR_BG_1_IM_SPRITE,
+	&CAR_BG_1_SPRITE,
 	NULL
 };
 
-EntityROMDef CAR_BG_1_IM =
+EntityROMDef CAR_BG_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)CAR_BG_1_IM_SPRITES,
+	(SpriteROMDef**)CAR_BG_1_SPRITES,
 
 	// collision shapes
 	NULL,

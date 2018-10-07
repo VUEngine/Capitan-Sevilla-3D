@@ -41,10 +41,6 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-
-
-
 // class's constructor
 void Item::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {

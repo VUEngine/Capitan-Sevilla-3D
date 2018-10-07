@@ -69,9 +69,9 @@ typedef const ProjectileDefinition ProjectileROMDef;
 
 class Projectile : Actor
 {
-	/* definition pointer */																		
-	ProjectileDefinition* projectileDefinition;														
-	
+	// definition pointer
+	ProjectileDefinition* projectileDefinition;
+
 	void constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
 	void startMovement();
 	void stopMovement();

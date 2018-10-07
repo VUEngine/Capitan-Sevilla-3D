@@ -37,10 +37,6 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// always call these two macros next to each other
-
-
-
 // class's constructor
 void FlowerPot::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
 {
@@ -59,9 +55,6 @@ void FlowerPot::destructor()
 // process collisions
 bool FlowerPot::enterCollision(const CollisionInformation* collisionInformation)
 {
-
-	ASSERT(collisionInformation->collidingShape, "FlowerPot::enterCollision: null collidingObjects");
-
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape::getOwner(collidingShape);
 
@@ -76,12 +69,12 @@ bool FlowerPot::enterCollision(const CollisionInformation* collisionInformation)
 			Entity::activateShapes(Entity::safeCast(this), false);
 
 			// play breaking animation
-			//AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "break");
+			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Break");
 
 			return false;
 			break;
 		}
 	}
 
-	return Base::enterCollision(Actor::safeCast(this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
+	return false;
 }

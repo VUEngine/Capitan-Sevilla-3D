@@ -54,16 +54,15 @@ enum CustomCameraFX
 
 singleton class CustomCameraEffectManager : CameraEffectManager
 {
-	/* temporary variable to hold the focus entity during shaking fx */
+	// temporary variable to hold the focus entity during shaking fx
 	Entity tempFocusEntity;
-	/* last offset set by shake function */
+	// last offset set by shake function
 	Vector3D lastShakeOffset;
-	/* time left in current shaking fx (in ms) */
+	// time left in current shaking fx (in ms)
 	int shakeTimeLeft;
-	/* values to load on next pulsate fx step */
+	// values to load on next pulsate fx step
 	u8 pulsateNextStep;
 
-	// declare a CustomCameraEffectManager
 	static CustomCameraEffectManager getInstance();
 	override void startEffect(int effect, va_list args);
 	override void stopEffect(int effect);

@@ -78,14 +78,13 @@ ProjectileEjectorROMDef SAUSAGE_EJECTOR_PE =
     	(EntityDefinition*)&SAUSAGE_1_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, false
     },
 
-	// delay of the first projectile ejection
-	// (only relevant if initially active)
+	// delay of the first projectile ejection (only relevant if initially active)
 	0,
 
 	// pause between projectile ejections
 	1000,
 
-	// flag whether the ejector should be active on creation
+	// whether the ejector should be active on creation
 	false,
 
 	// maximum number of projectiles on screen at the same time

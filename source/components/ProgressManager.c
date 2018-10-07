@@ -64,8 +64,6 @@ void ProgressManager::constructor()
 // class's destructor
 void ProgressManager::destructor()
 {
-	ASSERT(EventManager::getInstance(), "ProgressManager::destructor: null eventManager");
-
 	// remove event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);

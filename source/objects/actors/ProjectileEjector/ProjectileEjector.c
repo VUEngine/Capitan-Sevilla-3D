@@ -57,7 +57,7 @@ void ProjectileEjector::destructor()
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileEject);
 
-	// not necessary to manually destroy the Projectile here as all children are automatically
+	// not necessary to manually destroy the Projectiles here as all children are automatically
 	// destroyed as well when an entity is unloaded
 
 	// delete the super object
@@ -72,6 +72,12 @@ void ProjectileEjector::ready(bool recursive)
 
 	// play idle animation
 	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->idleAnimationName);
+
+	// add projectiles to stage
+	for(u8 i = 0; i < this->projectileEjectorDefinition->maxProjectiles; i++)
+	{
+		Stage::spawnEntity(Game::getStage(Game::getInstance()), &this->projectileEjectorDefinition->projectilePositionedEntityDefinition, Container::safeCast(this), NULL);
+	}
 
 	// send delayed message to self to trigger first shot
 	if(this->active)
@@ -99,38 +105,26 @@ void ProjectileEjector::ejectProjectile()
 {
 	if(this->active)
 	{
-		// construct projectile entities if they don't exist yet
-		if(!this->children)
+		// poll all projectiles to find a (re)useable one
+		VirtualNode node = VirtualList::begin(this->children);
+		Projectile projectile = NULL;
+		for(; node; node = VirtualNode::getNext(node))
 		{
-			// add projectiles to stage
-			for(u8 i = 0; i < this->projectileEjectorDefinition->maxProjectiles; i++)
+			projectile = Projectile::safeCast(VirtualNode::getData(node));
+			if(Projectile::canBeReused(projectile))
 			{
-				Stage::spawnEntity(Game::getStage(Game::getInstance()), &this->projectileEjectorDefinition->projectilePositionedEntityDefinition, Container::safeCast(this), (EventListener)ProjectileEjector::ejectProjectile);
+				// start ejection sequence
+				AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->ejectAnimationName);
+
+				// set projectile to moving state
+				Projectile::startMovement(projectile);
+
+				break;
 			}
 		}
-		else
-		{
-			// poll all projectiles to find a (re)useable one
-			VirtualNode node = VirtualList::begin(this->children);
-			Projectile projectile = NULL;
-			for(; node; node = VirtualNode::getNext(node))
-			{
-				projectile = Projectile::safeCast(VirtualNode::getData(node));
-				if(Projectile::canBeReused(projectile))
-				{
-					// start ejection sequence
-					AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->ejectAnimationName);
 
-					// set projectile to moving state
-					Projectile::startMovement(projectile);
-
-					break;
-				}
-			}
-
-			// send delayed message to self to trigger next shot
-			MessageDispatcher::dispatchMessage(this->projectileEjectorDefinition->ejectDelay, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
-		}
+		// send delayed message to self to trigger next shot
+		MessageDispatcher::dispatchMessage(this->projectileEjectorDefinition->ejectDelay, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
 	}
 }
 

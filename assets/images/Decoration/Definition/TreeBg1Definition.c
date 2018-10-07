@@ -85,7 +85,7 @@ TextureROMDef TREE_BG_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef TREE_BG_1_IM_SPRITE =
+BgmapSpriteROMDef TREE_BG_1_SPRITE =
 {
 	{
 		// sprite's type
@@ -112,19 +112,19 @@ BgmapSpriteROMDef TREE_BG_1_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const TREE_BG_1_IM_SPRITES[] =
+BgmapSpriteROMDef* const TREE_BG_1_SPRITES[] =
 {
-	&TREE_BG_1_IM_SPRITE,
+	&TREE_BG_1_SPRITE,
 	NULL
 };
 
-EntityROMDef TREE_BG_1_IM =
+EntityROMDef TREE_BG_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)TREE_BG_1_IM_SPRITES,
+	(SpriteROMDef**)TREE_BG_1_SPRITES,
 
 	// collision shapes
 	NULL,

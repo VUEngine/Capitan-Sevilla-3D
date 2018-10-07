@@ -86,9 +86,6 @@ void MovingEntity::destructor()
 // set definition
 void MovingEntity::setDefinition(void* movingEntityDefinition)
 {
-
-	ASSERT(movingEntityDefinition, "MovingEntity::setDefinition: null definition");
-
 	// save definition
 	this->movingEntityDefinition = movingEntityDefinition;
 
