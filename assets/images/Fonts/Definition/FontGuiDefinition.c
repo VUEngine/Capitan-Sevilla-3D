@@ -24,39 +24,39 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FontDefaultPartialTiles[];
+extern BYTE FontGuiTiles[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef CAPITAN_DEFAULT_FONT_PARTIAL_CH =
+CharSetROMDef CAPITAN_GUI_FONT_CH =
 {
 	// number of chars
-	64,
+	11,
 
 	// allocation type
 	__NOT_ANIMATED,
 
 	// char definition
-	FontDefaultPartialTiles,
+	FontGuiTiles,
 };
 
-FontROMDef CAPITAN_DEFAULT_FONT_PARTIAL =
+FontROMDef CAPITAN_GUI_FONT =
 {
 	// font charset definition pointer
-	(CharSetDefinition*)&CAPITAN_DEFAULT_FONT_PARTIAL_CH,
+	(CharSetDefinition*)&CAPITAN_GUI_FONT_CH,
 
 	// character number at which the font starts, allows you to skip the control characters for example
-	32,
+	47,
 
 	// number of characters in this font
-	64,
+	11,
 
 	// size of a single character (in chars) (width, height)
 	{1, 1},
 
 	// font's name
-	"DfltFontPrt",
+	"GuiFont",
 };

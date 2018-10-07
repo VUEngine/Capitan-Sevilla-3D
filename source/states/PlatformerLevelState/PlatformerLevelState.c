@@ -388,35 +388,10 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 	{
 		case kLevelSetUp:
 			{
-				// print level name if at level start point
-				if(PlatformerLevelState::isStartingLevel(this) && this->currentLevel->name)
-				{
-					const char* strLevelName = I18n::getText(I18n::getInstance(), (int)this->currentLevel->name);
-					Printing::text(
-						Printing::getInstance(),
-						strLevelName,
-						1,
-						24,
-						NULL
-					);
-
-					// erase level message in 2 seconds
-					MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
-				}
-				else if(this->currentStageEntryPoint->isCheckPoint)
+				if(this->currentStageEntryPoint->isCheckPoint)
 				{
 					// write checkpoint message to screen
-					const char* strCheckpoint = I18n::getText(I18n::getInstance(), STR_CHECKPOINT);
-					Printing::text(
-						Printing::getInstance(),
-						strCheckpoint,
-						1,
-						25,
-						NULL
-					);
-
-					// erase checkpoint message in 2 second
-					MessageDispatcher::dispatchMessage(2000, Object::safeCast(this), Object::safeCast(Game::getInstance()), kHideLevelMessage, NULL);
+					// TODO
 				}
 
 				// tell any interested entity
@@ -441,15 +416,6 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 				Object::safeCast(this) // callback scope
 			);
 
-			break;
-
-		case kHideLevelMessage:
-
-			Printing::text(Printing::getInstance(), "                          ", 0, 24, NULL);
-			Printing::text(Printing::getInstance(), "                          ", 0, 25, NULL);
-			Printing::text(Printing::getInstance(), "                          ", 0, 26, NULL);
-
-			PlatformerLevelState::setPrintingLayerCoordinates(this);
 			break;
 
 		case kScreenFocused:

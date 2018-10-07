@@ -36,7 +36,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern FontDefinition CAPITAN_DEFAULT_FONT;
-extern FontDefinition CAPITAN_DEFAULT_FONT_PARTIAL;
+extern FontDefinition CAPITAN_GUI_FONT;
 
 
 #endif

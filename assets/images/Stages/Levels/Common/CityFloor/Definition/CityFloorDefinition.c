@@ -35,7 +35,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE CityFloorTiles[];
-extern BYTE CityFloorMap[];
+extern BYTE CityFloorLMap[];
+extern BYTE CityFloorRMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -47,7 +48,7 @@ CharSetROMDef CITY_FLOOR_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	2,
+	5,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -57,19 +58,21 @@ CharSetROMDef CITY_FLOOR_CH =
 	CityFloorTiles,
 };
 
-TextureROMDef CITY_FLOOR_TX =
+/* LEFT */
+
+TextureROMDef CITY_FLOOR_L_TX =
 {
 	// charset definition
 	(CharSetDefinition*)&CITY_FLOOR_CH,
 
 	// bgmap definition
-	CityFloorMap,
+	CityFloorLMap,
 
 	// cols (max 64)
 	64,
 
 	// rows (max 64)
-	1,
+	3,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -86,13 +89,13 @@ TextureROMDef CITY_FLOOR_TX =
 	false,
 };
 
-TextureROMDef* const CITY_FLOOR_SB_TEXTURES[] =
+TextureROMDef* const CITY_FLOOR_L_TEXTURES[] =
 {
-	(TextureDefinition*)&CITY_FLOOR_TX,
+	(TextureDefinition*)&CITY_FLOOR_L_TX,
 	NULL
 };
 
-MBgmapSpriteROMDef CITY_FLOOR_SB_SPRITE =
+MBgmapSpriteROMDef CITY_FLOOR_L_SPRITE =
 {
 	{
 		{
@@ -117,10 +120,10 @@ MBgmapSpriteROMDef CITY_FLOOR_SB_SPRITE =
 		NULL,
 
 		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-		__WORLD_ON,
+		__WORLD_LON,
 	},
 
-	(TextureDefinition**)CITY_FLOOR_SB_TEXTURES,
+	(TextureDefinition**)CITY_FLOOR_L_TEXTURES,
 
 	// SCX/SCY
 	__WORLD_1x1,
@@ -132,19 +135,99 @@ MBgmapSpriteROMDef CITY_FLOOR_SB_SPRITE =
 	false,
 };
 
-BgmapSpriteROMDef* const CITY_FLOOR_SB_SPRITES[] =
+/* RIGHT */
+
+TextureROMDef CITY_FLOOR_R_TX =
 {
-	(BgmapSpriteROMDef*)&CITY_FLOOR_SB_SPRITE,
+	// charset definition
+	(CharSetDefinition*)&CITY_FLOOR_CH,
+
+	// bgmap definition
+	CityFloorRMap,
+
+	// cols (max 64)
+	64,
+
+	// rows (max 64)
+	3,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	0,
+
+	// recyclable
+	false,
+};
+
+TextureROMDef* const CITY_FLOOR_R_TEXTURES[] =
+{
+	(TextureDefinition*)&CITY_FLOOR_R_TX,
 	NULL
 };
 
-EntityROMDef CITY_FLOOR_IM =
+MBgmapSpriteROMDef CITY_FLOOR_R_SPRITE =
+{
+	{
+		{
+			// sprite's type
+			__TYPE(MBgmapSprite),
+
+			// texture definition
+			NULL,
+
+			// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+			false,
+
+			// displacement
+			{0, 0, 0, 0},
+		},
+
+		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+		__WORLD_BGMAP,
+
+		// pointer to affine/hbias manipulation function
+		NULL,
+
+		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+		__WORLD_RON,
+	},
+
+	(TextureDefinition**)CITY_FLOOR_R_TEXTURES,
+
+	// SCX/SCY
+	__WORLD_1x1,
+
+	// x loop
+	true,
+
+	// y loop
+	false,
+};
+
+/* ENTITY */
+
+BgmapSpriteROMDef* const CITY_FLOOR_SPRITES[] =
+{
+	(BgmapSpriteROMDef*)&CITY_FLOOR_L_SPRITE,
+	(BgmapSpriteROMDef*)&CITY_FLOOR_R_SPRITE,
+	NULL
+};
+
+EntityROMDef CITY_FLOOR_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)CITY_FLOOR_SB_SPRITES,
+	(SpriteROMDef**)CITY_FLOOR_SPRITES,
 
 	// collision shapes
 	NULL,

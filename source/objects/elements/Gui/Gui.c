@@ -69,7 +69,7 @@ void Gui::constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 in
 void Gui::destructor()
 {
 	// clear printing layer
-	Printing::text(Printing::getInstance(), "                                                ", GUI_X_POS, GUI_Y_POS, NULL);
+	Printing::text(Printing::getInstance(), "////////////////////////////////////////////////", GUI_X_POS, GUI_Y_POS, "GuiFont");
 
 	// remove event listeners
 	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
@@ -100,8 +100,8 @@ void Gui::printClock()
 {
 	if(this->timeRemaining < 10)
 	{
-		Printing::int(Printing::getInstance(), 0, GUI_X_POS + 37, GUI_Y_POS, NULL);
-		Printing::int(Printing::getInstance(), this->timeRemaining, GUI_X_POS + 38, GUI_Y_POS, NULL);
+		Printing::int(Printing::getInstance(), 0, GUI_X_POS + 37, GUI_Y_POS, "GuiFont");
+		Printing::int(Printing::getInstance(), this->timeRemaining, GUI_X_POS + 38, GUI_Y_POS, "GuiFont");
 
 		if(this->timeRemaining <= 5)
 		{
@@ -111,20 +111,20 @@ void Gui::printClock()
 	}
 	else
 	{
-		Printing::int(Printing::getInstance(), this->timeRemaining, GUI_X_POS + 37, GUI_Y_POS, NULL);
+		Printing::int(Printing::getInstance(), this->timeRemaining, GUI_X_POS + 37, GUI_Y_POS, "GuiFont");
 	}
 }
 
 void Gui::printSausages()
 {
-	Printing::text(Printing::getInstance(), "X00", GUI_X_POS + 28, GUI_Y_POS, NULL);
-	Printing::int(Printing::getInstance(), Hero::getSausages(Hero::getInstance()), GUI_X_POS + 28, GUI_Y_POS, NULL);
+	Printing::text(Printing::getInstance(), "///", GUI_X_POS + 28, GUI_Y_POS, "GuiFont");
+	Printing::int(Printing::getInstance(), Hero::getSausages(Hero::getInstance()), GUI_X_POS + 28, GUI_Y_POS, "GuiFont");
 }
 
 void Gui::printLives()
 {
-	Printing::text(Printing::getInstance(), "X00", GUI_X_POS + 44, GUI_Y_POS, NULL);
-	Printing::int(Printing::getInstance(), Hero::getEnergy(Hero::getInstance()), GUI_X_POS + 46, GUI_Y_POS, NULL);
+	Printing::text(Printing::getInstance(), "///", GUI_X_POS + 44, GUI_Y_POS, "GuiFont");
+	Printing::int(Printing::getInstance(), Hero::getEnergy(Hero::getInstance()), GUI_X_POS + 44, GUI_Y_POS, "GuiFont");
 }
 
 void Gui::printAll()
