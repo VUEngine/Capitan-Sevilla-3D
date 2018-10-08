@@ -57,12 +57,17 @@ void Gui::constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 in
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 
+	// init members
+	this->active = false;
 	this->timeRemaining = 90;
 
 	// add event listeners
+	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::addEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
-	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
-	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onHeroDied, kEventHeroDied);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroDied, kEventHeroDied);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
 }
 
 // class's destructor
@@ -72,26 +77,21 @@ void Gui::destructor()
 	Printing::text(Printing::getInstance(), "////////////////////////////////////////////////", GUI_X_POS, GUI_Y_POS, "GuiFont");
 
 	// remove event listeners
+	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
-	Object::removeEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
-	Object::removeEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)Gui::onHeroDied, kEventHeroDied);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroDied, kEventHeroDied);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
 
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
 
-void Gui::ready(bool recursive)
-{
-	Gui::printAll(this);
-
-	// call base
-	Base::ready(this, recursive);
-}
-
 void Gui::resume()
 {
-	__CALL_BASE_METHOD(Entity, resume, this);
+	Base::resume(this);
 
 	Gui::printAll(this);
 }
@@ -137,6 +137,11 @@ void Gui::printAll()
 // handle event
 void Gui::onSecondChange(Object eventFirer __attribute__ ((unused)))
 {
+	if(!this->active)
+	{
+		return;
+	}
+
 	if(this->timeRemaining > 0)
 	{
 		this->timeRemaining--;
@@ -163,4 +168,18 @@ void Gui::onHeroDied(Object eventFirer __attribute__ ((unused)))
 	Vector3D cameraPosition = Camera::getPosition(Camera::getInstance());
 	PositionedEntity gameOverPositionedEntity = {&GAME_OVER_IM, {__METERS_TO_PIXELS(cameraPosition.x) + 192, 112, 0, 0}, 0, NULL, NULL, NULL, false};
 	Stage::addChildEntity(Game::getStage(Game::getInstance()), &gameOverPositionedEntity, true);
+}
+
+// handle event
+void Gui::onSetModeToPaused(Object eventFirer __attribute__ ((unused)))
+{
+	this->active = false;
+}
+
+// handle event
+void Gui::onSetModeToPlaying(Object eventFirer __attribute__ ((unused)))
+{
+	this->active = true;
+
+	Gui::printAll(this);
 }

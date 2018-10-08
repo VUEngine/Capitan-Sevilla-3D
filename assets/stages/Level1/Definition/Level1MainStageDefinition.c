@@ -106,7 +106,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&CITY_FLOOR_COLLISION_CL,		{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 
-//	{&COMIC_NIVEL_1_EN,				{ 192, 112,   -2,   0},		0, NULL, NULL, NULL, false},
+	//{&COMIC_NIVEL_1_EN,				{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,					{  32, 133,    0,   0},		0, "Start", NULL, NULL, false},
 	{&LEVEL_1_BUILDING_1_EN,		{ 200,  80,   64,   0},		0, NULL, NULL, NULL, false},
@@ -115,8 +115,8 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&CITY_FLOOR_COLLISION_CL,		{ 372, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 
-	{&CAR_1_AC,						{ 540, 164,   -8,   0},		0, NULL, NULL, (void*)-6, true},
-	{&BULLY_1_AC,					{ 640, 152,   16,   0},		0, NULL, NULL, (void*)-3, true},
+	{&CAR_1_AC,						{ 540, 164,   -8,   0},		0, NULL, NULL, (void*)-6, false},
+	{&BULLY_1_AC,					{ 640, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
 
 	{&CITY_FLOOR_COLLISION_CL,		{ 552, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 

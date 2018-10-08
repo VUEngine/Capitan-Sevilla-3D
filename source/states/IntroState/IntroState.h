@@ -41,7 +41,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 singleton class IntroState : GameState
 {
 	/* image entity references */

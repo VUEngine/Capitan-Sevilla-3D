@@ -35,7 +35,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 typedef struct ProjectileDefinition
 {
 	// the base animated entity
@@ -62,15 +61,12 @@ typedef const ProjectileDefinition ProjectileROMDef;
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-// allocator
-
-
-
-
 class Projectile : Actor
 {
 	// definition pointer
 	ProjectileDefinition* projectileDefinition;
+	// max global position at time of ejection
+	Vector3D maxGlobalPosition;
 
 	void constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
 	void startMovement();

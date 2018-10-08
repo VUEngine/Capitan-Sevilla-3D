@@ -41,10 +41,6 @@
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-
-
-
-
 singleton class LolaSoftScreenState : SplashScreenState
 {
 	static LolaSoftScreenState getInstance();

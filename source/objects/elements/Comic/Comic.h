@@ -19,82 +19,50 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef COMIC_H_
+#define COMIC_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
-#include <Debug.h>
-#include <StageEditor.h>
-#include <AnimationInspector.h>
 #include <Entity.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//										DEFINITIONS
+//												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-// only need to define one for all containers
-EntityROMDef SIMPLE_CONTAINER =
+#define COMIC_MOVE_DELAY 	12
+#define COMIC_MOVE_OFFSET 	4
+
+
+//---------------------------------------------------------------------------------------------------------
+//												ENUMS
+//---------------------------------------------------------------------------------------------------------
+
+enum ComicModes
 {
-	// class allocator
-	__TYPE(Entity),
-
-	// sprites
-	NULL,
-
-	// collision shapes
-	NULL,
-
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kNoType,
-
-	// physical specification
-	NULL,
+	kComicStill = 0,
+	kComicMoving,
 };
 
 
-// only need to define one for all managed entities
-EntityROMDef MANAGED_ENTITY =
+//---------------------------------------------------------------------------------------------------------
+//										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+class Comic : Entity
 {
-	// class allocator
-	__TYPE(Entity),
+	u8 mode;
 
-	// sprites
-	NULL,
+	void constructor(EntityDefinition* entityDefinition, s16 id, s16 internalId, const char* const name);
+	override void ready(bool recursive);
+	override bool handleMessage(Telegram telegram);
+	override bool respawn();
+}
 
-	// collision shapes
-	NULL,
 
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kNoType,
-
-	// physical specification
-	NULL,
-};
-
-#ifdef __DEBUG_TOOLS
-const ClassSizeData _userClassesSizeData[] =
-{
-	{NULL, ""},
-};
 #endif
-
-const UserObject _userObjects[] =
-{
-	{NULL, ""},
-};
-
-const UserAnimatedEntity _userAnimatedEntities[] =
-{
-	{NULL, ""},
-};

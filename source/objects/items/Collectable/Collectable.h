@@ -35,7 +35,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 typedef const AnimatedEntityDefinition CollectableDefinition;
 typedef const CollectableDefinition CollectableROMDef;
 
@@ -44,13 +43,9 @@ typedef const CollectableDefinition CollectableROMDef;
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-
-
-
-
 class Collectable : AnimatedEntity
 {
-	
+
 	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 	void removeFromStage();
 	virtual void collect();

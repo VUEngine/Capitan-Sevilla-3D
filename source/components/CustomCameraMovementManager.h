@@ -58,10 +58,6 @@
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-
-
-
-
 singleton class CustomCameraMovementManager : CameraMovementManager
 {
 	Camera camera;

@@ -43,7 +43,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 // definition in ROM memory
 typedef struct MovingEntityDefinition
 {
@@ -77,18 +76,13 @@ typedef const MovingEntityDefinition MovingEntityROMDef;
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-// allocator
-
-
-
-
 class MovingEntity : Actor
 {
-	/* save my initial position */																	
-	int initialPosition;																			
-	/* definition pointer */																		
-	MovingEntityDefinition* movingEntityDefinition;													
-	
+	// save my initial position
+	int initialPosition;
+	// definition pointer
+	MovingEntityDefinition* movingEntityDefinition;
+
 	void constructor(MovingEntityDefinition* MovingEntityDefinition, s16 id, s16 internalId, const char* const name);
 	void startMovement();
 	void checkDisplacement();

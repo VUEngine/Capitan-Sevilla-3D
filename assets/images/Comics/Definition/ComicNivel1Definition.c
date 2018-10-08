@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
+#include <Comic.h>
 #include <BgmapSprite.h>
 #include <macros.h>
 
@@ -46,7 +46,7 @@ CharSetROMDef COMIC_NIVEL_1_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	614,
+	542,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -68,7 +68,7 @@ TextureROMDef COMIC_NIVEL_1_TX =
 	48,
 
 	// rows (max 64)
-	64,
+	32,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -98,7 +98,7 @@ BgmapSpriteROMDef COMIC_NIVEL_1_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, -144, 0, 0},
+		{0, 0, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -121,7 +121,7 @@ BgmapSpriteROMDef* const COMIC_NIVEL_1_SPRITES[] =
 EntityROMDef COMIC_NIVEL_1_EN =
 {
 	// class allocator
-	__TYPE(Entity),
+	__TYPE(Comic),
 
 	// sprites
 	(SpriteROMDef**)COMIC_NIVEL_1_SPRITES,

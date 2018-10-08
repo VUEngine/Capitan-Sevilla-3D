@@ -65,7 +65,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 typedef const ActorDefinition HeroDefinition;
 typedef const HeroDefinition HeroROMDef;
 

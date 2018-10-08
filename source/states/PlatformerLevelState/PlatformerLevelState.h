@@ -111,7 +111,7 @@ enum PlatformerLevelStateMessageTypes
 	kLavaTriggerEnd,
 	kCogWheelMove,
 	kCogWheelStop,
-	kLavaMove,
+	kComicMove,
 	kIntroNextImage,
 	kProjectileEject,
 	kProjectileCheckPosition,
@@ -152,7 +152,7 @@ singleton class PlatformerLevelState : GameState
 	void enterStage(StageEntryPointDefinition* entryPointDefinition);
 	void setModeToPaused();
 	void setModeToPlaying();
-	UserInput getUserInput();
+	UserInput getUserInput(bool force);
 	override void enter(void* owner);
 	override void exit(void* owner);
 	override void resume(void* owner);

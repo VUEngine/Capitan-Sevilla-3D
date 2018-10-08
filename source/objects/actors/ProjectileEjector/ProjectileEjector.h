@@ -35,8 +35,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
-
 typedef struct ProjectileEjectorDefinition
 {
 	// the base animated entity
@@ -71,7 +69,6 @@ typedef const ProjectileEjectorDefinition ProjectileEjectorROMDef;
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
-
 
 class ProjectileEjector : AnimatedEntity
 {

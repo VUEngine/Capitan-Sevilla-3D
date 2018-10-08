@@ -73,7 +73,7 @@ void Collision::initialTransform(Transformation* environmentTransform, u32 recur
 
 	if(!this->shapes)
 	{
-		this->shapes = __NEW(VirtualList);
+		this->shapes = new VirtualList();
 
 		ShapeDefinition shapeDefinition =
 		{

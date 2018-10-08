@@ -34,7 +34,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 singleton class HeroDead : HeroState
 {
 	static HeroDead getInstance();

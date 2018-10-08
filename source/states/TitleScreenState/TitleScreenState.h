@@ -34,7 +34,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-
 singleton class TitleScreenState : GameState
 {
 	static TitleScreenState getInstance();

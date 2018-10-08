@@ -151,7 +151,7 @@ void Hero::ready(bool recursive)
 
 void Hero::addSausageEjectorEntity()
 {
-	Vector3D position = {__PIXELS_TO_METERS(16), __PIXELS_TO_METERS(-6), 0};
+	Vector3D position = {__PIXELS_TO_METERS(2), __PIXELS_TO_METERS(-6), 0};
 	this->sausageEjectorEntity = Entity::addChildEntity(Entity::safeCast(this), &SAUSAGE_EJECTOR_PE, -1, NULL, &position, (void*)3);
 }
 
@@ -572,7 +572,7 @@ void Hero::die()
 // process user input
 void Hero::onUserInput(Object eventFirer __attribute__ ((unused)))
 {
-	UserInput userInput = PlatformerLevelState::getUserInput(PlatformerLevelState::getInstance());
+	UserInput userInput = PlatformerLevelState::getUserInput(PlatformerLevelState::getInstance(), false);
 
 	HeroState currentState = HeroState::safeCast(StateMachine::getCurrentState(this->stateMachine));
 
@@ -800,12 +800,12 @@ bool Hero::handlePropagatedMessage(int message)
 
 void Hero::suspend()
 {
-	__CALL_BASE_METHOD(Actor, suspend, this);
+	Base::suspend(this);
 }
 
 void Hero::resume()
 {
-	__CALL_BASE_METHOD(Actor, resume, this);
+	Base::resume(this);
 
 	Camera::focus(Camera::getInstance(), false);
 
@@ -867,14 +867,14 @@ void Hero::syncRotationWithBody()
 	if(0 < xLastDisplacement)
 	{
 		direction.x = __RIGHT;
-		//Entity::setDirection(Entity::safeCast(this), direction);
 		Hero::updateSprite(this, direction);
+		Entity::setDirection(Entity::safeCast(this->sausageEjectorEntity), direction);
 	}
 	else if(0 > xLastDisplacement)
 	{
 		direction.x = __LEFT;
-		//Entity::setDirection(Entity::safeCast(this), direction);
 		Hero::updateSprite(this, direction);
+		Entity::setDirection(Entity::safeCast(this->sausageEjectorEntity), direction);
 	}
 }
 

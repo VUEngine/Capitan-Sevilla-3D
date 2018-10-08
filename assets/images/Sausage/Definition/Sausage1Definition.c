@@ -249,15 +249,15 @@ ProjectileROMDef SAUSAGE_1_PR =
 
 	// position relative to ejector
     {
-    	__PIXELS_TO_METERS(16),
+    	__PIXELS_TO_METERS(12),
     	0,
     	0,
     },
 
-	// max position relative to ejector before position reset
+	// max offset relative to ejector before position reset
     {
+    	__PIXELS_TO_METERS(200),
     	0,
-    	__PIXELS_TO_METERS(212),
     	0,
     },
 

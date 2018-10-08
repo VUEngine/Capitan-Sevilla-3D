@@ -60,8 +60,6 @@ enum PauseScreenOptions
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-
-
 singleton class PauseScreenState : GameState
 {
 	u8 mode;

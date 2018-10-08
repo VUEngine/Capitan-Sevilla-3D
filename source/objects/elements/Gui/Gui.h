@@ -32,11 +32,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
-//---------------------------------------------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
@@ -48,20 +43,16 @@
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-
-
-
-
 class Gui : Entity
 {
-	u8 timeRemaining;																				
-	
+	bool active;
+	u8 timeRemaining;
+
 	void constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
 	void printClock();
 	void printLives();
 	void printSausages();
 	void printAll();
-	override void ready(bool recursive);
 	override void resume();
 }
 

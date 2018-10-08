@@ -45,6 +45,9 @@ void Projectile::constructor(ProjectileDefinition* projectileDefinition, s16 id,
 
 	// save definition
 	this->projectileDefinition = projectileDefinition;
+
+	// init members
+	this->maxGlobalPosition = (Vector3D){0, 0, 0};
 }
 
 // class's constructor
@@ -68,8 +71,34 @@ void Projectile::ready(bool recursive)
 // start moving
 void Projectile::startMovement()
 {
+	// adjustments relative to direction
+ 	Direction direction = Entity::getDirection(Entity::safeCast(this->parent));
+ 	Entity::setDirection(Entity::safeCast(this), direction);
+	Velocity velocity = this->projectileDefinition->velocity;
+	velocity.x *= direction.x;
+	velocity.y *= direction.y;
+	velocity.z *= direction.z;
+	Vector3D position = this->projectileDefinition->position;
+	position.x *= direction.x;
+	position.y *= direction.y;
+	position.z *= direction.z;
+
 	// set back to local position
-	Actor::setLocalPosition(Actor::safeCast(this), &this->projectileDefinition->position);
+	Actor::setLocalPosition(Actor::safeCast(this), &position);
+
+	// compute max global position to check against later
+	if(this->projectileDefinition->checkDelay > -1)
+	{
+		this->maxGlobalPosition.x = (this->projectileDefinition->maxPosition.x > 0)
+			? this->transformation.globalPosition.x + (this->projectileDefinition->maxPosition.x * direction.x)
+			: 0;
+		this->maxGlobalPosition.y = (this->projectileDefinition->maxPosition.y > 0)
+			? this->transformation.globalPosition.y + (this->projectileDefinition->maxPosition.y * direction.y)
+			: 0;
+		this->maxGlobalPosition.z = (this->projectileDefinition->maxPosition.z > 0)
+			? this->transformation.globalPosition.z + (this->projectileDefinition->maxPosition.z * direction.z)
+			: 0;
+	}
 
 	// activate shapes
 	Entity::activateShapes(Entity::safeCast(this), true);
@@ -80,12 +109,12 @@ void Projectile::startMovement()
 	// show me
 	Entity::show(Entity::safeCast(this));
 
-	// set to moving
+	// start moving
 	/*
 	if(this->projectileDefinition->movementType == __UNIFORM_MOVEMENT)
 	{
 	*/
-		Actor::moveUniformly(Actor::safeCast(this), &this->projectileDefinition->velocity);
+		Actor::moveUniformly(Actor::safeCast(this), &velocity);
 	/*
 	}
 	else
@@ -101,7 +130,6 @@ void Projectile::startMovement()
 	}
 }
 
-// move back to ejector
 void Projectile::stopMovement()
 {
 	// stop movement
@@ -116,9 +144,15 @@ void Projectile::stopMovement()
 
 void Projectile::checkPosition()
 {
-	if(	(this->projectileDefinition->maxPosition.x && (__ABS(this->transformation.globalPosition.x) > this->projectileDefinition->maxPosition.x)) ||
-		(this->projectileDefinition->maxPosition.y && (__ABS(this->transformation.globalPosition.y) > this->projectileDefinition->maxPosition.y)) ||
-		(this->projectileDefinition->maxPosition.z && (__ABS(this->transformation.globalPosition.z) > this->projectileDefinition->maxPosition.z)))
+ 	Direction direction = Entity::getDirection(Entity::safeCast(this));
+
+	// TODO: check if conditions for y and z are correct
+	if(	((this->maxGlobalPosition.x > 0) && (((direction.x == __RIGHT) && this->transformation.globalPosition.x > this->maxGlobalPosition.x) ||
+											 ((direction.x == __LEFT)  && this->transformation.globalPosition.x < this->maxGlobalPosition.x))) ||
+		((this->maxGlobalPosition.y > 0) && (((direction.y == __DOWN)  && this->transformation.globalPosition.y > this->maxGlobalPosition.y) ||
+											 ((direction.y == __UP)    && this->transformation.globalPosition.y < this->maxGlobalPosition.y))) ||
+		((this->maxGlobalPosition.z > 0) && (((direction.z == __FAR)   && this->transformation.globalPosition.z > this->maxGlobalPosition.z) ||
+											 ((direction.z == __NEAR)  && this->transformation.globalPosition.z < this->maxGlobalPosition.z))))
 	{
 		Projectile::stopMovement(this);
 	}

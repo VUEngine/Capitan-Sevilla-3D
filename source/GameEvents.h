@@ -33,7 +33,6 @@
 //											 DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-
 enum GameEvents
 {
 	kEventScreenFocused = kLastEngineEvent + 1,
@@ -41,13 +40,13 @@ enum GameEvents
 	kEventUserInput,
 
 	kEventHitTaken,
-	kEventKeyTaken,
-	kEventPowerUp,
 	kEventHeroDied,
 	kEventLevelStarted,
 	kEventCheckpointLoaded,
 	kEventLevelCompleted,
 	kEventShakeCompleted,
+	kEventSetModeToPaused,
+    kEventSetModeToPlaying,
 };
 
 #endif

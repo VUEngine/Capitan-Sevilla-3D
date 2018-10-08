@@ -42,8 +42,6 @@
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-
-
 singleton class OptionsScreenState : GameState
 {
 	GameState nextState;

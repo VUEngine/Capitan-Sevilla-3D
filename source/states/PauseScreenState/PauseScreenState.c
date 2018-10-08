@@ -64,7 +64,7 @@ void PauseScreenState::constructor()
 // class's destructor
 void PauseScreenState::destructor()
 {
-	__DELETE(this->optionsSelector);
+	delete this->optionsSelector;
 
 	// destroy base
 	__SINGLETON_DESTROY;
@@ -94,7 +94,7 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	);
 
 	// show menu
-	VirtualList options = __NEW(VirtualList);
+	VirtualList options = new VirtualList();
 	Option* option = NULL;
 
 	option = new Option;
@@ -119,7 +119,7 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	VirtualList::pushBack(options, option);
 
 	OptionsSelector::setOptions(this->optionsSelector, options);
-	__DELETE(options);
+	delete options;
 
 	OptionsSelector::printOptions(
 		this->optionsSelector,

@@ -63,7 +63,7 @@ void PlatformerLevelState::constructor()
 	Base::constructor();
 
 	// clock
-	this->clock = __NEW(Clock);
+	this->clock = new Clock();
 
 	// set default entry point
 	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;
@@ -75,7 +75,7 @@ void PlatformerLevelState::constructor()
 // class's destructor
 void PlatformerLevelState::destructor()
 {
-	__DELETE(this->clock);
+	delete this->clock;
 
 	// destroy base
 	__SINGLETON_DESTROY;
@@ -99,7 +99,7 @@ void PlatformerLevelState::enter(void* owner)
 	Game::disableKeypad(Game::getInstance());
 
 	// get list of entities that should not be loaded
-	VirtualList positionedEntitiesToIgnore = __NEW(VirtualList);
+	VirtualList positionedEntitiesToIgnore = new VirtualList();
 	PlatformerLevelState::getPositionedEntitiesToIgnore(this, positionedEntitiesToIgnore);
 
 	// check if destination entity name is given
@@ -198,7 +198,7 @@ void PlatformerLevelState::enter(void* owner)
 	CustomCameraMovementManager::disable(CustomCameraMovementManager::getInstance());
 
 	// free some memory
-	__DELETE(positionedEntitiesToIgnore);
+	delete positionedEntitiesToIgnore;
 
 	// level is paused
 	PlatformerLevelState::setModeToPaused(this);
@@ -340,17 +340,25 @@ void PlatformerLevelState::setPrintingLayerCoordinates()
 	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8);
 }
 
-UserInput PlatformerLevelState::getUserInput()
+UserInput PlatformerLevelState::getUserInput(bool force)
 {
-	return this->userInput;
+	if((kPlaying == this->mode) || force)
+	{
+		return this->userInput;
+	}
+	else
+	{
+		UserInput* userInput = new UserInput;
+		return *userInput;
+	}
 }
 
 void PlatformerLevelState::processUserInput(UserInput userInput)
 {
+	this->userInput = userInput;
+
 	if(kPlaying == this->mode)
 	{
-		this->userInput = userInput;
-
 		if(this->userInput.pressedKey)
 		{
 			if(K_SEL & this->userInput.pressedKey)
@@ -376,8 +384,9 @@ void PlatformerLevelState::processUserInput(UserInput userInput)
 			}
 		}
 
-		Object::fireEvent(Object::safeCast(this), kEventUserInput);
 	}
+
+	Object::fireEvent(Object::safeCast(this), kEventUserInput);
 }
 
 // state's handle message
@@ -483,9 +492,6 @@ void PlatformerLevelState::startLevel(PlatformerLevelDefinition* platformerLevel
 	this->currentLevel = platformerLevelDefinition;
 	this->currentCheckPoint = this->currentStageEntryPoint = this->currentLevel->entryPoint;
 
-	// announce level start
-	Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventLevelStarted);
-
 	Game::changeState(Game::getInstance(), GameState::safeCast(this));
 }
 
@@ -539,20 +545,21 @@ bool PlatformerLevelState::isStartingLevel()
 void PlatformerLevelState::setModeToPaused()
 {
 	this->mode = kPaused;
+
+	Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventSetModeToPaused);
 }
 
 // set playing mode
 void PlatformerLevelState::setModeToPlaying()
 {
 	this->mode = kPlaying;
+
+	Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventSetModeToPlaying);
 }
 
 // handle event
 void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	// tell any interested entity
-	GameState::propagateMessage(GameState::safeCast(this), kLevelStarted);
-
 	PlatformerLevelState::setModeToPlaying(this);
 
 	// enable focus easing
@@ -560,6 +567,12 @@ void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attr
 	CustomCameraMovementManager::enableFocusEasing(CustomCameraMovementManager::getInstance());
 	CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());
 	CustomCameraMovementManager::alertWhenTargetFocused(CustomCameraMovementManager::getInstance());
+
+	// tell any interested entity
+	GameState::propagateMessage(GameState::safeCast(this), kLevelStarted);
+
+	// announce level start
+	Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventLevelStarted);
 }
 
 // handle event
