@@ -115,6 +115,7 @@ void Hero::destructor()
 
 	// remove event listeners
 	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
+	Object::removeEventListener(Object::safeCast(this->sausageEjectorEntity), Object::safeCast(this), (EventListener)Hero::onProjectileEjected, kEventProjectileEjected);
 
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroCheckVelocity);
@@ -154,17 +155,30 @@ void Hero::addSausageEjectorEntity()
 {
 	Vector3D position = {__PIXELS_TO_METERS(2), __PIXELS_TO_METERS(-6), 0};
 	this->sausageEjectorEntity = Entity::addChildEntity(Entity::safeCast(this), &SAUSAGE_EJECTOR_PE, -1, NULL, &position, (void*)3);
+
+	Object::addEventListener(Object::safeCast(this->sausageEjectorEntity), Object::safeCast(this), (EventListener)Hero::onProjectileEjected, kEventProjectileEjected);
 }
 
-void Hero::shoot(bool active)
+void Hero::startShooting()
 {
-	// play shoot animation
-	// TODO: have different shooting animations for jumping, kneeling, etc
-	// TODO: go back to previous animation after shooting
-	//AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Shoot");
+	if(this->sausages > 0)
+	{
+		// play shoot animation
+		// TODO: have different shooting animations for jumping, kneeling, etc
+		//AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Shoot");
 
-	// shoot sausage
-	ProjectileEjector::setActive(this->sausageEjectorEntity, active);
+		// shoot sausage
+		ProjectileEjector::setActive(this->sausageEjectorEntity, true);
+
+		Object::fireEvent(EventManager::getInstance(), kEventHeroShot);
+	}
+}
+
+void Hero::stopShooting()
+{
+	// TODO: go back to previous animation after shooting
+
+	ProjectileEjector::setActive(this->sausageEjectorEntity, false);
 }
 
 void Hero::kneel()
@@ -475,7 +489,7 @@ void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool p
 			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Hit");
 
 			// inform others to update ui etc
-			Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventHitTaken);
+			Object::fireEvent(EventManager::getInstance(), kEventHitTaken);
 		}
 		else
 		{
@@ -573,7 +587,18 @@ void Hero::die()
 	StateMachine::swapState(this->stateMachine, State::safeCast(HeroDead::getInstance()));
 
 	// announce my dead
-	Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventHeroDied);
+	Object::fireEvent(EventManager::getInstance(), kEventHeroDied);
+}
+
+void Hero::onProjectileEjected(Object eventFirer __attribute__ ((unused)))
+{
+	if(this->sausages > 0)
+	{
+		this->sausages--;
+	}
+
+	// don't allow holding key for continuous shooting
+	Hero::stopShooting(this);
 }
 
 // process user input

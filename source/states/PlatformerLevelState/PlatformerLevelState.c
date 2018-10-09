@@ -298,7 +298,7 @@ void PlatformerLevelState::resume(void* owner)
 	this->userInput.holdKey 	= userInput.allKeys & this->userInput.previousKey;
 
 	// make sure that user input is taken into account
-	Object::fireEvent(Object::safeCast(this), kEventUserInput);
+	Object::fireEvent(this, kEventUserInput);
 
 	PlatformerLevelState::setPrintingLayerCoordinates(this);
 }
@@ -355,7 +355,7 @@ void PlatformerLevelState::processUserInput(UserInput userInput)
 
 	}
 
-	Object::fireEvent(Object::safeCast(this), kEventUserInput);
+	Object::fireEvent(this, kEventUserInput);
 }
 
 // state's handle message
@@ -406,7 +406,7 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 			PlatformerLevelState::startStage(this, this->currentCheckPoint);
 
 			// announce checkpoint loaded
-			Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventCheckpointLoaded);
+			Object::fireEvent(EventManager::getInstance(), kEventCheckpointLoaded);
 			break;
 	}
 
@@ -515,7 +515,7 @@ void PlatformerLevelState::setModeToPaused()
 {
 	this->mode = kPaused;
 
-	Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventSetModeToPaused);
+	Object::fireEvent(EventManager::getInstance(), kEventSetModeToPaused);
 }
 
 // set playing mode
@@ -523,7 +523,7 @@ void PlatformerLevelState::setModeToPlaying()
 {
 	this->mode = kPlaying;
 
-	Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventSetModeToPlaying);
+	Object::fireEvent(EventManager::getInstance(), kEventSetModeToPlaying);
 }
 
 // handle event
@@ -541,7 +541,7 @@ void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attr
 	GameState::propagateMessage(GameState::safeCast(this), kLevelStarted);
 
 	// announce level start
-	Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventLevelStarted);
+	Object::fireEvent(EventManager::getInstance(), kEventLevelStarted);
 }
 
 // handle event

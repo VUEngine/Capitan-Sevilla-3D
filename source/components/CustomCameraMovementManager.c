@@ -239,7 +239,7 @@ bool CustomCameraMovementManager::doFocusAndAlertWhenTargetReached(u32 checkIfFo
 {
 	if(CustomCameraMovementManager::doFocus(this, checkIfFocusEntityIsMoving, true))
 	{
-		Object::fireEvent(Object::safeCast(EventManager::getInstance()), kEventScreenFocused);
+		Object::fireEvent(EventManager::getInstance(), kEventScreenFocused);
 
 		return true;
 	}

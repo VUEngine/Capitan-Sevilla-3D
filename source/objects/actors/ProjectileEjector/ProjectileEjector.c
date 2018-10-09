@@ -119,6 +119,9 @@ void ProjectileEjector::ejectProjectile()
 				// set projectile to moving state
 				Projectile::startMovement(projectile);
 
+				// fire ejection event
+				Object::fireEvent(this, kEventProjectileEjected);
+
 				break;
 			}
 		}

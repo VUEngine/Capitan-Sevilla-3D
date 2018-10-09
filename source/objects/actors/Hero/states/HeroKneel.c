@@ -103,7 +103,7 @@ void HeroKneel::onKeyPressed(void* owner, const UserInput* userInput)
 
 	if(K_B & userInput->pressedKey)
 	{
-		Hero::shoot(Hero::safeCast(owner), true);
+		Hero::startShooting(Hero::safeCast(owner));
 	}
 
 	if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
@@ -125,14 +125,6 @@ void HeroKneel::onKeyPressed(void* owner, const UserInput* userInput)
 	if((K_LU) & (userInput->pressedKey | userInput->holdKey))
 	{
 		//swapstate to idle
-	}
-}
-
-void HeroKneel::onKeyReleased(void* owner, const UserInput* userInput)
-{
-	if(K_B & userInput->releasedKey)
-	{
-		Hero::shoot(Hero::safeCast(owner), false);
 	}
 }
 

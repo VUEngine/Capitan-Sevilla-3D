@@ -108,7 +108,7 @@ void HeroMoving::onKeyPressed(void* owner, const UserInput* userInput)
 
 	if(K_B & userInput->pressedKey)
 	{
-		Hero::shoot(Hero::safeCast(owner), true);
+		Hero::startShooting(Hero::safeCast(owner));
 	}
 
 	// check direction
@@ -129,11 +129,6 @@ void HeroMoving::onKeyReleased(void* owner, const UserInput* userInput)
 	if((K_LL | K_LR) & userInput->releasedKey)
 	{
 		Hero::stopAddingForce(Hero::safeCast(owner));
-	}
-
-	if(K_B & userInput->releasedKey)
-	{
-		Hero::shoot(Hero::safeCast(owner), false);
 	}
 }
 

@@ -67,14 +67,24 @@ typedef const ProjectileEjectorDefinition ProjectileEjectorROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
+//											ENUMS
+//---------------------------------------------------------------------------------------------------------
+
+enum ProjectileEjectorEvents
+{
+	kEventProjectileEjected,
+};
+
+
+//---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 class ProjectileEjector : AnimatedEntity
 {
-	/* definition pointer */
+	// definition pointer
 	ProjectileEjectorDefinition* projectileEjectorDefinition;
-	/* ejection flag */
+	// ejection flag
 	u8 active;
 
 	void constructor(ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name);

@@ -70,19 +70,19 @@ typedef const HeroDefinition HeroROMDef;
 
 class Hero : Actor
 {
-	/* sausage entity references for shooting */
+	// sausage entity references for shooting
 	Entity sausageEjectorEntity;
-	/* used to know if gap must be changed */
+	// used to know if gap must be changed
 	Direction inputDirection;
-	/* hero has energy	*/
+	// hero has energy
 	u8 energy;
-	/* number of jumps performed (for double jump) */
+	// number of jumps performed (for double jump)
 	s8 jumps;
-	/* number of sausages */
+	// number of sausages
 	u8 sausages;
-	/* flag for invincible mode (after being hit) */
+	// flag for invincible mode (after being hit)
 	bool invincible;
-	/* flag to keep applying force to the x axis */
+	// flag to keep applying force to the x axis
 	bool keepAddingForce;
 
 	static Hero getInstance();
@@ -107,7 +107,8 @@ class Hero : Actor
 	void lockCameraTriggerMovement(u8 axisToLockUp, bool locked);
 	bool isBelow(Shape shape, const CollisionInformation* collisionInformation);
 	void capVelocity(bool discardPreviousMessages);
-	void shoot(bool active);
+	void startShooting();
+	void stopShooting();
 	override void ready(bool recursive);
 	override bool handlePropagatedMessage(int message);
 	override bool handleMessage(Telegram telegram);

@@ -50,7 +50,7 @@ enum HeroMovingMessages
 
 singleton class HeroMoving : HeroState
 {
-	/* flag to allow jump on bouncing */
+	// flag to allow jump on bouncing
 	bool bouncing;
 
 	static HeroMoving getInstance();
