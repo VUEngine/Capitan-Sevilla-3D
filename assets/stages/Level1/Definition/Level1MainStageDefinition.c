@@ -57,7 +57,7 @@ extern EntityDefinition FENCE_2_EN;
 extern EntityDefinition LEVEL_1_BUILDING_4_EN;
 extern EntityDefinition LEVEL_1_BUILDING_7_EN;
 extern EntityDefinition GRANNY_1_PE;
-extern EntityDefinition GUI_IM;
+extern EntityDefinition GUI_EN;
 extern EntityDefinition LEVEL_1_BUILDING_1_EN;
 extern EntityDefinition LEVEL_1_BUILDING_3_EN;
 extern EntityDefinition LEVEL_1_BUILDING_8_EN;
@@ -102,16 +102,16 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&COLLISION_CL,					{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
 
 	{&CITY_BG_IM,					{   0,   4, 6144,   0},		0, NULL, NULL, NULL, true},
-	{&CITY_FLOOR_EN,				{   0, 171,    2,   0},		0, NULL, NULL, NULL, true},
+	{&CITY_FLOOR_EN,				{   0, 172,    2,   0},		0, NULL, NULL, NULL, true},
 
 	{&CITY_FLOOR_COLLISION_CL,		{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 
-//	{&COMIC_NIVEL_1_EN,				{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
+	{&COMIC_NIVEL_1_EN,				{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
 
-	{&LANTERN_1_EN,					{  32, 133,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_EN,					{  32, 136,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_BUILDING_1_EN,		{ 200,  80,   64,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_1_PE,					{ 193,  52,   48,   0},		0, NULL, NULL, NULL, false},
-	{&TREE_1_EN,					{ 356, 111,   48,   0},		0, NULL, NULL, NULL, false},
+	{&TREE_1_EN,					{ 356, 106,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&CITY_FLOOR_COLLISION_CL,		{ 372, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 
@@ -122,7 +122,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&CITY_FLOOR_COLLISION_CL,		{ 552, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 
 	{&LEVEL_1_BUILDING_2_EN,		{ 520, 124,   64,   0},		0, NULL, NULL, NULL, false},
-	{&LANTERN_1_EN,					{ 616, 133,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_EN,					{ 616, 136,    0,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_BG_1_EN,					{ 664, 136,   80,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_BG_1_EN,					{ 704, 112,   96,   0},		0, NULL, NULL, NULL, false},
 
@@ -140,7 +140,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&HOVER_CAR_1_AC,				{1200, 114,   16,   0},		0, NULL, NULL, NULL, false},
 	{&BUSH_BG_1_EN,					{1134,  92,  128,   0},		0, NULL, NULL, NULL, false},
-	{&LANTERN_1_EN,					{1166, 133,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_EN,					{1166, 136,    0,   0},		0, NULL, NULL, NULL, false},
 	{&BULLY_1_AC,					{1230, 152,   16,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,						{1240, 164,   -8,   0},		0, NULL, NULL, NULL, false},
 
@@ -157,7 +157,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&CITY_FLOOR_COLLISION_CL,		{1452, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 
-	{&LANTERN_1_EN,					{1570, 133,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_EN,					{1570, 136,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&CITY_FLOOR_COLLISION_CL,		{1632, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 
@@ -193,14 +193,14 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&CITY_FLOOR_COLLISION_CL,		{3072, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 
-	{&LANTERN_1_EN,					{3262, 133,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_EN,					{3262, 136,    0,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_1_EN,					{3286, 111,   80,   0},		0, NULL, NULL, NULL, false},
 	{&BENCH_1_EN,					{3342, 143,   64,   0},		0, NULL, NULL, NULL, false},
 
 	{&CITY_FLOOR_COLLISION_CL,		{3252, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 	{&CITY_FLOOR_COLLISION_CL,		{3432, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 
-	{&CAR_BG_2_EN,					{3579, 130,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_BG_2_EN,					{3579, 138,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_BUILDING_11_EN,		{3583,  64,    4,   0},		0, NULL, NULL, NULL, false},
 
 	{&CITY_FLOOR_COLLISION_CL,		{3612, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
@@ -213,7 +213,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_UI_CHILDREN[] =
 {
 	//{&CITY_FLOOR_3D_EN, 			{ 192, 172,  16,   0}, 		0, NULL, NULL, NULL, true},
-	{&GUI_IM, 						{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&GUI_EN, 						{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
