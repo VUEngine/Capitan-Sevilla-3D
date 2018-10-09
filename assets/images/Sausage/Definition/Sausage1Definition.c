@@ -167,7 +167,7 @@ ObjectSpriteROMDef* const SAUSAGE_1_SPRITES[] =
 	NULL
 };
 
-ShapeROMDef SAUSAGE_1_PR_SHAPES[] =
+ShapeROMDef SAUSAGE_1_SHAPES[] =
 {
 	{
 		// shape
@@ -211,7 +211,7 @@ ProjectileROMDef SAUSAGE_1_PR =
 				(SpriteROMDef**)SAUSAGE_1_SPRITES,
 
 				// collision shapes
-				(ShapeDefinition*)SAUSAGE_1_PR_SHAPES,
+				(ShapeDefinition*)SAUSAGE_1_SHAPES,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size

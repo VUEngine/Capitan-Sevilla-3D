@@ -1,0 +1,4 @@
+-fh! -ftc -gB2 -p!   -m!
+
+// Creates unreduced tileset only, no map
+// Use case: fonts

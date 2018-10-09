@@ -141,7 +141,7 @@ void PlatformerLevelState::enter(void* owner)
 
 		Hero hero = Hero::safeCast(Stage::addChildEntity(this->stage, &positionedEntity, true));
 
-		Object::addEventListener(Object::safeCast(hero), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroStreamedOut, kStageChildStreamedOut);
+		Object::addEventListener(hero, Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroStreamedOut, kStageChildStreamedOut);
 
 		// make sure that focusing gets completed immediately
 		CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());
@@ -181,7 +181,7 @@ void PlatformerLevelState::enter(void* owner)
 	GameState::startClocks(GameState::safeCast(this));
 
 	// register event listeners
-	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
+	Object::addEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
 
 	// activate pulsating effect in indoor stages
 	if(this->currentStageEntryPoint->stageDefinition->rendering.colorConfig.brightnessRepeat != NULL)
@@ -193,7 +193,7 @@ void PlatformerLevelState::enter(void* owner)
 // state's exit
 void PlatformerLevelState::exit(void* owner)
 {
-	Object::removeEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
+	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
 
 	// call base
 	Base::exit(this, owner);
@@ -398,7 +398,7 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 
 		case kScreenFocused:
 
-			Object::removeEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
+			Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
 			break;
 
 		case kLoadCheckPoint:
@@ -532,7 +532,7 @@ void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attr
 	PlatformerLevelState::setModeToPlaying(this);
 
 	// enable focus easing
-	Object::addEventListener(Object::safeCast(EventManager::getInstance()), Object::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
+	Object::addEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onScreenFocused, kEventScreenFocused);
 	CustomCameraMovementManager::enableFocusEasing(CustomCameraMovementManager::getInstance());
 	CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());
 	CustomCameraMovementManager::alertWhenTargetFocused(CustomCameraMovementManager::getInstance());

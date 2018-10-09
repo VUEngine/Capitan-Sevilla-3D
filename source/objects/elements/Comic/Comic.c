@@ -50,7 +50,7 @@ void Comic::constructor(EntityDefinition* entityDefinition, s16 id, s16 internal
 
 	// add event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
-	Object::addEventListener(Object::safeCast(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Comic::onUserInput, kEventUserInput);
+	Object::addEventListener(PlatformerLevelState::getInstance(), Object::safeCast(this), (EventListener)Comic::onUserInput, kEventUserInput);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Comic::onLevelStarted, kEventLevelStarted);
 }
 
@@ -59,7 +59,7 @@ void Comic::destructor()
 {
 	// remove event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
-	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Comic::onUserInput, kEventUserInput);
+	Object::removeEventListener(PlatformerLevelState::getInstance(), Object::safeCast(this), (EventListener)Comic::onUserInput, kEventUserInput);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Comic::onLevelStarted, kEventLevelStarted);
 
 	// discard pending delayed message

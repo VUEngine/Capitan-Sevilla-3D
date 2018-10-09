@@ -106,7 +106,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&CITY_FLOOR_COLLISION_CL,		{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 
-	{&COMIC_NIVEL_1_EN,				{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
+//	{&COMIC_NIVEL_1_EN,				{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,					{  32, 136,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_BUILDING_1_EN,		{ 200,  80,   64,   0},		0, NULL, NULL, NULL, false},
