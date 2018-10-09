@@ -102,92 +102,61 @@ void PlatformerLevelState::enter(void* owner)
 	VirtualList positionedEntitiesToIgnore = new VirtualList();
 	PlatformerLevelState::getPositionedEntitiesToIgnore(this, positionedEntitiesToIgnore);
 
-	// check if destination entity name is given
-	if(this->currentStageEntryPoint->destinationName)
+	Vector3D* initialPosition = (Vector3D*)&this->currentStageEntryPoint->startingPosition;
+
+	if(initialPosition)
 	{
-		// iterate stage definition to find global position of destination entity
-		Vector3D environmentPosition = {0, 0, 0};
-		Vector3D* initialPosition = Entity::calculateGlobalPositionFromDefinitionByName(this->currentStageEntryPoint->stageDefinition->entities.children, environmentPosition, this->currentStageEntryPoint->destinationName);
+		// set world's limits
+		Camera::setStageSize(Camera::getInstance(), Size::getFromPixelSize(this->currentStageEntryPoint->stageDefinition->level.pixelSize));
 
-//		ASSERT(initialPosition, "PlatormerLevelState::enter: no initial position");
-
-		// if global position of destination entity could be found, move the hero and the screen there
-		if(initialPosition)
+		// focus screen on new position
+		Vector3D screenPosition =
 		{
-			// apply entry point offset
-			initialPosition->x += __PIXELS_TO_METERS(this->currentStageEntryPoint->offset.x);
-			initialPosition->y += __PIXELS_TO_METERS(this->currentStageEntryPoint->offset.y);
-			initialPosition->z += __PIXELS_TO_METERS(this->currentStageEntryPoint->offset.z + this->currentStageEntryPoint->offset.zDisplacement);
+			initialPosition->x - __PIXELS_TO_METERS(__HALF_SCREEN_WIDTH),
+			initialPosition->y - __PIXELS_TO_METERS(__HALF_SCREEN_HEIGHT),
+			__PIXELS_TO_METERS(this->currentStageEntryPoint->stageDefinition->level.cameraInitialPosition.z)
+		};
 
-			// set world's limits
-			Camera::setStageSize(Camera::getInstance(), Size::getFromPixelSize(this->currentStageEntryPoint->stageDefinition->level.pixelSize));
+		Camera::setPosition(Camera::getInstance(), screenPosition);
 
-			// focus screen on new position
-			Vector3D screenPosition =
-			{
-				initialPosition->x - __PIXELS_TO_METERS(__HALF_SCREEN_WIDTH),
-				initialPosition->y - __PIXELS_TO_METERS(__HALF_SCREEN_HEIGHT),
-				__PIXELS_TO_METERS(this->currentStageEntryPoint->stageDefinition->level.cameraInitialPosition.z)
-			};
+		// load stage
+		GameState::loadStage(GameState::safeCast(this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, false);
 
-			Camera::setPosition(Camera::getInstance(), screenPosition);
-
-			// load stage
-			GameState::loadStage(GameState::safeCast(this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, false);
-
-			// get hero entity
-			Container hero = Container::getChildByName(Container::safeCast(this->stage), HERO_NAME, true);
-
-			// if no hero could be found, create one. otherwise, move found hero.
-			if(!hero)
-			{
-				PositionedEntity positionedEntity =
-				{
-					&HERO_AC,
-					{
-						__METERS_TO_PIXELS(initialPosition->x),
-						__METERS_TO_PIXELS(initialPosition->y),
-						__METERS_TO_PIXELS(initialPosition->z),
-						0
-					},
-					0,
-					HERO_NAME,
-					NULL,
-					NULL,
-					false
-				};
-
-				hero = Container::safeCast(Stage::addChildEntity(this->stage, &positionedEntity, true));
-
-				// make sure that the streaming doesn't load the hero again
-				Stage::registerEntityId(this->stage, Entity::getInternalId(Entity::safeCast(hero)), &HERO_AC);
-			}
-
-			// set hero's position
-			Actor::setPosition(Actor::safeCast(hero), initialPosition);
-
-			Object::addEventListener(Object::safeCast(hero), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroStreamedOut, kStageChildStreamedOut);
-
-			// make sure that focusing gets completed immediately
-			CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());
-			CustomCameraMovementManager::disableFocusEasing(CustomCameraMovementManager::getInstance());
-
-			// update actor's global transformations
-			GameState::transform(GameState::safeCast(this));
-
-			// set focus on the hero
-			Camera::setFocusGameEntity(Camera::getInstance(), Entity::safeCast(hero));
-			Vector3D screenDisplacement = {__PIXELS_TO_METERS(50), __PIXELS_TO_METERS(-30), 0};
-			Camera::setFocusEntityPositionDisplacement(Camera::getInstance(), screenDisplacement);
-
-			// apply changes to the visuals
-			GameState::synchronizeGraphics(GameState::safeCast(this));
-		}
-		else
+		// create hero
+		PositionedEntity positionedEntity =
 		{
-			// load stage
-			GameState::loadStage(GameState::safeCast(this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
-		}
+			&HERO_AC,
+			{
+				initialPosition->x,
+				initialPosition->y,
+				initialPosition->z,
+				0
+			},
+			0,
+			NULL,
+			NULL,
+			NULL,
+			false
+		};
+
+		Hero hero = Hero::safeCast(Stage::addChildEntity(this->stage, &positionedEntity, true));
+
+		Object::addEventListener(Object::safeCast(hero), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroStreamedOut, kStageChildStreamedOut);
+
+		// make sure that focusing gets completed immediately
+		CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());
+		CustomCameraMovementManager::disableFocusEasing(CustomCameraMovementManager::getInstance());
+
+		// update actor's global transformations
+		GameState::transform(GameState::safeCast(this));
+
+		// set focus on the hero
+		Camera::setFocusGameEntity(Camera::getInstance(), Entity::safeCast(hero));
+		Vector3D screenDisplacement = {__PIXELS_TO_METERS(50), __PIXELS_TO_METERS(-30), 0};
+		Camera::setFocusEntityPositionDisplacement(Camera::getInstance(), screenDisplacement);
+
+		// apply changes to the visuals
+		GameState::synchronizeGraphics(GameState::safeCast(this));
 	}
 	else
 	{

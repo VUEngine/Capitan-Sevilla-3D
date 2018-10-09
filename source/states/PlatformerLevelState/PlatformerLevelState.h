@@ -60,11 +60,8 @@ typedef struct StageEntryPointDefinition
 	// the stage to load
 	StageDefinition* stageDefinition;
 
-	// name of the entity to start at
-	char* destinationName;
-
-	// offset from entry point (x, y, z)
-	ScreenPixelVector offset;
+	// starting position (x, y, z)
+	Vector3D startingPosition;
 
 	// whether this entry point acts as a checkpoint
 	bool isCheckPoint;

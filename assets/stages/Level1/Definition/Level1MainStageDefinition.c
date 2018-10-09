@@ -106,9 +106,9 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 
 	{&CITY_FLOOR_COLLISION_CL,		{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 
-	//{&COMIC_NIVEL_1_EN,				{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
+//	{&COMIC_NIVEL_1_EN,				{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
 
-	{&LANTERN_1_EN,					{  32, 133,    0,   0},		0, "Start", NULL, NULL, false},
+	{&LANTERN_1_EN,					{  32, 133,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_BUILDING_1_EN,		{ 200,  80,   64,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_1_PE,					{ 193,  52,   48,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_1_EN,					{ 356, 111,   48,   0},		0, NULL, NULL, NULL, false},
@@ -483,16 +483,8 @@ StageEntryPointROMDef LEVEL_1_MAIN_MAIN_EP =
 	// the stage to load
 	(StageDefinition*)&LEVEL_1_MAIN_STAGE_ST,
 
-	// name of the entity to start at
-	"Start",
-
-	// offset from entry point (x, y, z)
-	{
-		32,
-		0,
-		HERO_DSPL,
-		0,
-	},
+	// starting position (x, y, z)
+	{64, 133, HERO_DSPL},
 
 	// whether this entry point acts as a checkpoint
 	false,

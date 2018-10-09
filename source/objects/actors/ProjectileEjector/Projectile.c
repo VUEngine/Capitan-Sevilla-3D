@@ -178,7 +178,7 @@ bool Projectile::handleMessage(Telegram telegram)
 
 bool Projectile::canBeReused()
 {
-	return !SpatialObject::isMoving(this);
+	return !Actor::isMoving(this);
 }
 
 // deactivate a projectile after "hit" animation completes

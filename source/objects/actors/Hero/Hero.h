@@ -37,7 +37,6 @@
 //												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define HERO_NAME							"Capitan"
 #define HERO_INITIAL_ENERGY					3
 #define HERO_INITIAL_SAUSAGES				12
 
