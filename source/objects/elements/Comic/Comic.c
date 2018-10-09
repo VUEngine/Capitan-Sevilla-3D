@@ -57,6 +57,10 @@ void Comic::constructor(EntityDefinition* entityDefinition, s16 id, s16 internal
 // class's destructor
 void Comic::destructor()
 {
+	// If set right after the user presses the key, a race condition with the other objects listening
+	// for the kEventUserInput event will crash the game
+	PlatformerLevelState::setModeToPlaying(PlatformerLevelState::getInstance());
+
 	// remove event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Comic::onUserInput, kEventUserInput);
@@ -80,10 +84,9 @@ void Comic::startMovement()
 {
 	if(this->mode == kComicStill)
 	{
+		Object::removeEventListener(Object::safeCast(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Comic::onUserInput, kEventUserInput);
 		MessageDispatcher::dispatchMessage(COMIC_MOVE_DELAY, Object::safeCast(this), Object::safeCast(this), kComicMove, NULL);
 		this->mode = kComicMoving;
-
-		PlatformerLevelState::setModeToPlaying(PlatformerLevelState::getInstance());
 	}
 }
 
