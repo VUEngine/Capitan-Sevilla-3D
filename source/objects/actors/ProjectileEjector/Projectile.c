@@ -89,14 +89,14 @@ void Projectile::startMovement()
 	// compute max global position to check against later
 	if(this->projectileDefinition->checkDelay > -1)
 	{
-		this->maxGlobalPosition.x = (this->projectileDefinition->maxPosition.x > 0)
-			? this->transformation.globalPosition.x + (this->projectileDefinition->maxPosition.x * direction.x)
+		this->maxGlobalPosition.x = (this->projectileDefinition->maxDistance.x > 0)
+			? this->transformation.globalPosition.x + (this->projectileDefinition->maxDistance.x * direction.x)
 			: 0;
-		this->maxGlobalPosition.y = (this->projectileDefinition->maxPosition.y > 0)
-			? this->transformation.globalPosition.y + (this->projectileDefinition->maxPosition.y * direction.y)
+		this->maxGlobalPosition.y = (this->projectileDefinition->maxDistance.y > 0)
+			? this->transformation.globalPosition.y + (this->projectileDefinition->maxDistance.y * direction.y)
 			: 0;
-		this->maxGlobalPosition.z = (this->projectileDefinition->maxPosition.z > 0)
-			? this->transformation.globalPosition.z + (this->projectileDefinition->maxPosition.z * direction.z)
+		this->maxGlobalPosition.z = (this->projectileDefinition->maxDistance.z > 0)
+			? this->transformation.globalPosition.z + (this->projectileDefinition->maxDistance.z * direction.z)
 			: 0;
 	}
 
@@ -147,11 +147,11 @@ void Projectile::checkPosition()
  	Direction direction = Entity::getDirection(Entity::safeCast(this));
 
 	// TODO: check if conditions for y and z are correct
-	if(	((this->maxGlobalPosition.x > 0) && (((direction.x == __RIGHT) && this->transformation.globalPosition.x > this->maxGlobalPosition.x) ||
+	if(	((this->maxGlobalPosition.x != 0) && (((direction.x == __RIGHT) && this->transformation.globalPosition.x > this->maxGlobalPosition.x) ||
 											 ((direction.x == __LEFT)  && this->transformation.globalPosition.x < this->maxGlobalPosition.x))) ||
-		((this->maxGlobalPosition.y > 0) && (((direction.y == __DOWN)  && this->transformation.globalPosition.y > this->maxGlobalPosition.y) ||
+		((this->maxGlobalPosition.y != 0) && (((direction.y == __DOWN)  && this->transformation.globalPosition.y > this->maxGlobalPosition.y) ||
 											 ((direction.y == __UP)    && this->transformation.globalPosition.y < this->maxGlobalPosition.y))) ||
-		((this->maxGlobalPosition.z > 0) && (((direction.z == __FAR)   && this->transformation.globalPosition.z > this->maxGlobalPosition.z) ||
+		((this->maxGlobalPosition.z != 0) && (((direction.z == __FAR)   && this->transformation.globalPosition.z > this->maxGlobalPosition.z) ||
 											 ((direction.z == __NEAR)  && this->transformation.globalPosition.z < this->maxGlobalPosition.z))))
 	{
 		Projectile::stopMovement(this);
@@ -186,4 +186,10 @@ void Projectile::onHitAnimationComplete()
 {
 	Projectile::stopMovement(this);
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileCheckPosition);
+}
+
+bool Projectile::isVisible(int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
+{
+	// always return true so the Projectile is never streamed out
+	return true;
 }

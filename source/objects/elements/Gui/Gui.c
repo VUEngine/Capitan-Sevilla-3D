@@ -63,7 +63,7 @@ void Gui::constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 in
 
 	// add event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
-	Object::addEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
+	Object::addEventListener(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroDied, kEventHeroDied);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
@@ -79,7 +79,7 @@ void Gui::destructor()
 
 	// remove event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
-	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getClock(PlatformerLevelState::getInstance())), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
+	Object::removeEventListener(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroDied, kEventHeroDied);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);

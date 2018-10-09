@@ -47,7 +47,7 @@ typedef struct ProjectileDefinition
 	Vector3D position;
 
 	// max position relative to ejector before position reset
-	Vector3D maxPosition;
+	Vector3D maxDistance;
 
 	// delay between position checks (-1 to disable)
 	int checkDelay;
@@ -74,6 +74,7 @@ class Projectile : Actor
 	bool canBeReused();
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
+	override bool isVisible(int pad, bool recursive);
 	void onHitAnimationComplete();
 }
 

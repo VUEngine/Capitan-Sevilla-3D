@@ -73,7 +73,7 @@ void ProjectileEjector::ready(bool recursive)
 	// play idle animation
 	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->idleAnimationName);
 
-	// add projectiles to stage
+	// add projectiles to stage as children of this ejector
 	for(u8 i = 0; i < this->projectileEjectorDefinition->maxProjectiles; i++)
 	{
 		Stage::spawnEntity(Game::getStage(Game::getInstance()), &this->projectileEjectorDefinition->projectilePositionedEntityDefinition, Container::safeCast(this), NULL);

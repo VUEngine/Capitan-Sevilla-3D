@@ -82,5 +82,6 @@ bool Sausage::enterCollision(const CollisionInformation* collisionInformation)
 		}
 	}
 
+	// don't further process collision
 	return false;
 }

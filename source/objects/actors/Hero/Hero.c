@@ -102,7 +102,7 @@ void Hero::constructor(HeroDefinition* heroDefinition, s16 id, s16 internalId, c
 
 	Hero::setInstance(this);
 
-	Object::addEventListener(Object::safeCast(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
+	Object::addEventListener(PlatformerLevelState::getInstance(), Object::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
 
 	this->inputDirection = Entity::getDirection(Entity::safeCast(this));
 }
@@ -114,8 +114,8 @@ void Hero::destructor()
 	ASSERT(hero == this, "Hero::destructor: more than one instance");
 
 	// remove event listeners
-	Object::removeEventListener(Object::safeCast(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
-	Object::removeEventListener(Object::safeCast(this->sausageEjectorEntity), Object::safeCast(this), (EventListener)Hero::onProjectileEjected, kEventProjectileEjected);
+	Object::removeEventListener(PlatformerLevelState::getInstance(), Object::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
+	Object::removeEventListener(this->sausageEjectorEntity, Object::safeCast(this), (EventListener)Hero::onProjectileEjected, kEventProjectileEjected);
 
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroCheckVelocity);
@@ -156,7 +156,7 @@ void Hero::addSausageEjectorEntity()
 	Vector3D position = {__PIXELS_TO_METERS(2), __PIXELS_TO_METERS(-6), 0};
 	this->sausageEjectorEntity = Entity::addChildEntity(Entity::safeCast(this), &SAUSAGE_EJECTOR_PE, -1, NULL, &position, (void*)3);
 
-	Object::addEventListener(Object::safeCast(this->sausageEjectorEntity), Object::safeCast(this), (EventListener)Hero::onProjectileEjected, kEventProjectileEjected);
+	Object::addEventListener(this->sausageEjectorEntity, Object::safeCast(this), (EventListener)Hero::onProjectileEjected, kEventProjectileEjected);
 }
 
 void Hero::startShooting()
