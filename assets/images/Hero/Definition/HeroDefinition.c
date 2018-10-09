@@ -46,7 +46,6 @@ extern BYTE HeroRightMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
 AnimationFunctionROMDef HERO_IDLE_ANIM =
 {
 	// number of frames of this animation function
@@ -68,7 +67,6 @@ AnimationFunctionROMDef HERO_IDLE_ANIM =
 	"Idle",
 };
 
-// a function which defines the frames to play
 AnimationFunctionROMDef HERO_WALK_ANIM =
 {
 	// number of frames of this animation function
@@ -90,7 +88,6 @@ AnimationFunctionROMDef HERO_WALK_ANIM =
 	"Walk",
 };
 
-// a function which defines the frames to play
 AnimationFunctionROMDef HERO_KNEEL_ANIM =
 {
 	// number of frames of this animation function
@@ -112,7 +109,6 @@ AnimationFunctionROMDef HERO_KNEEL_ANIM =
 	"Kneel",
 };
 
-// a function which defines the frames to play
 AnimationFunctionROMDef HERO_JUMP_ANIM =
 {
 	// number of frames of this animation function
@@ -134,7 +130,6 @@ AnimationFunctionROMDef HERO_JUMP_ANIM =
 	"Jump",
 };
 
-// a function which defines the frames to play
 AnimationFunctionROMDef HERO_FALL_ANIM =
 {
 	// number of frames of this animation function
@@ -156,7 +151,6 @@ AnimationFunctionROMDef HERO_FALL_ANIM =
 	"Fall",
 };
 
-// a function which defines the frames to play
 AnimationFunctionROMDef HERO_HIT_ANIM =
 {
 	// number of frames of this animation function
@@ -178,7 +172,27 @@ AnimationFunctionROMDef HERO_HIT_ANIM =
 	"Hit",
 };
 
-// a function which defines the frames to play
+AnimationFunctionROMDef HERO_SHOOT_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{6},
+
+	// number of cycles a frame of animation is displayed
+	16,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Shoot",
+};
+
 AnimationFunctionROMDef HERO_DEAD_ANIM =
 {
 	// number of frames of this animation function
@@ -200,7 +214,6 @@ AnimationFunctionROMDef HERO_DEAD_ANIM =
 	"Dead",
 };
 
-// an animation definition
 AnimationDescriptionROMDef HERO_ANIM =
 {
 	// animation functions
@@ -211,6 +224,7 @@ AnimationDescriptionROMDef HERO_ANIM =
 		(AnimationFunction*)&HERO_JUMP_ANIM,
 		(AnimationFunction*)&HERO_FALL_ANIM,
 		(AnimationFunction*)&HERO_HIT_ANIM,
+		(AnimationFunction*)&HERO_SHOOT_ANIM,
 		(AnimationFunction*)&HERO_DEAD_ANIM,
 		NULL,
 	}

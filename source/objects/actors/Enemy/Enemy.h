@@ -19,62 +19,45 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef PROJECTILE_H_
-#define PROJECTILE_H_
+#ifndef ENEMY_H_
+#define ENEMY_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Actor.h>
+#include <MovingOneWayEntity.h>
 #include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
+//											TYPE DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-typedef struct ProjectileDefinition
+typedef struct EnemyDefinition
 {
-	// the base animated entity
-	ActorDefinition actorDefinition;
+	/// MovingOneWayEntity Definition
+	MovingOneWayEntityDefinition movingOneWayEntityDefinition;
 
-	// velocity when moving
-	Velocity velocity;
+	/// energy
+	u8 energy;
 
-	// position relative to ejector
-	Vector3D position;
+} EnemyDefinition;
 
-	// max position relative to ejector before position reset
-	Vector3D maxPosition;
-
-	// delay between position checks (-1 to disable)
-	int checkDelay;
-
-} ProjectileDefinition;
-
-typedef const ProjectileDefinition ProjectileROMDef;
+typedef const EnemyDefinition EnemyROMDef;
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-class Projectile : Actor
+class Enemy : MovingOneWayEntity
 {
-	// definition pointer
-	ProjectileDefinition* projectileDefinition;
-	// max global position at time of ejection
-	Vector3D maxGlobalPosition;
+	u8 energy;
 
-	void constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
-	void startMovement();
-	void stopMovement();
-	bool canBeReused();
-	override void ready(bool recursive);
-	override bool handleMessage(Telegram telegram);
-	void onHitAnimationComplete();
+	void constructor(EnemyDefinition* enemyDefinition, s16 id, s16 internalId, const char* const name);
+	void takeHit(u8 power);
 }
 
 

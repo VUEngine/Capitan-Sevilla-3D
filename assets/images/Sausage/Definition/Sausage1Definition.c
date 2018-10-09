@@ -44,10 +44,10 @@ extern BYTE Sausage1Map[];
 AnimationFunctionROMDef SAUSAGE_1_DEFAULT_ANIM =
 {
 	// number of frames of this animation function
-	4,
+	5,
 
 	// frames to play in animation
-	{4, 3, 2, 1},
+	{4, 0, 3, 2, 1},
 
 	// number of cycles a frame of animation is displayed
 	6,
@@ -62,34 +62,33 @@ AnimationFunctionROMDef SAUSAGE_1_DEFAULT_ANIM =
 	"Default",
 };
 
-AnimationFunctionROMDef SAUSAGE_1_PAP_ANIM =
+AnimationFunctionROMDef SAUSAGE_1_HIT_ANIM =
 {
 	// number of frames of this animation function
-	1,
+	2,
 
 	// frames to play in animation
-	{5},
+	{0, 5},
 
 	// number of cycles a frame of animation is displayed
-	64,
+	8,
 
 	// whether to play it in loop or not
 	false,
 
 	// method to call on function completion
-	NULL,
+	(EventListener)&Projectile_onHitAnimationComplete,
 
 	// function's name
-	"Pap",
+	"Hit",
 };
 
-// an animation definition
 AnimationDescriptionROMDef SAUSAGE_1_ANIM =
 {
 	// animation functions
 	{
 		(AnimationFunction*)&SAUSAGE_1_DEFAULT_ANIM,
-		(AnimationFunction*)&SAUSAGE_1_PAP_ANIM,
+		(AnimationFunction*)&SAUSAGE_1_HIT_ANIM,
 		NULL,
 	}
 };
@@ -190,7 +189,7 @@ ShapeROMDef SAUSAGE_1_PR_SHAPES[] =
 		true,
 
 		// layers in which I live
-		kEnemiesLayer,
+		kPlayerLayer,
 
 		// layers to ignore when checking for collisions
 		kPlayerLayer,
@@ -212,8 +211,7 @@ ProjectileROMDef SAUSAGE_1_PR =
 				(SpriteROMDef**)SAUSAGE_1_SPRITES,
 
 				// collision shapes
-				//(ShapeDefinition*)SAUSAGE_1_PR_SHAPES,
-				(ShapeDefinition*)NULL,
+				(ShapeDefinition*)SAUSAGE_1_PR_SHAPES,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -242,7 +240,7 @@ ProjectileROMDef SAUSAGE_1_PR =
 
 	// velocity
     {
-    	__F_TO_FIX10_6(6.0f),
+    	__F_TO_FIX10_6(8.0f),
     	0,
     	0,
 	},
@@ -256,7 +254,7 @@ ProjectileROMDef SAUSAGE_1_PR =
 
 	// max offset relative to ejector before position reset
     {
-    	__PIXELS_TO_METERS(200),
+    	__PIXELS_TO_METERS(256),
     	0,
     	0,
     },

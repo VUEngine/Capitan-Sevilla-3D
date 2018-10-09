@@ -83,7 +83,6 @@ AnimationFunctionROMDef FLOWER_POT_1_BREAK_ANIM =
 	"Break",
 };
 
-// an animation definition
 AnimationDescriptionROMDef FLOWER_POT_1_ANIM =
 {
 	// animation functions

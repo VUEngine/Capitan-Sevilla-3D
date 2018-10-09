@@ -19,63 +19,67 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef PROJECTILE_H_
-#define PROJECTILE_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Actor.h>
-#include <macros.h>
+#include <Game.h>
+#include <CustomCameraEffectManager.h>
+#include <SoundManager.h>
+#include "Enemy.h"
+
+//---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern const u16 FIRE_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-typedef struct ProjectileDefinition
+// class's constructor
+void Enemy::constructor(EnemyDefinition* enemyDefinition, s16 id, s16 internalId, const char* const name)
 {
-	// the base animated entity
-	ActorDefinition actorDefinition;
+	// construct base
+	Base::constructor((MovingOneWayEntityDefinition*)&enemyDefinition->movingOneWayEntityDefinition, id, internalId, name);
 
-	// velocity when moving
-	Velocity velocity;
-
-	// position relative to ejector
-	Vector3D position;
-
-	// max position relative to ejector before position reset
-	Vector3D maxPosition;
-
-	// delay between position checks (-1 to disable)
-	int checkDelay;
-
-} ProjectileDefinition;
-
-typedef const ProjectileDefinition ProjectileROMDef;
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-class Projectile : Actor
-{
-	// definition pointer
-	ProjectileDefinition* projectileDefinition;
-	// max global position at time of ejection
-	Vector3D maxGlobalPosition;
-
-	void constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
-	void startMovement();
-	void stopMovement();
-	bool canBeReused();
-	override void ready(bool recursive);
-	override bool handleMessage(Telegram telegram);
-	void onHitAnimationComplete();
+	// init members
+	this->energy = enemyDefinition->energy;
 }
 
+void Enemy::destructor()
+{
+	// destroy the super object
+	// must always be called at the end of the destructor
+	Base::destructor();
+}
 
-#endif
+void Enemy::takeHit(u8 power)
+{
+	// start short screen shake
+	//Camera::startEffect(Camera::getInstance(), kShake, 100);
+
+	// play sound
+	SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
+
+	// reduce energy
+	if(power < this->energy)
+	{
+		this->energy -= power;
+
+		// flash
+		// TODO
+	}
+	else
+	{
+		Enemy::die(this);
+	}
+}
+
+void Enemy::die()
+{
+	Container::deleteMyself(Container::safeCast(this));
+}

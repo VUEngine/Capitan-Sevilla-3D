@@ -125,7 +125,6 @@ AnimationFunctionROMDef INTRO_TEXT_8_FRENCH_ANIM =
 	"3",
 };
 
-// an animation definition
 AnimationDescriptionROMDef INTRO_TEXT_8_ANIM =
 {
 	// animation functions

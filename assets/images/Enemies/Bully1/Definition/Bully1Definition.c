@@ -27,8 +27,7 @@
 #include <libgccvb.h>
 #include <ObjectAnimatedSprite.h>
 #include <Box.h>
-#include <Actor.h>
-#include <MovingOneWayEntity.h>
+#include <Enemy.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,7 +42,6 @@ extern BYTE Bully1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
 AnimationFunctionROMDef BULLY_1_MOVE_ANIM =
 {
 	// number of frames of this animation function
@@ -65,7 +63,6 @@ AnimationFunctionROMDef BULLY_1_MOVE_ANIM =
 	"Move",
 };
 
-// an animation definition
 AnimationDescriptionROMDef BULLY_1_ANIM =
 {
 	// animation functions
@@ -179,40 +176,50 @@ ShapeROMDef BULLY_1_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-ActorROMDef BULLY_1_AC =
+EnemyROMDef BULLY_1_AC =
 {
 	{
 		{
-			// class allocator
-			__TYPE(MovingOneWayEntity),
+			{
+				{
+					// class allocator
+					__TYPE(Enemy),
 
-			// sprites
-			(SpriteROMDef**)BULLY_1_SPRITES,
+					// sprites
+					(SpriteROMDef**)BULLY_1_SPRITES,
 
-			// collision shapes
-			(ShapeDefinition*)BULLY_1_AC_SHAPES,
+					// collision shapes
+					(ShapeDefinition*)BULLY_1_AC_SHAPES,
 
-			// size
-			// if 0, width and height will be inferred from the first sprite's texture's size
-			{0, 0, 0},
+					// size
+					// if 0, width and height will be inferred from the first sprite's texture's size
+					{0, 0, 0},
 
-			// gameworld's character's type
-			kEnemy,
+					// gameworld's character's type
+					kEnemy,
 
-			// physical specification
-			(PhysicalSpecification*)NULL,
+					// physical specification
+					(PhysicalSpecification*)NULL,
+				},
+
+				// pointer to the animation definition for the character
+				(AnimationDescription*)&BULLY_1_ANIM,
+
+				// initial animation
+				"Move",
+			},
+
+			// true to create a body
+			true,
+
+			// axes subject to gravity
+			__NO_AXIS
 		},
 
-		// pointer to the animation definition for the character
-		(AnimationDescription*)&BULLY_1_ANIM,
-
-		// initial animation
-		"Move",
+		// speed (x axis)
+		__I_TO_FIX10_6(-3),
 	},
 
-	// true to create a body
-	true,
-
-	// axes subject to gravity
-	__NO_AXIS
+	// energy
+	1,
 };

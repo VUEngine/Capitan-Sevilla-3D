@@ -46,6 +46,7 @@
 #include <ProjectileEjector.h>
 #include <debugConfig.h>
 
+
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
@@ -157,6 +158,12 @@ void Hero::addSausageEjectorEntity()
 
 void Hero::shoot(bool active)
 {
+	// play shoot animation
+	// TODO: have different shooting animations for jumping, kneeling, etc
+	// TODO: go back to previous animation after shooting
+	//AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Shoot");
+
+	// shoot sausage
 	ProjectileEjector::setActive(this->sausageEjectorEntity, active);
 }
 

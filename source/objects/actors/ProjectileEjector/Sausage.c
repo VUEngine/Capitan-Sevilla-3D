@@ -30,6 +30,7 @@
 #include <PlatformerLevelState.h>
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
+#include <Enemy.h>
 #include "Sausage.h"
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,7 +69,13 @@ bool Sausage::enterCollision(const CollisionInformation* collisionInformation)
 			Entity::activateShapes(Entity::safeCast(this), false);
 
 			// play hitting animation
-			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Pap");
+			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Hit");
+
+			// deactivate position checks
+			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileCheckPosition);
+
+			// inform enemy
+			Enemy::takeHit(Enemy::safeCast(collidingObject), 1);
 
 			return false;
 			break;

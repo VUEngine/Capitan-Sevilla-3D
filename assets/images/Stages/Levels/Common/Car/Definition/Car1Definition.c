@@ -26,7 +26,6 @@
 
 #include <libgccvb.h>
 #include <BgmapAnimatedSprite.h>
-#include <Actor.h>
 #include <MovingOneWayEntity.h>
 
 
@@ -42,7 +41,6 @@ extern BYTE Car1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// a function which defines the frames to play
 AnimationFunctionROMDef CAR_1_MOVE_ANIM =
 {
 	// number of frames of this animation function
@@ -64,7 +62,6 @@ AnimationFunctionROMDef CAR_1_MOVE_ANIM =
 	"Move",
 };
 
-// an animation definition
 AnimationDescriptionROMDef CAR_1_ANIM =
 {
 	// animation functions
@@ -150,40 +147,45 @@ BgmapSpriteROMDef* const CAR_1_SPRITES[] =
 	NULL
 };
 
-ActorROMDef CAR_1_AC =
+MovingOneWayEntityROMDef CAR_1_AC =
 {
 	{
 		{
-			// class allocator
-			__TYPE(MovingOneWayEntity),
+			{
+				// class allocator
+				__TYPE(MovingOneWayEntity),
 
-			// sprites
-			(SpriteROMDef**)CAR_1_SPRITES,
+				// sprites
+				(SpriteROMDef**)CAR_1_SPRITES,
 
-			// collision shapes
-			(ShapeDefinition*)NULL,
+				// collision shapes
+				(ShapeDefinition*)NULL,
 
-			// size
-			// if 0, width and height will be inferred from the first sprite's texture's size
-			{0, 0, 0},
+				// size
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{0, 0, 0},
 
-			// gameworld's character's type
-			kNoType,
+				// gameworld's character's type
+				kNoType,
 
-			// physical specification
-			(PhysicalSpecification*)NULL,
+				// physical specification
+				(PhysicalSpecification*)NULL,
+			},
+
+			// pointer to the animation definition for the character
+			(AnimationDescription*)&CAR_1_ANIM,
+
+			// initial animation
+			"Move",
 		},
 
-		// pointer to the animation definition for the character
-		(AnimationDescription*)&CAR_1_ANIM,
+		// true to create a body
+		true,
 
-		// initial animation
-		"Move",
+		// axes subject to gravity
+		__NO_AXIS
 	},
 
-	// true to create a body
-	true,
-
-	// axes subject to gravity
-	__NO_AXIS
+	// speed (x axis)
+	__I_TO_FIX10_6(-6),
 };

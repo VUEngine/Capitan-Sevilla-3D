@@ -180,3 +180,10 @@ bool Projectile::canBeReused()
 {
 	return !SpatialObject::isMoving(this);
 }
+
+// deactivate a projectile after "hit" animation completes
+void Projectile::onHitAnimationComplete()
+{
+	Projectile::stopMovement(this);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileCheckPosition);
+}

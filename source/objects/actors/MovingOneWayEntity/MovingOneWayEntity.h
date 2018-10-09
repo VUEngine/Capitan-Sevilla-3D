@@ -32,14 +32,31 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//											TYPE DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
+
+typedef struct MovingOneWayEntityDefinition
+{
+	/// actor definition
+	ActorDefinition actorDefinition;
+
+	/// speed (x axis)
+	fix10_6 speed;
+
+} MovingOneWayEntityDefinition;
+
+typedef const MovingOneWayEntityDefinition MovingOneWayEntityROMDef;
+
+
+//---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 class MovingOneWayEntity : Actor
 {
-	int speed;
+	fix10_6 speed;
 
-	void constructor(ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(MovingOneWayEntityDefinition* movingOneWayEntityDefinition, s16 id, s16 internalId, const char* const name);
 	void startMovement();
 	void stopMovement();
 	override void ready(bool recursive);

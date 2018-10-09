@@ -39,10 +39,12 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void MovingOneWayEntity::constructor(ActorDefinition* actorDefinition, s16 id, s16 internalId, const char* const name)
+void MovingOneWayEntity::constructor(MovingOneWayEntityDefinition* movingOneWayEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(actorDefinition, id, internalId, name);
+	Base::constructor((ActorDefinition*)&movingOneWayEntityDefinition->actorDefinition, id, internalId, name);
+
+	this->speed = movingOneWayEntityDefinition->speed;
 }
 
 void MovingOneWayEntity::destructor()
@@ -52,12 +54,13 @@ void MovingOneWayEntity::destructor()
 	Base::destructor();
 }
 
-// set extra info
+// override speed via extra info if given
 void MovingOneWayEntity::setExtraInfo(void* extraInfo)
 {
-	this->speed = (extraInfo != NULL)
-		? __I_TO_FIX10_6((int)extraInfo)
-		: __I_TO_FIX10_6(-4);
+	if(extraInfo != NULL)
+	{
+		this->speed = __I_TO_FIX10_6((int)extraInfo);
+	}
 }
 
 void MovingOneWayEntity::ready(bool recursive)
@@ -71,8 +74,11 @@ void MovingOneWayEntity::ready(bool recursive)
 
 void MovingOneWayEntity::startMovement()
 {
-	Velocity velocity = {this->speed, 0, 0};
-	Actor::moveUniformly(Actor::safeCast(this), &velocity);
+	if(this->speed != 0)
+	{
+		Velocity velocity = {this->speed, 0, 0};
+		Actor::moveUniformly(Actor::safeCast(this), &velocity);
+	}
 }
 
 void MovingOneWayEntity::stopMovement()

@@ -85,7 +85,6 @@ AnimationFunctionROMDef GRANNY_1_SHOOT_ANIM =
 	"Shoot",
 };
 
-// an animation definition
 AnimationDescriptionROMDef GRANNY_1_ANIM =
 {
 	// animation functions
