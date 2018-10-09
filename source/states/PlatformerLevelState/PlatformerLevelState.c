@@ -317,8 +317,11 @@ UserInput PlatformerLevelState::getUserInput(bool force)
 	}
 	else
 	{
-		UserInput* userInput = new UserInput;
-		return *userInput;
+		// jorgeche: MEMORY LEAK!
+		//UserInput* userInput = new UserInput;
+		//return *userInput;
+
+		return (UserInput){0, 0, 0, 0, 0, 0, 0};
 	}
 }
 
