@@ -37,9 +37,6 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition CITY_FLOOR_3D_EN;
-extern EntityDefinition COMIC_NIVEL_1_EN;
-extern EntityDefinition LEVEL_1_BUILDING_6_EN;
 extern EntityDefinition BENCH_1_EN;
 extern EntityDefinition BIKE_1_EN;
 extern EntityDefinition BULLY_1_AC;
@@ -49,29 +46,33 @@ extern EntityDefinition CAR_1_AC;
 extern EntityDefinition CAR_BG_1_EN;
 extern EntityDefinition CAR_BG_2_EN;
 extern EntityDefinition CITY_BG_IM;
+extern EntityDefinition CITY_FLOOR_3D_EN;
+extern EntityDefinition CITY_FLOOR_COLLISION_CL;
 extern EntityDefinition CITY_FLOOR_EN;
 extern EntityDefinition CLOTHES_1_EN;
 extern EntityDefinition COLLISION_CL;
-extern EntityDefinition CITY_FLOOR_COLLISION_CL;
+extern EntityDefinition COMIC_NIVEL_1_EN;
 extern EntityDefinition FENCE_2_EN;
-extern EntityDefinition LEVEL_1_BUILDING_4_EN;
-extern EntityDefinition LEVEL_1_BUILDING_7_EN;
 extern EntityDefinition GRANNY_1_PE;
 extern EntityDefinition GUI_EN;
-extern EntityDefinition LEVEL_1_BUILDING_1_EN;
-extern EntityDefinition LEVEL_1_BUILDING_3_EN;
-extern EntityDefinition LEVEL_1_BUILDING_8_EN;
-extern EntityDefinition LEVEL_1_BUILDING_9_EN;
+extern EntityDefinition HOVER_CAR_1_AC;
+extern EntityDefinition ITEM_SAUSAGE_IT;
+extern EntityDefinition LANTERN_1_EN;
 extern EntityDefinition LEVEL_1_BUILDING_10_EN;
 extern EntityDefinition LEVEL_1_BUILDING_11_EN;
-extern EntityDefinition HOVER_CAR_1_AC;
-extern EntityDefinition LANTERN_1_EN;
+extern EntityDefinition LEVEL_1_BUILDING_1_EN;
+extern EntityDefinition LEVEL_1_BUILDING_2_EN;
+extern EntityDefinition LEVEL_1_BUILDING_3_EN;
+extern EntityDefinition LEVEL_1_BUILDING_4_EN;
+extern EntityDefinition LEVEL_1_BUILDING_6_EN;
+extern EntityDefinition LEVEL_1_BUILDING_7_EN;
+extern EntityDefinition LEVEL_1_BUILDING_8_EN;
+extern EntityDefinition LEVEL_1_BUILDING_9_EN;
 extern EntityDefinition PLAYGROUND_1_EN;
 extern EntityDefinition PLAYGROUND_SIGN_1_EN;
 extern EntityDefinition STATUE_1_EN;
 extern EntityDefinition TREE_1_EN;
 extern EntityDefinition TREE_BG_1_EN;
-extern EntityDefinition LEVEL_1_BUILDING_2_EN;
 
 extern CharSetDefinition BULLY_1_CH;
 extern CharSetDefinition CAR_1_CH;
@@ -112,6 +113,7 @@ PositionedEntityROMDef LEVEL_1_MAIN_STAGE_ST_CHILDREN[] =
 	{&LEVEL_1_BUILDING_1_EN,		{ 200,  80,   64,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_1_PE,					{ 193,  52,   48,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_1_EN,					{ 356, 106,   48,   0},		0, NULL, NULL, NULL, false},
+	{&ITEM_SAUSAGE_IT,				{ 356, 114,   16,   0},		0, NULL, NULL, NULL, false},
 
 	{&CITY_FLOOR_COLLISION_CL,		{ 372, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 

@@ -19,54 +19,41 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MACROS_H_
-#define MACROS_H_
+
+//---------------------------------------------------------------------------------------------------------
+//												INCLUDES
+//---------------------------------------------------------------------------------------------------------
+
+#include <GameEvents.h>
+#include <Game.h>
+#include <EventManager.h>
+#include "ItemSausage.h"
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINES
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// general
-#define COINS_PER_LEVEL		64
-#define LEVELS_IN_GAME		1
-
-// layers
-#define HERO_DSPL			1
-#define BUILDINGS_DSPL		4
-
-// physics
-#define NO_FRICTION 		0
-#define FLOOR_FRICTION 		0.75f
-#define FLOOR_BOUNCINESS 	0.0f
-
-// entity collision types
-enum PlatformerTypes
+// class's constructor
+void ItemSausage::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	kHero = kNoType + 1,
-	kShape,
-	kTopShape,
-	kItemSausage,
-	kEnemy,
-	kFloor,
-	kSausage,
-	kEnemyProjectile,
-	kMovingPlatform,
-};
+	// construct base
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
+}
 
-// entity collision layers
-enum CollisionLayers
+// class's destructor
+void ItemSausage::destructor()
 {
-    kSolidLayer		 					= 1 << (kNoLayer + 0), 	// hex 00000001
-    kEnemiesLayer						= 1 << (kNoLayer + 1), 	// hex 00000002
-    kPlayerLayer						= 1 << (kNoLayer + 2), 	// hex 00000004
-    kParticlesLayer						= 1 << (kNoLayer + 3), 	// hex 00000008
-    kItemsLayer							= 1 << (kNoLayer + 4), 	// hex 00000010
-    kCollectablesLayer					= 1 << (kNoLayer + 5), 	// hex 00000020
-    kTriggersLayer						= 1 << (kNoLayer + 6), 	// hex 00000040
-    kMovingPlatformsLayer				= 1 << (kNoLayer + 7), 	// hex 00000080
-    kAllLayers							= 0xFFFFFFFF,
-};
+	// delete the super object
+	// must always be called at the end of the destructor
+	Base::destructor();
+}
 
+void ItemSausage::collect()
+{
+	// fire item taken event
+	//Object::fireEvent(EventManager::getInstance(), kEventKeyTaken);
 
-#endif
+	// call base
+	Base::collect(this);
+}

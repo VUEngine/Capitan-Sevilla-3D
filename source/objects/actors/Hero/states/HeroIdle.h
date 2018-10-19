@@ -41,6 +41,7 @@ singleton class HeroIdle : HeroState
 	override void exit(void* owner);
 	override bool processMessage(void* owner, Telegram telegram);
 	override void onKeyPressed(void* owner, const UserInput* userInput);
+	override void onKeyReleased(void* owner, const UserInput* userInput);
 	override void onKeyHold(void* owner, const UserInput* userInput);
 }
 

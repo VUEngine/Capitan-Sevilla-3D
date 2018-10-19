@@ -128,6 +128,10 @@ void HeroKneel::onKeyPressed(void* owner, const UserInput* userInput)
 	}
 }
 
+void HeroKneel::onKeyReleased(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
+{
+}
+
 void HeroKneel::onKeyHold(void* owner, const UserInput* userInput)
 {
     if((K_LL | K_LR) & userInput->holdKey)

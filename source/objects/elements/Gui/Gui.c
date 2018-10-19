@@ -69,6 +69,7 @@ void Gui::constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 in
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroShot, kEventHeroShot);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSausageCollected, kEventSausageCollected);
 }
 
 // class's destructor
@@ -85,6 +86,7 @@ void Gui::destructor()
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroShot, kEventHeroShot);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSausageCollected, kEventSausageCollected);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -188,6 +190,12 @@ void Gui::onSetModeToPlaying(Object eventFirer __attribute__ ((unused)))
 
 // handle event
 void Gui::onHeroShot(Object eventFirer __attribute__ ((unused)))
+{
+	Gui::printSausages(this);
+}
+
+// handle event
+void Gui::onSausageCollected(Object eventFirer __attribute__ ((unused)))
 {
 	Gui::printSausages(this);
 }

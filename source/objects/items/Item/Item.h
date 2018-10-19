@@ -33,12 +33,11 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 class Item : Collectable
 {
-
 	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 	override void collect();
 }

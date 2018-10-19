@@ -36,6 +36,8 @@
 #include "Collectable.h"
 #include <PlatformerLevelState.h>
 
+extern const u16 COLLECT_SND[];
+
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
@@ -59,44 +61,28 @@ void Collectable::destructor()
 // state's handle message
 bool Collectable::handleMessage(Telegram telegram)
 {
-	extern const u16 COLLECT_SND[];
-
 	switch(Telegram::getMessage(telegram))
 	{
 		case kItemTaken:
-
+		{
 			// play collect sound
 			SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 
 			// set shape to inactive so no other hits with this item can occur
-			Entity::activateShapes(Entity::safeCast(this), false);
+			Entity::activateShapes(this, false);
 
 			// additional action
 			Collectable::collect(this);
 
 			// delete myself now
-			Container::deleteMyself(Container::safeCast(this));
+			Container::deleteMyself(this);
 
-			// send message to remove item in next game frame
-			//MessageDispatcher::dispatchMessage(__GAME_FRAME_DURATION, Object::safeCast(this), Object::safeCast(this), kRemoveFromStage, NULL);
 			break;
-/*
-		case kRemoveFromStage:
-
-			Collectable::removeFromStage(this);
-			break;
-*/	}
+		}
+	}
 
 	return false;
 }
 
 void Collectable::collect()
-{
-
-}
-/*
-void Collectable::removeFromStage()
-{
-	Container::deleteMyself(Container::safeCast(this));
-}
-*/
+{}

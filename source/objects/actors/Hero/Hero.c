@@ -671,6 +671,16 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 		case kShape:
 			break;
 
+		case kItemSausage:
+			this->sausages += 5;
+
+			// inform sausage item
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kItemTaken, NULL);
+
+			// inform gui
+			Object::fireEvent(EventManager::getInstance(), kEventSausageCollected);
+			break;
+
 		case kEnemy:
 		case kEnemyProjectile:
 
