@@ -99,6 +99,26 @@ bool HeroIdle::processMessage(void* owner, Telegram telegram)
 	return false;
 }
 
+void HeroIdle::onKeyHold(void* owner, const UserInput* userInput)
+{
+    if((K_LL | K_LR) & userInput->holdKey)
+    {
+        Vector3D direction =
+        {
+            K_LL & userInput->holdKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->holdKey ? __I_TO_FIX10_6(1) : 0,
+            K_A & userInput->holdKey ? __I_TO_FIX10_6(-1) : 0,
+            0,
+        };
+
+		if(Actor::canMoveTowards(Actor::safeCast(owner), direction))
+        {
+            Hero::checkDirection(Hero::safeCast(owner), userInput->holdKey, "Idle");
+
+            Hero::startedMovingOnAxis(Hero::safeCast(owner), __X_AXIS);
+        }
+    }
+}
+
 void HeroIdle::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if(K_A & userInput->pressedKey)
@@ -132,28 +152,4 @@ void HeroIdle::onKeyPressed(void* owner, const UserInput* userInput)
 	{
 		Hero::kneel(Hero::safeCast(owner));
 	}
-}
-
-void HeroIdle::onKeyReleased(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
-{
-}
-
-void HeroIdle::onKeyHold(void* owner, const UserInput* userInput)
-{
-    if((K_LL | K_LR) & userInput->holdKey)
-    {
-        Vector3D direction =
-        {
-            K_LL & userInput->holdKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->holdKey ? __I_TO_FIX10_6(1) : 0,
-            K_A & userInput->holdKey ? __I_TO_FIX10_6(-1) : 0,
-            0,
-        };
-
-		if(Actor::canMoveTowards(Actor::safeCast(owner), direction))
-        {
-            Hero::checkDirection(Hero::safeCast(owner), userInput->holdKey, "Idle");
-
-            Hero::startedMovingOnAxis(Hero::safeCast(owner), __X_AXIS);
-        }
-    }
 }

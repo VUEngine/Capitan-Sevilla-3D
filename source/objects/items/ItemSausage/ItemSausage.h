@@ -27,7 +27,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Item.h>
+#include <Collectable.h>
 #include <macros.h>
 
 
@@ -35,10 +35,11 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-class ItemSausage : Item
+class ItemSausage : Collectable
 {
 	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
 	override void collect();
+	void onTakenAnimationComplete();
 }
 
 

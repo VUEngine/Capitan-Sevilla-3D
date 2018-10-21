@@ -26,8 +26,16 @@
 
 #include <GameEvents.h>
 #include <Game.h>
+#include <SoundManager.h>
 #include <EventManager.h>
 #include "ItemSausage.h"
+
+
+//---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern const u16 COLLECT_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -51,9 +59,15 @@ void ItemSausage::destructor()
 
 void ItemSausage::collect()
 {
-	// fire item taken event
-	//Object::fireEvent(EventManager::getInstance(), kEventKeyTaken);
+	SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 
-	// call base
-	Base::collect(this);
+	// set shape to inactive so no other hits with this item can occur
+	Entity::activateShapes(this, false);
+
+	AnimatedEntity::playAnimation(this, "Taken");
+}
+
+void ItemSausage::onTakenAnimationComplete()
+{
+	Container::deleteMyself(this);
 }

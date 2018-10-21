@@ -58,11 +58,6 @@ void HeroDead::enter(void* owner __attribute__ ((unused)))
 	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED);
 }
 
-// state's exit
-void HeroDead::exit(void* owner __attribute__ ((unused)))
-{
-}
-
 void HeroDead::onKeyPressed(void* owner __attribute__ ((unused)), const UserInput* userInput)
 {
 	if((K_LL | K_LR | K_A) & userInput->pressedKey)

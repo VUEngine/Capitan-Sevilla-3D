@@ -36,6 +36,11 @@
 #include "Collectable.h"
 #include <PlatformerLevelState.h>
 
+
+//---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
 extern const u16 COLLECT_SND[];
 
 
@@ -65,17 +70,8 @@ bool Collectable::handleMessage(Telegram telegram)
 	{
 		case kItemTaken:
 		{
-			// play collect sound
-			SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
-
-			// set shape to inactive so no other hits with this item can occur
-			Entity::activateShapes(this, false);
-
 			// additional action
 			Collectable::collect(this);
-
-			// delete myself now
-			Container::deleteMyself(this);
 
 			break;
 		}
@@ -85,4 +81,13 @@ bool Collectable::handleMessage(Telegram telegram)
 }
 
 void Collectable::collect()
-{}
+{
+	// play collect sound
+	SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
+
+	// set shape to inactive so no other hits with this item can occur
+	Entity::activateShapes(this, false);
+
+	// delete myself now
+	Container::deleteMyself(this);
+}

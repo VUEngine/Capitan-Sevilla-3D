@@ -52,6 +52,14 @@ void HeroState::onKeyHold(void* owner __attribute__ ((unused)), const UserInput*
 {
 }
 
+void HeroState::onKeyPressed(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
+{
+}
+
+void HeroState::onKeyReleased(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
+{
+}
+
 void HeroState::toggleShapes(void* owner, bool kneeling)
 {
 	VirtualList shapes = Entity::getShapes(Entity::safeCast(owner));

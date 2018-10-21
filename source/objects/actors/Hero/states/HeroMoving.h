@@ -35,9 +35,6 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// declare the virtual methods
-
-
 enum HeroMovingMessages
 {
 	 kDisallowJumpOnBouncing = kLastPlatformerMessage + 1,

@@ -64,11 +64,6 @@ void HeroKneel::enter(void* owner)
 	HeroState::toggleShapes(this, owner, true);
 }
 
-// state's exit
-void HeroKneel::exit(void* owner __attribute__ ((unused)))
-{
-}
-
 // state's handle message
 bool HeroKneel::processMessage(void* owner, Telegram telegram)
 {
@@ -92,6 +87,34 @@ bool HeroKneel::processMessage(void* owner, Telegram telegram)
 	}
 
 	return false;
+}
+
+void HeroKneel::onKeyHold(void* owner, const UserInput* userInput)
+{
+    if((K_LL | K_LR) & userInput->holdKey)
+    {
+        Vector3D direction =
+        {
+            K_LL & userInput->holdKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->holdKey ? __I_TO_FIX10_6(1) : 0,
+            K_A & userInput->holdKey ? __I_TO_FIX10_6(-1) : 0,
+            0,
+        };
+
+		if(Actor::canMoveTowards(Actor::safeCast(owner), direction))
+        {
+            Hero::checkDirection(Hero::safeCast(owner), userInput->holdKey, "Idle");
+
+            Hero::startedMovingOnAxis(Hero::safeCast(owner), __X_AXIS);
+        }
+    }
+}
+
+void HeroKneel::onKeyReleased(void* owner, const UserInput* userInput)
+{
+	if(K_B & userInput->releasedKey)
+	{
+		//Hero::stopShooting(Hero::safeCast(owner));
+	}
 }
 
 void HeroKneel::onKeyPressed(void* owner, const UserInput* userInput)
@@ -121,33 +144,4 @@ void HeroKneel::onKeyPressed(void* owner, const UserInput* userInput)
 			Hero::startedMovingOnAxis(Hero::safeCast(owner), __X_AXIS);
 		}
 	}
-
-	if((K_LU) & (userInput->pressedKey | userInput->holdKey))
-	{
-		//swapstate to idle
-	}
-}
-
-void HeroKneel::onKeyReleased(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
-{
-}
-
-void HeroKneel::onKeyHold(void* owner, const UserInput* userInput)
-{
-    if((K_LL | K_LR) & userInput->holdKey)
-    {
-        Vector3D direction =
-        {
-            K_LL & userInput->holdKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->holdKey ? __I_TO_FIX10_6(1) : 0,
-            K_A & userInput->holdKey ? __I_TO_FIX10_6(-1) : 0,
-            0,
-        };
-
-		if(Actor::canMoveTowards(Actor::safeCast(owner), direction))
-        {
-            Hero::checkDirection(Hero::safeCast(owner), userInput->holdKey, "Idle");
-
-            Hero::startedMovingOnAxis(Hero::safeCast(owner), __X_AXIS);
-        }
-    }
 }

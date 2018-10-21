@@ -27,7 +27,7 @@
 #include <libgccvb.h>
 #include <ObjectAnimatedSprite.h>
 #include <Box.h>
-#include <Item.h>
+#include <ItemSausage.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -45,16 +45,16 @@ extern BYTE ItemSausageMap[];
 AnimationFunctionROMDef ITEM_SAUSAGE_DEFAULT_ANIM =
 {
 	// number of frames of this animation function
-	1,
+	16,
 
 	// frames to play in animation
-	{0},
+	{0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1},
 
 	// number of cycles a frame of animation is displayed
 	4,
 
 	// whether to play it in loop or not
-	false,
+	true,
 
 	// method to call on function completion
 	NULL,
@@ -63,11 +63,33 @@ AnimationFunctionROMDef ITEM_SAUSAGE_DEFAULT_ANIM =
 	"Default",
 };
 
+AnimationFunctionROMDef ITEM_SAUSAGE_TAKEN_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{6, 7},
+
+	// number of cycles a frame of animation is displayed
+	64,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	(EventListener)&ItemSausage_onTakenAnimationComplete,
+
+	// function's name
+	"Taken",
+};
+
 AnimationDescriptionROMDef ITEM_SAUSAGE_ANIM =
 {
 	// animation functions
 	{
 		(AnimationFunction*)&ITEM_SAUSAGE_DEFAULT_ANIM,
+		(AnimationFunction*)&ITEM_SAUSAGE_TAKEN_ANIM,
 		NULL,
 	}
 };
@@ -180,7 +202,7 @@ AnimatedEntityROMDef ITEM_SAUSAGE_IT =
 {
 	{
 		// class allocator
-		__TYPE(Item),
+		__TYPE(ItemSausage),
 
 		// sprites
 		(SpriteROMDef**)ITEM_SAUSAGE_SPRITES,

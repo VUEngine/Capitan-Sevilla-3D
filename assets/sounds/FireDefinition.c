@@ -70,5 +70,3 @@ const u16 FIRE_SND[] =
 		0x31,
 		0x31,
 };
-
-

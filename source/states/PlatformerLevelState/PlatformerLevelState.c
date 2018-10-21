@@ -49,7 +49,7 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern PlatformerLevelDefinition LEVEL_1_LV;
+extern PlatformerLevelDefinition LEVEL_1_STAGE_1_LV;
 extern EntityDefinition HERO_AC;
 
 
@@ -66,7 +66,7 @@ void PlatformerLevelState::constructor()
 	this->clock = new Clock();
 
 	// set default entry point
-	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;
+	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_STAGE_1_LV;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
 	this->currentCheckPoint = this->currentLevel->entryPoint;
 	this->userInput = (UserInput){0, 0, 0, 0, 0, 0, 0};

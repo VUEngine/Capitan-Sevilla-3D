@@ -38,7 +38,6 @@ singleton class HeroKneel : HeroState
 {
 	static HeroKneel getInstance();
 	override void enter(void* owner);
-	override void exit(void* owner);
 	override void onKeyPressed(void* owner, const UserInput* userInput);
 	override void onKeyReleased(void* owner, const UserInput* userInput);
 	override void onKeyHold(void* owner, const UserInput* userInput);

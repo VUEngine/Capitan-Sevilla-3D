@@ -454,6 +454,11 @@ void Hero::checkDirection(u32 pressedKey, char* animation)
 
 void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
 {
+	return;
+
+
+
+
 	if(!Hero::isInvincible(this) || !invincibleWins)
 	{
 		// start short screen shake
@@ -679,6 +684,8 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 
 			// inform gui
 			Object::fireEvent(EventManager::getInstance(), kEventSausageCollected);
+
+			return false;
 			break;
 
 		case kEnemy:

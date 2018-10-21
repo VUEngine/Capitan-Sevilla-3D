@@ -28,59 +28,11 @@
 #include <Debug.h>
 #include <StageEditor.h>
 #include <AnimationInspector.h>
-#include <Entity.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //										DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
-
-// only need to define one for all containers
-EntityROMDef SIMPLE_CONTAINER =
-{
-	// class allocator
-	__TYPE(Entity),
-
-	// sprites
-	NULL,
-
-	// collision shapes
-	NULL,
-
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kNoType,
-
-	// physical specification
-	NULL,
-};
-
-
-// only need to define one for all managed entities
-EntityROMDef MANAGED_ENTITY =
-{
-	// class allocator
-	__TYPE(Entity),
-
-	// sprites
-	NULL,
-
-	// collision shapes
-	NULL,
-
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
-
-	// gameworld's character's type
-	kNoType,
-
-	// physical specification
-	NULL,
-};
 
 #ifdef __DEBUG_TOOLS
 const ClassSizeData _userClassesSizeData[] =
