@@ -140,8 +140,8 @@ void Hero::ready(bool recursive)
 	ProgressManager progressManager = ProgressManager::getInstance();
 	if(progressManager)
 	{
-		//this->energy = ProgressManager::getHeroCurrentEnergy(progressManager);
-		//this->sausages = ProgressManager::getHeroCurrentSausages(progressManager);
+		this->energy = ProgressManager::getHeroCurrentEnergy(progressManager);
+		this->sausages = ProgressManager::getHeroCurrentSausages(progressManager);
 	}
 
 	// initialize me as idle
@@ -169,8 +169,6 @@ void Hero::startShooting()
 
 		// shoot sausage
 		ProjectileEjector::setActive(this->sausageEjectorEntity, true);
-
-		Object::fireEvent(EventManager::getInstance(), kEventHeroShot);
 	}
 }
 
@@ -600,6 +598,8 @@ void Hero::onProjectileEjected(Object eventFirer __attribute__ ((unused)))
 	if(this->sausages > 0)
 	{
 		this->sausages--;
+
+		Object::fireEvent(EventManager::getInstance(), kEventHeroShot);
 	}
 
 	// don't allow holding key for continuous shooting

@@ -65,10 +65,13 @@ singleton class ProgressManager : SaveDataManager
 	u16 checkpointCollectedItems;
 	// hero's current energy
 	u8 heroCurrentEnergy;
+	// hero's current number of sausages
+	u8 heroCurrentSausages;
 
 	static ProgressManager getInstance();
 	u32  getCurrentLevelTime();
 	u8   getHeroCurrentEnergy();
+	u8   getHeroCurrentSausages();
 	bool getItemStatus(u16 itemNumber);
 	void initialize();
 	void loadCheckPointData();

@@ -56,6 +56,7 @@ void ProgressManager::constructor()
 	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::addEventListener(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHeroShot, kEventHeroShot);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
@@ -68,6 +69,7 @@ void ProgressManager::destructor()
 	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::removeEventListener(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHeroShot, kEventHeroShot);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
@@ -79,6 +81,7 @@ void ProgressManager::destructor()
 void ProgressManager::resetHeroState()
 {
 	this->heroCurrentEnergy = HERO_INITIAL_ENERGY;
+	this->heroCurrentSausages = HERO_INITIAL_SAUSAGES;
 }
 
 void ProgressManager::resetCurrentLevelProgress()
@@ -144,6 +147,12 @@ u8 ProgressManager::getHeroCurrentEnergy()
 	return this->heroCurrentEnergy;
 }
 
+// get hero's current number of sausages
+u8 ProgressManager::getHeroCurrentSausages()
+{
+	return this->heroCurrentSausages;
+}
+
 // get current level time
 u32 ProgressManager::getCurrentLevelTime()
 {
@@ -160,6 +169,12 @@ void ProgressManager::onSecondChange(Object eventFirer __attribute__ ((unused)))
 void ProgressManager::onHitTaken(Object eventFirer __attribute__ ((unused)))
 {
 	this->heroCurrentEnergy = Hero::getEnergy(Hero::getInstance());
+}
+
+// handle event
+void ProgressManager::onHeroShot(Object eventFirer __attribute__ ((unused)))
+{
+	this->heroCurrentSausages = Hero::getSausages(Hero::getInstance());
 }
 
 // handle event
