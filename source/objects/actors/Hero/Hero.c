@@ -702,8 +702,16 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 			// disable user input
 			Game::disableKeypad(Game::getInstance());
 
-			// pause physical simulations
-			GameState::pausePhysics(GameState::safeCast(this), true);
+			return false;
+			break;
+
+		case kStageExitPoint:
+
+			// inform exit point
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kExitPointReached, NULL);
+
+			// disable user input
+			Game::disableKeypad(Game::getInstance());
 
 			return false;
 			break;

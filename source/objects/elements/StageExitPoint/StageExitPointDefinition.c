@@ -19,56 +19,73 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MACROS_H_
-#define MACROS_H_
+
+//---------------------------------------------------------------------------------------------------------
+//												INCLUDES
+//---------------------------------------------------------------------------------------------------------
+
+#include <Entity.h>
+#include <StageExitPoint.h>
+#include <Body.h>
+#include <Box.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINES
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// general
-#define COINS_PER_LEVEL		64
-#define LEVELS_IN_GAME		1
+// TODO: one definition per exit point
 
-// layers
-#define HERO_DSPL			1
-#define BUILDINGS_DSPL		4
-
-// physics
-#define NO_FRICTION 		0
-#define FLOOR_FRICTION 		0.75f
-#define FLOOR_BOUNCINESS 	0.0f
-
-// entity collision types
-enum PlatformerTypes
+ShapeROMDef LEVEL_1_STAGE_1_MAIN_EXIT_POINT_SHAPES[] =
 {
-	kHero = kNoType + 1,
-	kShape,
-	kTopShape,
-	kLift,
-	kItemSausage,
-	kEnemy,
-	kFloor,
-	kSausage,
-	kEnemyProjectile,
-	kMovingPlatform,
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{16, 80, 64},
+
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+};
+
+StageExitPointROMDef LEVEL_1_STAGE_1_MAIN_EXIT_XP =
+{
+	// class allocator
+	__TYPE(StageExitPoint),
+
+	// sprites
+	NULL,
+
+	// collision shapes
+	(ShapeDefinition*)LEVEL_1_STAGE_1_MAIN_EXIT_POINT_SHAPES,
+
+	// pixelSize
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
 	kStageExitPoint,
+
+	// physical specification
+	NULL,
 };
-
-// entity collision layers
-enum CollisionLayers
-{
-    kSolidLayer		 					= 1 << (kNoLayer + 0), 	// hex 00000001
-    kEnemiesLayer						= 1 << (kNoLayer + 1), 	// hex 00000002
-    kPlayerLayer						= 1 << (kNoLayer + 2), 	// hex 00000004
-    kParticlesLayer						= 1 << (kNoLayer + 3), 	// hex 00000008
-    kItemsLayer							= 1 << (kNoLayer + 4), 	// hex 00000010
-    kCollectablesLayer					= 1 << (kNoLayer + 5), 	// hex 00000020
-    kTriggersLayer						= 1 << (kNoLayer + 6), 	// hex 00000040
-    kMovingPlatformsLayer				= 1 << (kNoLayer + 7), 	// hex 00000080
-    kAllLayers							= 0xFFFFFFFF,
-};
-
-
-#endif

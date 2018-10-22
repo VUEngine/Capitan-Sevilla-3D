@@ -37,6 +37,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern EntityDefinition LEVEL_1_STAGE_1_MAIN_EXIT_XP;
 extern EntityDefinition BENCH_1_EN;
 extern EntityDefinition BIKE_1_EN;
 extern EntityDefinition BULLY_1_AC;
@@ -112,6 +113,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&LANTERN_1_EN,						{  32, 136,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_1_EN,	{ 200,  80,   64,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_1_PE,						{ 193,  52,   48,   0},		0, NULL, NULL, NULL, false},
+
 	{&TREE_1_EN,						{ 356, 106,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&CITY_FLOOR_COLLISION_CL,			{ 372, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
@@ -204,6 +206,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&CAR_BG_2_EN,						{3579, 138,   16,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_11_EN,	{3583,  64,   32,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_1_MAIN_EXIT_XP,		{3603,  40,   0,   0},		0, NULL, NULL, NULL, false},
 
 	{&CITY_FLOOR_COLLISION_CL,			{3612, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false}, // floor collision
 

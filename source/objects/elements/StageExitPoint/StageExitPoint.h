@@ -19,56 +19,35 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MACROS_H_
-#define MACROS_H_
+#ifndef STATE_EXIT_POINT_H_
+#define STATE_EXIT_POINT_H_
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-// general
-#define COINS_PER_LEVEL		64
-#define LEVELS_IN_GAME		1
+#include <Entity.h>
+#include <macros.h>
 
-// layers
-#define HERO_DSPL			1
-#define BUILDINGS_DSPL		4
 
-// physics
-#define NO_FRICTION 		0
-#define FLOOR_FRICTION 		0.75f
-#define FLOOR_BOUNCINESS 	0.0f
+//---------------------------------------------------------------------------------------------------------
+//											CLASS'S DECLARATION
+//---------------------------------------------------------------------------------------------------------
 
-// entity collision types
-enum PlatformerTypes
+typedef const EntityDefinition StageExitPointDefinition;
+typedef const StageExitPointDefinition StageExitPointROMDef;
+
+
+//---------------------------------------------------------------------------------------------------------
+//										PUBLIC INTERFACE
+//---------------------------------------------------------------------------------------------------------
+
+class StageExitPoint : Entity
 {
-	kHero = kNoType + 1,
-	kShape,
-	kTopShape,
-	kLift,
-	kItemSausage,
-	kEnemy,
-	kFloor,
-	kSausage,
-	kEnemyProjectile,
-	kMovingPlatform,
-	kStageExitPoint,
-};
-
-// entity collision layers
-enum CollisionLayers
-{
-    kSolidLayer		 					= 1 << (kNoLayer + 0), 	// hex 00000001
-    kEnemiesLayer						= 1 << (kNoLayer + 1), 	// hex 00000002
-    kPlayerLayer						= 1 << (kNoLayer + 2), 	// hex 00000004
-    kParticlesLayer						= 1 << (kNoLayer + 3), 	// hex 00000008
-    kItemsLayer							= 1 << (kNoLayer + 4), 	// hex 00000010
-    kCollectablesLayer					= 1 << (kNoLayer + 5), 	// hex 00000020
-    kTriggersLayer						= 1 << (kNoLayer + 6), 	// hex 00000040
-    kMovingPlatformsLayer				= 1 << (kNoLayer + 7), 	// hex 00000080
-    kAllLayers							= 0xFFFFFFFF,
-};
+	void constructor(EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+	override bool handleMessage(Telegram telegram);
+}
 
 
 #endif

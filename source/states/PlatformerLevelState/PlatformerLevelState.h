@@ -94,6 +94,7 @@ enum PlatformerLevelStateMessageTypes
 	kItemTaken,
 	kLiftActivate,
 	kLiftStart,
+	kExitPointReached,
 	kRemoveFromStage,
 	kComicMove,
 	kIntroNextImage,
