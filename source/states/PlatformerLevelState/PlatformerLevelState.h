@@ -31,7 +31,6 @@
 #include <KeyPadManager.h>
 
 
-
 //---------------------------------------------------------------------------------------------------------
 //												DEFINES
 //---------------------------------------------------------------------------------------------------------
@@ -42,13 +41,6 @@ enum PlatformerLevelModes
 	kShowingUp,
 	kPaused,
 };
-
-
-//---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
-//---------------------------------------------------------------------------------------------------------
-
-// declare the virtual methods
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -100,14 +92,9 @@ enum PlatformerLevelStateMessageTypes
 	kHeroFlash,
 	kHeroSleep,
 	kItemTaken,
-	kTakeKey,
-	kTakeCoin,
-	kTakeBandana,
+	kLiftActivate,
+	kLiftStart,
 	kRemoveFromStage,
-	kLavaTriggerStart,
-	kLavaTriggerEnd,
-	kCogWheelMove,
-	kCogWheelStop,
 	kComicMove,
 	kIntroNextImage,
 	kProjectileEject,
@@ -129,17 +116,17 @@ enum PlatformerLevelStateMessageTypes
 
 singleton class PlatformerLevelState : GameState
 {
-	/* the currently loaded level */
+	// the currently loaded level
 	PlatformerLevelDefinition* currentLevel;
-	/* the currently loaded entry point */
+	// the currently loaded entry point
 	StageEntryPointDefinition* currentStageEntryPoint;
-	/* the last reached checkpoint */
+	// the last reached checkpoint
 	StageEntryPointDefinition* currentCheckPoint;
-	/* to allow moving the screen */
+	// to allow moving the screen
 	u8 mode;
-	/* in-game clock */
+	// in-game clock
 	Clock clock;
-	/* previous user input */
+	// previous user input
 	UserInput userInput;
 
 	static PlatformerLevelState getInstance();

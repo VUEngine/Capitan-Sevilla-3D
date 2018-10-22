@@ -25,78 +25,103 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
-#include <MovingOneWayEntity.h>
+#include <Box.h>
+#include <Lift.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Car1Tiles[];
-extern BYTE Car1Map[];
+extern BYTE Level1Stage2LiftTiles[];
+extern BYTE Level1Stage2LiftMap[];
+extern StageEntryPointDefinition LEVEL_1_STAGE_1_MAIN_EP;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef CAR_1_MOVE_ANIM =
+AnimationFunctionROMDef LEVEL_1_STAGE_2_LIFT_OPEN_ANIM =
 {
 	// number of frames of this animation function
-	2,
+	1,
 
 	// frames to play in animation
-	{0, 1},
+	{0},
 
 	// number of cycles a frame of animation is displayed
-	8,
+	4,
 
 	// whether to play it in loop or not
-	true,
+	false,
 
 	// method to call on function completion
 	NULL,
 
 	// function's name
-	"Move",
+	"Open",
 };
 
-AnimationDescriptionROMDef CAR_1_ANIM =
+AnimationFunctionROMDef LEVEL_1_STAGE_2_LIFT_CLOSED_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{1},
+
+	// number of cycles a frame of animation is displayed
+	4,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Closed",
+};
+
+AnimationDescriptionROMDef LEVEL_1_STAGE_2_LIFT_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&CAR_1_MOVE_ANIM,
+		(AnimationFunction*)&LEVEL_1_STAGE_2_LIFT_OPEN_ANIM,
+		(AnimationFunction*)&LEVEL_1_STAGE_2_LIFT_CLOSED_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef CAR_1_CH =
+CharSetROMDef LEVEL_1_STAGE_2_LIFT_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	55,
+	4 * 9,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_SINGLE,
 
 	// char definition
-	Car1Tiles,
+	Level1Stage2LiftTiles,
 };
 
-TextureROMDef CAR_1_TX =
+TextureROMDef LEVEL_1_STAGE_2_LIFT_TX =
 {
-	(CharSetDefinition*)&CAR_1_CH,
+	(CharSetDefinition*)&LEVEL_1_STAGE_2_LIFT_CH,
 
 	// bgmap definition
-	Car1Map,
+	Level1Stage2LiftMap,
 
 	// cols (max 64)
-	11,
+	4,
 
 	// rows (max 64)
-	5,
+	9,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -113,20 +138,20 @@ TextureROMDef CAR_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef CAR_1_SPRITE =
+BgmapSpriteROMDef LEVEL_1_STAGE_2_LIFT_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&CAR_1_TX,
+		(TextureDefinition*)&LEVEL_1_STAGE_2_LIFT_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, 1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -140,42 +165,103 @@ BgmapSpriteROMDef CAR_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const CAR_1_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL_1_STAGE_2_LIFT_SPRITES[] =
 {
-	&CAR_1_SPRITE,
+	&LEVEL_1_STAGE_2_LIFT_SPRITE,
 	NULL
 };
 
-MovingOneWayEntityROMDef CAR_1_AC =
+ShapeROMDef LEVEL_1_STAGE_2_LIFT_SHAPES[] =
+{
+	// TODO: this shape should not activate lift
+	/*
+	// top
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{20, 6, 64},
+
+		// displacement (x, y, z, p)
+		{8, -28, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
+	},*/
+
+	// right
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{16, 72, 64},
+
+		// displacement (x, y, z, p)
+		{22, 16, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+};
+
+LiftROMDef LEVEL_1_STAGE_2_LIFT_EN =
 {
 	{
 		{
 			{
 				// class allocator
-				__TYPE(MovingOneWayEntity),
+				__TYPE(Lift),
 
 				// sprites
-				(SpriteROMDef**)CAR_1_SPRITES,
+				(SpriteROMDef**)LEVEL_1_STAGE_2_LIFT_SPRITES,
 
 				// collision shapes
-				(ShapeDefinition*)NULL,
+				(ShapeDefinition*)LEVEL_1_STAGE_2_LIFT_SHAPES,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
 				{0, 0, 0},
 
 				// gameworld's character's type
-				kNoType,
+				kLift,
 
 				// physical specification
 				(PhysicalSpecification*)NULL,
 			},
 
 			// pointer to the animation definition for the character
-			(AnimationDescription*)&CAR_1_ANIM,
+			(AnimationDescription*)&LEVEL_1_STAGE_2_LIFT_ANIM,
 
 			// initial animation
-			"Move",
+			"Open"
 		},
 
 		// true to create a body
@@ -185,6 +271,6 @@ MovingOneWayEntityROMDef CAR_1_AC =
 		__NO_AXIS
 	},
 
-	// speed (x axis)
-	__I_TO_FIX10_6(-6),
+	// entry point to load after entering
+	(StageEntryPointDefinition*)&LEVEL_1_STAGE_1_MAIN_EP,
 };

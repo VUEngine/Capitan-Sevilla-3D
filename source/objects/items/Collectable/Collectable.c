@@ -70,9 +70,7 @@ bool Collectable::handleMessage(Telegram telegram)
 	{
 		case kItemTaken:
 		{
-			// additional action
 			Collectable::collect(this);
-
 			break;
 		}
 	}

@@ -48,22 +48,15 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
-//---------------------------------------------------------------------------------------------------------
-
-// declare the virtual methods
-
-
-//---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
 singleton class CustomCameraMovementManager : CameraMovementManager
 {
 	Camera camera;
-	/* update axis flag */
+	// update axis flag
 	Vector3DFlag positionFlag;
-	/* pointer to function that implements the required focusing */
+	// pointer to function that implements the required focusing
 	bool (*focusFunction)(void*, u32, u32);
 	bool (*previousFocusFunction)(void*, u32, u32);
 

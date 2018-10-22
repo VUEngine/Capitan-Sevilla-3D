@@ -677,6 +677,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 			break;
 
 		case kItemSausage:
+
 			this->sausages += 5;
 
 			// inform sausage item
@@ -684,6 +685,25 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 
 			// inform gui
 			Object::fireEvent(EventManager::getInstance(), kEventSausageCollected);
+
+			return false;
+			break;
+
+		case kLift:
+
+			// inform lift
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kLiftActivate, NULL);
+
+			// inform gui
+			Object::fireEvent(EventManager::getInstance(), kEventLiftActivated);
+
+			Entity::hide(this);
+
+			// disable user input
+			Game::disableKeypad(Game::getInstance());
+
+			// pause physical simulations
+			GameState::pausePhysics(GameState::safeCast(this), true);
 
 			return false;
 			break;

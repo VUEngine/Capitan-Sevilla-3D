@@ -40,6 +40,7 @@
 extern EntityDefinition GUI_EN;
 extern EntityDefinition ITEM_SAUSAGE_IT;
 extern EntityDefinition LEVEL_1_STAGE_2_ROOM_EN;
+extern EntityDefinition LEVEL_1_STAGE_2_LIFT_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -48,15 +49,16 @@ extern EntityDefinition LEVEL_1_STAGE_2_ROOM_EN;
 
 PositionedEntityROMDef LEVEL_1_STAGE_2_ST_CHILDREN[] =
 {
-	{&LEVEL_1_STAGE_2_ROOM_EN,		{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
-    {&ITEM_SAUSAGE_IT,		{ 342, 108,   16,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_2_ROOM_EN,	{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
+    {&ITEM_SAUSAGE_IT,			{ 342, 108,   16,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_2_LIFT_EN,	{ 688, 126,    0,   0},		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_STAGE_2_ST_UI_CHILDREN[] =
 {
-	{&GUI_EN, 				{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&GUI_EN, 					{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

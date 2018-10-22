@@ -366,7 +366,7 @@ ShapeROMDef LEVEL_1_STAGE_2_ROOM_SHAPES[] =
 		{16, 96, 64},
 
 		// displacement (x, y, z, p)
-		{-160, -28, 0, 0},
+		{-159, -28, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -392,7 +392,7 @@ ShapeROMDef LEVEL_1_STAGE_2_ROOM_SHAPES[] =
 		{16, 96, 64},
 
 		// displacement (x, y, z, p)
-		{18, -28, 0, 0},
+		{17, -28, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -418,7 +418,7 @@ ShapeROMDef LEVEL_1_STAGE_2_ROOM_SHAPES[] =
 		{16, 96, 64},
 
 		// displacement (x, y, z, p)
-		{260, -28, 0, 0},
+		{259, -28, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

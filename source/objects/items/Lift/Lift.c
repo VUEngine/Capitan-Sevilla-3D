@@ -24,29 +24,84 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <GameEvents.h>
+#include <Game.h>
+#include <CollisionManager.h>
+#include <MessageDispatcher.h>
+#include <Box.h>
+#include <PhysicalWorld.h>
+#include <SoundManager.h>
+#include <EventManager.h>
+#include <ProgressManager.h>
+#include "Lift.h"
 #include <PlatformerLevelState.h>
-#include <Languages.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageEntryPointROMDef LEVEL_1_STAGE_1_MAIN_EP;
+extern const u16 COLLECT_SND[];
 
 
 //---------------------------------------------------------------------------------------------------------
-//												LEVEL DEFINITION
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-PlatformerLevelROMDef LEVEL_1_STAGE_1_LV =
+void Lift::constructor(LiftDefinition* liftDefinition, s16 id, s16 internalId, const char* const name)
 {
-	// starting entry point
-	(StageEntryPointDefinition*)&LEVEL_1_STAGE_1_MAIN_EP,
+	Base::constructor((ActorDefinition*)&liftDefinition->actorDefinition, id, internalId, name);
 
-	// id
-	1,
+	this->liftDefinition = liftDefinition;
+}
 
-	// name
-	(void*)STR_LEVEL_1_NAME,
-};
+void Lift::destructor()
+{
+	// delete the super object
+	// must always be called at the end of the destructor
+	Base::destructor();
+}
+
+// state's handle message
+bool Lift::handleMessage(Telegram telegram)
+{
+	switch(Telegram::getMessage(telegram))
+	{
+		case kLiftActivate:
+		{
+			AnimatedEntity::playAnimation(this, "Closed");
+
+			// start delayed moving upwards
+			MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kLiftStart, NULL);
+
+			// start fade out effect
+			Brightness brightness = (Brightness){0, 0, 0};
+			Camera::startEffect(Camera::getInstance(),
+				kFadeTo, // effect type
+				0, // initial delay (in ms)
+				&brightness, // target brightness
+				__FADE_DELAY, // delay between fading steps (in ms)
+				(void (*)(Object, Object))Lift::onFadeOutComplete, // callback function
+				Object::safeCast(this) // callback scope
+			);
+
+			break;
+		}
+
+		case kLiftStart:
+		{
+			Velocity velocity = {0, __I_TO_FIX10_6(-2), 0};
+			Actor::moveUniformly(Actor::safeCast(this), &velocity);
+
+			break;
+		}
+	}
+
+	return false;
+}
+
+// handle event
+void Lift::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
+{
+	PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->liftDefinition->entryPoint);
+}

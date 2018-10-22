@@ -46,6 +46,7 @@ enum PlatformerTypes
 	kHero = kNoType + 1,
 	kShape,
 	kTopShape,
+	kLift,
 	kItemSausage,
 	kEnemy,
 	kFloor,

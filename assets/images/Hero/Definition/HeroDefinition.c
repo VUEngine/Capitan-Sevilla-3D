@@ -24,7 +24,6 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <libgccvb.h>
 #include <ObjectAnimatedSprite.h>
 #include <Box.h>
 

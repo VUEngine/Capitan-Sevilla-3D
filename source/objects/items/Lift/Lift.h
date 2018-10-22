@@ -19,24 +19,48 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef EVENT_MANAGER_H_
-#define EVENT_MANAGER_H_
+#ifndef LIFT_H_
+#define LIFT_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Object.h>
+#include <Actor.h>
+#include <PlatformerLevelState.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-singleton class EventManager : Object
+// definition in ROM memory
+typedef struct LiftDefinition
 {
-	static EventManager getInstance();
+	// base actor definition
+	ActorDefinition actorDefinition;
+
+	// entry point to load after entering
+	StageEntryPointDefinition* entryPoint;
+
+} LiftDefinition;
+
+typedef const LiftDefinition LiftROMDef;
+
+
+//---------------------------------------------------------------------------------------------------------
+//											CLASS'S DECLARATION
+//---------------------------------------------------------------------------------------------------------
+
+class Lift : Actor
+{
+	// definition pointer
+	LiftDefinition* liftDefinition;
+
+	void constructor(LiftDefinition* liftDefinition, s16 id, s16 internalId, const char* const name);
+	override bool handleMessage(Telegram telegram);
 }
 
 

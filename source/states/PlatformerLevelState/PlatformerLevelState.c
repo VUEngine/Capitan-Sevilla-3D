@@ -489,22 +489,7 @@ void PlatformerLevelState::startStage(StageEntryPointDefinition* entryPointDefin
 	// set current entry point
 	this->currentStageEntryPoint = entryPointDefinition;
 
-	// disable user input
-	Game::disableKeypad(Game::getInstance());
-
-	// pause physical simulations
-	GameState::pausePhysics(GameState::safeCast(this), true);
-
-	// start a fade out effect
-	Brightness brightness = (Brightness){0, 0, 0};
-	Camera::startEffect(Camera::getInstance(),
-		kFadeTo, // effect type
-		0, // initial delay (in ms)
-		&brightness, // target brightness
-		__FADE_DELAY, // delay between fading steps (in ms)
-		(void (*)(Object, Object))PlatformerLevelState::onStartStageFadeOutComplete, // callback function
-		Object::safeCast(this) // callback scope
-	);
+	Game::changeState(Game::getInstance(), GameState::safeCast(this));
 }
 
 // determine if starting a new level
@@ -545,12 +530,6 @@ void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attr
 
 	// announce level start
 	Object::fireEvent(EventManager::getInstance(), kEventLevelStarted);
-}
-
-// handle event
-void PlatformerLevelState::onStartStageFadeOutComplete(Object eventFirer __attribute__ ((unused)))
-{
-	Game::changeState(Game::getInstance(), GameState::safeCast(this));
 }
 
 // handle event
