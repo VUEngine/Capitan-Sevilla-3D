@@ -64,7 +64,7 @@ void CustomCameraMovementManager::constructor()
 void CustomCameraMovementManager::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // center world's this->camera in function of focus actor's position

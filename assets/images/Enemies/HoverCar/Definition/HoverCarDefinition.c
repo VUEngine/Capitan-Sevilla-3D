@@ -33,15 +33,15 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HoverCar1Tiles[];
-extern BYTE HoverCar1Map[];
+extern BYTE HoverCarTiles[];
+extern BYTE HoverCarMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef HOVER_CAR_1_MOVE_ANIM =
+AnimationFunctionROMDef HOVER_CAR_MOVE_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -62,16 +62,16 @@ AnimationFunctionROMDef HOVER_CAR_1_MOVE_ANIM =
 	"Move",
 };
 
-AnimationDescriptionROMDef HOVER_CAR_1_ANIM =
+AnimationDescriptionROMDef HOVER_CAR_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&HOVER_CAR_1_MOVE_ANIM,
+		(AnimationFunction*)&HOVER_CAR_MOVE_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef HOVER_CAR_1_CH =
+CharSetROMDef HOVER_CAR_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -83,15 +83,15 @@ CharSetROMDef HOVER_CAR_1_CH =
 	__ANIMATED_SINGLE,
 
 	// char definition
-	HoverCar1Tiles,
+	HoverCarTiles,
 };
 
-TextureROMDef HOVER_CAR_1_TX =
+TextureROMDef HOVER_CAR_TX =
 {
-	(CharSetDefinition*)&HOVER_CAR_1_CH,
+	(CharSetDefinition*)&HOVER_CAR_CH,
 
 	// bgmap definition
-	HoverCar1Map,
+	HoverCarMap,
 
 	// cols (max 64)
 	10,
@@ -114,14 +114,14 @@ TextureROMDef HOVER_CAR_1_TX =
 	false,
 };
 
-ObjectSpriteROMDef HOVER_CAR_1_SPRITE =
+ObjectSpriteROMDef HOVER_CAR_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&HOVER_CAR_1_TX,
+		(TextureDefinition*)&HOVER_CAR_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -138,13 +138,13 @@ ObjectSpriteROMDef HOVER_CAR_1_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const HOVER_CAR_1_SPRITES[] =
+ObjectSpriteROMDef* const HOVER_CAR_SPRITES[] =
 {
-	&HOVER_CAR_1_SPRITE,
+	&HOVER_CAR_SPRITE,
 	NULL
 };
 
-ShapeROMDef HOVER_CAR_1_AC_SHAPES[] =
+ShapeROMDef HOVER_CAR_SHAPES[] =
 {
 	{
 		// shape
@@ -175,7 +175,7 @@ ShapeROMDef HOVER_CAR_1_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-EnemyROMDef HOVER_CAR_1_AC =
+EnemyROMDef HOVER_CAR_EM =
 {
 	{
 		{
@@ -185,10 +185,10 @@ EnemyROMDef HOVER_CAR_1_AC =
 					__TYPE(Enemy),
 
 					// sprites
-					(SpriteROMDef**)HOVER_CAR_1_SPRITES,
+					(SpriteROMDef**)HOVER_CAR_SPRITES,
 
 					// collision shapes
-					(ShapeDefinition*)HOVER_CAR_1_AC_SHAPES,
+					(ShapeDefinition*)HOVER_CAR_SHAPES,
 
 					// size
 					// if 0, width and height will be inferred from the first sprite's texture's size
@@ -202,7 +202,7 @@ EnemyROMDef HOVER_CAR_1_AC =
 				},
 
 				// pointer to the animation definition for the character
-				(AnimationDescription*)&HOVER_CAR_1_ANIM,
+				(AnimationDescription*)&HOVER_CAR_ANIM,
 
 				// initial animation
 				"Move",

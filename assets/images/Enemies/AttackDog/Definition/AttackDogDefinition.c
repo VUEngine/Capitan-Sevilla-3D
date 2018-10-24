@@ -24,126 +24,80 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <BgmapAnimatedSprite.h>
+#include <ObjectAnimatedSprite.h>
 #include <Box.h>
-#include <Lift.h>
-#include <macros.h>
+#include <Enemy.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage2LiftTiles[];
-extern BYTE Level1Stage2LiftMap[];
-extern StageEntryPointDefinition LEVEL_1_STAGE_1_MAIN_EP;
+extern BYTE AttackDogTiles[];
+extern BYTE AttackDogMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef LEVEL_1_STAGE_2_LIFT_OPEN_ANIM =
+AnimationFunctionROMDef ATTACK_DOG_MOVE_ANIM =
 {
 	// number of frames of this animation function
-	1,
+	2,
 
 	// frames to play in animation
-	{0},
+	{0, 1},
 
 	// number of cycles a frame of animation is displayed
-	4,
+	8,
 
 	// whether to play it in loop or not
-	false,
+	true,
 
 	// method to call on function completion
 	NULL,
 
 	// function's name
-	"Open",
+	"Move",
 };
 
-AnimationFunctionROMDef LEVEL_1_STAGE_2_LIFT_CLOSED_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{1},
-
-	// number of cycles a frame of animation is displayed
-	4,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Closed",
-};
-
-AnimationFunctionROMDef LEVEL_1_STAGE_2_LIFT_BROKEN_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{2},
-
-	// number of cycles a frame of animation is displayed
-	4,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Broken",
-};
-
-AnimationDescriptionROMDef LEVEL_1_STAGE_2_LIFT_ANIM =
+AnimationDescriptionROMDef ATTACK_DOG_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&LEVEL_1_STAGE_2_LIFT_OPEN_ANIM,
-		(AnimationFunction*)&LEVEL_1_STAGE_2_LIFT_CLOSED_ANIM,
-		(AnimationFunction*)&LEVEL_1_STAGE_2_LIFT_BROKEN_ANIM,
+		(AnimationFunction*)&ATTACK_DOG_MOVE_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef LEVEL_1_STAGE_2_LIFT_CH =
+CharSetROMDef ATTACK_DOG_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	4 * 9,
+	20,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_SINGLE,
 
 	// char definition
-	Level1Stage2LiftTiles,
+	AttackDogTiles,
 };
 
-TextureROMDef LEVEL_1_STAGE_2_LIFT_TX =
+TextureROMDef ATTACK_DOG_TX =
 {
-	(CharSetDefinition*)&LEVEL_1_STAGE_2_LIFT_CH,
+	(CharSetDefinition*)&ATTACK_DOG_CH,
 
 	// bgmap definition
-	Level1Stage2LiftMap,
+	AttackDogMap,
 
 	// cols (max 64)
-	4,
+	5,
 
 	// rows (max 64)
-	9,
+	4,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -160,53 +114,47 @@ TextureROMDef LEVEL_1_STAGE_2_LIFT_TX =
 	false,
 };
 
-BgmapSpriteROMDef LEVEL_1_STAGE_2_LIFT_SPRITE =
+ObjectSpriteROMDef ATTACK_DOG_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&LEVEL_1_STAGE_2_LIFT_TX,
+		(TextureDefinition*)&ATTACK_DOG_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 1},
+		{0, 0, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_STAGE_2_LIFT_SPRITES[] =
+ObjectSpriteROMDef* const ATTACK_DOG_SPRITES[] =
 {
-	&LEVEL_1_STAGE_2_LIFT_SPRITE,
+	&ATTACK_DOG_SPRITE,
 	NULL
 };
 
-ShapeROMDef LEVEL_1_STAGE_2_LIFT_SHAPES[] =
+ShapeROMDef ATTACK_DOG_AC_SHAPES[] =
 {
-	// TODO: this shape should not activate lift
-	/*
-	// top
 	{
 		// shape
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{20, 6, 64},
+		{30, 20, 32},
 
 		// displacement (x, y, z, p)
-		{8, -31, 0, 0},
+		{7, 7, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -218,34 +166,7 @@ ShapeROMDef LEVEL_1_STAGE_2_LIFT_SHAPES[] =
 		false,
 
 		// layers in which I live
-		kSolidLayer,
-
-		// layers to ignore when checking for collisions
-		kNoLayer,
-	},*/
-
-	// right
-	{
-		// shape
-		__TYPE(Box),
-
-		// size (x, y, z)
-		{16, 72, 64},
-
-		// displacement (x, y, z, p)
-		{22, 13, 0, 0},
-
-		// rotation (x, y, z)
-		{0, 0, 0},
-
-		// scale (x, y, z)
-		{0, 0, 0},
-
-		// if true this shape checks for collisions against other shapes
-		false,
-
-		// layers in which I live
-		kSolidLayer,
+		kEnemiesLayer,
 
 		// layers to ignore when checking for collisions
 		kNoLayer,
@@ -254,45 +175,50 @@ ShapeROMDef LEVEL_1_STAGE_2_LIFT_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-LiftROMDef LEVEL_1_STAGE_2_LIFT_EN =
+EnemyROMDef ATTACK_DOG_EM =
 {
 	{
 		{
 			{
-				// class allocator
-				__TYPE(Lift),
+				{
+					// class allocator
+					__TYPE(Enemy),
 
-				// sprites
-				(SpriteROMDef**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+					// sprites
+					(SpriteROMDef**)ATTACK_DOG_SPRITES,
 
-				// collision shapes
-				(ShapeDefinition*)LEVEL_1_STAGE_2_LIFT_SHAPES,
+					// collision shapes
+					(ShapeDefinition*)ATTACK_DOG_AC_SHAPES,
 
-				// size
-				// if 0, width and height will be inferred from the first sprite's texture's size
-				{0, 0, 0},
+					// size
+					// if 0, width and height will be inferred from the first sprite's texture's size
+					{0, 0, 0},
 
-				// gameworld's character's type
-				kLift,
+					// gameworld's character's type
+					kEnemy,
 
-				// physical specification
-				(PhysicalSpecification*)NULL,
+					// physical specification
+					(PhysicalSpecification*)NULL,
+				},
+
+				// pointer to the animation definition for the character
+				(AnimationDescription*)&ATTACK_DOG_ANIM,
+
+				// initial animation
+				"Move",
 			},
 
-			// pointer to the animation definition for the character
-			(AnimationDescription*)&LEVEL_1_STAGE_2_LIFT_ANIM,
+			// true to create a body
+			true,
 
-			// initial animation
-			"Open"
+			// axes subject to gravity
+			__NO_AXIS
 		},
 
-		// true to create a body
-		true,
-
-		// axes subject to gravity
-		__NO_AXIS
+		// speed (x axis)
+		__I_TO_FIX10_6(-5),
 	},
 
-	// entry point to load after entering
-	(StageEntryPointDefinition*)&LEVEL_1_STAGE_1_MAIN_EP,
+	// energy
+	1,
 };

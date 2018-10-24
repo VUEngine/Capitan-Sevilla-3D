@@ -92,7 +92,7 @@ void CustomCameraEffectManager::constructor()
 void CustomCameraEffectManager::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 void CustomCameraEffectManager::startEffect(int effect, va_list args)

@@ -43,5 +43,5 @@ void EventManager::constructor()
 void EventManager::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }

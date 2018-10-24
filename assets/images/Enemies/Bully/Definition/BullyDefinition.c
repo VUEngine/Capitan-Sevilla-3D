@@ -33,15 +33,15 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Bully1Tiles[];
-extern BYTE Bully1Map[];
+extern BYTE BullyTiles[];
+extern BYTE BullyMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef BULLY_1_MOVE_ANIM =
+AnimationFunctionROMDef BULLY_MOVE_ANIM =
 {
 	// number of frames of this animation function
 	4,
@@ -62,16 +62,16 @@ AnimationFunctionROMDef BULLY_1_MOVE_ANIM =
 	"Move",
 };
 
-AnimationDescriptionROMDef BULLY_1_ANIM =
+AnimationDescriptionROMDef BULLY_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&BULLY_1_MOVE_ANIM,
+		(AnimationFunction*)&BULLY_MOVE_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef BULLY_1_CH =
+CharSetROMDef BULLY_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -83,15 +83,15 @@ CharSetROMDef BULLY_1_CH =
 	__ANIMATED_SINGLE,
 
 	// char definition
-	Bully1Tiles,
+	BullyTiles,
 };
 
-TextureROMDef BULLY_1_TX =
+TextureROMDef BULLY_TX =
 {
-	(CharSetDefinition*)&BULLY_1_CH,
+	(CharSetDefinition*)&BULLY_CH,
 
 	// bgmap definition
-	Bully1Map,
+	BullyMap,
 
 	// cols (max 64)
 	3,
@@ -114,14 +114,14 @@ TextureROMDef BULLY_1_TX =
 	false,
 };
 
-ObjectSpriteROMDef BULLY_1_SPRITE =
+ObjectSpriteROMDef BULLY_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&BULLY_1_TX,
+		(TextureDefinition*)&BULLY_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -138,13 +138,13 @@ ObjectSpriteROMDef BULLY_1_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const BULLY_1_SPRITES[] =
+ObjectSpriteROMDef* const BULLY_SPRITES[] =
 {
-	&BULLY_1_SPRITE,
+	&BULLY_SPRITE,
 	NULL
 };
 
-ShapeROMDef BULLY_1_AC_SHAPES[] =
+ShapeROMDef BULLY_SHAPES[] =
 {
 	{
 		// shape
@@ -175,7 +175,7 @@ ShapeROMDef BULLY_1_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-EnemyROMDef BULLY_1_AC =
+EnemyROMDef BULLY_EM =
 {
 	{
 		{
@@ -185,10 +185,10 @@ EnemyROMDef BULLY_1_AC =
 					__TYPE(Enemy),
 
 					// sprites
-					(SpriteROMDef**)BULLY_1_SPRITES,
+					(SpriteROMDef**)BULLY_SPRITES,
 
 					// collision shapes
-					(ShapeDefinition*)BULLY_1_AC_SHAPES,
+					(ShapeDefinition*)BULLY_SHAPES,
 
 					// size
 					// if 0, width and height will be inferred from the first sprite's texture's size
@@ -202,7 +202,7 @@ EnemyROMDef BULLY_1_AC =
 				},
 
 				// pointer to the animation definition for the character
-				(AnimationDescription*)&BULLY_1_ANIM,
+				(AnimationDescription*)&BULLY_ANIM,
 
 				// initial animation
 				"Move",

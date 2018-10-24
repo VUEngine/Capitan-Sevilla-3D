@@ -78,7 +78,7 @@ void PlatformerLevelState::destructor()
 	delete this->clock;
 
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 void PlatformerLevelState::getPositionedEntitiesToIgnore(VirtualList positionedEntitiesToIgnore __attribute__ ((unused)))

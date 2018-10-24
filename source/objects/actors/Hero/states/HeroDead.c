@@ -49,7 +49,7 @@ void HeroDead::constructor()
 void HeroDead::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter

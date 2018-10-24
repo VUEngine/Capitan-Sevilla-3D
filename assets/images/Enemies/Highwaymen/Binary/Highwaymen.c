@@ -1,9 +1,9 @@
 
-//{{BLOCK(Highwaymen1)
+//{{BLOCK(Highwaymen)
 
 //======================================================================
 //
-//	Highwaymen1, 80x56@2, 
+//	Highwaymen, 80x56@2, 
 //	+ 53 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 10x7 
 //	Total size: 848 + 140 = 988
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int Highwaymen1Tiles[212] __attribute__((aligned(4)))=
+const unsigned int HighwaymenTiles[212] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0xC0000000,
 	0x00000000,0x00000000,0x555CFFF0,0x55555557,0x00000000,0x00000000,0x000D0003,0x00D50035,
@@ -47,7 +47,7 @@ const unsigned int Highwaymen1Tiles[212] __attribute__((aligned(4)))=
 	0x3DA736A7,0x35F73F5F,0x0FFF3555,0x00000000,
 };
 
-const unsigned short Highwaymen1Map[70] __attribute__((aligned(4)))=
+const unsigned short HighwaymenMap[70] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0003,0x0000,0x0000,0x0000,0x0000,0x0000,
 	0x0000,0x0000,0x0004,0x0005,0x0006,0x0007,0x0008,0x0009,
@@ -61,4 +61,4 @@ const unsigned short Highwaymen1Map[70] __attribute__((aligned(4)))=
 	0x0031,0x0032,0x0000,0x0033,0x0034,0x0000,
 };
 
-//}}BLOCK(Highwaymen1)
+//}}BLOCK(Highwaymen)

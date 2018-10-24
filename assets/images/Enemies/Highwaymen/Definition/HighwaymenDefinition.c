@@ -34,15 +34,15 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Highwaymen1Tiles[];
-extern BYTE Highwaymen1Map[];
+extern BYTE HighwaymenTiles[];
+extern BYTE HighwaymenMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef HIGHWAYMEN_1_CH =
+CharSetROMDef HIGHWAYMEN_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -54,16 +54,16 @@ CharSetROMDef HIGHWAYMEN_1_CH =
 	__NOT_ANIMATED,
 
 	// char definition
-	Highwaymen1Tiles,
+	HighwaymenTiles,
 };
 
-TextureROMDef HIGHWAYMEN_1_TX =
+TextureROMDef HIGHWAYMEN_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&HIGHWAYMEN_1_CH,
+	(CharSetDefinition*)&HIGHWAYMEN_CH,
 
 	// bgmap definition
-	Highwaymen1Map,
+	HighwaymenMap,
 
 	// cols (max 64)
 	10,
@@ -86,14 +86,14 @@ TextureROMDef HIGHWAYMEN_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef HIGHWAYMEN_1_SPRITE =
+BgmapSpriteROMDef HIGHWAYMEN_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&HIGHWAYMEN_1_TX,
+		(TextureDefinition*)&HIGHWAYMEN_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -113,13 +113,13 @@ BgmapSpriteROMDef HIGHWAYMEN_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const HIGHWAYMEN_1_SPRITES[] =
+BgmapSpriteROMDef* const HIGHWAYMEN_SPRITES[] =
 {
-	&HIGHWAYMEN_1_SPRITE,
+	&HIGHWAYMEN_SPRITE,
 	NULL
 };
 
-ShapeROMDef HIGHWAYMEN_1_SHAPES[] =
+ShapeROMDef HIGHWAYMEN_SHAPES[] =
 {
 	// Left
 	{
@@ -206,7 +206,7 @@ ShapeROMDef HIGHWAYMEN_1_SHAPES[] =
 };
 
 
-PhysicalSpecificationROMDef HIGHWAYMEN_1_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMDef HIGHWAYMEN_PHYSICAL_PROPERTIES =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -221,16 +221,16 @@ PhysicalSpecificationROMDef HIGHWAYMEN_1_PHYSICAL_PROPERTIES =
 	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
 };
 
-EntityROMDef HIGHWAYMEN_1_EN =
+EntityROMDef HIGHWAYMEN_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)HIGHWAYMEN_1_SPRITES,
+	(SpriteROMDef**)HIGHWAYMEN_SPRITES,
 
 	// collision shapes
-	(ShapeDefinition*)HIGHWAYMEN_1_SHAPES,
+	(ShapeDefinition*)HIGHWAYMEN_SHAPES,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
@@ -240,5 +240,5 @@ EntityROMDef HIGHWAYMEN_1_EN =
 	kNoType,
 
 	// physical specification
-	(PhysicalSpecification*)&HIGHWAYMEN_1_PHYSICAL_PROPERTIES,
+	(PhysicalSpecification*)&HIGHWAYMEN_PHYSICAL_PROPERTIES,
 };

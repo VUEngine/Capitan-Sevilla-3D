@@ -185,7 +185,7 @@ void Hero::kneel()
 	Actor::stopMovement(Actor::safeCast(this), __X_AXIS);
 
 	// switch to kneel state
-	StateMachine::swapState(this->stateMachine, State::safeCast( HeroKneel::getInstance()));
+	StateMachine::swapState(this->stateMachine, State::safeCast(HeroKneel::getInstance()));
 }
 
 // make him jump
@@ -356,7 +356,7 @@ void Hero::startedMovingOnAxis(u16 axis)
 			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Walk");
 		}
 
-		StateMachine::swapState(this->stateMachine, State::safeCast( HeroMoving::getInstance()));
+		StateMachine::swapState(this->stateMachine, State::safeCast(HeroMoving::getInstance()));
 	}
 	else
 	{
@@ -452,11 +452,6 @@ void Hero::checkDirection(u32 pressedKey, char* animation)
 
 void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
 {
-	return;
-
-
-
-
 	if(!Hero::isInvincible(this) || !invincibleWins)
 	{
 		// start short screen shake

@@ -75,7 +75,7 @@ void ProgressManager::destructor()
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
 
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 void ProgressManager::resetHeroState()

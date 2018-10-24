@@ -49,7 +49,7 @@ void HeroIdle::constructor()
 void HeroIdle::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter

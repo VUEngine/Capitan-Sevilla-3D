@@ -67,7 +67,7 @@ void PauseScreenState::destructor()
 	delete this->optionsSelector;
 
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter

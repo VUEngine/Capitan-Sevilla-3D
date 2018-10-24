@@ -1,9 +1,9 @@
 
-//{{BLOCK(Bully1)
+//{{BLOCK(Bully)
 
 //======================================================================
 //
-//	Bully1, 24x144@2, 
+//	Bully, 24x144@2, 
 //	+ 55 tiles not compressed
 //	+ regular map (flat), not compressed, 3x18 
 //	Total size: 880 + 108 = 988
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int Bully1Tiles[220] __attribute__((aligned(4)))=
+const unsigned int BullyTiles[220] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0xC0000000,
 	0xFFFC0000,0x555C775C,0xAA5CAA5C,0xA655AA5F,0x03FF0000,0x03550377,0x037A037A,0x0F5E037A,
@@ -48,7 +48,7 @@ const unsigned int Bully1Tiles[220] __attribute__((aligned(4)))=
 	0x000F003A,0x00000000,0x00000000,0x00000000,
 };
 
-const unsigned short Bully1Map[54] __attribute__((aligned(4)))=
+const unsigned short BullyMap[54] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
 	0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,0x0010,
@@ -59,4 +59,4 @@ const unsigned short Bully1Map[54] __attribute__((aligned(4)))=
 	0x0031,0x0032,0x0033,0x0034,0x0035,0x0036,
 };
 
-//}}BLOCK(Bully1)
+//}}BLOCK(Bully)

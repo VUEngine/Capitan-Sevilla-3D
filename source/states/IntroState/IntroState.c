@@ -88,7 +88,7 @@ void IntroState::destructor()
 
 	// delete the super object
 	// must always be called at the end of the destructor
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter

@@ -37,11 +37,11 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition HIGHWAYMEN_1_EN;
+extern EntityDefinition HIGHWAYMEN_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_MAIN_EXIT_XP;
 extern EntityDefinition BENCH_1_EN;
 extern EntityDefinition BIKE_1_EN;
-extern EntityDefinition BULLY_1_AC;
+extern EntityDefinition BULLY_EM;
 extern EntityDefinition BUSH_BG_1_EN;
 extern EntityDefinition BUSH_BG_2_EN;
 extern EntityDefinition CAR_1_AC;
@@ -57,7 +57,7 @@ extern EntityDefinition COMIC_NIVEL_1_EN;
 extern EntityDefinition FENCE_2_EN;
 extern EntityDefinition GRANNY_1_PE;
 extern EntityDefinition GUI_EN;
-extern EntityDefinition HOVER_CAR_1_AC;
+extern EntityDefinition HOVER_CAR_EM;
 extern EntityDefinition ITEM_SAUSAGE_IT;
 extern EntityDefinition LANTERN_1_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_10_EN;
@@ -76,21 +76,21 @@ extern EntityDefinition STATUE_1_EN;
 extern EntityDefinition TREE_1_EN;
 extern EntityDefinition TREE_BG_1_EN;
 
-extern CharSetDefinition BULLY_1_CH;
+extern CharSetDefinition BULLY_CH;
 extern CharSetDefinition CAR_1_CH;
 extern CharSetDefinition FLOWER_POT_1_CH;
 extern CharSetDefinition GUI_CH;
 extern CharSetDefinition HERO_RIGHT_CH;
 extern CharSetDefinition HERO_RIGHT_BLACK_CH;
-extern CharSetDefinition HOVER_CAR_1_CH;
+extern CharSetDefinition HOVER_CAR_CH;
 
-extern TextureDefinition BULLY_1_TX;
+extern TextureDefinition BULLY_TX;
 extern TextureDefinition CAR_1_TX;
 extern TextureDefinition GUI_TX;
 extern TextureDefinition FLOWER_POT_1_TX;
 extern TextureDefinition HERO_TX;
 extern TextureDefinition HERO_BLACK_TX;
-extern TextureDefinition HOVER_CAR_1_TX;
+extern TextureDefinition HOVER_CAR_TX;
 
 extern Size collision_2_28_8;
 extern Size collision_48_2_8;
@@ -128,19 +128,19 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&CITY_FLOOR_COLLISION_CL,			{3432, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
 	{&CITY_FLOOR_COLLISION_CL,			{3612, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
 
-	{&BULLY_1_AC,						{ 460, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_1_AC,						{ 520, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
-	{&BULLY_1_AC,						{ 580, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_1_AC,						{ 660, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
-	{&BULLY_1_AC,						{ 860, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_1_AC,						{1230, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_1_AC,						{1330, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_1_AC,						{1430, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
-	{&BULLY_1_AC,						{1530, 152,   16,   0},		0, NULL, NULL, (void*)-5, false},
-	{&BULLY_1_AC,						{1600, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,						{ 460, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,						{ 520, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
+	{&BULLY_EM,						{ 580, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,						{ 660, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
+	{&BULLY_EM,						{ 860, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,						{1230, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,						{1330, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,						{1430, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
+	{&BULLY_EM,						{1530, 152,   16,   0},		0, NULL, NULL, (void*)-5, false},
+	{&BULLY_EM,						{1600, 152,   16,   0},		0, NULL, NULL, NULL, false},
 
-	{&HOVER_CAR_1_AC,					{1200, 114,   16,   0},		0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_1_AC,					{1486, 114,   16,   0},		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_EM,					{1200, 114,   16,   0},		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_EM,					{1486, 114,   16,   0},		0, NULL, NULL, NULL, false},
 
 	{&CAR_1_AC,							{ 580, 164,   -8,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,							{1240, 164,   -8,   0},		0, NULL, NULL, NULL, false},
@@ -199,7 +199,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&TREE_1_EN,						{3286, 111,   80,   0},		0, NULL, NULL, NULL, false},
 	{&BENCH_1_EN,						{3342, 143,   64,   0},		0, NULL, NULL, NULL, false},
 
-	{&HIGHWAYMEN_1_EN,					{3440, 144,    0,   0},		0, NULL, NULL, NULL, false},
+	{&HIGHWAYMEN_EN,					{3440, 144,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&CAR_BG_2_EN,						{3579, 138,   16,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_11_EN,	{3583,  64,   32,   0},		0, NULL, NULL, NULL, false},
@@ -232,10 +232,10 @@ FontROMDef* const LEVEL_1_STAGE_1_ST_FONTS[] =
 
 CharSetROMDef* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 {
-	&BULLY_1_CH,
+	&BULLY_CH,
 	&CAR_1_CH,
 	&FLOWER_POT_1_CH,
-	&HOVER_CAR_1_CH,
+	&HOVER_CAR_CH,
 	&GUI_CH,
 	&HERO_RIGHT_CH,
 	&HERO_RIGHT_BLACK_CH,
@@ -245,10 +245,10 @@ CharSetROMDef* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 
 TextureDefinition* const LEVEL_1_STAGE_1_ST_TEXTURES[] =
 {
-	&BULLY_1_TX,
+	&BULLY_TX,
 	&CAR_1_TX,
 	&FLOWER_POT_1_TX,
-	&HOVER_CAR_1_TX,
+	&HOVER_CAR_TX,
 	&GUI_TX,
 	&HERO_TX,
 	&HERO_BLACK_TX,

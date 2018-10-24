@@ -58,7 +58,7 @@ void LolaSoftScreenState::constructor()
 void LolaSoftScreenState::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter

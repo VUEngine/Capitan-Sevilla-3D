@@ -63,7 +63,7 @@ void TitleScreenState::constructor()
 void TitleScreenState::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter

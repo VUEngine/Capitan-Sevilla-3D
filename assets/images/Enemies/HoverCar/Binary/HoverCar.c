@@ -1,9 +1,9 @@
 
-//{{BLOCK(HoverCar1)
+//{{BLOCK(HoverCar)
 
 //======================================================================
 //
-//	HoverCar1, 80x96@2, 
+//	HoverCar, 80x96@2, 
 //	+ 121 tiles not compressed
 //	+ regular map (flat), not compressed, 10x12 
 //	Total size: 1936 + 240 = 2176
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int HoverCar1Tiles[484] __attribute__((aligned(4)))=
+const unsigned int HoverCarTiles[484] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0xA0008000,
 	0x00000000,0x00000000,0x00020000,0x55550FFF,0x00000000,0x00000000,0x00000000,0x00000000,
@@ -85,7 +85,7 @@ const unsigned int HoverCar1Tiles[484] __attribute__((aligned(4)))=
 	0x00000000,0x00000000,0x00000000,0x00000000,
 };
 
-const unsigned short HoverCar1Map[120] __attribute__((aligned(4)))=
+const unsigned short HoverCarMap[120] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
 	0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,0x0010,
@@ -105,4 +105,4 @@ const unsigned short HoverCar1Map[120] __attribute__((aligned(4)))=
 	0x0071,0x0072,0x0073,0x0074,0x0075,0x0076,0x0077,0x0078,
 };
 
-//}}BLOCK(HoverCar1)
+//}}BLOCK(HoverCar)

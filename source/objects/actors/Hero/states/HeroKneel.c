@@ -49,7 +49,7 @@ void HeroKneel::constructor()
 void HeroKneel::destructor()
 {
 	// destroy base
-	__SINGLETON_DESTROY;
+	Base::destructor();
 }
 
 // state's enter
@@ -62,31 +62,6 @@ void HeroKneel::enter(void* owner)
 
 	// manipulate hero's shape
 	HeroState::toggleShapes(this, owner, true);
-}
-
-// state's handle message
-bool HeroKneel::processMessage(void* owner, Telegram telegram)
-{
-	switch(Telegram::getMessage(telegram))
-	{
-		case kBodyStartedMoving:
-
-			Hero::startedMovingOnAxis(Hero::safeCast(owner), *(u16*)Telegram::getExtraInfo(telegram));
-			break;
-
-		case kBodyStopped:
-
-			return true;
-			break;
-
-		case kHeroSleep:
-
-			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(owner), "Sleep");
-			return true;
-			break;
-	}
-
-	return false;
 }
 
 void HeroKneel::onKeyHold(void* owner, const UserInput* userInput)
@@ -107,14 +82,6 @@ void HeroKneel::onKeyHold(void* owner, const UserInput* userInput)
             Hero::startedMovingOnAxis(Hero::safeCast(owner), __X_AXIS);
         }
     }
-}
-
-void HeroKneel::onKeyReleased(void* owner, const UserInput* userInput)
-{
-	if(K_B & userInput->releasedKey)
-	{
-		//Hero::stopShooting(Hero::safeCast(owner));
-	}
 }
 
 void HeroKneel::onKeyPressed(void* owner, const UserInput* userInput)
