@@ -202,9 +202,7 @@ ProjectileEjectorROMDef GRANNY_1_PE =
 	},
 
 	// projectile
-    {
-    	(EntityDefinition*)&FLOWER_POT_1_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, false
-    },
+    {(EntityDefinition*)&FLOWER_POT_1_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
 
 	// delay of the first projectile ejection (only relevant if initially active)
 	1500,

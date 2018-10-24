@@ -255,10 +255,10 @@ ProjectileROMDef FLOWER_POT_1_PR =
 	// max position relative to ejector before position reset
     {
     	0,
-    	0,//__PIXELS_TO_METERS(168),
+    	__PIXELS_TO_METERS(192),
     	0,
     },
 
 	// delay between position checks (-1 to disable)
-	-1,
+	200,
 };
