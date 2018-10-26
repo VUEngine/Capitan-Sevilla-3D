@@ -65,8 +65,8 @@ class Projectile : Actor
 {
 	// definition pointer
 	ProjectileDefinition* projectileDefinition;
-	// max global position at time of ejection
-	Vector3D maxGlobalPosition;
+	// position at time of ejection
+	Vector3D originalPosition;
 
 	void constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
 	void startMovement();

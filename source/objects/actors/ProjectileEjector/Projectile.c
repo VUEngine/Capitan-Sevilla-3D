@@ -47,7 +47,7 @@ void Projectile::constructor(ProjectileDefinition* projectileDefinition, s16 id,
 	this->projectileDefinition = projectileDefinition;
 
 	// init members
-	this->maxGlobalPosition = (Vector3D){0, 0, 0};
+	this->originalPosition = (Vector3D){0, 0, 0};
 }
 
 // class's constructor
@@ -71,11 +71,8 @@ void Projectile::ready(bool recursive)
 // start moving
 void Projectile::startMovement()
 {
-	// set direction according to ejector
+	// adjustments relative to ejector direction
  	Direction direction = Entity::getDirection(Entity::safeCast(this->parent));
- 	Entity::setDirection(Entity::safeCast(this), direction);
-
-	// adjustments relative to direction
 	Velocity velocity = this->projectileDefinition->velocity;
 	velocity.x *= direction.x;
 	velocity.y *= direction.y;
@@ -88,19 +85,8 @@ void Projectile::startMovement()
 	// set back to local position
 	Actor::setLocalPosition(Actor::safeCast(this), &position);
 
-	// compute max global position to check against later
-	if(this->projectileDefinition->checkDelay > -1)
-	{
-		this->maxGlobalPosition.x = (this->projectileDefinition->maxDistance.x > 0)
-			? this->transformation.globalPosition.x + (this->projectileDefinition->maxDistance.x * direction.x)
-			: 0;
-		this->maxGlobalPosition.y = (this->projectileDefinition->maxDistance.y > 0)
-			? this->transformation.globalPosition.y + (this->projectileDefinition->maxDistance.y * direction.y)
-			: 0;
-		this->maxGlobalPosition.z = (this->projectileDefinition->maxDistance.z > 0)
-			? this->transformation.globalPosition.z + (this->projectileDefinition->maxDistance.z * direction.z)
-			: 0;
-	}
+	// save current global position to check distance later
+	this->originalPosition = this->transformation.globalPosition;
 
 	// activate shapes
 	Entity::activateShapes(Entity::safeCast(this), true);
@@ -146,14 +132,9 @@ void Projectile::stopMovement()
 
 void Projectile::checkPosition()
 {
- 	Direction direction = Entity::getDirection(Entity::safeCast(this));
-
-	if(	((this->maxGlobalPosition.x != 0) && (((direction.x == __RIGHT) && this->transformation.globalPosition.x > this->maxGlobalPosition.x) ||
-											 ((direction.x == __LEFT)  && this->transformation.globalPosition.x < this->maxGlobalPosition.x))) ||
-		((this->maxGlobalPosition.y != 0) && (((direction.y == __DOWN)  && this->transformation.globalPosition.y > this->maxGlobalPosition.y) ||
-											 ((direction.y == __UP)    && this->transformation.globalPosition.y < this->maxGlobalPosition.y))) ||
-		((this->maxGlobalPosition.z != 0) && (((direction.z == __FAR)   && this->transformation.globalPosition.z > this->maxGlobalPosition.z) ||
-											 ((direction.z == __NEAR)  && this->transformation.globalPosition.z < this->maxGlobalPosition.z))))
+	if( (this->projectileDefinition->maxDistance.x != 0 && __ABS(this->originalPosition.x - this->transformation.globalPosition.x) > this->projectileDefinition->maxDistance.x) ||
+		(this->projectileDefinition->maxDistance.y != 0 && __ABS(this->originalPosition.y - this->transformation.globalPosition.y) > this->projectileDefinition->maxDistance.y) ||
+		(this->projectileDefinition->maxDistance.z != 0 && __ABS(this->originalPosition.z - this->transformation.globalPosition.z) > this->projectileDefinition->maxDistance.z) )
 	{
 		Projectile::stopMovement(this);
 	}

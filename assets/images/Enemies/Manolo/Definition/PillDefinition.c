@@ -218,22 +218,22 @@ ProjectileROMDef PILL_PR =
 
 	// velocity
     {
-    	__F_TO_FIX10_6(8.0f),
+    	__F_TO_FIX10_6(-8.0f),
     	0,
     	0,
 	},
 
 	// position relative to ejector
     {
-    	__PIXELS_TO_METERS(20),
+    	__PIXELS_TO_METERS(-20),
     	__PIXELS_TO_METERS(2),
     	0,
     },
 
 	// max position relative to ejector before position reset
     {
+    	__PIXELS_TO_METERS(216),
     	0,
-    	__PIXELS_TO_METERS(64),
     	0,
     },
 

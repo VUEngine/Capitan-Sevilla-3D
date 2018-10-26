@@ -129,8 +129,6 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&CITY_FLOOR_COLLISION_CL,			{3432, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
 	{&CITY_FLOOR_COLLISION_CL,			{3612, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
 
-	{&MANOLO_PE,						{ 460, 142,   16,   0},		0, NULL, NULL, NULL, false},
-/*
 	{&BULLY_EM,							{ 460, 152,   16,   0},		0, NULL, NULL, NULL, false},
 	{&BULLY_EM,							{ 520, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
 	{&BULLY_EM,							{ 580, 152,   16,   0},		0, NULL, NULL, NULL, false},
@@ -141,7 +139,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&BULLY_EM,							{1430, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
 	{&BULLY_EM,							{1530, 152,   16,   0},		0, NULL, NULL, (void*)-5, false},
 	{&BULLY_EM,							{1600, 152,   16,   0},		0, NULL, NULL, NULL, false},
-*/
+
 	{&HOVER_CAR_EM,						{1200, 114,   16,   0},		0, NULL, NULL, NULL, false},
 	{&HOVER_CAR_EM,						{1486, 114,   16,   0},		0, NULL, NULL, NULL, false},
 
@@ -164,7 +162,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&TREE_BG_1_EN,						{ 704, 112,   96,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_3_EN,	{ 808,  80,   64,   0},		0, NULL, NULL, NULL, false},
-//	{&GRANNY_PE,						{ 853,  50,   48,   0},		0, NULL, NULL, NULL, false},
+	{&GRANNY_PE,						{ 853,  50,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_4_EN,	{ 996, 102,   96,   0},		0, NULL, NULL, NULL, false},
 
@@ -197,6 +195,8 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&GRANNY_PE,						{2552,  18,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_10_EN,	{3006,  80,   64,   0},		0, NULL, NULL, NULL, false},
+
+	{&MANOLO_PE,						{3160, 142,   16,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,						{3262, 136,    0,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_1_EN,						{3286, 111,   80,   0},		0, NULL, NULL, NULL, false},

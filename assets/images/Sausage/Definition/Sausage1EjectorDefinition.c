@@ -76,9 +76,6 @@ ProjectileEjectorROMDef SAUSAGE_EJECTOR_PE =
 	// projectile
     {(EntityDefinition*)&SAUSAGE_1_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
 
-	// initial direction
-	{__RIGHT, __DOWN, __FAR},
-
 	// delay of the first projectile ejection (only relevant if initially active)
 	0,
 

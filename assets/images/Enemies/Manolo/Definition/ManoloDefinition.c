@@ -204,14 +204,11 @@ ProjectileEjectorROMDef MANOLO_PE =
 	// projectile
     {(EntityDefinition*)&PILL_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
 
-	// initial direction
-	{__LEFT, __DOWN, __FAR},
-
 	// delay of the first projectile ejection (only relevant if initially active)
-	1500,
+	1000,
 
 	// pause between projectile ejections
-	2800,
+	1800,
 
 	// whether the ejector should be active on creation
 	true,
