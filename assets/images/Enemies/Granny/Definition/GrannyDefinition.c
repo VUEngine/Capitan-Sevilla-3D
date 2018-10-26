@@ -34,7 +34,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern ActorDefinition FLOWER_POT_1_PR;
+extern ActorDefinition FLOWER_POT_PR;
 extern BYTE GrannyTiles[];
 extern BYTE GrannyMap[];
 
@@ -43,7 +43,7 @@ extern BYTE GrannyMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef GRANNY_1_IDLE_ANIM =
+AnimationFunctionROMDef GRANNY_IDLE_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -64,7 +64,7 @@ AnimationFunctionROMDef GRANNY_1_IDLE_ANIM =
 	"Idle",
 };
 
-AnimationFunctionROMDef GRANNY_1_SHOOT_ANIM =
+AnimationFunctionROMDef GRANNY_SHOOT_ANIM =
 {
 	// number of frames of this animation function
 	4,
@@ -85,17 +85,17 @@ AnimationFunctionROMDef GRANNY_1_SHOOT_ANIM =
 	"Shoot",
 };
 
-AnimationDescriptionROMDef GRANNY_1_ANIM =
+AnimationDescriptionROMDef GRANNY_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&GRANNY_1_IDLE_ANIM,
-		(AnimationFunction*)&GRANNY_1_SHOOT_ANIM,
+		(AnimationFunction*)&GRANNY_IDLE_ANIM,
+		(AnimationFunction*)&GRANNY_SHOOT_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef GRANNY_1_CH =
+CharSetROMDef GRANNY_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -110,10 +110,10 @@ CharSetROMDef GRANNY_1_CH =
 	GrannyTiles,
 };
 
-TextureROMDef GRANNY_1_TX =
+TextureROMDef GRANNY_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&GRANNY_1_CH,
+	(CharSetDefinition*)&GRANNY_CH,
 
 	// bgmap definition
 	GrannyMap,
@@ -139,14 +139,14 @@ TextureROMDef GRANNY_1_TX =
 	false,
 };
 
-ObjectSpriteROMDef GRANNY_1_SPRITE =
+ObjectSpriteROMDef GRANNY_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&GRANNY_1_TX,
+		(TextureDefinition*)&GRANNY_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -163,13 +163,13 @@ ObjectSpriteROMDef GRANNY_1_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const GRANNY_1_SPRITES[] =
+ObjectSpriteROMDef* const GRANNY_SPRITES[] =
 {
-	&GRANNY_1_SPRITE,
+	&GRANNY_SPRITE,
 	NULL
 };
 
-ProjectileEjectorROMDef GRANNY_1_PE =
+ProjectileEjectorROMDef GRANNY_PE =
 {
 	// animated entity
 	{
@@ -178,7 +178,7 @@ ProjectileEjectorROMDef GRANNY_1_PE =
 			__TYPE(ProjectileEjector),
 
 			// sprites
-			(SpriteROMDef**)GRANNY_1_SPRITES,
+			(SpriteROMDef**)GRANNY_SPRITES,
 
 			// collision shapes
 			(ShapeDefinition*)NULL,
@@ -195,14 +195,17 @@ ProjectileEjectorROMDef GRANNY_1_PE =
 		},
 
 		// pointer to the animation definition for the character
-		(AnimationDescription*)&GRANNY_1_ANIM,
+		(AnimationDescription*)&GRANNY_ANIM,
 
 		// initial animation
 		"Idle"
 	},
 
 	// projectile
-    {(EntityDefinition*)&FLOWER_POT_1_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
+    {(EntityDefinition*)&FLOWER_POT_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
+
+	// initial direction
+	{__RIGHT, __DOWN, __FAR},
 
 	// delay of the first projectile ejection (only relevant if initially active)
 	1500,

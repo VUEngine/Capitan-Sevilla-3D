@@ -70,6 +70,9 @@ void ProjectileEjector::ready(bool recursive)
 	// call base
 	Base::ready(this, recursive);
 
+	// set initial direction
+	Entity::setDirection(Entity::safeCast(this), this->projectileEjectorDefinition->direction);
+
 	// play idle animation
 	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->idleAnimationName);
 

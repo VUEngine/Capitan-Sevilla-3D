@@ -25,23 +25,23 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <ObjectAnimatedSprite.h>
-#include <Box.h>
-#include "FlowerPot.h"
+#include <Ball.h>
+#include <Projectile.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FlowerPotTiles[];
-extern BYTE FlowerPotMap[];
+extern BYTE PillTiles[];
+extern BYTE PillMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef FLOWER_POT_DEFAULT_ANIM =
+AnimationFunctionROMDef PILL_DEFAULT_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -62,59 +62,37 @@ AnimationFunctionROMDef FLOWER_POT_DEFAULT_ANIM =
 	"Default",
 };
 
-AnimationFunctionROMDef FLOWER_POT_BREAK_ANIM =
-{
-	// number of frames of this animation function
-	2,
-
-	// frames to play in animation
-	{1, 2},
-
-	// number of cycles a frame of animation is displayed
-	16,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Break",
-};
-
-AnimationDescriptionROMDef FLOWER_POT_ANIM =
+AnimationDescriptionROMDef PILL_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&FLOWER_POT_DEFAULT_ANIM,
-		(AnimationFunction*)&FLOWER_POT_BREAK_ANIM,
+		(AnimationFunction*)&PILL_DEFAULT_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef FLOWER_POT_CH =
+CharSetROMDef PILL_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	3 * 2 * 2,
+	2 * 2,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_MULTI,
+	__ANIMATED_SINGLE,
 
 	// char definition
-	FlowerPotTiles,
+	PillTiles,
 };
 
-TextureROMDef FLOWER_POT_TX =
+TextureROMDef PILL_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&FLOWER_POT_CH,
+	(CharSetDefinition*)&PILL_CH,
 
 	// bgmap definition
-	FlowerPotMap,
+	PillMap,
 
 	// cols (max 64)
 	2,
@@ -128,7 +106,7 @@ TextureROMDef FLOWER_POT_TX =
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
-	3,
+	1,
 
 	// palette number (0-3)
 	1,
@@ -137,20 +115,20 @@ TextureROMDef FLOWER_POT_TX =
 	false,
 };
 
-ObjectSpriteROMDef FLOWER_POT_SPRITE =
+ObjectSpriteROMDef PILL_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&FLOWER_POT_TX,
+		(TextureDefinition*)&PILL_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, -2},
+		{0, 0, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -161,20 +139,20 @@ ObjectSpriteROMDef FLOWER_POT_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const FLOWER_POT_SPRITES[] =
+ObjectSpriteROMDef* const PILL_SPRITES[] =
 {
-	&FLOWER_POT_SPRITE,
+	&PILL_SPRITE,
 	NULL
 };
 
-ShapeROMDef FLOWER_POT_PR_SHAPES[] =
+ShapeROMDef PILL_PR_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Box),
+		__TYPE(Ball),
 
 		// size (x, y, z)
-		{12, 12, 128},
+		{16, 16, 16},
 
 		// displacement (x, y, z, p)
 		{0, 0, 0, 0},
@@ -183,7 +161,7 @@ ShapeROMDef FLOWER_POT_PR_SHAPES[] =
 		{0, 0, 0},
 
 		// scale (x, y, z)
-		{1, 1, 1},
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
 
 		// if true this shape checks for collisions against other shapes
 		true,
@@ -198,20 +176,20 @@ ShapeROMDef FLOWER_POT_PR_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-ProjectileROMDef FLOWER_POT_PR =
+ProjectileROMDef PILL_PR =
 {
 	// actor
 	{
 		{
 			{
 				// class allocator
-				__TYPE(FlowerPot),
+				__TYPE(Projectile),
 
 				// sprites
-				(SpriteROMDef**)FLOWER_POT_SPRITES,
+				(SpriteROMDef**)PILL_SPRITES,
 
 				// collision shapes
-				(ShapeDefinition*)FLOWER_POT_PR_SHAPES,
+				(ShapeDefinition*)PILL_PR_SHAPES,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -225,7 +203,7 @@ ProjectileROMDef FLOWER_POT_PR =
 			},
 
 			// pointer to the animation definition for the character
-			(AnimationDescription*)&FLOWER_POT_ANIM,
+			(AnimationDescription*)&PILL_ANIM,
 
 			// initial animation
 			"Default",
@@ -240,22 +218,22 @@ ProjectileROMDef FLOWER_POT_PR =
 
 	// velocity
     {
+    	__F_TO_FIX10_6(8.0f),
     	0,
-    	__F_TO_FIX10_6(3.2f),
     	0,
 	},
 
 	// position relative to ejector
     {
-    	0,
-    	__PIXELS_TO_METERS(16),
+    	__PIXELS_TO_METERS(20),
+    	__PIXELS_TO_METERS(2),
     	0,
     },
 
 	// max position relative to ejector before position reset
     {
     	0,
-    	__PIXELS_TO_METERS(192),
+    	__PIXELS_TO_METERS(64),
     	0,
     },
 

@@ -223,7 +223,7 @@
 	__BLOCK_DEFINITION(80, 50)																			\
 	__BLOCK_DEFINITION(68, 60)																			\
 	__BLOCK_DEFINITION(40, 96)																			\
-	__BLOCK_DEFINITION(24, 480)																			\
+	__BLOCK_DEFINITION(28, 480)																			\
 	__BLOCK_DEFINITION(20, 700)																			\
 	__BLOCK_DEFINITION(16, 450)																			\
 
@@ -237,7 +237,7 @@
 	__SET_MEMORY_POOL_ARRAY(80)																			\
 	__SET_MEMORY_POOL_ARRAY(68)																			\
 	__SET_MEMORY_POOL_ARRAY(40)																			\
-	__SET_MEMORY_POOL_ARRAY(24)																			\
+	__SET_MEMORY_POOL_ARRAY(28)																			\
 	__SET_MEMORY_POOL_ARRAY(20)																			\
 	__SET_MEMORY_POOL_ARRAY(16)
 

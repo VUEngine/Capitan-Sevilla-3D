@@ -199,6 +199,9 @@ void Hero::jump(bool checkIfYMovement)
 		// check if more jumps are allowed
 		if(this->jumps < allowedNumberOfJumps)
 		{
+			// switch to moving state
+			StateMachine::swapState(this->stateMachine, State::safeCast(HeroMoving::getInstance()));
+
 			// init a force to add to the hero's momentum
 			Force force = {0, 0, 0};
 

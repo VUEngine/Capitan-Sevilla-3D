@@ -43,6 +43,9 @@ typedef struct ProjectileEjectorDefinition
 	// projectile positioned entity
 	PositionedEntity projectilePositionedEntityDefinition;
 
+	// initial direction
+	Direction direction;
+
 	// delay of the first projectile ejection (only relevant if initially active)
 	u16 initialEjectDelay;
 

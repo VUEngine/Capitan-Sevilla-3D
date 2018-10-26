@@ -71,28 +71,22 @@ void Projectile::ready(bool recursive)
 // start moving
 void Projectile::startMovement()
 {
+	// set direction according to ejector
+ 	Direction direction = Entity::getDirection(Entity::safeCast(this->parent));
+ 	Entity::setDirection(Entity::safeCast(this), direction);
+
 	// adjustments relative to direction
- 	Direction ejectorDirection = Entity::getDirection(Entity::safeCast(this->parent));
 	Velocity velocity = this->projectileDefinition->velocity;
-	velocity.x *= ejectorDirection.x;
-	velocity.y *= ejectorDirection.y;
-	velocity.z *= ejectorDirection.z;
+	velocity.x *= direction.x;
+	velocity.y *= direction.y;
+	velocity.z *= direction.z;
 	Vector3D position = this->projectileDefinition->position;
-	position.x *= ejectorDirection.x;
-	position.y *= ejectorDirection.y;
-	position.z *= ejectorDirection.z;
+	position.x *= direction.x;
+	position.y *= direction.y;
+	position.z *= direction.z;
 
 	// set back to local position
 	Actor::setLocalPosition(Actor::safeCast(this), &position);
-
-	// find and set actual direction of projectile
-	Direction direction =
-	{
-		velocity.x >= 0 ? __RIGHT : __LEFT,
-		velocity.y >= 0 ? __DOWN : __UP,
-		velocity.z >= 0 ? __FAR : __NEAR,
-	};
- 	Entity::setDirection(Entity::safeCast(this), direction);
 
 	// compute max global position to check against later
 	if(this->projectileDefinition->checkDelay > -1)

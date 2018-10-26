@@ -55,7 +55,7 @@ extern EntityDefinition CLOTHES_1_EN;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition COMIC_NIVEL_1_EN;
 extern EntityDefinition FENCE_2_EN;
-extern EntityDefinition GRANNY_1_PE;
+extern EntityDefinition GRANNY_PE;
 extern EntityDefinition GUI_EN;
 extern EntityDefinition HOVER_CAR_EM;
 extern EntityDefinition ITEM_SAUSAGE_IT;
@@ -70,6 +70,7 @@ extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_6_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_7_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_8_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_9_EN;
+extern EntityDefinition MANOLO_PE;
 extern EntityDefinition PLAYGROUND_1_EN;
 extern EntityDefinition PLAYGROUND_SIGN_1_EN;
 extern EntityDefinition STATUE_1_EN;
@@ -78,7 +79,7 @@ extern EntityDefinition TREE_BG_1_EN;
 
 extern CharSetDefinition BULLY_CH;
 extern CharSetDefinition CAR_1_CH;
-extern CharSetDefinition FLOWER_POT_1_CH;
+extern CharSetDefinition FLOWER_POT_CH;
 extern CharSetDefinition GUI_CH;
 extern CharSetDefinition HERO_RIGHT_CH;
 extern CharSetDefinition HERO_RIGHT_BLACK_CH;
@@ -87,7 +88,7 @@ extern CharSetDefinition HOVER_CAR_CH;
 extern TextureDefinition BULLY_TX;
 extern TextureDefinition CAR_1_TX;
 extern TextureDefinition GUI_TX;
-extern TextureDefinition FLOWER_POT_1_TX;
+extern TextureDefinition FLOWER_POT_TX;
 extern TextureDefinition HERO_TX;
 extern TextureDefinition HERO_BLACK_TX;
 extern TextureDefinition HOVER_CAR_TX;
@@ -128,30 +129,32 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&CITY_FLOOR_COLLISION_CL,			{3432, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
 	{&CITY_FLOOR_COLLISION_CL,			{3612, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
 
-	{&BULLY_EM,						{ 460, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_EM,						{ 520, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
-	{&BULLY_EM,						{ 580, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_EM,						{ 660, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
-	{&BULLY_EM,						{ 860, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_EM,						{1230, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_EM,						{1330, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_EM,						{1430, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
-	{&BULLY_EM,						{1530, 152,   16,   0},		0, NULL, NULL, (void*)-5, false},
-	{&BULLY_EM,						{1600, 152,   16,   0},		0, NULL, NULL, NULL, false},
-
-	{&HOVER_CAR_EM,					{1200, 114,   16,   0},		0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_EM,					{1486, 114,   16,   0},		0, NULL, NULL, NULL, false},
+	{&MANOLO_PE,						{ 460, 142,   16,   0},		0, NULL, NULL, NULL, false},
+/*
+	{&BULLY_EM,							{ 460, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,							{ 520, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
+	{&BULLY_EM,							{ 580, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,							{ 660, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
+	{&BULLY_EM,							{ 860, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,							{1230, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,							{1330, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,							{1430, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
+	{&BULLY_EM,							{1530, 152,   16,   0},		0, NULL, NULL, (void*)-5, false},
+	{&BULLY_EM,							{1600, 152,   16,   0},		0, NULL, NULL, NULL, false},
+*/
+	{&HOVER_CAR_EM,						{1200, 114,   16,   0},		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_EM,						{1486, 114,   16,   0},		0, NULL, NULL, NULL, false},
 
 	{&CAR_1_AC,							{ 580, 164,   -8,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,							{1240, 164,   -8,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,							{1810, 164,   -8,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,							{2608, 164,   -8,   0},		0, NULL, NULL, NULL, false},
 
-	{&COMIC_NIVEL_1_EN,					{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
+//	{&COMIC_NIVEL_1_EN,					{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,						{  32, 136,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_1_EN,	{ 200,  80,   64,   0},		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,						{ 193,  52,   48,   0},		0, NULL, NULL, NULL, false},
+	{&GRANNY_PE,						{ 193,  52,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&TREE_1_EN,						{ 356, 106,   48,   0},		0, NULL, NULL, NULL, false},
 
@@ -161,7 +164,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&TREE_BG_1_EN,						{ 704, 112,   96,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_3_EN,	{ 808,  80,   64,   0},		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,						{ 853,  50,   48,   0},		0, NULL, NULL, NULL, false},
+//	{&GRANNY_PE,						{ 853,  50,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_4_EN,	{ 996, 102,   96,   0},		0, NULL, NULL, NULL, false},
 
@@ -180,7 +183,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&LEVEL_1_STAGE_1_BUILDING_6_EN,	{1746,  79,   64,   0},		0, NULL, NULL, NULL, false},
 	{&ITEM_SAUSAGE_IT,					{1720,  88,   16,   0},		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,						{1784,  31,   48,   0},		0, NULL, NULL, NULL, false},
+	{&GRANNY_PE,						{1784,  31,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_7_EN,	{1922, 102,   64,   0},		0, NULL, NULL, NULL, false},
 
@@ -189,9 +192,9 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&BIKE_1_EN,						{2288, 143,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_9_EN,	{2534,  80,   64,   0},		0, NULL, NULL, NULL, false},
-	{&GRANNY_1_PE,						{2340,  46,   48,   0},		0, NULL, NULL, NULL, false},
+	{&GRANNY_PE,						{2340,  46,   48,   0},		0, NULL, NULL, NULL, false},
 
-	{&GRANNY_1_PE,						{2552,  18,   48,   0},		0, NULL, NULL, NULL, false},
+	{&GRANNY_PE,						{2552,  18,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_10_EN,	{3006,  80,   64,   0},		0, NULL, NULL, NULL, false},
 
@@ -225,6 +228,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_UI_CHILDREN[] =
 
 FontROMDef* const LEVEL_1_STAGE_1_ST_FONTS[] =
 {
+	&CAPITAN_DEFAULT_FONT,
 	&CAPITAN_GUI_FONT,
 
 	NULL
@@ -234,7 +238,7 @@ CharSetROMDef* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 {
 	&BULLY_CH,
 	&CAR_1_CH,
-	&FLOWER_POT_1_CH,
+	&FLOWER_POT_CH,
 	&HOVER_CAR_CH,
 	&GUI_CH,
 	&HERO_RIGHT_CH,
@@ -247,7 +251,7 @@ TextureDefinition* const LEVEL_1_STAGE_1_ST_TEXTURES[] =
 {
 	&BULLY_TX,
 	&CAR_1_TX,
-	&FLOWER_POT_1_TX,
+	&FLOWER_POT_TX,
 	&HOVER_CAR_TX,
 	&GUI_TX,
 	&HERO_TX,

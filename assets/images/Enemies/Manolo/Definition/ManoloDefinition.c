@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <BgmapAnimatedSprite.h>
+#include <ObjectAnimatedSprite.h>
 #include <macros.h>
 #include <ProjectileEjector.h>
 #include <Actor.h>
@@ -34,14 +34,142 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern ActorDefinition SAUSAGE_1_PR;
+extern ActorDefinition PILL_PR;
+extern BYTE ManoloTiles[];
+extern BYTE ManoloMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ProjectileEjectorROMDef SAUSAGE_EJECTOR_PE =
+AnimationFunctionROMDef MANOLO_IDLE_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{1},
+
+	// number of cycles a frame of animation is displayed
+	2,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Idle",
+};
+
+AnimationFunctionROMDef MANOLO_SHOOT_ANIM =
+{
+	// number of frames of this animation function
+	4,
+
+	// frames to play in animation
+	{1, 2, 1, 2},
+
+	// number of cycles a frame of animation is displayed
+	4,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	(EventListener)&ProjectileEjector_onEjectAnimationComplete,
+
+	// function's name
+	"Shoot",
+};
+
+AnimationDescriptionROMDef MANOLO_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&MANOLO_IDLE_ANIM,
+		(AnimationFunction*)&MANOLO_SHOOT_ANIM,
+		NULL,
+	}
+};
+
+CharSetROMDef MANOLO_CH =
+{
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	5 * 7,
+
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
+
+	// char definition
+	ManoloTiles,
+};
+
+TextureROMDef MANOLO_TX =
+{
+	// charset definition
+	(CharSetDefinition*)&MANOLO_CH,
+
+	// bgmap definition
+	ManoloMap,
+
+	// cols (max 64)
+	5,
+
+	// rows (max 64)
+	7,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
+
+	// recyclable
+	false,
+};
+
+ObjectSpriteROMDef MANOLO_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(ObjectAnimatedSprite),
+
+		// texture definition
+		(TextureDefinition*)&MANOLO_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 0, 0, 0},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_OBJECT,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+ObjectSpriteROMDef* const MANOLO_SPRITES[] =
+{
+	&MANOLO_SPRITE,
+	NULL
+};
+
+ProjectileEjectorROMDef MANOLO_PE =
 {
 	// animated entity
 	{
@@ -50,7 +178,7 @@ ProjectileEjectorROMDef SAUSAGE_EJECTOR_PE =
 			__TYPE(ProjectileEjector),
 
 			// sprites
-			(SpriteROMDef**)NULL,
+			(SpriteROMDef**)MANOLO_SPRITES,
 
 			// collision shapes
 			(ShapeDefinition*)NULL,
@@ -67,33 +195,33 @@ ProjectileEjectorROMDef SAUSAGE_EJECTOR_PE =
 		},
 
 		// pointer to the animation definition for the character
-		(AnimationDescription*)NULL,
+		(AnimationDescription*)&MANOLO_ANIM,
 
 		// initial animation
-		NULL
+		"Idle"
 	},
 
 	// projectile
-    {(EntityDefinition*)&SAUSAGE_1_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
+    {(EntityDefinition*)&PILL_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
 
 	// initial direction
-	{__RIGHT, __DOWN, __FAR},
+	{__LEFT, __DOWN, __FAR},
 
 	// delay of the first projectile ejection (only relevant if initially active)
-	0,
+	1500,
 
 	// pause between projectile ejections
-	1000,
+	2800,
 
 	// whether the ejector should be active on creation
-	false,
+	true,
 
 	// maximum number of projectiles on screen at the same time
-	3,
+	1,
 
 	// name of animation to play on projectile ejection
-	NULL,
+	"Shoot",
 
 	// name of animation to play when idle
-	NULL,
+	"Idle",
 };

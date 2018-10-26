@@ -37,7 +37,6 @@
 
 class FlowerPot : Projectile
 {
-
 	void constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
 	override bool enterCollision(const CollisionInformation* collisionInformation);
 }
