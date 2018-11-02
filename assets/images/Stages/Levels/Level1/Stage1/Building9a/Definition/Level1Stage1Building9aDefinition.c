@@ -33,40 +33,40 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage1Building9Tiles[];
-extern BYTE Level1Stage1Building9LMap[];
-extern BYTE Level1Stage1Building9BlackMap[];
+extern BYTE Level1Stage1Building9aTiles[];
+extern BYTE Level1Stage1Building9aLMap[];
+extern BYTE Level1Stage1Building9aBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_STAGE_1_BUILDING_9_CH =
+CharSetROMDef LEVEL_1_STAGE_1_BUILDING_9_A_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	617,
+	327,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	Level1Stage1Building9Tiles,
+	Level1Stage1Building9aTiles,
 };
 
-TextureROMDef LEVEL_1_STAGE_1_BUILDING_9_TX =
+TextureROMDef LEVEL_1_STAGE_1_BUILDING_9_A_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&LEVEL_1_STAGE_1_BUILDING_9_CH,
+	(CharSetDefinition*)&LEVEL_1_STAGE_1_BUILDING_9_A_CH,
 
 	// bgmap definition
-	Level1Stage1Building9LMap,
+	Level1Stage1Building9aLMap,
 
 	// cols (max 64)
-	64,
+	32,
 
 	// rows (max 64)
 	20,
@@ -86,16 +86,16 @@ TextureROMDef LEVEL_1_STAGE_1_BUILDING_9_TX =
 	false,
 };
 
-TextureROMDef LEVEL_1_STAGE_1_BUILDING_9_BLACK_TX =
+TextureROMDef LEVEL_1_STAGE_1_BUILDING_9_A_BLACK_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&LEVEL_1_STAGE_1_BUILDING_9_CH,
+	(CharSetDefinition*)&LEVEL_1_STAGE_1_BUILDING_9_A_CH,
 
 	// bgmap definition
-	Level1Stage1Building9BlackMap,
+	Level1Stage1Building9aBlackMap,
 
 	// cols (max 64)
-	64,
+	32,
 
 	// rows (max 64)
 	10,
@@ -115,14 +115,14 @@ TextureROMDef LEVEL_1_STAGE_1_BUILDING_9_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMDef LEVEL_1_STAGE_1_BUILDING_9_SPRITE =
+BgmapSpriteROMDef LEVEL_1_STAGE_1_BUILDING_9_A_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&LEVEL_1_STAGE_1_BUILDING_9_TX,
+		(TextureDefinition*)&LEVEL_1_STAGE_1_BUILDING_9_A_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -142,14 +142,14 @@ BgmapSpriteROMDef LEVEL_1_STAGE_1_BUILDING_9_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef LEVEL_1_STAGE_1_BUILDING_9_BLACK_SPRITE =
+BgmapSpriteROMDef LEVEL_1_STAGE_1_BUILDING_9_A_BLACK_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&LEVEL_1_STAGE_1_BUILDING_9_BLACK_TX,
+		(TextureDefinition*)&LEVEL_1_STAGE_1_BUILDING_9_A_BLACK_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -169,20 +169,20 @@ BgmapSpriteROMDef LEVEL_1_STAGE_1_BUILDING_9_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const LEVEL_1_STAGE_1_BUILDING_9_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL_1_STAGE_1_BUILDING_9_A_SPRITES[] =
 {
-	&LEVEL_1_STAGE_1_BUILDING_9_BLACK_SPRITE,
-	&LEVEL_1_STAGE_1_BUILDING_9_SPRITE,
+	&LEVEL_1_STAGE_1_BUILDING_9_A_BLACK_SPRITE,
+	&LEVEL_1_STAGE_1_BUILDING_9_A_SPRITE,
 	NULL
 };
 
-EntityROMDef LEVEL_1_STAGE_1_BUILDING_9_EN =
+EntityROMDef LEVEL_1_STAGE_1_BUILDING_9_A_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)LEVEL_1_STAGE_1_BUILDING_9_SPRITES,
+	(SpriteROMDef**)LEVEL_1_STAGE_1_BUILDING_9_A_SPRITES,
 
 	// collision shapes
 	NULL,

@@ -216,7 +216,7 @@
 #undef __MEMORY_POOL_ARRAYS
 #define __MEMORY_POOL_ARRAYS																			\
 	__BLOCK_DEFINITION(164, 1)																			\
-	__BLOCK_DEFINITION(152, 10)																			\
+	__BLOCK_DEFINITION(152, 16)																			\
 	__BLOCK_DEFINITION(144, 16)																			\
 	__BLOCK_DEFINITION(116, 40)																			\
 	__BLOCK_DEFINITION(108, 40)																			\

@@ -60,8 +60,6 @@ extern EntityDefinition GUI_EN;
 extern EntityDefinition HOVER_CAR_EM;
 extern EntityDefinition ITEM_SAUSAGE_IT;
 extern EntityDefinition LANTERN_1_EN;
-extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_10_EN;
-extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_11_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_1_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_2_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_3_EN;
@@ -69,7 +67,10 @@ extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_4_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_6_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_7_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_8_EN;
-extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_9_EN;
+extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_9_A_EN;
+extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_9_B_EN;
+extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_10_EN;
+extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_11_EN;
 extern EntityDefinition MANOLO_EM;
 extern EntityDefinition PLAYGROUND_1_EN;
 extern EntityDefinition PLAYGROUND_SIGN_1_EN;
@@ -196,10 +197,11 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_1_BUILDING_7_EN,	{1922, 102,   64,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_8_EN,	{2106,  80,   64,   0},		0, NULL, NULL, NULL, false},
-//	{&CLOTHES_1_EN,						{2254,  39,   96,   0},		0, NULL, NULL, NULL, false},
-//	{&BIKE_1_EN,						{2288, 143,   48,   0},		0, NULL, NULL, NULL, false},
+	{&CLOTHES_1_EN,						{2254,  39,   96,   0},		0, NULL, NULL, NULL, false},
+	{&BIKE_1_EN,						{2288, 143,   48,   0},		0, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_STAGE_1_BUILDING_9_EN,	{2534,  80,   64,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_1_BUILDING_9_A_EN,	{2534-128,  80,   64,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_1_BUILDING_9_B_EN,	{2534+128,  80,   64,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_PE,						{2340,  46,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&GRANNY_PE,						{2552,  18,   48,   0},		0, NULL, NULL, NULL, false},
@@ -328,15 +330,15 @@ StageROMDef LEVEL_1_STAGE_1_ST =
 	// streaming
 	{
 		// load padding
-		32,
+		48,
 		// unload padding
-		8,
+		4,
 		// streaming amplitude
 		16,
 		// particle removal delay cycles
 		4,
 		// deferred
-		false
+		true,
 	},
 
 	// rendering
