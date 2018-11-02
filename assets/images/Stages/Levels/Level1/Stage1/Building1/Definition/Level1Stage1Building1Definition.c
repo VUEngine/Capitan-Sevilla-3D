@@ -48,7 +48,7 @@ CharSetROMDef LEVEL_1_STAGE_1_BUILDING_1_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	517,
+	505,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -72,7 +72,7 @@ TextureROMDef LEVEL_1_STAGE_1_BUILDING_1_BLACK_TX =
 	30,
 
 	// rows (max 64)
-	20,
+	10,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -102,7 +102,7 @@ BgmapSpriteROMDef LEVEL_1_STAGE_1_BUILDING_1_BLACK_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, BUILDINGS_DSPL, 0}
+		{0, -40, BUILDINGS_DSPL, 0}
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

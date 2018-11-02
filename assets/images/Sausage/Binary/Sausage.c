@@ -3,9 +3,9 @@
 
 //======================================================================
 //
-//	Sausage, 32x144@2,
+//	Sausage, 32x144@2, 
 //	+ 73 tiles not compressed
-//	+ regular map (flat), not compressed, 4x18
+//	+ regular map (flat), not compressed, 4x18 
 //	Total size: 1168 + 144 = 1312
 //
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
