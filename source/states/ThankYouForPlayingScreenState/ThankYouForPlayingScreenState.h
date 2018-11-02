@@ -19,78 +19,26 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef THANK_YOU_FOR_PLAYING_SCREEN_STATE_H_
+#define THANK_YOU_FOR_PLAYING_SCREEN_STATE_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <BgmapAnimatedSprite.h>
-#include <macros.h>
-#include <ProjectileEjector.h>
-#include <Actor.h>
+#include <SplashScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-extern ActorDefinition SAUSAGE_1_PR;
-
-
-//---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
-//---------------------------------------------------------------------------------------------------------
-
-ProjectileEjectorROMDef SAUSAGE_EJECTOR_PE =
+singleton class ThankYouForPlayingScreenState : SplashScreenState
 {
-	// animated entity
-	{
-		{
-			// class allocator
-			__TYPE(ProjectileEjector),
+	static ThankYouForPlayingScreenState getInstance();
+	override void enter(void* owner);
+}
 
-			// sprites
-			(SpriteROMDef**)NULL,
 
-			// collision shapes
-			(ShapeDefinition*)NULL,
-
-			// size
-			// if 0, width and height will be inferred from the first sprite's texture's size
-			{0, 0, 0},
-
-			// gameworld's character's type
-			kNoType,
-
-			// physical specification
-			(PhysicalSpecification*)NULL,
-		},
-
-		// pointer to the animation definition for the character
-		(AnimationDescription*)NULL,
-
-		// initial animation
-		NULL
-	},
-
-	// projectile
-    {(EntityDefinition*)&SAUSAGE_1_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
-
-	// delay of the first projectile ejection (only relevant if initially active)
-	0,
-
-	// pause between projectile ejections
-	1000,
-
-	// whether the ejector should be active on creation
-	false,
-
-	// maximum number of projectiles on screen at the same time
-	3,
-
-	// name of animation to play on projectile ejection
-	NULL,
-
-	// name of animation to play when idle
-	NULL,
-};
+#endif

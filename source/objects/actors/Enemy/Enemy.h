@@ -28,6 +28,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <MovingOneWayEntity.h>
+#include <ProjectileEjector.h>
 #include <macros.h>
 
 
@@ -43,6 +44,12 @@ typedef struct EnemyDefinition
 	/// energy
 	u8 energy;
 
+	/// projectile ejector to add
+	ProjectileEjectorDefinition* projectileEjectorDefinition;
+
+	/// relative position of projectile ejector
+	Vector3D projectileEjectorPosition;
+
 } EnemyDefinition;
 
 typedef const EnemyDefinition EnemyROMDef;
@@ -54,10 +61,17 @@ typedef const EnemyDefinition EnemyROMDef;
 
 class Enemy : MovingOneWayEntity
 {
+	// definition pointer
+	EnemyDefinition* enemyDefinition;
+	// projectile ejector entity reference
+	Entity projectileEjectorEntity;
+	// energy
 	u8 energy;
 
 	void constructor(EnemyDefinition* enemyDefinition, s16 id, s16 internalId, const char* const name);
+	override void ready(bool recursive);
 	void takeHit(u8 power);
+	virtual void onProjectileEjected(Object eventFirer);
 }
 
 

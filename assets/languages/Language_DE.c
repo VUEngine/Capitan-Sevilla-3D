@@ -78,6 +78,7 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	/* STR_QUIT_LEVEL */				"Level beenden",
 	/* STR_SELECT */					"Auswählen",
 	/* STR_TAKE_A_REST */				"Bitte mache eine Pause!",
+	/* STR_THANK_YOU_FOR_PLAYING */		"Danke für's Spielen!",
 	/* STR_YES */						"Ja",
 
 	/* Levels */

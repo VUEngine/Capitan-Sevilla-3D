@@ -99,7 +99,7 @@ BgmapSpriteROMDef CAR_BG_2_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, 1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -126,7 +126,7 @@ ShapeROMDef CAR_BG_2_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{9 * 8, 4 * 8, 4 * 8},
+		{72, 32, 32},
 
 		// displacement (x, y, z, p)
 		{4, 11, 0, 0},
@@ -151,7 +151,7 @@ ShapeROMDef CAR_BG_2_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{4 * 8, 5 * 8, 4 * 8},
+		{32, 40, 32},
 
 		// displacement (x, y, z, p)
 		{0, -40, 0, 0},

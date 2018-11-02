@@ -66,6 +66,7 @@ enum LanguageStrings
 	STR_QUIT_LEVEL,
 	STR_SELECT,
 	STR_TAKE_A_REST,
+	STR_THANK_YOU_FOR_PLAYING,
 	STR_YES,
 
 	/* Levels */

@@ -154,7 +154,7 @@ void Hero::ready(bool recursive)
 void Hero::addSausageEjectorEntity()
 {
 	Vector3D position = {__PIXELS_TO_METERS(2), __PIXELS_TO_METERS(-6), 0};
-	this->sausageEjectorEntity = Entity::addChildEntity(Entity::safeCast(this), &SAUSAGE_EJECTOR_PE, -1, NULL, &position, (void*)3);
+	this->sausageEjectorEntity = Entity::addChildEntity(Entity::safeCast(this), &SAUSAGE_EJECTOR_PE, -1, NULL, &position, NULL);
 
 	Object::addEventListener(this->sausageEjectorEntity, Object::safeCast(this), (EventListener)Hero::onProjectileEjected, kEventProjectileEjected);
 }
@@ -684,7 +684,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 			// inform gui
 			Object::fireEvent(EventManager::getInstance(), kEventSausageCollected);
 
-			return false;
+			return true;
 			break;
 
 		case kLift:
@@ -700,7 +700,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 			// disable user input
 			Game::disableKeypad(Game::getInstance());
 
-			return false;
+			return true;
 			break;
 
 		case kStageExitPoint:
@@ -711,14 +711,14 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 			// disable user input
 			Game::disableKeypad(Game::getInstance());
 
-			return false;
+			return true;
 			break;
 
 		case kEnemy:
 		case kEnemyProjectile:
 
 			Hero::takeHitFrom(this, collidingObject, 1, true, true);
-			return false;
+			return true;
 			break;
 
 		case kMovingPlatform:

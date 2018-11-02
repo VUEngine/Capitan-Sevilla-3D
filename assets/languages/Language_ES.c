@@ -78,6 +78,7 @@ const char* const LANGUAGE_ES_STRINGS[] =
 	/* STR_QUIT_LEVEL */				"Salir del nivel",
 	/* STR_SELECT */					"Seleccionar",
 	/* STR_TAKE_A_REST */				"¡Por favor, tómate un descanso!",
+	/* STR_THANK_YOU_FOR_PLAYING */		"Thank you for playing!",
 	/* STR_YES */						"Sí",
 
 	/* Levels */

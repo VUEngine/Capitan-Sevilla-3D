@@ -48,13 +48,35 @@ void Enemy::constructor(EnemyDefinition* enemyDefinition, s16 id, s16 internalId
 
 	// init members
 	this->energy = enemyDefinition->energy;
+	this->enemyDefinition = enemyDefinition;
+	this->projectileEjectorEntity = NULL;
 }
 
 void Enemy::destructor()
 {
+	// remove event listeners
+	if(this->projectileEjectorEntity)
+	{
+		Object::removeEventListener(this->projectileEjectorEntity, Object::safeCast(this), (EventListener)Enemy::onProjectileEjected, kEventProjectileEjected);
+	}
+
 	// destroy the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
+}
+
+// ready method
+void Enemy::ready(bool recursive)
+{
+	// call base
+	Base::ready(this, recursive);
+
+	// add projectile ejector
+	if(this->enemyDefinition->projectileEjectorDefinition)
+	{
+		this->projectileEjectorEntity = Entity::addChildEntity(Entity::safeCast(this), (EntityDefinition*)this->enemyDefinition->projectileEjectorDefinition, -1, NULL, &this->enemyDefinition->projectileEjectorPosition, NULL);
+		Object::addEventListener(this->projectileEjectorEntity, Object::safeCast(this), (EventListener)Enemy::onProjectileEjected, kEventProjectileEjected);
+	}
 }
 
 void Enemy::takeHit(u8 power)
@@ -82,4 +104,10 @@ void Enemy::takeHit(u8 power)
 void Enemy::die()
 {
 	Container::deleteMyself(Container::safeCast(this));
+}
+
+void Enemy::onProjectileEjected(Object eventFirer __attribute__ ((unused)))
+{
+	// play shoot animation
+	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Shoot");
 }

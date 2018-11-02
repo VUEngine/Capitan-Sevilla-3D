@@ -27,7 +27,8 @@
 #include <ObjectAnimatedSprite.h>
 #include <macros.h>
 #include <ProjectileEjector.h>
-#include <Actor.h>
+#include <Enemy.h>
+#include <Box.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -67,10 +68,10 @@ AnimationFunctionROMDef MANOLO_IDLE_ANIM =
 AnimationFunctionROMDef MANOLO_SHOOT_ANIM =
 {
 	// number of frames of this animation function
-	4,
+	6,
 
 	// frames to play in animation
-	{1, 2, 1, 2},
+	{1, 2, 1, 2, 1, 2},
 
 	// number of cycles a frame of animation is displayed
 	4,
@@ -169,7 +170,38 @@ ObjectSpriteROMDef* const MANOLO_SPRITES[] =
 	NULL
 };
 
-ProjectileEjectorROMDef MANOLO_PE =
+ShapeROMDef MANOLO_SHAPES[] =
+{
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{18, 48, 24},
+
+		// displacement (x, y, z, p)
+		{-3, 4, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kEnemiesLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+};
+
+ProjectileEjectorROMDef PILL_EJECTOR_PE =
 {
 	// animated entity
 	{
@@ -178,10 +210,10 @@ ProjectileEjectorROMDef MANOLO_PE =
 			__TYPE(ProjectileEjector),
 
 			// sprites
-			(SpriteROMDef**)MANOLO_SPRITES,
+			NULL,
 
 			// collision shapes
-			(ShapeDefinition*)NULL,
+			NULL,
 
 			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
@@ -195,20 +227,20 @@ ProjectileEjectorROMDef MANOLO_PE =
 		},
 
 		// pointer to the animation definition for the character
-		(AnimationDescription*)&MANOLO_ANIM,
+		NULL,
 
 		// initial animation
-		"Idle"
+		NULL
 	},
 
 	// projectile
     {(EntityDefinition*)&PILL_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
 
 	// delay of the first projectile ejection (only relevant if initially active)
-	1000,
+	800,
 
 	// pause between projectile ejections
-	1800,
+	1500,
 
 	// whether the ejector should be active on creation
 	true,
@@ -217,8 +249,62 @@ ProjectileEjectorROMDef MANOLO_PE =
 	1,
 
 	// name of animation to play on projectile ejection
-	"Shoot",
+	NULL,
 
 	// name of animation to play when idle
-	"Idle",
+	NULL,
+};
+
+EnemyROMDef MANOLO_EM =
+{
+	{
+		{
+			{
+				{
+					// class allocator
+					__TYPE(Enemy),
+
+					// sprites
+					(SpriteROMDef**)MANOLO_SPRITES,
+
+					// collision shapes
+					(ShapeDefinition*)MANOLO_SHAPES,
+
+					// size
+					// if 0, width and height will be inferred from the first sprite's texture's size
+					{0, 0, 0},
+
+					// gameworld's character's type
+					kEnemy,
+
+					// physical specification
+					(PhysicalSpecification*)NULL,
+				},
+
+				// pointer to the animation definition for the character
+				(AnimationDescription*)&MANOLO_ANIM,
+
+				// initial animation
+				"Idle"
+			},
+
+			// true to create a body
+			true,
+
+			// axes subject to gravity
+			__NO_AXIS
+		},
+
+		// speed (x axis)
+		0,
+	},
+
+	// energy
+	3,
+
+	// projectile ejector to add
+	(ProjectileEjectorDefinition*)&PILL_EJECTOR_PE,
+
+	// relative position of projectile ejector
+	{0, 0, 0},
 };

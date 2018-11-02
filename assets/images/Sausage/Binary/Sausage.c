@@ -1,11 +1,11 @@
 
-//{{BLOCK(Sausage1)
+//{{BLOCK(Sausage)
 
 //======================================================================
 //
-//	Sausage1, 32x144@2, 
+//	Sausage, 32x144@2,
 //	+ 73 tiles not compressed
-//	+ regular map (flat), not compressed, 4x18 
+//	+ regular map (flat), not compressed, 4x18
 //	Total size: 1168 + 144 = 1312
 //
 //	Exported by Cearn's GBA Image Transmogrifier, v0.8.6
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int Sausage1Tiles[292] __attribute__((aligned(4)))=
+const unsigned int SausageTiles[292] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,
 	0x00000000,0x00000000,0xC0000000,0x9C007000,0x00000000,0x003C0000,0x03D500DB,0x0366035A,
@@ -58,7 +58,7 @@ const unsigned int Sausage1Tiles[292] __attribute__((aligned(4)))=
 	0x000F0003,0x003C000F,0x000000C0,0x00000000,
 };
 
-const unsigned short Sausage1Map[72] __attribute__((aligned(4)))=
+const unsigned short SausageMap[72] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
 	0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,0x0010,
@@ -72,4 +72,4 @@ const unsigned short Sausage1Map[72] __attribute__((aligned(4)))=
 	0x0041,0x0042,0x0043,0x0044,0x0045,0x0046,0x0047,0x0048,
 };
 
-//}}BLOCK(Sausage1)
+//}}BLOCK(Sausage)

@@ -100,7 +100,7 @@ enum PlatformerLevelStateMessageTypes
 	kIntroNextImage,
 	kProjectileEject,
 	kProjectileCheckPosition,
-	kMovingEntitystartMovement,
+	kMovingEntityStartMovement,
 	kMovingEntityCheckDirection,
 	kLoadCheckPoint,
 	kReactToCollision,

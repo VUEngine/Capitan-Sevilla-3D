@@ -192,7 +192,7 @@ ShapeROMDef FLOWER_POT_PR_SHAPES[] =
 		kEnemiesLayer,
 
 		// layers to ignore when checking for collisions
-		kEnemiesLayer,
+		kAllLayers & ~kPlayerLayer & ~kSolidLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}

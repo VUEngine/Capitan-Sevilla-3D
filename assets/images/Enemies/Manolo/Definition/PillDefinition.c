@@ -170,7 +170,7 @@ ShapeROMDef PILL_PR_SHAPES[] =
 		kEnemiesLayer,
 
 		// layers to ignore when checking for collisions
-		kEnemiesLayer,
+		kAllLayers & ~kPlayerLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
@@ -225,7 +225,7 @@ ProjectileROMDef PILL_PR =
 
 	// position relative to ejector
     {
-    	__PIXELS_TO_METERS(-20),
+    	__PIXELS_TO_METERS(-24),
     	__PIXELS_TO_METERS(2),
     	0,
     },

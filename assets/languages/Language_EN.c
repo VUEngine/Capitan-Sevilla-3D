@@ -77,6 +77,7 @@ const char* const LANGUAGE_EN_STRINGS[] =
 	/* STR_QUIT_LEVEL */				"Quit Level",
 	/* STR_SELECT */					"Select",
 	/* STR_TAKE_A_REST */				"Please take a rest!",
+	/* STR_THANK_YOU_FOR_PLAYING */		"Thank you for playing!",
 	/* STR_YES */						"Yes",
 
 	/* Levels */

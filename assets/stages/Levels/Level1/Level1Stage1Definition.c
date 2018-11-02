@@ -70,7 +70,7 @@ extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_6_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_7_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_8_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_9_EN;
-extern EntityDefinition MANOLO_PE;
+extern EntityDefinition MANOLO_EM;
 extern EntityDefinition PLAYGROUND_1_EN;
 extern EntityDefinition PLAYGROUND_SIGN_1_EN;
 extern EntityDefinition STATUE_1_EN;
@@ -129,19 +129,29 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&CITY_FLOOR_COLLISION_CL,			{3432, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
 	{&CITY_FLOOR_COLLISION_CL,			{3612, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
 
-	{&BULLY_EM,							{ 460, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,							{ 460, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
 	{&BULLY_EM,							{ 520, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
-	{&BULLY_EM,							{ 580, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,							{ 580, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
 	{&BULLY_EM,							{ 660, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
-	{&BULLY_EM,							{ 860, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_EM,							{1230, 152,   16,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_EM,							{1330, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,							{ 860, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
+	{&BULLY_EM,							{1230, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
+	{&BULLY_EM,							{1330, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
 	{&BULLY_EM,							{1430, 152,   16,   0},		0, NULL, NULL, (void*)-2, false},
 	{&BULLY_EM,							{1530, 152,   16,   0},		0, NULL, NULL, (void*)-5, false},
-	{&BULLY_EM,							{1600, 152,   16,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,							{1600, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
+	{&BULLY_EM,							{2080, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
+	{&BULLY_EM,							{2120, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
+	{&BULLY_EM,							{2200, 152,   16,   0},		0, NULL, NULL, (void*)-4, false},
+	{&BULLY_EM,							{2300, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
+	{&BULLY_EM,							{2460, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
+	{&BULLY_EM,							{2600, 152,   16,   0},		0, NULL, NULL, (void*)-3, false},
+	{&BULLY_EM,							{2840, 152,   16,   0},		0, NULL, NULL, (void*)-4, false},
 
 	{&HOVER_CAR_EM,						{1200, 114,   16,   0},		0, NULL, NULL, NULL, false},
 	{&HOVER_CAR_EM,						{1486, 114,   16,   0},		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_EM,						{2060, 114,   16,   0},		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_EM,						{2460, 114,   16,   0},		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_EM,						{2840, 114,   16,   0},		0, NULL, NULL, NULL, false},
 
 	{&CAR_1_AC,							{ 580, 164,   -8,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,							{1240, 164,   -8,   0},		0, NULL, NULL, NULL, false},
@@ -189,14 +199,14 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&CLOTHES_1_EN,						{2254,  39,   96,   0},		0, NULL, NULL, NULL, false},
 	{&BIKE_1_EN,						{2288, 143,   48,   0},		0, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_STAGE_1_BUILDING_9_EN,	{2534,  80,   64,   0},		0, NULL, NULL, NULL, false},
+	//{&LEVEL_1_STAGE_1_BUILDING_9_EN,	{2534,  80,   64,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_PE,						{2340,  46,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&GRANNY_PE,						{2552,  18,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_10_EN,	{3006,  80,   64,   0},		0, NULL, NULL, NULL, false},
 
-	{&MANOLO_PE,						{3160, 142,   16,   0},		0, NULL, NULL, NULL, false},
+	{&MANOLO_EM,						{3160, 142,   16,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,						{3262, 136,    0,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_1_EN,						{3286, 111,   80,   0},		0, NULL, NULL, NULL, false},
@@ -204,7 +214,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&HIGHWAYMEN_EN,					{3440, 144,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&CAR_BG_2_EN,						{3579, 138,   16,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_BG_2_EN,						{3579, 140,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_11_EN,	{3583,  64,   32,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_MAIN_EXIT_XP,		{3603,  40,    0,   0},		0, NULL, NULL, NULL, false},
 
@@ -228,7 +238,6 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_UI_CHILDREN[] =
 
 FontROMDef* const LEVEL_1_STAGE_1_ST_FONTS[] =
 {
-	&CAPITAN_DEFAULT_FONT,
 	&CAPITAN_GUI_FONT,
 
 	NULL
@@ -319,9 +328,9 @@ StageROMDef LEVEL_1_STAGE_1_ST =
 	// streaming
 	{
 		// load padding
-		24,
+		32,
 		// unload padding
-		4,
+		8,
 		// streaming amplitude
 		16,
 		// particle removal delay cycles

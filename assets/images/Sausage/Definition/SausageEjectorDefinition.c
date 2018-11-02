@@ -24,75 +24,73 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <I18n.h>
+#include <BgmapAnimatedSprite.h>
+#include <macros.h>
+#include <ProjectileEjector.h>
+#include <Actor.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition FLAG_FRANCE_EN;
+extern ActorDefinition SAUSAGE_PR;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-/*
- * IMPORTANT: Ensure that this file is encoded in Windows-1252 or ISO-8859-1 ("ANSI") to make use
- * of the full extended ASCII character set including special characters of European languages.
- */
-
-const char* const LANGUAGE_FR_STRINGS[] =
+ProjectileEjectorROMDef SAUSAGE_EJECTOR_PE =
 {
-	/* Plugins */
+	// animated entity
+	{
+		{
+			// class allocator
+			__TYPE(ProjectileEjector),
 
-	/* STR_AUTOMATIC_PAUSE */			"Pause Automatique",
-	/* STR_AUTO_PAUSE_EXPLANATION */	"  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
-	/* STR_LANGUAGE_SELECT */			"Choix de la langue",
-	/* STR_OFF */						"Desactivé",
-	/* STR_ON */						"Activé",
-	/* STR_PRECAUTION_SCREEN_TEXT */	"        Important\n\nPrenez conaissance de la\n\nnotice et des précautions\n\na avant de jouer",
+			// sprites
+			(SpriteROMDef**)NULL,
 
-    /* General */
+			// collision shapes
+			(ShapeDefinition*)NULL,
 
-	/* STR_ARE_YOU_SURE */				"Es tu sûr?",
-	/* STR_BACK */						"Arrière",
-	/* STR_CHECKPOINT */				"Poste de contrôle",
-	/* STR_CONTINUE */					"Continuer",
-	/* STR_CREDITS */					"Crédits",
-	/* STR_LANGUAGE */					"Langue",
-	/* STR_LEVEL */						"Niveau",
-	/* STR_LEVEL_CONQUERED */			"Niveau conquis!",
-	/* STR_LEVEL_DONE */				"Niveau terminé!",
-	/* STR_NEW_BEST */					"Nouveau Record!",
-	/* STR_NEW_GAME */					"Nouveau Jeu",
-	/* STR_NO */						"Non",
-	/* STR_OPTIONS */					"Options",
-	/* STR_PAUSE */						"Pause",
-	/* STR_PRESENTS */					"Présente",
-	/* STR_PRESS_START_BUTTON */		"Appuyer sur Start",
-	/* STR_PROGRESS_WILL_BE_ERASED */	"Tout vôtre progrès sera effacé.",
-	/* STR_QUIT_LEVEL */				"Quitter Niveau",
-	/* STR_SELECT */					"Sélectionner",
-	/* STR_TAKE_A_REST */				"Se il vous plaît, prendre un repos!",
-	/* STR_THANK_YOU_FOR_PLAYING */		"Thank you for playing!",
-	/* STR_YES */						"Oui",
+			// size
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{0, 0, 0},
 
-	/* Levels */
+			// gameworld's character's type
+			kNoType,
 
-	/* STR_LEVEL_1_NAME */				"Sevilla, Mission:\nRetrieve the book",
-};
+			// physical specification
+			(PhysicalSpecification*)NULL,
+		},
 
-const LangROMDef LANGUAGE_FR =
-{
-	// Language Name
-	"Français",
+		// pointer to the animation definition for the character
+		(AnimationDescription*)NULL,
 
-	// Flag Entity
-	&FLAG_FRANCE_EN,
+		// initial animation
+		NULL
+	},
 
-	// Strings
-	(const char**)LANGUAGE_FR_STRINGS
+	// projectile
+    {(EntityDefinition*)&SAUSAGE_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
+
+	// delay of the first projectile ejection (only relevant if initially active)
+	0,
+
+	// pause between projectile ejections
+	1000,
+
+	// whether the ejector should be active on creation
+	false,
+
+	// maximum number of projectiles on screen at the same time
+	3,
+
+	// name of animation to play on projectile ejection
+	NULL,
+
+	// name of animation to play when idle
+	NULL,
 };

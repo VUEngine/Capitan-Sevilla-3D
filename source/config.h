@@ -217,7 +217,7 @@
 #define __MEMORY_POOL_ARRAYS																			\
 	__BLOCK_DEFINITION(164, 1)																			\
 	__BLOCK_DEFINITION(152, 10)																			\
-	__BLOCK_DEFINITION(140, 10)																			\
+	__BLOCK_DEFINITION(144, 16)																			\
 	__BLOCK_DEFINITION(116, 40)																			\
 	__BLOCK_DEFINITION(108, 40)																			\
 	__BLOCK_DEFINITION(80, 50)																			\
@@ -231,7 +231,7 @@
 #define __SET_MEMORY_POOL_ARRAYS																		\
 	__SET_MEMORY_POOL_ARRAY(164)																		\
 	__SET_MEMORY_POOL_ARRAY(152)																		\
-	__SET_MEMORY_POOL_ARRAY(140)																		\
+	__SET_MEMORY_POOL_ARRAY(144)																		\
 	__SET_MEMORY_POOL_ARRAY(116)																		\
 	__SET_MEMORY_POOL_ARRAY(108)																		\
 	__SET_MEMORY_POOL_ARRAY(80)																			\

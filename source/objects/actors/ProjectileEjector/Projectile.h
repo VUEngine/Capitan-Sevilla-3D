@@ -75,6 +75,7 @@ class Projectile : Actor
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
 	override bool isVisible(int pad, bool recursive);
+	override bool enterCollision(const CollisionInformation* collisionInformation);
 	void onHitAnimationComplete();
 }
 

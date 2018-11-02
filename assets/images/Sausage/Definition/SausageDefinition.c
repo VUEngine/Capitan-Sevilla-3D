@@ -33,15 +33,15 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Sausage1Tiles[];
-extern BYTE Sausage1Map[];
+extern BYTE SausageTiles[];
+extern BYTE SausageMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef SAUSAGE_1_DEFAULT_ANIM =
+AnimationFunctionROMDef SAUSAGE_DEFAULT_ANIM =
 {
 	// number of frames of this animation function
 	5,
@@ -62,7 +62,7 @@ AnimationFunctionROMDef SAUSAGE_1_DEFAULT_ANIM =
 	"Default",
 };
 
-AnimationFunctionROMDef SAUSAGE_1_HIT_ANIM =
+AnimationFunctionROMDef SAUSAGE_HIT_ANIM =
 {
 	// number of frames of this animation function
 	2,
@@ -83,17 +83,17 @@ AnimationFunctionROMDef SAUSAGE_1_HIT_ANIM =
 	"Hit",
 };
 
-AnimationDescriptionROMDef SAUSAGE_1_ANIM =
+AnimationDescriptionROMDef SAUSAGE_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&SAUSAGE_1_DEFAULT_ANIM,
-		(AnimationFunction*)&SAUSAGE_1_HIT_ANIM,
+		(AnimationFunction*)&SAUSAGE_DEFAULT_ANIM,
+		(AnimationFunction*)&SAUSAGE_HIT_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef SAUSAGE_1_CH =
+CharSetROMDef SAUSAGE_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -105,16 +105,16 @@ CharSetROMDef SAUSAGE_1_CH =
 	__ANIMATED_SINGLE,
 
 	// char definition
-	Sausage1Tiles,
+	SausageTiles,
 };
 
-TextureROMDef SAUSAGE_1_TX =
+TextureROMDef SAUSAGE_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&SAUSAGE_1_CH,
+	(CharSetDefinition*)&SAUSAGE_CH,
 
 	// bgmap definition
-	Sausage1Map,
+	SausageMap,
 
 	// cols (max 64)
 	4,
@@ -137,14 +137,14 @@ TextureROMDef SAUSAGE_1_TX =
 	false,
 };
 
-ObjectSpriteROMDef SAUSAGE_1_SPRITE =
+ObjectSpriteROMDef SAUSAGE_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&SAUSAGE_1_TX,
+		(TextureDefinition*)&SAUSAGE_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -161,13 +161,13 @@ ObjectSpriteROMDef SAUSAGE_1_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const SAUSAGE_1_SPRITES[] =
+ObjectSpriteROMDef* const SAUSAGE_SPRITES[] =
 {
-	&SAUSAGE_1_SPRITE,
+	&SAUSAGE_SPRITE,
 	NULL
 };
 
-ShapeROMDef SAUSAGE_1_SHAPES[] =
+ShapeROMDef SAUSAGE_SHAPES[] =
 {
 	{
 		// shape
@@ -192,13 +192,13 @@ ShapeROMDef SAUSAGE_1_SHAPES[] =
 		kPlayerLayer,
 
 		// layers to ignore when checking for collisions
-		kPlayerLayer,
+		kAllLayers & ~kEnemiesLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-ProjectileROMDef SAUSAGE_1_PR =
+ProjectileROMDef SAUSAGE_PR =
 {
 	// actor
 	{
@@ -208,10 +208,10 @@ ProjectileROMDef SAUSAGE_1_PR =
 				__TYPE(Sausage),
 
 				// sprites
-				(SpriteROMDef**)SAUSAGE_1_SPRITES,
+				(SpriteROMDef**)SAUSAGE_SPRITES,
 
 				// collision shapes
-				(ShapeDefinition*)SAUSAGE_1_SHAPES,
+				(ShapeDefinition*)SAUSAGE_SHAPES,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -225,7 +225,7 @@ ProjectileROMDef SAUSAGE_1_PR =
 			},
 
 			// pointer to the animation definition for the character
-			(AnimationDescription*)&SAUSAGE_1_ANIM,
+			(AnimationDescription*)&SAUSAGE_ANIM,
 
 			// initial animation
 			"Default",

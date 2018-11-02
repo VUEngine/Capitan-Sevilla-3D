@@ -26,7 +26,6 @@
 
 #include <ObjectAnimatedSprite.h>
 #include <Box.h>
-
 #include "Hero.h"
 
 

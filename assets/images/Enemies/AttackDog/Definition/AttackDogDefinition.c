@@ -221,4 +221,10 @@ EnemyROMDef ATTACK_DOG_EM =
 
 	// energy
 	1,
+
+	// projectile ejector to add
+	NULL,
+
+	// relative position of projectile ejector
+	{0, 0, 0},
 };

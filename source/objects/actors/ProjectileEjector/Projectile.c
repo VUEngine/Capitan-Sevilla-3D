@@ -175,3 +175,10 @@ bool Projectile::isVisible(int pad __attribute__ ((unused)), bool recursive __at
 	// always return true so the Projectile is never streamed out
 	return true;
 }
+
+// process collisions
+bool Projectile::enterCollision(const CollisionInformation* collisionInformation __attribute__ ((unused)))
+{
+	// don't further process collision
+	return false;
+}

@@ -75,7 +75,7 @@ void MovingEntity::constructor(MovingEntityDefinition* movingEntityDefinition, s
 // class's constructor
 void MovingEntity::destructor()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMovingEntitystartMovement);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMovingEntityStartMovement);
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kMovingEntityCheckDirection);
 
 	// delete the super object
@@ -129,7 +129,7 @@ bool MovingEntity::handleMessage(Telegram telegram)
 			}
 			break;
 
-		case kMovingEntitystartMovement:
+		case kMovingEntityStartMovement:
 			{
 				Vector3D position = this->transformation.globalPosition;
 
@@ -174,7 +174,7 @@ void MovingEntity::checkDisplacement()
 					// make sure that I don't get stuck moving back and forth
 					Body::stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher::dispatchMessage(this->movingEntityDefinition->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntitystartMovement, NULL);
+					MessageDispatcher::dispatchMessage(this->movingEntityDefinition->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntityStartMovement, NULL);
 				}
 				else
 				{
@@ -192,7 +192,7 @@ void MovingEntity::checkDisplacement()
 					// make sure that I don't get stuck moving back and forth
 					Body::stopMovement(this->body, (__X_AXIS | __Y_AXIS | __Z_AXIS));
 
-					MessageDispatcher::dispatchMessage(this->movingEntityDefinition->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntitystartMovement, NULL);
+					MessageDispatcher::dispatchMessage(this->movingEntityDefinition->idleDuration, Object::safeCast(this), Object::safeCast(this), kMovingEntityStartMovement, NULL);
 				}
 				else
 				{
