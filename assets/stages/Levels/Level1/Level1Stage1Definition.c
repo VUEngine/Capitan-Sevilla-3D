@@ -37,6 +37,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern EntityDefinition LOW_POWER_INDICATOR_LB;
+
 extern EntityDefinition HIGHWAYMEN_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_MAIN_EXIT_XP;
 extern EntityDefinition BENCH_1_EN;
@@ -227,6 +229,8 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 PositionedEntityROMDef LEVEL_1_STAGE_1_ST_UI_CHILDREN[] =
 {
+	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
+
 	//{&CITY_FLOOR_3D_EN, 			{ 192, 172,  16,   0}, 		0, NULL, NULL, NULL, true},
 	{&GUI_EN, 						{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
 

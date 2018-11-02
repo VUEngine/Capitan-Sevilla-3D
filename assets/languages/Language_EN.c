@@ -48,12 +48,17 @@ const char* const LANGUAGE_EN_STRINGS[] =
 {
 	/* Plugins */
 
-	/* STR_AUTOMATIC_PAUSE */			"Automatic Pause",
+	/* STR_AUTOMATIC_PAUSE */			//"Automatic Pause",
+	/* STR_AUTOMATIC_PAUSE */			"AUTOMATIC PAUSE",
 	/* STR_AUTO_PAUSE_EXPLANATION */	"The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
-	/* STR_LANGUAGE_SELECT */			"Language Select",
-	/* STR_OFF */						"Off",
-	/* STR_ON */						"On",
-	/* STR_PRECAUTION_SCREEN_TEXT */	"     Important\n\nRead Instruction and\n\nPrecaution Booklets\n\n  before operating",
+	/* STR_LANGUAGE_SELECT */			//"Language Select",
+	/* STR_LANGUAGE_SELECT */			"LANGUAGE SELECT",
+	/* STR_OFF */						//"Off",
+	/* STR_OFF */						"OFF",
+	/* STR_ON */						//"On",
+	/* STR_ON */						"ON",
+	/* STR_PRECAUTION_SCREEN_TEXT */	//"     Important\n\nRead Instruction and\n\nPrecaution Booklets\n\n  before operating",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"     IMPORTANT\n\nREAD INSTRUCTION AND\n\nPRECAUTION BOOKLETS\n\n  BEFORE OPERATING",
 
     /* General */
 

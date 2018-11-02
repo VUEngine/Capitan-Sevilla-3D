@@ -37,6 +37,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern EntityDefinition LOW_POWER_INDICATOR_LB;
 extern EntityDefinition GUI_EN;
 extern EntityDefinition ITEM_SAUSAGE_IT;
 extern EntityDefinition LEVEL_1_STAGE_2_ROOM_EN;
@@ -58,6 +59,8 @@ PositionedEntityROMDef LEVEL_1_STAGE_2_ST_CHILDREN[] =
 
 PositionedEntityROMDef LEVEL_1_STAGE_2_ST_UI_CHILDREN[] =
 {
+	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
+
 	{&GUI_EN, 					{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},

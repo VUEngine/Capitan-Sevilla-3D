@@ -37,6 +37,7 @@ extern EntityDefinition TITLE_LOGO_IM;
 extern EntityDefinition TITLE_CAPITAN_IM;
 extern EntityDefinition TITLE_EARTH_IM;
 extern EntityDefinition TITLE_SUBTITLE_IM;
+extern EntityDefinition LOW_POWER_INDICATOR_LB;
 
 extern CharSetDefinition TITLE_LOGO_CH;
 extern CharSetDefinition TITLE_LOGO_BLACK_CH;
@@ -59,6 +60,8 @@ extern TextureDefinition TITLE_SUBTITLE_TX;
 
 PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
+	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
+
 	{&TITLE_LOGO_IM, 		{192, 48, 0, 0}, 	0, NULL, NULL, NULL, false},
 	{&TITLE_CAPITAN_IM, 	{192, 131, 32, 0}, 	0, NULL, NULL, NULL, false},
 	{&TITLE_EARTH_IM, 		{94, 129, 48, 0}, 	0, NULL, NULL, NULL, false},

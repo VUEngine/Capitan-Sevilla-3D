@@ -48,12 +48,17 @@ const char* const LANGUAGE_DE_STRINGS[] =
 {
 	/* Plugins */
 
-	/* STR_AUTOMATIC_PAUSE */			"Automatische Pause",
+	/* STR_AUTOMATIC_PAUSE */			//"Automatische Pause",
+	/* STR_AUTOMATIC_PAUSE */			"AUTOMATISCHE PAUSE",
 	/* STR_AUTO_PAUSE_EXPLANATION */	" Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
-	/* STR_LANGUAGE_SELECT */			"Sprachauswahl",
-	/* STR_OFF */						"Aus",
-	/* STR_ON */						"An",
-	/* STR_PRECAUTION_SCREEN_TEXT */	"        Wichtig\n\nBitte lesen Sie vor dem\n\n Spielen die Anleitung\n\nund Sicherheitshinweise",
+	/* STR_LANGUAGE_SELECT */			//"Sprachauswahl",
+	/* STR_LANGUAGE_SELECT */			"SPRACHAUSWAHL",
+	/* STR_OFF */						//"Aus",
+	/* STR_OFF */						"AUS",
+	/* STR_ON */						//"An",
+	/* STR_ON */						"AN",
+	/* STR_PRECAUTION_SCREEN_TEXT */	//"        Wichtig\n\nBitte lesen Sie vor dem\n\n Spielen die Anleitung\n\nund Sicherheitshinweise",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"        WICHTIG\n\nBITTE LESEN SIE VOR DEM\n\n SPIELEN DIE ANLEITUNG\n\nUND SICHERHEITSHINWEISE",
 
 
 	/* General */

@@ -48,13 +48,18 @@ const char* const LANGUAGE_ES_STRINGS[] =
 {
 	/* Plugins */
 
-	/* STR_AUTOMATIC_PAUSE */			"Pausa Automatica", //"Pausa Automática",
+	/* STR_AUTOMATIC_PAUSE */			//"Pausa Automática",
+	/* STR_AUTOMATIC_PAUSE */			"PAUSA AUTOMÁTICA",
 	/* STR_AUTO_PAUSE_EXPLANATION */	" La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
-	/* STR_LANGUAGE_SELECT */			"Seleccionar Idioma",
-	/* STR_OFF */						"Apagado",
-	/* STR_ON */						"Encendido",
+	/* STR_LANGUAGE_SELECT */			//"Seleccionar Idioma",
+	/* STR_LANGUAGE_SELECT */			"SELECCIONAR IDIOMA",
+	/* STR_OFF */						//"Apagado",
+	/* STR_OFF */						"APAGADO",
+	/* STR_ON */						//"Encendido",
+	/* STR_ON */						"ENCENDIDO",
 	/* STR_PRECAUTION_SCREEN_TEXT */	//"         Importante\n      Lee los libros de\n\nInstrucciones y Precauciones\n\n       antes de jugar",
-	/* STR_PRECAUTION_SCREEN_TEXT */	"     Importante\n\n  Antes de comenzar  \n\nleer las Indicaciones\n\ndel manual de usuario",
+	/* STR_PRECAUTION_SCREEN_TEXT */	//"     Importante\n\n  Antes de comenzar  \n\nleer las Indicaciones\n\ndel manual de usuario",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"     IMPORTANTE\n\n  ANTES DE COMENZAR  \n\nLEER LAS INDICACIONES\n\nDEL MANUAL DE USUARIO",
 
     /* General */
 

@@ -48,12 +48,17 @@ const char* const LANGUAGE_FR_STRINGS[] =
 {
 	/* Plugins */
 
-	/* STR_AUTOMATIC_PAUSE */			"Pause Automatique",
+	/* STR_AUTOMATIC_PAUSE */			//"Pause Automatique",
+	/* STR_AUTOMATIC_PAUSE */			"PAUSE AUTOMATIQUE",
 	/* STR_AUTO_PAUSE_EXPLANATION */	"  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ",
-	/* STR_LANGUAGE_SELECT */			"Choix de la langue",
-	/* STR_OFF */						"Desactivé",
-	/* STR_ON */						"Activé",
-	/* STR_PRECAUTION_SCREEN_TEXT */	"        Important\n\nPrenez conaissance de la\n\nnotice et des précautions\n\na avant de jouer",
+	/* STR_LANGUAGE_SELECT */			//"Choix de la langue",
+	/* STR_LANGUAGE_SELECT */			"CHOIX DE LA LANGUE",
+	/* STR_OFF */						//"Desactivé",
+	/* STR_OFF */						"DESACTIVÉ",
+	/* STR_ON */						//"Activé",
+	/* STR_ON */						"ACTIVÉ",
+	/* STR_PRECAUTION_SCREEN_TEXT */	//"        Important\n\nPrenez conaissance de la\n\nnotice et des précautions\n\na avant de jouer",
+	/* STR_PRECAUTION_SCREEN_TEXT */	"        IMPORTANT\n\nPRENEZ CONAISSANCE DE LA\n\nNOTICE ET DES PRÉCAUTIONS\n\nA AVANT DE JOUER",
 
     /* General */
 

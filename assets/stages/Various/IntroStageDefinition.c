@@ -33,6 +33,8 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern EntityDefinition LOW_POWER_INDICATOR_LB;
+
 extern EntityDefinition INTRO_IMAGE_1_IM;
 extern EntityDefinition INTRO_IMAGE_2_IM;
 extern EntityDefinition INTRO_IMAGE_3_IM;
@@ -59,6 +61,8 @@ extern EntityDefinition INTRO_TEXT_9_AC;
 
 PositionedEntityROMDef INTRO_STAGE_ST_ENTITIES[] =
 {
+	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
+
 	{&INTRO_IMAGE_1_IM, {80, 68, 0, 0}, 	0, "IMAGE1", NULL, NULL, false},
 	{&INTRO_IMAGE_2_IM, {188, 126, 1, 0}, 	0, "IMAGE2", NULL, NULL, false},
 	{&INTRO_IMAGE_3_IM, {328, 56, 2, 0}, 	0, "IMAGE3", NULL, NULL, false},

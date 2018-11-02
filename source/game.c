@@ -41,7 +41,6 @@ int main()
 {
 	// initialize plugins
 	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
-	//LowPowerManager::setActive(LowPowerManager::getInstance(), true);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
 	SplashScreenState::setNextState(
 		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),
@@ -49,8 +48,8 @@ int main()
 	);
 
 	// start the game
-	//Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
-	Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
+	//Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
 
 	// end program
 	return true;
