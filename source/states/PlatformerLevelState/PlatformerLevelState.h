@@ -137,6 +137,7 @@ singleton class PlatformerLevelState : GameState
 	void enterStage(StageEntryPointDefinition* entryPointDefinition);
 	void setModeToPaused();
 	void setModeToPlaying();
+	void resetProgress();
 	UserInput getUserInput(bool force);
 	override void enter(void* owner);
 	override void exit(void* owner);

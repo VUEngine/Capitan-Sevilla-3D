@@ -57,22 +57,16 @@ extern EntityDefinition HERO_AC;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void PlatformerLevelState::constructor()
 {
 	Base::constructor();
 
-	// clock
 	this->clock = new Clock();
-
-	// set default entry point
-	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_STAGE_1_LV;
-	this->currentStageEntryPoint = this->currentLevel->entryPoint;
-	this->currentCheckPoint = this->currentLevel->entryPoint;
 	this->userInput = (UserInput){0, 0, 0, 0, 0, 0, 0};
+
+	PlatformerLevelState::resetProgress(this);
 }
 
-// class's destructor
 void PlatformerLevelState::destructor()
 {
 	delete this->clock;
@@ -177,7 +171,6 @@ void PlatformerLevelState::enter(void* owner)
 
 	// start clocks
 	Clock::start(this->clock);
-	Clock::setTimeInMilliSeconds(this->clock, ProgressManager::getCurrentLevelTime(ProgressManager::getInstance()));
 	GameState::startClocks(GameState::safeCast(this));
 
 	// register event listeners
@@ -303,6 +296,15 @@ void PlatformerLevelState::resume(void* owner)
 	PlatformerLevelState::setPrintingLayerCoordinates(this);
 }
 
+void PlatformerLevelState::resetProgress()
+{
+	// TODO: move to progress manager?
+	// set default entry point
+	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_STAGE_1_LV;
+	this->currentStageEntryPoint = this->currentLevel->entryPoint;
+	this->currentCheckPoint = this->currentLevel->entryPoint;
+}
+
 void PlatformerLevelState::setPrintingLayerCoordinates()
 {
 	extern TextureROMDef GUI_TX;
@@ -369,12 +371,6 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 	{
 		case kLevelSetUp:
 			{
-				if(this->currentStageEntryPoint->isCheckPoint)
-				{
-					// write checkpoint message to screen
-					// TODO
-				}
-
 				// tell any interested entity
 				GameState::propagateMessage(GameState::safeCast(this), kLevelSetUp);
 

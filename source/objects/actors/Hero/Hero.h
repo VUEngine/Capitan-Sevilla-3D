@@ -117,9 +117,9 @@ class Hero : Actor
 	override bool isAffectedByRelativity();
 	override fix10_6 getFrictionOnCollision(SpatialObject collidingObject, const Vector3D* collidingObjectNormal);
 	override bool enterCollision(const CollisionInformation* collisionInformation);
+	override void exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
 	override bool updateCollision(const CollisionInformation* collisionInformation);
 	override void syncRotationWithBody();
-	override void exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
 	override u16 getAxesForShapeSyncWithDirection();
 }
 

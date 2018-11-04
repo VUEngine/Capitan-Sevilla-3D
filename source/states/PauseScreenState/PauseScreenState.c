@@ -31,13 +31,14 @@
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <PhysicalWorld.h>
-#include <PauseScreenState.h>
-#include <Hero.h>
-#include <OptionsScreenState.h>
-#include <PlatformerLevelState.h>
-#include <Languages.h>
 #include <KeyPadManager.h>
 #include <Utilities.h>
+#include <Hero.h>
+#include <Languages.h>
+#include <PauseScreenState.h>
+#include <OptionsScreenState.h>
+#include <PlatformerLevelState.h>
+#include <TitleScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -112,7 +113,7 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	VirtualList::pushBack(options, option);
 
 	option = new Option;
-	option->value = (char*)I18n::getText(I18n::getInstance(), STR_QUIT_LEVEL);
+	option->value = (char*)I18n::getText(I18n::getInstance(), STR_QUIT_GAME);
 	option->type = kString;
 	option->callback = NULL;
 	option->callbackScope = NULL;
@@ -275,7 +276,7 @@ void PauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unuse
 		case kPauseScreenOptionQuitLevel:
 
 			// switch to overworld after deleting paused game state
-			Game::cleanAndChangeState(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+			Game::cleanAndChangeState(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
 
 			break;
 	}

@@ -134,7 +134,7 @@ TextureROMDef FLOWER_POT_TX =
 	1,
 
 	// recyclable
-	false,
+	true,
 };
 
 ObjectSpriteROMDef FLOWER_POT_SPRITE =

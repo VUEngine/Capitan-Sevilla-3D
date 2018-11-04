@@ -59,10 +59,6 @@ singleton class ProgressManager : SaveDataManager
 	u32 currentLevelTime;
 	// time in current level at last checkpoint
 	u32 checkpointCurrentLevelTime;
-	// bitstring that holds collected item flags
-	u16 collectedItems;
-	// bitstring that holds collected item flags at last checkpoint
-	u16 checkpointCollectedItems;
 	// hero's current energy
 	u8 heroCurrentEnergy;
 	// hero's current number of sausages
@@ -72,11 +68,9 @@ singleton class ProgressManager : SaveDataManager
 	u32  getCurrentLevelTime();
 	u8   getHeroCurrentEnergy();
 	u8   getHeroCurrentSausages();
-	bool getItemStatus(u16 itemNumber);
 	void initialize();
 	void loadCheckPointData();
 	void setCheckPointData();
-	bool setItemStatus(u16 itemNumber, bool taken);
 	void resetCurrentLevelProgress();
 	override void restoreSettings();
 }

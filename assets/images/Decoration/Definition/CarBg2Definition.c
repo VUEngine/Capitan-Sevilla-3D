@@ -36,6 +36,8 @@
 
 extern BYTE CarBg2Tiles[];
 extern BYTE CarBg2Map[];
+extern BYTE CarBg2BlackTiles[];
+extern BYTE CarBg2BlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -47,7 +49,7 @@ CharSetROMDef CAR_BG_2_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	45,
+	49,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -69,7 +71,7 @@ TextureROMDef CAR_BG_2_TX =
 	9,
 
 	// rows (max 64)
-	7,
+	8,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -113,8 +115,80 @@ BgmapSpriteROMDef CAR_BG_2_SPRITE =
 	__WORLD_ON,
 };
 
+CharSetROMDef CAR_BG_2_BLACK_CH =
+{
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	26,
+
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
+
+	// char definition
+	CarBg2BlackTiles,
+};
+
+TextureROMDef CAR_BG_2_BLACK_TX =
+{
+	// charset definition
+	(CharSetDefinition*)&CAR_BG_2_BLACK_CH,
+
+	// bgmap definition
+	CarBg2BlackMap,
+
+	// cols (max 64)
+	9,
+
+	// rows (max 64)
+	8,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
+
+	// recyclable
+	false,
+};
+
+BgmapSpriteROMDef CAR_BG_2_BLACK_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture definition
+		(TextureDefinition*)&CAR_BG_2_BLACK_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 0, 0, 1},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
 BgmapSpriteROMDef* const CAR_BG_2_SPRITES[] =
 {
+	&CAR_BG_2_BLACK_SPRITE,
 	&CAR_BG_2_SPRITE,
 	NULL
 };

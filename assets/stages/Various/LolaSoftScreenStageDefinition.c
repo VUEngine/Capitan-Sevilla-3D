@@ -43,8 +43,6 @@ extern EntityDefinition LOW_POWER_INDICATOR_LB;
 
 PositionedEntityROMDef LOLA_SOFT_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
-
 	{&LOLA_SOFT_LOGO_IM, {192, 96, 0, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
@@ -52,6 +50,7 @@ PositionedEntityROMDef LOLA_SOFT_SCREEN_STAGE_ST_ENTITIES[] =
 
 PositionedEntityROMDef LOLA_SOFT_SCREEN_STAGE_ST_UI_ENTITIES[] =
 {
+	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

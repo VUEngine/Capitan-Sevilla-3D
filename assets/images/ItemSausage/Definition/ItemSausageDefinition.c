@@ -197,7 +197,7 @@ ShapeROMDef ITEM_SAUSAGE_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-AnimatedEntityROMDef ITEM_SAUSAGE_IT =
+AnimatedEntityROMDef ITEM_SAUSAGE_EN =
 {
 	{
 		// class allocator

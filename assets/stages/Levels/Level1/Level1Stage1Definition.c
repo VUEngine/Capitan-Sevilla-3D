@@ -40,6 +40,7 @@
 extern EntityDefinition LOW_POWER_INDICATOR_LB;
 
 extern EntityDefinition HIGHWAYMEN_EN;
+extern EntityDefinition STOP_YOU_CANNOT_PASS_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_MAIN_EXIT_XP;
 extern EntityDefinition BENCH_1_EN;
 extern EntityDefinition BIKE_1_EN;
@@ -60,7 +61,7 @@ extern EntityDefinition FENCE_2_EN;
 extern EntityDefinition GRANNY_PE;
 extern EntityDefinition GUI_EN;
 extern EntityDefinition HOVER_CAR_EM;
-extern EntityDefinition ITEM_SAUSAGE_IT;
+extern EntityDefinition ITEM_SAUSAGE_EN;
 extern EntityDefinition LANTERN_1_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_1_EN;
 extern EntityDefinition LEVEL_1_STAGE_1_BUILDING_2_EN;
@@ -161,7 +162,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&CAR_1_AC,							{1810, 164,   -8,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,							{2608, 164,   -8,   0},		0, NULL, NULL, NULL, false},
 
-//	{&COMIC_NIVEL_1_EN,					{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
+	{&COMIC_NIVEL_1_EN,					{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,						{  32, 136,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_1_EN,	{ 200,  80,   64,   0},		0, NULL, NULL, NULL, false},
@@ -193,7 +194,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&LANTERN_1_EN,						{1570, 136,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_6_EN,	{1746,  79,   64,   0},		0, NULL, NULL, NULL, false},
-	{&ITEM_SAUSAGE_IT,					{1720,  88,   16,   0},		0, NULL, NULL, NULL, false},
+	{&ITEM_SAUSAGE_EN,					{1720,  88,   16,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_PE,						{1784,  31,   48,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_7_EN,	{1922, 102,   64,   0},		0, NULL, NULL, NULL, false},
@@ -208,19 +209,20 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&GRANNY_PE,						{2552,  18,   48,   0},		0, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_STAGE_1_BUILDING_10_EN,	{3006,  80,   64,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_1_BUILDING_10_EN,	{2978,  80,   64,   0},		0, NULL, NULL, NULL, false},
 
-	{&MANOLO_EM,						{3160, 142,   16,   0},		0, NULL, NULL, NULL, false},
+	{&MANOLO_EM,						{3136, 142,   16,   0},		0, NULL, NULL, NULL, false},
 
-	{&LANTERN_1_EN,						{3262, 136,    0,   0},		0, NULL, NULL, NULL, false},
-	{&TREE_1_EN,						{3286, 111,   80,   0},		0, NULL, NULL, NULL, false},
-	{&BENCH_1_EN,						{3342, 143,   64,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_EN,						{3238, 136,    0,   0},		0, NULL, NULL, NULL, false},
+	{&TREE_1_EN,						{3262, 111,   80,   0},		0, NULL, NULL, NULL, false},
+	{&BENCH_1_EN,						{3318, 143,   64,   0},		0, NULL, NULL, NULL, false},
 
 	{&HIGHWAYMEN_EN,					{3440, 144,    0,   0},		0, NULL, NULL, NULL, false},
+	{&STOP_YOU_CANNOT_PASS_EN,			{3444,  96,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&CAR_BG_2_EN,						{3579, 140,    0,   0},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_STAGE_1_BUILDING_11_EN,	{3583,  64,   32,   0},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_STAGE_1_MAIN_EXIT_XP,		{3603,  40,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_BG_2_EN,						{3579, 141,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_1_BUILDING_11_EN,	{3583,  68,   32,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_1_MAIN_EXIT_XP,		{3600,  40,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&COLLISION_CL,						{3616,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
 
@@ -229,10 +231,9 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 PositionedEntityROMDef LEVEL_1_STAGE_1_ST_UI_CHILDREN[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
-
-	//{&CITY_FLOOR_3D_EN, 			{ 192, 172,  16,   0}, 		0, NULL, NULL, NULL, true},
-	{&GUI_EN, 						{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	//{&CITY_FLOOR_3D_EN, 				{ 192, 172,  16,   0}, 		0, NULL, NULL, NULL, true},
+	{&GUI_EN, 							{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&LOW_POWER_INDICATOR_LB, 			{  16, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -334,7 +335,7 @@ StageROMDef LEVEL_1_STAGE_1_ST =
 	// streaming
 	{
 		// load padding
-		48,
+		32,
 		// unload padding
 		4,
 		// streaming amplitude
@@ -342,7 +343,7 @@ StageROMDef LEVEL_1_STAGE_1_ST =
 		// particle removal delay cycles
 		4,
 		// deferred
-		true,
+		false,
 	},
 
 	// rendering
@@ -506,5 +507,5 @@ StageEntryPointROMDef LEVEL_1_STAGE_1_MAIN_EP =
 	{64, 133, HERO_DSPL},
 
 	// whether this entry point acts as a checkpoint
-	false,
+	true,
 };

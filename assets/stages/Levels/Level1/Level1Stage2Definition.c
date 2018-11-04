@@ -39,7 +39,7 @@
 
 extern EntityDefinition LOW_POWER_INDICATOR_LB;
 extern EntityDefinition GUI_EN;
-extern EntityDefinition ITEM_SAUSAGE_IT;
+extern EntityDefinition ITEM_SAUSAGE_EN;
 extern EntityDefinition LEVEL_1_STAGE_2_ROOM_EN;
 extern EntityDefinition LEVEL_1_STAGE_2_LIFT_EN;
 
@@ -51,7 +51,7 @@ extern EntityDefinition LEVEL_1_STAGE_2_LIFT_EN;
 PositionedEntityROMDef LEVEL_1_STAGE_2_ST_CHILDREN[] =
 {
 	{&LEVEL_1_STAGE_2_ROOM_EN,	{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
-    {&ITEM_SAUSAGE_IT,			{ 342, 108,   16,   0},		0, NULL, NULL, NULL, true},
+    {&ITEM_SAUSAGE_EN,			{ 342, 108,   16,   0},		0, NULL, NULL, NULL, true},
 	{&LEVEL_1_STAGE_2_LIFT_EN,	{ 688, 130,    0,   0},		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
@@ -59,9 +59,8 @@ PositionedEntityROMDef LEVEL_1_STAGE_2_ST_CHILDREN[] =
 
 PositionedEntityROMDef LEVEL_1_STAGE_2_ST_UI_CHILDREN[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
-
 	{&GUI_EN, 					{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&LOW_POWER_INDICATOR_LB, 	{  16, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -319,5 +318,5 @@ StageEntryPointROMDef LEVEL_1_STAGE_2_MAIN_EP =
 	{80, 96, HERO_DSPL},
 
 	// whether this entry point acts as a checkpoint
-	false,
+	true,
 };

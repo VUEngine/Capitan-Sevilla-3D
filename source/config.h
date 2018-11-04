@@ -225,7 +225,7 @@
 	__BLOCK_DEFINITION(80, 50)																			\
 	__BLOCK_DEFINITION(68, 60)																			\
 	__BLOCK_DEFINITION(40, 96)																			\
-	__BLOCK_DEFINITION(28, 480)																			\
+	__BLOCK_DEFINITION(28, 550)																			\
 	__BLOCK_DEFINITION(20, 700)																			\
 	__BLOCK_DEFINITION(16, 450)																			\
 

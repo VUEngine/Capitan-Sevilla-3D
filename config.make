@@ -1,7 +1,8 @@
 # VUEngine based plugins that the project uses
-PLUGINS = 	vuengine/plugins/other/AutomaticPause														\
-			vuengine/plugins/other/SaveDataManager														\
-			vuengine/plugins/states/SplashScreens														\
+PLUGINS =	vuengine/plugins/entities/LowPowerEntity 														\
+			vuengine/plugins/other/AutomaticPause															\
+			vuengine/plugins/other/SaveDataManager															\
+			vuengine/plugins/states/SplashScreens															\
 
 # Compiler's output
 COMPILER_OUTPUT         = c

@@ -48,52 +48,43 @@ const char* const LANGUAGE_EN_STRINGS[] =
 {
 	/* Plugins */
 
-	/* STR_AUTOMATIC_PAUSE */			//"Automatic Pause",
 	/* STR_AUTOMATIC_PAUSE */			"AUTOMATIC PAUSE",
-	/* STR_AUTO_PAUSE_EXPLANATION */	"The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
-	/* STR_LANGUAGE_SELECT */			//"Language Select",
+	/* STR_AUTO_PAUSE_EXPLANATION */	"THE AUTOMATIC PAUSE FEATURE WILL\nREMIND YOU TO TAKE A BREAK FROM\nPLAYING APPROX. EVERY 30 MINUTES",
 	/* STR_LANGUAGE_SELECT */			"LANGUAGE SELECT",
-	/* STR_OFF */						//"Off",
 	/* STR_OFF */						"OFF",
-	/* STR_ON */						//"On",
 	/* STR_ON */						"ON",
-	/* STR_PRECAUTION_SCREEN_TEXT */	//"     Important\n\nRead Instruction and\n\nPrecaution Booklets\n\n  before operating",
 	/* STR_PRECAUTION_SCREEN_TEXT */	"     IMPORTANT\n\nREAD INSTRUCTION AND\n\nPRECAUTION BOOKLETS\n\n  BEFORE OPERATING",
 
     /* General */
 
-	/* STR_ARE_YOU_SURE */				"Are you sure?",
-	/* STR_BACK */						"Back",
-	/* STR_CHECKPOINT */				"Checkpoint",
-	/* STR_CONTINUE */					"Continue",
-	/* STR_CREDITS */					"Credits",
-	/* STR_LANGUAGE */					"Language",
-	/* STR_LEVEL */						"Level",
-	/* STR_LEVEL_CONQUERED */			"Level Conquered!",
-	/* STR_LEVEL_DONE */				"Level Completed!",
-	/* STR_NEW_BEST */					"New Best!",
-	/* STR_NEW_GAME */					"New Game",
-	/* STR_NO */						"No",
-	/* STR_OPTIONS */					"Options",
-	/* STR_PAUSE */						"Pause",
-	/* STR_PRESENTS */					"Presents",
-	/* STR_PRESS_START_BUTTON */		"Press Start Button",
-	/* STR_PROGRESS_WILL_BE_ERASED */	"All your progress will be erased.",
-	/* STR_QUIT_LEVEL */				"Quit Level",
-	/* STR_SELECT */					"Select",
-	/* STR_TAKE_A_REST */				"Please take a rest!",
-	/* STR_THANK_YOU_FOR_PLAYING */		"Thank you for playing!",
-	/* STR_YES */						"Yes",
+	/* STR_ARE_YOU_SURE */				"ARE YOU SURE?",
+	/* STR_BACK */						"BACK",
+	/* STR_CONTINUE */					"CONTINUE",
+	/* STR_CREDITS */					"CREDITS",
+	/* STR_LANGUAGE */					"LANGUAGE",
+	/* STR_LEVEL */						"LEVEL",
+	/* STR_NEW_BEST */					"NEW BEST!",
+	/* STR_NEW_GAME */					"NEW GAME",
+	/* STR_NO */						"NO",
+	/* STR_OPTIONS */					"OPTIONS",
+	/* STR_PAUSE */						"PAUSE",
+	/* STR_PRESENTS */					"PRESENTS",
+	/* STR_PRESS_START_BUTTON */		"PRESS START BUTTON",
+	/* STR_QUIT_GAME */					"QUIT GAME",
+	/* STR_SELECT */					"SELECT",
+	/* STR_TAKE_A_REST */				"PLEASE TAKE A REST!",
+	/* STR_THANK_YOU_FOR_PLAYING */		"THANK YOU FOR PLAYING!",
+	/* STR_YES */						"YES",
 
 	/* Levels */
 
-	/* STR_LEVEL_1_NAME */				"Sevilla,\nMission:\nRetrieve the book",
+	/* STR_LEVEL_1_NAME */				"SEVILLA,\nMISSION:\nRETRIEVE THE BOOK",
 };
 
 const LangROMDef LANGUAGE_EN =
 {
 	// Language Name
-	"English",
+	"ENGLISH",
 
 	// Flag Entity
 	&FLAG_UNITED_KINGDOM_EN,

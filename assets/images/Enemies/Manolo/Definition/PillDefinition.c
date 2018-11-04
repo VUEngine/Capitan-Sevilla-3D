@@ -112,7 +112,7 @@ TextureROMDef PILL_TX =
 	1,
 
 	// recyclable
-	false,
+	true,
 };
 
 ObjectSpriteROMDef PILL_SPRITE =

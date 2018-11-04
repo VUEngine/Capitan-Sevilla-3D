@@ -89,10 +89,8 @@ void ProgressManager::resetCurrentLevelProgress()
 	ProgressManager::resetHeroState(this);
 
 	this->currentLevelTime = 0;
-	this->collectedItems = 0;
 
 	this->checkpointCurrentLevelTime = 0;
-	this->checkpointCollectedItems = 0;
 }
 
 void ProgressManager::restoreSettings()
@@ -103,42 +101,11 @@ void ProgressManager::restoreSettings()
 void ProgressManager::setCheckPointData()
 {
 	this->checkpointCurrentLevelTime = this->currentLevelTime;
-	this->checkpointCollectedItems = this->collectedItems;
 }
 
 void ProgressManager::loadCheckPointData()
 {
 	this->currentLevelTime = this->checkpointCurrentLevelTime;
-	this->collectedItems = this->checkpointCollectedItems;
-}
-
-bool ProgressManager::getItemStatus(u16 id)
-{
-	if(id > 0 && id <= sizeof(this->collectedItems))
-	{
-		return GET_BIT(this->collectedItems, (id - 1));
-	}
-
-	return false;
-}
-
-bool ProgressManager::setItemStatus(u16 id, bool taken)
-{
-	if(id > 0 && id <= sizeof(this->collectedItems))
-	{
-		if(taken)
-		{
-			SET_BIT(this->collectedItems, (id - 1));
-		}
-		else
-		{
-			CLEAR_BIT(this->collectedItems, (id - 1));
-		}
-
-		return true;
-	}
-
-	return false;
 }
 
 // get hero's current energy

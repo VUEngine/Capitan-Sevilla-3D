@@ -721,6 +721,12 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 			return true;
 			break;
 
+		case kMessage:
+
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kEventEnterCollision, NULL);
+			return true;
+			break;
+
 		case kMovingPlatform:
 		case kTopShape:
 			{
@@ -955,6 +961,16 @@ void Hero::syncRotationWithBody()
 
 void Hero::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable)
 {
+	SpatialObject collidingObject = Shape::getOwner(shapeNotCollidingAnymore);
+
+	switch(SpatialObject::getInGameType(collidingObject))
+	{
+		case kMessage:
+
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kEventExitCollision, NULL);
+			break;
+	}
+
 	Base::exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 

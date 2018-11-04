@@ -70,6 +70,7 @@ void Gui::constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 in
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroShot, kEventHeroShot);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSausageCollected, kEventSausageCollected);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCheckpointLoaded, kEventCheckpointLoaded);
 }
 
 // class's destructor
@@ -87,6 +88,7 @@ void Gui::destructor()
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroShot, kEventHeroShot);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSausageCollected, kEventSausageCollected);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCheckpointLoaded, kEventCheckpointLoaded);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -198,4 +200,15 @@ void Gui::onHeroShot(Object eventFirer __attribute__ ((unused)))
 void Gui::onSausageCollected(Object eventFirer __attribute__ ((unused)))
 {
 	Gui::printSausages(this);
+}
+
+// handle event
+void Gui::onCheckpointLoaded(Object eventFirer __attribute__ ((unused)))
+{
+	// override with progress from progress manager
+	ProgressManager progressManager = ProgressManager::getInstance();
+	if(progressManager)
+	{
+		this->timeRemaining = 40;//ProgressManager::getCurrentLevelTime(ProgressManager::getInstance());
+	}
 }

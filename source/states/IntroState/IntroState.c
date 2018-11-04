@@ -146,6 +146,9 @@ void IntroState::enter(void* owner)
 	// disable user input
 	Game::disableKeypad(Game::getInstance());
 
+	// start clocks to start animations
+	GameState::startClocks(GameState::safeCast(this));
+
 	// send delayed message to self to trigger next image
 	MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 

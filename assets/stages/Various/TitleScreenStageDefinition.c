@@ -33,25 +33,12 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+extern EntityDefinition PRESS_START_BUTTON_EN;
 extern EntityDefinition TITLE_LOGO_IM;
 extern EntityDefinition TITLE_CAPITAN_IM;
 extern EntityDefinition TITLE_EARTH_IM;
 extern EntityDefinition TITLE_SUBTITLE_IM;
 extern EntityDefinition LOW_POWER_INDICATOR_LB;
-
-extern CharSetDefinition TITLE_LOGO_CH;
-extern CharSetDefinition TITLE_LOGO_BLACK_CH;
-extern CharSetDefinition TITLE_CAPITAN_CH;
-extern CharSetDefinition TITLE_CAPITAN_BLACK_CH;
-extern CharSetDefinition TITLE_EARTH_CH;
-extern CharSetDefinition TITLE_SUBTITLE_CH;
-
-extern TextureDefinition TITLE_LOGO_TX;
-extern TextureDefinition TITLE_LOGO_BLACK_TX;
-extern TextureDefinition TITLE_CAPITAN_TX;
-extern TextureDefinition TITLE_CAPITAN_BLACK_TX;
-extern TextureDefinition TITLE_EARTH_TX;
-extern TextureDefinition TITLE_SUBTITLE_TX;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -60,18 +47,18 @@ extern TextureDefinition TITLE_SUBTITLE_TX;
 
 PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
-
-	{&TITLE_LOGO_IM, 		{192, 48, 0, 0}, 	0, NULL, NULL, NULL, false},
-	{&TITLE_CAPITAN_IM, 	{192, 131, 32, 0}, 	0, NULL, NULL, NULL, false},
-	{&TITLE_EARTH_IM, 		{94, 129, 48, 0}, 	0, NULL, NULL, NULL, false},
-	{&TITLE_SUBTITLE_IM, 	{184, 216, 16, 0}, 	0, NULL, NULL, NULL, false},
+	{&TITLE_LOGO_IM, 			{192, 48, 0, 0}, 	0, NULL, NULL, NULL, false},
+	{&TITLE_CAPITAN_IM, 		{192, 131, 32, 0}, 	0, NULL, NULL, NULL, false},
+	{&TITLE_EARTH_IM, 			{94, 129, 48, 0}, 	0, NULL, NULL, NULL, false},
+	{&PRESS_START_BUTTON_EN, 	{192, 216, 16, 0}, 	0, NULL, NULL, NULL, false},
+	//{&TITLE_SUBTITLE_IM, 		{184, 216, 16, 0}, 	0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 {
+	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -90,25 +77,11 @@ FontROMDef* const TITLE_SCREEN_STAGE_ST_FONTS[] =
 
 CharSetROMDef* const TITLE_SCREEN_STAGE_ST_CHARSETS[] =
 {
-	&TITLE_LOGO_CH,
-	&TITLE_LOGO_BLACK_CH,
-	&TITLE_CAPITAN_CH,
-	&TITLE_CAPITAN_BLACK_CH,
-	&TITLE_EARTH_CH,
-	&TITLE_SUBTITLE_CH,
-
 	NULL
 };
 
 TextureDefinition* const TITLE_SCREEN_STAGE_ST_TEXTURES[] =
 {
-	&TITLE_LOGO_TX,
-	&TITLE_LOGO_BLACK_TX,
-	&TITLE_CAPITAN_TX,
-	&TITLE_CAPITAN_BLACK_TX,
-	&TITLE_EARTH_TX,
-	&TITLE_SUBTITLE_TX,
-
 	NULL
 };
 

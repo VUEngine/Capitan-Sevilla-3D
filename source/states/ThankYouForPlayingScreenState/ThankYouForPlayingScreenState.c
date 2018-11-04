@@ -32,6 +32,8 @@
 #include <I18n.h>
 #include <Languages.h>
 #include <DirectDraw.h>
+#include <PlatformerLevelState.h>
+#include <ProgressManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -66,6 +68,10 @@ void ThankYouForPlayingScreenState::enter(void* owner)
 {
 	// call base
 	Base::enter(this, owner);
+
+	// reset game progress for next round
+	PlatformerLevelState::resetProgress(PlatformerLevelState::getInstance());
+	ProgressManager::resetCurrentLevelProgress(ProgressManager::getInstance());
 
 	// print "thank you for playing"
 	const char* strPresents = I18n::getText(I18n::getInstance(), STR_THANK_YOU_FOR_PLAYING);

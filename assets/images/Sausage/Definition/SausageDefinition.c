@@ -134,7 +134,7 @@ TextureROMDef SAUSAGE_TX =
 	1,
 
 	// recyclable
-	false,
+	true,
 };
 
 ObjectSpriteROMDef SAUSAGE_SPRITE =

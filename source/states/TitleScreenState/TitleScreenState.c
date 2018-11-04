@@ -75,6 +75,9 @@ void TitleScreenState::enter(void* owner)
 	// disable user input
 	Game::disableKeypad(Game::getInstance());
 
+	// start clocks to start animations
+	GameState::startClocks(GameState::safeCast(this));
+
 	// load stage
 	GameState::loadStage(GameState::safeCast(this), (StageDefinition*)&TITLE_SCREEN_STAGE_ST, NULL, true);
 
