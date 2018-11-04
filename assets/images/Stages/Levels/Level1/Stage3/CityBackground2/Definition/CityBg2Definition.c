@@ -33,59 +33,44 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CityBackgroundATiles[];
-extern BYTE CityBackgroundBTiles[];
-extern BYTE CityBackgroundAMap[];
-extern BYTE CityBackgroundBMap[];
+extern BYTE CityBackground2Tiles[];
+extern BYTE CityBackground2AMap[];
+extern BYTE CityBackground2BMap[];
+extern BYTE CityBackground2CMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef CITY_BG_A_CH =
+CharSetROMDef CITY_BG_2_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	105,
+	262,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	CityBackgroundATiles,
+	CityBackground2Tiles,
 };
 
-CharSetROMDef CITY_BG_B_CH =
-{
-	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
-	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	83,
-
-	// allocation type
-	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
-
-	// char definition
-	CityBackgroundBTiles,
-};
-
-TextureROMDef CITY_BG_A_TX =
+TextureROMDef CITY_BG_2_A_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&CITY_BG_A_CH,
+	(CharSetDefinition*)&CITY_BG_2_CH,
 
 	// bgmap definition
-	CityBackgroundAMap,
+	CityBackground2AMap,
 
 	// cols (max 64)
 	64,
 
 	// rows (max 64)
-	11,
+	16,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -102,19 +87,19 @@ TextureROMDef CITY_BG_A_TX =
 	false,
 };
 
-TextureROMDef CITY_BG_B_TX =
+TextureROMDef CITY_BG_2_B_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&CITY_BG_B_CH,
+	(CharSetDefinition*)&CITY_BG_2_CH,
 
 	// bgmap definition
-	CityBackgroundBMap,
+	CityBackground2BMap,
 
 	// cols (max 64)
 	64,
 
 	// rows (max 64)
-	11,
+	16,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -131,14 +116,44 @@ TextureROMDef CITY_BG_B_TX =
 	false,
 };
 
-TextureROMDef* const CITY_BG_SB_TEXTURES[] =
+TextureROMDef CITY_BG_2_C_TX =
 {
-	(TextureDefinition*)&CITY_BG_A_TX,
-	(TextureDefinition*)&CITY_BG_B_TX,
+	// charset definition
+	(CharSetDefinition*)&CITY_BG_2_CH,
+
+	// bgmap definition
+	CityBackground2CMap,
+
+	// cols (max 64)
+	64,
+
+	// rows (max 64)
+	16,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	0,
+
+	// recyclable
+	false,
+};
+
+TextureROMDef* const CITY_BG_2_TEXTURES[] =
+{
+	(TextureDefinition*)&CITY_BG_2_A_TX,
+	//(TextureDefinition*)&CITY_BG_2_B_TX,
+	(TextureDefinition*)&CITY_BG_2_C_TX,
 	NULL
 };
 
-MBgmapSpriteROMDef CITY_BG_SB_SPRITE =
+MBgmapSpriteROMDef CITY_BG_2_SPRITE =
 {
 	{
 		{
@@ -152,7 +167,7 @@ MBgmapSpriteROMDef CITY_BG_SB_SPRITE =
 			false,
 
 			// displacement
-			{0, 0, 0, -18},
+			{-304, 0, 0, -18},
 		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -166,7 +181,7 @@ MBgmapSpriteROMDef CITY_BG_SB_SPRITE =
 		__WORLD_ON,
 	},
 
-	(TextureDefinition**)CITY_BG_SB_TEXTURES,
+	(TextureDefinition**)CITY_BG_2_TEXTURES,
 
 	// SCX/SCY
 	__WORLD_1x2,
@@ -178,19 +193,19 @@ MBgmapSpriteROMDef CITY_BG_SB_SPRITE =
 	false,
 };
 
-BgmapSpriteROMDef* const CITY_BG_SB_SPRITES[] =
+BgmapSpriteROMDef* const CITY_BG_2_SPRITES[] =
 {
-	(BgmapSpriteROMDef*)&CITY_BG_SB_SPRITE,
+	(BgmapSpriteROMDef*)&CITY_BG_2_SPRITE,
 	NULL
 };
 
-EntityROMDef CITY_BG_IM =
+EntityROMDef CITY_BG_2_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)CITY_BG_SB_SPRITES,
+	(SpriteROMDef**)CITY_BG_2_SPRITES,
 
 	// collision shapes
 	NULL,

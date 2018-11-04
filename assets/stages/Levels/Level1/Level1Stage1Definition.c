@@ -50,7 +50,7 @@ extern EntityDefinition BUSH_BG_2_EN;
 extern EntityDefinition CAR_1_AC;
 extern EntityDefinition CAR_BG_1_EN;
 extern EntityDefinition CAR_BG_2_EN;
-extern EntityDefinition CITY_BG_IM;
+extern EntityDefinition CITY_BG_1_EN;
 extern EntityDefinition CITY_FLOOR_3D_EN;
 extern EntityDefinition CITY_FLOOR_COLLISION_CL;
 extern EntityDefinition CITY_FLOOR_EN;
@@ -109,7 +109,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 {
 	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
 
-	{&CITY_BG_IM,						{   0,   4, 6144,   0},		0, NULL, NULL, NULL, true},
+	{&CITY_BG_1_EN,						{   0,   4, 6144,   0},		0, NULL, NULL, NULL, true},
 	{&CITY_FLOOR_EN,					{   0, 172,    2,   0},		0, NULL, NULL, NULL, true},
 
 	{&CITY_FLOOR_COLLISION_CL,			{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
