@@ -19,34 +19,29 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef CREDITS_STATE_H_
+#define CREDITS_STATE_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <PlatformerLevelState.h>
-#include <Languages.h>
+#include <GameState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-extern StageEntryPointROMDef LEVEL_1_STAGE_1_MAIN_EP;
-
-
-//---------------------------------------------------------------------------------------------------------
-//												LEVEL DEFINITION
-//---------------------------------------------------------------------------------------------------------
-
-PlatformerLevelROMDef LEVEL_1_STAGE_1_LV =
+singleton class CreditsState : GameState
 {
-	// starting entry point
-	(StageEntryPointDefinition*)&LEVEL_1_STAGE_1_MAIN_EP,
+	u8 currentStep;
 
-	// id
-	1,
+	static CreditsState getInstance();
+	override void enter(void* owner);
+	override void processUserInput(UserInput userInput);
+}
 
-	// name
-	(void*)STR_LEVEL_1_NAME,
-};
+
+#endif

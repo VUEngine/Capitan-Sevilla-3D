@@ -62,7 +62,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_3_ST_CHILDREN[] =
 {
 	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
 
-	{&CITY_BG_2_EN,						{  0,  96, 6144,   0},		0, NULL, NULL, NULL, true},
+	{&CITY_BG_2_EN,						{   0,  96, 6144,   0},		0, NULL, NULL, NULL, true},
 
 	{&CITY_FLOOR_COLLISION_CL,			{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
 	{&CITY_FLOOR_COLLISION_CL,			{ 372, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
@@ -110,6 +110,9 @@ CharSetROMDef* const LEVEL_1_STAGE_3_ST_CHARSETS[] =
 
 TextureDefinition* const LEVEL_1_STAGE_3_ST_TEXTURES[] =
 {
+	&CITY_BG_2_B_TX,
+	&CITY_BG_2_A_TX,
+
 	NULL
 };
 
