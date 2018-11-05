@@ -32,7 +32,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageEntryPointROMDef LEVEL_1_STAGE_1_MAIN_EP;
+extern StageEntryPointROMDef LEVEL_1_STAGE_3_MAIN_EP;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,7 +42,7 @@ extern StageEntryPointROMDef LEVEL_1_STAGE_1_MAIN_EP;
 PlatformerLevelROMDef LEVEL_1_STAGE_1_LV =
 {
 	// starting entry point
-	(StageEntryPointDefinition*)&LEVEL_1_STAGE_1_MAIN_EP,
+	(StageEntryPointDefinition*)&LEVEL_1_STAGE_3_MAIN_EP,
 
 	// id
 	1,

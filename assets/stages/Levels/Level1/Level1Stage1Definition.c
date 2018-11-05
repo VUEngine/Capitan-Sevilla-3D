@@ -88,7 +88,10 @@ extern CharSetDefinition GUI_CH;
 extern CharSetDefinition HERO_RIGHT_CH;
 extern CharSetDefinition HERO_RIGHT_BLACK_CH;
 extern CharSetDefinition HOVER_CAR_CH;
+extern CharSetDefinition CITY_BG_1_CH;
 
+extern TextureDefinition CITY_BG_1_A_TX;
+extern TextureDefinition CITY_BG_1_B_TX;
 extern TextureDefinition BULLY_TX;
 extern TextureDefinition CAR_1_TX;
 extern TextureDefinition GUI_TX;
@@ -109,7 +112,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 {
 	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
 
-	{&CITY_BG_1_EN,						{   0,   4, 6144,   0},		0, NULL, NULL, NULL, true},
+	{&CITY_BG_1_EN,						{ 148, 112, 6144,   0},		0, NULL, NULL, NULL, true},
 	{&CITY_FLOOR_EN,					{   0, 172,    2,   0},		0, NULL, NULL, NULL, true},
 
 	{&CITY_FLOOR_COLLISION_CL,			{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
@@ -252,6 +255,7 @@ FontROMDef* const LEVEL_1_STAGE_1_ST_FONTS[] =
 
 CharSetROMDef* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 {
+	&CITY_BG_1_CH,
 	&BULLY_CH,
 	&CAR_1_CH,
 	&FLOWER_POT_CH,
@@ -265,6 +269,8 @@ CharSetROMDef* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 
 TextureDefinition* const LEVEL_1_STAGE_1_ST_TEXTURES[] =
 {
+	&CITY_BG_1_A_TX,
+	&CITY_BG_1_B_TX,
 	&BULLY_TX,
 	&CAR_1_TX,
 	&FLOWER_POT_TX,

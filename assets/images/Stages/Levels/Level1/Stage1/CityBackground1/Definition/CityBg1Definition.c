@@ -69,7 +69,7 @@ TextureROMDef CITY_BG_1_A_TX =
 	64,
 
 	// rows (max 64)
-	11,
+	64,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -98,7 +98,7 @@ TextureROMDef CITY_BG_1_B_TX =
 	64,
 
 	// rows (max 64)
-	11,
+	64,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -150,10 +150,12 @@ MBgmapSpriteROMDef CITY_BG_1_SPRITE =
 		__WORLD_ON,
 	},
 
+	// textures
 	(TextureDefinition**)CITY_BG_1_TEXTURES,
 
-	// SCX/SCY
-	__WORLD_1x2,
+	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
+	// textures must be 64x64 for anything other than 1x1
+	__WORLD_2x1,
 
 	// x loop
 	true,

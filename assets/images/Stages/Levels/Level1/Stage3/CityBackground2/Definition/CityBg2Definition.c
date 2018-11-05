@@ -36,7 +36,6 @@
 extern BYTE CityBackground2Tiles[];
 extern BYTE CityBackground2AMap[];
 extern BYTE CityBackground2BMap[];
-extern BYTE CityBackground2CMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -48,7 +47,7 @@ CharSetROMDef CITY_BG_2_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	262,
+	251,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -70,7 +69,7 @@ TextureROMDef CITY_BG_2_A_TX =
 	64,
 
 	// rows (max 64)
-	16,
+	64,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -99,36 +98,7 @@ TextureROMDef CITY_BG_2_B_TX =
 	64,
 
 	// rows (max 64)
-	16,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
-	1,
-
-	// palette number (0-3)
-	0,
-
-	// recyclable
-	false,
-};
-
-TextureROMDef CITY_BG_2_C_TX =
-{
-	// charset definition
-	(CharSetDefinition*)&CITY_BG_2_CH,
-
-	// bgmap definition
-	CityBackground2CMap,
-
-	// cols (max 64)
 	64,
-
-	// rows (max 64)
-	16,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -147,9 +117,8 @@ TextureROMDef CITY_BG_2_C_TX =
 
 TextureROMDef* const CITY_BG_2_TEXTURES[] =
 {
+	(TextureDefinition*)&CITY_BG_2_B_TX,
 	(TextureDefinition*)&CITY_BG_2_A_TX,
-	//(TextureDefinition*)&CITY_BG_2_B_TX,
-	(TextureDefinition*)&CITY_BG_2_C_TX,
 	NULL
 };
 
@@ -167,7 +136,7 @@ MBgmapSpriteROMDef CITY_BG_2_SPRITE =
 			false,
 
 			// displacement
-			{-304, 0, 0, -18},
+			{0, 0, 0, -18},
 		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -181,10 +150,12 @@ MBgmapSpriteROMDef CITY_BG_2_SPRITE =
 		__WORLD_ON,
 	},
 
+	// textures
 	(TextureDefinition**)CITY_BG_2_TEXTURES,
 
-	// SCX/SCY
-	__WORLD_1x2,
+	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
+	// textures must be 64x64 for anything other than 1x1
+	__WORLD_2x1,
 
 	// x loop
 	true,
