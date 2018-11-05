@@ -110,9 +110,6 @@ CharSetROMDef* const LEVEL_1_STAGE_3_ST_CHARSETS[] =
 
 TextureDefinition* const LEVEL_1_STAGE_3_ST_TEXTURES[] =
 {
-	&CITY_BG_2_B_TX,
-	&CITY_BG_2_A_TX,
-
 	NULL
 };
 

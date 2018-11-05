@@ -117,8 +117,8 @@ TextureROMDef CITY_BG_2_B_TX =
 
 TextureROMDef* const CITY_BG_2_TEXTURES[] =
 {
-	(TextureDefinition*)&CITY_BG_2_B_TX,
 	(TextureDefinition*)&CITY_BG_2_A_TX,
+	(TextureDefinition*)&CITY_BG_2_B_TX,
 	NULL
 };
 
