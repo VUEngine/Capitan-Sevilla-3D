@@ -73,7 +73,6 @@ const char* const LANGUAGE_FR_STRINGS[] =
 	/* STR_QUIT_GAME */					"QUITTER JEU",
 	/* STR_SELECT */					"SÉLECTIONNER",
 	/* STR_TAKE_A_REST */				"SE IL VOUS PLAÎT, PRENDRE UN REPOS!",
-	/* STR_THANK_YOU_FOR_PLAYING */		"THANK YOU FOR PLAYING!",
 	/* STR_YES */						"OUI",
 
 	/* LEVELS */

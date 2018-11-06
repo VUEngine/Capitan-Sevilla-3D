@@ -28,7 +28,7 @@
 #include <Camera.h>
 #include <MessageDispatcher.h>
 #include <LolaSoftScreenState.h>
-#include <IntroState.h>
+#include <TitleScreenState.h>
 #include <I18n.h>
 #include <Languages.h>
 #include <DirectDraw.h>
@@ -50,7 +50,7 @@ void LolaSoftScreenState::constructor()
 {
 	Base::constructor();
 
-	SplashScreenState::setNextState(SplashScreenState::safeCast(this), GameState::safeCast(IntroState::getInstance()));
+	SplashScreenState::setNextState(SplashScreenState::safeCast(this), GameState::safeCast(TitleScreenState::getInstance()));
 	this->stageDefinition = (StageDefinition*)&LOLA_SOFT_SCREEN_STAGE_ST;
 }
 

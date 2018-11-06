@@ -35,7 +35,7 @@
 #include <TitleScreenState.h>
 #include <Hero.h>
 #include <ParticleSystem.h>
-#include <PlatformerLevelState.h>
+#include <IntroState.h>
 #include <OptionsScreenState.h>
 #include <ProgressManager.h>
 #include <EventManager.h>
@@ -145,5 +145,5 @@ void TitleScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused
 // handle event
 void TitleScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	Game::changeState(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+	Game::changeState(Game::getInstance(), GameState::safeCast(IntroState::getInstance()));
 }

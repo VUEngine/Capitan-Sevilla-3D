@@ -36,6 +36,7 @@
 extern BYTE CreditsTiles[];
 extern BYTE CreditsAMap[];
 extern BYTE CreditsBMap[];
+extern BYTE CreditsCMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -47,7 +48,7 @@ CharSetROMDef CREDITS_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	587,
+	1352,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -169,10 +170,67 @@ BgmapSpriteROMDef CREDITS_B_SPRITE =
 	__WORLD_ON,
 };
 
+TextureROMDef CREDITS_C_TX =
+{
+	// charset definition
+	(CharSetDefinition*)&CREDITS_CH,
+
+	// bgmap definition
+	CreditsCMap,
+
+	// cols (max 64)
+	48,
+
+	// rows (max 64)
+	64,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	0,
+
+	// recyclable
+	false,
+};
+
+BgmapSpriteROMDef CREDITS_C_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture definition
+		(TextureDefinition*)&CREDITS_C_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 1024, 0, 0}
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
 BgmapSpriteROMDef* const CREDITS_SPRITES[] =
 {
 	&CREDITS_A_SPRITE,
 	&CREDITS_B_SPRITE,
+	&CREDITS_C_SPRITE,
 	NULL
 };
 

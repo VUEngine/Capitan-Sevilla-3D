@@ -36,7 +36,7 @@
 #include "Lift.h"
 #include <PlatformerLevelState.h>
 
-#include <ThankYouForPlayingScreenState.h>
+#include <CreditsState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ bool Lift::handleMessage(Telegram telegram)
 // handle event
 void Lift::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	Game::changeState(Game::getInstance(), (GameState)ThankYouForPlayingScreenState::getInstance());
+	Game::changeState(Game::getInstance(), (GameState)CreditsState::getInstance());
 
 	//PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->liftDefinition->entryPoint);
 }

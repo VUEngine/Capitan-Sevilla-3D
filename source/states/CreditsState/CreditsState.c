@@ -143,7 +143,7 @@ void CreditsState::execute(void* owner __attribute__ ((unused)))
 	{
 		const Vector3D* position = Actor::getPosition(this->entityCredits);
 
-    	if(__METERS_TO_PIXELS(position->y) < -620)
+    	if(__METERS_TO_PIXELS(position->y) < -720)
     	{
     		Actor::stopAllMovement(this->entityCredits);
     		this->finishedScrolling = true;
@@ -177,62 +177,3 @@ void CreditsState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	Game::changeState(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
 }
-
-/*
---- CAPITAN SEVILLA 3D ---
-BASED ON DINAMIC SOFTWARE'S "CAPITAN SEVILLA" (1988) FOR ZX SPECTRUM.
-
-- ARTWORK & DESIGN -
-RUBÉN GARCERA SOTO
-
-- DEVELOPMENT -
-CHRISTIAN RADKE
-JORGE EREMIEV
-
-- THANK YOU -
-
-A HUGE THANK YOU TO OUR BACKERS ON PATREON
-HTTPS://WWW.PATREON.COM/VUENGINE
-
-TODO: top backers only vuenthusiast+, other only $5+
-
-BENJAMIN STEVENS
-BNJMN MRPH
-ERIC FREEMAN
-KEVIN L MELLOTT
-PATRICK FENTON
-RANDY JEFFERY
-
-ADAM EMMONS
-ADAM NELSON
-AMOS BIELER
-ANDRES GAETAN
-BERNARDO COMPAGNONI
-BRAXTON MOTT
-BRIE HEBERT
-CANDI'S CLASSIC GAME SHRINE
-CESAR HENZELIN
-CHRIS
-DANIEL LHOTA
-DAVE SHELDON
-DAVID BAISLEY
-DAVID GREEN
-ECKART SAUERBREY
-ERIC LUKE
-GRAHAM DAWES
-JESSE LEVINE
-JON ZROSTLIK
-JORDAN CARRIERE
-JOSE ZAGAL
-LARRY ANDERSON
-MARTEN REISS
-MICHAEL ORTEGA
-MIKE BOODLE
-NEKTARIOS MOULIANAKIS
-NORTY
-SEAN MACHAN
-STEVEN HAGELGANS
-TERO PIIROINEN
-TONY
-VECTREXROLI
-*/
