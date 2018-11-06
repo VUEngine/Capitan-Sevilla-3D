@@ -93,7 +93,7 @@ bool Lift::handleMessage(Telegram telegram)
 		case kLiftStart:
 		{
 			Velocity velocity = {0, __I_TO_FIX10_6(-2), 0};
-			Actor::moveUniformly(Actor::safeCast(this), &velocity);
+			Actor::moveUniformly(this, &velocity);
 
 			break;
 		}

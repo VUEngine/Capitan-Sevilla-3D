@@ -98,29 +98,29 @@ void IntroState::enter(void* owner)
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(GameState::safeCast(this), (StageDefinition*)&INTRO_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageDefinition*)&INTRO_STAGE_ST, NULL, true);
 
 	// init members
 	this->currentStep = 0;
 
 	// get entity references
-	this->entityImage1 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE1", true));
-	this->entityImage2 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE2", true));
-	this->entityImage3 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE3", true));
-	this->entityImage4 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE4", true));
-	this->entityImage5 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE5", true));
-	this->entityImage6 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE6", true));
-	this->entityImage7 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE7", true));
-	this->entityImage8 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "IMAGE8", true));
-	this->entityText1 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT1", true));
-	this->entityText2 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT2", true));
-	this->entityText3 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT3", true));
-	this->entityText4 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT4", true));
-	this->entityText5 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT5", true));
-	this->entityText6 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT6", true));
-	this->entityText7 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT7", true));
-	this->entityText8 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT8", true));
-	this->entityText9 = Entity::safeCast(Container::getChildByName(Container::safeCast(Game::getStage(Game::getInstance())), "TEXT9", true));
+	this->entityImage1 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "IMAGE1", true));
+	this->entityImage2 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "IMAGE2", true));
+	this->entityImage3 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "IMAGE3", true));
+	this->entityImage4 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "IMAGE4", true));
+	this->entityImage5 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "IMAGE5", true));
+	this->entityImage6 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "IMAGE6", true));
+	this->entityImage7 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "IMAGE7", true));
+	this->entityImage8 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "IMAGE8", true));
+	this->entityText1 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "TEXT1", true));
+	this->entityText2 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "TEXT2", true));
+	this->entityText3 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "TEXT3", true));
+	this->entityText4 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "TEXT4", true));
+	this->entityText5 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "TEXT5", true));
+	this->entityText6 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "TEXT6", true));
+	this->entityText7 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "TEXT7", true));
+	this->entityText8 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "TEXT8", true));
+	this->entityText9 = Entity::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "TEXT9", true));
 
 	// hide most entities initially
 	Entity::hide(this->entityImage2);
@@ -147,7 +147,7 @@ void IntroState::enter(void* owner)
 	Game::disableKeypad(Game::getInstance());
 
 	// start clocks to start animations
-	GameState::startClocks(GameState::safeCast(this));
+	GameState::startClocks(this);
 
 	// send delayed message to self to trigger next image
 	MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);

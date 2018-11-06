@@ -63,7 +63,7 @@ bool Sausage::enterCollision(const CollisionInformation* collisionInformation)
 		case kEnemy:
 		{
 			// stop movement
-			Actor::stopAllMovement(Actor::safeCast(this));
+			Actor::stopAllMovement(this);
 
 			// deactivate shapes
 			Entity::activateShapes(Entity::safeCast(this), false);

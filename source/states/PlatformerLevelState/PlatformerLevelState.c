@@ -114,7 +114,7 @@ void PlatformerLevelState::enter(void* owner)
 		Camera::setPosition(Camera::getInstance(), screenPosition);
 
 		// load stage
-		GameState::loadStage(GameState::safeCast(this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, false);
+		GameState::loadStage(this, this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, false);
 
 		// create hero
 		PositionedEntity positionedEntity =
@@ -142,7 +142,7 @@ void PlatformerLevelState::enter(void* owner)
 		CustomCameraMovementManager::disableFocusEasing(CustomCameraMovementManager::getInstance());
 
 		// update actor's global transformations
-		GameState::transform(GameState::safeCast(this));
+		GameState::transform(this);
 
 		// set focus on the hero
 		Camera::setFocusGameEntity(Camera::getInstance(), Entity::safeCast(hero));
@@ -150,12 +150,12 @@ void PlatformerLevelState::enter(void* owner)
 		Camera::setFocusEntityPositionDisplacement(Camera::getInstance(), screenDisplacement);
 
 		// apply changes to the visuals
-		GameState::synchronizeGraphics(GameState::safeCast(this));
+		GameState::synchronizeGraphics(this);
 	}
 	else
 	{
 		// load stage
-		GameState::loadStage(GameState::safeCast(this), this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
+		GameState::loadStage(this, this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
 	}
 
 	CustomCameraMovementManager::disable(CustomCameraMovementManager::getInstance());
@@ -171,7 +171,7 @@ void PlatformerLevelState::enter(void* owner)
 
 	// start clocks
 	Clock::start(this->clock);
-	GameState::startClocks(GameState::safeCast(this));
+	GameState::startClocks(this);
 
 	// register event listeners
 	Object::addEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroDied, kEventHeroDied);
@@ -202,7 +202,7 @@ void PlatformerLevelState::suspend(void* owner)
 	Clock::pause(this->clock, true);
 
 	// pause physical simulations
-	GameState::pausePhysics(GameState::safeCast(this), true);
+	GameState::pausePhysics(this, true);
 
 #ifdef __DEBUG_TOOLS
 	if(!Game::isExitingSpecialMode(Game::getInstance()))
@@ -257,7 +257,7 @@ void PlatformerLevelState::resume(void* owner)
 #endif
 
 	// tell any interested entity
-	GameState::propagateMessage(GameState::safeCast(this), kLevelResumed);
+	GameState::propagateMessage(this, kLevelResumed);
 
 	// start a fade in effect
 	Camera::startEffect(Camera::getInstance(),
@@ -280,7 +280,7 @@ void PlatformerLevelState::resume(void* owner)
 #endif
 
 	// pause physical simulations
-	GameState::pausePhysics(GameState::safeCast(this), false);
+	GameState::pausePhysics(this, false);
 
 	PlatformerLevelState::setModeToPlaying(this);
 
@@ -372,7 +372,7 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 		case kLevelSetUp:
 			{
 				// tell any interested entity
-				GameState::propagateMessage(GameState::safeCast(this), kLevelSetUp);
+				GameState::propagateMessage(this, kLevelSetUp);
 
 				// show level after a little delay
 				MessageDispatcher::dispatchMessage(200, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelStarted, NULL);
@@ -522,7 +522,7 @@ void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attr
 	CustomCameraMovementManager::alertWhenTargetFocused(CustomCameraMovementManager::getInstance());
 
 	// tell any interested entity
-	GameState::propagateMessage(GameState::safeCast(this), kLevelStarted);
+	GameState::propagateMessage(this, kLevelStarted);
 
 	// announce level start
 	Object::fireEvent(EventManager::getInstance(), kEventLevelStarted);

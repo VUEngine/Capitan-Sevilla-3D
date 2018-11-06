@@ -43,7 +43,7 @@
 
 singleton class IntroState : GameState
 {
-	/* image entity references */
+	// image entity references
 	Entity entityImage1;
 	Entity entityImage2;
 	Entity entityImage3;
@@ -52,7 +52,7 @@ singleton class IntroState : GameState
 	Entity entityImage6;
 	Entity entityImage7;
 	Entity entityImage8;
-	/* text entity references */
+	// text entity references
 	Entity entityText1;
 	Entity entityText2;
 	Entity entityText3;
@@ -62,7 +62,7 @@ singleton class IntroState : GameState
 	Entity entityText7;
 	Entity entityText8;
 	Entity entityText9;
-	/* current intro step */
+	// current intro step
 	u8 currentStep;
 
 	static IntroState getInstance();

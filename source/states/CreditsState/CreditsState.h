@@ -36,10 +36,12 @@
 
 singleton class CreditsState : GameState
 {
-	u8 currentStep;
+	Actor entityCredits;
+	bool finishedScrolling;
 
 	static CreditsState getInstance();
 	override void enter(void* owner);
+	override void execute(void* owner);
 	override void processUserInput(UserInput userInput);
 }
 

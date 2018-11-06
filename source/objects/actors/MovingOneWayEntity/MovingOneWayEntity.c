@@ -77,13 +77,13 @@ void MovingOneWayEntity::startMovement()
 	if(this->speed != 0)
 	{
 		Velocity velocity = {this->speed, 0, 0};
-		Actor::moveUniformly(Actor::safeCast(this), &velocity);
+		Actor::moveUniformly(this, &velocity);
 	}
 }
 
 void MovingOneWayEntity::stopMovement()
 {
-	Actor::stopAllMovement(Actor::safeCast(this));
+	Actor::stopAllMovement(this);
 }
 
 bool MovingOneWayEntity::respawn()

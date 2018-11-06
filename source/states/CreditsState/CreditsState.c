@@ -47,7 +47,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef EMPTY_STAGE_ST;
+extern StageROMDef CREDITS_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -59,8 +59,8 @@ void CreditsState::constructor()
 {
 	Base::constructor();
 
-	// init members
-	this->currentStep = 0;
+	this->entityCredits = NULL;
+	this->finishedScrolling = false;
 }
 
 // class's destructor
@@ -78,16 +78,19 @@ void CreditsState::enter(void* owner)
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(GameState::safeCast(this), (StageDefinition*)&EMPTY_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageDefinition*)&CREDITS_STAGE_ST, NULL, true);
 
-	// init members
-	this->currentStep = 0;
+	// get entity reference
+	this->entityCredits = Actor::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "CREDITS", true));
 
 	// disable user input
 	Game::disableKeypad(Game::getInstance());
 
-	// print first screen
-	CreditsState::print(this);
+	// start clocks to start animations
+	GameState::startClocks(this);
+
+	// scrolling state
+	this->finishedScrolling = false;
 
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(),
@@ -104,71 +107,69 @@ void CreditsState::processUserInput(UserInput userInput)
 {
 	if(userInput.pressedKey & K_B)
 	{
-		this->currentStep = 99;
-		CreditsState::print(this);
+		// disable user input
+		Game::disableKeypad(Game::getInstance());
+
+		// fade out screen
+		Brightness brightness = (Brightness){0, 0, 0};
+		Camera::startEffect(Camera::getInstance(),
+			kFadeTo, // effect type
+			0, // initial delay (in ms)
+			&brightness, // target brightness
+			__FADE_DELAY, // delay between fading steps (in ms)
+			(void (*)(Object, Object))CreditsState::onFadeOutComplete, // callback function
+			Object::safeCast(this) // callback scope
+		);
 	}
-	else if(userInput.pressedKey & K_A)
+	else if(userInput.holdKey & (K_LD|K_RD|K_A))
 	{
-		this->currentStep++;
-		CreditsState::print(this);
+		if(!this->finishedScrolling)
+		{
+			CreditsState::scrollFast(this);
+		}
+	}
+	else if(userInput.releasedKey & (K_LD|K_RD|K_A))
+	{
+		if(!this->finishedScrolling)
+		{
+			CreditsState::scrollSlow(this);
+		}
 	}
 }
 
-void CreditsState::print()
+void CreditsState::execute(void* owner __attribute__ ((unused)))
 {
-	Printing printing = Printing::getInstance();
-	Printing::clear(printing);
-
-	switch(this->currentStep)
+	if(!this->finishedScrolling)
 	{
-		case 0:
-		{
-			Printing::text(printing, __CHAR_A_BUTTON, 45, 1, "DefaultFont");
-			Printing::text(printing, __CHAR_ARROW_RIGHT, 46, 1, "DefaultFont");
+		const Vector3D* position = Actor::getPosition(this->entityCredits);
 
-			Printing::text(printing, "--- CAPITAN SEVILLA 3D ---", 11, 3, "DefaultFont");
-			Printing::text(printing, "BASED ON DINAMIC SOFTWARE'S \"CAPITAN SEVILLA\"", 2, 6, "DefaultFont");
-			Printing::text(printing, "(1988) FOR ZX SPECTRUM.", 12, 7, "DefaultFont");
-			Printing::text(printing, "- ARTWORK & DESIGN -", 14, 9, "DefaultFont");
-			Printing::text(printing, "RUBÉN GARCERA SOTO", 15, 10, "DefaultFont");
-			break;
-		}
-		case 1:
-		{
-			Printing::text(printing, __CHAR_A_BUTTON, 45, 1, "DefaultFont");
-			Printing::text(printing, __CHAR_ARROW_RIGHT, 46, 1, "DefaultFont");
-			break;
-		}
-		case 2:
-		{
-			Printing::text(printing, __CHAR_A_BUTTON, 45, 1, "DefaultFont");
-			Printing::text(printing, __CHAR_ARROW_RIGHT, 46, 1, "DefaultFont");
-			break;
-		}
-		default:
-		{
-			// disable user input
-			Game::disableKeypad(Game::getInstance());
-
-			// fade out screen
-			Brightness brightness = (Brightness){0, 0, 0};
-			Camera::startEffect(Camera::getInstance(),
-				kFadeTo, // effect type
-				0, // initial delay (in ms)
-				&brightness, // target brightness
-				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))CreditsState::onFadeOutComplete, // callback function
-				Object::safeCast(this) // callback scope
-			);
-		}
+    	if(__METERS_TO_PIXELS(position->y) < -620)
+    	{
+    		Actor::stopAllMovement(this->entityCredits);
+    		this->finishedScrolling = true;
+    	}
 	}
 }
 
-// handle event
+void CreditsState::scrollSlow()
+{
+	Velocity velocity = {0, __I_TO_FIX10_6(-1), 0};
+	Actor::moveUniformly(this->entityCredits, &velocity);
+}
+
+void CreditsState::scrollFast()
+{
+	Velocity velocity = {0, __I_TO_FIX10_6(-3), 0};
+	Actor::moveUniformly(this->entityCredits, &velocity);
+}
+
 void CreditsState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// enable user input
 	Game::enableKeypad(Game::getInstance());
+
+	// start scrolling credits
+	CreditsState::scrollSlow(this);
 }
 
 // handle event
@@ -178,16 +179,22 @@ void CreditsState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 }
 
 /*
-DEVELOPMENT:
+--- CAPITAN SEVILLA 3D ---
+BASED ON DINAMIC SOFTWARE'S "CAPITAN SEVILLA" (1988) FOR ZX SPECTRUM.
 
+- ARTWORK & DESIGN -
+RUBÉN GARCERA SOTO
+
+- DEVELOPMENT -
 CHRISTIAN RADKE
 JORGE EREMIEV
 
-
-THANK YOU:
+- THANK YOU -
 
 A HUGE THANK YOU TO OUR BACKERS ON PATREON
 HTTPS://WWW.PATREON.COM/VUENGINE
+
+TODO: top backers only vuenthusiast+, other only $5+
 
 BENJAMIN STEVENS
 BNJMN MRPH

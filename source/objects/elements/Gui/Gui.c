@@ -168,7 +168,7 @@ void Gui::onHitTaken(Object eventFirer __attribute__ ((unused)))
 // handle event
 void Gui::onHeroDied(Object eventFirer __attribute__ ((unused)))
 {
-	Container::deleteMyself(Container::safeCast(this));
+	Container::deleteMyself(this);
 
 	// add "game over"
 	Vector3D cameraPosition = Camera::getPosition(Camera::getInstance());

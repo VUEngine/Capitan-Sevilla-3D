@@ -75,7 +75,7 @@ void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(GameState::safeCast(this), (StageDefinition*)&EMPTY_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageDefinition*)&EMPTY_STAGE_ST, NULL, true);
 
 	// print options
 	OptionsScreenState::print(this);

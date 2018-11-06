@@ -182,7 +182,7 @@ void Hero::stopShooting()
 void Hero::kneel()
 {
 	// stop movement
-	Actor::stopMovement(Actor::safeCast(this), __X_AXIS);
+	Actor::stopMovement(this, __X_AXIS);
 
 	// switch to kneel state
 	StateMachine::swapState(this->stateMachine, State::safeCast(HeroKneel::getInstance()));
@@ -228,7 +228,7 @@ void Hero::jump(bool checkIfYMovement)
 				force.y = __FIX10_6_MULT(__ABS(yBouncingPlaneNormal), HERO_NORMAL_JUMP_INPUT_FORCE);
 
 				// add the force to actually make the hero jump
-				Actor::addForce(Actor::safeCast(this), &force);
+				Actor::addForce(this, &force);
 			}
 			else
 			{
@@ -236,13 +236,13 @@ void Hero::jump(bool checkIfYMovement)
 				this->jumps = -1;
 
 				// stop movement to gain full momentum of the jump force that will be added
-				Actor::stopMovement(Actor::safeCast(this), __Y_AXIS);
+				Actor::stopMovement(this, __Y_AXIS);
 
 				// set second jump performed
 				this->jumps = 2;
 
 				// add the force to actually make the hero jump
-				Actor::addForce(Actor::safeCast(this), &force);
+				Actor::addForce(this, &force);
 			}
 
 			// play jump animation
@@ -274,8 +274,8 @@ void Hero::addForce(u16 axis, bool enableAddingForce)
 	if(
 		((__X_AXIS & axis) && maxVelocity > __ABS(velocity.x)) ||
 		((__Z_AXIS & axis) && maxVelocity > __ABS(velocity.z)) ||
-		Actor::hasChangedDirection(Actor::safeCast(this), __X_AXIS) ||
-		Actor::hasChangedDirection(Actor::safeCast(this), __Z_AXIS))
+		Actor::hasChangedDirection(this, __X_AXIS) ||
+		Actor::hasChangedDirection(this, __Z_AXIS))
 	{
 		fix10_6 inputForce = !Body::getNormal(this->body).y ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
 		fix10_6 xForce = (__X_AXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
@@ -287,7 +287,7 @@ void Hero::addForce(u16 axis, bool enableAddingForce)
 			zForce
 		};
 
-		Actor::addForce(Actor::safeCast(this), &force);
+		Actor::addForce(this, &force);
 	}
 	else
 	{
@@ -334,7 +334,7 @@ void Hero::stopAddingForce()
 			zForce
 		};
 
-		Actor::addForce(Actor::safeCast(this), &force);
+		Actor::addForce(this, &force);
 	}
 	else
 	{
@@ -479,7 +479,7 @@ void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool p
 
 			if(pause)
 			{
-				Actor::stopAllMovement(Actor::safeCast(this));
+				Actor::stopAllMovement(this);
 				Game::disableKeypad(Game::getInstance());
 				GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
 				//GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), true);
@@ -580,7 +580,7 @@ void Hero::die()
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroFlash);
 	Hero::resetPalette(this);
 
-	Actor::stopAllMovement(Actor::safeCast(this));
+	Actor::stopAllMovement(this);
 	Game::disableKeypad(Game::getInstance());
 	Hero::setInvincible(this, true);
 
@@ -659,7 +659,7 @@ fix10_6 Hero::getFrictionOnCollision(SpatialObject collidingObject, const Vector
 		return 0;
 	}
 
-	return Base::getFrictionOnCollision(Actor::safeCast(this), collidingObject, collidingObjectNormal);
+	return Base::getFrictionOnCollision(this, collidingObject, collidingObjectNormal);
 }
 
 // process collisions
@@ -739,7 +739,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 			break;
 	}
 
-	return Base::enterCollision(Actor::safeCast(this), collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
+	return Base::enterCollision(this, collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));
 }
 
 // process collisions
@@ -855,7 +855,7 @@ bool Hero::handleMessage(Telegram telegram)
 			break;
 	}
 
-	return Base::handleMessage(Actor::safeCast(this), telegram);
+	return Base::handleMessage(this, telegram);
 }
 
 // process message

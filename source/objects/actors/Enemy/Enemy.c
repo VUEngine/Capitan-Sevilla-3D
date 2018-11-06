@@ -103,7 +103,7 @@ void Enemy::takeHit(u8 power)
 
 void Enemy::die()
 {
-	Container::deleteMyself(Container::safeCast(this));
+	Container::deleteMyself(this);
 }
 
 void Enemy::onProjectileEjected(Object eventFirer __attribute__ ((unused)))

@@ -63,7 +63,7 @@ bool FlowerPot::enterCollision(const CollisionInformation* collisionInformation)
 		case kFloor:
 		{
 			// stop movement
-			Actor::stopAllMovement(Actor::safeCast(this));
+			Actor::stopAllMovement(this);
 
 			// deactivate shapes
 			Entity::activateShapes(Entity::safeCast(this), false);

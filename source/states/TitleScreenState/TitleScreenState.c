@@ -76,10 +76,10 @@ void TitleScreenState::enter(void* owner)
 	Game::disableKeypad(Game::getInstance());
 
 	// start clocks to start animations
-	GameState::startClocks(GameState::safeCast(this));
+	GameState::startClocks(this);
 
 	// load stage
-	GameState::loadStage(GameState::safeCast(this), (StageDefinition*)&TITLE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageDefinition*)&TITLE_SCREEN_STAGE_ST, NULL, true);
 
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(),

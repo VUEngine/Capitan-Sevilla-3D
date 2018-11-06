@@ -83,7 +83,7 @@ void Projectile::startMovement()
 	position.z *= direction.z;
 
 	// set back to local position
-	Actor::setLocalPosition(Actor::safeCast(this), &position);
+	Actor::setLocalPosition(this, &position);
 
 	// save current global position to check distance later
 	this->originalPosition = this->transformation.globalPosition;
@@ -95,19 +95,19 @@ void Projectile::startMovement()
 	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileDefinition->actorDefinition.animatedEntityDefinition.initialAnimation);
 
 	// show me
-	Entity::show(Entity::safeCast(this));
+	Entity::show(this);
 
 	// start moving
 	/*
 	if(this->projectileDefinition->movementType == __UNIFORM_MOVEMENT)
 	{
 	*/
-		Actor::moveUniformly(Actor::safeCast(this), &velocity);
+		Actor::moveUniformly(this, &velocity);
 	/*
 	}
 	else
 	{
-		Actor::addForce(Actor::safeCast(this), &this->projectileDefinition->velocity);
+		Actor::addForce(this, &this->projectileDefinition->velocity);
 	}
 	*/
 
@@ -121,7 +121,7 @@ void Projectile::startMovement()
 void Projectile::stopMovement()
 {
 	// stop movement
-	Actor::stopAllMovement(Actor::safeCast(this));
+	Actor::stopAllMovement(this);
 
 	// deactivate shapes
 	Entity::activateShapes(Entity::safeCast(this), false);
