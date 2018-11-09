@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Actor.h>
+#include <Entity.h>
 #include <BgmapSprite.h>
 #include <macros.h>
 
@@ -33,45 +33,47 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CreditsTiles[];
-extern BYTE CreditsALMap[];
-extern BYTE CreditsARMap[];
-extern BYTE CreditsBMap[];
-extern BYTE CreditsCMap[];
+extern BYTE CS3DLogoTiles[];
+extern BYTE CS3DLogoLMap[];
+extern BYTE CS3DLogoLBlackMap[];
+extern BYTE CS3DLogoRMap[];
+extern BYTE CS3DLogoRBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef CREDITS_CH =
+CharSetROMDef CS3D_LOGO_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	1520,
+	609,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	CreditsTiles,
+	CS3DLogoTiles,
 };
 
-TextureROMDef CREDITS_A_L_TX =
+/* Left */
+
+TextureROMDef CS3D_LOGO_L_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&CREDITS_CH,
+	(CharSetDefinition*)&CS3D_LOGO_CH,
 
 	// bgmap definition
-	CreditsALMap,
+	CS3DLogoLMap,
 
 	// cols (max 64)
-	48,
+	29,
 
 	// rows (max 64)
-	64,
+	10,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -88,20 +90,20 @@ TextureROMDef CREDITS_A_L_TX =
 	false,
 };
 
-BgmapSpriteROMDef CREDITS_A_L_SPRITE =
+BgmapSpriteROMDef CS3D_LOGO_L_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&CREDITS_A_L_TX,
+		(TextureDefinition*)&CS3D_LOGO_L_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0}
+		{0, 0, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -115,19 +117,79 @@ BgmapSpriteROMDef CREDITS_A_L_SPRITE =
 	__WORLD_LON,
 };
 
-TextureROMDef CREDITS_A_R_TX =
+/* Left (Black) */
+
+TextureROMDef CS3D_LOGO_L_BLACK_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&CREDITS_CH,
+	(CharSetDefinition*)&CS3D_LOGO_CH,
 
 	// bgmap definition
-	CreditsARMap,
+	CS3DLogoLBlackMap,
 
 	// cols (max 64)
-	48,
+	29,
 
 	// rows (max 64)
-	64,
+	10,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
+
+	// recyclable
+	false,
+};
+
+BgmapSpriteROMDef CS3D_LOGO_L_BLACK_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture definition
+		(TextureDefinition*)&CS3D_LOGO_L_BLACK_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 0, 0, 0},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_LON,
+};
+
+/* Right */
+
+TextureROMDef CS3D_LOGO_R_TX =
+{
+	// charset definition
+	(CharSetDefinition*)&CS3D_LOGO_CH,
+
+	// bgmap definition
+	CS3DLogoRMap,
+
+	// cols (max 64)
+	29,
+
+	// rows (max 64)
+	10,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -144,20 +206,20 @@ TextureROMDef CREDITS_A_R_TX =
 	false,
 };
 
-BgmapSpriteROMDef CREDITS_A_R_SPRITE =
+BgmapSpriteROMDef CS3D_LOGO_R_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&CREDITS_A_R_TX,
+		(TextureDefinition*)&CS3D_LOGO_R_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0}
+		{0, 0, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -171,19 +233,21 @@ BgmapSpriteROMDef CREDITS_A_R_SPRITE =
 	__WORLD_RON,
 };
 
-TextureROMDef CREDITS_B_TX =
+/* Right (Black) */
+
+TextureROMDef CS3D_LOGO_R_BLACK_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&CREDITS_CH,
+	(CharSetDefinition*)&CS3D_LOGO_CH,
 
 	// bgmap definition
-	CreditsBMap,
+	CS3DLogoRBlackMap,
 
 	// cols (max 64)
-	48,
+	29,
 
 	// rows (max 64)
-	64,
+	10,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -194,82 +258,26 @@ TextureROMDef CREDITS_B_TX =
 	1,
 
 	// palette number (0-3)
-	0,
-
-	// recyclable
-	false,
-};
-
-BgmapSpriteROMDef CREDITS_B_SPRITE =
-{
-	{
-		// sprite's type
-		__TYPE(BgmapSprite),
-
-		// texture definition
-		(TextureDefinition*)&CREDITS_B_TX,
-
-		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-		__TRANSPARENCY_NONE,
-
-		// displacement
-		{0, 512, 0, 0}
-	},
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
-};
-
-TextureROMDef CREDITS_C_TX =
-{
-	// charset definition
-	(CharSetDefinition*)&CREDITS_CH,
-
-	// bgmap definition
-	CreditsCMap,
-
-	// cols (max 64)
-	48,
-
-	// rows (max 64)
-	64,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
 	1,
 
-	// palette number (0-3)
-	0,
-
 	// recyclable
 	false,
 };
 
-BgmapSpriteROMDef CREDITS_C_SPRITE =
+BgmapSpriteROMDef CS3D_LOGO_R_BLACK_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&CREDITS_C_TX,
+		(TextureDefinition*)&CS3D_LOGO_R_BLACK_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 1024, 0, 0}
+		{0, 0, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -280,52 +288,38 @@ BgmapSpriteROMDef CREDITS_C_SPRITE =
 	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
+	__WORLD_RON,
 };
 
-BgmapSpriteROMDef* const CREDITS_SPRITES[] =
+/* Entity */
+
+BgmapSpriteROMDef* const CS3D_LOGO_SPRITES[] =
 {
-	&CREDITS_A_L_SPRITE,
-	&CREDITS_A_R_SPRITE,
-	&CREDITS_B_SPRITE,
-	&CREDITS_C_SPRITE,
+	&CS3D_LOGO_L_BLACK_SPRITE,
+	&CS3D_LOGO_L_SPRITE,
+	&CS3D_LOGO_R_BLACK_SPRITE,
+	&CS3D_LOGO_R_SPRITE,
 	NULL
 };
 
-ActorROMDef CREDITS_EN =
+EntityROMDef CS3D_LOGO_EN =
 {
-	{
-		{
-			// class allocator
-			__TYPE(Actor),
+	// class allocator
+	__TYPE(Entity),
 
-			// sprites
-			(SpriteROMDef**)CREDITS_SPRITES,
+	// sprites
+	(SpriteROMDef**)CS3D_LOGO_SPRITES,
 
-			// collision shapes
-			NULL,
+	// collision shapes
+	NULL,
 
-			// size
-			// if 0, width and height will be inferred from the first sprite's texture's size
-			{0, 0, 0},
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
 
-			// gameworld's character's type
-			kNoType,
+	// gameworld's character's type
+	kNoType,
 
-			// physical specification
-			NULL,
-		},
-
-		// pointer to the animation definition for the character
-		NULL,
-
-		// initial animation
-		NULL,
-	},
-
-	// true to create a body
-	true,
-
-	// axes subject to gravity
-	__NO_AXIS,
+	// physical specification
+	NULL,
 };

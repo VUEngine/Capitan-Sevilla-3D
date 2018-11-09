@@ -34,7 +34,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern EntityDefinition PRESS_START_BUTTON_EN;
-extern EntityDefinition TITLE_LOGO_IM;
+extern EntityDefinition CS3D_LOGO_EN;
 extern EntityDefinition TITLE_CAPITAN_IM;
 extern EntityDefinition TITLE_EARTH_IM;
 extern EntityDefinition TITLE_SUBTITLE_IM;
@@ -47,7 +47,7 @@ extern EntityDefinition LOW_POWER_INDICATOR_LB;
 
 PositionedEntityROMDef TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&TITLE_LOGO_IM, 			{192, 48, 0, 0}, 	0, NULL, NULL, NULL, false},
+	{&CS3D_LOGO_EN, 			{192, 48, 0, 0}, 	0, NULL, NULL, NULL, false},
 	{&TITLE_CAPITAN_IM, 		{192, 131, 32, 0}, 	0, NULL, NULL, NULL, false},
 	{&TITLE_EARTH_IM, 			{94, 129, 48, 0}, 	0, NULL, NULL, NULL, false},
 	{&PRESS_START_BUTTON_EN, 	{192, 216, 16, 0}, 	0, NULL, NULL, NULL, false},
