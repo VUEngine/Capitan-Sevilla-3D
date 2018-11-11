@@ -33,39 +33,39 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Bench1Tiles[];
-extern BYTE Bench1Map[];
+extern BYTE BikeTiles[];
+extern BYTE BikeMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef BENCH_1_CH =
+CharSetROMDef BIKE_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	24,
+	15,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	Bench1Tiles,
+	BikeTiles,
 };
 
-TextureROMDef BENCH_1_TX =
+TextureROMDef BIKE_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&BENCH_1_CH,
+	(CharSetDefinition*)&BIKE_CH,
 
 	// bgmap definition
-	Bench1Map,
+	BikeMap,
 
 	// cols (max 64)
-	8,
+	4,
 
 	// rows (max 64)
 	4,
@@ -79,26 +79,26 @@ TextureROMDef BENCH_1_TX =
 	1,
 
 	// palette number (0-3)
-	0,
+	1,
 
 	// recyclable
 	false,
 };
 
-BgmapSpriteROMDef BENCH_1_SPRITE =
+BgmapSpriteROMDef BIKE_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&BENCH_1_TX,
+		(TextureDefinition*)&BIKE_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, 3},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -112,19 +112,19 @@ BgmapSpriteROMDef BENCH_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const BENCH_1_SPRITES[] =
+BgmapSpriteROMDef* const BIKE_SPRITES[] =
 {
-	&BENCH_1_SPRITE,
+	&BIKE_SPRITE,
 	NULL
 };
 
-EntityROMDef BENCH_1_EN =
+EntityROMDef BIKE_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)BENCH_1_SPRITES,
+	(SpriteROMDef**)BIKE_SPRITES,
 
 	// collision shapes
 	NULL,

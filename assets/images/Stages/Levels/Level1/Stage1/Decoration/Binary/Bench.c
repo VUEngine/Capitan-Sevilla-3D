@@ -1,9 +1,9 @@
 
-//{{BLOCK(Bench1)
+//{{BLOCK(Bench)
 
 //======================================================================
 //
-//	Bench1, 64x32@2, 
+//	Bench, 64x32@2, 
 //	+ 25 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 8x4 
 //	Total size: 400 + 64 = 464
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int Bench1Tiles[100] __attribute__((aligned(4)))=
+const unsigned int BenchTiles[100] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x0200A800,0x42005200,0x48004200,
 	0x00000000,0x0000AAAA,0x55555555,0x00005555,0x00000000,0x0000AAAA,0x65959665,0x00009656,
@@ -31,7 +31,7 @@ const unsigned int Bench1Tiles[100] __attribute__((aligned(4)))=
 	0x02000100,0x02020102,0x02080102,0x00000208,
 };
 
-const unsigned short Bench1Map[32] __attribute__((aligned(4)))=
+const unsigned short BenchMap[32] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0002,0x0003,0x0004,0x0000,0x0000,0x0000,
 	0x0005,0x0006,0x0007,0x0008,0x0009,0x000A,0x0000,0x0000,
@@ -39,4 +39,4 @@ const unsigned short Bench1Map[32] __attribute__((aligned(4)))=
 	0x0000,0x0013,0x0014,0x0015,0x0016,0x0017,0x0018,0x0000,
 };
 
-//}}BLOCK(Bench1)
+//}}BLOCK(Bench)

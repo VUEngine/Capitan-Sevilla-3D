@@ -1,9 +1,9 @@
 
-//{{BLOCK(Playground1)
+//{{BLOCK(Playground)
 
 //======================================================================
 //
-//	Playground1, 104x80@2, 
+//	Playground, 104x80@2, 
 //	+ 69 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 13x10 
 //	Total size: 1104 + 260 = 1364
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int Playground1Tiles[276] __attribute__((aligned(4)))=
+const unsigned int PlaygroundTiles[276] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x88B0FFC0,0x888B222C,
 	0x00000000,0x03FFFC00,0x08880022,0x08880222,0xC3FFFC00,0x0C003000,0x00C00300,0x000C0030,
@@ -56,7 +56,7 @@ const unsigned int Playground1Tiles[276] __attribute__((aligned(4)))=
 	0x0000C000,0x00000000,0x00000000,0x00000000,
 };
 
-const unsigned short Playground1Map[130] __attribute__((aligned(4)))=
+const unsigned short PlaygroundMap[130] __attribute__((aligned(4)))=
 {
 	0x0000,0x0000,0x0000,0x0000,0x0001,0x0002,0x0003,0x0004,
 	0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
@@ -79,4 +79,4 @@ const unsigned short Playground1Map[130] __attribute__((aligned(4)))=
 	0x0000,0x0000,
 };
 
-//}}BLOCK(Playground1)
+//}}BLOCK(Playground)

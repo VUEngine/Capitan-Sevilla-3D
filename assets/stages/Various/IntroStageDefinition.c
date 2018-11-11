@@ -61,26 +61,26 @@ extern EntityDefinition INTRO_TEXT_9_AC;
 
 PositionedEntityROMDef INTRO_STAGE_ST_ENTITIES[] =
 {
-	{&INTRO_IMAGE_1_IM, {80, 68, 0, 0}, 	0, "IMAGE1", NULL, NULL, false},
-	{&INTRO_IMAGE_2_IM, {188, 126, 1, 0}, 	0, "IMAGE2", NULL, NULL, false},
-	{&INTRO_IMAGE_3_IM, {328, 56, 2, 0}, 	0, "IMAGE3", NULL, NULL, false},
-	{&INTRO_IMAGE_4_IM, {296, 164, 2, 0}, 	0, "IMAGE4", NULL, NULL, false},
+	{&INTRO_IMAGE_1_IM,	{ 80,  68, 0, 0}, 	0, "IMAGE1", NULL, NULL, false},
+	{&INTRO_IMAGE_2_IM,	{188, 126, 1, 0}, 	0, "IMAGE2", NULL, NULL, false},
+	{&INTRO_IMAGE_3_IM,	{328,  56, 2, 0}, 	0, "IMAGE3", NULL, NULL, false},
+	{&INTRO_IMAGE_4_IM,	{296, 164, 2, 0}, 	0, "IMAGE4", NULL, NULL, false},
 
-	{&INTRO_TEXT_1_AC, 	{80, 32, 0, 0}, 	0, "TEXT1", NULL, NULL, false},
-	{&INTRO_TEXT_2_AC, 	{84, 172, 0, 0}, 	0, "TEXT2", NULL, NULL, false},
-	{&INTRO_TEXT_3_AC, 	{228, 36, 0, 0}, 	0, "TEXT3", NULL, NULL, false},
-	{&INTRO_TEXT_4_AC, 	{264, 197, 0, 0}, 	0, "TEXT4", NULL, NULL, false},
-	{&INTRO_TEXT_5_AC, 	{353, 197, 0, 0}, 	0, "TEXT5", NULL, NULL, false},
+	{&INTRO_TEXT_1_AC,	{ 80,  32, 0, 0}, 	0, "TEXT1", NULL, NULL, false},
+	{&INTRO_TEXT_2_AC, 	{ 84, 172, 0, 0}, 	0, "TEXT2", NULL, NULL, false},
+	{&INTRO_TEXT_3_AC, 	{228,  36, 0, 0}, 	0, "TEXT3", NULL, NULL, false},
+	{&INTRO_TEXT_4_AC, 	{263, 197, 0, 0}, 	0, "TEXT4", NULL, NULL, false},
+	{&INTRO_TEXT_5_AC, 	{352, 197, 0, 0}, 	0, "TEXT5", NULL, NULL, false},
 
-	{&INTRO_IMAGE_5_IM, {64, 60, 0, 0}, 	0, "IMAGE5", NULL, NULL, false},
-	{&INTRO_IMAGE_6_IM, {180, 48, 1, 0}, 	0, "IMAGE6", NULL, NULL, false},
-	{&INTRO_IMAGE_7_IM, {308, 44, 2, 0}, 	0, "IMAGE7", NULL, NULL, false},
-	{&INTRO_IMAGE_8_IM, {308, 180, 2, 0}, 	0, "IMAGE8", NULL, NULL, false},
+	{&INTRO_IMAGE_5_IM,	{ 65,  60, 0, 0}, 	0, "IMAGE5", NULL, NULL, false},
+	{&INTRO_IMAGE_6_IM,	{181,  47, 1, 0}, 	0, "IMAGE6", NULL, NULL, false},
+	{&INTRO_IMAGE_7_IM,	{308,  47, 2, 0}, 	0, "IMAGE7", NULL, NULL, false},
+	{&INTRO_IMAGE_8_IM,	{308, 179, 2, 0}, 	0, "IMAGE8", NULL, NULL, false},
 
-	{&INTRO_TEXT_6_AC, 	{64, 165, 0, 0}, 	0, "TEXT6", NULL, NULL, false},
-	{&INTRO_TEXT_7_AC, 	{180, 145, 1, 0}, 	0, "TEXT7", NULL, NULL, false},
-	{&INTRO_TEXT_8_AC, 	{310, 103, 2, 0}, 	0, "TEXT8", NULL, NULL, false},
-	{&INTRO_TEXT_9_AC, 	{344, 154, 2, 0}, 	0, "TEXT9", NULL, NULL, false},
+	{&INTRO_TEXT_6_AC,	{ 65, 165, 0, 0}, 	0, "TEXT6", NULL, NULL, false},
+	{&INTRO_TEXT_7_AC,	{181, 148, 1, 0}, 	0, "TEXT7", NULL, NULL, false},
+	{&INTRO_TEXT_8_AC,	{310, 106, 2, 0}, 	0, "TEXT8", NULL, NULL, false},
+	{&INTRO_TEXT_9_AC,	{344, 154, 2, 0}, 	0, "TEXT9", NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

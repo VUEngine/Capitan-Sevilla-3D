@@ -155,7 +155,7 @@ void IntroState::enter(void* owner)
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
-		0, // initial delay (in ms)
+		50, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))IntroState::onFadeInComplete, // callback function
@@ -229,35 +229,42 @@ void IntroState::translateTextEntities()
 void IntroState::nextImageStep()
 {
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kIntroNextImage);
-	MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 
 	switch(this->currentStep++)
 	{
 		case 0:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityText1);
 			break;
 		case 1:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityImage2);
 			break;
 		case 2:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityText2);
 			break;
 		case 3:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityImage3);
 			break;
 		case 4:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityText3);
 			break;
 		case 5:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityImage4);
 			break;
 		case 6:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityText4);
 			break;
 		case 7:
 			Entity::show(this->entityText5);
 			break;
 		case 8:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::hide(this->entityImage1);
 			Entity::hide(this->entityText1);
 			Entity::hide(this->entityImage2);
@@ -270,21 +277,27 @@ void IntroState::nextImageStep()
 			Entity::show(this->entityImage5);
 			break;
 		case 9:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityText6);
 			break;
 		case 10:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityImage6);
 			break;
 		case 11:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityText7);
 			break;
 		case 12:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityImage7);
 			break;
 		case 13:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityText8);
 			break;
 		case 14:
+			MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 			Entity::show(this->entityImage8);
 			break;
 		case 15:

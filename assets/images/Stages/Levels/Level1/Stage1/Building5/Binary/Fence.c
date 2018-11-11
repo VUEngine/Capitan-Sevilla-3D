@@ -1,9 +1,9 @@
 
-//{{BLOCK(Fence2)
+//{{BLOCK(Fence)
 
 //======================================================================
 //
-//	Fence2, 304x48@2, 
+//	Fence, 304x48@2, 
 //	+ 193 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 38x6 
 //	Total size: 3088 + 456 = 3544
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int Fence2Tiles[772] __attribute__((aligned(4)))=
+const unsigned int FenceTiles[772] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x01D00040,
 	0x00000000,0x00000000,0x00000000,0x40000000,0x00000000,0x00000000,0x00000000,0x00070005,
@@ -126,7 +126,7 @@ const unsigned int Fence2Tiles[772] __attribute__((aligned(4)))=
 	0x5A995F99,0x00195559,0x001B001B,0x0015001B,
 };
 
-const unsigned short Fence2Map[228] __attribute__((aligned(4)))=
+const unsigned short FenceMap[228] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0003,0x0000,0x0004,0x0000,0x0005,0x0000,
 	0x0006,0x0000,0x0007,0x0000,0x0008,0x0009,0x000A,0x200A,
@@ -162,4 +162,4 @@ const unsigned short Fence2Map[228] __attribute__((aligned(4)))=
 	0x00BD,0x00BE,0x00BF,0x00C0,
 };
 
-//}}BLOCK(Fence2)
+//}}BLOCK(Fence)

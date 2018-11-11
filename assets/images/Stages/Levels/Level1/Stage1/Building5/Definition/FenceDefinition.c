@@ -33,42 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TreeBg1Tiles[];
-extern BYTE TreeBg1Map[];
+extern BYTE FenceTiles[];
+extern BYTE FenceMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef TREE_BG_1_CH =
+CharSetROMDef FENCE_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	56,
+	192,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	TreeBg1Tiles,
+	FenceTiles,
 };
 
-TextureROMDef TREE_BG_1_TX =
+TextureROMDef FENCE_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&TREE_BG_1_CH,
+	(CharSetDefinition*)&FENCE_CH,
 
 	// bgmap definition
-	TreeBg1Map,
+	FenceMap,
 
 	// cols (max 64)
-	8,
+	38,
 
 	// rows (max 64)
-	11,
+	6,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -79,26 +79,26 @@ TextureROMDef TREE_BG_1_TX =
 	1,
 
 	// palette number (0-3)
-	0,
+	1,
 
 	// recyclable
 	false,
 };
 
-BgmapSpriteROMDef TREE_BG_1_SPRITE =
+BgmapSpriteROMDef FENCE_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&TREE_BG_1_TX,
+		(TextureDefinition*)&FENCE_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 2, 3},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -112,19 +112,19 @@ BgmapSpriteROMDef TREE_BG_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const TREE_BG_1_SPRITES[] =
+BgmapSpriteROMDef* const FENCE_SPRITES[] =
 {
-	&TREE_BG_1_SPRITE,
+	&FENCE_SPRITE,
 	NULL
 };
 
-EntityROMDef TREE_BG_1_EN =
+EntityROMDef FENCE_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)TREE_BG_1_SPRITES,
+	(SpriteROMDef**)FENCE_SPRITES,
 
 	// collision shapes
 	NULL,

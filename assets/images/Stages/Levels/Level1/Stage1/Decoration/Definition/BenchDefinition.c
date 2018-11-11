@@ -33,44 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Playground1Tiles[];
-extern BYTE Playground1Map[];
-extern BYTE Playground1BlackTiles[];
-extern BYTE Playground1BlackMap[];
+extern BYTE BenchTiles[];
+extern BYTE BenchMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef PLAYGROUND_1_CH =
+CharSetROMDef BENCH_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	68,
+	24,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	Playground1Tiles,
+	BenchTiles,
 };
 
-TextureROMDef PLAYGROUND_1_TX =
+TextureROMDef BENCH_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&PLAYGROUND_1_CH,
+	(CharSetDefinition*)&BENCH_CH,
 
 	// bgmap definition
-	Playground1Map,
+	BenchMap,
 
 	// cols (max 64)
-	13,
+	8,
 
 	// rows (max 64)
-	10,
+	4,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -81,26 +79,26 @@ TextureROMDef PLAYGROUND_1_TX =
 	1,
 
 	// palette number (0-3)
-	1,
+	0,
 
 	// recyclable
 	false,
 };
 
-BgmapSpriteROMDef PLAYGROUND_1_SPRITE =
+BgmapSpriteROMDef BENCH_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&PLAYGROUND_1_TX,
+		(TextureDefinition*)&BENCH_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 2, 4},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -114,19 +112,19 @@ BgmapSpriteROMDef PLAYGROUND_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const PLAYGROUND_1_SPRITES[] =
+BgmapSpriteROMDef* const BENCH_SPRITES[] =
 {
-	&PLAYGROUND_1_SPRITE,
+	&BENCH_SPRITE,
 	NULL
 };
 
-EntityROMDef PLAYGROUND_1_EN =
+EntityROMDef BENCH_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)PLAYGROUND_1_SPRITES,
+	(SpriteROMDef**)BENCH_SPRITES,
 
 	// collision shapes
 	NULL,

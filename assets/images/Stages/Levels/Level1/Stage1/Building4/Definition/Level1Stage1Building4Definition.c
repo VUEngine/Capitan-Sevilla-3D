@@ -102,7 +102,7 @@ BgmapSpriteROMDef LEVEL_1_STAGE_1_BUILDING_4_BLACK_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{-21, 0, BUILDINGS_DSPL, 0}
+		{-21, 0, 2, 5}
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -160,7 +160,7 @@ BgmapSpriteROMDef LEVEL_1_STAGE_1_BUILDING_4_L_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, BUILDINGS_DSPL, 0}
+		{0, 0, 2, 5}
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -218,7 +218,7 @@ BgmapSpriteROMDef LEVEL_1_STAGE_1_BUILDING_4_R_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, BUILDINGS_DSPL, 0}
+		{0, 0, 2, 5}
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

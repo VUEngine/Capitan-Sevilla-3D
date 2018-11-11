@@ -275,7 +275,7 @@ StageROMDef LEVEL_1_STAGE_3_ST =
 		// optical configuration values
 		{
 			// maximum x view distance's power into the horizon (x, y)
-			16384, 16384,
+			__MAXIMUM_X_VIEW_DISTANCE, __MAXIMUM_Y_VIEW_DISTANCE,
 			// distance of the eyes to the screen
 			__DISTANCE_EYE_SCREEN,
 			// distance from left to right eye (depth sensation)

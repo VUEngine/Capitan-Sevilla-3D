@@ -33,42 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Bike1Tiles[];
-extern BYTE Bike1Map[];
+extern BYTE Tree1Tiles[];
+extern BYTE Tree1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef BIKE_1_CH =
+CharSetROMDef TREE_1_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	15,
+	69,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	Bike1Tiles,
+	Tree1Tiles,
 };
 
-TextureROMDef BIKE_1_TX =
+TextureROMDef TREE_1_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&BIKE_1_CH,
+	(CharSetDefinition*)&TREE_1_CH,
 
 	// bgmap definition
-	Bike1Map,
+	Tree1Map,
 
 	// cols (max 64)
-	4,
+	10,
 
 	// rows (max 64)
-	4,
+	12,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -79,26 +79,26 @@ TextureROMDef BIKE_1_TX =
 	1,
 
 	// palette number (0-3)
-	1,
+	0,
 
 	// recyclable
 	false,
 };
 
-BgmapSpriteROMDef BIKE_1_SPRITE =
+BgmapSpriteROMDef TREE_1_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&BIKE_1_TX,
+		(TextureDefinition*)&TREE_1_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 4, 5},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -112,19 +112,19 @@ BgmapSpriteROMDef BIKE_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const BIKE_1_SPRITES[] =
+BgmapSpriteROMDef* const TREE_1_SPRITES[] =
 {
-	&BIKE_1_SPRITE,
+	&TREE_1_SPRITE,
 	NULL
 };
 
-EntityROMDef BIKE_1_EN =
+EntityROMDef TREE_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)BIKE_1_SPRITES,
+	(SpriteROMDef**)TREE_1_SPRITES,
 
 	// collision shapes
 	NULL,

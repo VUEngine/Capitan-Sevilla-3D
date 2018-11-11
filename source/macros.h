@@ -33,7 +33,6 @@
 
 // layers
 #define HERO_DSPL			1
-#define BUILDINGS_DSPL		4
 
 // physics
 #define NO_FRICTION 		0

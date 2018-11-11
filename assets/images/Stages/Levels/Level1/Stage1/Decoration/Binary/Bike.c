@@ -1,9 +1,9 @@
 
-//{{BLOCK(Bike1)
+//{{BLOCK(Bike)
 
 //======================================================================
 //
-//	Bike1, 32x32@2, 
+//	Bike, 32x32@2, 
 //	+ 16 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 4x4 
 //	Total size: 256 + 32 = 288
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int Bike1Tiles[64] __attribute__((aligned(4)))=
+const unsigned int BikeTiles[64] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0xF0000000,0xB0000C00,0x00000000,
 	0xC0000000,0x0003FFFC,0x0EFAFCF0,0x0CC00CC0,0x003F0000,0x003A00C0,0x00000000,0x00000000,
@@ -25,10 +25,10 @@ const unsigned int Bike1Tiles[64] __attribute__((aligned(4)))=
 	0x0F0FCF33,0xC33333C3,0xCFFC330F,0x00003003,0x00CF00CC,0x000C0033,0x00000003,0x00000000,
 };
 
-const unsigned short Bike1Map[16] __attribute__((aligned(4)))=
+const unsigned short BikeMap[16] __attribute__((aligned(4)))=
 {
 	0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,
 	0x0008,0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,
 };
 
-//}}BLOCK(Bike1)
+//}}BLOCK(Bike)

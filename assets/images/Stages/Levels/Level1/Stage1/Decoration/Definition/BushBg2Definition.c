@@ -33,42 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CarBg1Tiles[];
-extern BYTE CarBg1Map[];
+extern BYTE BushBg2Tiles[];
+extern BYTE BushBg2Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef CAR_BG_1_CH =
+CharSetROMDef BUSH_BG_2_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	37,
+	40,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	CarBg1Tiles,
+	BushBg2Tiles,
 };
 
-TextureROMDef CAR_BG_1_TX =
+TextureROMDef BUSH_BG_2_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&CAR_BG_1_CH,
+	(CharSetDefinition*)&BUSH_BG_2_CH,
 
 	// bgmap definition
-	CarBg1Map,
+	BushBg2Map,
 
 	// cols (max 64)
-	7,
+	27,
 
 	// rows (max 64)
-	6,
+	7,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -79,26 +79,26 @@ TextureROMDef CAR_BG_1_TX =
 	1,
 
 	// palette number (0-3)
-	0,
+	1,
 
 	// recyclable
 	false,
 };
 
-BgmapSpriteROMDef CAR_BG_1_SPRITE =
+BgmapSpriteROMDef BUSH_BG_2_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&CAR_BG_1_TX,
+		(TextureDefinition*)&BUSH_BG_2_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, 8},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -112,19 +112,19 @@ BgmapSpriteROMDef CAR_BG_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const CAR_BG_1_SPRITES[] =
+BgmapSpriteROMDef* const BUSH_BG_2_SPRITES[] =
 {
-	&CAR_BG_1_SPRITE,
+	&BUSH_BG_2_SPRITE,
 	NULL
 };
 
-EntityROMDef CAR_BG_1_EN =
+EntityROMDef BUSH_BG_2_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)CAR_BG_1_SPRITES,
+	(SpriteROMDef**)BUSH_BG_2_SPRITES,
 
 	// collision shapes
 	NULL,

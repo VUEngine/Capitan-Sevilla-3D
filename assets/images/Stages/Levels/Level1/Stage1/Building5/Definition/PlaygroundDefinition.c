@@ -33,42 +33,44 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Clothes1Tiles[];
-extern BYTE Clothes1Map[];
+extern BYTE PlaygroundTiles[];
+extern BYTE PlaygroundMap[];
+extern BYTE PlaygroundBlackTiles[];
+extern BYTE PlaygroundBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef CLOTHES_1_CH =
+CharSetROMDef PLAYGROUND_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	46,
+	68,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	Clothes1Tiles,
+	PlaygroundTiles,
 };
 
-TextureROMDef CLOTHES_1_TX =
+TextureROMDef PLAYGROUND_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&CLOTHES_1_CH,
+	(CharSetDefinition*)&PLAYGROUND_CH,
 
 	// bgmap definition
-	Clothes1Map,
+	PlaygroundMap,
 
 	// cols (max 64)
 	13,
 
 	// rows (max 64)
-	8,
+	10,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -85,20 +87,20 @@ TextureROMDef CLOTHES_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef CLOTHES_1_SPRITE =
+BgmapSpriteROMDef PLAYGROUND_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&CLOTHES_1_TX,
+		(TextureDefinition*)&PLAYGROUND_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 4, 6},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -112,19 +114,19 @@ BgmapSpriteROMDef CLOTHES_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const CLOTHES_1_SPRITES[] =
+BgmapSpriteROMDef* const PLAYGROUND_SPRITES[] =
 {
-	&CLOTHES_1_SPRITE,
+	&PLAYGROUND_SPRITE,
 	NULL
 };
 
-EntityROMDef CLOTHES_1_EN =
+EntityROMDef PLAYGROUND_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)CLOTHES_1_SPRITES,
+	(SpriteROMDef**)PLAYGROUND_SPRITES,
 
 	// collision shapes
 	NULL,

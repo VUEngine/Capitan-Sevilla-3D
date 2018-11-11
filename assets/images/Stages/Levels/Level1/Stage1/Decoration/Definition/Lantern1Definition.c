@@ -33,42 +33,88 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BushBg2Tiles[];
-extern BYTE BushBg2Map[];
+extern BYTE Lantern1Tiles[];
+extern BYTE Lantern1Map[];
+extern BYTE Lantern1BlackTiles[];
+extern BYTE Lantern1BlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef BUSH_BG_2_CH =
+CharSetROMDef LANTERN_1_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	40,
+	27,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	BushBg2Tiles,
+	Lantern1Tiles,
 };
 
-TextureROMDef BUSH_BG_2_TX =
+CharSetROMDef LANTERN_1_BLACK_CH =
+{
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	19,
+
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
+
+	// char definition
+	Lantern1BlackTiles,
+};
+
+TextureROMDef LANTERN_1_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&BUSH_BG_2_CH,
+	(CharSetDefinition*)&LANTERN_1_CH,
 
 	// bgmap definition
-	BushBg2Map,
+	Lantern1Map,
 
 	// cols (max 64)
-	27,
+	3,
 
 	// rows (max 64)
-	7,
+	13,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	0,
+
+	// recyclable
+	false,
+};
+
+TextureROMDef LANTERN_1_BLACK_TX =
+{
+	// charset definition
+	(CharSetDefinition*)&LANTERN_1_BLACK_CH,
+
+	// bgmap definition
+	Lantern1BlackMap,
+
+	// cols (max 64)
+	3,
+
+	// rows (max 64)
+	13,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -85,20 +131,20 @@ TextureROMDef BUSH_BG_2_TX =
 	false,
 };
 
-BgmapSpriteROMDef BUSH_BG_2_SPRITE =
+BgmapSpriteROMDef LANTERN_1_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&BUSH_BG_2_TX,
+		(TextureDefinition*)&LANTERN_1_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, -1, -1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -112,19 +158,47 @@ BgmapSpriteROMDef BUSH_BG_2_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const BUSH_BG_2_SPRITES[] =
+BgmapSpriteROMDef LANTERN_1_BLACK_SPRITE =
 {
-	&BUSH_BG_2_SPRITE,
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture definition
+		(TextureDefinition*)&LANTERN_1_BLACK_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 0, -1, -1},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+BgmapSpriteROMDef* const LANTERN_1_SPRITES[] =
+{
+	&LANTERN_1_BLACK_SPRITE,
+	&LANTERN_1_SPRITE,
 	NULL
 };
 
-EntityROMDef BUSH_BG_2_EN =
+EntityROMDef LANTERN_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)BUSH_BG_2_SPRITES,
+	(SpriteROMDef**)LANTERN_1_SPRITES,
 
 	// collision shapes
 	NULL,

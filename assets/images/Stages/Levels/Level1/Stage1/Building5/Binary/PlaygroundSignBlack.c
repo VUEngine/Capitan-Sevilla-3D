@@ -1,9 +1,9 @@
 
-//{{BLOCK(PlaygroundSign1Black)
+//{{BLOCK(PlaygroundSignBlack)
 
 //======================================================================
 //
-//	PlaygroundSign1Black, 88x152@2, 
+//	PlaygroundSignBlack, 88x152@2, 
 //	+ 32 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 11x19 
 //	Total size: 512 + 420 = 932
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int PlaygroundSign1BlackTiles[128] __attribute__((aligned(4)))=
+const unsigned int PlaygroundSignBlackTiles[128] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x55004000,0x55405540,0x55555554,
 	0x01410000,0x55555555,0x55555555,0x55555555,0x00000000,0x00010000,0x00150005,0x00550015,
@@ -34,7 +34,7 @@ const unsigned int PlaygroundSign1BlackTiles[128] __attribute__((aligned(4)))=
 	0x55505550,0x55505550,0x00000000,0x00000000,0x00050005,0x00050005,0x00000000,0x00000000,
 };
 
-const unsigned short PlaygroundSign1BlackMap[210] __attribute__((aligned(4)))=
+const unsigned short PlaygroundSignBlackMap[210] __attribute__((aligned(4)))=
 {
 	0x0000,0x0000,0x0000,0x0000,0x0001,0x0002,0x0003,0x0000,
 	0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0004,
@@ -68,4 +68,4 @@ const unsigned short PlaygroundSign1BlackMap[210] __attribute__((aligned(4)))=
 	0x0000,0x0000,
 };
 
-//}}BLOCK(PlaygroundSign1Black)
+//}}BLOCK(PlaygroundSignBlack)

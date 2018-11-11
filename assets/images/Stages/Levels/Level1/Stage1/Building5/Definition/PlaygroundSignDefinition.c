@@ -33,42 +33,59 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Tree1Tiles[];
-extern BYTE Tree1Map[];
+extern BYTE PlaygroundSignTiles[];
+extern BYTE PlaygroundSignMap[];
+extern BYTE PlaygroundSignBlackTiles[];
+extern BYTE PlaygroundSignBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef TREE_1_CH =
+CharSetROMDef PLAYGROUND_SIGN_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	69,
+	78,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	Tree1Tiles,
+	PlaygroundSignTiles,
 };
 
-TextureROMDef TREE_1_TX =
+CharSetROMDef PLAYGROUND_SIGN_BLACK_CH =
+{
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	31,
+
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__NOT_ANIMATED,
+
+	// char definition
+	PlaygroundSignBlackTiles,
+};
+
+TextureROMDef PLAYGROUND_SIGN_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&TREE_1_CH,
+	(CharSetDefinition*)&PLAYGROUND_SIGN_CH,
 
 	// bgmap definition
-	Tree1Map,
+	PlaygroundSignMap,
 
 	// cols (max 64)
-	10,
+	11,
 
 	// rows (max 64)
-	12,
+	19,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -85,20 +102,49 @@ TextureROMDef TREE_1_TX =
 	false,
 };
 
-BgmapSpriteROMDef TREE_1_SPRITE =
+TextureROMDef PLAYGROUND_SIGN_BLACK_TX =
+{
+	// charset definition
+	(CharSetDefinition*)&PLAYGROUND_SIGN_BLACK_CH,
+
+	// bgmap definition
+	PlaygroundSignBlackMap,
+
+	// cols (max 64)
+	11,
+
+	// rows (max 64)
+	19,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
+
+	// recyclable
+	false,
+};
+
+BgmapSpriteROMDef PLAYGROUND_SIGN_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&TREE_1_TX,
+		(TextureDefinition*)&PLAYGROUND_SIGN_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 3, 4},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -112,19 +158,47 @@ BgmapSpriteROMDef TREE_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const TREE_1_SPRITES[] =
+BgmapSpriteROMDef PLAYGROUND_SIGN_BLACK_SPRITE =
 {
-	&TREE_1_SPRITE,
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture definition
+		(TextureDefinition*)&PLAYGROUND_SIGN_BLACK_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 0, 3, 4},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+BgmapSpriteROMDef* const PLAYGROUND_SIGN_SPRITES[] =
+{
+	&PLAYGROUND_SIGN_BLACK_SPRITE,
+	&PLAYGROUND_SIGN_SPRITE,
 	NULL
 };
 
-EntityROMDef TREE_1_EN =
+EntityROMDef PLAYGROUND_SIGN_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)TREE_1_SPRITES,
+	(SpriteROMDef**)PLAYGROUND_SIGN_SPRITES,
 
 	// collision shapes
 	NULL,
