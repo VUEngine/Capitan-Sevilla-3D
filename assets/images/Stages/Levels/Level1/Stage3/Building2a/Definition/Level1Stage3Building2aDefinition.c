@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Entity.h>
-#include <MBgmapSprite.h>
+#include <BgmapSprite.h>
 #include <macros.h>
 
 
@@ -33,43 +33,45 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CityBackground2Tiles[];
-extern BYTE CityBackground2AMap[];
-extern BYTE CityBackground2BMap[];
+extern BYTE Level1Stage3Building2aTiles[];
+extern BYTE Level1Stage3Building2aLMap[];
+extern BYTE Level1Stage3Building2aRMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef CITY_BG_2_CH =
+CharSetROMDef LEVEL_1_STAGE_3_BUILDING_2A_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	251,
+	225,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	CityBackground2Tiles,
+	Level1Stage3Building2aTiles,
 };
 
-TextureROMDef CITY_BG_2_A_TX =
+/* Left */
+
+TextureROMDef LEVEL_1_STAGE_3_BUILDING_2A_L_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&CITY_BG_2_CH,
+	(CharSetDefinition*)&LEVEL_1_STAGE_3_BUILDING_2A_CH,
 
 	// bgmap definition
-	CityBackground2AMap,
+	Level1Stage3Building2aLMap,
 
 	// cols (max 64)
-	64,
+	44,
 
 	// rows (max 64)
-	64,
+	16,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -80,103 +82,113 @@ TextureROMDef CITY_BG_2_A_TX =
 	1,
 
 	// palette number (0-3)
-	0,
-
-	// recyclable
-	false,
-};
-
-TextureROMDef CITY_BG_2_B_TX =
-{
-	// charset definition
-	(CharSetDefinition*)&CITY_BG_2_CH,
-
-	// bgmap definition
-	CityBackground2BMap,
-
-	// cols (max 64)
-	64,
-
-	// rows (max 64)
-	64,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
 	1,
 
-	// palette number (0-3)
-	0,
-
 	// recyclable
 	false,
 };
 
-TextureROMDef* const CITY_BG_2_TEXTURES[] =
-{
-	(TextureDefinition*)&CITY_BG_2_B_TX,
-	(TextureDefinition*)&CITY_BG_2_A_TX,
-	NULL
-};
-
-MBgmapSpriteROMDef CITY_BG_2_SPRITE =
+BgmapSpriteROMDef LEVEL_1_STAGE_3_BUILDING_2A_L_SPRITE =
 {
 	{
-		{
-			// sprite's type
-			__TYPE(MBgmapSprite),
+		// sprite's type
+		__TYPE(BgmapSprite),
 
-			// texture definition
-			NULL,
+		// texture definition
+		(TextureDefinition*)&LEVEL_1_STAGE_3_BUILDING_2A_L_TX,
 
-			// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-			false,
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
 
-			// displacement
-			{0, 0, 0, 0},
-		},
-
-		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-		__WORLD_BGMAP,
-
-		// pointer to affine/hbias manipulation function
-		NULL,
-
-		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-		__WORLD_ON,
+		// displacement
+		{0, 0, 2, 0}
 	},
 
-	// textures
-	(TextureDefinition**)CITY_BG_2_TEXTURES,
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
 
-	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
-	// textures must be 64x64 for anything other than 1x1
-	__WORLD_2x1,
+	// pointer to affine/hbias manipulation function
+	NULL,
 
-	// x loop
-	true,
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_LON,
+};
 
-	// y loop
+/* Right */
+
+TextureROMDef LEVEL_1_STAGE_3_BUILDING_2A_R_TX =
+{
+	// charset definition
+	(CharSetDefinition*)&LEVEL_1_STAGE_3_BUILDING_2A_CH,
+
+	// bgmap definition
+	Level1Stage3Building2aRMap,
+
+	// cols (max 64)
+	44,
+
+	// rows (max 64)
+	16,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
+
+	// recyclable
 	false,
 };
 
-BgmapSpriteROMDef* const CITY_BG_2_SPRITES[] =
+BgmapSpriteROMDef LEVEL_1_STAGE_3_BUILDING_2A_R_SPRITE =
 {
-	(BgmapSpriteROMDef*)&CITY_BG_2_SPRITE,
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture definition
+		(TextureDefinition*)&LEVEL_1_STAGE_3_BUILDING_2A_R_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 0, 2, 0}
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_RON,
+};
+
+/* Entity */
+
+BgmapSpriteROMDef* const LEVEL_1_STAGE_3_BUILDING_2A_SPRITES[] =
+{
+	&LEVEL_1_STAGE_3_BUILDING_2A_L_SPRITE,
+	&LEVEL_1_STAGE_3_BUILDING_2A_R_SPRITE,
 	NULL
 };
 
-EntityROMDef CITY_BG_2_EN =
+EntityROMDef LEVEL_1_STAGE_3_BUILDING_2A_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)CITY_BG_2_SPRITES,
+	(SpriteROMDef**)LEVEL_1_STAGE_3_BUILDING_2A_SPRITES,
 
 	// collision shapes
 	NULL,

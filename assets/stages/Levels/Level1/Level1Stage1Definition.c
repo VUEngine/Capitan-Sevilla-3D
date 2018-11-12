@@ -112,7 +112,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 {
 	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
 
-	{&CITY_BG_1_EN,						{ 256, 112,  256,   0},		0, NULL, NULL, NULL, true},
+	{&CITY_BG_1_EN,						{-256, 112,  256,   0},		0, NULL, NULL, NULL, true},
 	{&CITY_FLOOR_EN,					{   0, 172,    0,   0},		0, NULL, NULL, NULL, true},
 
 	{&CITY_FLOOR_COLLISION_CL,			{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
@@ -349,7 +349,7 @@ StageROMDef LEVEL_1_STAGE_1_ST =
 		// particle removal delay cycles
 		4,
 		// deferred
-		false,
+		true,
 	},
 
 	// rendering

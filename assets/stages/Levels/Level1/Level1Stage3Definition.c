@@ -40,6 +40,14 @@
 extern EntityDefinition LOW_POWER_INDICATOR_LB;
 
 extern EntityDefinition CITY_BG_2_EN;
+extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_1_EN;
+extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_2A_EN;
+extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_2B_EN;
+extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_3A_EN;
+extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_3B_EN;
+extern EntityDefinition LEVEL_1_STAGE_3_FENCE_EN;
+extern EntityDefinition LEVEL_1_STAGE_3_HOTEL_SIGN_EN;
+extern EntityDefinition LEVEL_1_STAGE_3_SIGN_EN;
 extern EntityDefinition CITY_FLOOR_COLLISION_CL;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition GUI_EN;
@@ -62,19 +70,32 @@ PositionedEntityROMDef LEVEL_1_STAGE_3_ST_CHILDREN[] =
 {
 	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
 
-	{&CITY_BG_2_EN,						{   0,  96, 6144,   0},		0, NULL, NULL, NULL, true},
+	{&CITY_BG_2_EN,						{-416,  96,  256,   0},		0, NULL, NULL, NULL, true},
 
-	{&CITY_FLOOR_COLLISION_CL,			{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 372, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 552, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 732, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 912, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1092, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1272, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1452, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1632, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1812, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1992, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+//	{&LEVEL_1_STAGE_3_BUILDING_1_EN,	{ 228,  96,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_FENCE_EN,			{  56, 159,    0,   0},		0, NULL, NULL, NULL, true},
+
+	{&LEVEL_1_STAGE_3_SIGN_EN,			{ 620,  70,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_BUILDING_2A_EN,	{ 626, 114,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 662, 159,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_BUILDING_2B_EN,	{1014, 114,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_FENCE_EN,			{1038, 159,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1060,  66,    0,   0},		0, NULL, NULL, NULL, true},
+
+	{&LEVEL_1_STAGE_3_BUILDING_3A_EN,	{1430, 96,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_BUILDING_3B_EN,	{1734, 96,    0,   0},		0, NULL, NULL, NULL, true},
+
+	{&CITY_FLOOR_COLLISION_CL,			{ 192, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&CITY_FLOOR_COLLISION_CL,			{ 372, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&CITY_FLOOR_COLLISION_CL,			{ 552, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&CITY_FLOOR_COLLISION_CL,			{ 732, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&CITY_FLOOR_COLLISION_CL,			{ 912, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1092, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1272, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1452, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1632, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1812, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1992, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
 
 	{&COLLISION_CL,						{1928,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
 
@@ -160,9 +181,9 @@ StageROMDef LEVEL_1_STAGE_3_ST =
         	// x0
         	0,
         	// y0
-			-16,
+			0,
 			// z0
-			-16,
+			0,
         	// x1
         	__SCREEN_WIDTH,
         	// y1
@@ -183,7 +204,7 @@ StageROMDef LEVEL_1_STAGE_3_ST =
 		// particle removal delay cycles
 		4,
 		// deferred
-		false,
+		true,
 	},
 
 	// rendering
