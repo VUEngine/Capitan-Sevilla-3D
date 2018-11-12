@@ -72,18 +72,18 @@ PositionedEntityROMDef LEVEL_1_STAGE_3_ST_CHILDREN[] =
 
 	{&CITY_BG_2_EN,						{-416,  96,  256,   0},		0, NULL, NULL, NULL, true},
 
-//	{&LEVEL_1_STAGE_3_BUILDING_1_EN,	{ 228,  96,    0,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_3_FENCE_EN,			{  56, 159,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_BUILDING_1_EN,	{ 228,  96,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_FENCE_EN,			{  56, 159,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_STAGE_3_SIGN_EN,			{ 620,  70,    0,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_3_BUILDING_2A_EN,	{ 626, 114,    0,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 662, 159,    0,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_3_BUILDING_2B_EN,	{1014, 114,    0,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_3_FENCE_EN,			{1038, 159,    0,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1060,  66,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_SIGN_EN,			{ 620,  70,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_BUILDING_2A_EN,	{ 626, 114,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 662, 159,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_BUILDING_2B_EN,	{1014, 114,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_FENCE_EN,			{1038, 159,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1060,  72,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_STAGE_3_BUILDING_3A_EN,	{1430, 96,    0,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_3_BUILDING_3B_EN,	{1734, 96,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_BUILDING_3A_EN,	{1430,  96,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_BUILDING_3B_EN,	{1734,  96,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&CITY_FLOOR_COLLISION_CL,			{ 192, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
 	{&CITY_FLOOR_COLLISION_CL,			{ 372, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
@@ -181,7 +181,7 @@ StageROMDef LEVEL_1_STAGE_3_ST =
         	// x0
         	0,
         	// y0
-			0,
+			-16,
 			// z0
 			0,
         	// x1

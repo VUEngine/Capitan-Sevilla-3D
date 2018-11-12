@@ -26,6 +26,7 @@
 
 #include <Entity.h>
 #include <BgmapSprite.h>
+#include <Box.h>
 #include <macros.h>
 
 
@@ -182,6 +183,188 @@ BgmapSpriteROMDef* const LEVEL_1_STAGE_3_BUILDING_1_SPRITES[] =
 	NULL
 };
 
+ShapeROMDef LEVEL_1_STAGE_3_BUILDING_1_SHAPES[] =
+{
+	// floor
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{456, 32, 32},
+
+		// displacement (x, y, z, p)
+		{0, 85, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	// box
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{56, 56, 32},
+
+		// displacement (x, y, z, p)
+		{-68, 50, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	// right cabin wall
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{8, 72, 32},
+
+		// displacement (x, y, z, p)
+		{106, 0, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	// small left cabin wall
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{8, 16, 32},
+
+		// displacement (x, y, z, p)
+		{18, 4, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	// cabin roof
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{104, 38, 32},
+
+		// displacement (x, y, z, p)
+		{58, -21, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	// plank
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{120, 32, 32},
+
+		// displacement (x, y, z, p)
+		{168, 80, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+};
+
+PhysicalSpecificationROMDef LEVEL_1_STAGE_3_BUILDING_1_PHYSICAL_PROPERTIES =
+{
+	// mass
+	__F_TO_FIX10_6(0),
+
+	// friction
+	__F_TO_FIX10_6(0.85f),
+
+	// bounciness
+	__F_TO_FIX10_6(FLOOR_BOUNCINESS),
+
+	// maximum velocity
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
+};
+
 EntityROMDef LEVEL_1_STAGE_3_BUILDING_1_EN =
 {
 	// class allocator
@@ -191,7 +374,7 @@ EntityROMDef LEVEL_1_STAGE_3_BUILDING_1_EN =
 	(SpriteROMDef**)LEVEL_1_STAGE_3_BUILDING_1_SPRITES,
 
 	// collision shapes
-	NULL,
+	(ShapeDefinition*)LEVEL_1_STAGE_3_BUILDING_1_SHAPES,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
@@ -201,5 +384,5 @@ EntityROMDef LEVEL_1_STAGE_3_BUILDING_1_EN =
 	kNoType,
 
 	// physical specification
-	NULL,
+	(PhysicalSpecification*)&LEVEL_1_STAGE_3_BUILDING_1_PHYSICAL_PROPERTIES,
 };
