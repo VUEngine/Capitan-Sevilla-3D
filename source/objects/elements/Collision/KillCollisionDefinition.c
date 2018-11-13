@@ -19,58 +19,39 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MACROS_H_
-#define MACROS_H_
+
+//---------------------------------------------------------------------------------------------------------
+//												INCLUDES
+//---------------------------------------------------------------------------------------------------------
+
+#include <Entity.h>
+#include <Collision.h>
+#include <Body.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINES
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// general
-#define COINS_PER_LEVEL		64
-#define LEVELS_IN_GAME		1
-
-// layers
-#define HERO_DSPL			1
-
-// physics
-#define NO_FRICTION 		0
-#define FLOOR_FRICTION 		0.75f
-#define FLOOR_BOUNCINESS 	0.0f
-
-// entity collision types
-enum PlatformerTypes
+CollisionROMDef KILL_COLLISION_CL =
 {
-	kHero = kNoType + 1,
-	kShape,
-	kTopShape,
+	// class allocator
+	__TYPE(Collision),
+
+	// sprites
+	(SpriteROMDef**)NULL,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// pixelSize
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{100, 100, 16},
+
+	// gameworld's character's type
 	kKillShape,
-	kLift,
-	kItemSausage,
-	kEnemy,
-	kMessage,
-	kFloor,
-	kSausage,
-	kEnemyProjectile,
-	kMovingPlatform,
-	kStageExitPoint,
+
+	// physical specification
+	NULL,
 };
-
-// entity collision layers
-enum CollisionLayers
-{
-    kSolidLayer		 					= 1 << (kNoLayer + 0),
-    kEnemiesLayer						= 1 << (kNoLayer + 1),
-    kPlayerLayer						= 1 << (kNoLayer + 2),
-    kParticlesLayer						= 1 << (kNoLayer + 3),
-    kItemsLayer							= 1 << (kNoLayer + 4),
-    kCollectablesLayer					= 1 << (kNoLayer + 5),
-    kTriggersLayer						= 1 << (kNoLayer + 6),
-    kMovingPlatformsLayer				= 1 << (kNoLayer + 7),
-    kMessageLayer						= 1 << (kNoLayer + 8),
-    kAllLayers							= 0xFFFFFFFF,
-};
-
-
-#endif

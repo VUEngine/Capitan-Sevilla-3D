@@ -100,8 +100,8 @@ extern TextureDefinition HERO_TX;
 extern TextureDefinition HERO_BLACK_TX;
 extern TextureDefinition HOVER_CAR_TX;
 
-extern Size collision_2_28_8;
-extern Size collision_48_2_8;
+extern Size collision_16_224_64;
+extern Size collision_384_16_64;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -110,31 +110,31 @@ extern Size collision_48_2_8;
 
 PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 {
-	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
+	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // left border
 
 	{&CITY_BG_1_EN,						{-256, 112,  256,   0},		0, NULL, NULL, NULL, true},
 	{&CITY_FLOOR_EN,					{   0, 172,    0,   0},		0, NULL, NULL, NULL, true},
 
-	{&CITY_FLOOR_COLLISION_CL,			{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 372, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 552, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 732, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 912, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1092, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1272, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1452, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1632, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1812, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1992, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{2172, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{2352, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{2532, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{2712, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{2892, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{3072, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{3252, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{3432, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{3612, 200,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&CITY_FLOOR_COLLISION_CL,			{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{ 372, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{ 552, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{ 732, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{ 912, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1092, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1272, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1452, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1632, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1812, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{1992, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{2172, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{2352, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{2532, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{2712, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{2892, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{3072, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{3252, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{3432, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&CITY_FLOOR_COLLISION_CL,			{3612, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
 
 	{&BULLY_EM,							{ 460, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&BULLY_EM,							{ 520, 152,    0,   0},		0, NULL, NULL, (void*)-2, false},
@@ -227,7 +227,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_1_BUILDING_11_EN,	{3583,  68,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_MAIN_EXIT_XP,		{3600,  40,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&COLLISION_CL,						{3616,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
+	{&COLLISION_CL,						{3616,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // right border
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

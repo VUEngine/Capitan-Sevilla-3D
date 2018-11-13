@@ -212,33 +212,6 @@ ShapeROMDef LEVEL_1_STAGE_3_BUILDING_1_SHAPES[] =
 		kNoLayer,
 	},
 
-	// box
-	{
-		// shape
-		__TYPE(Box),
-
-		// size (x, y, z)
-		{56, 56, 32},
-
-		// displacement (x, y, z, p)
-		{-68, 50, 0, 0},
-
-		// rotation (x, y, z)
-		{0, 0, 0},
-
-		// scale (x, y, z)
-		{0, 0, 0},
-
-		// if true this shape checks for collisions against other shapes
-		false,
-
-		// layers in which I live
-		kSolidLayer,
-
-		// layers to ignore when checking for collisions
-		kNoLayer,
-	},
-
 	// right cabin wall
 	{
 		// shape
@@ -326,7 +299,7 @@ ShapeROMDef LEVEL_1_STAGE_3_BUILDING_1_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{120, 32, 32},
+		{112, 32, 32},
 
 		// displacement (x, y, z, p)
 		{168, 80, 0, 0},

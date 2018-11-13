@@ -19,58 +19,54 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MACROS_H_
-#define MACROS_H_
+
+//---------------------------------------------------------------------------------------------------------
+//												INCLUDES
+//---------------------------------------------------------------------------------------------------------
+
+#include <Entity.h>
+#include <Collision.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINES
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// general
-#define COINS_PER_LEVEL		64
-#define LEVELS_IN_GAME		1
 
-// layers
-#define HERO_DSPL			1
-
-// physics
-#define NO_FRICTION 		0
-#define FLOOR_FRICTION 		0.75f
-#define FLOOR_BOUNCINESS 	0.0f
-
-// entity collision types
-enum PlatformerTypes
+PhysicalSpecificationROMDef COLLISION_TOP_CL_PHYSICAL_PROPERTIES =
 {
-	kHero = kNoType + 1,
-	kShape,
+	// mass
+	__F_TO_FIX10_6(0),
+
+	// friction
+	__F_TO_FIX10_6(FLOOR_FRICTION),
+
+	// bounciness
+	__F_TO_FIX10_6(FLOOR_BOUNCINESS),
+
+	// maximum velocity
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
+};
+
+CollisionROMDef COLLISION_TOP_CL =
+{
+	// class allocator
+	__TYPE(Collision),
+
+	// sprites
+	(SpriteROMDef**)NULL,
+
+	// collision shapes
+	(ShapeDefinition*)NULL,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
 	kTopShape,
-	kKillShape,
-	kLift,
-	kItemSausage,
-	kEnemy,
-	kMessage,
-	kFloor,
-	kSausage,
-	kEnemyProjectile,
-	kMovingPlatform,
-	kStageExitPoint,
+
+	// physical specification
+	(PhysicalSpecification*)&COLLISION_TOP_CL_PHYSICAL_PROPERTIES,
 };
-
-// entity collision layers
-enum CollisionLayers
-{
-    kSolidLayer		 					= 1 << (kNoLayer + 0),
-    kEnemiesLayer						= 1 << (kNoLayer + 1),
-    kPlayerLayer						= 1 << (kNoLayer + 2),
-    kParticlesLayer						= 1 << (kNoLayer + 3),
-    kItemsLayer							= 1 << (kNoLayer + 4),
-    kCollectablesLayer					= 1 << (kNoLayer + 5),
-    kTriggersLayer						= 1 << (kNoLayer + 6),
-    kMovingPlatformsLayer				= 1 << (kNoLayer + 7),
-    kMessageLayer						= 1 << (kNoLayer + 8),
-    kAllLayers							= 0xFFFFFFFF,
-};
-
-
-#endif

@@ -737,6 +737,14 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 				}
 			}
 			break;
+
+		case kKillShape:
+			{
+				Hero::takeHitFrom(this, collidingObject, 999, true, true);
+				return true;
+				break;
+			}
+			break;
 	}
 
 	return Base::enterCollision(this, collisionInformation) && (__ABS(collisionInformation->solutionVector.direction.y) > __ABS(collisionInformation->solutionVector.direction.x));

@@ -39,7 +39,9 @@
 
 extern EntityDefinition LOW_POWER_INDICATOR_LB;
 
+extern EntityDefinition BULLY_EM;
 extern EntityDefinition CITY_BG_2_EN;
+extern EntityDefinition HOVER_CAR_EM;
 extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_1_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_2A_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_2B_EN;
@@ -50,16 +52,19 @@ extern EntityDefinition LEVEL_1_STAGE_3_HOTEL_SIGN_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_SIGN_EN;
 extern EntityDefinition CITY_FLOOR_COLLISION_CL;
 extern EntityDefinition COLLISION_CL;
+extern EntityDefinition COLLISION_TOP_CL;
 extern EntityDefinition GUI_EN;
 extern EntityDefinition MANOLO_EM;
+extern EntityDefinition KILL_COLLISION_CL;
 
 extern CharSetDefinition CITY_BG_2_CH;
 
 extern TextureDefinition CITY_BG_2_A_TX;
 extern TextureDefinition CITY_BG_2_B_TX;
 
-extern Size collision_2_28_8;
-extern Size collision_48_2_8;
+extern Size collision_16_224_64;
+extern Size collision_56_56_64;
+extern Size collision_384_16_64;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,36 +73,32 @@ extern Size collision_48_2_8;
 
 PositionedEntityROMDef LEVEL_1_STAGE_3_ST_CHILDREN[] =
 {
-	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // left border
+	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // left border
 
 	{&CITY_BG_2_EN,						{-416,  96,  256,   0},		0, NULL, NULL, NULL, true},
 
 	{&LEVEL_1_STAGE_3_BUILDING_1_EN,	{ 228,  96,    0,   0},		0, NULL, NULL, NULL, false},
+	{&COLLISION_TOP_CL,					{ 160, 146,    0,   0},		0, NULL, NULL, (void*)&collision_56_56_64, false}, // box
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{  56, 159,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_3_SIGN_EN,			{ 620,  70,    0,   0},		0, NULL, NULL, NULL, false},
+	{&MANOLO_EM,						{ 708, 139,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2A_EN,	{ 626, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 662, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2B_EN,	{1014, 114,    0,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,							{1040, 148,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{1038, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1060,  72,    0,   0},		0, NULL, NULL, NULL, false},
+	{&BULLY_EM,							{1200, 148,    0,   0},		0, NULL, NULL, NULL, false},
+
+	{&HOVER_CAR_EM,						{1400, 112,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_3_BUILDING_3A_EN,	{1430,  96,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_3B_EN,	{1734,  96,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&CITY_FLOOR_COLLISION_CL,			{ 192, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 372, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 552, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 732, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 912, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1092, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1272, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1452, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1632, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1812, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1992, 224,    0,   0},		0, NULL, NULL, (void*)&collision_48_2_8, false},
+	{&KILL_COLLISION_CL,				{1260, 288,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
 
-	{&COLLISION_CL,						{1928,  96,    0,   0},		0, NULL, NULL, (void*)&collision_2_28_8, false}, // right border
+	{&COLLISION_CL,						{1806,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // right border
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
