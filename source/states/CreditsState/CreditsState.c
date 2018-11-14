@@ -95,7 +95,7 @@ void CreditsState::enter(void* owner)
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
-		0, // initial delay (in ms)
+		1500, // initial delay (in ms)
 		NULL, // target brightness
 		__FADE_DELAY, // delay between fading steps (in ms)
 		(void (*)(Object, Object))CreditsState::onFadeInComplete, // callback function

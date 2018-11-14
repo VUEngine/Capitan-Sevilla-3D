@@ -89,10 +89,10 @@ void Projectile::startMovement()
 	this->originalPosition = this->transformation.globalPosition;
 
 	// activate shapes
-	Entity::activateShapes(Entity::safeCast(this), true);
+	Entity::activateShapes(this, true);
 
 	// play default animation
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileDefinition->actorDefinition.animatedEntityDefinition.initialAnimation);
+	AnimatedEntity::playAnimation(this, this->projectileDefinition->actorDefinition.animatedEntityDefinition.initialAnimation);
 
 	// show me
 	Entity::show(this);
@@ -124,10 +124,10 @@ void Projectile::stopMovement()
 	Actor::stopAllMovement(this);
 
 	// deactivate shapes
-	Entity::activateShapes(Entity::safeCast(this), false);
+	Entity::activateShapes(this, false);
 
 	// hide me
-	Entity::hide(Entity::safeCast(this));
+	Entity::hide(this);
 }
 
 void Projectile::checkPosition()

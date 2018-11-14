@@ -48,7 +48,7 @@ CharSetROMDef LEVEL_1_STAGE_3_BUILDING_1_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	288,
+	474,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -69,7 +69,7 @@ TextureROMDef LEVEL_1_STAGE_3_BUILDING_1_L_TX =
 	Level1Stage3Building1LMap,
 
 	// cols (max 64)
-	57,
+	43,
 
 	// rows (max 64)
 	20,
@@ -127,7 +127,7 @@ TextureROMDef LEVEL_1_STAGE_3_BUILDING_1_R_TX =
 	Level1Stage3Building1RMap,
 
 	// cols (max 64)
-	57,
+	43,
 
 	// rows (max 64)
 	20,
@@ -212,16 +212,16 @@ ShapeROMDef LEVEL_1_STAGE_3_BUILDING_1_SHAPES[] =
 		kNoLayer,
 	},
 
-	// right cabin wall
+	// right cabin wall & lift
 	{
 		// shape
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{8, 72, 32},
+		{44, 72, 32},
 
 		// displacement (x, y, z, p)
-		{106, 0, 0, 0},
+		{146, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -248,7 +248,7 @@ ShapeROMDef LEVEL_1_STAGE_3_BUILDING_1_SHAPES[] =
 		{8, 16, 32},
 
 		// displacement (x, y, z, p)
-		{18, 4, 0, 0},
+		{74, 4, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -275,34 +275,7 @@ ShapeROMDef LEVEL_1_STAGE_3_BUILDING_1_SHAPES[] =
 		{104, 38, 32},
 
 		// displacement (x, y, z, p)
-		{58, -21, 0, 0},
-
-		// rotation (x, y, z)
-		{0, 0, 0},
-
-		// scale (x, y, z)
-		{0, 0, 0},
-
-		// if true this shape checks for collisions against other shapes
-		false,
-
-		// layers in which I live
-		kSolidLayer,
-
-		// layers to ignore when checking for collisions
-		kNoLayer,
-	},
-
-	// plank
-	{
-		// shape
-		__TYPE(Box),
-
-		// size (x, y, z)
-		{112, 32, 32},
-
-		// displacement (x, y, z, p)
-		{168, 80, 0, 0},
+		{114, -21, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

@@ -42,6 +42,7 @@ extern EntityDefinition LOW_POWER_INDICATOR_LB;
 extern EntityDefinition BULLY_EM;
 extern EntityDefinition CITY_BG_2_EN;
 extern EntityDefinition HOVER_CAR_EM;
+extern EntityDefinition ITEM_SAUSAGE_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_1_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_2A_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_2B_EN;
@@ -49,6 +50,8 @@ extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_3A_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_3B_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_FENCE_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_HOTEL_SIGN_EN;
+extern EntityDefinition LEVEL_1_STAGE_3_LIFT_EN;
+extern EntityDefinition LEVEL_1_STAGE_3_PLANK_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_SIGN_EN;
 extern EntityDefinition CITY_FLOOR_COLLISION_CL;
 extern EntityDefinition COLLISION_CL;
@@ -77,28 +80,33 @@ PositionedEntityROMDef LEVEL_1_STAGE_3_ST_CHILDREN[] =
 
 	{&CITY_BG_2_EN,						{-416,  96,  256,   0},		0, NULL, NULL, NULL, true},
 
-	{&LEVEL_1_STAGE_3_BUILDING_1_EN,	{ 228,  96,    0,   0},		0, NULL, NULL, NULL, false},
-	{&COLLISION_TOP_CL,					{ 160, 146,    0,   0},		0, NULL, NULL, (void*)&collision_56_56_64, false}, // box
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{  56, 159,    0,   0},		0, NULL, NULL, NULL, false},
+	{&COLLISION_TOP_CL,					{ 160, 146,    0,   0},		0, NULL, NULL, (void*)&collision_56_56_64, false}, // box
+	{&LEVEL_1_STAGE_3_BUILDING_1_EN,	{ 172,  96,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_PLANK_EN,			{ 397, 164,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_STAGE_3_SIGN_EN,			{ 620,  70,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_SIGN_EN,			{ 620,  74,    0,   0},		0, NULL, NULL, NULL, false},
 	{&MANOLO_EM,						{ 708, 139,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2A_EN,	{ 626, 114,    0,   0},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 662, 159,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 658, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2B_EN,	{1014, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&BULLY_EM,							{1040, 148,    0,   0},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_STAGE_3_FENCE_EN,			{1038, 159,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_FENCE_EN,			{1034, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1060,  72,    0,   0},		0, NULL, NULL, NULL, false},
 	{&BULLY_EM,							{1200, 148,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&HOVER_CAR_EM,						{1400, 112,    0,   0},		0, NULL, NULL, NULL, false},
-
-	{&LEVEL_1_STAGE_3_BUILDING_3A_EN,	{1430,  96,    0,   0},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_STAGE_3_BUILDING_3B_EN,	{1734,  96,    0,   0},		0, NULL, NULL, NULL, false},
-
 	{&KILL_COLLISION_CL,				{1260, 288,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
 
-	{&COLLISION_CL,						{1806,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // right border
+	{&HOVER_CAR_EM,						{1398, 110,    0,   0},		0, NULL, NULL, NULL, false},
+
+	{&LEVEL_1_STAGE_3_BUILDING_3A_EN,	{1450, 116,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_BUILDING_3B_EN,	{1734,  96,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_LIFT_EN,			{1783, 136,    0,   0},		0, NULL, NULL, NULL, false},
+
+	{&ITEM_SAUSAGE_EN,					{1482,  38,    0,   0},		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_EM,						{1700, 112,    0,   0},		0, NULL, NULL, NULL, false},
+
+	{&COLLISION_CL,						{1808,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // right border
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -197,7 +205,7 @@ StageROMDef LEVEL_1_STAGE_3_ST =
 	// streaming
 	{
 		// load padding
-		32,
+		24,
 		// unload padding
 		4,
 		// streaming amplitude
@@ -205,7 +213,7 @@ StageROMDef LEVEL_1_STAGE_3_ST =
 		// particle removal delay cycles
 		4,
 		// deferred
-		true,
+		false,
 	},
 
 	// rendering
@@ -366,7 +374,11 @@ StageEntryPointROMDef LEVEL_1_STAGE_3_MAIN_EP =
 	(StageDefinition*)&LEVEL_1_STAGE_3_ST,
 
 	// starting position (x, y, z)
-	{64, 133, HERO_DSPL},
+	{280, 133, HERO_DSPL},
+
+	// facing direction of the hero
+	__RIGHT,
+	//__LEFT,
 
 	// whether this entry point acts as a checkpoint
 	true,

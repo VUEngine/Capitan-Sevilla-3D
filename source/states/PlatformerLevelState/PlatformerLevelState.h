@@ -55,6 +55,9 @@ typedef struct StageEntryPointDefinition
 	// starting position (x, y, z)
 	Vector3D startingPosition;
 
+	// facing direction of the hero
+	s8 direction;
+
 	// whether this entry point acts as a checkpoint
 	bool isCheckPoint;
 

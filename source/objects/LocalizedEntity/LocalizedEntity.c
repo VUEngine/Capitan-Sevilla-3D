@@ -62,5 +62,5 @@ void LocalizedEntity::ready(bool recursive)
 void LocalizedEntity::localize()
 {
 	char* language = Utilities::itoa(I18n::getActiveLanguage(I18n::getInstance()), 10, 1);
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), language);
+	AnimatedEntity::playAnimation(this, language);
 }

@@ -37,6 +37,7 @@
 extern BYTE Level1Stage2LiftTiles[];
 extern BYTE Level1Stage2LiftMap[];
 extern StageEntryPointDefinition LEVEL_1_STAGE_1_MAIN_EP;
+extern StageEntryPointDefinition LEVEL_1_STAGE_3_MAIN_EP;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -293,6 +294,55 @@ LiftROMDef LEVEL_1_STAGE_2_LIFT_EN =
 		__NO_AXIS
 	},
 
+	// velocity after entering
+	{0, __I_TO_FIX10_6(-2), 0},
+
 	// entry point to load after entering
-	(StageEntryPointDefinition*)&LEVEL_1_STAGE_1_MAIN_EP,
+	(StageEntryPointDefinition*)&LEVEL_1_STAGE_3_MAIN_EP,
+};
+
+LiftROMDef LEVEL_1_STAGE_3_LIFT_EN =
+{
+	{
+		{
+			{
+				// class allocator
+				__TYPE(Lift),
+
+				// sprites
+				(SpriteROMDef**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+
+				// collision shapes
+				(ShapeDefinition*)LEVEL_1_STAGE_2_LIFT_SHAPES,
+
+				// size
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{0, 0, 0},
+
+				// gameworld's character's type
+				kLift,
+
+				// physical specification
+				(PhysicalSpecification*)NULL,
+			},
+
+			// pointer to the animation definition for the character
+			(AnimationDescription*)&LEVEL_1_STAGE_2_LIFT_ANIM,
+
+			// initial animation
+			"Open"
+		},
+
+		// true to create a body
+		true,
+
+		// axes subject to gravity
+		__NO_AXIS
+	},
+
+	// velocity after entering
+	{0, __I_TO_FIX10_6(2), 0},
+
+	// entry point to load after entering
+	NULL,
 };

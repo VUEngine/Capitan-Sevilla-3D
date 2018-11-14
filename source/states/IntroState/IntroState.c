@@ -215,15 +215,15 @@ bool IntroState::handleMessage(Telegram telegram)
 void IntroState::translateTextEntities()
 {
 	char* language = Utilities::itoa(I18n::getActiveLanguage(I18n::getInstance()), 10, 1);
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText1), language);
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText2), language);
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText3), language);
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText4), language);
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText5), language);
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText6), language);
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText7), language);
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText8), language);
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this->entityText9), language);
+	AnimatedEntity::playAnimation(this->entityText1, language);
+	AnimatedEntity::playAnimation(this->entityText2, language);
+	AnimatedEntity::playAnimation(this->entityText3, language);
+	AnimatedEntity::playAnimation(this->entityText4, language);
+	AnimatedEntity::playAnimation(this->entityText5, language);
+	AnimatedEntity::playAnimation(this->entityText6, language);
+	AnimatedEntity::playAnimation(this->entityText7, language);
+	AnimatedEntity::playAnimation(this->entityText8, language);
+	AnimatedEntity::playAnimation(this->entityText9, language);
 }
 
 void IntroState::nextImageStep()
@@ -332,5 +332,6 @@ void IntroState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 // handle event
 void IntroState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	Game::changeState(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+	extern PlatformerLevelDefinition LEVEL_1_LV;
+	PlatformerLevelState::startLevel(PlatformerLevelState::getInstance(), &LEVEL_1_LV);
 }

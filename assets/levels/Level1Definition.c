@@ -39,7 +39,7 @@ extern StageEntryPointROMDef LEVEL_1_STAGE_1_MAIN_EP;
 //												LEVEL DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-PlatformerLevelROMDef LEVEL_1_STAGE_1_LV =
+PlatformerLevelROMDef LEVEL_1_LV =
 {
 	// starting entry point
 	(StageEntryPointDefinition*)&LEVEL_1_STAGE_1_MAIN_EP,

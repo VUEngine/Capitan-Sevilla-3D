@@ -74,7 +74,7 @@ void Enemy::ready(bool recursive)
 	// add projectile ejector
 	if(this->enemyDefinition->projectileEjectorDefinition)
 	{
-		this->projectileEjectorEntity = Entity::addChildEntity(Entity::safeCast(this), (EntityDefinition*)this->enemyDefinition->projectileEjectorDefinition, -1, NULL, &this->enemyDefinition->projectileEjectorPosition, NULL);
+		this->projectileEjectorEntity = Entity::addChildEntity(this, (EntityDefinition*)this->enemyDefinition->projectileEjectorDefinition, -1, NULL, &this->enemyDefinition->projectileEjectorPosition, NULL);
 		Object::addEventListener(this->projectileEjectorEntity, Object::safeCast(this), (EventListener)Enemy::onProjectileEjected, kEventProjectileEjected);
 	}
 }
@@ -109,5 +109,5 @@ void Enemy::die()
 void Enemy::onProjectileEjected(Object eventFirer __attribute__ ((unused)))
 {
 	// play shoot animation
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Shoot");
+	AnimatedEntity::playAnimation(this, "Shoot");
 }

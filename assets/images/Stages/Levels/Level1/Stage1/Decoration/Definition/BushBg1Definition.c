@@ -98,7 +98,7 @@ BgmapSpriteROMDef BUSH_BG_1_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 8},
+		{0, 0, 4, 8},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

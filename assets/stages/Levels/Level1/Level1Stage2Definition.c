@@ -50,17 +50,17 @@ extern EntityDefinition LEVEL_1_STAGE_2_LIFT_EN;
 
 PositionedEntityROMDef LEVEL_1_STAGE_2_ST_CHILDREN[] =
 {
-	{&LEVEL_1_STAGE_2_ROOM_EN,	{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
-    {&ITEM_SAUSAGE_EN,			{ 342, 108,    0,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_2_LIFT_EN,	{ 693, 130,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_2_ROOM_EN,		{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
+    {&ITEM_SAUSAGE_EN,				{ 342, 108,    0,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_2_LIFT_EN,		{ 693, 130,    0,   0},		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
 PositionedEntityROMDef LEVEL_1_STAGE_2_ST_UI_CHILDREN[] =
 {
-	{&GUI_EN, 					{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
-	{&LOW_POWER_INDICATOR_LB, 	{  16, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&GUI_EN, 						{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&LOW_POWER_INDICATOR_LB, 		{  16, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -316,6 +316,9 @@ StageEntryPointROMDef LEVEL_1_STAGE_2_MAIN_EP =
 
 	// starting position (x, y, z)
 	{80, 96, HERO_DSPL},
+
+	// facing direction of the hero
+	__RIGHT,
 
 	// whether this entry point acts as a checkpoint
 	true,

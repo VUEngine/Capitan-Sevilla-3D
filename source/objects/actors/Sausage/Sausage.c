@@ -66,10 +66,10 @@ bool Sausage::enterCollision(const CollisionInformation* collisionInformation)
 			Actor::stopAllMovement(this);
 
 			// deactivate shapes
-			Entity::activateShapes(Entity::safeCast(this), false);
+			Entity::activateShapes(this, false);
 
 			// play hitting animation
-			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Hit");
+			AnimatedEntity::playAnimation(this, "Hit");
 
 			// deactivate position checks
 			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileCheckPosition);

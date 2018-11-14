@@ -47,7 +47,8 @@ AnimationFunctionROMDef INTRO_TEXT_2_ENGLISH_ANIM =
 	1,
 
 	// frames to play in animation
-	{0},
+	{1},
+	//{0},
 
 	// number of cycles a frame of animation is displayed
 	2,
@@ -89,7 +90,8 @@ AnimationFunctionROMDef INTRO_TEXT_2_GERMAN_ANIM =
 	1,
 
 	// frames to play in animation
-	{2},
+	{1},
+	//{2},
 
 	// number of cycles a frame of animation is displayed
 	2,
@@ -110,7 +112,8 @@ AnimationFunctionROMDef INTRO_TEXT_2_FRENCH_ANIM =
 	1,
 
 	// frames to play in animation
-	{3},
+	{1},
+	//{3},
 
 	// number of cycles a frame of animation is displayed
 	2,

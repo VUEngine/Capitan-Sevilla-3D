@@ -76,7 +76,7 @@ void CustomCameraMovementManager::focus(u32 checkIfFocusEntityIsMoving __attribu
 bool CustomCameraMovementManager::doFocusWithNoEasing(u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
 {
 	Vector3D focusEntityPosition = Camera::getFocusEntityPosition(this->camera);
-	Direction direction = Entity::getDirection(Entity::safeCast(Camera::getFocusEntity(this->camera)));
+	Direction direction = Entity::getDirection(Camera::getFocusEntity(this->camera));
 
 	Vector3D cameraPosition =
 	{

@@ -104,7 +104,7 @@ void Hero::constructor(HeroDefinition* heroDefinition, s16 id, s16 internalId, c
 
 	Object::addEventListener(PlatformerLevelState::getInstance(), Object::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
 
-	this->inputDirection = Entity::getDirection(Entity::safeCast(this));
+	this->inputDirection = Entity::getDirection(this);
 }
 
 // class's destructor
@@ -131,7 +131,7 @@ void Hero::destructor()
 
 void Hero::ready(bool recursive)
 {
-	Entity::informShapesThatStartedMoving(Entity::safeCast(this));
+	Entity::informShapesThatStartedMoving(this);
 
 	// call base
 	Base::ready(this, recursive);
@@ -154,7 +154,7 @@ void Hero::ready(bool recursive)
 void Hero::addSausageEjectorEntity()
 {
 	Vector3D position = {__PIXELS_TO_METERS(2), __PIXELS_TO_METERS(-6), 0};
-	this->sausageEjectorEntity = Entity::addChildEntity(Entity::safeCast(this), &SAUSAGE_EJECTOR_PE, -1, NULL, &position, NULL);
+	this->sausageEjectorEntity = Entity::addChildEntity(this, &SAUSAGE_EJECTOR_PE, -1, NULL, &position, NULL);
 
 	Object::addEventListener(this->sausageEjectorEntity, Object::safeCast(this), (EventListener)Hero::onProjectileEjected, kEventProjectileEjected);
 }
@@ -165,7 +165,7 @@ void Hero::startShooting()
 	{
 		// play shoot animation
 		// TODO: have different shooting animations for jumping, kneeling, etc
-		//AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Shoot");
+		//AnimatedEntity::playAnimation(this, "Shoot");
 
 		// shoot sausage
 		ProjectileEjector::setActive(this->sausageEjectorEntity, true);
@@ -246,7 +246,7 @@ void Hero::jump(bool checkIfYMovement)
 			}
 
 			// play jump animation
-			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Jump");
+			AnimatedEntity::playAnimation(this, "Jump");
 
 			// play jump sound
 			SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
@@ -356,7 +356,7 @@ void Hero::startedMovingOnAxis(u16 axis)
 		if(__X_AXIS & axis)
 		{
 			this->keepAddingForce = true;
-			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Walk");
+			AnimatedEntity::playAnimation(this, "Walk");
 		}
 
 		StateMachine::swapState(this->stateMachine, State::safeCast(HeroMoving::getInstance()));
@@ -383,7 +383,7 @@ bool Hero::stopMovementOnAxis(u16 axis)
 
 	if((__X_AXIS & axis) && !(__Y_AXIS & movementState))
 	{
-		AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Idle");
+		AnimatedEntity::playAnimation(this, "Idle");
 	}
 
 	// if there is something below
@@ -399,7 +399,7 @@ bool Hero::stopMovementOnAxis(u16 axis)
 			{
 				if(this->inputDirection.x)
 				{
-					AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Walk");
+					AnimatedEntity::playAnimation(this, "Walk");
 				}
 			}
 		}
@@ -413,12 +413,12 @@ bool Hero::stopMovementOnAxis(u16 axis)
 		}
 		else
 		{
-			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Walk");
+			AnimatedEntity::playAnimation(this, "Walk");
 		}
 	}
 	else
 	{
-		AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Fall");
+		AnimatedEntity::playAnimation(this, "Fall");
 	}
 
 	return false;
@@ -428,7 +428,7 @@ bool Hero::stopMovementOnAxis(u16 axis)
 void Hero::checkDirection(u32 pressedKey, char* animation)
 {
 	bool movementState = Body::getMovementOnAllAxes(this->body);
-	//Direction direction = Entity::getDirection(Entity::safeCast(this));
+	//Direction direction = Entity::getDirection(this);
 
 	if(K_LR & pressedKey)
 	{
@@ -449,7 +449,7 @@ void Hero::checkDirection(u32 pressedKey, char* animation)
 
 	if(animation && !(__Y_AXIS & movementState))
 	{
-		AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), animation);
+		AnimatedEntity::playAnimation(this, animation);
 	}
 }
 
@@ -487,7 +487,7 @@ void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool p
 			}
 
 			// play animation
-			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Hit");
+			AnimatedEntity::playAnimation(this, "Hit");
 
 			// inform others to update ui etc
 			Object::fireEvent(EventManager::getInstance(), kEventHitTaken);
@@ -521,7 +521,7 @@ void Hero::flash()
 void Hero::toggleFlashPalette()
 {
 	// get all of the hero's sprites and loop through them
-	VirtualList sprites = Entity::getSprites(Entity::safeCast(this));
+	VirtualList sprites = Entity::getSprites(this);
 	VirtualNode node = VirtualList::begin(sprites);
 	for(; node; node = VirtualNode::getNext(node))
 	{
@@ -550,7 +550,7 @@ void Hero::toggleFlashPalette()
 void Hero::resetPalette()
 {
 	// get all of hero's sprites and loop through them
-	VirtualList sprites = Entity::getSprites(Entity::safeCast(this));
+	VirtualList sprites = Entity::getSprites(this);
 	VirtualNode node = VirtualList::begin(sprites);
 	for(; node; node = VirtualNode::getNext(node))
 	{
@@ -571,10 +571,10 @@ void Hero::resetPalette()
 void Hero::die()
 {
 	// unregister the shape for collision detection
-	Entity::activateShapes(Entity::safeCast(this), false);
+	Entity::activateShapes(this, false);
 
 	// show animation
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Dead");
+	AnimatedEntity::playAnimation(this, "Dead");
 
 	// set flashing palette back to original
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroFlash);
@@ -695,7 +695,9 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 			// inform gui
 			Object::fireEvent(EventManager::getInstance(), kEventLiftActivated);
 
+			// stop and hide hero
 			Entity::hide(this);
+			Actor::stopAllMovement(this);
 
 			// disable user input
 			Game::disableKeypad(Game::getInstance());
@@ -836,20 +838,20 @@ bool Hero::handleMessage(Telegram telegram)
 			{
 				if(velocity.x)
 				{
-					AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Walk");
+					AnimatedEntity::playAnimation(this, "Walk");
 				}
 				else
 				{
-					AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Idle");
+					AnimatedEntity::playAnimation(this, "Idle");
 				}
 			}
 			else if(velocity.x)
 			{
-				AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Walk");
+				AnimatedEntity::playAnimation(this, "Walk");
 			}
 			else
 			{
-				AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), "Idle");
+				AnimatedEntity::playAnimation(this, "Idle");
 			}
 
 			break;
@@ -917,6 +919,13 @@ bool Hero::isAffectedByRelativity()
 	return true;
 }
 
+void Hero::setDirection(Direction direction)
+{
+	Base::setDirection(this, direction);
+	Hero::syncRotationWithBody(this);
+	this->inputDirection = direction;
+}
+
 void Hero::updateSprite(Direction direction)
 {
 	CharSet charSet = Texture::getCharSet(Sprite::getTexture(Sprite::safeCast(VirtualList::front(this->sprites))), true);
@@ -951,19 +960,19 @@ void Hero::syncRotationWithBody()
 {
 	fix10_6 xLastDisplacement = Body::getLastDisplacement(this->body).x;
 
-	Direction direction = Entity::getDirection(Entity::safeCast(this));
+	Direction direction = Entity::getDirection(this);
 
 	if(0 < xLastDisplacement)
 	{
 		direction.x = __RIGHT;
 		Hero::updateSprite(this, direction);
-		Entity::setDirection(Entity::safeCast(this->sausageEjectorEntity), direction);
+		Entity::setDirection(this->sausageEjectorEntity, direction);
 	}
 	else if(0 > xLastDisplacement)
 	{
 		direction.x = __LEFT;
 		Hero::updateSprite(this, direction);
-		Entity::setDirection(Entity::safeCast(this->sausageEjectorEntity), direction);
+		Entity::setDirection(this->sausageEjectorEntity, direction);
 	}
 }
 

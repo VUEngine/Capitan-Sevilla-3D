@@ -42,6 +42,9 @@ typedef struct LiftDefinition
 	// base actor definition
 	ActorDefinition actorDefinition;
 
+	// velocity after entering
+	Velocity velocity;
+
 	// entry point to load after entering
 	StageEntryPointDefinition* entryPoint;
 

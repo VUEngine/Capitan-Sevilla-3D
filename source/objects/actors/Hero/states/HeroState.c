@@ -62,7 +62,7 @@ void HeroState::onKeyReleased(void* owner __attribute__ ((unused)), const UserIn
 
 void HeroState::toggleShapes(void* owner, bool kneeling)
 {
-	VirtualList shapes = Entity::getShapes(Entity::safeCast(owner));
+	VirtualList shapes = Entity::getShapes(owner);
 	Shape shapeStanding = Shape::safeCast(VirtualList::front(shapes));
 	Shape shapeKneeling = Shape::safeCast(VirtualList::back(shapes));
 	Shape::setActive(shapeStanding, !kneeling);

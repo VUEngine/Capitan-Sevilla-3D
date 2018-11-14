@@ -49,7 +49,7 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern PlatformerLevelDefinition LEVEL_1_STAGE_1_LV;
+extern PlatformerLevelDefinition LEVEL_1_LV;
 extern EntityDefinition HERO_AC;
 
 
@@ -136,6 +136,10 @@ void PlatformerLevelState::enter(void* owner)
 		Hero hero = Hero::safeCast(Stage::addChildEntity(this->stage, &positionedEntity, true));
 
 		Object::addEventListener(hero, Object::safeCast(this), (EventListener)PlatformerLevelState::onHeroStreamedOut, kStageChildStreamedOut);
+
+		// set direction according to entry point
+		Direction direction = {this->currentStageEntryPoint->direction, __DOWN, __FAR};
+		Entity::setDirection(hero, direction);
 
 		// make sure that focusing gets completed immediately
 		CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());
@@ -300,7 +304,7 @@ void PlatformerLevelState::resetProgress()
 {
 	// TODO: move to progress manager?
 	// set default entry point
-	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_STAGE_1_LV;
+	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
 	this->currentCheckPoint = this->currentLevel->entryPoint;
 }
@@ -459,6 +463,8 @@ void PlatformerLevelState::startLevel(PlatformerLevelDefinition* platformerLevel
 {
 	this->currentLevel = platformerLevelDefinition;
 	this->currentCheckPoint = this->currentStageEntryPoint = this->currentLevel->entryPoint;
+
+	ProgressManager::resetCurrentLevelProgress(ProgressManager::getInstance());
 
 	Game::changeState(Game::getInstance(), GameState::safeCast(this));
 }

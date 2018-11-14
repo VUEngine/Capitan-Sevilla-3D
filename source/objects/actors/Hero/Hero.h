@@ -121,6 +121,7 @@ class Hero : Actor
 	override bool updateCollision(const CollisionInformation* collisionInformation);
 	override void syncRotationWithBody();
 	override u16 getAxesForShapeSyncWithDirection();
+	override void setDirection(Direction direction);
 }
 
 

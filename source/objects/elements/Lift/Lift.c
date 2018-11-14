@@ -92,8 +92,7 @@ bool Lift::handleMessage(Telegram telegram)
 
 		case kLiftStart:
 		{
-			Velocity velocity = {0, __I_TO_FIX10_6(-2), 0};
-			Actor::moveUniformly(this, &velocity);
+			Actor::moveUniformly(this, &this->liftDefinition->velocity);
 
 			break;
 		}
@@ -105,7 +104,12 @@ bool Lift::handleMessage(Telegram telegram)
 // handle event
 void Lift::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	Game::changeState(Game::getInstance(), (GameState)CreditsState::getInstance());
-
-	//PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->liftDefinition->entryPoint);
+	if(this->liftDefinition->entryPoint)
+	{
+		PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->liftDefinition->entryPoint);
+	}
+	else
+	{
+		Game::changeState(Game::getInstance(), (GameState)CreditsState::getInstance());
+	}
 }

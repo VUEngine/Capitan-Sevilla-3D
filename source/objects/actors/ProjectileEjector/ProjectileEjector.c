@@ -71,7 +71,7 @@ void ProjectileEjector::ready(bool recursive)
 	Base::ready(this, recursive);
 
 	// play idle animation
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->idleAnimationName);
+	AnimatedEntity::playAnimation(this, this->projectileEjectorDefinition->idleAnimationName);
 
 	// add projectiles to stage as children of this ejector
 	for(u8 i = 0; i < this->projectileEjectorDefinition->maxProjectiles; i++)
@@ -114,7 +114,7 @@ void ProjectileEjector::ejectProjectile()
 			if(Projectile::canBeReused(projectile))
 			{
 				// start ejection sequence
-				AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->ejectAnimationName);
+				AnimatedEntity::playAnimation(this, this->projectileEjectorDefinition->ejectAnimationName);
 
 				// set projectile to moving state
 				Projectile::startMovement(projectile);
@@ -154,5 +154,5 @@ bool ProjectileEjector::isActive()
 void ProjectileEjector::onEjectAnimationComplete()
 {
 	// play idle animation
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(this), this->projectileEjectorDefinition->idleAnimationName);
+	AnimatedEntity::playAnimation(this, this->projectileEjectorDefinition->idleAnimationName);
 }

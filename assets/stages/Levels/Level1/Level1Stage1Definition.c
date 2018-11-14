@@ -512,6 +512,9 @@ StageEntryPointROMDef LEVEL_1_STAGE_1_MAIN_EP =
 	// starting position (x, y, z)
 	{64, 133, HERO_DSPL},
 
+	// facing direction of the hero
+	__RIGHT,
+
 	// whether this entry point acts as a checkpoint
 	true,
 };

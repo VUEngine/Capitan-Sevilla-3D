@@ -98,7 +98,7 @@ BgmapSpriteROMDef LEVEL_1_STAGE_3_HOTEL_SIGN_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 4, 4},
+		{0, 0, 4, 5},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

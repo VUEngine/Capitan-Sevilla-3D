@@ -50,7 +50,7 @@ AnimationFunctionROMDef HOVER_CAR_MOVE_ANIM =
 	{0, 1},
 
 	// number of cycles a frame of animation is displayed
-	6,
+	4,
 
 	// whether to play it in loop or not
 	true,

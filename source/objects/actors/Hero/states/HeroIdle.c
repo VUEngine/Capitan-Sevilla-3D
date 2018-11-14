@@ -56,7 +56,7 @@ void HeroIdle::destructor()
 void HeroIdle::enter(void* owner)
 {
 	// show animation
-	AnimatedEntity::playAnimation(AnimatedEntity::safeCast(owner), "Idle");
+	AnimatedEntity::playAnimation(owner, "Idle");
 
 	// start sleeping after 6 seconds of inactivity
 	//MessageDispatcher::dispatchMessage(6000, Object::safeCast(this), Object::safeCast(owner), kHeroSleep, NULL);
@@ -91,7 +91,7 @@ bool HeroIdle::processMessage(void* owner, Telegram telegram)
 
 		case kHeroSleep:
 
-			AnimatedEntity::playAnimation(AnimatedEntity::safeCast(owner), "Sleep");
+			AnimatedEntity::playAnimation(owner, "Sleep");
 			return true;
 			break;
 	}
