@@ -208,6 +208,8 @@ void PlatformerLevelState::suspend(void* owner)
 	// pause physical simulations
 	GameState::pausePhysics(this, true);
 
+	Game::disableKeypad(Game::getInstance());
+
 #ifdef __DEBUG_TOOLS
 	if(!Game::isExitingSpecialMode(Game::getInstance()))
 	{
@@ -293,6 +295,8 @@ void PlatformerLevelState::resume(void* owner)
 	this->userInput.pressedKey 	= userInput.allKeys & ~this->userInput.previousKey;
 	this->userInput.releasedKey = ~userInput.allKeys & this->userInput.previousKey;
 	this->userInput.holdKey 	= userInput.allKeys & this->userInput.previousKey;
+
+	Game::enableKeypad(Game::getInstance());
 
 	// make sure that user input is taken into account
 	Object::fireEvent(this, kEventUserInput);
