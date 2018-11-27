@@ -85,8 +85,8 @@ extern CharSetDefinition BULLY_CH;
 extern CharSetDefinition CAR_1_CH;
 extern CharSetDefinition FLOWER_POT_CH;
 extern CharSetDefinition GUI_CH;
-extern CharSetDefinition HERO_RIGHT_CH;
-extern CharSetDefinition HERO_RIGHT_BLACK_CH;
+extern CharSetDefinition HERO_CH;
+extern CharSetDefinition HERO_BLACK_CH;
 extern CharSetDefinition HOVER_CAR_CH;
 extern CharSetDefinition CITY_BG_1_CH;
 
@@ -261,8 +261,8 @@ CharSetROMDef* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 	&FLOWER_POT_CH,
 	&HOVER_CAR_CH,
 	&GUI_CH,
-	&HERO_RIGHT_CH,
-	&HERO_RIGHT_BLACK_CH,
+	&HERO_CH,
+	&HERO_BLACK_CH,
 
 	NULL
 };

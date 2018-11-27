@@ -44,12 +44,8 @@ int main()
 	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
 	AutoPauseManager::setAutomaticPauseDelay(AutoPauseManager::getInstance(), 30);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
-	/*SplashScreenState::setNextState(
-		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),
-		GameState::safeCast(LolaSoftScreenState::getInstance())
-	);*/
 	SplashScreenState::setNextState(
-		SplashScreenState::safeCast(AutoPauseSelectScreenState::getInstance()),
+		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),
 		GameState::safeCast(LolaSoftScreenState::getInstance())
 	);
 

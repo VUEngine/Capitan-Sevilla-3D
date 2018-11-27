@@ -56,10 +56,6 @@ extern double fabs (double);
 extern const u16 COLLECT_SND[];
 extern const u16 FIRE_SND[];
 extern const u16 JUMP_SND[];
-extern CharSetDefinition HERO_LEFT_CH;
-extern CharSetDefinition HERO_LEFT_BLACK_CH;
-extern CharSetDefinition HERO_RIGHT_CH;
-extern CharSetDefinition HERO_RIGHT_BLACK_CH;
 extern EntityDefinition SAUSAGE_EJECTOR_PE;
 
 
@@ -153,7 +149,7 @@ void Hero::ready(bool recursive)
 
 void Hero::addSausageEjectorEntity()
 {
-	Vector3D position = {__PIXELS_TO_METERS(2), __PIXELS_TO_METERS(-6), 0};
+	Vector3D position = {__PIXELS_TO_METERS(2), 0, 0};
 	this->sausageEjectorEntity = Entity::addChildEntity(this, &SAUSAGE_EJECTOR_PE, -1, NULL, &position, NULL);
 
 	Object::addEventListener(this->sausageEjectorEntity, Object::safeCast(this), (EventListener)Hero::onProjectileEjected, kEventProjectileEjected);
@@ -922,10 +918,11 @@ bool Hero::isAffectedByRelativity()
 void Hero::setDirection(Direction direction)
 {
 	Base::setDirection(this, direction);
-	Hero::syncRotationWithBody(this);
+	//Hero::syncRotationWithBody(this);
 	this->inputDirection = direction;
 }
 
+/*
 void Hero::updateSprite(Direction direction)
 {
 	CharSet charSet = Texture::getCharSet(Sprite::getTexture(Sprite::safeCast(VirtualList::front(this->sprites))), true);
@@ -955,6 +952,7 @@ void Hero::updateSprite(Direction direction)
 	CharSet::rewrite(charSet);
 	CharSet::rewrite(charSetBlack);
 }
+*/
 
 void Hero::syncRotationWithBody()
 {
@@ -965,13 +963,15 @@ void Hero::syncRotationWithBody()
 	if(0 < xLastDisplacement)
 	{
 		direction.x = __RIGHT;
-		Hero::updateSprite(this, direction);
+		//Hero::updateSprite(this, direction);
+		Entity::setDirection(this, direction);
 		Entity::setDirection(this->sausageEjectorEntity, direction);
 	}
 	else if(0 > xLastDisplacement)
 	{
 		direction.x = __LEFT;
-		Hero::updateSprite(this, direction);
+		//Hero::updateSprite(this, direction);
+		Entity::setDirection(this, direction);
 		Entity::setDirection(this->sausageEjectorEntity, direction);
 	}
 }
@@ -993,7 +993,7 @@ void Hero::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isSha
 
 u16 Hero::getAxesForShapeSyncWithDirection()
 {
-	return __NO_AXIS;
+	return __X_AXIS;
 }
 
 bool Hero::isVisible(int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))

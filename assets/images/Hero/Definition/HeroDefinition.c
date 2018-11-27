@@ -33,11 +33,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HeroRightTiles[];
-extern BYTE HeroRightBlackTiles[];
-extern BYTE HeroLeftTiles[];
-extern BYTE HeroLeftBlackTiles[];
-extern BYTE HeroRightMap[];
+extern BYTE HeroTiles[];
+extern BYTE HeroBlackTiles[];
+extern BYTE HeroMap[];
+extern BYTE HeroBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,13 +67,13 @@ AnimationFunctionROMDef HERO_IDLE_ANIM =
 AnimationFunctionROMDef HERO_WALK_ANIM =
 {
 	// number of frames of this animation function
-	4,
+	12,
 
 	// frames to play in animation
-	{0, 1, 2, 1},
+	{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
 
 	// number of cycles a frame of animation is displayed
-	4,
+	2,
 
 	// whether to play it in loop or not
 	true,
@@ -92,7 +91,7 @@ AnimationFunctionROMDef HERO_KNEEL_ANIM =
 	1,
 
 	// frames to play in animation
-	{3},
+	{12},
 
 	// number of cycles a frame of animation is displayed
 	4,
@@ -113,7 +112,7 @@ AnimationFunctionROMDef HERO_JUMP_ANIM =
 	1,
 
 	// frames to play in animation
-	{5},
+	{14},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -134,7 +133,7 @@ AnimationFunctionROMDef HERO_FALL_ANIM =
 	1,
 
 	// frames to play in animation
-	{4},
+	{13},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -155,7 +154,7 @@ AnimationFunctionROMDef HERO_HIT_ANIM =
 	1,
 
 	// frames to play in animation
-	{6},
+	{15},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -176,7 +175,7 @@ AnimationFunctionROMDef HERO_SHOOT_ANIM =
 	1,
 
 	// frames to play in animation
-	{6},
+	{15},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -197,7 +196,7 @@ AnimationFunctionROMDef HERO_DEAD_ANIM =
 	1,
 
 	// frames to play in animation
-	{7},
+	{16},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -228,7 +227,7 @@ AnimationDescriptionROMDef HERO_ANIM =
 	}
 };
 
-CharSetROMDef HERO_LEFT_CH =
+CharSetROMDef HERO_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -240,10 +239,10 @@ CharSetROMDef HERO_LEFT_CH =
 	__ANIMATED_SINGLE,
 
 	// char definition
-	HeroLeftTiles,
+	HeroTiles,
 };
 
-CharSetROMDef HERO_LEFT_BLACK_CH =
+CharSetROMDef HERO_BLACK_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -255,45 +254,15 @@ CharSetROMDef HERO_LEFT_BLACK_CH =
 	__ANIMATED_SINGLE,
 
 	// char definition
-	HeroLeftBlackTiles,
-};
-
-CharSetROMDef HERO_RIGHT_CH =
-{
-	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
-	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	24,
-
-	// allocation type
-	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SINGLE,
-
-	// char definition
-	HeroRightTiles,
-};
-
-CharSetROMDef HERO_RIGHT_BLACK_CH =
-{
-	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
-	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	24,
-
-	// allocation type
-	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SINGLE,
-
-	// char definition
-	HeroRightBlackTiles,
+	HeroBlackTiles,
 };
 
 TextureROMDef HERO_TX =
 {
-	(CharSetDefinition*)&HERO_RIGHT_CH,
+	(CharSetDefinition*)&HERO_CH,
 
 	// bgmap definition
-	HeroRightMap,
+	HeroMap,
 
 	// cols (max 64)
 	4,
@@ -318,10 +287,10 @@ TextureROMDef HERO_TX =
 
 TextureROMDef HERO_BLACK_TX =
 {
-	(CharSetDefinition*)&HERO_RIGHT_BLACK_CH,
+	(CharSetDefinition*)&HERO_BLACK_CH,
 
 	// bgmap definition
-	HeroRightMap,
+	HeroBlackMap,
 
 	// cols (max 64)
 	4,
@@ -410,7 +379,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		{19, 37, 48},
 
 		// displacement (x, y, z, p)
-		{0, -3, -16, 0},
+		{0, 3, -16, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -437,7 +406,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 		{19, 28, 48},
 
 		// displacement (x, y, z, p)
-		{0, 1, -16, 0},
+		{0, 7, -16, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
