@@ -65,10 +65,10 @@ AnimationFunctionROMDef ITEM_SAUSAGE_DEFAULT_ANIM =
 AnimationFunctionROMDef ITEM_SAUSAGE_TAKEN_ANIM =
 {
 	// number of frames of this animation function
-	2,
+	1,
 
 	// frames to play in animation
-	{6, 7},
+	{7},
 
 	// number of cycles a frame of animation is displayed
 	64,
