@@ -85,16 +85,16 @@ AnimationFunctionROMDef HERO_WALK_ANIM =
 	"Walk",
 };
 
-AnimationFunctionROMDef HERO_KNEEL_ANIM =
+AnimationFunctionROMDef HERO_KNEEL_DOWN_ANIM =
 {
 	// number of frames of this animation function
-	1,
+	6,
 
 	// frames to play in animation
-	{12},
+	{12, 13, 14, 15, 16, 17},
 
 	// number of cycles a frame of animation is displayed
-	4,
+	2,
 
 	// whether to play it in loop or not
 	false,
@@ -103,7 +103,7 @@ AnimationFunctionROMDef HERO_KNEEL_ANIM =
 	NULL,
 
 	// function's name
-	"Kneel",
+	"KneelDown",
 };
 
 AnimationFunctionROMDef HERO_JUMP_ANIM =
@@ -112,7 +112,7 @@ AnimationFunctionROMDef HERO_JUMP_ANIM =
 	1,
 
 	// frames to play in animation
-	{14},
+	{19},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -133,7 +133,7 @@ AnimationFunctionROMDef HERO_FALL_ANIM =
 	1,
 
 	// frames to play in animation
-	{13},
+	{18},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -154,7 +154,7 @@ AnimationFunctionROMDef HERO_HIT_ANIM =
 	1,
 
 	// frames to play in animation
-	{15},
+	{20},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -175,7 +175,7 @@ AnimationFunctionROMDef HERO_SHOOT_ANIM =
 	1,
 
 	// frames to play in animation
-	{15},
+	{20},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -196,7 +196,7 @@ AnimationFunctionROMDef HERO_DEAD_ANIM =
 	1,
 
 	// frames to play in animation
-	{16},
+	{21},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -217,7 +217,7 @@ AnimationDescriptionROMDef HERO_ANIM =
 	{
 		(AnimationFunction*)&HERO_IDLE_ANIM,
 		(AnimationFunction*)&HERO_WALK_ANIM,
-		(AnimationFunction*)&HERO_KNEEL_ANIM,
+		(AnimationFunction*)&HERO_KNEEL_DOWN_ANIM,
 		(AnimationFunction*)&HERO_JUMP_ANIM,
 		(AnimationFunction*)&HERO_FALL_ANIM,
 		(AnimationFunction*)&HERO_HIT_ANIM,

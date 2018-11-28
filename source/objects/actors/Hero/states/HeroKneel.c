@@ -56,7 +56,7 @@ void HeroKneel::destructor()
 void HeroKneel::enter(void* owner)
 {
 	// show animation
-	AnimatedEntity::playAnimation(owner, "Kneel");
+	AnimatedEntity::playAnimation(owner, "KneelDown");
 
 	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
 
