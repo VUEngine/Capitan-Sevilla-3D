@@ -169,7 +169,6 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&LANTERN_1_EN,						{  32, 134,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_1_EN,	{ 200,  80,    0,   0},		0, NULL, NULL, NULL, false},
-	{&GRANNY_PE,						{ 193,  52,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&TREE_1_EN,						{ 356, 108,    0,   0},		0, NULL, NULL, NULL, false},
 
