@@ -34,7 +34,7 @@
 #include <PhysicalWorld.h>
 #include <Utilities.h>
 #include <IntroState.h>
-#include <Hero.h>
+#include <Captain.h>
 #include <ParticleSystem.h>
 #include <PlatformerLevelState.h>
 #include <OptionsScreenState.h>

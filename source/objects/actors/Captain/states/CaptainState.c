@@ -19,44 +19,52 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef HERO_MOVING_H_
-#define HERO_MOVING_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <HeroState.h>
-#include <PlatformerLevelState.h>
+#include "CaptainState.h"
+#include <VirtualList.h>
+#include <Entity.h>
+#include <Shape.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-enum HeroMovingMessages
+// class's constructor
+void CaptainState::constructor()
 {
-	 kDisallowJumpOnBouncing = kLastPlatformerMessage + 1,
-};
-
-
-//---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
-//---------------------------------------------------------------------------------------------------------
-
-singleton class HeroMoving : HeroState
-{
-	// flag to allow jump on bouncing
-	bool bouncing;
-
-	static HeroMoving getInstance();
-	override void enter(void* owner);
-	override void execute(void* owner);
-	override bool processMessage(void* owner, Telegram telegram);
-	override void onKeyPressed(void* owner, const UserInput* userInput);
-	override void onKeyReleased(void* owner, const UserInput* userInput);
+	// construct base
+	Base::constructor();
 }
 
+// class's destructor
+void CaptainState::destructor()
+{
+	// destroy base
+	Base::destructor();
+}
 
-#endif
+void CaptainState::onKeyHold(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
+{
+}
+
+void CaptainState::onKeyPressed(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
+{
+}
+
+void CaptainState::onKeyReleased(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
+{
+}
+
+void CaptainState::toggleShapes(void* owner, bool kneeling)
+{
+	VirtualList shapes = Entity::getShapes(owner);
+	Shape shapeStanding = Shape::safeCast(VirtualList::front(shapes));
+	Shape shapeKneeling = Shape::safeCast(VirtualList::back(shapes));
+	Shape::setActive(shapeStanding, !kneeling);
+	Shape::setActive(shapeKneeling, kneeling);
+}

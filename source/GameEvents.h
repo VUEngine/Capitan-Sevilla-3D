@@ -40,8 +40,8 @@ enum GameEvents
 	kEventUserInput,
 
 	kEventHitTaken,
-	kEventHeroDied,
-	kEventHeroShot,
+	kEventCaptainDied,
+	kEventCaptainShot,
 	kEventLiftActivated,
 	kEventSausageCollected,
 	kEventLevelStarted,

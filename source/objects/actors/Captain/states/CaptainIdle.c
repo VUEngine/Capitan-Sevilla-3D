@@ -24,9 +24,9 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "HeroIdle.h"
-#include "HeroMoving.h"
-#include "../Hero.h"
+#include "CaptainIdle.h"
+#include "CaptainMoving.h"
+#include "../Captain.h"
 
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
@@ -39,49 +39,49 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void HeroIdle::constructor()
+void CaptainIdle::constructor()
 {
 	// construct base
 	Base::constructor();
 }
 
 // class's destructor
-void HeroIdle::destructor()
+void CaptainIdle::destructor()
 {
 	// destroy base
 	Base::destructor();
 }
 
 // state's enter
-void HeroIdle::enter(void* owner)
+void CaptainIdle::enter(void* owner)
 {
 	// show animation
 	AnimatedEntity::playAnimation(owner, "Idle");
 
 	// start sleeping after 6 seconds of inactivity
-	//MessageDispatcher::dispatchMessage(6000, Object::safeCast(this), Object::safeCast(owner), kHeroSleep, NULL);
+	//MessageDispatcher::dispatchMessage(6000, Object::safeCast(this), Object::safeCast(owner), kCaptainSleep, NULL);
 
 	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
 
-	// manipulate hero's shape
-	HeroState::toggleShapes(HeroState::safeCast(this), owner, false);
+	// manipulate captain's shape
+	CaptainState::toggleShapes(CaptainState::safeCast(this), owner, false);
 }
 
 // state's exit
-void HeroIdle::exit(void* owner __attribute__ ((unused)))
+void CaptainIdle::exit(void* owner __attribute__ ((unused)))
 {
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroSleep);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainSleep);
 }
 
 // state's handle message
-bool HeroIdle::processMessage(void* owner, Telegram telegram)
+bool CaptainIdle::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
 		case kBodyStartedMoving:
 
-			Hero::startedMovingOnAxis(Hero::safeCast(owner), *(u16*)Telegram::getExtraInfo(telegram));
+			Captain::startedMovingOnAxis(Captain::safeCast(owner), *(u16*)Telegram::getExtraInfo(telegram));
 			break;
 
 		case kBodyStopped:
@@ -89,7 +89,7 @@ bool HeroIdle::processMessage(void* owner, Telegram telegram)
 			return true;
 			break;
 
-		case kHeroSleep:
+		case kCaptainSleep:
 
 			AnimatedEntity::playAnimation(owner, "Sleep");
 			return true;
@@ -99,7 +99,7 @@ bool HeroIdle::processMessage(void* owner, Telegram telegram)
 	return false;
 }
 
-void HeroIdle::onKeyHold(void* owner, const UserInput* userInput)
+void CaptainIdle::onKeyHold(void* owner, const UserInput* userInput)
 {
     if((K_LL | K_LR) & userInput->holdKey)
     {
@@ -112,23 +112,23 @@ void HeroIdle::onKeyHold(void* owner, const UserInput* userInput)
 
 		if(Actor::canMoveTowards(Actor::safeCast(owner), direction))
         {
-            Hero::checkDirection(Hero::safeCast(owner), userInput->holdKey, "Idle");
+            Captain::checkDirection(Captain::safeCast(owner), userInput->holdKey, "Idle");
 
-            Hero::startedMovingOnAxis(Hero::safeCast(owner), __X_AXIS);
+            Captain::startedMovingOnAxis(Captain::safeCast(owner), __X_AXIS);
         }
     }
 }
 
-void HeroIdle::onKeyPressed(void* owner, const UserInput* userInput)
+void CaptainIdle::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if(K_A & userInput->pressedKey)
 	{
-		Hero::jump(Hero::safeCast(owner), true);
+		Captain::jump(Captain::safeCast(owner), true);
 	}
 
 	if(K_B & userInput->pressedKey)
 	{
-		Hero::startShooting(Hero::safeCast(owner));
+		Captain::startShooting(Captain::safeCast(owner));
 	}
 
 	if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
@@ -142,14 +142,14 @@ void HeroIdle::onKeyPressed(void* owner, const UserInput* userInput)
 
 		if(Actor::canMoveTowards(Actor::safeCast(owner), acceleration))
 		{
-			Hero::checkDirection(Hero::safeCast(owner), userInput->pressedKey, "Idle");
+			Captain::checkDirection(Captain::safeCast(owner), userInput->pressedKey, "Idle");
 
-			Hero::startedMovingOnAxis(Hero::safeCast(owner), __X_AXIS);
+			Captain::startedMovingOnAxis(Captain::safeCast(owner), __X_AXIS);
 		}
 	}
 
 	if(K_LD & userInput->pressedKey)
 	{
-		Hero::kneel(Hero::safeCast(owner));
+		Captain::kneel(Captain::safeCast(owner));
 	}
 }

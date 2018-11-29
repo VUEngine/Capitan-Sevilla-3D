@@ -24,9 +24,9 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "HeroMoving.h"
-#include "HeroIdle.h"
-#include "../Hero.h"
+#include "CaptainMoving.h"
+#include "CaptainIdle.h"
+#include "../Captain.h"
 
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
@@ -39,7 +39,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void HeroMoving::constructor()
+void CaptainMoving::constructor()
 {
 	// construct base
 	Base::constructor();
@@ -48,7 +48,7 @@ void HeroMoving::constructor()
 }
 
 // class's destructor
-void HeroMoving::destructor()
+void CaptainMoving::destructor()
 {
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kDisallowJumpOnBouncing);
@@ -58,77 +58,77 @@ void HeroMoving::destructor()
 }
 
 // state's enter
-void HeroMoving::enter(void* owner)
+void CaptainMoving::enter(void* owner)
 {
 	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED);
 
-	// make sure that the hero's body is awaken right now so the check during
+	// make sure that the captain's body is awaken right now so the check during
 	// the execute method doesn't fail
-	Hero::addForce(Hero::safeCast(owner), __X_AXIS, false);
+	Captain::addForce(Captain::safeCast(owner), __X_AXIS, false);
 
-	// manipulate hero's shape
-	HeroState::toggleShapes(this, owner, false);
+	// manipulate captain's shape
+	CaptainState::toggleShapes(this, owner, false);
 }
 
-void HeroMoving::execute(void* owner)
+void CaptainMoving::execute(void* owner)
 {
 	// keep adding force
 	if(((K_LL | K_LR ) & KeypadManager::getHoldKey(KeypadManager::getInstance())) && Body::isAwake(Actor::getBody(Actor::safeCast(owner))))
 	{
-		Hero::addForce(Hero::safeCast(owner), __X_AXIS, false);
+		Captain::addForce(Captain::safeCast(owner), __X_AXIS, false);
 	}
 }
 
 // state's handle message
-bool HeroMoving::processMessage(void* owner, Telegram telegram)
+bool CaptainMoving::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
 		case kBodyStopped:
 
-			Hero::stopMovementOnAxis(Hero::safeCast(owner), *(int*)Telegram::getExtraInfo(telegram));
+			Captain::stopMovementOnAxis(Captain::safeCast(owner), *(int*)Telegram::getExtraInfo(telegram));
 			return true;
 			break;
 
 		case kBodyStartedMoving:
 
-			Hero::startedMovingOnAxis(Hero::safeCast(owner), *(int*)Telegram::getExtraInfo(telegram));
+			Captain::startedMovingOnAxis(Captain::safeCast(owner), *(int*)Telegram::getExtraInfo(telegram));
 			break;
 	}
 
 	return false;
 }
 
-void HeroMoving::onKeyPressed(void* owner, const UserInput* userInput)
+void CaptainMoving::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if(K_A & userInput->pressedKey)
 	{
-		Hero::jump(Hero::safeCast(owner), !this->bouncing);
+		Captain::jump(Captain::safeCast(owner), !this->bouncing);
 	}
 
 	if(K_B & userInput->pressedKey)
 	{
-		Hero::startShooting(Hero::safeCast(owner));
+		Captain::startShooting(Captain::safeCast(owner));
 	}
 
 	// check direction
 	if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
 	{
-		Hero::addForce(Hero::safeCast(owner), __X_AXIS, true);
+		Captain::addForce(Captain::safeCast(owner), __X_AXIS, true);
 
-		Hero::checkDirection(Hero::safeCast(owner), userInput->pressedKey, "Walk");
+		Captain::checkDirection(Captain::safeCast(owner), userInput->pressedKey, "Walk");
 	}
 	else if(K_LD & userInput->pressedKey)
 	{
-		Hero::kneel(Hero::safeCast(owner));
+		Captain::kneel(Captain::safeCast(owner));
 	}
 }
 
-void HeroMoving::onKeyReleased(void* owner, const UserInput* userInput)
+void CaptainMoving::onKeyReleased(void* owner, const UserInput* userInput)
 {
 	if((K_LL | K_LR) & userInput->releasedKey)
 	{
-		Hero::stopAddingForce(Hero::safeCast(owner));
+		Captain::stopAddingForce(Captain::safeCast(owner));
 	}
 }
 

@@ -55,7 +55,7 @@ typedef struct StageEntryPointDefinition
 	// starting position (x, y, z)
 	Vector3D startingPosition;
 
-	// facing direction of the hero
+	// facing direction of the captain
 	s8 direction;
 
 	// whether this entry point acts as a checkpoint
@@ -87,13 +87,13 @@ enum PlatformerLevelStateMessageTypes
 	kLevelSetUp = kLastEngineMessage + 1,
 	kLevelStarted,
 	kLevelResumed,
-	kHeroResumePhysics,
-	kHeroCheckVelocity,
+	kCaptainResumePhysics,
+	kCaptainCheckVelocity,
 	kScreenFocused,
-	kHeroFall,
-	kHeroStopInvincibility,
-	kHeroFlash,
-	kHeroSleep,
+	kCaptainFall,
+	kCaptainStopInvincibility,
+	kCaptainFlash,
+	kCaptainSleep,
 	kItemTaken,
 	kLiftActivate,
 	kLiftStart,

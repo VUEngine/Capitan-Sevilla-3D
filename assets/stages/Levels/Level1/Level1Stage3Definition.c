@@ -30,7 +30,7 @@
 #include <Languages.h>
 #include <VIPManager.h>
 #include <Fonts.h>
-#include <Hero.h>
+#include <Captain.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -374,9 +374,9 @@ StageEntryPointROMDef LEVEL_1_STAGE_3_MAIN_EP =
 	(StageDefinition*)&LEVEL_1_STAGE_3_ST,
 
 	// starting position (x, y, z)
-	{280, 133, HERO_DSPL},
+	{280, 133, CAPTAIN_DSPL},
 
-	// facing direction of the hero
+	// facing direction of the captain
 	__RIGHT,
 	//__LEFT,
 

@@ -30,7 +30,7 @@
 #include <Languages.h>
 #include <VIPManager.h>
 #include <Fonts.h>
-#include <Hero.h>
+#include <Captain.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -315,9 +315,9 @@ StageEntryPointROMDef LEVEL_1_STAGE_2_MAIN_EP =
 	(StageDefinition*)&LEVEL_1_STAGE_2_ST,
 
 	// starting position (x, y, z)
-	{80, 96, HERO_DSPL},
+	{80, 96, CAPTAIN_DSPL},
 
-	// facing direction of the hero
+	// facing direction of the captain
 	__RIGHT,
 
 	// whether this entry point acts as a checkpoint

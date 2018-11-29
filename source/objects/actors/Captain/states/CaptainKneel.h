@@ -19,29 +19,27 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef HERO_STATE_H_
-#define HERO_STATE_H_
+#ifndef CAPTAIN_KNEEL_H_
+#define CAPTAIN_KNEEL_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <State.h>
-#include <KeyPadManager.h>
+#include <CaptainState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-class HeroState : State
+singleton class CaptainKneel : CaptainState
 {
-	void constructor();
-	virtual void onKeyHold(void* owner, const UserInput* userInput);
-	virtual void onKeyPressed(void* owner, const UserInput* userInput);
-	virtual void onKeyReleased(void* owner, const UserInput* userInput);
-	virtual void toggleShapes(void* owner, bool kneeling);
+	static CaptainKneel getInstance();
+	override void enter(void* owner);
+	override void onKeyPressed(void* owner, const UserInput* userInput);
+	override void onKeyHold(void* owner, const UserInput* userInput);
 }
 
 

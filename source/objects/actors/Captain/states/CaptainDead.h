@@ -19,58 +19,27 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MACROS_H_
-#define MACROS_H_
+#ifndef CAPTAIN_DEAD_H_
+#define CAPTAIN_DEAD_H_
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINES
+//												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-// general
-#define COINS_PER_LEVEL		64
-#define LEVELS_IN_GAME		1
+#include <CaptainState.h>
 
-// layers
-#define CAPTAIN_DSPL			1
 
-// physics
-#define NO_FRICTION 		0
-#define FLOOR_FRICTION 		0.75f
-#define FLOOR_BOUNCINESS 	0.0f
+//---------------------------------------------------------------------------------------------------------
+//											CLASS'S DECLARATION
+//---------------------------------------------------------------------------------------------------------
 
-// entity collision types
-enum PlatformerTypes
+singleton class CaptainDead : CaptainState
 {
-	kCaptain = kNoType + 1,
-	kShape,
-	kTopShape,
-	kKillShape,
-	kLift,
-	kItemSausage,
-	kEnemy,
-	kMessage,
-	kFloor,
-	kSausage,
-	kEnemyProjectile,
-	kMovingPlatform,
-	kStageExitPoint,
-};
-
-// entity collision layers
-enum CollisionLayers
-{
-    kSolidLayer		 					= 1 << (kNoLayer + 0),
-    kEnemiesLayer						= 1 << (kNoLayer + 1),
-    kPlayerLayer						= 1 << (kNoLayer + 2),
-    kParticlesLayer						= 1 << (kNoLayer + 3),
-    kItemsLayer							= 1 << (kNoLayer + 4),
-    kCollectablesLayer					= 1 << (kNoLayer + 5),
-    kTriggersLayer						= 1 << (kNoLayer + 6),
-    kMovingPlatformsLayer				= 1 << (kNoLayer + 7),
-    kMessageLayer						= 1 << (kNoLayer + 8),
-    kAllLayers							= 0xFFFFFFFF,
-};
+	static CaptainDead getInstance();
+	override void enter(void* owner);
+	override void onKeyPressed(void* owner, const UserInput* userInput);
+}
 
 
 #endif

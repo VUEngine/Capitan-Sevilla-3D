@@ -24,9 +24,9 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "HeroDead.h"
-#include "HeroMoving.h"
-#include "../Hero.h"
+#include "CaptainKneel.h"
+#include "CaptainMoving.h"
+#include "../Captain.h"
 
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
@@ -39,30 +39,76 @@
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void HeroDead::constructor()
+void CaptainKneel::constructor()
 {
 	// construct base
 	Base::constructor();
 }
 
 // class's destructor
-void HeroDead::destructor()
+void CaptainKneel::destructor()
 {
 	// destroy base
 	Base::destructor();
 }
 
 // state's enter
-void HeroDead::enter(void* owner __attribute__ ((unused)))
+void CaptainKneel::enter(void* owner)
 {
-	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED);
+	// show animation
+	AnimatedEntity::playAnimation(owner, "KneelDown");
+
+	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
+
+	// manipulate captain's shape
+	CaptainState::toggleShapes(this, owner, true);
 }
 
-void HeroDead::onKeyPressed(void* owner __attribute__ ((unused)), const UserInput* userInput)
+void CaptainKneel::onKeyHold(void* owner, const UserInput* userInput)
 {
-	if((K_LL | K_LR | K_A) & userInput->pressedKey)
+    if((K_LL | K_LR) & userInput->holdKey)
+    {
+        Vector3D direction =
+        {
+            K_LL & userInput->holdKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->holdKey ? __I_TO_FIX10_6(1) : 0,
+            K_A & userInput->holdKey ? __I_TO_FIX10_6(-1) : 0,
+            0,
+        };
+
+		if(Actor::canMoveTowards(Actor::safeCast(owner), direction))
+        {
+            Captain::checkDirection(Captain::safeCast(owner), userInput->holdKey, "Idle");
+
+            Captain::startedMovingOnAxis(Captain::safeCast(owner), __X_AXIS);
+        }
+    }
+}
+
+void CaptainKneel::onKeyPressed(void* owner, const UserInput* userInput)
+{
+	if(K_A & userInput->pressedKey)
 	{
-		//Container::deleteMyself(Container::safeCast(&owner));
-		return;
+		Captain::jump(Captain::safeCast(owner), true);
+	}
+
+	if(K_B & userInput->pressedKey)
+	{
+		Captain::startShooting(Captain::safeCast(owner));
+	}
+
+	if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
+	{
+		Acceleration acceleration =
+		{
+			K_LL & userInput->pressedKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->pressedKey ? __1I_FIX10_6 : 0,
+			K_A & userInput->pressedKey ? __I_TO_FIX10_6(-1) : 0,
+			0,
+		};
+
+		if(Actor::canMoveTowards(Actor::safeCast(owner), acceleration))
+		{
+			Captain::checkDirection(Captain::safeCast(owner), userInput->pressedKey, "Idle");
+			Captain::startedMovingOnAxis(Captain::safeCast(owner), __X_AXIS);
+		}
 	}
 }

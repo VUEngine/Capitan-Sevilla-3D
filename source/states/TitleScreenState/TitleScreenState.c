@@ -33,7 +33,7 @@
 #include <Languages.h>
 #include <PhysicalWorld.h>
 #include <TitleScreenState.h>
-#include <Hero.h>
+#include <Captain.h>
 #include <ParticleSystem.h>
 #include <IntroState.h>
 #include <OptionsScreenState.h>

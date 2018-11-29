@@ -35,7 +35,7 @@
 #include <SRAMManager.h>
 #include <EventManager.h>
 #include <Utilities.h>
-#include <Hero.h>
+#include <Captain.h>
 #include <macros.h>
 
 
@@ -56,7 +56,7 @@ void ProgressManager::constructor()
 	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::addEventListener(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
-	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHeroShot, kEventHeroShot);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCaptainShot, kEventCaptainShot);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
@@ -69,7 +69,7 @@ void ProgressManager::destructor()
 	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::removeEventListener(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
-	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHeroShot, kEventHeroShot);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCaptainShot, kEventCaptainShot);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
@@ -78,15 +78,15 @@ void ProgressManager::destructor()
 	Base::destructor();
 }
 
-void ProgressManager::resetHeroState()
+void ProgressManager::resetCaptainState()
 {
-	this->heroCurrentEnergy = HERO_INITIAL_ENERGY;
-	this->heroCurrentSausages = HERO_INITIAL_SAUSAGES;
+	this->captainCurrentEnergy = CAPTAIN_INITIAL_ENERGY;
+	this->captainCurrentSausages = CAPTAIN_INITIAL_SAUSAGES;
 }
 
 void ProgressManager::resetCurrentLevelProgress()
 {
-	ProgressManager::resetHeroState(this);
+	ProgressManager::resetCaptainState(this);
 
 	this->currentLevelTime = 0;
 
@@ -108,16 +108,16 @@ void ProgressManager::loadCheckPointData()
 	this->currentLevelTime = this->checkpointCurrentLevelTime;
 }
 
-// get hero's current energy
-u8 ProgressManager::getHeroCurrentEnergy()
+// get captain's current energy
+u8 ProgressManager::getCaptainCurrentEnergy()
 {
-	return this->heroCurrentEnergy;
+	return this->captainCurrentEnergy;
 }
 
-// get hero's current number of sausages
-u8 ProgressManager::getHeroCurrentSausages()
+// get captain's current number of sausages
+u8 ProgressManager::getCaptainCurrentSausages()
 {
-	return this->heroCurrentSausages;
+	return this->captainCurrentSausages;
 }
 
 // get current level time
@@ -135,13 +135,13 @@ void ProgressManager::onSecondChange(Object eventFirer __attribute__ ((unused)))
 // handle event
 void ProgressManager::onHitTaken(Object eventFirer __attribute__ ((unused)))
 {
-	this->heroCurrentEnergy = Hero::getEnergy(Hero::getInstance());
+	this->captainCurrentEnergy = Captain::getEnergy(Captain::getInstance());
 }
 
 // handle event
-void ProgressManager::onHeroShot(Object eventFirer __attribute__ ((unused)))
+void ProgressManager::onCaptainShot(Object eventFirer __attribute__ ((unused)))
 {
-	this->heroCurrentSausages = Hero::getSausages(Hero::getInstance());
+	this->captainCurrentSausages = Captain::getSausages(Captain::getInstance());
 }
 
 // handle event
@@ -152,7 +152,7 @@ void ProgressManager::onLevelStarted(Object eventFirer __attribute__ ((unused)))
 // handle event
 void ProgressManager::onCheckpointLoaded(Object eventFirer __attribute__ ((unused)))
 {
-	ProgressManager::resetHeroState(this);
+	ProgressManager::resetCaptainState(this);
 	ProgressManager::loadCheckPointData(this);
 }
 

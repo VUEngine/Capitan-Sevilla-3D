@@ -1,9 +1,9 @@
 
-//{{BLOCK(HeroBlack)
+//{{BLOCK(CaptainBlack)
 
 //======================================================================
 //
-//	HeroBlack, 32x1056@2, 
+//	CaptainBlack, 32x1056@2, 
 //	+ 529 tiles not compressed
 //	+ regular map (flat), not compressed, 4x132 
 //	Total size: 8464 + 1056 = 9520
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int HeroBlackTiles[2116] __attribute__((aligned(4)))=
+const unsigned int CaptainBlackTiles[2116] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x55550000,
@@ -315,7 +315,7 @@ const unsigned int HeroBlackTiles[2116] __attribute__((aligned(4)))=
 	0x01550055,0x05551155,0x15551555,0x55555555,
 };
 
-const unsigned short HeroBlackMap[528] __attribute__((aligned(4)))=
+const unsigned short CaptainBlackMap[528] __attribute__((aligned(4)))=
 {
 	0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,0x0008,
 	0x0009,0x000A,0x000B,0x000C,0x000D,0x000E,0x000F,0x0010,
@@ -393,4 +393,4 @@ const unsigned short HeroBlackMap[528] __attribute__((aligned(4)))=
 	0x0209,0x020A,0x020B,0x020C,0x020D,0x020E,0x020F,0x0210,
 };
 
-//}}BLOCK(HeroBlack)
+//}}BLOCK(CaptainBlack)

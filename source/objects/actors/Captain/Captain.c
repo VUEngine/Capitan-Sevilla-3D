@@ -32,11 +32,11 @@
 #include <Box.h>
 #include <PhysicalWorld.h>
 #include <KeypadManager.h>
-#include <Hero.h>
-#include <HeroIdle.h>
-#include <HeroMoving.h>
-#include <HeroKneel.h>
-#include <HeroDead.h>
+#include <Captain.h>
+#include <CaptainIdle.h>
+#include <CaptainMoving.h>
+#include <CaptainKneel.h>
+#include <CaptainDead.h>
 #include <CustomCameraMovementManager.h>
 #include <CustomCameraEffectManager.h>
 #include <EventManager.h>
@@ -64,68 +64,68 @@ extern EntityDefinition SAUSAGE_EJECTOR_PE;
 //---------------------------------------------------------------------------------------------------------
 
 // Only one instance
-static Hero hero = NULL;
+static Captain captain = NULL;
 
-// there can only be one hero instantiated
-static Hero Hero::getInstance()
+// there can only be one captain instantiated
+static Captain Captain::getInstance()
 {
-	return hero;
+	return captain;
 }
 
-static void Hero::setInstance(Hero instance)
+static void Captain::setInstance(Captain instance)
 {
-	ASSERT(!hero, "Hero::setInstance: already instantiated");
+	ASSERT(!captain, "Captain::setInstance: already instantiated");
 
-	hero = instance;
+	captain = instance;
 }
 
 // class's constructor
-void Hero::constructor(HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name)
+void Captain::constructor(CaptainDefinition* captainDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorDefinition*)heroDefinition, id, internalId, name);
+	Base::constructor((ActorDefinition*)captainDefinition, id, internalId, name);
 
-	// construct the hero's state machine
+	// construct the captain's state machine
 	this->stateMachine = new StateMachine(this);
 
 	// init class variables
-	this->energy = HERO_INITIAL_ENERGY;
+	this->energy = CAPTAIN_INITIAL_ENERGY;
 	this->invincible = false;
 	this->jumps = 0;
-	this->sausages = HERO_INITIAL_SAUSAGES;
+	this->sausages = CAPTAIN_INITIAL_SAUSAGES;
 	this->keepAddingForce = false;
 	this->sausageEjectorEntity = NULL;
 
-	Hero::setInstance(this);
+	Captain::setInstance(this);
 
-	Object::addEventListener(PlatformerLevelState::getInstance(), Object::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
+	Object::addEventListener(PlatformerLevelState::getInstance(), Object::safeCast(this), (EventListener)Captain::onUserInput, kEventUserInput);
 
 	this->inputDirection = Entity::getDirection(this);
 }
 
 // class's destructor
-void Hero::destructor()
+void Captain::destructor()
 {
-	ASSERT(hero, "Hero::destructor: already deleted");
-	ASSERT(hero == this, "Hero::destructor: more than one instance");
+	ASSERT(captain, "Captain::destructor: already deleted");
+	ASSERT(captain == this, "Captain::destructor: more than one instance");
 
 	// remove event listeners
-	Object::removeEventListener(PlatformerLevelState::getInstance(), Object::safeCast(this), (EventListener)Hero::onUserInput, kEventUserInput);
-	Object::removeEventListener(this->sausageEjectorEntity, Object::safeCast(this), (EventListener)Hero::onProjectileEjected, kEventProjectileEjected);
+	Object::removeEventListener(PlatformerLevelState::getInstance(), Object::safeCast(this), (EventListener)Captain::onUserInput, kEventUserInput);
+	Object::removeEventListener(this->sausageEjectorEntity, Object::safeCast(this), (EventListener)Captain::onProjectileEjected, kEventProjectileEjected);
 
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroCheckVelocity);
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroFlash);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainCheckVelocity);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
 
 	// free the instance pointers
-	hero = NULL;
+	captain = NULL;
 
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
 
-void Hero::ready(bool recursive)
+void Captain::ready(bool recursive)
 {
 	Entity::informShapesThatStartedMoving(this);
 
@@ -136,26 +136,26 @@ void Hero::ready(bool recursive)
 	ProgressManager progressManager = ProgressManager::getInstance();
 	if(progressManager)
 	{
-		this->energy = ProgressManager::getHeroCurrentEnergy(progressManager);
-		this->sausages = ProgressManager::getHeroCurrentSausages(progressManager);
+		this->energy = ProgressManager::getCaptainCurrentEnergy(progressManager);
+		this->sausages = ProgressManager::getCaptainCurrentSausages(progressManager);
 	}
 
 	// initialize me as idle
-	StateMachine::swapState(this->stateMachine, State::safeCast(HeroIdle::getInstance()));
+	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
 
 	// add sausage ejector
-	Hero::addSausageEjectorEntity(this);
+	Captain::addSausageEjectorEntity(this);
 }
 
-void Hero::addSausageEjectorEntity()
+void Captain::addSausageEjectorEntity()
 {
 	Vector3D position = {__PIXELS_TO_METERS(2), 0, 0};
 	this->sausageEjectorEntity = Entity::addChildEntity(this, &SAUSAGE_EJECTOR_PE, -1, NULL, &position, NULL);
 
-	Object::addEventListener(this->sausageEjectorEntity, Object::safeCast(this), (EventListener)Hero::onProjectileEjected, kEventProjectileEjected);
+	Object::addEventListener(this->sausageEjectorEntity, Object::safeCast(this), (EventListener)Captain::onProjectileEjected, kEventProjectileEjected);
 }
 
-void Hero::startShooting()
+void Captain::startShooting()
 {
 	if(this->sausages > 0)
 	{
@@ -168,24 +168,24 @@ void Hero::startShooting()
 	}
 }
 
-void Hero::stopShooting()
+void Captain::stopShooting()
 {
 	// TODO: go back to previous animation after shooting
 
 	ProjectileEjector::setActive(this->sausageEjectorEntity, false);
 }
 
-void Hero::kneel()
+void Captain::kneel()
 {
 	// stop movement
 	Actor::stopMovement(this, __X_AXIS);
 
 	// switch to kneel state
-	StateMachine::swapState(this->stateMachine, State::safeCast(HeroKneel::getInstance()));
+	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainKneel::getInstance()));
 }
 
 // make him jump
-void Hero::jump(bool checkIfYMovement)
+void Captain::jump(bool checkIfYMovement)
 {
 	if(this->body)
 	{
@@ -196,9 +196,9 @@ void Hero::jump(bool checkIfYMovement)
 		if(this->jumps < allowedNumberOfJumps)
 		{
 			// switch to moving state
-			StateMachine::swapState(this->stateMachine, State::safeCast(HeroMoving::getInstance()));
+			StateMachine::swapState(this->stateMachine, State::safeCast(CaptainMoving::getInstance()));
 
-			// init a force to add to the hero's momentum
+			// init a force to add to the captain's momentum
 			Force force = {0, 0, 0};
 
 			fix10_6 yBouncingPlaneNormal = Body::getLastNormalDirection(this->body).y;
@@ -218,12 +218,12 @@ void Hero::jump(bool checkIfYMovement)
 				this->jumps = 1;
 
 				// we're leaving ground with this jump
-				//Hero::startedMovingOnAxis(this, __Y_AXIS);
+				//Captain::startedMovingOnAxis(this, __Y_AXIS);
 
 				// add more force when running, normal force otherwise
-				force.y = __FIX10_6_MULT(__ABS(yBouncingPlaneNormal), HERO_NORMAL_JUMP_INPUT_FORCE);
+				force.y = __FIX10_6_MULT(__ABS(yBouncingPlaneNormal), CAPTAIN_NORMAL_JUMP_INPUT_FORCE);
 
-				// add the force to actually make the hero jump
+				// add the force to actually make the captain jump
 				Actor::addForce(this, &force);
 			}
 			else
@@ -237,7 +237,7 @@ void Hero::jump(bool checkIfYMovement)
 				// set second jump performed
 				this->jumps = 2;
 
-				// add the force to actually make the hero jump
+				// add the force to actually make the captain jump
 				Actor::addForce(this, &force);
 			}
 
@@ -251,7 +251,7 @@ void Hero::jump(bool checkIfYMovement)
 }
 
 // keep movement
-void Hero::addForce(u16 axis, bool enableAddingForce)
+void Captain::addForce(u16 axis, bool enableAddingForce)
 {
 	if(enableAddingForce)
 	{
@@ -263,7 +263,7 @@ void Hero::addForce(u16 axis, bool enableAddingForce)
 		return;
 	}
 
-	fix10_6 maxVelocity = HERO_MAX_VELOCITY_X;
+	fix10_6 maxVelocity = CAPTAIN_MAX_VELOCITY_X;
 
 	Velocity velocity = Body::getVelocity(this->body);
 
@@ -273,7 +273,7 @@ void Hero::addForce(u16 axis, bool enableAddingForce)
 		Actor::hasChangedDirection(this, __X_AXIS) ||
 		Actor::hasChangedDirection(this, __Z_AXIS))
 	{
-		fix10_6 inputForce = !Body::getNormal(this->body).y ? HERO_X_INPUT_FORCE_WHILE_JUMPING : HERO_INPUT_FORCE;
+		fix10_6 inputForce = !Body::getNormal(this->body).y ? CAPTAIN_X_INPUT_FORCE_WHILE_JUMPING : CAPTAIN_INPUT_FORCE;
 		fix10_6 xForce = (__X_AXIS & axis) ? __RIGHT == this->inputDirection.x ? inputForce : -inputForce : 0;
 		fix10_6 zForce = 0; //(__Z_AXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
 		Force force =
@@ -302,7 +302,7 @@ void Hero::addForce(u16 axis, bool enableAddingForce)
 }
 
 // start movement
-void Hero::stopAddingForce()
+void Captain::stopAddingForce()
 {
 	Velocity velocity = Body::getVelocity(this->body);
 
@@ -320,7 +320,7 @@ void Hero::stopAddingForce()
 
 	if(axisOfDeacceleration)
 	{
-		fix10_6 inputForce = HERO_FORCE_FOR_STOPPING;
+		fix10_6 inputForce = CAPTAIN_FORCE_FOR_STOPPING;
 		fix10_6 xForce = __RIGHT == this->inputDirection.x ? inputForce : -inputForce;
 		fix10_6 zForce = 0; //(__Z_AXIS & axis) ? __FAR == this->inputDirection.z ? inputForce : -inputForce : 0;
 		Force force =
@@ -334,20 +334,20 @@ void Hero::stopAddingForce()
 	}
 	else
 	{
-		Hero::stopMovementOnAxis(this, __X_AXIS | __Z_AXIS);
+		Captain::stopMovementOnAxis(this, __X_AXIS | __Z_AXIS);
 	}
 }
 
 // started moving over axis
-void Hero::startedMovingOnAxis(u16 axis)
+void Captain::startedMovingOnAxis(u16 axis)
 {
 	if(__Y_AXIS & axis)
 	{
-		Hero::capVelocity(this, true);
+		Captain::capVelocity(this, true);
 	}
 
 	// start movement
-	if(State::safeCast(HeroMoving::getInstance()) != StateMachine::getCurrentState(this->stateMachine))
+	if(State::safeCast(CaptainMoving::getInstance()) != StateMachine::getCurrentState(this->stateMachine))
 	{
 		if(__X_AXIS & axis)
 		{
@@ -355,7 +355,7 @@ void Hero::startedMovingOnAxis(u16 axis)
 			AnimatedEntity::playAnimation(this, "Walk");
 		}
 
-		StateMachine::swapState(this->stateMachine, State::safeCast(HeroMoving::getInstance()));
+		StateMachine::swapState(this->stateMachine, State::safeCast(CaptainMoving::getInstance()));
 	}
 	else
 	{
@@ -367,7 +367,7 @@ void Hero::startedMovingOnAxis(u16 axis)
 }
 
 // stop moving over axis
-bool Hero::stopMovementOnAxis(u16 axis)
+bool Captain::stopMovementOnAxis(u16 axis)
 {
 	// if being hit do nothing
 	if(!Body::isActive(this->body))
@@ -387,7 +387,7 @@ bool Hero::stopMovementOnAxis(u16 axis)
 	{
 		if(__Y_AXIS & axis)
 		{
-			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroCheckVelocity);
+			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainCheckVelocity);
 
 			this->jumps = 0;
 
@@ -400,11 +400,11 @@ bool Hero::stopMovementOnAxis(u16 axis)
 			}
 		}
 
-		if((__Z_AXIS & axis) || (!movementState && State::safeCast(HeroIdle::getInstance()) != StateMachine::getCurrentState(this->stateMachine)))
+		if((__Z_AXIS & axis) || (!movementState && State::safeCast(CaptainIdle::getInstance()) != StateMachine::getCurrentState(this->stateMachine)))
 		{
 			this->keepAddingForce = false;
 			this->jumps = 0;
-			StateMachine::swapState(this->stateMachine, State::safeCast(HeroIdle::getInstance()));
+			StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
 			return true;
 		}
 		else
@@ -421,7 +421,7 @@ bool Hero::stopMovementOnAxis(u16 axis)
 }
 
 // check direction
-void Hero::checkDirection(u32 pressedKey, char* animation)
+void Captain::checkDirection(u32 pressedKey, char* animation)
 {
 	bool movementState = Body::getMovementOnAllAxes(this->body);
 	//Direction direction = Entity::getDirection(this);
@@ -449,9 +449,9 @@ void Hero::checkDirection(u32 pressedKey, char* animation)
 	}
 }
 
-void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
+void Captain::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
 {
-	if(!Hero::isInvincible(this) || !invincibleWins)
+	if(!Captain::isInvincible(this) || !invincibleWins)
 	{
 		// start short screen shake
 		Camera::startEffect(Camera::getInstance(), kShake, 200);
@@ -461,14 +461,14 @@ void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool p
 
 		if(invincibleWins && (this->energy - energyToReduce >= 0))
 		{
-			Hero::setInvincible(this, true);
+			Captain::setInvincible(this, true);
 
 			// reset invincible a bit later
-			MessageDispatcher::dispatchMessage(HERO_FLASH_DURATION, Object::safeCast(this), Object::safeCast(this), kHeroStopInvincibility, NULL);
+			MessageDispatcher::dispatchMessage(CAPTAIN_FLASH_DURATION, Object::safeCast(this), Object::safeCast(this), kCaptainStopInvincibility, NULL);
 
-			// start flashing of hero
-			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroFlash);
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kHeroFlash, NULL);
+			// start flashing of captain
+			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kCaptainFlash, NULL);
 
 			// reduce energy
 			this->energy -= energyToReduce;
@@ -479,7 +479,7 @@ void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool p
 				Game::disableKeypad(Game::getInstance());
 				GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
 				//GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), true);
-				MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kHeroResumePhysics, collidingObject);
+				MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kCaptainResumePhysics, collidingObject);
 			}
 
 			// play animation
@@ -490,33 +490,33 @@ void Hero::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool p
 		}
 		else
 		{
-			Hero::die(this);
+			Captain::die(this);
 		}
 	}
 }
 
 // flash after being hit
-void Hero::flash()
+void Captain::flash()
 {
-	// only flash as long as hero is invincible
-	if(Hero::isInvincible(this))
+	// only flash as long as captain is invincible
+	if(Captain::isInvincible(this))
 	{
 		// toggle between original and flash palette
-		Hero::toggleFlashPalette(this);
+		Captain::toggleFlashPalette(this);
 
-		// next flash state change after HERO_FLASH_INTERVAL milliseconds
-		MessageDispatcher::dispatchMessage(HERO_FLASH_INTERVAL, Object::safeCast(this), Object::safeCast(this), kHeroFlash, NULL);
+		// next flash state change after CAPTAIN_FLASH_INTERVAL milliseconds
+		MessageDispatcher::dispatchMessage(CAPTAIN_FLASH_INTERVAL, Object::safeCast(this), Object::safeCast(this), kCaptainFlash, NULL);
 	}
 	else
 	{
 		// set palette back to original
-		Hero::resetPalette(this);
+		Captain::resetPalette(this);
 	}
 }
 
-void Hero::toggleFlashPalette()
+void Captain::toggleFlashPalette()
 {
-	// get all of the hero's sprites and loop through them
+	// get all of the captain's sprites and loop through them
 	VirtualList sprites = Entity::getSprites(this);
 	VirtualNode node = VirtualList::begin(sprites);
 	for(; node; node = VirtualNode::getNext(node))
@@ -531,7 +531,7 @@ void Hero::toggleFlashPalette()
 		// set new palette
 		if(Texture::getPalette(texture) == textureDefinition->palette)
 		{
-			Texture::setPalette(texture, HERO_FLASH_PALETTE);
+			Texture::setPalette(texture, CAPTAIN_FLASH_PALETTE);
 		}
 		else
 		{
@@ -543,9 +543,9 @@ void Hero::toggleFlashPalette()
 	}
 }
 
-void Hero::resetPalette()
+void Captain::resetPalette()
 {
-	// get all of hero's sprites and loop through them
+	// get all of captain's sprites and loop through them
 	VirtualList sprites = Entity::getSprites(this);
 	VirtualNode node = VirtualList::begin(sprites);
 	for(; node; node = VirtualNode::getNext(node))
@@ -563,8 +563,8 @@ void Hero::resetPalette()
 	}
 }
 
-// die hero
-void Hero::die()
+// die captain
+void Captain::die()
 {
 	// unregister the shape for collision detection
 	Entity::activateShapes(this, false);
@@ -573,81 +573,81 @@ void Hero::die()
 	AnimatedEntity::playAnimation(this, "Dead");
 
 	// set flashing palette back to original
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroFlash);
-	Hero::resetPalette(this);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
+	Captain::resetPalette(this);
 
 	Actor::stopAllMovement(this);
 	Game::disableKeypad(Game::getInstance());
-	Hero::setInvincible(this, true);
+	Captain::setInvincible(this, true);
 
 	// go to dead state
-	StateMachine::swapState(this->stateMachine, State::safeCast(HeroDead::getInstance()));
+	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainDead::getInstance()));
 
 	// announce my dead
-	Object::fireEvent(EventManager::getInstance(), kEventHeroDied);
+	Object::fireEvent(EventManager::getInstance(), kEventCaptainDied);
 }
 
-void Hero::onProjectileEjected(Object eventFirer __attribute__ ((unused)))
+void Captain::onProjectileEjected(Object eventFirer __attribute__ ((unused)))
 {
 	if(this->sausages > 0)
 	{
 		this->sausages--;
 
-		Object::fireEvent(EventManager::getInstance(), kEventHeroShot);
+		Object::fireEvent(EventManager::getInstance(), kEventCaptainShot);
 	}
 
 	// don't allow holding key for continuous shooting
-	Hero::stopShooting(this);
+	Captain::stopShooting(this);
 }
 
 // process user input
-void Hero::onUserInput(Object eventFirer __attribute__ ((unused)))
+void Captain::onUserInput(Object eventFirer __attribute__ ((unused)))
 {
 	UserInput userInput = PlatformerLevelState::getUserInput(PlatformerLevelState::getInstance(), false);
 
-	HeroState currentState = HeroState::safeCast(StateMachine::getCurrentState(this->stateMachine));
+	CaptainState currentState = CaptainState::safeCast(StateMachine::getCurrentState(this->stateMachine));
 
 	if(userInput.pressedKey)
 	{
-		HeroState::onKeyPressed(currentState, this, &userInput);
+		CaptainState::onKeyPressed(currentState, this, &userInput);
 	}
 
 	if(userInput.releasedKey)
 	{
-		HeroState::onKeyReleased(currentState, this, &userInput);
+		CaptainState::onKeyReleased(currentState, this, &userInput);
 	}
 
 	if(userInput.holdKey)
 	{
-		HeroState::onKeyHold(currentState, this, &userInput);
+		CaptainState::onKeyHold(currentState, this, &userInput);
 	}
 }
 
 // get energy
-u8 Hero::getEnergy()
+u8 Captain::getEnergy()
 {
 	return this->energy;
 }
 
 // get number of sausages
-u8 Hero::getSausages()
+u8 Captain::getSausages()
 {
 	return this->sausages;
 }
 
 // set invincibility
-void Hero::setInvincible(bool invincible)
+void Captain::setInvincible(bool invincible)
 {
 	this->invincible = invincible;
 }
 
 // get invincibility
-bool Hero::isInvincible()
+bool Captain::isInvincible()
 {
 	return this->invincible;
 }
 
-fix10_6 Hero::getFrictionOnCollision(SpatialObject collidingObject, const Vector3D* collidingObjectNormal)
+fix10_6 Captain::getFrictionOnCollision(SpatialObject collidingObject, const Vector3D* collidingObjectNormal)
 {
 	// ignore friction on y axis
 	if(collidingObjectNormal->x && !collidingObjectNormal->y)
@@ -659,7 +659,7 @@ fix10_6 Hero::getFrictionOnCollision(SpatialObject collidingObject, const Vector
 }
 
 // process collisions
-bool Hero::enterCollision(const CollisionInformation* collisionInformation)
+bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 {
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape::getOwner(collidingShape);
@@ -691,7 +691,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 			// inform gui
 			Object::fireEvent(EventManager::getInstance(), kEventLiftActivated);
 
-			// stop and hide hero
+			// stop and hide captain
 			Entity::hide(this);
 			Actor::stopAllMovement(this);
 
@@ -715,7 +715,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 		case kEnemy:
 		case kEnemyProjectile:
 
-			Hero::takeHitFrom(this, collidingObject, 1, true, true);
+			Captain::takeHitFrom(this, collidingObject, 1, true, true);
 			return true;
 			break;
 
@@ -728,7 +728,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 		case kMovingPlatform:
 		case kTopShape:
 			{
-				if((0 > Body::getVelocity(this->body).y) || Hero::isBelow(this, collisionInformation->shape, collisionInformation))
+				if((0 > Body::getVelocity(this->body).y) || Captain::isBelow(this, collisionInformation->shape, collisionInformation))
 				{
 					// don't further process collision
 					return false;
@@ -738,7 +738,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 
 		case kKillShape:
 			{
-				Hero::takeHitFrom(this, collidingObject, 999, true, true);
+				Captain::takeHitFrom(this, collidingObject, 999, true, true);
 				return true;
 				break;
 			}
@@ -749,7 +749,7 @@ bool Hero::enterCollision(const CollisionInformation* collisionInformation)
 }
 
 // process collisions
-bool Hero::updateCollision(const CollisionInformation* collisionInformation)
+bool Captain::updateCollision(const CollisionInformation* collisionInformation)
 {
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape::getOwner(collidingShape);
@@ -758,7 +758,7 @@ bool Hero::updateCollision(const CollisionInformation* collisionInformation)
 	{
 		case kEnemy:
 
-			Hero::takeHitFrom(this, collidingObject, 1, true, true);
+			Captain::takeHitFrom(this, collidingObject, 1, true, true);
 			return false;
 			break;
 	}
@@ -766,11 +766,11 @@ bool Hero::updateCollision(const CollisionInformation* collisionInformation)
 	return false;
 }
 
-void Hero::capVelocity(bool discardPreviousMessages)
+void Captain::capVelocity(bool discardPreviousMessages)
 {
 	if(discardPreviousMessages)
 	{
-		MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kHeroCheckVelocity);
+		MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainCheckVelocity);
 	}
 
 	if(Body::isActive(this->body))
@@ -779,50 +779,50 @@ void Hero::capVelocity(bool discardPreviousMessages)
 
 		if(velocity.y)
 		{
-			if(HERO_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body::getMovementType(this->body).y)
+			if(CAPTAIN_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body::getMovementType(this->body).y)
 			{
 				velocity.x = 0;
-				velocity.y = HERO_MAX_VELOCITY_Y;
+				velocity.y = CAPTAIN_MAX_VELOCITY_Y;
 				velocity.z = 0;
 
 				//Body::moveUniformly(this->body, velocity);
 			}
 			else if(0 < velocity.y)
 			{
-				MessageDispatcher::dispatchMessage(HERO_CHECK_Y_VELOCITY, Object::safeCast(this), Object::safeCast(this), kHeroCheckVelocity, NULL);
+				MessageDispatcher::dispatchMessage(CAPTAIN_CHECK_Y_VELOCITY, Object::safeCast(this), Object::safeCast(this), kCaptainCheckVelocity, NULL);
 			}
 		}
 		else
 		{
-			MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kHeroCheckVelocity, NULL);
+			MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kCaptainCheckVelocity, NULL);
 		}
 	}
 }
 
-bool Hero::handleMessage(Telegram telegram)
+bool Captain::handleMessage(Telegram telegram)
 {
 	// handle messages that any state would handle here
 	switch(Telegram::getMessage(telegram))
 	{
-		case kHeroCheckVelocity:
+		case kCaptainCheckVelocity:
 
-			Hero::capVelocity(this, false);
+			Captain::capVelocity(this, false);
 			return true;
 			break;
 
-		case kHeroStopInvincibility:
+		case kCaptainStopInvincibility:
 
-			Hero::setInvincible(this, false);
+			Captain::setInvincible(this, false);
 			return true;
 			break;
 
-		case kHeroFlash:
+		case kCaptainFlash:
 
-			Hero::flash(this);
+			Captain::flash(this);
 			return true;
 			break;
 
-		case kHeroResumePhysics:
+		case kCaptainResumePhysics:
 
 			Game::enableKeypad(Game::getInstance());
 			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), false);
@@ -865,7 +865,7 @@ bool Hero::handleMessage(Telegram telegram)
 }
 
 // process message
-bool Hero::handlePropagatedMessage(int message)
+bool Captain::handlePropagatedMessage(int message)
 {
 	switch(message)
 	{
@@ -885,12 +885,12 @@ bool Hero::handlePropagatedMessage(int message)
 	return false;
 }
 
-void Hero::suspend()
+void Captain::suspend()
 {
 	Base::suspend(this);
 }
 
-void Hero::resume()
+void Captain::resume()
 {
 	Base::resume(this);
 
@@ -900,30 +900,30 @@ void Hero::resume()
 	CustomCameraMovementManager::setPositionFlag(CustomCameraMovementManager::getInstance(), positionFlag);
 }
 
-bool Hero::isBelow(Shape shape, const CollisionInformation* collisionInformation)
+bool Captain::isBelow(Shape shape, const CollisionInformation* collisionInformation)
 {
 	RightBox shapeRightBox = Shape::getSurroundingRightBox(shape);
 	RightBox collidingShapeRightBox = Shape::getSurroundingRightBox(collisionInformation->collidingShape);
 
-	fix10_6 heroBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body::getLastDisplacement(this->body).y << 1) / 2;
+	fix10_6 captainBottomPosition = shapeRightBox.y1 - ((shapeRightBox.y1 - shapeRightBox.y0) >> 1) - (Body::getLastDisplacement(this->body).y << 1) / 2;
 
-	return heroBottomPosition > collidingShapeRightBox.y0 || __ABS(collisionInformation->solutionVector.direction.y) < __ABS(collisionInformation->solutionVector.direction.x);
+	return captainBottomPosition > collidingShapeRightBox.y0 || __ABS(collisionInformation->solutionVector.direction.y) < __ABS(collisionInformation->solutionVector.direction.x);
 }
 
-bool Hero::isAffectedByRelativity()
+bool Captain::isAffectedByRelativity()
 {
 	return true;
 }
 
-void Hero::setDirection(Direction direction)
+void Captain::setDirection(Direction direction)
 {
 	Base::setDirection(this, direction);
-	//Hero::syncRotationWithBody(this);
+	//Captain::syncRotationWithBody(this);
 	this->inputDirection = direction;
 }
 
 /*
-void Hero::updateSprite(Direction direction)
+void Captain::updateSprite(Direction direction)
 {
 	CharSet charSet = Texture::getCharSet(Sprite::getTexture(Sprite::safeCast(VirtualList::front(this->sprites))), true);
 	CharSet charSetBlack = Texture::getCharSet(Sprite::getTexture(Sprite::safeCast(VirtualList::back(this->sprites))), true);
@@ -935,15 +935,15 @@ void Hero::updateSprite(Direction direction)
 	{
 		case __LEFT:
 
-			charSetDefinition = &HERO_LEFT_CH;
-			charSetBlackDefinition = &HERO_LEFT_BLACK_CH;
+			charSetDefinition = &CAPTAIN_LEFT_CH;
+			charSetBlackDefinition = &CAPTAIN_LEFT_BLACK_CH;
 			break;
 
 		default:
 		case __RIGHT:
 
-			charSetDefinition = &HERO_RIGHT_CH;
-			charSetBlackDefinition = &HERO_RIGHT_BLACK_CH;
+			charSetDefinition = &CAPTAIN_RIGHT_CH;
+			charSetBlackDefinition = &CAPTAIN_RIGHT_BLACK_CH;
 			break;
 	}
 
@@ -954,7 +954,7 @@ void Hero::updateSprite(Direction direction)
 }
 */
 
-void Hero::syncRotationWithBody()
+void Captain::syncRotationWithBody()
 {
 	fix10_6 xLastDisplacement = Body::getLastDisplacement(this->body).x;
 
@@ -963,20 +963,20 @@ void Hero::syncRotationWithBody()
 	if(0 < xLastDisplacement)
 	{
 		direction.x = __RIGHT;
-		//Hero::updateSprite(this, direction);
+		//Captain::updateSprite(this, direction);
 		Entity::setDirection(this, direction);
 		Entity::setDirection(this->sausageEjectorEntity, direction);
 	}
 	else if(0 > xLastDisplacement)
 	{
 		direction.x = __LEFT;
-		//Hero::updateSprite(this, direction);
+		//Captain::updateSprite(this, direction);
 		Entity::setDirection(this, direction);
 		Entity::setDirection(this->sausageEjectorEntity, direction);
 	}
 }
 
-void Hero::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable)
+void Captain::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable)
 {
 	SpatialObject collidingObject = Shape::getOwner(shapeNotCollidingAnymore);
 
@@ -991,12 +991,12 @@ void Hero::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isSha
 	Base::exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
-u16 Hero::getAxesForShapeSyncWithDirection()
+u16 Captain::getAxesForShapeSyncWithDirection()
 {
 	return __X_AXIS;
 }
 
-bool Hero::isVisible(int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
+bool Captain::isVisible(int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
 {
 	return true;
 }

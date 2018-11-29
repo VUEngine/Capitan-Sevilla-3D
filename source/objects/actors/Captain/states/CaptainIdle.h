@@ -19,26 +19,29 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef HERO_DEAD_H_
-#define HERO_DEAD_H_
+#ifndef CAPTAIN_IDLE_H_
+#define CAPTAIN_IDLE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <HeroState.h>
+#include <CaptainState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//											CLASS'S DECLARATION
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-singleton class HeroDead : HeroState
+singleton class CaptainIdle : CaptainState
 {
-	static HeroDead getInstance();
+	static CaptainIdle getInstance();
 	override void enter(void* owner);
+	override void exit(void* owner);
+	override bool processMessage(void* owner, Telegram telegram);
 	override void onKeyPressed(void* owner, const UserInput* userInput);
+	override void onKeyHold(void* owner, const UserInput* userInput);
 }
 
 

@@ -19,8 +19,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef HERO_H_
-#define HERO_H_
+#ifndef CAPTAIN_H_
+#define CAPTAIN_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -37,44 +37,44 @@
 //												MACROS
 //---------------------------------------------------------------------------------------------------------
 
-#define HERO_INITIAL_ENERGY					3
-#define HERO_INITIAL_SAUSAGES				12
+#define CAPTAIN_INITIAL_ENERGY					3
+#define CAPTAIN_INITIAL_SAUSAGES				12
 
-#define HERO_MASS							1
-#define HERO_BOUNCINESS						0.0f
-#define HERO_FRICTION						0
+#define CAPTAIN_MASS							1
+#define CAPTAIN_BOUNCINESS						0.0f
+#define CAPTAIN_FRICTION						0
 
-#define HERO_FLASH_PALETTE					3
-#define HERO_FLASH_DURATION					2000
-#define HERO_FLASH_INTERVAL					100
+#define CAPTAIN_FLASH_PALETTE					3
+#define CAPTAIN_FLASH_DURATION					2000
+#define CAPTAIN_FLASH_INTERVAL					100
 
-#define HERO_FORCE_FOR_STOPPING 			__F_TO_FIX10_6(-4.5f)
-#define HERO_INPUT_FORCE 					__I_TO_FIX10_6(60)
-#define HERO_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX10_6(10)
+#define CAPTAIN_FORCE_FOR_STOPPING 			__F_TO_FIX10_6(-4.5f)
+#define CAPTAIN_INPUT_FORCE 					__I_TO_FIX10_6(60)
+#define CAPTAIN_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX10_6(10)
 
-#define HERO_MAX_VELOCITY_X					__I_TO_FIX10_6(4)
-#define HERO_MAX_VELOCITY_Y					__I_TO_FIX10_6(15)
-#define HERO_MAX_VELOCITY_Z					__I_TO_FIX10_6(4)
-#define HERO_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX10_6(-280)
+#define CAPTAIN_MAX_VELOCITY_X					__I_TO_FIX10_6(4)
+#define CAPTAIN_MAX_VELOCITY_Y					__I_TO_FIX10_6(15)
+#define CAPTAIN_MAX_VELOCITY_Z					__I_TO_FIX10_6(4)
+#define CAPTAIN_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX10_6(-280)
 
-#define HERO_CHECK_Y_VELOCITY				(20/16)
+#define CAPTAIN_CHECK_Y_VELOCITY				(20/16)
 
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const ActorDefinition HeroDefinition;
-typedef const HeroDefinition HeroROMDef;
+typedef const ActorDefinition CaptainDefinition;
+typedef const CaptainDefinition CaptainROMDef;
 
 
-class Hero : Actor
+class Captain : Actor
 {
 	// sausage entity references for shooting
 	Entity sausageEjectorEntity;
 	// used to know if gap must be changed
 	Direction inputDirection;
-	// hero has energy
+	// captain has energy
 	u8 energy;
 	// number of jumps performed (for double jump)
 	s8 jumps;
@@ -85,8 +85,8 @@ class Hero : Actor
 	// flag to keep applying force to the x axis
 	bool keepAddingForce;
 
-	static Hero getInstance();
-	void constructor(HeroDefinition* heroDefinition, s16 id, s16 internalId, const char* const name);
+	static Captain getInstance();
+	void constructor(CaptainDefinition* captainDefinition, s16 id, s16 internalId, const char* const name);
 	void addForce(u16 axis, bool enableAddingForce);
 	void stopAddingForce();
 	void startedMovingOnAxis(u16 axis);

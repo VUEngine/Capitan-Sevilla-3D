@@ -19,30 +19,50 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef HERO_IDLE_H_
-#define HERO_IDLE_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <HeroState.h>
+#include "CaptainDead.h"
+#include "CaptainMoving.h"
+#include "../Captain.h"
+
+#include <PlatformerLevelState.h>
+#include <MessageDispatcher.h>
+#include <KeypadManager.h>
+#include <debugUtilities.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
+//												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-singleton class HeroIdle : HeroState
+// class's constructor
+void CaptainDead::constructor()
 {
-	static HeroIdle getInstance();
-	override void enter(void* owner);
-	override void exit(void* owner);
-	override bool processMessage(void* owner, Telegram telegram);
-	override void onKeyPressed(void* owner, const UserInput* userInput);
-	override void onKeyHold(void* owner, const UserInput* userInput);
+	// construct base
+	Base::constructor();
 }
 
+// class's destructor
+void CaptainDead::destructor()
+{
+	// destroy base
+	Base::destructor();
+}
 
-#endif
+// state's enter
+void CaptainDead::enter(void* owner __attribute__ ((unused)))
+{
+	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED);
+}
+
+void CaptainDead::onKeyPressed(void* owner __attribute__ ((unused)), const UserInput* userInput)
+{
+	if((K_LL | K_LR | K_A) & userInput->pressedKey)
+	{
+		//Container::deleteMyself(Container::safeCast(&owner));
+		return;
+	}
+}

@@ -35,7 +35,7 @@
 #include <ProgressManager.h>
 #include <EventManager.h>
 #include <SoundManager.h>
-#include <Hero.h>
+#include <Captain.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -65,10 +65,10 @@ void Gui::constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 in
 	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::addEventListener(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
-	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroDied, kEventHeroDied);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainDied, kEventCaptainDied);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
-	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroShot, kEventHeroShot);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainShot, kEventCaptainShot);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSausageCollected, kEventSausageCollected);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCheckpointLoaded, kEventCheckpointLoaded);
 }
@@ -83,10 +83,10 @@ void Gui::destructor()
 	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::removeEventListener(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)Gui::onSecondChange, kEventSecondChanged);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
-	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroDied, kEventHeroDied);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainDied, kEventCaptainDied);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
-	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHeroShot, kEventHeroShot);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainShot, kEventCaptainShot);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSausageCollected, kEventSausageCollected);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCheckpointLoaded, kEventCheckpointLoaded);
 
@@ -124,13 +124,13 @@ void Gui::printClock()
 void Gui::printSausages()
 {
 	Printing::text(Printing::getInstance(), "///", GUI_X_POS + 28, GUI_Y_POS, "GuiFont");
-	Printing::int(Printing::getInstance(), Hero::getSausages(Hero::getInstance()), GUI_X_POS + 28, GUI_Y_POS, "GuiFont");
+	Printing::int(Printing::getInstance(), Captain::getSausages(Captain::getInstance()), GUI_X_POS + 28, GUI_Y_POS, "GuiFont");
 }
 
 void Gui::printLives()
 {
 	Printing::text(Printing::getInstance(), "///", GUI_X_POS + 44, GUI_Y_POS, "GuiFont");
-	Printing::int(Printing::getInstance(), Hero::getEnergy(Hero::getInstance()), GUI_X_POS + 44, GUI_Y_POS, "GuiFont");
+	Printing::int(Printing::getInstance(), Captain::getEnergy(Captain::getInstance()), GUI_X_POS + 44, GUI_Y_POS, "GuiFont");
 }
 
 void Gui::printAll()
@@ -155,7 +155,7 @@ void Gui::onSecondChange(Object eventFirer __attribute__ ((unused)))
 	}
 	else
 	{
-		Hero::die(Hero::getInstance());
+		Captain::die(Captain::getInstance());
 	}
 }
 
@@ -166,7 +166,7 @@ void Gui::onHitTaken(Object eventFirer __attribute__ ((unused)))
 }
 
 // handle event
-void Gui::onHeroDied(Object eventFirer __attribute__ ((unused)))
+void Gui::onCaptainDied(Object eventFirer __attribute__ ((unused)))
 {
 	Container::deleteMyself(this);
 
@@ -191,7 +191,7 @@ void Gui::onSetModeToPlaying(Object eventFirer __attribute__ ((unused)))
 }
 
 // handle event
-void Gui::onHeroShot(Object eventFirer __attribute__ ((unused)))
+void Gui::onCaptainShot(Object eventFirer __attribute__ ((unused)))
 {
 	Gui::printSausages(this);
 }

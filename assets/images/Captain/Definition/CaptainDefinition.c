@@ -26,24 +26,24 @@
 
 #include <ObjectAnimatedSprite.h>
 #include <Box.h>
-#include "Hero.h"
+#include "Captain.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HeroTiles[];
-extern BYTE HeroBlackTiles[];
-extern BYTE HeroMap[];
-extern BYTE HeroBlackMap[];
+extern BYTE CaptainTiles[];
+extern BYTE CaptainBlackTiles[];
+extern BYTE CaptainMap[];
+extern BYTE CaptainBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef HERO_IDLE_ANIM =
+AnimationFunctionROMDef CAPTAIN_IDLE_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -64,7 +64,7 @@ AnimationFunctionROMDef HERO_IDLE_ANIM =
 	"Idle",
 };
 
-AnimationFunctionROMDef HERO_WALK_ANIM =
+AnimationFunctionROMDef CAPTAIN_WALK_ANIM =
 {
 	// number of frames of this animation function
 	12,
@@ -85,7 +85,7 @@ AnimationFunctionROMDef HERO_WALK_ANIM =
 	"Walk",
 };
 
-AnimationFunctionROMDef HERO_KNEEL_DOWN_ANIM =
+AnimationFunctionROMDef CAPTAIN_KNEEL_DOWN_ANIM =
 {
 	// number of frames of this animation function
 	6,
@@ -106,7 +106,7 @@ AnimationFunctionROMDef HERO_KNEEL_DOWN_ANIM =
 	"KneelDown",
 };
 
-AnimationFunctionROMDef HERO_JUMP_ANIM =
+AnimationFunctionROMDef CAPTAIN_JUMP_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -127,7 +127,7 @@ AnimationFunctionROMDef HERO_JUMP_ANIM =
 	"Jump",
 };
 
-AnimationFunctionROMDef HERO_FALL_ANIM =
+AnimationFunctionROMDef CAPTAIN_FALL_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -148,7 +148,7 @@ AnimationFunctionROMDef HERO_FALL_ANIM =
 	"Fall",
 };
 
-AnimationFunctionROMDef HERO_HIT_ANIM =
+AnimationFunctionROMDef CAPTAIN_HIT_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -169,7 +169,7 @@ AnimationFunctionROMDef HERO_HIT_ANIM =
 	"Hit",
 };
 
-AnimationFunctionROMDef HERO_SHOOT_ANIM =
+AnimationFunctionROMDef CAPTAIN_SHOOT_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -190,7 +190,7 @@ AnimationFunctionROMDef HERO_SHOOT_ANIM =
 	"Shoot",
 };
 
-AnimationFunctionROMDef HERO_DEAD_ANIM =
+AnimationFunctionROMDef CAPTAIN_DEAD_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -211,23 +211,23 @@ AnimationFunctionROMDef HERO_DEAD_ANIM =
 	"Dead",
 };
 
-AnimationDescriptionROMDef HERO_ANIM =
+AnimationDescriptionROMDef CAPTAIN_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&HERO_IDLE_ANIM,
-		(AnimationFunction*)&HERO_WALK_ANIM,
-		(AnimationFunction*)&HERO_KNEEL_DOWN_ANIM,
-		(AnimationFunction*)&HERO_JUMP_ANIM,
-		(AnimationFunction*)&HERO_FALL_ANIM,
-		(AnimationFunction*)&HERO_HIT_ANIM,
-		(AnimationFunction*)&HERO_SHOOT_ANIM,
-		(AnimationFunction*)&HERO_DEAD_ANIM,
+		(AnimationFunction*)&CAPTAIN_IDLE_ANIM,
+		(AnimationFunction*)&CAPTAIN_WALK_ANIM,
+		(AnimationFunction*)&CAPTAIN_KNEEL_DOWN_ANIM,
+		(AnimationFunction*)&CAPTAIN_JUMP_ANIM,
+		(AnimationFunction*)&CAPTAIN_FALL_ANIM,
+		(AnimationFunction*)&CAPTAIN_HIT_ANIM,
+		(AnimationFunction*)&CAPTAIN_SHOOT_ANIM,
+		(AnimationFunction*)&CAPTAIN_DEAD_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef HERO_CH =
+CharSetROMDef CAPTAIN_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -239,10 +239,10 @@ CharSetROMDef HERO_CH =
 	__ANIMATED_SINGLE,
 
 	// char definition
-	HeroTiles,
+	CaptainTiles,
 };
 
-CharSetROMDef HERO_BLACK_CH =
+CharSetROMDef CAPTAIN_BLACK_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -254,15 +254,15 @@ CharSetROMDef HERO_BLACK_CH =
 	__ANIMATED_SINGLE,
 
 	// char definition
-	HeroBlackTiles,
+	CaptainBlackTiles,
 };
 
-TextureROMDef HERO_TX =
+TextureROMDef CAPTAIN_TX =
 {
-	(CharSetDefinition*)&HERO_CH,
+	(CharSetDefinition*)&CAPTAIN_CH,
 
 	// bgmap definition
-	HeroMap,
+	CaptainMap,
 
 	// cols (max 64)
 	4,
@@ -285,12 +285,12 @@ TextureROMDef HERO_TX =
 	false,
 };
 
-TextureROMDef HERO_BLACK_TX =
+TextureROMDef CAPTAIN_BLACK_TX =
 {
-	(CharSetDefinition*)&HERO_BLACK_CH,
+	(CharSetDefinition*)&CAPTAIN_BLACK_CH,
 
 	// bgmap definition
-	HeroBlackMap,
+	CaptainBlackMap,
 
 	// cols (max 64)
 	4,
@@ -313,14 +313,14 @@ TextureROMDef HERO_BLACK_TX =
 	false,
 };
 
-ObjectSpriteROMDef HERO_SPRITE =
+ObjectSpriteROMDef CAPTAIN_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&HERO_TX,
+		(TextureDefinition*)&CAPTAIN_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -337,14 +337,14 @@ ObjectSpriteROMDef HERO_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef HERO_BLACK_SPRITE =
+ObjectSpriteROMDef CAPTAIN_BLACK_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&HERO_BLACK_TX,
+		(TextureDefinition*)&CAPTAIN_BLACK_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -361,14 +361,14 @@ ObjectSpriteROMDef HERO_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const HERO_SPRITES[] =
+ObjectSpriteROMDef* const CAPTAIN_SPRITES[] =
 {
-	&HERO_SPRITE,
-	&HERO_BLACK_SPRITE,
+	&CAPTAIN_SPRITE,
+	&CAPTAIN_BLACK_SPRITE,
 	NULL
 };
 
-ShapeROMDef HERO_AC_SHAPES[] =
+ShapeROMDef CAPTAIN_AC_SHAPES[] =
 {
 	// standing
 	{
@@ -427,7 +427,7 @@ ShapeROMDef HERO_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMDef CAPTAIN_PHYSICAL_PROPERTIES =
 {
 	// mass
 	__F_TO_FIX10_6(0.65f),
@@ -436,38 +436,38 @@ PhysicalSpecificationROMDef HERO_PHYSICAL_PROPERTIES =
 	__F_TO_FIX10_6(0),
 
 	// bounciness
-	__F_TO_FIX10_6(HERO_BOUNCINESS),
+	__F_TO_FIX10_6(CAPTAIN_BOUNCINESS),
 
 	// maximum velocity
 	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
 };
 
-HeroROMDef HERO_AC =
+CaptainROMDef CAPTAIN_AC =
 {
 	{
 		{
 			// class allocator
-			__TYPE(Hero),
+			__TYPE(Captain),
 
 			// sprites
-			(SpriteROMDef**)HERO_SPRITES,
+			(SpriteROMDef**)CAPTAIN_SPRITES,
 
 			// collision shapes
-			(ShapeDefinition*)HERO_AC_SHAPES,
+			(ShapeDefinition*)CAPTAIN_AC_SHAPES,
 
 			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
 			{0, 0, 0},
 
 			// gameworld's character's type
-			kHero,
+			kCaptain,
 
 			// physical specification
-			(PhysicalSpecification*)&HERO_PHYSICAL_PROPERTIES,
+			(PhysicalSpecification*)&CAPTAIN_PHYSICAL_PROPERTIES,
 		},
 
 		// pointer to the animation definition for the character
-		(AnimationDescription*)&HERO_ANIM,
+		(AnimationDescription*)&CAPTAIN_ANIM,
 
 		// initial animation
 		"Idle",

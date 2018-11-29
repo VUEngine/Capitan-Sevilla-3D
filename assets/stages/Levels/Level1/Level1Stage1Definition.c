@@ -30,7 +30,7 @@
 #include <Languages.h>
 #include <VIPManager.h>
 #include <Fonts.h>
-#include <Hero.h>
+#include <Captain.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -85,8 +85,8 @@ extern CharSetDefinition BULLY_CH;
 extern CharSetDefinition CAR_1_CH;
 extern CharSetDefinition FLOWER_POT_CH;
 extern CharSetDefinition GUI_CH;
-extern CharSetDefinition HERO_CH;
-extern CharSetDefinition HERO_BLACK_CH;
+extern CharSetDefinition CAPTAIN_CH;
+extern CharSetDefinition CAPTAIN_BLACK_CH;
 extern CharSetDefinition HOVER_CAR_CH;
 extern CharSetDefinition CITY_BG_1_CH;
 
@@ -96,8 +96,8 @@ extern TextureDefinition BULLY_TX;
 extern TextureDefinition CAR_1_TX;
 extern TextureDefinition GUI_TX;
 extern TextureDefinition FLOWER_POT_TX;
-extern TextureDefinition HERO_TX;
-extern TextureDefinition HERO_BLACK_TX;
+extern TextureDefinition CAPTAIN_TX;
+extern TextureDefinition CAPTAIN_BLACK_TX;
 extern TextureDefinition HOVER_CAR_TX;
 
 extern Size collision_16_224_64;
@@ -260,8 +260,8 @@ CharSetROMDef* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 	&FLOWER_POT_CH,
 	&HOVER_CAR_CH,
 	&GUI_CH,
-	&HERO_CH,
-	&HERO_BLACK_CH,
+	&CAPTAIN_CH,
+	&CAPTAIN_BLACK_CH,
 
 	NULL
 };
@@ -275,8 +275,8 @@ TextureDefinition* const LEVEL_1_STAGE_1_ST_TEXTURES[] =
 	&FLOWER_POT_TX,
 	&HOVER_CAR_TX,
 	&GUI_TX,
-	&HERO_TX,
-	&HERO_BLACK_TX,
+	&CAPTAIN_TX,
+	&CAPTAIN_BLACK_TX,
 
 	NULL
 };
@@ -509,9 +509,9 @@ StageEntryPointROMDef LEVEL_1_STAGE_1_MAIN_EP =
 	(StageDefinition*)&LEVEL_1_STAGE_1_ST,
 
 	// starting position (x, y, z)
-	{64, 133, HERO_DSPL},
+	{64, 133, CAPTAIN_DSPL},
 
-	// facing direction of the hero
+	// facing direction of the captain
 	__RIGHT,
 
 	// whether this entry point acts as a checkpoint
