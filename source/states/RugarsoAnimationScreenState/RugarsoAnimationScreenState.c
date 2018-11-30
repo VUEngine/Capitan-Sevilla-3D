@@ -19,26 +19,44 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef LOLA_SOFT_SCREEN_STATE_H_
-#define LOLA_SOFT_SCREEN_STATE_H_
-
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <SplashScreenState.h>
+#include <Game.h>
+#include <Camera.h>
+#include <MessageDispatcher.h>
+#include <RugarsoAnimationScreenState.h>
+#include <TitleScreenState.h>
+#include <I18n.h>
+#include <Languages.h>
+#include <DirectDraw.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//										PUBLIC INTERFACE
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-singleton class LolaSoftScreenState : SplashScreenState
+extern StageROMDef RUGARSO_ANIMATION_SCREEN_STAGE_ST;
+
+
+//---------------------------------------------------------------------------------------------------------
+//												CLASS'S METHODS
+//---------------------------------------------------------------------------------------------------------
+
+// class's constructor
+void RugarsoAnimationScreenState::constructor()
 {
-	static LolaSoftScreenState getInstance();
-	override void enter(void* owner);
+	Base::constructor();
+
+	SplashScreenState::setNextState(SplashScreenState::safeCast(this), GameState::safeCast(TitleScreenState::getInstance()));
+	this->stageDefinition = (StageDefinition*)&RUGARSO_ANIMATION_SCREEN_STAGE_ST;
 }
 
-
-#endif
+// class's destructor
+void RugarsoAnimationScreenState::destructor()
+{
+	// destroy base
+	Base::destructor();
+}

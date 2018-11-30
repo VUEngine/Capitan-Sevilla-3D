@@ -19,57 +19,25 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef RUGARSO_ANIMATION_SCREEN_STATE_H_
+#define RUGARSO_ANIMATION_SCREEN_STATE_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Game.h>
-#include <Camera.h>
-#include <MessageDispatcher.h>
-#include <LolaSoftScreenState.h>
-#include <TitleScreenState.h>
-#include <I18n.h>
-#include <Languages.h>
-#include <DirectDraw.h>
+#include <SplashScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef LOLA_SOFT_SCREEN_STAGE_ST;
-
-
-//---------------------------------------------------------------------------------------------------------
-//												CLASS'S METHODS
-//---------------------------------------------------------------------------------------------------------
-
-// class's constructor
-void LolaSoftScreenState::constructor()
+singleton class RugarsoAnimationScreenState : SplashScreenState
 {
-	Base::constructor();
-
-	SplashScreenState::setNextState(SplashScreenState::safeCast(this), GameState::safeCast(TitleScreenState::getInstance()));
-	this->stageDefinition = (StageDefinition*)&LOLA_SOFT_SCREEN_STAGE_ST;
+	static RugarsoAnimationScreenState getInstance();
 }
 
-// class's destructor
-void LolaSoftScreenState::destructor()
-{
-	// destroy base
-	Base::destructor();
-}
 
-// state's enter
-void LolaSoftScreenState::enter(void* owner)
-{
-	// call base
-	Base::enter(this, owner);
-
-	// print "presents"
-	const char* strPresents = I18n::getText(I18n::getInstance(), STR_PRESENTS);
-	FontSize strPresentsSize = Printing::getTextSize(Printing::getInstance(), strPresents, "DefaultFont");
-	u8 strPresentsXPos = __HALF_SCREEN_WIDTH_IN_CHARS - (strPresentsSize.x >> 1);
-	Printing::text(Printing::getInstance(), strPresents, strPresentsXPos, 18, "DefaultFont");
-}
+#endif

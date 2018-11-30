@@ -33,42 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE LolaSoftLogoTiles[];
-extern BYTE LolaSoftLogoMap[];
+extern BYTE RugarsoAnimationLogoTiles[];
+extern BYTE RugarsoAnimationLogoMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LOLA_SOFT_LOGO_CH =
+CharSetROMDef RUGARSO_ANIMATION_LOGO_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	205,
+	177,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	LolaSoftLogoTiles,
+	RugarsoAnimationLogoTiles,
 };
 
-TextureROMDef LOLA_SOFT_LOGO_TX =
+TextureROMDef RUGARSO_ANIMATION_LOGO_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&LOLA_SOFT_LOGO_CH,
+	(CharSetDefinition*)&RUGARSO_ANIMATION_LOGO_CH,
 
 	// bgmap definition
-	LolaSoftLogoMap,
+	RugarsoAnimationLogoMap,
 
 	// cols (max 64)
-	39,
+	29,
 
 	// rows (max 64)
-	9,
+	13,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -85,14 +85,14 @@ TextureROMDef LOLA_SOFT_LOGO_TX =
 	false,
 };
 
-BgmapSpriteROMDef LOLA_SOFT_LOGO_IM_SPRITE =
+BgmapSpriteROMDef RUGARSO_ANIMATION_LOGO_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&LOLA_SOFT_LOGO_TX,
+		(TextureDefinition*)&RUGARSO_ANIMATION_LOGO_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -112,19 +112,19 @@ BgmapSpriteROMDef LOLA_SOFT_LOGO_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const LOLA_SOFT_LOGO_IM_SPRITES[] =
+BgmapSpriteROMDef* const RUGARSO_ANIMATION_LOGO_SPRITES[] =
 {
-	&LOLA_SOFT_LOGO_IM_SPRITE,
+	&RUGARSO_ANIMATION_LOGO_SPRITE,
 	NULL
 };
 
-EntityROMDef LOLA_SOFT_LOGO_IM =
+EntityROMDef RUGARSO_ANIMATION_LOGO_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)LOLA_SOFT_LOGO_IM_SPRITES,
+	(SpriteROMDef**)RUGARSO_ANIMATION_LOGO_SPRITES,
 
 	// collision shapes
 	NULL,

@@ -31,7 +31,7 @@
 #include <PrecautionScreenState.h>
 #include <AutoPauseSelectScreenState.h>
 #include <LangSelectScreenState.h>
-#include <LolaSoftScreenState.h>
+#include <RugarsoAnimationScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,12 +46,12 @@ int main()
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
 	SplashScreenState::setNextState(
 		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),
-		GameState::safeCast(LolaSoftScreenState::getInstance())
+		GameState::safeCast(RugarsoAnimationScreenState::getInstance())
 	);
 
 	// start the game
-	//Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
-	Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
+	//Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
 
 	// end program
 	return true;

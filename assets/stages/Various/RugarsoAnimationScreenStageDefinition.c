@@ -33,7 +33,7 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition LOLA_SOFT_LOGO_IM;
+extern EntityDefinition RUGARSO_ANIMATION_LOGO_EN;
 extern EntityDefinition LOW_POWER_INDICATOR_LB;
 
 
@@ -41,14 +41,14 @@ extern EntityDefinition LOW_POWER_INDICATOR_LB;
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMDef LOLA_SOFT_SCREEN_STAGE_ST_ENTITIES[] =
+PositionedEntityROMDef RUGARSO_ANIMATION_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&LOLA_SOFT_LOGO_IM, {192, 96, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&RUGARSO_ANIMATION_LOGO_EN, {192, 112, 0, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMDef LOLA_SOFT_SCREEN_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMDef RUGARSO_ANIMATION_SCREEN_STAGE_ST_UI_ENTITIES[] =
 {
 	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
 
@@ -60,7 +60,7 @@ PositionedEntityROMDef LOLA_SOFT_SCREEN_STAGE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMDef* const LOLA_SOFT_SCREEN_STAGE_ST_FONTS[] =
+FontROMDef* const RUGARSO_ANIMATION_SCREEN_STAGE_ST_FONTS[] =
 {
 	&CAPITAN_DEFAULT_FONT,
 
@@ -72,7 +72,7 @@ FontROMDef* const LOLA_SOFT_SCREEN_STAGE_ST_FONTS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMDef LOLA_SOFT_SCREEN_STAGE_ST =
+StageROMDef RUGARSO_ANIMATION_SCREEN_STAGE_ST =
 {
 	// allocator
 	__TYPE(Stage),
@@ -251,7 +251,7 @@ StageROMDef LOLA_SOFT_SCREEN_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontDefinition**)LOLA_SOFT_SCREEN_STAGE_ST_FONTS,
+		(FontDefinition**)RUGARSO_ANIMATION_SCREEN_STAGE_ST_FONTS,
 
 		// char sets to preload
 		(CharSetDefinition**)NULL,
@@ -267,12 +267,12 @@ StageROMDef LOLA_SOFT_SCREEN_STAGE_ST =
 	{
 		// ui
 		{
-			LOLA_SOFT_SCREEN_STAGE_ST_UI_ENTITIES,
+			RUGARSO_ANIMATION_SCREEN_STAGE_ST_UI_ENTITIES,
 			__TYPE(UiContainer),
 		},
 
 		// children
-		LOLA_SOFT_SCREEN_STAGE_ST_ENTITIES,
+		RUGARSO_ANIMATION_SCREEN_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects
