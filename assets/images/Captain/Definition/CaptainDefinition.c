@@ -109,13 +109,13 @@ AnimationFunctionROMDef CAPTAIN_KNEEL_DOWN_ANIM =
 AnimationFunctionROMDef CAPTAIN_JUMP_ANIM =
 {
 	// number of frames of this animation function
-	1,
+	18,
 
 	// frames to play in animation
-	{19},
+	{18, 19, 20, 21, 22, 21, 22, 21, 22, 21, 22, 21, 22, 21, 22, 21, 22, 21, 22},
 
 	// number of cycles a frame of animation is displayed
-	16,
+	2,
 
 	// whether to play it in loop or not
 	false,
@@ -130,13 +130,13 @@ AnimationFunctionROMDef CAPTAIN_JUMP_ANIM =
 AnimationFunctionROMDef CAPTAIN_FALL_ANIM =
 {
 	// number of frames of this animation function
-	1,
+	17,
 
 	// frames to play in animation
-	{18},
+	{23, 24, 25, 26, 25, 26, 25, 26, 25, 26, 25, 26, 25, 26, 25, 26, 25, 26},
 
 	// number of cycles a frame of animation is displayed
-	16,
+	2,
 
 	// whether to play it in loop or not
 	false,
@@ -148,13 +148,34 @@ AnimationFunctionROMDef CAPTAIN_FALL_ANIM =
 	"Fall",
 };
 
+AnimationFunctionROMDef CAPTAIN_LAND_ANIM =
+{
+	// number of frames of this animation function
+	2,
+
+	// frames to play in animation
+	{27, 28},
+
+	// number of cycles a frame of animation is displayed
+	2,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Land",
+};
+
 AnimationFunctionROMDef CAPTAIN_HIT_ANIM =
 {
 	// number of frames of this animation function
 	1,
 
 	// frames to play in animation
-	{20},
+	{29},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -175,7 +196,7 @@ AnimationFunctionROMDef CAPTAIN_SHOOT_ANIM =
 	1,
 
 	// frames to play in animation
-	{20},
+	{29},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -196,7 +217,7 @@ AnimationFunctionROMDef CAPTAIN_DEAD_ANIM =
 	1,
 
 	// frames to play in animation
-	{21},
+	{30},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -220,6 +241,7 @@ AnimationDescriptionROMDef CAPTAIN_ANIM =
 		(AnimationFunction*)&CAPTAIN_KNEEL_DOWN_ANIM,
 		(AnimationFunction*)&CAPTAIN_JUMP_ANIM,
 		(AnimationFunction*)&CAPTAIN_FALL_ANIM,
+		(AnimationFunction*)&CAPTAIN_LAND_ANIM,
 		(AnimationFunction*)&CAPTAIN_HIT_ANIM,
 		(AnimationFunction*)&CAPTAIN_SHOOT_ANIM,
 		(AnimationFunction*)&CAPTAIN_DEAD_ANIM,
