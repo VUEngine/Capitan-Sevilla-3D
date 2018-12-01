@@ -47,14 +47,12 @@ const PixelSize collision_384_16_64 = 	{384, 	 64, 	64};
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void Collision::constructor(EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(inGameEntityDefinition, id, internalId, name);
 }
 
-// class's destructor
 void Collision::destructor()
 {
 	// delete the super object

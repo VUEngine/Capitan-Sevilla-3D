@@ -52,7 +52,6 @@ extern StageROMDef PAUSE_SCREEN_STAGE_ST;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void PauseScreenState::constructor()
 {
 	Base::constructor();
@@ -62,7 +61,6 @@ void PauseScreenState::constructor()
 	this->optionsSelector = new OptionsSelector(1, 3, NULL);
 }
 
-// class's destructor
 void PauseScreenState::destructor()
 {
 	delete this->optionsSelector;
@@ -71,7 +69,6 @@ void PauseScreenState::destructor()
 	Base::destructor();
 }
 
-// state's enter
 void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 {
 	// call base
@@ -147,7 +144,6 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	this->mode = kPauseScreenModeShowOptions;
 }
 
-// state's exit
 void PauseScreenState::exit(void* owner __attribute__ ((unused)))
 {
 	// call base
@@ -244,13 +240,11 @@ void PauseScreenState::processUserInput(UserInput userInput)
 	}
 }
 
-// handle event
 void PauseScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
 	Game::enableKeypad(Game::getInstance());
 }
 
-// handle event
 void PauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// re-enable user input

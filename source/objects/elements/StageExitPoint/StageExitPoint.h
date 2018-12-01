@@ -46,7 +46,6 @@ typedef const StageExitPointDefinition StageExitPointROMDef;
 class StageExitPoint : Entity
 {
 	void constructor(EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name);
-	override bool handleMessage(Telegram telegram);
 }
 
 

@@ -54,7 +54,6 @@ extern StageROMDef CREDITS_STAGE_ST;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void CreditsState::constructor()
 {
 	Base::constructor();
@@ -63,7 +62,6 @@ void CreditsState::constructor()
 	this->finishedScrolling = false;
 }
 
-// class's destructor
 void CreditsState::destructor()
 {
 	// delete the super object
@@ -71,7 +69,6 @@ void CreditsState::destructor()
 	Base::destructor();
 }
 
-// state's enter
 void CreditsState::enter(void* owner)
 {
 	// call base
@@ -172,7 +169,6 @@ void CreditsState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 	CreditsState::scrollSlow(this);
 }
 
-// handle event
 void CreditsState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	Game::changeState(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));

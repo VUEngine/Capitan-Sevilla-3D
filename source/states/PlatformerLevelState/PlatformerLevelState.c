@@ -79,7 +79,6 @@ void PlatformerLevelState::getPositionedEntitiesToIgnore(VirtualList positionedE
 {
 }
 
-// state's enter
 void PlatformerLevelState::enter(void* owner)
 {
 	// call base
@@ -187,7 +186,6 @@ void PlatformerLevelState::enter(void* owner)
 	}
 }
 
-// state's exit
 void PlatformerLevelState::exit(void* owner)
 {
 	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onCaptainDied, kEventCaptainDied);
@@ -371,7 +369,6 @@ void PlatformerLevelState::processUserInput(UserInput userInput)
 	Object::fireEvent(this, kEventUserInput);
 }
 
-// state's handle message
 bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), Telegram telegram)
 {
 	// process message
@@ -520,7 +517,6 @@ void PlatformerLevelState::setModeToPlaying()
 	Object::fireEvent(EventManager::getInstance(), kEventSetModeToPlaying);
 }
 
-// handle event
 void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
 	PlatformerLevelState::setModeToPlaying(this);
@@ -538,7 +534,6 @@ void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attr
 	Object::fireEvent(EventManager::getInstance(), kEventLevelStarted);
 }
 
-// handle event
 void PlatformerLevelState::onCaptainDiedFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLoadCheckPoint, NULL);

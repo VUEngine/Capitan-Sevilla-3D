@@ -97,13 +97,14 @@ enum PlatformerLevelStateMessageTypes
 	kItemTaken,
 	kLiftActivate,
 	kLiftStart,
-	kExitPointReached,
 	kRemoveFromStage,
 	kComicMove,
 	kIntroNextImage,
 	kProjectileEject,
 	kProjectileCheckPosition,
 	kLoadCheckPoint,
+    kGameEnterCollision,
+    kGameExitCollision,
 
 	// don't remove me
 	kLastPlatformerMessage

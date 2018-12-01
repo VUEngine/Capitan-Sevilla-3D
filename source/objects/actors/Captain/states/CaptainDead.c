@@ -38,21 +38,18 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void CaptainDead::constructor()
 {
 	// construct base
 	Base::constructor();
 }
 
-// class's destructor
 void CaptainDead::destructor()
 {
 	// destroy base
 	Base::destructor();
 }
 
-// state's enter
 void CaptainDead::enter(void* owner __attribute__ ((unused)))
 {
 	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED);

@@ -45,7 +45,6 @@ extern StageROMDef RUGARSO_ANIMATION_SCREEN_STAGE_ST;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void RugarsoAnimationScreenState::constructor()
 {
 	Base::constructor();
@@ -54,7 +53,6 @@ void RugarsoAnimationScreenState::constructor()
 	this->stageDefinition = (StageDefinition*)&RUGARSO_ANIMATION_SCREEN_STAGE_ST;
 }
 
-// class's destructor
 void RugarsoAnimationScreenState::destructor()
 {
 	// destroy base

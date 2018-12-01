@@ -37,7 +37,6 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void Projectile::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
@@ -50,7 +49,6 @@ void Projectile::constructor(ProjectileDefinition* projectileDefinition, s16 id,
 	this->originalPosition = (Vector3D){0, 0, 0};
 }
 
-// class's constructor
 void Projectile::destructor()
 {
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileCheckPosition);
@@ -144,7 +142,6 @@ void Projectile::checkPosition()
 	}
 }
 
-// state's handle message
 bool Projectile::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))

@@ -49,7 +49,6 @@ extern StageROMDef EMPTY_STAGE_ST;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void OptionsScreenState::constructor()
 {
 	Base::constructor();
@@ -59,7 +58,6 @@ void OptionsScreenState::constructor()
 	OptionsScreenState::setNextState(this, GameState::safeCast(TitleScreenState::getInstance()));
 }
 
-// class's destructor
 void OptionsScreenState::destructor()
 {
 	delete this->optionsSelector;
@@ -68,7 +66,6 @@ void OptionsScreenState::destructor()
 	Base::destructor();
 }
 
-// state's enter
 void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 {
 	// call base
@@ -94,7 +91,6 @@ void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 	);
 }
 
-// state's exit
 void OptionsScreenState::exit(void* owner __attribute__ ((unused)))
 {
 	// call base
@@ -206,7 +202,6 @@ void OptionsScreenState::processUserInput(UserInput userInput)
 	}
 }
 
-// handle event
 void OptionsScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
 	Game::enableKeypad(Game::getInstance());

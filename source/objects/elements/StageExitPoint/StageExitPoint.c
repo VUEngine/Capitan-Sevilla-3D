@@ -30,6 +30,8 @@
 #include <PhysicalWorld.h>
 #include <macros.h>
 #include <debugConfig.h>
+#include <GameEvents.h>
+#include <EventManager.h>
 #include <PlatformerLevelState.h>
 #include "StageExitPoint.h"
 
@@ -38,47 +40,41 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void StageExitPoint::constructor(EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(inGameEntityDefinition, id, internalId, name);
+
+	// add event listeners
+	Object eventManager = Object::safeCast(EventManager::getInstance());
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)StageExitPoint::onExitPointReached, kEventExitPointReached);
 }
 
-// class's destructor
 void StageExitPoint::destructor()
 {
+	// remove event listeners
+	Object eventManager = Object::safeCast(EventManager::getInstance());
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)StageExitPoint::onExitPointReached, kEventExitPointReached);
+
 	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
 
-// state's handle message
-bool StageExitPoint::handleMessage(Telegram telegram)
+void StageExitPoint::onExitPointReached(Object eventFirer __attribute__ ((unused)))
 {
-	switch(Telegram::getMessage(telegram))
-	{
-		case kExitPointReached:
-		{
-			// start fade out effect
-			Brightness brightness = (Brightness){0, 0, 0};
-			Camera::startEffect(Camera::getInstance(),
-				kFadeTo, // effect type
-				0, // initial delay (in ms)
-				&brightness, // target brightness
-				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))StageExitPoint::onFadeOutComplete, // callback function
-				Object::safeCast(this) // callback scope
-			);
-
-			break;
-		}
-	}
-
-	return false;
+	// start fade out effect
+	Brightness brightness = (Brightness){0, 0, 0};
+	Camera::startEffect(Camera::getInstance(),
+		kFadeTo, // effect type
+		0, // initial delay (in ms)
+		&brightness, // target brightness
+		__FADE_DELAY, // delay between fading steps (in ms)
+		(void (*)(Object, Object))StageExitPoint::onFadeOutComplete, // callback function
+		Object::safeCast(this) // callback scope
+	);
 }
 
-// handle event
 void StageExitPoint::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// TODO: move hardcoded entry point to stageexitpointromdef

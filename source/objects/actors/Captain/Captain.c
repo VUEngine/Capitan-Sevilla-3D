@@ -79,7 +79,6 @@ static void Captain::setInstance(Captain instance)
 	captain = instance;
 }
 
-// class's constructor
 void Captain::constructor(CaptainDefinition* captainDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
@@ -103,7 +102,6 @@ void Captain::constructor(CaptainDefinition* captainDefinition, s16 id, s16 inte
 	this->inputDirection = Entity::getDirection(this);
 }
 
-// class's destructor
 void Captain::destructor()
 {
 	ASSERT(captain, "Captain::destructor: already deleted");
@@ -704,7 +702,7 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 		case kStageExitPoint:
 
 			// inform exit point
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kExitPointReached, NULL);
+			Object::fireEvent(EventManager::getInstance(), kEventExitPointReached);
 
 			// disable user input
 			Game::disableKeypad(Game::getInstance());
@@ -721,7 +719,7 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 
 		case kMessage:
 
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kEventEnterCollision, NULL);
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kGameEnterCollision, NULL);
 			return true;
 			break;
 
@@ -984,7 +982,7 @@ void Captain::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool is
 	{
 		case kMessage:
 
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kEventExitCollision, NULL);
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kGameExitCollision, NULL);
 			break;
 	}
 

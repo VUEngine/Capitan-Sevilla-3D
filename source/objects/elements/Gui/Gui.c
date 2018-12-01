@@ -51,7 +51,6 @@ extern CharSetDefinition GUI_CH;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void Gui::constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
@@ -71,9 +70,10 @@ void Gui::constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 in
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainShot, kEventCaptainShot);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSausageCollected, kEventSausageCollected);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCheckpointLoaded, kEventCheckpointLoaded);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onLiftActivated, kEventLiftActivated);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onExitPointReached, kEventExitPointReached);
 }
 
-// class's destructor
 void Gui::destructor()
 {
 	// clear printing layer
@@ -89,6 +89,8 @@ void Gui::destructor()
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainShot, kEventCaptainShot);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSausageCollected, kEventSausageCollected);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCheckpointLoaded, kEventCheckpointLoaded);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onLiftActivated, kEventLiftActivated);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onExitPointReached, kEventExitPointReached);
 
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -140,7 +142,6 @@ void Gui::printAll()
 	Gui::printSausages(this);
 }
 
-// handle event
 void Gui::onSecondChange(Object eventFirer __attribute__ ((unused)))
 {
 	if(!this->active)
@@ -159,13 +160,11 @@ void Gui::onSecondChange(Object eventFirer __attribute__ ((unused)))
 	}
 }
 
-// handle event
 void Gui::onHitTaken(Object eventFirer __attribute__ ((unused)))
 {
 	Gui::printLives(this);
 }
 
-// handle event
 void Gui::onCaptainDied(Object eventFirer __attribute__ ((unused)))
 {
 	Container::deleteMyself(this);
@@ -176,13 +175,11 @@ void Gui::onCaptainDied(Object eventFirer __attribute__ ((unused)))
 	Stage::addChildEntity(Game::getStage(Game::getInstance()), &gameOverPositionedEntity, true);
 }
 
-// handle event
 void Gui::onSetModeToPaused(Object eventFirer __attribute__ ((unused)))
 {
 	this->active = false;
 }
 
-// handle event
 void Gui::onSetModeToPlaying(Object eventFirer __attribute__ ((unused)))
 {
 	this->active = true;
@@ -190,19 +187,16 @@ void Gui::onSetModeToPlaying(Object eventFirer __attribute__ ((unused)))
 	Gui::printAll(this);
 }
 
-// handle event
 void Gui::onCaptainShot(Object eventFirer __attribute__ ((unused)))
 {
 	Gui::printSausages(this);
 }
 
-// handle event
 void Gui::onSausageCollected(Object eventFirer __attribute__ ((unused)))
 {
 	Gui::printSausages(this);
 }
 
-// handle event
 void Gui::onCheckpointLoaded(Object eventFirer __attribute__ ((unused)))
 {
 	// override with progress from progress manager
@@ -211,4 +205,14 @@ void Gui::onCheckpointLoaded(Object eventFirer __attribute__ ((unused)))
 	{
 		this->timeRemaining = 40;//ProgressManager::getCurrentLevelTime(ProgressManager::getInstance());
 	}
+}
+
+void Gui::onLiftActivated(Object eventFirer __attribute__ ((unused)))
+{
+	this->active = false;
+}
+
+void Gui::onExitPointReached(Object eventFirer __attribute__ ((unused)))
+{
+	this->active = false;
 }

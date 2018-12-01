@@ -38,7 +38,6 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void ProjectileEjector::constructor(ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
@@ -51,7 +50,6 @@ void ProjectileEjector::constructor(ProjectileEjectorDefinition* projectileEject
 	this->active = this->projectileEjectorDefinition->initiallyActive;
 }
 
-// class's destructor
 void ProjectileEjector::destructor()
 {
 	// discard pending delayed messages
@@ -86,7 +84,6 @@ void ProjectileEjector::ready(bool recursive)
 	}
 }
 
-// state's handle message
 bool ProjectileEjector::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))

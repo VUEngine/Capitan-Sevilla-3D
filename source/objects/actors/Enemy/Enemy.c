@@ -40,7 +40,6 @@ extern const u16 FIRE_SND[];
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void Enemy::constructor(EnemyDefinition* enemyDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base

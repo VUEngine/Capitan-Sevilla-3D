@@ -50,8 +50,7 @@ enum GameEvents
 	kEventShakeCompleted,
 	kEventSetModeToPaused,
     kEventSetModeToPlaying,
-    kEventEnterCollision,
-    kEventExitCollision,
+    kEventExitPointReached,
 };
 
 #endif

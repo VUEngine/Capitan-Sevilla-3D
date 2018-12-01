@@ -42,7 +42,6 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void CustomCameraMovementManager::constructor()
 {
 	// construct base object
@@ -60,7 +59,6 @@ void CustomCameraMovementManager::constructor()
 	NM_ASSERT(this->camera, "CustomCameraMovementManager::constructor: null this->camera");
 }
 
-// class's destructor
 void CustomCameraMovementManager::destructor()
 {
 	// destroy base

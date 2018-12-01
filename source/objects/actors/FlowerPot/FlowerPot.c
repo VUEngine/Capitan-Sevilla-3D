@@ -37,14 +37,12 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void FlowerPot::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(projectileDefinition, id, internalId, name);
 }
 
-// class's constructor
 void FlowerPot::destructor()
 {
 	// delete the super object

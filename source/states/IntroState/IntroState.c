@@ -54,7 +54,6 @@ extern StageROMDef INTRO_STAGE_ST;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void IntroState::constructor()
 {
 	Base::constructor();
@@ -80,7 +79,6 @@ void IntroState::constructor()
 	this->entityText9 = NULL;
 }
 
-// class's destructor
 void IntroState::destructor()
 {
 	// discard pending messages
@@ -91,7 +89,6 @@ void IntroState::destructor()
 	Base::destructor();
 }
 
-// state's enter
 void IntroState::enter(void* owner)
 {
 	// call base
@@ -163,14 +160,12 @@ void IntroState::enter(void* owner)
 	);
 }
 
-// state's exit
 void IntroState::exit(void* owner)
 {
 	// call base
 	Base::exit(this, owner);
 }
 
-// state's resume
 void IntroState::resume(void* owner)
 {
 	Base::resume(this, owner);
@@ -178,7 +173,6 @@ void IntroState::resume(void* owner)
 	Camera::startEffect(Camera::getInstance(), kFadeIn, __FADE_DELAY);
 }
 
-// state's suspend
 void IntroState::suspend(void* owner)
 {
 	Camera::startEffect(Camera::getInstance(), kFadeOut, __FADE_DELAY);
@@ -322,14 +316,12 @@ void IntroState::nextImageStep()
 	}
 }
 
-// handle event
 void IntroState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// enable user input
 	Game::enableKeypad(Game::getInstance());
 }
 
-// handle event
 void IntroState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	extern PlatformerLevelDefinition LEVEL_1_LV;

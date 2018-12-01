@@ -38,7 +38,6 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void MovingOneWayEntity::constructor(MovingOneWayEntityDefinition* movingOneWayEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base

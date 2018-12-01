@@ -43,7 +43,6 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void ProgressManager::constructor()
 {
 	// construct base object
@@ -62,7 +61,6 @@ void ProgressManager::constructor()
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
 }
 
-// class's destructor
 void ProgressManager::destructor()
 {
 	// remove event listeners
@@ -126,37 +124,31 @@ u32 ProgressManager::getCurrentLevelTime()
 	return this->currentLevelTime;
 }
 
-// handle event
 void ProgressManager::onSecondChange(Object eventFirer __attribute__ ((unused)))
 {
 	this->currentLevelTime = Clock::getTime(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()));
 }
 
-// handle event
 void ProgressManager::onHitTaken(Object eventFirer __attribute__ ((unused)))
 {
 	this->captainCurrentEnergy = Captain::getEnergy(Captain::getInstance());
 }
 
-// handle event
 void ProgressManager::onCaptainShot(Object eventFirer __attribute__ ((unused)))
 {
 	this->captainCurrentSausages = Captain::getSausages(Captain::getInstance());
 }
 
-// handle event
 void ProgressManager::onLevelStarted(Object eventFirer __attribute__ ((unused)))
 {
 }
 
-// handle event
 void ProgressManager::onCheckpointLoaded(Object eventFirer __attribute__ ((unused)))
 {
 	ProgressManager::resetCaptainState(this);
 	ProgressManager::loadCheckPointData(this);
 }
 
-// handle event
 void ProgressManager::onLevelCompleted(Object eventFirer __attribute__ ((unused)))
 {
 	//PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState::getCurrentLevelDefinition(PlatformerLevelState::getInstance());

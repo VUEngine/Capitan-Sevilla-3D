@@ -38,21 +38,18 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void CaptainIdle::constructor()
 {
 	// construct base
 	Base::constructor();
 }
 
-// class's destructor
 void CaptainIdle::destructor()
 {
 	// destroy base
 	Base::destructor();
 }
 
-// state's enter
 void CaptainIdle::enter(void* owner)
 {
 	// show animation
@@ -67,14 +64,12 @@ void CaptainIdle::enter(void* owner)
 	CaptainState::toggleShapes(CaptainState::safeCast(this), owner, false);
 }
 
-// state's exit
 void CaptainIdle::exit(void* owner __attribute__ ((unused)))
 {
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainSleep);
 }
 
-// state's handle message
 bool CaptainIdle::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))

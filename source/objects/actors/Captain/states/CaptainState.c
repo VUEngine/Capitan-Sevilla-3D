@@ -34,14 +34,12 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void CaptainState::constructor()
 {
 	// construct base
 	Base::constructor();
 }
 
-// class's destructor
 void CaptainState::destructor()
 {
 	// destroy base

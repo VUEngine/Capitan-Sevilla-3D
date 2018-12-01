@@ -39,7 +39,6 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void Comic::constructor(EntityDefinition* entityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
@@ -54,7 +53,6 @@ void Comic::constructor(EntityDefinition* entityDefinition, s16 id, s16 internal
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Comic::onLevelStarted, kEventLevelStarted);
 }
 
-// class's destructor
 void Comic::destructor()
 {
 	// If set right after the user presses the key, a race condition with the other objects listening
@@ -101,7 +99,6 @@ void Comic::onUserInput(Object eventFirer __attribute__ ((unused)))
 	}
 }
 
-// state's handle message
 bool Comic::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))

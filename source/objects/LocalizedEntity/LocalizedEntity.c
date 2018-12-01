@@ -35,14 +35,12 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void LocalizedEntity::constructor(const LocalizedEntityDefinition* localizedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base object
 	Base::constructor((AnimatedEntityDefinition*)localizedEntityDefinition, id, internalId, name);
 }
 
-// class's destructor
 void LocalizedEntity::destructor()
 {
 	// destroy the super object

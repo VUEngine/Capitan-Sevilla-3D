@@ -42,14 +42,12 @@ extern const u16 COLLECT_SND[];
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void ItemSausage::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
-// class's destructor
 void ItemSausage::destructor()
 {
 	// delete the super object

@@ -38,7 +38,6 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void CaptainMoving::constructor()
 {
 	// construct base
@@ -47,7 +46,6 @@ void CaptainMoving::constructor()
 	this->bouncing = false;
 }
 
-// class's destructor
 void CaptainMoving::destructor()
 {
 	// discard pending delayed messages
@@ -57,7 +55,6 @@ void CaptainMoving::destructor()
 	Base::destructor();
 }
 
-// state's enter
 void CaptainMoving::enter(void* owner)
 {
 	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED);
@@ -79,7 +76,6 @@ void CaptainMoving::execute(void* owner)
 	}
 }
 
-// state's handle message
 bool CaptainMoving::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))

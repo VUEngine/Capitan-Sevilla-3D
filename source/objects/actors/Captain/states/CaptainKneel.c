@@ -38,21 +38,18 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void CaptainKneel::constructor()
 {
 	// construct base
 	Base::constructor();
 }
 
-// class's destructor
 void CaptainKneel::destructor()
 {
 	// destroy base
 	Base::destructor();
 }
 
-// state's enter
 void CaptainKneel::enter(void* owner)
 {
 	// show animation

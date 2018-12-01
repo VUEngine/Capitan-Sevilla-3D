@@ -32,14 +32,12 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void EventManager::constructor()
 {
 	// construct base object
 	Base::constructor();
 }
 
-// class's destructor
 void EventManager::destructor()
 {
 	// destroy base

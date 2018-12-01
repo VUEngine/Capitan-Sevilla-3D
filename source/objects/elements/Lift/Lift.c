@@ -64,7 +64,6 @@ void Lift::destructor()
 	Base::destructor();
 }
 
-// state's handle message
 bool Lift::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
@@ -101,7 +100,6 @@ bool Lift::handleMessage(Telegram telegram)
 	return false;
 }
 
-// handle event
 void Lift::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	if(this->liftDefinition->entryPoint)

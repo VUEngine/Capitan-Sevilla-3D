@@ -53,20 +53,17 @@ extern StageROMDef TITLE_SCREEN_STAGE_ST;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void TitleScreenState::constructor()
 {
 	Base::constructor();
 }
 
-// class's destructor
 void TitleScreenState::destructor()
 {
 	// destroy base
 	Base::destructor();
 }
 
-// state's enter
 void TitleScreenState::enter(void* owner)
 {
 	// call base
@@ -92,14 +89,12 @@ void TitleScreenState::enter(void* owner)
 	);
 }
 
-// state's exit
 void TitleScreenState::exit(void* owner)
 {
 	// call base
 	Base::exit(this, owner);
 }
 
-// state's resume
 void TitleScreenState::resume(void* owner)
 {
 	Base::resume(this, owner);
@@ -107,7 +102,6 @@ void TitleScreenState::resume(void* owner)
 	Camera::startEffect(Camera::getInstance(), kFadeIn, __FADE_DELAY);
 }
 
-// state's suspend
 void TitleScreenState::suspend(void* owner)
 {
 	Camera::startEffect(Camera::getInstance(), kFadeOut, __FADE_DELAY);
@@ -135,14 +129,12 @@ void TitleScreenState::processUserInput(UserInput userInput)
 	}
 }
 
-// handle event
 void TitleScreenState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// enable user input
 	Game::enableKeypad(Game::getInstance());
 }
 
-// handle event
 void TitleScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	Game::changeState(Game::getInstance(), GameState::safeCast(IntroState::getInstance()));

@@ -48,14 +48,12 @@ extern const u16 COLLECT_SND[];
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-// class's constructor
 void Collectable::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
-// class's destructor
 void Collectable::destructor()
 {
 	// delete the super object
@@ -63,7 +61,6 @@ void Collectable::destructor()
 	Base::destructor();
 }
 
-// state's handle message
 bool Collectable::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))

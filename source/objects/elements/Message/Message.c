@@ -28,7 +28,7 @@
 #include <CollisionManager.h>
 #include <I18n.h>
 #include <Utilities.h>
-#include <GameEvents.h>
+#include <PlatformerLevelState.h>
 #include "Message.h"
 
 
@@ -52,13 +52,13 @@ bool Message::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kEventEnterCollision:
+		case kGameEnterCollision:
 		{
 			char* language = Utilities::itoa(I18n::getActiveLanguage(I18n::getInstance()), 10, 1);
 			AnimatedEntity::playAnimation(this, language);
 			break;
 		}
-		case kEventExitCollision:
+		case kGameExitCollision:
 		{
 			AnimatedEntity::playAnimation(this, "Hide");
 			break;
