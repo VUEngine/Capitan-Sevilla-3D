@@ -75,7 +75,7 @@ class Captain : Actor
 	// used to know if gap must be changed
 	Direction inputDirection;
 	// captain has energy
-	u8 energy;
+	s8 energy;
 	// number of jumps performed (for double jump)
 	s8 jumps;
 	// number of sausages
@@ -95,12 +95,12 @@ class Captain : Actor
 	void jump(bool checkIfYMovement);
 	void addMomentumToJump();
 	void checkDirection(u32 currentPressedKey, char * animation);
-	void takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins);
+	void takeHitFrom(int energyToReduce);
 	void flash();
 	void toggleFlashPalette();
 	void resetPalette();
 	void die();
-	u8 getEnergy();
+	s8 getEnergy();
 	u8 getSausages();
 	void setInvincible(bool invincible);
 	bool isInvincible();
@@ -122,6 +122,7 @@ class Captain : Actor
 	override void syncRotationWithBody();
 	override u16 getAxesForShapeSyncWithDirection();
 	override void setDirection(Direction direction);
+	void onHitAnimationComplete(Object eventFirer);
 }
 
 

@@ -172,43 +172,22 @@ AnimationFunctionROMDef CAPTAIN_LAND_ANIM =
 AnimationFunctionROMDef CAPTAIN_HIT_ANIM =
 {
 	// number of frames of this animation function
-	1,
+	32,
 
 	// frames to play in animation
-	{29},
+	{13, 12, 29, 29, 30, 30, 29, 29, 30, 30, 29, 29, 30, 30, 31, 31, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32},
 
 	// number of cycles a frame of animation is displayed
-	16,
+	2,
 
 	// whether to play it in loop or not
 	false,
 
 	// method to call on function completion
-	NULL,
+	(EventListener)&Captain_onHitAnimationComplete,
 
 	// function's name
 	"Hit",
-};
-
-AnimationFunctionROMDef CAPTAIN_SHOOT_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{29},
-
-	// number of cycles a frame of animation is displayed
-	16,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Shoot",
 };
 
 AnimationFunctionROMDef CAPTAIN_DEAD_ANIM =
@@ -217,7 +196,7 @@ AnimationFunctionROMDef CAPTAIN_DEAD_ANIM =
 	1,
 
 	// frames to play in animation
-	{30},
+	{33},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -243,7 +222,6 @@ AnimationDescriptionROMDef CAPTAIN_ANIM =
 		(AnimationFunction*)&CAPTAIN_FALL_ANIM,
 		(AnimationFunction*)&CAPTAIN_LAND_ANIM,
 		(AnimationFunction*)&CAPTAIN_HIT_ANIM,
-		(AnimationFunction*)&CAPTAIN_SHOOT_ANIM,
 		(AnimationFunction*)&CAPTAIN_DEAD_ANIM,
 		NULL,
 	}

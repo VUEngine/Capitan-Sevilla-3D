@@ -447,9 +447,9 @@ void Captain::checkDirection(u32 pressedKey, char* animation)
 	}
 }
 
-void Captain::takeHitFrom(SpatialObject collidingObject, int energyToReduce, bool pause, bool invincibleWins)
+void Captain::takeHitFrom(int energyToReduce)
 {
-	if(!Captain::isInvincible(this) || !invincibleWins)
+	if(!Captain::isInvincible(this))
 	{
 		// start short screen shake
 		Camera::startEffect(Camera::getInstance(), kShake, 200);
@@ -457,28 +457,17 @@ void Captain::takeHitFrom(SpatialObject collidingObject, int energyToReduce, boo
 		// play hit sound
 		SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
 
-		if(invincibleWins && (this->energy - energyToReduce >= 0))
+		// reduce energy
+		this->energy -= energyToReduce;
+
+		if(this->energy >= 0)
 		{
 			Captain::setInvincible(this, true);
 
-			// reset invincible a bit later
-			MessageDispatcher::dispatchMessage(CAPTAIN_FLASH_DURATION, Object::safeCast(this), Object::safeCast(this), kCaptainStopInvincibility, NULL);
-
-			// start flashing of captain
-			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
-			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kCaptainFlash, NULL);
-
-			// reduce energy
-			this->energy -= energyToReduce;
-
-			if(pause)
-			{
-				Actor::stopAllMovement(this);
-				Game::disableKeypad(Game::getInstance());
-				GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
-				//GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), true);
-				MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kCaptainResumePhysics, collidingObject);
-			}
+			// stop all movement
+			Actor::stopAllMovement(this);
+			Game::disableKeypad(Game::getInstance());
+			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
 
 			// play animation
 			AnimatedEntity::playAnimation(this, "Hit");
@@ -622,7 +611,7 @@ void Captain::onUserInput(Object eventFirer __attribute__ ((unused)))
 }
 
 // get energy
-u8 Captain::getEnergy()
+s8 Captain::getEnergy()
 {
 	return this->energy;
 }
@@ -713,7 +702,7 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 		case kEnemy:
 		case kEnemyProjectile:
 
-			Captain::takeHitFrom(this, collidingObject, 1, true, true);
+			Captain::takeHitFrom(this, 1);
 			return true;
 			break;
 
@@ -756,7 +745,7 @@ bool Captain::updateCollision(const CollisionInformation* collisionInformation)
 	{
 		case kEnemy:
 
-			Captain::takeHitFrom(this, collidingObject, 1, true, true);
+			Captain::takeHitFrom(this, 1);
 			return false;
 			break;
 	}
@@ -818,36 +807,6 @@ bool Captain::handleMessage(Telegram telegram)
 
 			Captain::flash(this);
 			return true;
-			break;
-
-		case kCaptainResumePhysics:
-
-			Game::enableKeypad(Game::getInstance());
-			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), false);
-			GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), false);
-
-			Velocity velocity = Body::getVelocity(this->body);
-
-			if(!velocity.y)
-			{
-				if(velocity.x)
-				{
-					AnimatedEntity::playAnimation(this, "Walk");
-				}
-				else
-				{
-					AnimatedEntity::playAnimation(this, "Idle");
-				}
-			}
-			else if(velocity.x)
-			{
-				AnimatedEntity::playAnimation(this, "Walk");
-			}
-			else
-			{
-				AnimatedEntity::playAnimation(this, "Idle");
-			}
-
 			break;
 
 		case kBodyStopped:
@@ -997,4 +956,43 @@ u16 Captain::getAxesForShapeSyncWithDirection()
 bool Captain::isVisible(int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
 {
 	return true;
+}
+
+void Captain::onHitAnimationComplete(Object eventFirer __attribute__ ((unused)))
+{
+	// reset invincible a bit later
+	MessageDispatcher::dispatchMessage(CAPTAIN_FLASH_DURATION, Object::safeCast(this), Object::safeCast(this), kCaptainStopInvincibility, NULL);
+
+	// start flashing of captain
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
+	MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kCaptainFlash, NULL);
+
+	// give control back to player
+	Game::enableKeypad(Game::getInstance());
+
+	// resume physics
+	GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), false);
+	GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), false);
+
+	// play next animation
+	Velocity velocity = Body::getVelocity(this->body);
+	if(!velocity.y)
+	{
+		if(velocity.x)
+		{
+			AnimatedEntity::playAnimation(this, "Walk");
+		}
+		else
+		{
+			AnimatedEntity::playAnimation(this, "Idle");
+		}
+	}
+	else if(velocity.x)
+	{
+		AnimatedEntity::playAnimation(this, "Walk");
+	}
+	else
+	{
+		AnimatedEntity::playAnimation(this, "Idle");
+	}
 }

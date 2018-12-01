@@ -87,7 +87,6 @@ enum PlatformerLevelStateMessageTypes
 	kLevelSetUp = kLastEngineMessage + 1,
 	kLevelStarted,
 	kLevelResumed,
-	kCaptainResumePhysics,
 	kCaptainCheckVelocity,
 	kScreenFocused,
 	kCaptainFall,
