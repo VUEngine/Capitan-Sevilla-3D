@@ -736,8 +736,8 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 
 		case kKillShape:
 			{
-				Captain::takeHitFrom(this, collidingObject, 999, true, true);
-				return true;
+				Captain::die(this);
+				return false;
 				break;
 			}
 			break;

@@ -85,7 +85,7 @@ TextureROMDef GAME_OVER_TX =
 	false,
 };
 
-BgmapSpriteROMDef GAME_OVER_IM_SPRITE =
+BgmapSpriteROMDef GAME_OVER_SPRITE =
 {
 	{
 		// sprite's type
@@ -112,19 +112,19 @@ BgmapSpriteROMDef GAME_OVER_IM_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const GAME_OVER_IM_SPRITES[] =
+BgmapSpriteROMDef* const GAME_OVER_SPRITES[] =
 {
-	&GAME_OVER_IM_SPRITE,
+	&GAME_OVER_SPRITE,
 	NULL
 };
 
-EntityROMDef GAME_OVER_IM =
+EntityROMDef GAME_OVER_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)GAME_OVER_IM_SPRITES,
+	(SpriteROMDef**)GAME_OVER_SPRITES,
 
 	// collision shapes
 	NULL,

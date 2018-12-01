@@ -43,7 +43,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern const u16 JUMP_SND[];
-extern EntityDefinition GAME_OVER_IM;
+extern EntityDefinition GAME_OVER_EN;
 extern CharSetDefinition GUI_CH;
 
 
@@ -58,7 +58,7 @@ void Gui::constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 in
 
 	// init members
 	this->active = false;
-	this->timeRemaining = 90;
+	this->timeRemaining = LEVEL_INITIAL_TIME;
 
 	// add event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
@@ -171,7 +171,7 @@ void Gui::onCaptainDied(Object eventFirer __attribute__ ((unused)))
 
 	// add "game over"
 	Vector3D cameraPosition = Camera::getPosition(Camera::getInstance());
-	PositionedEntity gameOverPositionedEntity = {&GAME_OVER_IM, {__METERS_TO_PIXELS(cameraPosition.x) + 192, 112, 0, 0}, 0, NULL, NULL, NULL, false};
+	PositionedEntity gameOverPositionedEntity = {&GAME_OVER_EN, {__METERS_TO_PIXELS(cameraPosition.x) + 192, 112, 0, 0}, 0, NULL, NULL, NULL, false};
 	Stage::addChildEntity(Game::getStage(Game::getInstance()), &gameOverPositionedEntity, true);
 }
 
@@ -203,7 +203,7 @@ void Gui::onCheckpointLoaded(Object eventFirer __attribute__ ((unused)))
 	ProgressManager progressManager = ProgressManager::getInstance();
 	if(progressManager)
 	{
-		this->timeRemaining = 40;//ProgressManager::getCurrentLevelTime(ProgressManager::getInstance());
+		this->timeRemaining = LEVEL_INITIAL_TIME;//ProgressManager::getCurrentLevelTime(ProgressManager::getInstance());
 	}
 }
 
