@@ -56,7 +56,7 @@ extern double fabs (double);
 extern const u16 COLLECT_SND[];
 extern const u16 FIRE_SND[];
 extern const u16 JUMP_SND[];
-extern EntityDefinition SAUSAGE_EJECTOR_PE;
+extern EntityDefinition CAPTAIN_HEAD_PE;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -93,7 +93,7 @@ void Captain::constructor(CaptainDefinition* captainDefinition, s16 id, s16 inte
 	this->jumps = 0;
 	this->sausages = CAPTAIN_INITIAL_SAUSAGES;
 	this->keepAddingForce = false;
-	this->sausageEjectorEntity = NULL;
+	this->headEntity = NULL;
 
 	Captain::setInstance(this);
 
@@ -109,7 +109,7 @@ void Captain::destructor()
 
 	// remove event listeners
 	Object::removeEventListener(PlatformerLevelState::getInstance(), Object::safeCast(this), (EventListener)Captain::onUserInput, kEventUserInput);
-	Object::removeEventListener(this->sausageEjectorEntity, Object::safeCast(this), (EventListener)Captain::onProjectileEjected, kEventProjectileEjected);
+	Object::removeEventListener(this->headEntity, Object::safeCast(this), (EventListener)Captain::onProjectileEjected, kEventProjectileEjected);
 
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainCheckVelocity);
@@ -147,30 +147,24 @@ void Captain::ready(bool recursive)
 
 void Captain::addSausageEjectorEntity()
 {
-	Vector3D position = {__PIXELS_TO_METERS(2), 0, 0};
-	this->sausageEjectorEntity = Entity::addChildEntity(this, &SAUSAGE_EJECTOR_PE, -1, NULL, &position, NULL);
+	Vector3D position = {__PIXELS_TO_METERS(CAPTAIN_HEAD_X_OFFSET), __PIXELS_TO_METERS(CAPTAIN_HEAD_Y_OFFSET), 0};
+	this->headEntity = Entity::addChildEntity(this, &CAPTAIN_HEAD_PE, -1, NULL, &position, NULL);
 
-	Object::addEventListener(this->sausageEjectorEntity, Object::safeCast(this), (EventListener)Captain::onProjectileEjected, kEventProjectileEjected);
+	Object::addEventListener(this->headEntity, Object::safeCast(this), (EventListener)Captain::onProjectileEjected, kEventProjectileEjected);
 }
 
 void Captain::startShooting()
 {
 	if(this->sausages > 0)
 	{
-		// play shoot animation
-		// TODO: have different shooting animations for jumping, kneeling, etc
-		//AnimatedEntity::playAnimation(this, "Shoot");
-
 		// shoot sausage
-		ProjectileEjector::setActive(this->sausageEjectorEntity, true);
+		ProjectileEjector::setActive(this->headEntity, true);
 	}
 }
 
 void Captain::stopShooting()
 {
-	// TODO: go back to previous animation after shooting
-
-	ProjectileEjector::setActive(this->sausageEjectorEntity, false);
+	ProjectileEjector::setActive(this->headEntity, false);
 }
 
 void Captain::kneel()
@@ -489,7 +483,8 @@ void Captain::flash()
 	if(Captain::isInvincible(this))
 	{
 		// toggle between original and flash palette
-		Captain::toggleFlashPalette(this);
+		Captain::toggleFlashPalette(this, this);
+		Captain::toggleFlashPalette(this, this->headEntity);
 
 		// next flash state change after CAPTAIN_FLASH_INTERVAL milliseconds
 		MessageDispatcher::dispatchMessage(CAPTAIN_FLASH_INTERVAL, Object::safeCast(this), Object::safeCast(this), kCaptainFlash, NULL);
@@ -497,14 +492,15 @@ void Captain::flash()
 	else
 	{
 		// set palette back to original
-		Captain::resetPalette(this);
+		Captain::resetPalette(this, this);
+		Captain::resetPalette(this, this->headEntity);
 	}
 }
 
-void Captain::toggleFlashPalette()
+void Captain::toggleFlashPalette(Entity entity)
 {
 	// get all of the captain's sprites and loop through them
-	VirtualList sprites = Entity::getSprites(this);
+	VirtualList sprites = Entity::getSprites(entity);
 	VirtualNode node = VirtualList::begin(sprites);
 	for(; node; node = VirtualNode::getNext(node))
 	{
@@ -530,10 +526,10 @@ void Captain::toggleFlashPalette()
 	}
 }
 
-void Captain::resetPalette()
+void Captain::resetPalette(Entity entity)
 {
 	// get all of captain's sprites and loop through them
-	VirtualList sprites = Entity::getSprites(this);
+	VirtualList sprites = Entity::getSprites(entity);
 	VirtualNode node = VirtualList::begin(sprites);
 	for(; node; node = VirtualNode::getNext(node))
 	{
@@ -561,7 +557,8 @@ void Captain::die()
 
 	// set flashing palette back to original
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
-	Captain::resetPalette(this);
+	Captain::resetPalette(this, this);
+	Captain::resetPalette(this, this->headEntity);
 
 	Actor::stopAllMovement(this);
 	Game::disableKeypad(Game::getInstance());
@@ -872,11 +869,63 @@ bool Captain::isAffectedByRelativity()
 	return true;
 }
 
+void Captain::update(u32 elapsedTime)
+{
+	Base::update(this, elapsedTime);
+
+	Captain::updateHeadYPosition(this);
+}
+
 void Captain::setDirection(Direction direction)
 {
 	Base::setDirection(this, direction);
 	//Captain::syncRotationWithBody(this);
 	this->inputDirection = direction;
+
+	// set head position
+	Captain::updateHeadXPosition(this);
+}
+
+void Captain::updateHeadXPosition()
+{
+	Vector3D position = *Container::getLocalPosition(this->headEntity);
+	Entity::setLocalPosition(this->headEntity, &position);
+}
+
+void Captain::updateHeadYPosition()
+{
+	s8 offsetX = 0;
+	s8 offsetY = 0;
+
+	s16 actualFrame = AnimatedEntity::getActualFrame(this);
+	AnimationController animationController = Sprite::getAnimationController(VirtualNode::getData(VirtualList::begin(Entity::getSprites(this))));
+
+	if(AnimationController::isPlayingFunction(animationController, "Walk"))
+	{
+		offsetY = (actualFrame == 0 || actualFrame == 5 || actualFrame == 6 || actualFrame == 11) ? 0 : 1;
+	}
+	else if(AnimationController::isPlayingFunction(animationController, "Jump") || AnimationController::isPlayingFunction(animationController, "Fall"))
+	{
+		offsetY = -3;
+	}
+	else if(AnimationController::isPlayingFunction(animationController, "KneelDown"))
+	{
+		offsetX = 1;
+		switch(actualFrame)
+		{
+			case 5: offsetY = 9; break;
+			case 4: offsetY = 10; break;
+			case 3: offsetY = 9; break;
+			case 2: offsetY = 5; break;
+			case 1: offsetY = 3; break;
+			case 0: offsetY = 2; break;
+		}
+	}
+
+	Vector3D position = *Container::getLocalPosition(this->headEntity);
+	position.x = (this->inputDirection.x == __RIGHT) ? __PIXELS_TO_METERS(offsetX + CAPTAIN_HEAD_X_OFFSET) : __PIXELS_TO_METERS(-(offsetX + CAPTAIN_HEAD_X_OFFSET));
+	position.y = __PIXELS_TO_METERS(offsetY + CAPTAIN_HEAD_Y_OFFSET);
+	Entity::setLocalPosition(this->headEntity, &position);
 }
 
 /*
@@ -922,14 +971,14 @@ void Captain::syncRotationWithBody()
 		direction.x = __RIGHT;
 		//Captain::updateSprite(this, direction);
 		Entity::setDirection(this, direction);
-		Entity::setDirection(this->sausageEjectorEntity, direction);
+		Entity::setDirection(this->headEntity, direction);
 	}
 	else if(0 > xLastDisplacement)
 	{
 		direction.x = __LEFT;
 		//Captain::updateSprite(this, direction);
 		Entity::setDirection(this, direction);
-		Entity::setDirection(this->sausageEjectorEntity, direction);
+		Entity::setDirection(this->headEntity, direction);
 	}
 }
 

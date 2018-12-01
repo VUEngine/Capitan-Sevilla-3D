@@ -25,102 +25,147 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <ObjectAnimatedSprite.h>
-#include <Box.h>
-#include "Sausage.h"
+#include <ProjectileEjector.h>
+#include <Actor.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE SausageTiles[];
-extern BYTE SausageMap[];
+extern ActorDefinition SAUSAGE_PR;
+extern BYTE CaptainHeadTiles[];
+extern BYTE CaptainHeadBlackTiles[];
+extern BYTE CaptainHeadMap[];
+extern BYTE CaptainHeadBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef SAUSAGE_DEFAULT_ANIM =
-{
-	// number of frames of this animation function
-	5,
-
-	// frames to play in animation
-	{4, 0, 3, 2, 1},
-
-	// number of cycles a frame of animation is displayed
-	6,
-
-	// whether to play it in loop or not
-	true,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"Default",
-};
-
-AnimationFunctionROMDef SAUSAGE_HIT_ANIM =
+AnimationFunctionROMDef CAPTAIN_HEAD_IDLE_ANIM =
 {
 	// number of frames of this animation function
 	1,
 
 	// frames to play in animation
-	{5},
+	{0},
 
 	// number of cycles a frame of animation is displayed
-	8,
+	16,
 
 	// whether to play it in loop or not
 	false,
 
 	// method to call on function completion
-	(EventListener)&Projectile_onHitAnimationComplete,
+	NULL,
 
 	// function's name
-	"Hit",
+	"Idle",
 };
 
-AnimationDescriptionROMDef SAUSAGE_ANIM =
+AnimationFunctionROMDef CAPTAIN_HEAD_SPIT_ANIM =
+{
+	// number of frames of this animation function
+	8,
+
+	// frames to play in animation
+	{1, 2, 3, 4, 4, 4, 4, 4},
+
+	// number of cycles a frame of animation is displayed
+	2,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	(EventListener)&ProjectileEjector_onEjectAnimationComplete,
+
+	// function's name
+	"Spit",
+};
+
+AnimationDescriptionROMDef CAPTAIN_HEAD_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&SAUSAGE_DEFAULT_ANIM,
-		(AnimationFunction*)&SAUSAGE_HIT_ANIM,
+		(AnimationFunction*)&CAPTAIN_HEAD_IDLE_ANIM,
+		(AnimationFunction*)&CAPTAIN_HEAD_SPIT_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef SAUSAGE_CH =
+CharSetROMDef CAPTAIN_HEAD_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	4 * 3,
+	4,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_SINGLE,
 
 	// char definition
-	SausageTiles,
+	CaptainHeadTiles,
 };
 
-TextureROMDef SAUSAGE_TX =
+CharSetROMDef CAPTAIN_HEAD_BLACK_CH =
 {
-	// charset definition
-	(CharSetDefinition*)&SAUSAGE_CH,
-
-	// bgmap definition
-	SausageMap,
-
-	// cols (max 64)
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
 	4,
 
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
+
+	// char definition
+	CaptainHeadBlackTiles,
+};
+
+TextureROMDef CAPTAIN_HEAD_TX =
+{
+	(CharSetDefinition*)&CAPTAIN_HEAD_CH,
+
+	// bgmap definition
+	CaptainHeadMap,
+
+	// cols (max 64)
+	2,
+
 	// rows (max 64)
-	3,
+	2,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	0,
+
+	// recyclable
+	false,
+};
+
+TextureROMDef CAPTAIN_HEAD_BLACK_TX =
+{
+	(CharSetDefinition*)&CAPTAIN_HEAD_BLACK_CH,
+
+	// bgmap definition
+	CaptainHeadBlackMap,
+
+	// cols (max 64)
+	2,
+
+	// rows (max 64)
+	2,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -134,17 +179,17 @@ TextureROMDef SAUSAGE_TX =
 	1,
 
 	// recyclable
-	true,
+	false,
 };
 
-ObjectSpriteROMDef SAUSAGE_SPRITE =
+ObjectSpriteROMDef CAPTAIN_HEAD_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&SAUSAGE_TX,
+		(TextureDefinition*)&CAPTAIN_HEAD_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -161,104 +206,87 @@ ObjectSpriteROMDef SAUSAGE_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const SAUSAGE_SPRITES[] =
+ObjectSpriteROMDef CAPTAIN_HEAD_BLACK_SPRITE =
 {
-	&SAUSAGE_SPRITE,
+	{
+		// sprite's type
+		__TYPE(ObjectAnimatedSprite),
+
+		// texture definition
+		(TextureDefinition*)&CAPTAIN_HEAD_BLACK_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 0, 0, 1},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_OBJECT,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+ObjectSpriteROMDef* const CAPTAIN_HEAD_SPRITES[] =
+{
+	&CAPTAIN_HEAD_SPRITE,
+	&CAPTAIN_HEAD_BLACK_SPRITE,
 	NULL
 };
 
-ShapeROMDef SAUSAGE_SHAPES[] =
+ProjectileEjectorROMDef CAPTAIN_HEAD_PE =
 {
-	{
-		// shape
-		__TYPE(Box),
-
-		// size (x, y, z)
-		{16, 16, 128},
-
-		// displacement (x, y, z, p)
-		{0, 0, 0, 0},
-
-		// rotation (x, y, z)
-		{0, 0, 0},
-
-		// scale (x, y, z)
-		{1, 1, 1},
-
-		// if true this shape checks for collisions against other shapes
-		true,
-
-		// layers in which I live
-		kPlayerLayer,
-
-		// layers to ignore when checking for collisions
-		kAllLayers & ~kEnemiesLayer,
-	},
-
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
-};
-
-ProjectileROMDef SAUSAGE_PR =
-{
-	// actor
+	// animated entity
 	{
 		{
-			{
-				// class allocator
-				__TYPE(Sausage),
+			// class allocator
+			__TYPE(ProjectileEjector),
 
-				// sprites
-				(SpriteROMDef**)SAUSAGE_SPRITES,
+			// sprites
+			(SpriteROMDef**)CAPTAIN_HEAD_SPRITES,
 
-				// collision shapes
-				(ShapeDefinition*)SAUSAGE_SHAPES,
+			// collision shapes
+			(ShapeDefinition*)NULL,
 
-				// size
-				// if 0, width and height will be inferred from the first sprite's texture's size
-				{0, 0, 0},
+			// size
+			// if 0, width and height will be inferred from the first sprite's texture's size
+			{0, 0, 0},
 
-				// gameworld's character's type
-				kSausage,
+			// gameworld's character's type
+			kNoType,
 
-				// physical specification
-				(PhysicalSpecification*)NULL,
-			},
-
-			// pointer to the animation definition for the character
-			(AnimationDescription*)&SAUSAGE_ANIM,
-
-			// initial animation
-			"Default",
+			// physical specification
+			(PhysicalSpecification*)NULL,
 		},
 
-		// true to create a body
-		true,
+		// pointer to the animation definition for the character
+		(AnimationDescription*)&CAPTAIN_HEAD_ANIM,
 
-		// axes subject to gravity
-		__NO_AXIS
+		// initial animation
+		"Idle",
 	},
 
-	// velocity
-    {
-    	__F_TO_FIX10_6(8.0f),
-    	0,
-    	0,
-	},
+	// projectile
+    {(EntityDefinition*)&SAUSAGE_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
 
-	// position relative to ejector
-    {
-    	__PIXELS_TO_METERS(12),
-    	__PIXELS_TO_METERS(8),
-    	0,
-    },
+	// delay of the first projectile ejection (only relevant if initially active)
+	0,
 
-	// max offset relative to ejector before position reset
-    {
-    	__PIXELS_TO_METERS(256),
-    	0,
-    	0,
-    },
+	// pause between projectile ejections
+	1000,
 
-	// delay between position checks (-1 to disable)
-	200,
+	// whether the ejector should be active on creation
+	false,
+
+	// maximum number of projectiles on screen at the same time
+	3,
+
+	// name of animation to play on projectile ejection
+	"Spit",
+
+	// name of animation to play when idle
+	"Idle",
 };

@@ -59,6 +59,9 @@
 
 #define CAPTAIN_CHECK_Y_VELOCITY				(20/16)
 
+#define CAPTAIN_HEAD_X_OFFSET					4
+#define CAPTAIN_HEAD_Y_OFFSET					-7
+
 
 //---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
@@ -71,7 +74,7 @@ typedef const CaptainDefinition CaptainROMDef;
 class Captain : Actor
 {
 	// sausage entity references for shooting
-	Entity sausageEjectorEntity;
+	Entity headEntity;
 	// used to know if gap must be changed
 	Direction inputDirection;
 	// captain has energy
@@ -96,9 +99,6 @@ class Captain : Actor
 	void addMomentumToJump();
 	void checkDirection(u32 currentPressedKey, char * animation);
 	void takeHitFrom(int energyToReduce);
-	void flash();
-	void toggleFlashPalette();
-	void resetPalette();
 	void die();
 	s8 getEnergy();
 	u8 getSausages();
@@ -122,6 +122,7 @@ class Captain : Actor
 	override void syncRotationWithBody();
 	override u16 getAxesForShapeSyncWithDirection();
 	override void setDirection(Direction direction);
+	override void update(u32 elapsedTime);
 	void onHitAnimationComplete(Object eventFirer);
 }
 
