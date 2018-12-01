@@ -93,12 +93,18 @@ void CaptainKneel::onKeyPressed(void* owner, const UserInput* userInput)
 		Captain::startShooting(Captain::safeCast(owner));
 	}
 
-	if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
+	if((K_LL | K_LR | K_LU) & (userInput->pressedKey | userInput->holdKey))
 	{
 		Acceleration acceleration =
 		{
-			K_LL & userInput->pressedKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->pressedKey ? __1I_FIX10_6 : 0,
-			K_A & userInput->pressedKey ? __I_TO_FIX10_6(-1) : 0,
+			K_LL & (userInput->pressedKey | userInput->holdKey)
+				? __I_TO_FIX10_6(-1)
+				: K_LR & (userInput->pressedKey | userInput->holdKey)
+					? __1I_FIX10_6
+					: 0,
+			(K_LU | K_A) & (userInput->pressedKey | userInput->holdKey)
+				? __I_TO_FIX10_6(-1)
+				: 0,
 			0,
 		};
 

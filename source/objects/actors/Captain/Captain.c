@@ -428,11 +428,11 @@ void Captain::checkDirection(u32 pressedKey, char* animation)
 	}
 	else if(K_LU & pressedKey)
 	{
-		this->inputDirection.z = __FAR;
+		this->inputDirection.y = __UP;
 	}
 	else if(K_LD & pressedKey)
 	{
-		this->inputDirection.z = __NEAR;
+		this->inputDirection.y = __DOWN;
 	}
 
 	if(animation && !(__Y_AXIS & movementState))
@@ -483,7 +483,7 @@ void Captain::flash()
 	if(Captain::isInvincible(this))
 	{
 		// toggle between original and flash palette
-		Captain::toggleFlashPalette(this, this);
+		Captain::toggleFlashPalette(this, Entity::safeCast(this));
 		Captain::toggleFlashPalette(this, this->headEntity);
 
 		// next flash state change after CAPTAIN_FLASH_INTERVAL milliseconds
@@ -492,7 +492,7 @@ void Captain::flash()
 	else
 	{
 		// set palette back to original
-		Captain::resetPalette(this, this);
+		Captain::resetPalette(this, Entity::safeCast(this));
 		Captain::resetPalette(this, this->headEntity);
 	}
 }
@@ -557,7 +557,7 @@ void Captain::die()
 
 	// set flashing palette back to original
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
-	Captain::resetPalette(this, this);
+	Captain::resetPalette(this, Entity::safeCast(this));
 	Captain::resetPalette(this, this->headEntity);
 
 	Actor::stopAllMovement(this);
@@ -1025,18 +1025,7 @@ void Captain::onHitAnimationComplete(Object eventFirer __attribute__ ((unused)))
 
 	// play next animation
 	Velocity velocity = Body::getVelocity(this->body);
-	if(!velocity.y)
-	{
-		if(velocity.x)
-		{
-			AnimatedEntity::playAnimation(this, "Walk");
-		}
-		else
-		{
-			AnimatedEntity::playAnimation(this, "Idle");
-		}
-	}
-	else if(velocity.x)
+	if(velocity.x)
 	{
 		AnimatedEntity::playAnimation(this, "Walk");
 	}
