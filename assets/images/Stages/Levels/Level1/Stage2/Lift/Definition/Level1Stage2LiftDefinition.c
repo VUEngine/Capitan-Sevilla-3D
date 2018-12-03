@@ -36,8 +36,8 @@
 
 extern BYTE Level1Stage2LiftTiles[];
 extern BYTE Level1Stage2LiftMap[];
-extern StageEntryPointDefinition LEVEL_1_STAGE_1_MAIN_EP;
 extern StageEntryPointDefinition LEVEL_1_STAGE_3_MAIN_EP;
+extern StageEntryPointDefinition LEVEL_1_STAGE_4_MAIN_EP;
 
 
 //---------------------------------------------------------------------------------------------------------
