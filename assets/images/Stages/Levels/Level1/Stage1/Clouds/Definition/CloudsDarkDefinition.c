@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
+#include <MovingOneWayEntity.h>
 #include <MBgmapSprite.h>
 #include <macros.h>
 
@@ -33,43 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CityBackground2Tiles[];
-extern BYTE CityBackground2AMap[];
-extern BYTE CityBackground2BMap[];
+extern BYTE CloudsTiles[];
+extern BYTE CloudsMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef CITY_BG_2_CH =
+CharSetROMDef CLOUDS_DARK_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	240,
+	7,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	CityBackground2Tiles,
+	CloudsTiles,
 };
 
-TextureROMDef CITY_BG_2_A_TX =
+TextureROMDef CLOUDS_DARK_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&CITY_BG_2_CH,
+	(CharSetDefinition*)&CLOUDS_DARK_CH,
 
 	// bgmap definition
-	CityBackground2AMap,
+	CloudsMap,
 
 	// cols (max 64)
 	64,
 
 	// rows (max 64)
-	64,
+	2,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -80,49 +79,19 @@ TextureROMDef CITY_BG_2_A_TX =
 	1,
 
 	// palette number (0-3)
-	1,
+	2,
 
 	// recyclable
 	false,
 };
 
-TextureROMDef CITY_BG_2_B_TX =
+TextureROMDef* const CLOUDS_DARK_TEXTURES[] =
 {
-	// charset definition
-	(CharSetDefinition*)&CITY_BG_2_CH,
-
-	// bgmap definition
-	CityBackground2BMap,
-
-	// cols (max 64)
-	64,
-
-	// rows (max 64)
-	64,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
-	1,
-
-	// palette number (0-3)
-	1,
-
-	// recyclable
-	false,
-};
-
-TextureROMDef* const CITY_BG_2_TEXTURES[] =
-{
-	(TextureDefinition*)&CITY_BG_2_B_TX,
-	(TextureDefinition*)&CITY_BG_2_A_TX,
+	(TextureDefinition*)&CLOUDS_DARK_TX,
 	NULL
 };
 
-MBgmapSpriteROMDef CITY_BG_2_SPRITE =
+MBgmapSpriteROMDef CLOUDS_DARK_SPRITE =
 {
 	{
 		{
@@ -151,11 +120,11 @@ MBgmapSpriteROMDef CITY_BG_2_SPRITE =
 	},
 
 	// textures
-	(TextureDefinition**)CITY_BG_2_TEXTURES,
+	(TextureDefinition**)CLOUDS_DARK_TEXTURES,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
-	__WORLD_2x1,
+	__WORLD_1x1,
 
 	// x loop
 	true,
@@ -164,30 +133,52 @@ MBgmapSpriteROMDef CITY_BG_2_SPRITE =
 	false,
 };
 
-BgmapSpriteROMDef* const CITY_BG_2_SPRITES[] =
+BgmapSpriteROMDef* const CLOUDS_DARK_SPRITES[] =
 {
-	(BgmapSpriteROMDef*)&CITY_BG_2_SPRITE,
+	(BgmapSpriteROMDef*)&CLOUDS_DARK_SPRITE,
 	NULL
 };
 
-EntityROMDef CITY_BG_2_EN =
+MovingOneWayEntityROMDef CLOUDS_DARK_EN =
 {
-	// class allocator
-	__TYPE(Entity),
+	{
+		{
+			{
+				// class allocator
+				__TYPE(MovingOneWayEntity),
 
-	// sprites
-	(SpriteROMDef**)CITY_BG_2_SPRITES,
+				// sprites
+				(SpriteROMDef**)CLOUDS_DARK_SPRITES,
 
-	// collision shapes
-	NULL,
+				// collision shapes
+				(ShapeDefinition*)NULL,
 
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
+				// size
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{0, 0, 0},
 
-	// gameworld's character's type
-	kNoType,
+				// gameworld's character's type
+				kNoType,
 
-	// physical specification
-	NULL,
+				// physical specification
+				(PhysicalSpecification*)NULL,
+			},
+
+			// pointer to the animation definition for the character
+			NULL,
+
+			// initial animation
+			NULL,
+		},
+
+		// true to create a body
+		true,
+
+		// axes subject to gravity
+		__NO_AXIS
+	},
+
+	// speed (x axis)
+	__I_TO_FIX10_6(-1),
 };
+

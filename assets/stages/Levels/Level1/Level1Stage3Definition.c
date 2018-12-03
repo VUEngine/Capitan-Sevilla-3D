@@ -41,6 +41,8 @@ extern EntityDefinition LOW_POWER_INDICATOR_LB;
 
 extern EntityDefinition BULLY_EM;
 extern EntityDefinition CITY_BG_2_EN;
+extern EntityDefinition CLOUDS_DARK_EN;
+extern EntityDefinition CLOUDS_LIGHT_EN;
 extern EntityDefinition HOVER_CAR_EM;
 extern EntityDefinition ITEM_SAUSAGE_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_1_EN;
@@ -48,6 +50,7 @@ extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_2A_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_2B_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_3A_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_BUILDING_3B_EN;
+extern EntityDefinition LEVEL_1_STAGE_3_ET_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_FENCE_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_HOTEL_SIGN_EN;
 extern EntityDefinition LEVEL_1_STAGE_3_LIFT_EN;
@@ -78,7 +81,10 @@ PositionedEntityROMDef LEVEL_1_STAGE_3_ST_CHILDREN[] =
 {
 	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // left border
 
+	{&CLOUDS_DARK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
+	{&CLOUDS_LIGHT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
 	{&CITY_BG_2_EN,						{-416,  96,  256,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_ET_EN,			{-320,  24,  400,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{  56, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&COLLISION_TOP_CL,					{ 160, 146,    0,   0},		0, NULL, NULL, (void*)&collision_56_56_64, false}, // box
@@ -230,7 +236,7 @@ StageROMDef LEVEL_1_STAGE_3_ST =
 		// colors config
 		{
 			// background color
-			__COLOR_BLACK,
+			__COLOR_BRIGHT_RED,
 
 			// brightness
 			// these values times the repeat values specified in the column table (max. 16) make the final

@@ -54,6 +54,8 @@ extern EntityDefinition CITY_BG_1_EN;
 extern EntityDefinition CITY_FLOOR_3D_EN;
 extern EntityDefinition CITY_FLOOR_COLLISION_CL;
 extern EntityDefinition CITY_FLOOR_EN;
+extern EntityDefinition CLOUDS_DARK_EN;
+extern EntityDefinition CLOUDS_LIGHT_EN;
 extern EntityDefinition CLOTHES_1_EN;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition COMIC_NIVEL_1_EN;
@@ -112,6 +114,8 @@ PositionedEntityROMDef LEVEL_1_STAGE_1_ST_CHILDREN[] =
 {
 	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // left border
 
+	{&CLOUDS_DARK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
+	{&CLOUDS_LIGHT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
 	{&CITY_BG_1_EN,						{-256, 112,  256,   0},		0, NULL, NULL, NULL, true},
 	{&CITY_FLOOR_EN,					{   0, 172,    0,   0},		0, NULL, NULL, NULL, true},
 
@@ -365,7 +369,7 @@ StageROMDef LEVEL_1_STAGE_1_ST =
 		// colors config
 		{
 			// background color
-			__COLOR_BLACK,
+			__COLOR_BRIGHT_RED,
 
 			// brightness
 			// these values times the repeat values specified in the column table (max. 16) make the final

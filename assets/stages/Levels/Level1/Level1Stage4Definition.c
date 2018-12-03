@@ -42,10 +42,13 @@ extern EntityDefinition LEVEL_1_STAGE_1_MAIN_EXIT_XP;
 extern EntityDefinition ATTACK_DOG_EM;
 extern EntityDefinition BENCH_EN;
 extern EntityDefinition BULLY_EM;
+extern EntityDefinition CLOUDS_DARK_EN;
+extern EntityDefinition CLOUDS_LIGHT_EN;
 extern EntityDefinition COLLISION_CL;
 extern EntityDefinition GUI_EN;
 extern EntityDefinition LANTERN_1_EN;
-extern EntityDefinition LEVEL_1_STAGE_4_BACKGROUND_EN;
+extern EntityDefinition LEVEL_1_STAGE_4_BACKGROUND_A_EN;
+extern EntityDefinition LEVEL_1_STAGE_4_BACKGROUND_B_EN;
 extern EntityDefinition LEVEL_1_STAGE_4_BUILDING_1_EN;
 extern EntityDefinition LEVEL_1_STAGE_4_LIFT_EN;
 extern EntityDefinition LEVEL_1_STAGE_4_PARK_1_EN;
@@ -63,7 +66,10 @@ PositionedEntityROMDef LEVEL_1_STAGE_4_ST_CHILDREN[] =
 {
 	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // left border
 
-	{&LEVEL_1_STAGE_4_BACKGROUND_EN,	{ 560,  64,  256,   0},		0, NULL, NULL, NULL, false},
+	{&CLOUDS_DARK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
+	{&CLOUDS_LIGHT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_4_BACKGROUND_A_EN,	{-160, 112,  256,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_4_BACKGROUND_B_EN,	{ 560, 112,  256,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_4_BUILDING_1_EN,	{ 248,  92,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_4_LIFT_EN,			{ 236,  76,    0,   0},		0, NULL, NULL, NULL, false},
@@ -194,7 +200,7 @@ StageROMDef LEVEL_1_STAGE_4_ST =
 		// colors config
 		{
 			// background color
-			__COLOR_BLACK,
+			__COLOR_BRIGHT_RED,
 
 			// brightness
 			// these values times the repeat values specified in the column table (max. 16) make the final

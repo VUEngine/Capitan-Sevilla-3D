@@ -24,8 +24,8 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <BgmapSprite.h>
+#include <MovingOneWayEntity.h>
+#include <MBgmapSprite.h>
 #include <macros.h>
 
 
@@ -33,42 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage4BackgroundTiles[];
-extern BYTE Level1Stage4BackgroundMap[];
+extern BYTE CloudsTiles[];
+extern BYTE CloudsMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef LEVEL_1_STAGE_4_BACKGROUND_CH =
+CharSetROMDef CLOUDS_LIGHT_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	51,
+	7,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	Level1Stage4BackgroundTiles,
+	CloudsTiles,
 };
 
-TextureROMDef LEVEL_1_STAGE_4_BACKGROUND_TX =
+TextureROMDef CLOUDS_LIGHT_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&LEVEL_1_STAGE_4_BACKGROUND_CH,
+	(CharSetDefinition*)&CLOUDS_LIGHT_CH,
 
 	// bgmap definition
-	Level1Stage4BackgroundMap,
+	CloudsMap,
 
 	// cols (max 64)
 	64,
 
 	// rows (max 64)
-	17,
+	2,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -85,57 +85,99 @@ TextureROMDef LEVEL_1_STAGE_4_BACKGROUND_TX =
 	false,
 };
 
-BgmapSpriteROMDef LEVEL_1_STAGE_4_BACKGROUND_SPRITE =
+TextureROMDef* const CLOUDS_LIGHT_TEXTURES[] =
 {
-	{
-		// sprite's type
-		__TYPE(BgmapSprite),
-
-		// texture definition
-		(TextureDefinition*)&LEVEL_1_STAGE_4_BACKGROUND_TX,
-
-		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-		__TRANSPARENCY_NONE,
-
-		// displacement
-		{0, 0, 0, 0},
-	},
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
-};
-
-BgmapSpriteROMDef* const LEVEL_1_STAGE_4_BACKGROUND_SPRITES[] =
-{
-	&LEVEL_1_STAGE_4_BACKGROUND_SPRITE,
+	(TextureDefinition*)&CLOUDS_LIGHT_TX,
 	NULL
 };
 
-EntityROMDef LEVEL_1_STAGE_4_BACKGROUND_EN =
+MBgmapSpriteROMDef CLOUDS_LIGHT_SPRITE =
 {
-	// class allocator
-	__TYPE(Entity),
+	{
+		{
+			// sprite's type
+			__TYPE(MBgmapSprite),
 
-	// sprites
-	(SpriteROMDef**)LEVEL_1_STAGE_4_BACKGROUND_SPRITES,
+			// texture definition
+			NULL,
 
-	// collision shapes
-	NULL,
+			// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+			false,
 
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
+			// displacement
+			{0, 0, 0, 0},
+		},
 
-	// gameworld's character's type
-	kNoType,
+		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+		// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+		__WORLD_BGMAP,
 
-	// physical specification
-	NULL,
+		// pointer to affine/hbias manipulation function
+		NULL,
+
+		// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+		__WORLD_ON,
+	},
+
+	// textures
+	(TextureDefinition**)CLOUDS_LIGHT_TEXTURES,
+
+	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
+	// textures must be 64x64 for anything other than 1x1
+	__WORLD_1x1,
+
+	// x loop
+	true,
+
+	// y loop
+	false,
+};
+
+BgmapSpriteROMDef* const CLOUDS_LIGHT_SPRITES[] =
+{
+	(BgmapSpriteROMDef*)&CLOUDS_LIGHT_SPRITE,
+	NULL
+};
+
+MovingOneWayEntityROMDef CLOUDS_LIGHT_EN =
+{
+	{
+		{
+			{
+				// class allocator
+				__TYPE(MovingOneWayEntity),
+
+				// sprites
+				(SpriteROMDef**)CLOUDS_LIGHT_SPRITES,
+
+				// collision shapes
+				(ShapeDefinition*)NULL,
+
+				// size
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{0, 0, 0},
+
+				// gameworld's character's type
+				kNoType,
+
+				// physical specification
+				(PhysicalSpecification*)NULL,
+			},
+
+			// pointer to the animation definition for the character
+			NULL,
+
+			// initial animation
+			NULL,
+		},
+
+		// true to create a body
+		true,
+
+		// axes subject to gravity
+		__NO_AXIS
+	},
+
+	// speed (x axis)
+	__I_TO_FIX10_6(-2),
 };
