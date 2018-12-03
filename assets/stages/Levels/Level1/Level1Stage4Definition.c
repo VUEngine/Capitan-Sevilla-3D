@@ -47,6 +47,7 @@ extern EntityDefinition GUI_EN;
 extern EntityDefinition LANTERN_1_EN;
 extern EntityDefinition LEVEL_1_STAGE_4_BACKGROUND_EN;
 extern EntityDefinition LEVEL_1_STAGE_4_BUILDING_1_EN;
+extern EntityDefinition LEVEL_1_STAGE_4_LIFT_EN;
 extern EntityDefinition LEVEL_1_STAGE_4_PARK_1_EN;
 extern EntityDefinition LOW_POWER_INDICATOR_LB;
 extern EntityDefinition TREE_1_EN;
@@ -65,6 +66,7 @@ PositionedEntityROMDef LEVEL_1_STAGE_4_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_4_BACKGROUND_EN,	{ 560,  64,  256,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_4_BUILDING_1_EN,	{ 248,  92,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_4_LIFT_EN,			{ 236,  76,    0,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_1_EN,						{ 300, 128,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_4_PARK_1_EN,		{ 604,  92,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LANTERN_1_EN,						{ 476, 132,    0,   0},		0, NULL, NULL, NULL, false},
@@ -336,7 +338,7 @@ StageEntryPointROMDef LEVEL_1_STAGE_4_MAIN_EP =
 	(StageDefinition*)&LEVEL_1_STAGE_4_ST,
 
 	// starting position (x, y, z)
-	{48, 64, CAPTAIN_DSPL},
+	{200, 64, CAPTAIN_DSPL},
 
 	// facing direction of the captain
 	__RIGHT,

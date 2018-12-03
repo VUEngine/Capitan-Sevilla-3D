@@ -346,3 +346,33 @@ LiftROMDef LEVEL_1_STAGE_3_LIFT_EN =
 	// entry point to load after entering
 	(StageEntryPointDefinition*)&LEVEL_1_STAGE_4_MAIN_EP,
 };
+
+AnimatedEntityROMDef LEVEL_1_STAGE_4_LIFT_EN =
+{
+	{
+		// class allocator
+		__TYPE(AnimatedEntity),
+
+		// sprites
+		(SpriteROMDef**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+
+		// collision shapes
+		NULL,
+
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
+		kNoType,
+
+		// physical specification
+		NULL,
+	},
+
+	// pointer to the animation definition for the character
+	(AnimationDescription*)&LEVEL_1_STAGE_2_LIFT_ANIM,
+
+	// initial animation
+	"Broken"
+};

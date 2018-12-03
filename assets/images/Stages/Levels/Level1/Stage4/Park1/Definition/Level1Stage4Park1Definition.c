@@ -195,7 +195,7 @@ ShapeROMDef LEVEL_1_STAGE_4_PARK_1_SHAPES[] =
 		{336, 32, 32},
 
 		// displacement (x, y, z, p)
-		{0, 98, 0, 0},
+		{0, 96, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
