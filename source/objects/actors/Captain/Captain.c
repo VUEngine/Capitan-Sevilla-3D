@@ -900,7 +900,21 @@ void Captain::updateHeadYPosition()
 	s16 actualFrame = AnimatedEntity::getActualFrame(this);
 	AnimationController animationController = Sprite::getAnimationController(VirtualNode::getData(VirtualList::begin(Entity::getSprites(this))));
 
-	if(AnimationController::isPlayingFunction(animationController, "Walk"))
+	if(AnimationController::isPlayingFunction(animationController, "Idle"))
+	{
+		switch(actualFrame)
+		{
+			case 0:
+			case 1:
+			case 4:
+			case 5: offsetY = -1; break;
+			case 2:
+			case 3: offsetY = -2; break;
+			case 6: offsetY = 1; break;
+			case 7: offsetY = 0; break;
+		}
+	}
+	else if(AnimationController::isPlayingFunction(animationController, "Walk"))
 	{
 		offsetY = (actualFrame == 0 || actualFrame == 5 || actualFrame == 6 || actualFrame == 11) ? 0 : 1;
 	}

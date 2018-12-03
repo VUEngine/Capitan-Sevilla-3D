@@ -46,16 +46,16 @@ extern BYTE CaptainBlackMap[];
 AnimationFunctionROMDef CAPTAIN_IDLE_ANIM =
 {
 	// number of frames of this animation function
-	1,
+	8,
 
 	// frames to play in animation
-	{0},
+	{0, 1, 2, 3, 4, 5, 6, 7},
 
 	// number of cycles a frame of animation is displayed
-	16,
+	6,
 
 	// whether to play it in loop or not
-	false,
+	true,
 
 	// method to call on function completion
 	NULL,
@@ -70,10 +70,10 @@ AnimationFunctionROMDef CAPTAIN_WALK_ANIM =
 	12,
 
 	// frames to play in animation
-	{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
+	{8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19},
 
 	// number of cycles a frame of animation is displayed
-	2,
+	3,
 
 	// whether to play it in loop or not
 	true,
@@ -91,10 +91,10 @@ AnimationFunctionROMDef CAPTAIN_KNEEL_DOWN_ANIM =
 	6,
 
 	// frames to play in animation
-	{12, 13, 14, 15, 16, 17},
+	{20, 21, 22, 23, 24, 25},
 
 	// number of cycles a frame of animation is displayed
-	2,
+	3,
 
 	// whether to play it in loop or not
 	false,
@@ -112,10 +112,10 @@ AnimationFunctionROMDef CAPTAIN_JUMP_ANIM =
 	18,
 
 	// frames to play in animation
-	{18, 19, 20, 21, 22, 21, 22, 21, 22, 21, 22, 21, 22, 21, 22, 21, 22, 21, 22},
+	{26, 27, 28, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30},
 
 	// number of cycles a frame of animation is displayed
-	2,
+	3,
 
 	// whether to play it in loop or not
 	false,
@@ -133,10 +133,10 @@ AnimationFunctionROMDef CAPTAIN_FALL_ANIM =
 	17,
 
 	// frames to play in animation
-	{23, 24, 25, 26, 25, 26, 25, 26, 25, 26, 25, 26, 25, 26, 25, 26, 25, 26},
+	{31, 32, 33, 34, 33, 34, 33, 34, 33, 34, 33, 34, 33, 34, 33, 34, 33, 34},
 
 	// number of cycles a frame of animation is displayed
-	2,
+	3,
 
 	// whether to play it in loop or not
 	false,
@@ -154,10 +154,10 @@ AnimationFunctionROMDef CAPTAIN_LAND_ANIM =
 	2,
 
 	// frames to play in animation
-	{27, 28},
+	{35, 36},
 
 	// number of cycles a frame of animation is displayed
-	2,
+	3,
 
 	// whether to play it in loop or not
 	false,
@@ -175,10 +175,10 @@ AnimationFunctionROMDef CAPTAIN_HIT_ANIM =
 	32,
 
 	// frames to play in animation
-	{13, 12, 29, 29, 30, 30, 29, 29, 30, 30, 29, 29, 30, 30, 31, 31, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32, 32},
+	{21, 20, 37, 37, 38, 38, 37, 37, 38, 38, 37, 37, 38, 38, 39, 39, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40},
 
 	// number of cycles a frame of animation is displayed
-	2,
+	3,
 
 	// whether to play it in loop or not
 	false,
@@ -196,7 +196,7 @@ AnimationFunctionROMDef CAPTAIN_DEAD_ANIM =
 	1,
 
 	// frames to play in animation
-	{33},
+	{41},
 
 	// number of cycles a frame of animation is displayed
 	16,

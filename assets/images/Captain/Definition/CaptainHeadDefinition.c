@@ -74,7 +74,7 @@ AnimationFunctionROMDef CAPTAIN_HEAD_SPIT_ANIM =
 	{1, 2, 3, 4, 4, 4, 4, 4},
 
 	// number of cycles a frame of animation is displayed
-	2,
+	3,
 
 	// whether to play it in loop or not
 	false,
