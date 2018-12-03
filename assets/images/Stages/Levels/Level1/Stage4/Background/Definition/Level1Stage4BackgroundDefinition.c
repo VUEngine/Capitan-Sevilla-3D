@@ -33,42 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BenchTiles[];
-extern BYTE BenchMap[];
+extern BYTE Level1Stage4BackgroundTiles[];
+extern BYTE Level1Stage4BackgroundMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef BENCH_CH =
+CharSetROMDef LEVEL_1_STAGE_4_BACKGROUND_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	24,
+	51,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	BenchTiles,
+	Level1Stage4BackgroundTiles,
 };
 
-TextureROMDef BENCH_TX =
+TextureROMDef LEVEL_1_STAGE_4_BACKGROUND_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&BENCH_CH,
+	(CharSetDefinition*)&LEVEL_1_STAGE_4_BACKGROUND_CH,
 
 	// bgmap definition
-	BenchMap,
+	Level1Stage4BackgroundMap,
 
 	// cols (max 64)
-	8,
+	64,
 
 	// rows (max 64)
-	4,
+	17,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -79,26 +79,26 @@ TextureROMDef BENCH_TX =
 	1,
 
 	// palette number (0-3)
-	1,
+	0,
 
 	// recyclable
 	false,
 };
 
-BgmapSpriteROMDef BENCH_SPRITE =
+BgmapSpriteROMDef LEVEL_1_STAGE_4_BACKGROUND_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&BENCH_TX,
+		(TextureDefinition*)&LEVEL_1_STAGE_4_BACKGROUND_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 2, 2},
+		{0, 0, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -112,19 +112,19 @@ BgmapSpriteROMDef BENCH_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const BENCH_SPRITES[] =
+BgmapSpriteROMDef* const LEVEL_1_STAGE_4_BACKGROUND_SPRITES[] =
 {
-	&BENCH_SPRITE,
+	&LEVEL_1_STAGE_4_BACKGROUND_SPRITE,
 	NULL
 };
 
-EntityROMDef BENCH_EN =
+EntityROMDef LEVEL_1_STAGE_4_BACKGROUND_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)BENCH_SPRITES,
+	(SpriteROMDef**)LEVEL_1_STAGE_4_BACKGROUND_SPRITES,
 
 	// collision shapes
 	NULL,

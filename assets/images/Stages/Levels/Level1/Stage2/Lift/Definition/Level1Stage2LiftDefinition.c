@@ -344,5 +344,5 @@ LiftROMDef LEVEL_1_STAGE_3_LIFT_EN =
 	{0, __I_TO_FIX10_6(2), 0},
 
 	// entry point to load after entering
-	NULL,
+	(StageEntryPointDefinition*)&LEVEL_1_STAGE_4_MAIN_EP,
 };

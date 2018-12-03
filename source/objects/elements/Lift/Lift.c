@@ -36,8 +36,6 @@
 #include "Lift.h"
 #include <PlatformerLevelState.h>
 
-#include <CreditsState.h>
-
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
@@ -102,12 +100,5 @@ bool Lift::handleMessage(Telegram telegram)
 
 void Lift::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	if(this->liftDefinition->entryPoint)
-	{
-		PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->liftDefinition->entryPoint);
-	}
-	else
-	{
-		Game::changeState(Game::getInstance(), (GameState)CreditsState::getInstance());
-	}
+	PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->liftDefinition->entryPoint);
 }

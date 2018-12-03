@@ -26,6 +26,7 @@
 
 #include <Entity.h>
 #include <BgmapSprite.h>
+#include <Box.h>
 #include <macros.h>
 
 
@@ -33,42 +34,46 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BenchTiles[];
-extern BYTE BenchMap[];
+extern BYTE Level1Stage4Park1Tiles[];
+extern BYTE Level1Stage4Park1LMap[];
+extern BYTE Level1Stage4Park1RMap[];
+extern BYTE Level1Stage4Park1BlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMDef BENCH_CH =
+CharSetROMDef LEVEL_1_STAGE_4_PARK_1_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	24,
+	684,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char definition
-	BenchTiles,
+	Level1Stage4Park1Tiles,
 };
 
-TextureROMDef BENCH_TX =
+/* Left */
+
+TextureROMDef LEVEL_1_STAGE_4_PARK_1_L_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&BENCH_CH,
+	(CharSetDefinition*)&LEVEL_1_STAGE_4_PARK_1_CH,
 
 	// bgmap definition
-	BenchMap,
+	Level1Stage4Park1LMap,
 
 	// cols (max 64)
-	8,
+	41,
 
 	// rows (max 64)
-	4,
+	23,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -85,20 +90,20 @@ TextureROMDef BENCH_TX =
 	false,
 };
 
-BgmapSpriteROMDef BENCH_SPRITE =
+BgmapSpriteROMDef LEVEL_1_STAGE_4_PARK_1_L_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture definition
-		(TextureDefinition*)&BENCH_TX,
+		(TextureDefinition*)&LEVEL_1_STAGE_4_PARK_1_L_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 2, 2},
+		{0, 0, 2, 0}
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -109,25 +114,133 @@ BgmapSpriteROMDef BENCH_SPRITE =
 	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_ON,
+	__WORLD_LON,
 };
 
-BgmapSpriteROMDef* const BENCH_SPRITES[] =
+/* Right */
+
+TextureROMDef LEVEL_1_STAGE_4_PARK_1_R_TX =
 {
-	&BENCH_SPRITE,
+	// charset definition
+	(CharSetDefinition*)&LEVEL_1_STAGE_4_PARK_1_CH,
+
+	// bgmap definition
+	Level1Stage4Park1RMap,
+
+	// cols (max 64)
+	41,
+
+	// rows (max 64)
+	23,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
+
+	// recyclable
+	false,
+};
+
+BgmapSpriteROMDef LEVEL_1_STAGE_4_PARK_1_R_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture definition
+		(TextureDefinition*)&LEVEL_1_STAGE_4_PARK_1_R_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 0, 2, 0}
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_RON,
+};
+
+/* Entity */
+
+BgmapSpriteROMDef* const LEVEL_1_STAGE_4_PARK_1_SPRITES[] =
+{
+	&LEVEL_1_STAGE_4_PARK_1_L_SPRITE,
+	&LEVEL_1_STAGE_4_PARK_1_R_SPRITE,
 	NULL
 };
 
-EntityROMDef BENCH_EN =
+ShapeROMDef LEVEL_1_STAGE_4_PARK_1_SHAPES[] =
+{
+	// floor
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{336, 32, 32},
+
+		// displacement (x, y, z, p)
+		{0, 98, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kNoLayer,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+};
+
+PhysicalSpecificationROMDef LEVEL_1_STAGE_4_PARK_1_PHYSICAL_PROPERTIES =
+{
+	// mass
+	__F_TO_FIX10_6(0),
+
+	// friction
+	__F_TO_FIX10_6(0.85f),
+
+	// bounciness
+	__F_TO_FIX10_6(FLOOR_BOUNCINESS),
+
+	// maximum velocity
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
+};
+
+EntityROMDef LEVEL_1_STAGE_4_PARK_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),
 
 	// sprites
-	(SpriteROMDef**)BENCH_SPRITES,
+	(SpriteROMDef**)LEVEL_1_STAGE_4_PARK_1_SPRITES,
 
 	// collision shapes
-	NULL,
+	(ShapeDefinition*)LEVEL_1_STAGE_4_PARK_1_SHAPES,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
@@ -137,5 +250,5 @@ EntityROMDef BENCH_EN =
 	kNoType,
 
 	// physical specification
-	NULL,
+	(PhysicalSpecification*)&LEVEL_1_STAGE_4_PARK_1_PHYSICAL_PROPERTIES,
 };

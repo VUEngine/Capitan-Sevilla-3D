@@ -78,6 +78,11 @@ void StageExitPoint::onExitPointReached(Object eventFirer __attribute__ ((unused
 void StageExitPoint::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// TODO: move hardcoded entry point to stageexitpointromdef
+
 	extern StageEntryPointDefinition LEVEL_1_STAGE_2_MAIN_EP;
 	PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), (StageEntryPointDefinition*)&LEVEL_1_STAGE_2_MAIN_EP);
+
+
+	#include <CreditsState.h>
+	//Game::changeState(Game::getInstance(), (GameState)CreditsState::getInstance());
 }
