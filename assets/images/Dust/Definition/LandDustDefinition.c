@@ -26,6 +26,7 @@
 
 #include <libgccvb.h>
 #include <AnimatedEntity.h>
+#include <Dust.h>
 #include <ObjectAnimatedSprite.h>
 #include <macros.h>
 
@@ -34,21 +35,21 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE JumpDustTiles[];
-extern BYTE JumpDustMap[];
+extern BYTE LandDustTiles[];
+extern BYTE LandDustMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef JUMP_DUST_HIDDEN_ANIM =
+AnimationFunctionROMDef LAND_DUST_HIDDEN_ANIM =
 {
 	// number of frames of this animation function
 	1,
 
 	// frames to play in animation
-	{3},
+	{4},
 
 	// number of cycles a frame of animation is displayed
 	8,
@@ -63,13 +64,13 @@ AnimationFunctionROMDef JUMP_DUST_HIDDEN_ANIM =
 	"Hidden",
 };
 
-AnimationFunctionROMDef JUMP_DUST_SHOW_ANIM =
+AnimationFunctionROMDef LAND_DUST_SHOW_ANIM =
 {
 	// number of frames of this animation function
-	4,
+	5,
 
 	// frames to play in animation
-	{0, 1, 2, 3},
+	{0, 1, 2, 3, 4},
 
 	// number of cycles a frame of animation is displayed
 	8,
@@ -78,50 +79,50 @@ AnimationFunctionROMDef JUMP_DUST_SHOW_ANIM =
 	false,
 
 	// method to call on function completion
-	NULL,
+	(EventListener)&Dust_onShowAnimationComplete,
 
 	// function's name
 	"Show",
 };
 
-AnimationDescriptionROMDef JUMP_DUST_ANIM =
+AnimationDescriptionROMDef LAND_DUST_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&JUMP_DUST_HIDDEN_ANIM,
-		(AnimationFunction*)&JUMP_DUST_SHOW_ANIM,
+		(AnimationFunction*)&LAND_DUST_HIDDEN_ANIM,
+		(AnimationFunction*)&LAND_DUST_SHOW_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef JUMP_DUST_CH =
+CharSetROMDef LAND_DUST_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	16,
+	25,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_MULTI,
 
 	// char definition
-	JumpDustTiles,
+	LandDustTiles,
 };
 
-TextureROMDef JUMP_DUST_TX =
+TextureROMDef LAND_DUST_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&JUMP_DUST_CH,
+	(CharSetDefinition*)&LAND_DUST_CH,
 
 	// bgmap definition
-	JumpDustMap,
+	LandDustMap,
 
 	// cols (max 64)
-	2,
+	5,
 
 	// rows (max 64)
-	2,
+	1,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -129,7 +130,7 @@ TextureROMDef JUMP_DUST_TX =
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
-	4,
+	5,
 
 	// palette number (0-3)
 	0,
@@ -138,14 +139,14 @@ TextureROMDef JUMP_DUST_TX =
 	false,
 };
 
-ObjectSpriteROMDef JUMP_DUST_SPRITE =
+ObjectSpriteROMDef LAND_DUST_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&JUMP_DUST_TX,
+		(TextureDefinition*)&LAND_DUST_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -162,20 +163,20 @@ ObjectSpriteROMDef JUMP_DUST_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const JUMP_DUST_SPRITES[] =
+ObjectSpriteROMDef* const LAND_DUST_SPRITES[] =
 {
-	&JUMP_DUST_SPRITE,
+	&LAND_DUST_SPRITE,
 	NULL
 };
 
-AnimatedEntityROMDef JUMP_DUST_EN =
+AnimatedEntityROMDef LAND_DUST_EN =
 {
 	{
 		// class allocator
-		__TYPE(AnimatedEntity),
+		__TYPE(Dust),
 
 		// sprites
-		(SpriteROMDef**)JUMP_DUST_SPRITES,
+		(SpriteROMDef**)LAND_DUST_SPRITES,
 
 		// collision shapes
 		(ShapeDefinition*)NULL,
@@ -192,7 +193,7 @@ AnimatedEntityROMDef JUMP_DUST_EN =
 	},
 
 	// pointer to the animation definition for the item
-	(AnimationDescription*)&JUMP_DUST_ANIM,
+	(AnimationDescription*)&LAND_DUST_ANIM,
 
 	// initial animation
 	"Hidden",

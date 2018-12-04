@@ -44,6 +44,7 @@
 #include <PlatformerLevelState.h>
 #include <MovingOneWayEntity.h>
 #include <ProjectileEjector.h>
+#include <Dust.h>
 #include <debugConfig.h>
 
 
@@ -162,11 +163,11 @@ void Captain::addSausageEjectorEntity()
 
 void Captain::addDustEntity()
 {
-	Vector3D position = {0, __PIXELS_TO_METERS(16), 0};
-	this->jumpDustEntity = Entity::addChildEntity(this, &JUMP_DUST_EN, -1, NULL, &position, NULL);
+	Vector3D positionJumpDustEntity = {0, __PIXELS_TO_METERS(14), 0};
+	this->jumpDustEntity = Entity::addChildEntity(this, &JUMP_DUST_EN, -1, NULL, &positionJumpDustEntity, NULL);
 
-	position.y = __PIXELS_TO_METERS(20);
-	this->landDustEntity = Entity::addChildEntity(this, &LAND_DUST_EN, -1, NULL, &position, NULL);
+	Vector3D positionLandDustEntity = {0, __PIXELS_TO_METERS(18), 0};
+	this->landDustEntity = Entity::addChildEntity(this, &LAND_DUST_EN, -1, NULL, &positionLandDustEntity, NULL);
 }
 
 void Captain::startShooting()
@@ -251,7 +252,7 @@ void Captain::jump(bool checkIfYMovement)
 
 			// play jump animation
 			AnimatedEntity::playAnimation(this, "Jump");
-			AnimatedEntity::playAnimation(this->jumpDustEntity, "Show");
+			Dust::showAnimation(this->jumpDustEntity);
 
 			// play jump sound
 			SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
@@ -408,7 +409,7 @@ bool Captain::stopMovementOnAxis(u16 axis)
 				}
 			}
 
-			AnimatedEntity::playAnimation(this->landDustEntity, "Show");
+			Dust::showAnimation(this->landDustEntity);
 		}
 
 		if((__Z_AXIS & axis) || (!movementState && State::safeCast(CaptainIdle::getInstance()) != StateMachine::getCurrentState(this->stateMachine)))
