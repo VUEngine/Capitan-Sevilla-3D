@@ -57,6 +57,8 @@ extern const u16 COLLECT_SND[];
 extern const u16 FIRE_SND[];
 extern const u16 JUMP_SND[];
 extern EntityDefinition CAPTAIN_HEAD_PE;
+extern EntityDefinition LAND_DUST_EN;
+extern EntityDefinition JUMP_DUST_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -94,6 +96,8 @@ void Captain::constructor(CaptainDefinition* captainDefinition, s16 id, s16 inte
 	this->sausages = CAPTAIN_INITIAL_SAUSAGES;
 	this->keepAddingForce = false;
 	this->headEntity = NULL;
+	this->jumpDustEntity = NULL;
+	this->landDustEntity = NULL;
 
 	Captain::setInstance(this);
 
@@ -143,6 +147,9 @@ void Captain::ready(bool recursive)
 
 	// add sausage ejector
 	Captain::addSausageEjectorEntity(this);
+
+	// add dust entities
+	Captain::addDustEntity(this);
 }
 
 void Captain::addSausageEjectorEntity()
@@ -151,6 +158,15 @@ void Captain::addSausageEjectorEntity()
 	this->headEntity = Entity::addChildEntity(this, &CAPTAIN_HEAD_PE, -1, NULL, &position, NULL);
 
 	Object::addEventListener(this->headEntity, Object::safeCast(this), (EventListener)Captain::onProjectileEjected, kEventProjectileEjected);
+}
+
+void Captain::addDustEntity()
+{
+	Vector3D position = {0, __PIXELS_TO_METERS(16), 0};
+	this->jumpDustEntity = Entity::addChildEntity(this, &JUMP_DUST_EN, -1, NULL, &position, NULL);
+
+	position.y = __PIXELS_TO_METERS(20);
+	this->landDustEntity = Entity::addChildEntity(this, &LAND_DUST_EN, -1, NULL, &position, NULL);
 }
 
 void Captain::startShooting()
@@ -235,6 +251,7 @@ void Captain::jump(bool checkIfYMovement)
 
 			// play jump animation
 			AnimatedEntity::playAnimation(this, "Jump");
+			AnimatedEntity::playAnimation(this->jumpDustEntity, "Show");
 
 			// play jump sound
 			SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
@@ -390,6 +407,8 @@ bool Captain::stopMovementOnAxis(u16 axis)
 					AnimatedEntity::playAnimation(this, "Walk");
 				}
 			}
+
+			AnimatedEntity::playAnimation(this->landDustEntity, "Show");
 		}
 
 		if((__Z_AXIS & axis) || (!movementState && State::safeCast(CaptainIdle::getInstance()) != StateMachine::getCurrentState(this->stateMachine)))

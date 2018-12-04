@@ -24,115 +24,34 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <LocalizedEntity.h>
-#include <BgmapAnimatedSprite.h>
+#include <libgccvb.h>
+#include <AnimatedEntity.h>
+#include <ObjectAnimatedSprite.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE PressStartButtonTiles[];
-extern BYTE PressStartButtonMap[];
+extern BYTE JumpDustTiles[];
+extern BYTE JumpDustMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef PRESS_START_BUTTON_EN_ANIM =
-{
-	// number of frames of this animation function
-	9,
-
-	// frames to play in animation
-	{0, 0, 0, 1, 2, 12, 12, 2, 1},
-
-	// number of cycles a frame of animation is displayed
-	4,
-
-	// whether to play it in loop or not
-	true,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"0",
-};
-
-AnimationFunctionROMDef PRESS_START_BUTTON_ES_ANIM =
-{
-	// number of frames of this animation function
-	9,
-
-	// frames to play in animation
-	{3, 3, 3, 4, 5, 12, 12, 5, 4},
-
-	// number of cycles a frame of animation is displayed
-	4,
-
-	// whether to play it in loop or not
-	true,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"1",
-};
-AnimationFunctionROMDef PRESS_START_BUTTON_DE_ANIM =
-{
-	// number of frames of this animation function
-	9,
-
-	// frames to play in animation
-	{6, 6, 6, 7, 8, 12, 12, 8, 7},
-
-	// number of cycles a frame of animation is displayed
-	4,
-
-	// whether to play it in loop or not
-	true,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"2",
-};
-
-AnimationFunctionROMDef PRESS_START_BUTTON_FR_ANIM =
-{
-	// number of frames of this animation function
-	9,
-
-	// frames to play in animation
-	{9, 9, 9, 10, 11, 12, 12, 11, 10},
-
-	// number of cycles a frame of animation is displayed
-	4,
-
-	// whether to play it in loop or not
-	true,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"3",
-};
-
-AnimationFunctionROMDef PRESS_START_BUTTON_TRANSPARENT_ANIM =
+AnimationFunctionROMDef JUMP_DUST_HIDDEN_ANIM =
 {
 	// number of frames of this animation function
 	1,
 
 	// frames to play in animation
-	{12},
+	{3},
 
 	// number of cycles a frame of animation is displayed
-	4,
+	8,
 
 	// whether to play it in loop or not
 	false,
@@ -141,50 +60,68 @@ AnimationFunctionROMDef PRESS_START_BUTTON_TRANSPARENT_ANIM =
 	NULL,
 
 	// function's name
-	"Transparent",
+	"Hidden",
 };
 
-AnimationDescriptionROMDef PRESS_START_BUTTON_ANIM =
+AnimationFunctionROMDef JUMP_DUST_SHOW_ANIM =
+{
+	// number of frames of this animation function
+	4,
+
+	// frames to play in animation
+	{0, 1, 2, 3},
+
+	// number of cycles a frame of animation is displayed
+	8,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Show",
+};
+
+AnimationDescriptionROMDef JUMP_DUST_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&PRESS_START_BUTTON_EN_ANIM,
-		(AnimationFunction*)&PRESS_START_BUTTON_DE_ANIM,
-		(AnimationFunction*)&PRESS_START_BUTTON_ES_ANIM,
-		(AnimationFunction*)&PRESS_START_BUTTON_FR_ANIM,
-		(AnimationFunction*)&PRESS_START_BUTTON_TRANSPARENT_ANIM,
+		(AnimationFunction*)&JUMP_DUST_HIDDEN_ANIM,
+		(AnimationFunction*)&JUMP_DUST_SHOW_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMDef PRESS_START_BUTTON_CH =
+CharSetROMDef JUMP_DUST_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	19,
+	16,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SINGLE,
+	__ANIMATED_MULTI,
 
 	// char definition
-	PressStartButtonTiles,
+	JumpDustTiles,
 };
 
-TextureROMDef PRESS_START_BUTTON_TX =
+TextureROMDef JUMP_DUST_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&PRESS_START_BUTTON_CH,
+	(CharSetDefinition*)&JUMP_DUST_CH,
 
 	// bgmap definition
-	PressStartButtonMap,
+	JumpDustMap,
 
 	// cols (max 64)
-	19,
+	2,
 
 	// rows (max 64)
-	1,
+	2,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -192,7 +129,7 @@ TextureROMDef PRESS_START_BUTTON_TX =
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
-	1,
+	4,
 
 	// palette number (0-3)
 	0,
@@ -201,14 +138,14 @@ TextureROMDef PRESS_START_BUTTON_TX =
 	false,
 };
 
-BgmapSpriteROMDef PRESS_START_BUTTON_SPRITE =
+ObjectSpriteROMDef JUMP_DUST_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&PRESS_START_BUTTON_TX,
+		(TextureDefinition*)&JUMP_DUST_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -219,29 +156,26 @@ BgmapSpriteROMDef PRESS_START_BUTTON_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const PRESS_START_BUTTON_SPRITES[] =
+ObjectSpriteROMDef* const JUMP_DUST_SPRITES[] =
 {
-	&PRESS_START_BUTTON_SPRITE,
+	&JUMP_DUST_SPRITE,
 	NULL
 };
 
-LocalizedEntityROMDef PRESS_START_BUTTON_EN =
+AnimatedEntityROMDef JUMP_DUST_EN =
 {
 	{
 		// class allocator
-		__TYPE(LocalizedEntity),
+		__TYPE(AnimatedEntity),
 
 		// sprites
-		(SpriteROMDef**)PRESS_START_BUTTON_SPRITES,
+		(SpriteROMDef**)JUMP_DUST_SPRITES,
 
 		// collision shapes
 		(ShapeDefinition*)NULL,
@@ -251,15 +185,15 @@ LocalizedEntityROMDef PRESS_START_BUTTON_EN =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		0,
+		kNoType,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,
 	},
 
 	// pointer to the animation definition for the item
-	(AnimationDescription*)&PRESS_START_BUTTON_ANIM,
+	(AnimationDescription*)&JUMP_DUST_ANIM,
 
 	// initial animation
-	"Transparent",
+	"Hidden",
 };
