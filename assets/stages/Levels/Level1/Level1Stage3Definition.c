@@ -91,14 +91,14 @@ PositionedEntityROMDef LEVEL_1_STAGE_3_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_3_BUILDING_1_EN,	{ 172,  96,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_PLANK_EN,			{ 397, 164,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_STAGE_3_SIGN_EN,			{ 620,  74,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_SIGN_EN,			{ 624,  77,   32,   0},		0, NULL, NULL, NULL, false},
 	{&MANOLO_EM,						{ 708, 139,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2A_EN,	{ 626, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 658, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2B_EN,	{1014, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&BULLY_EM,							{1040, 148,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{1034, 159,    0,   0},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1060,  72,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1040,  72,   32,   0},		0, NULL, NULL, NULL, false},
 	{&BULLY_EM,							{1200, 148,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&KILL_COLLISION_CL,				{1260, 288,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},

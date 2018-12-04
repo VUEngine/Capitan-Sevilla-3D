@@ -58,7 +58,7 @@ void MovingOneWayEntity::setExtraInfo(void* extraInfo)
 {
 	if(extraInfo != NULL)
 	{
-		this->speed = __I_TO_FIX10_6((int)extraInfo);
+		this->speed = __F_TO_FIX10_6((int)extraInfo);
 	}
 }
 
