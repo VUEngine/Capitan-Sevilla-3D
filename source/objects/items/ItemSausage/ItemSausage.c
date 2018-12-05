@@ -60,7 +60,7 @@ void ItemSausage::collect()
 	SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 
 	// set shape to inactive so no other hits with this item can occur
-	Entity::activateShapes(this, false);
+	Entity::enableShapes(this, false);
 
 	AnimatedEntity::playAnimation(this, "Taken");
 }

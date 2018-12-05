@@ -122,7 +122,7 @@ void Projectile::stopMovement()
 	Actor::stopAllMovement(this);
 
 	// deactivate shapes
-	Entity::activateShapes(this, false);
+	Entity::enableShapes(this, false);
 
 	// hide me
 	Entity::hide(this);
