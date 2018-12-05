@@ -179,6 +179,6 @@ MovingOneWayEntityROMSpec CLOUDS_DARK_EN =
 	},
 
 	// speed (x axis)
-	__I_TO_FIX10_6(-1),
+	__F_TO_FIX10_6(-0.5f),
 };
 

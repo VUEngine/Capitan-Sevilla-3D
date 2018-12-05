@@ -73,8 +73,12 @@ typedef const CaptainSpec CaptainROMSpec;
 
 class Captain : Actor
 {
-	// sausage entity references for shooting
+	// projectile ejector entity references for shooting
 	Entity headEntity;
+	// jump dust entity reference
+	Entity jumpDustEntity;
+	// land dust entity reference
+	Entity landDustEntity;
 	// used to know if gap must be changed
 	Direction inputDirection;
 	// captain has energy

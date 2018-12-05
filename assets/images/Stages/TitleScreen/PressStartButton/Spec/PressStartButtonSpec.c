@@ -40,7 +40,7 @@ extern BYTE PressStartButtonMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec PRESS_START_BUTTON_EN_ANIM =
+AnimationFunctionROMDef PRESS_START_BUTTON_EN_ANIM =
 {
 	// number of frames of this animation function
 	9,
@@ -61,7 +61,7 @@ AnimationFunctionROMSpec PRESS_START_BUTTON_EN_ANIM =
 	"0",
 };
 
-AnimationFunctionROMSpec PRESS_START_BUTTON_ES_ANIM =
+AnimationFunctionROMDef PRESS_START_BUTTON_ES_ANIM =
 {
 	// number of frames of this animation function
 	9,
@@ -81,7 +81,7 @@ AnimationFunctionROMSpec PRESS_START_BUTTON_ES_ANIM =
 	// function's name
 	"1",
 };
-AnimationFunctionROMSpec PRESS_START_BUTTON_DE_ANIM =
+AnimationFunctionROMDef PRESS_START_BUTTON_DE_ANIM =
 {
 	// number of frames of this animation function
 	9,
@@ -102,7 +102,7 @@ AnimationFunctionROMSpec PRESS_START_BUTTON_DE_ANIM =
 	"2",
 };
 
-AnimationFunctionROMSpec PRESS_START_BUTTON_FR_ANIM =
+AnimationFunctionROMDef PRESS_START_BUTTON_FR_ANIM =
 {
 	// number of frames of this animation function
 	9,
@@ -123,7 +123,7 @@ AnimationFunctionROMSpec PRESS_START_BUTTON_FR_ANIM =
 	"3",
 };
 
-AnimationFunctionROMSpec PRESS_START_BUTTON_TRANSPARENT_ANIM =
+AnimationFunctionROMDef PRESS_START_BUTTON_TRANSPARENT_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -144,8 +144,7 @@ AnimationFunctionROMSpec PRESS_START_BUTTON_TRANSPARENT_ANIM =
 	"Transparent",
 };
 
-// an animation spec
-AnimationDescriptionROMSpec PRESS_START_BUTTON_ANIM =
+AnimationDescriptionROMDef PRESS_START_BUTTON_ANIM =
 {
 	// animation functions
 	{
@@ -158,7 +157,7 @@ AnimationDescriptionROMSpec PRESS_START_BUTTON_ANIM =
 	}
 };
 
-CharSetROMSpec PRESS_START_BUTTON_CH =
+CharSetROMDef PRESS_START_BUTTON_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -169,16 +168,16 @@ CharSetROMSpec PRESS_START_BUTTON_CH =
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_SINGLE,
 
-	// char spec
+	// char definition
 	PressStartButtonTiles,
 };
 
-TextureROMSpec PRESS_START_BUTTON_TX =
+TextureROMDef PRESS_START_BUTTON_TX =
 {
-	// charset spec
-	(CharSetSpec*)&PRESS_START_BUTTON_CH,
+	// charset definition
+	(CharSetDefinition*)&PRESS_START_BUTTON_CH,
 
-	// bgmap spec
+	// bgmap definition
 	PressStartButtonMap,
 
 	// cols (max 64)
@@ -202,14 +201,14 @@ TextureROMSpec PRESS_START_BUTTON_TX =
 	false,
 };
 
-BgmapSpriteROMSpec PRESS_START_BUTTON_SPRITE =
+BgmapSpriteROMDef PRESS_START_BUTTON_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
-		// texture spec
-		(TextureSpec*)&PRESS_START_BUTTON_TX,
+		// texture definition
+		(TextureDefinition*)&PRESS_START_BUTTON_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -219,7 +218,7 @@ BgmapSpriteROMSpec PRESS_START_BUTTON_SPRITE =
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
 	__WORLD_BGMAP,
 
 	// pointer to affine/hbias manipulation function
@@ -229,23 +228,23 @@ BgmapSpriteROMSpec PRESS_START_BUTTON_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const PRESS_START_BUTTON_SPRITES[] =
+BgmapSpriteROMDef* const PRESS_START_BUTTON_SPRITES[] =
 {
 	&PRESS_START_BUTTON_SPRITE,
 	NULL
 };
 
-LocalizedEntityROMSpec PRESS_START_BUTTON_EN =
+LocalizedEntityROMDef PRESS_START_BUTTON_EN =
 {
 	{
 		// class allocator
 		__TYPE(LocalizedEntity),
 
 		// sprites
-		(SpriteROMSpec**)PRESS_START_BUTTON_SPRITES,
+		(SpriteROMDef**)PRESS_START_BUTTON_SPRITES,
 
 		// collision shapes
-		(ShapeSpec*)NULL,
+		(ShapeDefinition*)NULL,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -258,7 +257,7 @@ LocalizedEntityROMSpec PRESS_START_BUTTON_EN =
 		(PhysicalSpecification*)NULL,
 	},
 
-	// pointer to the animation spec for the item
+	// pointer to the animation definition for the item
 	(AnimationDescription*)&PRESS_START_BUTTON_ANIM,
 
 	// initial animation

@@ -25,67 +25,34 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
-#include <MessageDispatcher.h>
-#include <Optics.h>
-#include <PhysicalWorld.h>
-#include <MessageDispatcher.h>
+#include <CollisionManager.h>
 #include <PlatformerLevelState.h>
-#include <debugUtilities.h>
-#include "MovingOneWayEntity.h"
+#include "Dust.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void MovingOneWayEntity::constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, s16 id, s16 internalId, const char* const name)
+void Dust::constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
 {
-	// construct base
-	Base::constructor((ActorSpec*)&movingOneWayEntitySpec->actorSpec, id, internalId, name);
-
-	this->speed = movingOneWayEntitySpec->speed;
+	Base::constructor(animatedEntityDefinition, id, internalId, name);
 }
 
-void MovingOneWayEntity::destructor()
+void Dust::destructor()
 {
-	// destroy the super object
+	// delete the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
 
-// override speed via extra info if given
-void MovingOneWayEntity::setExtraInfo(void* extraInfo)
+void Dust::showAnimation()
 {
-	if(extraInfo != NULL)
-	{
-		this->speed = __F_TO_FIX10_6((int)extraInfo);
-	}
+	AnimatedEntity::playAnimation(this, "Show");
+	Container::setInheritEnvironment(this, false);
 }
 
-void MovingOneWayEntity::ready(bool recursive)
+void Dust::onShowAnimationComplete()
 {
-	// call base
-	Base::ready(this, recursive);
-
-	// start movement
-	MovingOneWayEntity::startMovement(this);
-}
-
-void MovingOneWayEntity::startMovement()
-{
-	if(this->speed != 0)
-	{
-		Velocity velocity = {this->speed, 0, 0};
-		Actor::moveUniformly(this, &velocity);
-	}
-}
-
-void MovingOneWayEntity::stopMovement()
-{
-	Actor::stopAllMovement(this);
-}
-
-bool MovingOneWayEntity::respawn()
-{
-	return false;
+	Container::setInheritEnvironment(this, true);
 }

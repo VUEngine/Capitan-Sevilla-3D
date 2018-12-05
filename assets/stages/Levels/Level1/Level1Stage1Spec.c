@@ -186,7 +186,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&LEVEL_1_STAGE_1_BUILDING_4_EN,	{ 996, 102,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&BUSH_BG_1_EN,						{1138,  96,    0,   0},		0, NULL, NULL, NULL, false},
+	{&BUSH_BG_1_EN,						{1138, 112,   64,   0},		0, NULL, NULL, NULL, false},
 	{&LANTERN_1_EN,						{1166, 134,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&TREE_1_EN,						{1256, 104,    0,   0},		0, NULL, NULL, NULL, false},
@@ -195,7 +195,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&FENCE_EN,							{1376, 135,    0,   0},		0, NULL, NULL, NULL, false},
 	{&PLAYGROUND_EN,					{1390,  92,    0,   0},		0, NULL, NULL, NULL, false},
 	{&STATUE_1_EN,						{1486,  80,    0,   0},		0, NULL, NULL, NULL, false},
-	{&BUSH_BG_2_EN,						{1534,  96,    0,   0},		0, NULL, NULL, NULL, false},
+	{&BUSH_BG_2_EN,						{1534, 112,   64,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,						{1570, 134,    0,   0},		0, NULL, NULL, NULL, false},
 

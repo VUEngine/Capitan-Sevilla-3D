@@ -24,8 +24,10 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <BgmapSprite.h>
+#include <libgccvb.h>
+#include <AnimatedEntity.h>
+#include <Dust.h>
+#include <ObjectAnimatedSprite.h>
 #include <macros.h>
 
 
@@ -33,42 +35,94 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BushBg2Tiles[];
-extern BYTE BushBg2Map[];
+extern BYTE LandDustTiles[];
+extern BYTE LandDustMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec BUSH_BG_2_CH =
+AnimationFunctionROMDef LAND_DUST_HIDDEN_ANIM =
+{
+	// number of frames of this animation function
+	1,
+
+	// frames to play in animation
+	{4},
+
+	// number of cycles a frame of animation is displayed
+	8,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	NULL,
+
+	// function's name
+	"Hidden",
+};
+
+AnimationFunctionROMDef LAND_DUST_SHOW_ANIM =
+{
+	// number of frames of this animation function
+	5,
+
+	// frames to play in animation
+	{0, 1, 2, 3, 4},
+
+	// number of cycles a frame of animation is displayed
+	8,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	(EventListener)&Dust_onShowAnimationComplete,
+
+	// function's name
+	"Show",
+};
+
+AnimationDescriptionROMDef LAND_DUST_ANIM =
+{
+	// animation functions
+	{
+		(AnimationFunction*)&LAND_DUST_HIDDEN_ANIM,
+		(AnimationFunction*)&LAND_DUST_SHOW_ANIM,
+		NULL,
+	}
+};
+
+CharSetROMDef LAND_DUST_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	40,
+	25,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
+	__ANIMATED_MULTI,
 
-	// char spec
-	BushBg2Tiles,
+	// char definition
+	LandDustTiles,
 };
 
-TextureROMSpec BUSH_BG_2_TX =
+TextureROMDef LAND_DUST_TX =
 {
-	// charset spec
-	(CharSetSpec*)&BUSH_BG_2_CH,
+	// charset definition
+	(CharSetDefinition*)&LAND_DUST_CH,
 
-	// bgmap spec
-	BushBg2Map,
+	// bgmap definition
+	LandDustMap,
 
 	// cols (max 64)
-	27,
+	5,
 
 	// rows (max 64)
-	7,
+	1,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -76,66 +130,71 @@ TextureROMSpec BUSH_BG_2_TX =
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
-	1,
+	5,
 
 	// palette number (0-3)
-	1,
+	0,
 
 	// recyclable
 	false,
 };
 
-BgmapSpriteROMSpec BUSH_BG_2_SPRITE =
+ObjectSpriteROMDef LAND_DUST_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapSprite),
+		__TYPE(ObjectAnimatedSprite),
 
-		// texture spec
-		(TextureSpec*)&BUSH_BG_2_TX,
+		// texture definition
+		(TextureDefinition*)&LAND_DUST_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 4, 4},
+		{0, 0, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	// make sure to use the proper corresponding sprite type throughout the definition (BgmapSprite or ObjectSprite)
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const BUSH_BG_2_SPRITES[] =
+ObjectSpriteROMDef* const LAND_DUST_SPRITES[] =
 {
-	&BUSH_BG_2_SPRITE,
+	&LAND_DUST_SPRITE,
 	NULL
 };
 
-EntityROMSpec BUSH_BG_2_EN =
+AnimatedEntityROMDef LAND_DUST_EN =
 {
-	// class allocator
-	__TYPE(Entity),
+	{
+		// class allocator
+		__TYPE(Dust),
 
-	// sprites
-	(SpriteROMSpec**)BUSH_BG_2_SPRITES,
+		// sprites
+		(SpriteROMDef**)LAND_DUST_SPRITES,
 
-	// collision shapes
-	NULL,
+		// collision shapes
+		(ShapeDefinition*)NULL,
 
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
 
-	// gameworld's character's type
-	kNoType,
+		// gameworld's character's type
+		kNoType,
 
-	// physical specification
-	NULL,
+		// physical specification
+		(PhysicalSpecification*)NULL,
+	},
+
+	// pointer to the animation definition for the item
+	(AnimationDescription*)&LAND_DUST_ANIM,
+
+	// initial animation
+	"Hidden",
 };

@@ -44,6 +44,7 @@
 #include <PlatformerLevelState.h>
 #include <MovingOneWayEntity.h>
 #include <ProjectileEjector.h>
+#include <Dust.h>
 #include <debugConfig.h>
 
 
@@ -56,7 +57,9 @@ extern double fabs (double);
 extern const u16 COLLECT_SND[];
 extern const u16 FIRE_SND[];
 extern const u16 JUMP_SND[];
-extern EntitySpec CAPTAIN_HEAD_PE;
+extern EntityDefinition CAPTAIN_HEAD_PE;
+extern EntityDefinition LAND_DUST_EN;
+extern EntityDefinition JUMP_DUST_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -79,10 +82,10 @@ static void Captain::setInstance(Captain instance)
 	captain = instance;
 }
 
-void Captain::constructor(CaptainSpec* captainSpec, s16 id, s16 internalId, const char* const name)
+void Captain::constructor(CaptainDefinition* captainDefinition, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorSpec*)captainSpec, id, internalId, name);
+	Base::constructor((ActorDefinition*)captainDefinition, id, internalId, name);
 
 	// construct the captain's state machine
 	this->stateMachine = new StateMachine(this);
@@ -94,6 +97,8 @@ void Captain::constructor(CaptainSpec* captainSpec, s16 id, s16 internalId, cons
 	this->sausages = CAPTAIN_INITIAL_SAUSAGES;
 	this->keepAddingForce = false;
 	this->headEntity = NULL;
+	this->jumpDustEntity = NULL;
+	this->landDustEntity = NULL;
 
 	Captain::setInstance(this);
 
@@ -125,7 +130,7 @@ void Captain::destructor()
 
 void Captain::ready(bool recursive)
 {
-	Entity::activateShapes(this, true);
+	Entity::informShapesThatStartedMoving(this);
 
 	// call base
 	Base::ready(this, recursive);
@@ -143,6 +148,9 @@ void Captain::ready(bool recursive)
 
 	// add sausage ejector
 	Captain::addSausageEjectorEntity(this);
+
+	// add dust entities
+	Captain::addDustEntity(this);
 }
 
 void Captain::addSausageEjectorEntity()
@@ -151,6 +159,15 @@ void Captain::addSausageEjectorEntity()
 	this->headEntity = Entity::addChildEntity(this, &CAPTAIN_HEAD_PE, -1, NULL, &position, NULL);
 
 	Object::addEventListener(this->headEntity, Object::safeCast(this), (EventListener)Captain::onProjectileEjected, kEventProjectileEjected);
+}
+
+void Captain::addDustEntity()
+{
+	Vector3D positionJumpDustEntity = {0, __PIXELS_TO_METERS(14), 0};
+	this->jumpDustEntity = Entity::addChildEntity(this, &JUMP_DUST_EN, -1, NULL, &positionJumpDustEntity, NULL);
+
+	Vector3D positionLandDustEntity = {0, __PIXELS_TO_METERS(18), 0};
+	this->landDustEntity = Entity::addChildEntity(this, &LAND_DUST_EN, -1, NULL, &positionLandDustEntity, NULL);
 }
 
 void Captain::startShooting()
@@ -235,6 +252,7 @@ void Captain::jump(bool checkIfYMovement)
 
 			// play jump animation
 			AnimatedEntity::playAnimation(this, "Jump");
+			Dust::showAnimation(this->jumpDustEntity);
 
 			// play jump sound
 			SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
@@ -390,6 +408,8 @@ bool Captain::stopMovementOnAxis(u16 axis)
 					AnimatedEntity::playAnimation(this, "Walk");
 				}
 			}
+
+			Dust::showAnimation(this->landDustEntity);
 		}
 
 		if((__Z_AXIS & axis) || (!movementState && State::safeCast(CaptainIdle::getInstance()) != StateMachine::getCurrentState(this->stateMachine)))
@@ -509,16 +529,16 @@ void Captain::toggleFlashPalette(Entity entity)
 		Texture texture = Sprite::getTexture(sprite);
 
 		// get original palette
-		TextureSpec* textureSpec = Texture::getSpec(texture);
+		TextureDefinition* textureDefinition = Texture::getDefinition(texture);
 
 		// set new palette
-		if(Texture::getPalette(texture) == textureSpec->palette)
+		if(Texture::getPalette(texture) == textureDefinition->palette)
 		{
 			Texture::setPalette(texture, CAPTAIN_FLASH_PALETTE);
 		}
 		else
 		{
-			Texture::setPalette(texture, textureSpec->palette);
+			Texture::setPalette(texture, textureDefinition->palette);
 		}
 
 		// rewrite sprite to bgmap to apply changed palette
@@ -538,8 +558,8 @@ void Captain::resetPalette(Entity entity)
 		Texture texture = Sprite::getTexture(sprite);
 
 		// get original palette and set it
-		TextureSpec* textureSpec = Texture::getSpec(texture);
-		Texture::setPalette(texture, textureSpec->palette);
+		TextureDefinition* textureDefinition = Texture::getDefinition(texture);
+		Texture::setPalette(texture, textureDefinition->palette);
 
 		// rewrite sprite to bgmap to apply changed palette
 		Sprite::rewrite(sprite);
@@ -948,27 +968,27 @@ void Captain::updateSprite(Direction direction)
 	CharSet charSet = Texture::getCharSet(Sprite::getTexture(Sprite::safeCast(VirtualList::front(this->sprites))), true);
 	CharSet charSetBlack = Texture::getCharSet(Sprite::getTexture(Sprite::safeCast(VirtualList::back(this->sprites))), true);
 
-	CharSetSpec* charSetSpec = NULL;
-	CharSetSpec* charSetBlackSpec = NULL;
+	CharSetDefinition* charSetDefinition = NULL;
+	CharSetDefinition* charSetBlackDefinition = NULL;
 
 	switch(direction.x)
 	{
 		case __LEFT:
 
-			charSetSpec = &CAPTAIN_LEFT_CH;
-			charSetBlackSpec = &CAPTAIN_LEFT_BLACK_CH;
+			charSetDefinition = &CAPTAIN_LEFT_CH;
+			charSetBlackDefinition = &CAPTAIN_LEFT_BLACK_CH;
 			break;
 
 		default:
 		case __RIGHT:
 
-			charSetSpec = &CAPTAIN_RIGHT_CH;
-			charSetBlackSpec = &CAPTAIN_RIGHT_BLACK_CH;
+			charSetDefinition = &CAPTAIN_RIGHT_CH;
+			charSetBlackDefinition = &CAPTAIN_RIGHT_BLACK_CH;
 			break;
 	}
 
-	CharSet::setCharSetSpec(charSet, charSetSpec);
-	CharSet::setCharSetSpec(charSetBlack, charSetBlackSpec);
+	CharSet::setCharSetDefinition(charSet, charSetDefinition);
+	CharSet::setCharSetDefinition(charSetBlack, charSetBlackDefinition);
 	CharSet::rewrite(charSet);
 	CharSet::rewrite(charSetBlack);
 }
