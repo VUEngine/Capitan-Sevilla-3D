@@ -109,10 +109,10 @@ AnimationFunctionROMSpec CAPTAIN_KNEEL_DOWN_ANIM =
 AnimationFunctionROMSpec CAPTAIN_JUMP_ANIM =
 {
 	// number of frames of this animation function
-	18,
+	20,
 
 	// frames to play in animation
-	{26, 27, 28, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30},
+	{26, 27, 28, 29, 30, 31, 32, 31, 32, 31, 32, 31, 32, 31, 32, 31, 32, 31, 32, 31, 32, 31, 32},
 
 	// number of cycles a frame of animation is displayed
 	3,
@@ -133,7 +133,7 @@ AnimationFunctionROMSpec CAPTAIN_FALL_ANIM =
 	17,
 
 	// frames to play in animation
-	{31, 32, 33, 34, 33, 34, 33, 34, 33, 34, 33, 34, 33, 34, 33, 34, 33, 34},
+	{33, 34, 35, 36, 35, 36, 35, 36, 35, 36, 35, 36, 35, 36, 35, 36, 35, 36},
 
 	// number of cycles a frame of animation is displayed
 	3,
@@ -151,10 +151,10 @@ AnimationFunctionROMSpec CAPTAIN_FALL_ANIM =
 AnimationFunctionROMSpec CAPTAIN_LAND_ANIM =
 {
 	// number of frames of this animation function
-	2,
+	3,
 
 	// frames to play in animation
-	{35, 36},
+	{37, 38, 39},
 
 	// number of cycles a frame of animation is displayed
 	3,
@@ -172,13 +172,13 @@ AnimationFunctionROMSpec CAPTAIN_LAND_ANIM =
 AnimationFunctionROMSpec CAPTAIN_HIT_ANIM =
 {
 	// number of frames of this animation function
-	32,
+	16,
 
 	// frames to play in animation
-	{21, 20, 37, 37, 38, 38, 37, 37, 38, 38, 37, 37, 38, 38, 39, 39, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40, 40},
+	{21, 20, 40, 41, 40, 41, 40, 41, 42, 43, 43, 43, 43, 43, 43, 43},
 
 	// number of cycles a frame of animation is displayed
-	3,
+	4,
 
 	// whether to play it in loop or not
 	false,
@@ -196,7 +196,7 @@ AnimationFunctionROMSpec CAPTAIN_DEAD_ANIM =
 	1,
 
 	// frames to play in animation
-	{41},
+	{44},
 
 	// number of cycles a frame of animation is displayed
 	16,
