@@ -43,7 +43,7 @@ extern BYTE LandDustMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef LAND_DUST_HIDDEN_ANIM =
+AnimationFunctionROMSpec LAND_DUST_HIDDEN_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -64,7 +64,7 @@ AnimationFunctionROMDef LAND_DUST_HIDDEN_ANIM =
 	"Hidden",
 };
 
-AnimationFunctionROMDef LAND_DUST_SHOW_ANIM =
+AnimationFunctionROMSpec LAND_DUST_SHOW_ANIM =
 {
 	// number of frames of this animation function
 	5,
@@ -85,7 +85,7 @@ AnimationFunctionROMDef LAND_DUST_SHOW_ANIM =
 	"Show",
 };
 
-AnimationDescriptionROMDef LAND_DUST_ANIM =
+AnimationDescriptionROMSpec LAND_DUST_ANIM =
 {
 	// animation functions
 	{
@@ -95,7 +95,7 @@ AnimationDescriptionROMDef LAND_DUST_ANIM =
 	}
 };
 
-CharSetROMDef LAND_DUST_CH =
+CharSetROMSpec LAND_DUST_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -110,10 +110,10 @@ CharSetROMDef LAND_DUST_CH =
 	LandDustTiles,
 };
 
-TextureROMDef LAND_DUST_TX =
+TextureROMSpec LAND_DUST_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&LAND_DUST_CH,
+	(CharSetSpec*)&LAND_DUST_CH,
 
 	// bgmap definition
 	LandDustMap,
@@ -139,14 +139,14 @@ TextureROMDef LAND_DUST_TX =
 	false,
 };
 
-ObjectSpriteROMDef LAND_DUST_SPRITE =
+ObjectSpriteROMSpec LAND_DUST_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&LAND_DUST_TX,
+		(TextureSpec*)&LAND_DUST_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -163,23 +163,23 @@ ObjectSpriteROMDef LAND_DUST_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const LAND_DUST_SPRITES[] =
+ObjectSpriteROMSpec* const LAND_DUST_SPRITES[] =
 {
 	&LAND_DUST_SPRITE,
 	NULL
 };
 
-AnimatedEntityROMDef LAND_DUST_EN =
+AnimatedEntityROMSpec LAND_DUST_EN =
 {
 	{
 		// class allocator
 		__TYPE(Dust),
 
 		// sprites
-		(SpriteROMDef**)LAND_DUST_SPRITES,
+		(SpriteROMSpec**)LAND_DUST_SPRITES,
 
 		// collision shapes
-		(ShapeDefinition*)NULL,
+		(ShapeSpec*)NULL,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size

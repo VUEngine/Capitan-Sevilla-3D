@@ -57,9 +57,9 @@ extern double fabs (double);
 extern const u16 COLLECT_SND[];
 extern const u16 FIRE_SND[];
 extern const u16 JUMP_SND[];
-extern EntityDefinition CAPTAIN_HEAD_PE;
-extern EntityDefinition LAND_DUST_EN;
-extern EntityDefinition JUMP_DUST_EN;
+extern EntitySpec CAPTAIN_HEAD_PE;
+extern EntitySpec LAND_DUST_EN;
+extern EntitySpec JUMP_DUST_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -82,10 +82,10 @@ static void Captain::setInstance(Captain instance)
 	captain = instance;
 }
 
-void Captain::constructor(CaptainDefinition* captainDefinition, s16 id, s16 internalId, const char* const name)
+void Captain::constructor(CaptainSpec* captainSpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorDefinition*)captainDefinition, id, internalId, name);
+	Base::constructor((ActorSpec*)captainSpec, id, internalId, name);
 
 	// construct the captain's state machine
 	this->stateMachine = new StateMachine(this);
@@ -529,16 +529,16 @@ void Captain::toggleFlashPalette(Entity entity)
 		Texture texture = Sprite::getTexture(sprite);
 
 		// get original palette
-		TextureDefinition* textureDefinition = Texture::getDefinition(texture);
+		TextureSpec* textureSpec = Texture::getSpec(texture);
 
 		// set new palette
-		if(Texture::getPalette(texture) == textureDefinition->palette)
+		if(Texture::getPalette(texture) == textureSpec->palette)
 		{
 			Texture::setPalette(texture, CAPTAIN_FLASH_PALETTE);
 		}
 		else
 		{
-			Texture::setPalette(texture, textureDefinition->palette);
+			Texture::setPalette(texture, textureSpec->palette);
 		}
 
 		// rewrite sprite to bgmap to apply changed palette
@@ -558,8 +558,8 @@ void Captain::resetPalette(Entity entity)
 		Texture texture = Sprite::getTexture(sprite);
 
 		// get original palette and set it
-		TextureDefinition* textureDefinition = Texture::getDefinition(texture);
-		Texture::setPalette(texture, textureDefinition->palette);
+		TextureSpec* textureSpec = Texture::getSpec(texture);
+		Texture::setPalette(texture, textureSpec->palette);
 
 		// rewrite sprite to bgmap to apply changed palette
 		Sprite::rewrite(sprite);
@@ -968,27 +968,27 @@ void Captain::updateSprite(Direction direction)
 	CharSet charSet = Texture::getCharSet(Sprite::getTexture(Sprite::safeCast(VirtualList::front(this->sprites))), true);
 	CharSet charSetBlack = Texture::getCharSet(Sprite::getTexture(Sprite::safeCast(VirtualList::back(this->sprites))), true);
 
-	CharSetDefinition* charSetDefinition = NULL;
-	CharSetDefinition* charSetBlackDefinition = NULL;
+	CharSetSpec* charSetSpec = NULL;
+	CharSetSpec* charSetBlackSpec = NULL;
 
 	switch(direction.x)
 	{
 		case __LEFT:
 
-			charSetDefinition = &CAPTAIN_LEFT_CH;
-			charSetBlackDefinition = &CAPTAIN_LEFT_BLACK_CH;
+			charSetSpec = &CAPTAIN_LEFT_CH;
+			charSetBlackSpec = &CAPTAIN_LEFT_BLACK_CH;
 			break;
 
 		default:
 		case __RIGHT:
 
-			charSetDefinition = &CAPTAIN_RIGHT_CH;
-			charSetBlackDefinition = &CAPTAIN_RIGHT_BLACK_CH;
+			charSetSpec = &CAPTAIN_RIGHT_CH;
+			charSetBlackSpec = &CAPTAIN_RIGHT_BLACK_CH;
 			break;
 	}
 
-	CharSet::setCharSetDefinition(charSet, charSetDefinition);
-	CharSet::setCharSetDefinition(charSetBlack, charSetBlackDefinition);
+	CharSet::setCharSetSpec(charSet, charSetSpec);
+	CharSet::setCharSetSpec(charSetBlack, charSetBlackSpec);
 	CharSet::rewrite(charSet);
 	CharSet::rewrite(charSetBlack);
 }

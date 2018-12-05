@@ -43,7 +43,7 @@ extern BYTE JumpDustMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef JUMP_DUST_HIDDEN_ANIM =
+AnimationFunctionROMSpec JUMP_DUST_HIDDEN_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -64,7 +64,7 @@ AnimationFunctionROMDef JUMP_DUST_HIDDEN_ANIM =
 	"Hidden",
 };
 
-AnimationFunctionROMDef JUMP_DUST_SHOW_ANIM =
+AnimationFunctionROMSpec JUMP_DUST_SHOW_ANIM =
 {
 	// number of frames of this animation function
 	4,
@@ -85,7 +85,7 @@ AnimationFunctionROMDef JUMP_DUST_SHOW_ANIM =
 	"Show",
 };
 
-AnimationDescriptionROMDef JUMP_DUST_ANIM =
+AnimationDescriptionROMSpec JUMP_DUST_ANIM =
 {
 	// animation functions
 	{
@@ -95,7 +95,7 @@ AnimationDescriptionROMDef JUMP_DUST_ANIM =
 	}
 };
 
-CharSetROMDef JUMP_DUST_CH =
+CharSetROMSpec JUMP_DUST_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -110,10 +110,10 @@ CharSetROMDef JUMP_DUST_CH =
 	JumpDustTiles,
 };
 
-TextureROMDef JUMP_DUST_TX =
+TextureROMSpec JUMP_DUST_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&JUMP_DUST_CH,
+	(CharSetSpec*)&JUMP_DUST_CH,
 
 	// bgmap definition
 	JumpDustMap,
@@ -139,14 +139,14 @@ TextureROMDef JUMP_DUST_TX =
 	false,
 };
 
-ObjectSpriteROMDef JUMP_DUST_SPRITE =
+ObjectSpriteROMSpec JUMP_DUST_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&JUMP_DUST_TX,
+		(TextureSpec*)&JUMP_DUST_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -163,23 +163,23 @@ ObjectSpriteROMDef JUMP_DUST_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMDef* const JUMP_DUST_SPRITES[] =
+ObjectSpriteROMSpec* const JUMP_DUST_SPRITES[] =
 {
 	&JUMP_DUST_SPRITE,
 	NULL
 };
 
-AnimatedEntityROMDef JUMP_DUST_EN =
+AnimatedEntityROMSpec JUMP_DUST_EN =
 {
 	{
 		// class allocator
 		__TYPE(Dust),
 
 		// sprites
-		(SpriteROMDef**)JUMP_DUST_SPRITES,
+		(SpriteROMSpec**)JUMP_DUST_SPRITES,
 
 		// collision shapes
-		(ShapeDefinition*)NULL,
+		(ShapeSpec*)NULL,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size

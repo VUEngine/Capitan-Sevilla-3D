@@ -40,7 +40,7 @@ extern BYTE PressStartButtonMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMDef PRESS_START_BUTTON_EN_ANIM =
+AnimationFunctionROMSpec PRESS_START_BUTTON_EN_ANIM =
 {
 	// number of frames of this animation function
 	9,
@@ -61,7 +61,7 @@ AnimationFunctionROMDef PRESS_START_BUTTON_EN_ANIM =
 	"0",
 };
 
-AnimationFunctionROMDef PRESS_START_BUTTON_ES_ANIM =
+AnimationFunctionROMSpec PRESS_START_BUTTON_ES_ANIM =
 {
 	// number of frames of this animation function
 	9,
@@ -81,7 +81,7 @@ AnimationFunctionROMDef PRESS_START_BUTTON_ES_ANIM =
 	// function's name
 	"1",
 };
-AnimationFunctionROMDef PRESS_START_BUTTON_DE_ANIM =
+AnimationFunctionROMSpec PRESS_START_BUTTON_DE_ANIM =
 {
 	// number of frames of this animation function
 	9,
@@ -102,7 +102,7 @@ AnimationFunctionROMDef PRESS_START_BUTTON_DE_ANIM =
 	"2",
 };
 
-AnimationFunctionROMDef PRESS_START_BUTTON_FR_ANIM =
+AnimationFunctionROMSpec PRESS_START_BUTTON_FR_ANIM =
 {
 	// number of frames of this animation function
 	9,
@@ -123,7 +123,7 @@ AnimationFunctionROMDef PRESS_START_BUTTON_FR_ANIM =
 	"3",
 };
 
-AnimationFunctionROMDef PRESS_START_BUTTON_TRANSPARENT_ANIM =
+AnimationFunctionROMSpec PRESS_START_BUTTON_TRANSPARENT_ANIM =
 {
 	// number of frames of this animation function
 	1,
@@ -144,7 +144,7 @@ AnimationFunctionROMDef PRESS_START_BUTTON_TRANSPARENT_ANIM =
 	"Transparent",
 };
 
-AnimationDescriptionROMDef PRESS_START_BUTTON_ANIM =
+AnimationDescriptionROMSpec PRESS_START_BUTTON_ANIM =
 {
 	// animation functions
 	{
@@ -157,7 +157,7 @@ AnimationDescriptionROMDef PRESS_START_BUTTON_ANIM =
 	}
 };
 
-CharSetROMDef PRESS_START_BUTTON_CH =
+CharSetROMSpec PRESS_START_BUTTON_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -172,10 +172,10 @@ CharSetROMDef PRESS_START_BUTTON_CH =
 	PressStartButtonTiles,
 };
 
-TextureROMDef PRESS_START_BUTTON_TX =
+TextureROMSpec PRESS_START_BUTTON_TX =
 {
 	// charset definition
-	(CharSetDefinition*)&PRESS_START_BUTTON_CH,
+	(CharSetSpec*)&PRESS_START_BUTTON_CH,
 
 	// bgmap definition
 	PressStartButtonMap,
@@ -201,14 +201,14 @@ TextureROMDef PRESS_START_BUTTON_TX =
 	false,
 };
 
-BgmapSpriteROMDef PRESS_START_BUTTON_SPRITE =
+BgmapSpriteROMSpec PRESS_START_BUTTON_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture definition
-		(TextureDefinition*)&PRESS_START_BUTTON_TX,
+		(TextureSpec*)&PRESS_START_BUTTON_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -228,23 +228,23 @@ BgmapSpriteROMDef PRESS_START_BUTTON_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMDef* const PRESS_START_BUTTON_SPRITES[] =
+BgmapSpriteROMSpec* const PRESS_START_BUTTON_SPRITES[] =
 {
 	&PRESS_START_BUTTON_SPRITE,
 	NULL
 };
 
-LocalizedEntityROMDef PRESS_START_BUTTON_EN =
+LocalizedEntityROMSpec PRESS_START_BUTTON_EN =
 {
 	{
 		// class allocator
 		__TYPE(LocalizedEntity),
 
 		// sprites
-		(SpriteROMDef**)PRESS_START_BUTTON_SPRITES,
+		(SpriteROMSpec**)PRESS_START_BUTTON_SPRITES,
 
 		// collision shapes
-		(ShapeDefinition*)NULL,
+		(ShapeSpec*)NULL,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
