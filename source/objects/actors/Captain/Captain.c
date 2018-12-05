@@ -163,7 +163,7 @@ void Captain::addSausageEjectorEntity()
 
 void Captain::addDustEntity()
 {
-	Vector3D positionJumpDustEntity = {0, __PIXELS_TO_METERS(14), 0};
+	Vector3D positionJumpDustEntity = {0, __PIXELS_TO_METERS(16), 0};
 	this->jumpDustEntity = Entity::addChildEntity(this, &JUMP_DUST_EN, -1, NULL, &positionJumpDustEntity, NULL);
 
 	Vector3D positionLandDustEntity = {0, __PIXELS_TO_METERS(18), 0};

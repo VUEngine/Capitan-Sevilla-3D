@@ -49,7 +49,7 @@ AnimationFunctionROMSpec LAND_DUST_HIDDEN_ANIM =
 	1,
 
 	// frames to play in animation
-	{4},
+	{5},
 
 	// number of cycles a frame of animation is displayed
 	8,
@@ -67,10 +67,10 @@ AnimationFunctionROMSpec LAND_DUST_HIDDEN_ANIM =
 AnimationFunctionROMSpec LAND_DUST_SHOW_ANIM =
 {
 	// number of frames of this animation function
-	5,
+	6,
 
 	// frames to play in animation
-	{0, 1, 2, 3, 4},
+	{0, 1, 2, 3, 4, 5},
 
 	// number of cycles a frame of animation is displayed
 	8,
@@ -100,7 +100,7 @@ CharSetROMSpec LAND_DUST_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	25,
+	30,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -130,7 +130,7 @@ TextureROMSpec LAND_DUST_TX =
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
-	5,
+	6,
 
 	// palette number (0-3)
 	0,

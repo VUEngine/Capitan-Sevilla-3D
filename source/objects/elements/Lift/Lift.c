@@ -70,7 +70,7 @@ bool Lift::handleMessage(Telegram telegram)
 		{
 			AnimatedEntity::playAnimation(this, "Closed");
 
-			// start delayed moving upwards
+			// start delayed moving
 			MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kLiftStart, NULL);
 
 			// start fade out effect
