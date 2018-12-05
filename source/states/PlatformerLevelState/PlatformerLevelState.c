@@ -49,8 +49,8 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern PlatformerLevelDefinition LEVEL_1_LV;
-extern EntityDefinition CAPTAIN_AC;
+extern PlatformerLevelSpec LEVEL_1_LV;
+extern EntitySpec CAPTAIN_AC;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -100,20 +100,20 @@ void PlatformerLevelState::enter(void* owner)
 	if(initialPosition)
 	{
 		// set world's limits
-		Camera::setStageSize(Camera::getInstance(), Size::getFromPixelSize(this->currentStageEntryPoint->stageDefinition->level.pixelSize));
+		Camera::setStageSize(Camera::getInstance(), Size::getFromPixelSize(this->currentStageEntryPoint->stageSpec->level.pixelSize));
 
 		// focus screen on new position
 		Vector3D screenPosition =
 		{
 			initialPosition->x - __PIXELS_TO_METERS(__HALF_SCREEN_WIDTH),
 			initialPosition->y - __PIXELS_TO_METERS(__HALF_SCREEN_HEIGHT),
-			__PIXELS_TO_METERS(this->currentStageEntryPoint->stageDefinition->level.cameraInitialPosition.z)
+			__PIXELS_TO_METERS(this->currentStageEntryPoint->stageSpec->level.cameraInitialPosition.z)
 		};
 
 		Camera::setPosition(Camera::getInstance(), screenPosition);
 
 		// load stage
-		GameState::loadStage(this, this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, false);
+		GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, false);
 
 		// create captain
 		PositionedEntity positionedEntity =
@@ -158,7 +158,7 @@ void PlatformerLevelState::enter(void* owner)
 	else
 	{
 		// load stage
-		GameState::loadStage(this, this->currentStageEntryPoint->stageDefinition, positionedEntitiesToIgnore, true);
+		GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, true);
 	}
 
 	CustomCameraMovementManager::disable(CustomCameraMovementManager::getInstance());
@@ -180,7 +180,7 @@ void PlatformerLevelState::enter(void* owner)
 	Object::addEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onCaptainDied, kEventCaptainDied);
 
 	// activate pulsating effect in indoor stages
-	if(this->currentStageEntryPoint->stageDefinition->rendering.colorConfig.brightnessRepeat != NULL)
+	if(this->currentStageEntryPoint->stageSpec->rendering.colorConfig.brightnessRepeat != NULL)
 	{
 		Camera::startEffect(Camera::getInstance(), kScreenPulsate);
 	}
@@ -306,14 +306,14 @@ void PlatformerLevelState::resetProgress()
 {
 	// TODO: move to progress manager?
 	// set default entry point
-	this->currentLevel = (PlatformerLevelDefinition*)&LEVEL_1_LV;
+	this->currentLevel = (PlatformerLevelSpec*)&LEVEL_1_LV;
 	this->currentStageEntryPoint = this->currentLevel->entryPoint;
 	this->currentCheckPoint = this->currentLevel->entryPoint;
 }
 
 void PlatformerLevelState::setPrintingLayerCoordinates()
 {
-	extern TextureROMDef GUI_TX;
+	extern TextureROMSpec GUI_TX;
 	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8);
 }
 
@@ -453,16 +453,16 @@ Clock PlatformerLevelState::getClock()
 	return this->clock;
 }
 
-// get current level's definition
-PlatformerLevelDefinition* PlatformerLevelState::getCurrentLevelDefinition()
+// get current level's spec
+PlatformerLevelSpec* PlatformerLevelState::getCurrentLevelSpec()
 {
 	return this->currentLevel;
 }
 
 // start a given level
-void PlatformerLevelState::startLevel(PlatformerLevelDefinition* platformerLevelDefinition)
+void PlatformerLevelState::startLevel(PlatformerLevelSpec* platformerLevelSpec)
 {
-	this->currentLevel = platformerLevelDefinition;
+	this->currentLevel = platformerLevelSpec;
 	this->currentCheckPoint = this->currentStageEntryPoint = this->currentLevel->entryPoint;
 
 	ProgressManager::resetCurrentLevelProgress(ProgressManager::getInstance());
@@ -471,26 +471,26 @@ void PlatformerLevelState::startLevel(PlatformerLevelDefinition* platformerLevel
 }
 
 // enter a given stage
-void PlatformerLevelState::enterStage(StageEntryPointDefinition* entryPointDefinition)
+void PlatformerLevelState::enterStage(StageEntryPointSpec* entryPointSpec)
 {
 	// save stats if is checkpoint
-	if(entryPointDefinition->isCheckPoint)
+	if(entryPointSpec->isCheckPoint)
 	{
 		// write checkpoint stats
 		ProgressManager::setCheckPointData(ProgressManager::getInstance());
 
 		// set current checkpoint
-		this->currentCheckPoint = entryPointDefinition;
+		this->currentCheckPoint = entryPointSpec;
 	}
 
-	PlatformerLevelState::startStage(this, entryPointDefinition);
+	PlatformerLevelState::startStage(this, entryPointSpec);
 }
 
 // start a given stage
-void PlatformerLevelState::startStage(StageEntryPointDefinition* entryPointDefinition)
+void PlatformerLevelState::startStage(StageEntryPointSpec* entryPointSpec)
 {
 	// set current entry point
-	this->currentStageEntryPoint = entryPointDefinition;
+	this->currentStageEntryPoint = entryPointSpec;
 
 	Game::changeState(Game::getInstance(), GameState::safeCast(this));
 }

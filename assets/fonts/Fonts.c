@@ -31,9 +31,9 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-FontDefinition* const __FONTS[] =
+FontSpec* const __FONTS[] =
 {
-	(FontDefinition*)&CAPITAN_DEFAULT_FONT,
-	(FontDefinition*)&CAPITAN_GUI_FONT,
+	(FontSpec*)&CAPITAN_DEFAULT_FONT,
+	(FontSpec*)&CAPITAN_GUI_FONT,
 	NULL
 };

@@ -35,13 +35,13 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef struct ProjectileEjectorDefinition
+typedef struct ProjectileEjectorSpec
 {
 	// the base animated entity
-	AnimatedEntityDefinition animatedEntityDefinition;
+	AnimatedEntitySpec animatedEntitySpec;
 
 	// projectile positioned entity
-	PositionedEntity projectilePositionedEntityDefinition;
+	PositionedEntity projectilePositionedEntitySpec;
 
 	// delay of the first projectile ejection (only relevant if initially active)
 	u16 initialEjectDelay;
@@ -61,9 +61,9 @@ typedef struct ProjectileEjectorDefinition
 	// name of animation to play when idle
 	char* idleAnimationName;
 
-} ProjectileEjectorDefinition;
+} ProjectileEjectorSpec;
 
-typedef const ProjectileEjectorDefinition ProjectileEjectorROMDef;
+typedef const ProjectileEjectorSpec ProjectileEjectorROMSpec;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -82,12 +82,12 @@ enum ProjectileEjectorEvents
 
 class ProjectileEjector : AnimatedEntity
 {
-	// definition pointer
-	ProjectileEjectorDefinition* projectileEjectorDefinition;
+	// spec pointer
+	ProjectileEjectorSpec* projectileEjectorSpec;
 	// ejection flag
 	u8 active;
 
-	void constructor(ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(ProjectileEjectorSpec* projectileEjectorSpec, s16 id, s16 internalId, const char* const name);
 	void ejectProjectile();
 	bool isActive();
 	void onEjectAnimationComplete();

@@ -67,8 +67,8 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const ActorDefinition CaptainDefinition;
-typedef const CaptainDefinition CaptainROMDef;
+typedef const ActorSpec CaptainSpec;
+typedef const CaptainSpec CaptainROMSpec;
 
 
 class Captain : Actor
@@ -89,7 +89,7 @@ class Captain : Actor
 	bool keepAddingForce;
 
 	static Captain getInstance();
-	void constructor(CaptainDefinition* captainDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(CaptainSpec* captainSpec, s16 id, s16 internalId, const char* const name);
 	void addForce(u16 axis, bool enableAddingForce);
 	void stopAddingForce();
 	void startedMovingOnAxis(u16 axis);

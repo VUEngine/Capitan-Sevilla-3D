@@ -37,7 +37,7 @@
 
 class ItemSausage : Collectable
 {
-	void constructor(AnimatedEntityDefinition* definition, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* spec, s16 id, s16 internalId, const char* const name);
 	override void collect();
 	void onTakenAnimationComplete();
 }

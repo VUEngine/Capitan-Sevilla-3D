@@ -151,7 +151,7 @@ void ProgressManager::onCheckpointLoaded(Object eventFirer __attribute__ ((unuse
 
 void ProgressManager::onLevelCompleted(Object eventFirer __attribute__ ((unused)))
 {
-	//PlatformerLevelDefinition* platformerLevelDefinition = PlatformerLevelState::getCurrentLevelDefinition(PlatformerLevelState::getInstance());
+	//PlatformerLevelSpec* platformerLevelSpec = PlatformerLevelState::getCurrentLevelSpec(PlatformerLevelState::getInstance());
 
 	// TODO: write last completed level
 }

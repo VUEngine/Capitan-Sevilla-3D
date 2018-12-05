@@ -35,10 +35,10 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void LocalizedEntity::constructor(const LocalizedEntityDefinition* localizedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void LocalizedEntity::constructor(const LocalizedEntitySpec* localizedEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base object
-	Base::constructor((AnimatedEntityDefinition*)localizedEntityDefinition, id, internalId, name);
+	Base::constructor((AnimatedEntitySpec*)localizedEntitySpec, id, internalId, name);
 }
 
 void LocalizedEntity::destructor()

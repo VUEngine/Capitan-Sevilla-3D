@@ -37,10 +37,10 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void FlowerPot::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
+void FlowerPot::constructor(ProjectileSpec* projectileSpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(projectileDefinition, id, internalId, name);
+	Base::constructor(projectileSpec, id, internalId, name);
 }
 
 void FlowerPot::destructor()

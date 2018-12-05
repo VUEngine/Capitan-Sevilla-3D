@@ -40,14 +40,14 @@ extern const u16 FIRE_SND[];
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Enemy::constructor(EnemyDefinition* enemyDefinition, s16 id, s16 internalId, const char* const name)
+void Enemy::constructor(EnemySpec* enemySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((MovingOneWayEntityDefinition*)&enemyDefinition->movingOneWayEntityDefinition, id, internalId, name);
+	Base::constructor((MovingOneWayEntitySpec*)&enemySpec->movingOneWayEntitySpec, id, internalId, name);
 
 	// init members
-	this->energy = enemyDefinition->energy;
-	this->enemyDefinition = enemyDefinition;
+	this->energy = enemySpec->energy;
+	this->enemySpec = enemySpec;
 	this->projectileEjectorEntity = NULL;
 }
 
@@ -71,9 +71,9 @@ void Enemy::ready(bool recursive)
 	Base::ready(this, recursive);
 
 	// add projectile ejector
-	if(this->enemyDefinition->projectileEjectorDefinition)
+	if(this->enemySpec->projectileEjectorSpec)
 	{
-		this->projectileEjectorEntity = Entity::addChildEntity(this, (EntityDefinition*)this->enemyDefinition->projectileEjectorDefinition, -1, NULL, &this->enemyDefinition->projectileEjectorPosition, NULL);
+		this->projectileEjectorEntity = Entity::addChildEntity(this, (EntitySpec*)this->enemySpec->projectileEjectorSpec, -1, NULL, &this->enemySpec->projectileEjectorPosition, NULL);
 		Object::addEventListener(this->projectileEjectorEntity, Object::safeCast(this), (EventListener)Enemy::onProjectileEjected, kEventProjectileEjected);
 	}
 }

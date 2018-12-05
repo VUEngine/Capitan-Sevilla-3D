@@ -32,7 +32,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntityDefinition FLAG_GERMANY_EN;
+extern EntitySpec FLAG_GERMANY_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	/* STR_LEVEL_1_NAME */				"SEVILLA, MISSION:\nBESORGE DAS BUCH",
 };
 
-const LangROMDef LANGUAGE_DE =
+const LangROMSpec LANGUAGE_DE =
 {
 	// Language Name
 	"DEUTSCH",

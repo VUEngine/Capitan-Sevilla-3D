@@ -35,10 +35,10 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef struct ProjectileDefinition
+typedef struct ProjectileSpec
 {
 	// the base animated entity
-	ActorDefinition actorDefinition;
+	ActorSpec actorSpec;
 
 	// velocity when moving
 	Velocity velocity;
@@ -52,9 +52,9 @@ typedef struct ProjectileDefinition
 	// delay between position checks (-1 to disable)
 	int checkDelay;
 
-} ProjectileDefinition;
+} ProjectileSpec;
 
-typedef const ProjectileDefinition ProjectileROMDef;
+typedef const ProjectileSpec ProjectileROMSpec;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,12 +63,12 @@ typedef const ProjectileDefinition ProjectileROMDef;
 
 class Projectile : Actor
 {
-	// definition pointer
-	ProjectileDefinition* projectileDefinition;
+	// spec pointer
+	ProjectileSpec* projectileSpec;
 	// position at time of ejection
 	Vector3D originalPosition;
 
-	void constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(ProjectileSpec* projectileSpec, s16 id, s16 internalId, const char* const name);
 	void startMovement();
 	void stopMovement();
 	bool canBeReused();

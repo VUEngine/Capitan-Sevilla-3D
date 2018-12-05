@@ -40,10 +40,10 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void StageExitPoint::constructor(EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name)
+void StageExitPoint::constructor(EntitySpec* inGameEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(inGameEntityDefinition, id, internalId, name);
+	Base::constructor(inGameEntitySpec, id, internalId, name);
 
 	// add event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
@@ -84,8 +84,8 @@ void StageExitPoint::onFadeOutComplete(Object eventFirer __attribute__ ((unused)
 	if(times == 0)
 	{
 		times++;
-		extern StageEntryPointDefinition LEVEL_1_STAGE_2_MAIN_EP;
-		PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), (StageEntryPointDefinition*)&LEVEL_1_STAGE_2_MAIN_EP);
+		extern StageEntryPointSpec LEVEL_1_STAGE_2_MAIN_EP;
+		PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), (StageEntryPointSpec*)&LEVEL_1_STAGE_2_MAIN_EP);
 	}
 	else
 	{

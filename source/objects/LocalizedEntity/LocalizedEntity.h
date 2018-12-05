@@ -35,13 +35,13 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const AnimatedEntityDefinition LocalizedEntityDefinition;
-typedef const LocalizedEntityDefinition LocalizedEntityROMDef;
+typedef const AnimatedEntitySpec LocalizedEntitySpec;
+typedef const LocalizedEntitySpec LocalizedEntityROMSpec;
 
 
 class LocalizedEntity : AnimatedEntity
 {
-	void constructor(const LocalizedEntityDefinition* localizedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(const LocalizedEntitySpec* localizedEntitySpec, s16 id, s16 internalId, const char* const name);
 	override void ready(bool recursive);
 }
 

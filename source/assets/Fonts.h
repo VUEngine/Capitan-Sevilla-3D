@@ -35,8 +35,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern FontDefinition CAPITAN_DEFAULT_FONT;
-extern FontDefinition CAPITAN_GUI_FONT;
+extern FontSpec CAPITAN_DEFAULT_FONT;
+extern FontSpec CAPITAN_GUI_FONT;
 
 
 #endif

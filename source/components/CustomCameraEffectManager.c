@@ -44,9 +44,9 @@
 
 friend class Camera;
 
-extern BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
-extern BrightnessRepeatROMDef EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT;
-extern BrightnessRepeatROMDef EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT;
+extern BrightnessRepeatROMSpec EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
+extern BrightnessRepeatROMSpec EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT;
+extern BrightnessRepeatROMSpec EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ extern BrightnessRepeatROMDef EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT;
 
 static Camera _camera = NULL;
 
-BrightnessRepeatROMDef* SCREEN_PULSATE_STEPS[] =
+BrightnessRepeatROMSpec* SCREEN_PULSATE_STEPS[] =
 {
 	&EDGE_FADE_OUT_BRIGHTNESS_REPEAT,
 	&EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT,
@@ -233,7 +233,7 @@ void CustomCameraEffectManager::onScreenShake()
 // write new brightness repeat values
 void CustomCameraEffectManager::onScreenPulsate()
 {
-	VIPManager::setupBrightnessRepeat(VIPManager::getInstance(), (BrightnessRepeatDefinition*)SCREEN_PULSATE_STEPS[this->pulsateNextStep]);
+	VIPManager::setupBrightnessRepeat(VIPManager::getInstance(), (BrightnessRepeatSpec*)SCREEN_PULSATE_STEPS[this->pulsateNextStep]);
 
 	// send message for next fx step
 	this->pulsateNextStep = (SCREEN_PULSATE_STEPS[this->pulsateNextStep + 1] != NULL)

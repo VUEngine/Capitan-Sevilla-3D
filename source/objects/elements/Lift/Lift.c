@@ -48,11 +48,11 @@ extern const u16 COLLECT_SND[];
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Lift::constructor(LiftDefinition* liftDefinition, s16 id, s16 internalId, const char* const name)
+void Lift::constructor(LiftSpec* liftSpec, s16 id, s16 internalId, const char* const name)
 {
-	Base::constructor((ActorDefinition*)&liftDefinition->actorDefinition, id, internalId, name);
+	Base::constructor((ActorSpec*)&liftSpec->actorSpec, id, internalId, name);
 
-	this->liftDefinition = liftDefinition;
+	this->liftSpec = liftSpec;
 }
 
 void Lift::destructor()
@@ -89,7 +89,7 @@ bool Lift::handleMessage(Telegram telegram)
 
 		case kLiftStart:
 		{
-			Actor::moveUniformly(this, &this->liftDefinition->velocity);
+			Actor::moveUniformly(this, &this->liftSpec->velocity);
 
 			break;
 		}
@@ -100,5 +100,5 @@ bool Lift::handleMessage(Telegram telegram)
 
 void Lift::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->liftDefinition->entryPoint);
+	PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->liftSpec->entryPoint);
 }

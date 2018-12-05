@@ -38,12 +38,12 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void MovingOneWayEntity::constructor(MovingOneWayEntityDefinition* movingOneWayEntityDefinition, s16 id, s16 internalId, const char* const name)
+void MovingOneWayEntity::constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorDefinition*)&movingOneWayEntityDefinition->actorDefinition, id, internalId, name);
+	Base::constructor((ActorSpec*)&movingOneWayEntitySpec->actorSpec, id, internalId, name);
 
-	this->speed = movingOneWayEntityDefinition->speed;
+	this->speed = movingOneWayEntitySpec->speed;
 }
 
 void MovingOneWayEntity::destructor()

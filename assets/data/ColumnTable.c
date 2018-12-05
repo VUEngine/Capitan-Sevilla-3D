@@ -31,12 +31,12 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ColumnTableROMDef SQUARE_SCREEN_TEST_COLUMN_TABLE =
+ColumnTableROMSpec SQUARE_SCREEN_TEST_COLUMN_TABLE =
 {
-	// mirror definition?
+	// mirror spec?
 	true,
 
-	// column table definition
+	// column table spec
 	{
 		0xfe, 0xfe, 0xfe, 0xfe, 0xfe, 0xfe, 0xfe, 0xfe,
 		0xfe, 0xfe, 0xfe, 0xfe, 0xfe, 0xfe, 0xfe, 0xfe,
@@ -57,9 +57,9 @@ ColumnTableROMDef SQUARE_SCREEN_TEST_COLUMN_TABLE =
 	}
 };
 
-BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT =
+BrightnessRepeatROMSpec EDGE_FADE_OUT_BRIGHTNESS_REPEAT =
 {
-	// mirror definition?
+	// mirror spec?
 	true,
 
 	// brightness repeat values
@@ -70,9 +70,9 @@ BrightnessRepeatROMDef EDGE_FADE_OUT_BRIGHTNESS_REPEAT =
 	}
 };
 
-BrightnessRepeatROMDef EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT =
+BrightnessRepeatROMSpec EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT =
 {
-	// mirror definition?
+	// mirror spec?
 	true,
 
 	// brightness repeat values
@@ -83,9 +83,9 @@ BrightnessRepeatROMDef EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT =
 	}
 };
 
-BrightnessRepeatROMDef EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT =
+BrightnessRepeatROMSpec EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT =
 {
-	// mirror definition?
+	// mirror spec?
 	true,
 
 	// brightness repeat values

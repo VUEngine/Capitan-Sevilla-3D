@@ -35,8 +35,8 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const EntityDefinition StageExitPointDefinition;
-typedef const StageExitPointDefinition StageExitPointROMDef;
+typedef const EntitySpec StageExitPointSpec;
+typedef const StageExitPointSpec StageExitPointROMSpec;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -45,7 +45,7 @@ typedef const StageExitPointDefinition StageExitPointROMDef;
 
 class StageExitPoint : Entity
 {
-	void constructor(EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(EntitySpec* inGameEntitySpec, s16 id, s16 internalId, const char* const name);
 }
 
 

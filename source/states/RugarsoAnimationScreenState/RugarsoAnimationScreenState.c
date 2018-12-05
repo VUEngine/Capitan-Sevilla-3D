@@ -38,7 +38,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef RUGARSO_ANIMATION_SCREEN_STAGE_ST;
+extern StageROMSpec RUGARSO_ANIMATION_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ void RugarsoAnimationScreenState::constructor()
 	Base::constructor();
 
 	SplashScreenState::setNextState(SplashScreenState::safeCast(this), GameState::safeCast(TitleScreenState::getInstance()));
-	this->stageDefinition = (StageDefinition*)&RUGARSO_ANIMATION_SCREEN_STAGE_ST;
+	this->stageSpec = (StageSpec*)&RUGARSO_ANIMATION_SCREEN_STAGE_ST;
 }
 
 void RugarsoAnimationScreenState::destructor()

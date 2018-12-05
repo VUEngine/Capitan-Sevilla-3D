@@ -43,18 +43,18 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern const u16 JUMP_SND[];
-extern EntityDefinition GAME_OVER_EN;
-extern CharSetDefinition GUI_CH;
+extern EntitySpec GAME_OVER_EN;
+extern CharSetSpec GUI_CH;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Gui::constructor(EntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name)
+void Gui::constructor(EntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntityDefinition, id, internalId, name);
+	Base::constructor(animatedEntitySpec, id, internalId, name);
 
 	// init members
 	this->active = false;

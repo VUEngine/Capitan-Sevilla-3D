@@ -39,10 +39,10 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Comic::constructor(EntityDefinition* entityDefinition, s16 id, s16 internalId, const char* const name)
+void Comic::constructor(EntitySpec* entitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(entityDefinition, id, internalId, name);
+	Base::constructor(entitySpec, id, internalId, name);
 
 	// init members
 	this->mode = kComicStill;

@@ -47,7 +47,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef CREDITS_STAGE_ST;
+extern StageROMSpec CREDITS_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ void CreditsState::enter(void* owner)
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(this, (StageDefinition*)&CREDITS_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&CREDITS_STAGE_ST, NULL, true);
 
 	// get entity reference
 	this->entityCredits = Actor::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "CREDITS", true));

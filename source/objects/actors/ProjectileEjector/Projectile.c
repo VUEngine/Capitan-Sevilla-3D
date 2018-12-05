@@ -37,13 +37,13 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Projectile::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
+void Projectile::constructor(ProjectileSpec* projectileSpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorDefinition*)&projectileDefinition->actorDefinition, id, internalId, name);
+	Base::constructor((ActorSpec*)&projectileSpec->actorSpec, id, internalId, name);
 
-	// save definition
-	this->projectileDefinition = projectileDefinition;
+	// save spec
+	this->projectileSpec = projectileSpec;
 
 	// init members
 	this->originalPosition = (Vector3D){0, 0, 0};
@@ -71,11 +71,11 @@ void Projectile::startMovement()
 {
 	// adjustments relative to ejector direction
  	Direction direction = Entity::getDirection(Entity::safeCast(this->parent));
-	Velocity velocity = this->projectileDefinition->velocity;
+	Velocity velocity = this->projectileSpec->velocity;
 	velocity.x *= direction.x;
 	velocity.y *= direction.y;
 	velocity.z *= direction.z;
-	Vector3D position = this->projectileDefinition->position;
+	Vector3D position = this->projectileSpec->position;
 	position.x *= direction.x;
 	position.y *= direction.y;
 	position.z *= direction.z;
@@ -90,14 +90,14 @@ void Projectile::startMovement()
 	Entity::activateShapes(this, true);
 
 	// play default animation
-	AnimatedEntity::playAnimation(this, this->projectileDefinition->actorDefinition.animatedEntityDefinition.initialAnimation);
+	AnimatedEntity::playAnimation(this, this->projectileSpec->actorSpec.animatedEntitySpec.initialAnimation);
 
 	// show me
 	Entity::show(this);
 
 	// start moving
 	/*
-	if(this->projectileDefinition->movementType == __UNIFORM_MOVEMENT)
+	if(this->projectileSpec->movementType == __UNIFORM_MOVEMENT)
 	{
 	*/
 		Actor::moveUniformly(this, &velocity);
@@ -105,14 +105,14 @@ void Projectile::startMovement()
 	}
 	else
 	{
-		Actor::addForce(this, &this->projectileDefinition->velocity);
+		Actor::addForce(this, &this->projectileSpec->velocity);
 	}
 	*/
 
 	// send first message of periodic position check
-	if(this->projectileDefinition->checkDelay > -1)
+	if(this->projectileSpec->checkDelay > -1)
 	{
-		MessageDispatcher::dispatchMessage(this->projectileDefinition->checkDelay, Object::safeCast(this), Object::safeCast(this), kProjectileCheckPosition, NULL);
+		MessageDispatcher::dispatchMessage(this->projectileSpec->checkDelay, Object::safeCast(this), Object::safeCast(this), kProjectileCheckPosition, NULL);
 	}
 }
 
@@ -130,15 +130,15 @@ void Projectile::stopMovement()
 
 void Projectile::checkPosition()
 {
-	if( (this->projectileDefinition->maxDistance.x != 0 && __ABS(this->originalPosition.x - this->transformation.globalPosition.x) > this->projectileDefinition->maxDistance.x) ||
-		(this->projectileDefinition->maxDistance.y != 0 && __ABS(this->originalPosition.y - this->transformation.globalPosition.y) > this->projectileDefinition->maxDistance.y) ||
-		(this->projectileDefinition->maxDistance.z != 0 && __ABS(this->originalPosition.z - this->transformation.globalPosition.z) > this->projectileDefinition->maxDistance.z) )
+	if( (this->projectileSpec->maxDistance.x != 0 && __ABS(this->originalPosition.x - this->transformation.globalPosition.x) > this->projectileSpec->maxDistance.x) ||
+		(this->projectileSpec->maxDistance.y != 0 && __ABS(this->originalPosition.y - this->transformation.globalPosition.y) > this->projectileSpec->maxDistance.y) ||
+		(this->projectileSpec->maxDistance.z != 0 && __ABS(this->originalPosition.z - this->transformation.globalPosition.z) > this->projectileSpec->maxDistance.z) )
 	{
 		Projectile::stopMovement(this);
 	}
 	else
 	{
-		MessageDispatcher::dispatchMessage(this->projectileDefinition->checkDelay, Object::safeCast(this), Object::safeCast(this), kProjectileCheckPosition, NULL);
+		MessageDispatcher::dispatchMessage(this->projectileSpec->checkDelay, Object::safeCast(this), Object::safeCast(this), kProjectileCheckPosition, NULL);
 	}
 }
 

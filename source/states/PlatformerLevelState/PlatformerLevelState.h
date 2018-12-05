@@ -47,10 +47,10 @@ enum PlatformerLevelModes
 //											CLASS'S ROM DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef struct StageEntryPointDefinition
+typedef struct StageEntryPointSpec
 {
 	// the stage to load
-	StageDefinition* stageDefinition;
+	StageSpec* stageSpec;
 
 	// starting position (x, y, z)
 	Vector3D startingPosition;
@@ -61,15 +61,15 @@ typedef struct StageEntryPointDefinition
 	// whether this entry point acts as a checkpoint
 	bool isCheckPoint;
 
-} StageEntryPointDefinition;
+} StageEntryPointSpec;
 
-typedef const StageEntryPointDefinition StageEntryPointROMDef;
+typedef const StageEntryPointSpec StageEntryPointROMSpec;
 
 
-typedef struct PlatformerLevelDefinition
+typedef struct PlatformerLevelSpec
 {
 	// starting entry point
-	StageEntryPointDefinition* entryPoint;
+	StageEntryPointSpec* entryPoint;
 
 	// id
 	u8 id;
@@ -77,9 +77,9 @@ typedef struct PlatformerLevelDefinition
 	// name
 	void* name;
 
-} PlatformerLevelDefinition;
+} PlatformerLevelSpec;
 
-typedef const PlatformerLevelDefinition PlatformerLevelROMDef;
+typedef const PlatformerLevelSpec PlatformerLevelROMSpec;
 
 
 enum PlatformerLevelStateMessageTypes
@@ -117,11 +117,11 @@ enum PlatformerLevelStateMessageTypes
 singleton class PlatformerLevelState : GameState
 {
 	// the currently loaded level
-	PlatformerLevelDefinition* currentLevel;
+	PlatformerLevelSpec* currentLevel;
 	// the currently loaded entry point
-	StageEntryPointDefinition* currentStageEntryPoint;
+	StageEntryPointSpec* currentStageEntryPoint;
 	// the last reached checkpoint
-	StageEntryPointDefinition* currentCheckPoint;
+	StageEntryPointSpec* currentCheckPoint;
 	// to allow moving the screen
 	u8 mode;
 	// in-game clock
@@ -131,9 +131,9 @@ singleton class PlatformerLevelState : GameState
 
 	static PlatformerLevelState getInstance();
 	Clock getClock();
-	PlatformerLevelDefinition* getCurrentLevelDefinition();
-	void startLevel(PlatformerLevelDefinition* platformerLevelDefinition);
-	void enterStage(StageEntryPointDefinition* entryPointDefinition);
+	PlatformerLevelSpec* getCurrentLevelSpec();
+	void startLevel(PlatformerLevelSpec* platformerLevelSpec);
+	void enterStage(StageEntryPointSpec* entryPointSpec);
 	void setModeToPaused();
 	void setModeToPlaying();
 	void resetProgress();

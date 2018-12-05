@@ -32,17 +32,17 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern LangROMDef LANGUAGE_EN;
-extern LangROMDef LANGUAGE_ES;
-extern LangROMDef LANGUAGE_DE;
-extern LangROMDef LANGUAGE_FR;
+extern LangROMSpec LANGUAGE_EN;
+extern LangROMSpec LANGUAGE_ES;
+extern LangROMSpec LANGUAGE_DE;
+extern LangROMSpec LANGUAGE_FR;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-LangROMDef* const __LANGUAGES[] =
+LangROMSpec* const __LANGUAGES[] =
 {
 	&LANGUAGE_EN,
 	&LANGUAGE_ES,

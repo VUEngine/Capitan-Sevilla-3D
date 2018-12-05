@@ -37,7 +37,7 @@
 
 class Message : AnimatedEntity
 {
-	void constructor(AnimatedEntityDefinition* animatedEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name);
 	override bool handleMessage(Telegram telegram);
 }
 

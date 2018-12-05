@@ -46,7 +46,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMDef TITLE_SCREEN_STAGE_ST;
+extern StageROMSpec TITLE_SCREEN_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ void TitleScreenState::enter(void* owner)
 	GameState::startClocks(this);
 
 	// load stage
-	GameState::loadStage(this, (StageDefinition*)&TITLE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&TITLE_SCREEN_STAGE_ST, NULL, true);
 
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(),

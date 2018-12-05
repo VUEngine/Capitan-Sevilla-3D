@@ -35,8 +35,8 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const EntityDefinition CollisionDefinition;
-typedef const CollisionDefinition CollisionROMDef;
+typedef const EntitySpec CollisionSpec;
+typedef const CollisionSpec CollisionROMSpec;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ typedef const CollisionDefinition CollisionROMDef;
 class Collision : Entity
 {
 
-	void constructor(EntityDefinition* inGameEntityDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(EntitySpec* inGameEntitySpec, s16 id, s16 internalId, const char* const name);
 	override void setExtraInfo(void* extraInfo);
 	override void initialTransform(Transformation* environmentTransform, u32 recursive);
 }

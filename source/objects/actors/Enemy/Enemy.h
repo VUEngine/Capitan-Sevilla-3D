@@ -36,23 +36,23 @@
 //											TYPE DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-typedef struct EnemyDefinition
+typedef struct EnemySpec
 {
-	/// MovingOneWayEntity Definition
-	MovingOneWayEntityDefinition movingOneWayEntityDefinition;
+	/// MovingOneWayEntity Spec
+	MovingOneWayEntitySpec movingOneWayEntitySpec;
 
 	/// energy
 	u8 energy;
 
 	/// projectile ejector to add
-	ProjectileEjectorDefinition* projectileEjectorDefinition;
+	ProjectileEjectorSpec* projectileEjectorSpec;
 
 	/// relative position of projectile ejector
 	Vector3D projectileEjectorPosition;
 
-} EnemyDefinition;
+} EnemySpec;
 
-typedef const EnemyDefinition EnemyROMDef;
+typedef const EnemySpec EnemyROMSpec;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -61,14 +61,14 @@ typedef const EnemyDefinition EnemyROMDef;
 
 class Enemy : MovingOneWayEntity
 {
-	// definition pointer
-	EnemyDefinition* enemyDefinition;
+	// spec pointer
+	EnemySpec* enemySpec;
 	// projectile ejector entity reference
 	Entity projectileEjectorEntity;
 	// energy
 	u8 energy;
 
-	void constructor(EnemyDefinition* enemyDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(EnemySpec* enemySpec, s16 id, s16 internalId, const char* const name);
 	override void ready(bool recursive);
 	void takeHit(u8 power);
 	virtual void onProjectileEjected(Object eventFirer);

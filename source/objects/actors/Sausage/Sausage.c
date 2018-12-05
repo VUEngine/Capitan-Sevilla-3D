@@ -37,10 +37,10 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Sausage::constructor(ProjectileDefinition* projectileDefinition, s16 id, s16 internalId, const char* const name)
+void Sausage::constructor(ProjectileSpec* projectileSpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(projectileDefinition, id, internalId, name);
+	Base::constructor(projectileSpec, id, internalId, name);
 }
 
 void Sausage::destructor()

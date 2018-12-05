@@ -38,16 +38,16 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void ProjectileEjector::constructor(ProjectileEjectorDefinition* projectileEjectorDefinition, s16 id, s16 internalId, const char* const name)
+void ProjectileEjector::constructor(ProjectileEjectorSpec* projectileEjectorSpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((AnimatedEntityDefinition*)&projectileEjectorDefinition->animatedEntityDefinition, id, internalId, name);
+	Base::constructor((AnimatedEntitySpec*)&projectileEjectorSpec->animatedEntitySpec, id, internalId, name);
 
-	// save definition
-	this->projectileEjectorDefinition = projectileEjectorDefinition;
+	// save spec
+	this->projectileEjectorSpec = projectileEjectorSpec;
 
 	// initialize members
-	this->active = this->projectileEjectorDefinition->initiallyActive;
+	this->active = this->projectileEjectorSpec->initiallyActive;
 }
 
 void ProjectileEjector::destructor()
@@ -69,18 +69,18 @@ void ProjectileEjector::ready(bool recursive)
 	Base::ready(this, recursive);
 
 	// play idle animation
-	AnimatedEntity::playAnimation(this, this->projectileEjectorDefinition->idleAnimationName);
+	AnimatedEntity::playAnimation(this, this->projectileEjectorSpec->idleAnimationName);
 
 	// add projectiles to stage as children of this ejector
-	for(u8 i = 0; i < this->projectileEjectorDefinition->maxProjectiles; i++)
+	for(u8 i = 0; i < this->projectileEjectorSpec->maxProjectiles; i++)
 	{
-		Stage::spawnEntity(Game::getStage(Game::getInstance()), &this->projectileEjectorDefinition->projectilePositionedEntityDefinition, Container::safeCast(this), NULL);
+		Stage::spawnEntity(Game::getStage(Game::getInstance()), &this->projectileEjectorSpec->projectilePositionedEntitySpec, Container::safeCast(this), NULL);
 	}
 
 	// send delayed message to self to trigger first shot
 	if(this->active)
 	{
-		MessageDispatcher::dispatchMessage(this->projectileEjectorDefinition->initialEjectDelay, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
+		MessageDispatcher::dispatchMessage(this->projectileEjectorSpec->initialEjectDelay, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
 	}
 }
 
@@ -111,7 +111,7 @@ void ProjectileEjector::ejectProjectile()
 			if(Projectile::canBeReused(projectile))
 			{
 				// start ejection sequence
-				AnimatedEntity::playAnimation(this, this->projectileEjectorDefinition->ejectAnimationName);
+				AnimatedEntity::playAnimation(this, this->projectileEjectorSpec->ejectAnimationName);
 
 				// set projectile to moving state
 				Projectile::startMovement(projectile);
@@ -124,7 +124,7 @@ void ProjectileEjector::ejectProjectile()
 		}
 
 		// send delayed message to self to trigger next shot
-		MessageDispatcher::dispatchMessage(this->projectileEjectorDefinition->ejectDelay, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
+		MessageDispatcher::dispatchMessage(this->projectileEjectorSpec->ejectDelay, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
 	}
 }
 
@@ -151,5 +151,5 @@ bool ProjectileEjector::isActive()
 void ProjectileEjector::onEjectAnimationComplete()
 {
 	// play idle animation
-	AnimatedEntity::playAnimation(this, this->projectileEjectorDefinition->idleAnimationName);
+	AnimatedEntity::playAnimation(this, this->projectileEjectorSpec->idleAnimationName);
 }

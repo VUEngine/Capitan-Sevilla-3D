@@ -36,21 +36,21 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-// definition in ROM memory
-typedef struct LiftDefinition
+// spec in ROM memory
+typedef struct LiftSpec
 {
-	// base actor definition
-	ActorDefinition actorDefinition;
+	// base actor spec
+	ActorSpec actorSpec;
 
 	// velocity after entering
 	Velocity velocity;
 
 	// entry point to load after entering
-	StageEntryPointDefinition* entryPoint;
+	StageEntryPointSpec* entryPoint;
 
-} LiftDefinition;
+} LiftSpec;
 
-typedef const LiftDefinition LiftROMDef;
+typedef const LiftSpec LiftROMSpec;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -59,10 +59,10 @@ typedef const LiftDefinition LiftROMDef;
 
 class Lift : Actor
 {
-	// definition pointer
-	LiftDefinition* liftDefinition;
+	// spec pointer
+	LiftSpec* liftSpec;
 
-	void constructor(LiftDefinition* liftDefinition, s16 id, s16 internalId, const char* const name);
+	void constructor(LiftSpec* liftSpec, s16 id, s16 internalId, const char* const name);
 	override bool handleMessage(Telegram telegram);
 }
 

@@ -63,6 +63,6 @@ void CaptainState::toggleShapes(void* owner, bool kneeling)
 	VirtualList shapes = Entity::getShapes(owner);
 	Shape shapeStanding = Shape::safeCast(VirtualList::front(shapes));
 	Shape shapeKneeling = Shape::safeCast(VirtualList::back(shapes));
-	Shape::setActive(shapeStanding, !kneeling);
-	Shape::setActive(shapeKneeling, kneeling);
+	Shape::enable(shapeStanding, !kneeling);
+	Shape::enable(shapeKneeling, kneeling);
 }
