@@ -130,7 +130,7 @@ void Captain::destructor()
 
 void Captain::ready(bool recursive)
 {
-	Entity::activate(this, true);
+	Entity::activateShapes(this, true);
 
 	// call base
 	Base::ready(this, recursive);
