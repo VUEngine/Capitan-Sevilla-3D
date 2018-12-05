@@ -193,6 +193,12 @@ void Captain::kneel()
 	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainKneel::getInstance()));
 }
 
+void Captain::standUp()
+{
+	// switch to idle state
+	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
+}
+
 // make him jump
 void Captain::jump(bool checkIfYMovement)
 {
@@ -1067,4 +1073,13 @@ void Captain::onHitAnimationComplete(Object eventFirer __attribute__ ((unused)))
 	{
 		AnimatedEntity::playAnimation(this, "Idle");
 	}
+}
+
+void Captain::toggleShapes(bool kneeling)
+{
+	VirtualList shapes = Entity::getShapes(this);
+	Shape shapeStanding = Shape::safeCast(VirtualList::front(shapes));
+	Shape shapeKneeling = Shape::safeCast(VirtualList::back(shapes));
+	Shape::enable(shapeStanding, !kneeling);
+	Shape::enable(shapeKneeling, kneeling);
 }

@@ -38,8 +38,9 @@ singleton class CaptainKneel : CaptainState
 {
 	static CaptainKneel getInstance();
 	override void enter(void* owner);
+	override void exit(void* owner);
+	override void onKeyReleased(void* owner, const UserInput* userInput);
 	override void onKeyPressed(void* owner, const UserInput* userInput);
-	override void onKeyHold(void* owner, const UserInput* userInput);
 }
 
 

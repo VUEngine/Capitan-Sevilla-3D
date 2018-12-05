@@ -99,6 +99,7 @@ class Captain : Actor
 	void startedMovingOnAxis(u16 axis);
 	bool stopMovementOnAxis(u16 axis);
 	void kneel();
+	void standUp();
 	void jump(bool checkIfYMovement);
 	void addMomentumToJump();
 	void checkDirection(u32 currentPressedKey, char * animation);
@@ -113,6 +114,7 @@ class Captain : Actor
 	void capVelocity(bool discardPreviousMessages);
 	void startShooting();
 	void stopShooting();
+	void toggleShapes(bool kneeling);
 	override void ready(bool recursive);
 	override bool handlePropagatedMessage(int message);
 	override bool handleMessage(Telegram telegram);
