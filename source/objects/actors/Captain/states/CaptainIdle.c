@@ -55,13 +55,7 @@ void CaptainIdle::enter(void* owner)
 	// show animation
 	AnimatedEntity::playAnimation(owner, "Idle");
 
-	// start sleeping after 6 seconds of inactivity
-	//MessageDispatcher::dispatchMessage(6000, Object::safeCast(this), Object::safeCast(owner), kCaptainSleep, NULL);
-
 	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
-
-	// manipulate captain's shape
-	CaptainState::toggleShapes(CaptainState::safeCast(this), owner, false);
 }
 
 void CaptainIdle::exit(void* owner __attribute__ ((unused)))
@@ -76,7 +70,7 @@ bool CaptainIdle::processMessage(void* owner, Telegram telegram)
 	{
 		case kBodyStartedMoving:
 
-			Captain::startedMovingOnAxis(Captain::safeCast(owner), *(u16*)Telegram::getExtraInfo(telegram));
+			Captain::startedMovingOnAxis(owner, *(u16*)Telegram::getExtraInfo(telegram));
 			break;
 
 		case kBodyStopped:
@@ -105,11 +99,11 @@ void CaptainIdle::onKeyHold(void* owner, const UserInput* userInput)
             0,
         };
 
-		if(Actor::canMoveTowards(Actor::safeCast(owner), direction))
+		if(Actor::canMoveTowards(owner, direction))
         {
-            Captain::checkDirection(Captain::safeCast(owner), userInput->holdKey, "Idle");
+            Captain::checkDirection(owner, userInput->holdKey, "Idle");
 
-            Captain::startedMovingOnAxis(Captain::safeCast(owner), __X_AXIS);
+            Captain::startedMovingOnAxis(owner, __X_AXIS);
         }
     }
 }
@@ -118,12 +112,12 @@ void CaptainIdle::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if(K_A & userInput->pressedKey)
 	{
-		Captain::jump(Captain::safeCast(owner), true);
+		Captain::jump(owner, true);
 	}
 
 	if(K_B & userInput->pressedKey)
 	{
-		Captain::startShooting(Captain::safeCast(owner));
+		Captain::startShooting(owner);
 	}
 
 	if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
@@ -135,16 +129,16 @@ void CaptainIdle::onKeyPressed(void* owner, const UserInput* userInput)
 			0,
 		};
 
-		if(Actor::canMoveTowards(Actor::safeCast(owner), acceleration))
+		if(Actor::canMoveTowards(owner, acceleration))
 		{
-			Captain::checkDirection(Captain::safeCast(owner), userInput->pressedKey, "Idle");
+			Captain::checkDirection(owner, userInput->pressedKey, "Idle");
 
-			Captain::startedMovingOnAxis(Captain::safeCast(owner), __X_AXIS);
+			Captain::startedMovingOnAxis(owner, __X_AXIS);
 		}
 	}
 
 	if(K_LD & userInput->pressedKey)
 	{
-		Captain::kneel(Captain::safeCast(owner));
+		Captain::kneel(owner);
 	}
 }

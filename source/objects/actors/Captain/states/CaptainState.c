@@ -57,12 +57,3 @@ void CaptainState::onKeyPressed(void* owner __attribute__ ((unused)), const User
 void CaptainState::onKeyReleased(void* owner __attribute__ ((unused)), const UserInput* userInput __attribute__ ((unused)))
 {
 }
-
-void CaptainState::toggleShapes(void* owner, bool kneeling)
-{
-	VirtualList shapes = Entity::getShapes(owner);
-	Shape shapeStanding = Shape::safeCast(VirtualList::front(shapes));
-	Shape shapeKneeling = Shape::safeCast(VirtualList::back(shapes));
-	Shape::enable(shapeStanding, !kneeling);
-	Shape::enable(shapeKneeling, kneeling);
-}

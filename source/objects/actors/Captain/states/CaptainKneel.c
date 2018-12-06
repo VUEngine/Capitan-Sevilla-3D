@@ -55,29 +55,23 @@ void CaptainKneel::enter(void* owner)
 	// show animation
 	AnimatedEntity::playAnimation(owner, "KneelDown");
 
-	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
+	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_RELEASED | __KEY_PRESSED);
 
 	// manipulate captain's shape
-	CaptainState::toggleShapes(this, owner, true);
+	Captain::toggleShapes(owner, true);
 }
 
-void CaptainKneel::onKeyHold(void* owner, const UserInput* userInput)
+void CaptainKneel::exit(void* owner)
 {
-    if((K_LL | K_LR) & userInput->holdKey)
+	// manipulate captain's shape
+	Captain::toggleShapes(owner, false);
+}
+
+void CaptainKneel::onKeyReleased(void* owner, const UserInput* userInput)
+{
+    if((K_LD) & userInput->releasedKey)
     {
-        Vector3D direction =
-        {
-            K_LL & userInput->holdKey ? __I_TO_FIX10_6(-1) : K_LR & userInput->holdKey ? __I_TO_FIX10_6(1) : 0,
-            K_A & userInput->holdKey ? __I_TO_FIX10_6(-1) : 0,
-            0,
-        };
-
-		if(Actor::canMoveTowards(Actor::safeCast(owner), direction))
-        {
-            Captain::checkDirection(Captain::safeCast(owner), userInput->holdKey, "Idle");
-
-            Captain::startedMovingOnAxis(Captain::safeCast(owner), __X_AXIS);
-        }
+        Captain::standUp(owner);
     }
 }
 
@@ -92,26 +86,5 @@ void CaptainKneel::onKeyPressed(void* owner, const UserInput* userInput)
 	{
 		Captain::startShooting(Captain::safeCast(owner));
 	}
-
-	if((K_LL | K_LR | K_LU) & (userInput->pressedKey | userInput->holdKey))
-	{
-		Acceleration acceleration =
-		{
-			K_LL & (userInput->pressedKey | userInput->holdKey)
-				? __I_TO_FIX10_6(-1)
-				: K_LR & (userInput->pressedKey | userInput->holdKey)
-					? __1I_FIX10_6
-					: 0,
-			(K_LU | K_A) & (userInput->pressedKey | userInput->holdKey)
-				? __I_TO_FIX10_6(-1)
-				: 0,
-			0,
-		};
-
-		if(Actor::canMoveTowards(Actor::safeCast(owner), acceleration))
-		{
-			Captain::checkDirection(Captain::safeCast(owner), userInput->pressedKey, "Idle");
-			Captain::startedMovingOnAxis(Captain::safeCast(owner), __X_AXIS);
-		}
-	}
 }
+

@@ -35,21 +35,21 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE JumpDustTiles[];
-extern BYTE JumpDustMap[];
+extern BYTE LandDustTiles[];
+extern BYTE LandDustMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec JUMP_DUST_HIDDEN_ANIM =
+AnimationFunctionROMSpec LAND_DUST_HIDDEN_ANIM =
 {
 	// number of frames of this animation function
 	1,
 
 	// frames to play in animation
-	{3},
+	{5},
 
 	// number of cycles a frame of animation is displayed
 	8,
@@ -64,13 +64,13 @@ AnimationFunctionROMSpec JUMP_DUST_HIDDEN_ANIM =
 	"Hidden",
 };
 
-AnimationFunctionROMSpec JUMP_DUST_SHOW_ANIM =
+AnimationFunctionROMSpec LAND_DUST_SHOW_ANIM =
 {
 	// number of frames of this animation function
-	4,
+	6,
 
 	// frames to play in animation
-	{0, 1, 2, 3},
+	{0, 1, 2, 3, 4, 5},
 
 	// number of cycles a frame of animation is displayed
 	8,
@@ -85,44 +85,44 @@ AnimationFunctionROMSpec JUMP_DUST_SHOW_ANIM =
 	"Show",
 };
 
-AnimationDescriptionROMSpec JUMP_DUST_ANIM =
+AnimationDescriptionROMSpec LAND_DUST_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&JUMP_DUST_HIDDEN_ANIM,
-		(AnimationFunction*)&JUMP_DUST_SHOW_ANIM,
+		(AnimationFunction*)&LAND_DUST_HIDDEN_ANIM,
+		(AnimationFunction*)&LAND_DUST_SHOW_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMSpec JUMP_DUST_CH =
+CharSetROMSpec LAND_DUST_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	16,
+	30,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_MULTI,
 
 	// char definition
-	JumpDustTiles,
+	LandDustTiles,
 };
 
-TextureROMSpec JUMP_DUST_TX =
+TextureROMSpec LAND_DUST_TX =
 {
 	// charset definition
-	(CharSetSpec*)&JUMP_DUST_CH,
+	(CharSetSpec*)&LAND_DUST_CH,
 
 	// bgmap definition
-	JumpDustMap,
+	LandDustMap,
 
 	// cols (max 64)
-	2,
+	5,
 
 	// rows (max 64)
-	2,
+	1,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -130,7 +130,7 @@ TextureROMSpec JUMP_DUST_TX =
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
 	// __ANIMATED_MULTI: total number of frames
-	4,
+	6,
 
 	// palette number (0-3)
 	0,
@@ -139,20 +139,20 @@ TextureROMSpec JUMP_DUST_TX =
 	false,
 };
 
-ObjectSpriteROMSpec JUMP_DUST_SPRITE =
+ObjectSpriteROMSpec LAND_DUST_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureSpec*)&JUMP_DUST_TX,
+		(TextureSpec*)&LAND_DUST_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0},
+		{0, 0, 0, 1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -163,20 +163,20 @@ ObjectSpriteROMSpec JUMP_DUST_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const JUMP_DUST_SPRITES[] =
+ObjectSpriteROMSpec* const LAND_DUST_SPRITES[] =
 {
-	&JUMP_DUST_SPRITE,
+	&LAND_DUST_SPRITE,
 	NULL
 };
 
-AnimatedEntityROMSpec JUMP_DUST_EN =
+AnimatedEntityROMSpec LAND_DUST_EN =
 {
 	{
 		// class allocator
 		__TYPE(Dust),
 
 		// sprites
-		(SpriteROMSpec**)JUMP_DUST_SPRITES,
+		(SpriteROMSpec**)LAND_DUST_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,
@@ -193,7 +193,7 @@ AnimatedEntityROMSpec JUMP_DUST_EN =
 	},
 
 	// pointer to the animation definition for the item
-	(AnimationDescription*)&JUMP_DUST_ANIM,
+	(AnimationDescription*)&LAND_DUST_ANIM,
 
 	// initial animation
 	"Hidden",

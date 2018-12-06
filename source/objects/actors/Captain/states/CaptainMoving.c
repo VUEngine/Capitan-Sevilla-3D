@@ -61,18 +61,15 @@ void CaptainMoving::enter(void* owner)
 
 	// make sure that the captain's body is awaken right now so the check during
 	// the execute method doesn't fail
-	Captain::addForce(Captain::safeCast(owner), __X_AXIS, false);
-
-	// manipulate captain's shape
-	CaptainState::toggleShapes(this, owner, false);
+	Captain::addForce(owner, __X_AXIS, false);
 }
 
 void CaptainMoving::execute(void* owner)
 {
 	// keep adding force
-	if(((K_LL | K_LR ) & KeypadManager::getHoldKey(KeypadManager::getInstance())) && Body::isAwake(Actor::getBody(Actor::safeCast(owner))))
+	if(((K_LL | K_LR ) & KeypadManager::getHoldKey(KeypadManager::getInstance())) && Body::isAwake(Actor::getBody(owner)))
 	{
-		Captain::addForce(Captain::safeCast(owner), __X_AXIS, false);
+		Captain::addForce(owner, __X_AXIS, false);
 	}
 }
 
@@ -82,13 +79,13 @@ bool CaptainMoving::processMessage(void* owner, Telegram telegram)
 	{
 		case kBodyStopped:
 
-			Captain::stopMovementOnAxis(Captain::safeCast(owner), *(int*)Telegram::getExtraInfo(telegram));
+			Captain::stopMovementOnAxis(owner, *(int*)Telegram::getExtraInfo(telegram));
 			return true;
 			break;
 
 		case kBodyStartedMoving:
 
-			Captain::startedMovingOnAxis(Captain::safeCast(owner), *(int*)Telegram::getExtraInfo(telegram));
+			Captain::startedMovingOnAxis(owner, *(int*)Telegram::getExtraInfo(telegram));
 			break;
 	}
 
@@ -99,24 +96,24 @@ void CaptainMoving::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if(K_A & userInput->pressedKey)
 	{
-		Captain::jump(Captain::safeCast(owner), !this->bouncing);
+		Captain::jump(owner, !this->bouncing);
 	}
 
 	if(K_B & userInput->pressedKey)
 	{
-		Captain::startShooting(Captain::safeCast(owner));
+		Captain::startShooting(owner);
 	}
 
 	// check direction
 	if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
 	{
-		Captain::addForce(Captain::safeCast(owner), __X_AXIS, true);
+		Captain::addForce(owner, __X_AXIS, true);
 
-		Captain::checkDirection(Captain::safeCast(owner), userInput->pressedKey, "Walk");
+		Captain::checkDirection(owner, userInput->pressedKey, "Walk");
 	}
 	else if(K_LD & userInput->pressedKey)
 	{
-		Captain::kneel(Captain::safeCast(owner));
+		Captain::kneel(owner);
 	}
 }
 
@@ -124,7 +121,7 @@ void CaptainMoving::onKeyReleased(void* owner, const UserInput* userInput)
 {
 	if((K_LL | K_LR) & userInput->releasedKey)
 	{
-		Captain::stopAddingForce(Captain::safeCast(owner));
+		Captain::stopAddingForce(owner);
 	}
 }
 

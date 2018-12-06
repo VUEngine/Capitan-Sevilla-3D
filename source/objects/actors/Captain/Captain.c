@@ -163,7 +163,7 @@ void Captain::addSausageEjectorEntity()
 
 void Captain::addDustEntity()
 {
-	Vector3D positionJumpDustEntity = {0, __PIXELS_TO_METERS(14), 0};
+	Vector3D positionJumpDustEntity = {0, __PIXELS_TO_METERS(16), 0};
 	this->jumpDustEntity = Entity::addChildEntity(this, &JUMP_DUST_EN, -1, NULL, &positionJumpDustEntity, NULL);
 
 	Vector3D positionLandDustEntity = {0, __PIXELS_TO_METERS(18), 0};
@@ -191,6 +191,12 @@ void Captain::kneel()
 
 	// switch to kneel state
 	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainKneel::getInstance()));
+}
+
+void Captain::standUp()
+{
+	// switch to idle state
+	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
 }
 
 // make him jump
@@ -1067,4 +1073,13 @@ void Captain::onHitAnimationComplete(Object eventFirer __attribute__ ((unused)))
 	{
 		AnimatedEntity::playAnimation(this, "Idle");
 	}
+}
+
+void Captain::toggleShapes(bool kneeling)
+{
+	VirtualList shapes = Entity::getShapes(this);
+	Shape shapeStanding = Shape::safeCast(VirtualList::front(shapes));
+	Shape shapeKneeling = Shape::safeCast(VirtualList::back(shapes));
+	Shape::enable(shapeStanding, !kneeling);
+	Shape::enable(shapeKneeling, kneeling);
 }

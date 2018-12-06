@@ -41,7 +41,6 @@ class CaptainState : State
 	virtual void onKeyHold(void* owner, const UserInput* userInput);
 	virtual void onKeyPressed(void* owner, const UserInput* userInput);
 	virtual void onKeyReleased(void* owner, const UserInput* userInput);
-	virtual void toggleShapes(void* owner, bool kneeling);
 }
 
 

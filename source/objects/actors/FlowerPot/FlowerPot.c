@@ -64,7 +64,7 @@ bool FlowerPot::enterCollision(const CollisionInformation* collisionInformation)
 			Actor::stopAllMovement(this);
 
 			// deactivate shapes
-			Entity::activeCollisionChecks(this, false);
+			Entity::enableShapes(this, false);
 
 			// play breaking animation
 			AnimatedEntity::playAnimation(this, "Break");
