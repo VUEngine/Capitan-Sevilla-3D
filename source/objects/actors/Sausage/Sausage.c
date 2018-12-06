@@ -64,7 +64,7 @@ bool Sausage::enterCollision(const CollisionInformation* collisionInformation)
 			Actor::stopAllMovement(this);
 
 			// deactivate shapes
-			Entity::activateShapes(this, false);
+			Entity::activeCollisionChecks(this, false);
 
 			// play hitting animation
 			AnimatedEntity::playAnimation(this, "Hit");

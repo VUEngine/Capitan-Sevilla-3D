@@ -87,7 +87,7 @@ void Projectile::startMovement()
 	this->originalPosition = this->transformation.globalPosition;
 
 	// activate shapes
-	Entity::activateShapes(this, true);
+	Entity::activeCollisionChecks(this, true);
 
 	// play default animation
 	AnimatedEntity::playAnimation(this, this->projectileSpec->actorSpec.animatedEntitySpec.initialAnimation);
@@ -122,7 +122,7 @@ void Projectile::stopMovement()
 	Actor::stopAllMovement(this);
 
 	// deactivate shapes
-	Entity::enableShapes(this, false);
+	Entity::allowCollisions(this, false);
 
 	// hide me
 	Entity::hide(this);

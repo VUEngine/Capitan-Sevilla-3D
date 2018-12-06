@@ -130,7 +130,7 @@ void Captain::destructor()
 
 void Captain::ready(bool recursive)
 {
-	Entity::activateShapes(this, true);
+	Entity::activeCollisionChecks(this, true);
 
 	// call base
 	Base::ready(this, recursive);
@@ -570,7 +570,7 @@ void Captain::resetPalette(Entity entity)
 void Captain::die()
 {
 	// unregister the shape for collision detection
-	Entity::activateShapes(this, false);
+	Entity::activeCollisionChecks(this, false);
 
 	// show animation
 	AnimatedEntity::playAnimation(this, "Dead");
