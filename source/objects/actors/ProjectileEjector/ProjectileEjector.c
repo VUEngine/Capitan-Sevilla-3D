@@ -48,6 +48,9 @@ void ProjectileEjector::constructor(ProjectileEjectorSpec* projectileEjectorSpec
 
 	// initialize members
 	this->active = this->projectileEjectorSpec->initiallyActive;
+
+	// No projectiles created yet
+	this->createdProjectiles = 0;
 }
 
 void ProjectileEjector::destructor()
@@ -74,11 +77,16 @@ void ProjectileEjector::ready(bool recursive)
 	// add projectiles to stage as children of this ejector
 	for(u8 i = 0; i < this->projectileEjectorSpec->maxProjectiles; i++)
 	{
-		Stage::spawnEntity(Game::getStage(Game::getInstance()), &this->projectileEjectorSpec->projectilePositionedEntitySpec, Container::safeCast(this), NULL);
+		Stage::spawnEntity(Game::getStage(Game::getInstance()), &this->projectileEjectorSpec->projectilePositionedEntitySpec, Container::safeCast(this), (EventListener)ProjectileEjector::onProjectileSpawned);
 	}
+}
+
+void ProjectileEjector::onProjectileSpawned(Object eventFirer __attribute__ ((unused)))
+{
+	this->createdProjectiles++;
 
 	// send delayed message to self to trigger first shot
-	if(this->active)
+	if(this->active && this->createdProjectiles == this->projectileEjectorSpec->maxProjectiles)
 	{
 		MessageDispatcher::dispatchMessage(this->projectileEjectorSpec->initialEjectDelay, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
 	}
