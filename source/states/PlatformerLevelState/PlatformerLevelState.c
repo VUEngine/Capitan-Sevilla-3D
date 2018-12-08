@@ -184,6 +184,8 @@ void PlatformerLevelState::enter(void* owner)
 	{
 		Camera::startEffect(Camera::getInstance(), kScreenPulsate);
 	}
+
+	PlatformerLevelState::setPrintingLayerCoordinates(this);
 }
 
 void PlatformerLevelState::exit(void* owner)

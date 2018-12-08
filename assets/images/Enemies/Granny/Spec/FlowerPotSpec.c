@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <ObjectAnimatedSprite.h>
-#include <Box.h>
+#include <Ball.h>
 #include "FlowerPot.h"
 
 
@@ -171,10 +171,10 @@ ShapeROMSpec FLOWER_POT_PR_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Box),
+		__TYPE(Ball),
 
 		// size (x, y, z)
-		{12, 12, 128},
+		{12, 12, 12},
 
 		// displacement (x, y, z, p)
 		{0, 0, 0, 0},
@@ -192,7 +192,7 @@ ShapeROMSpec FLOWER_POT_PR_SHAPES[] =
 		kEnemiesLayer,
 
 		// layers to ignore when checking for collisions
-		kAllLayers & ~kPlayerLayer & ~kSolidLayer,
+		kAllLayers & ~kSolidLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}

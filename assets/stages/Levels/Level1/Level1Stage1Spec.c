@@ -104,11 +104,13 @@ extern TextureSpec HOVER_CAR_TX;
 
 extern Size collision_16_224_64;
 extern Size collision_384_16_64;
+extern Size collision_3608_16_64;
 
 
 //---------------------------------------------------------------------------------------------------------
 //											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
+
 
 PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 {
@@ -119,6 +121,9 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&CITY_BG_1_EN,						{-256, 112,  256,   0},		0, NULL, NULL, NULL, true},
 	{&CITY_FLOOR_EN,					{   0, 172,    0,   0},		0, NULL, NULL, NULL, true},
 
+	{&CITY_FLOOR_COLLISION_CL,			{ 3608/2, 200,    0,   0},		0, NULL, NULL, (void*)&collision_3608_16_64, true},
+
+/*
 	{&CITY_FLOOR_COLLISION_CL,			{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
 	{&CITY_FLOOR_COLLISION_CL,			{ 372, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
 	{&CITY_FLOOR_COLLISION_CL,			{ 552, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
@@ -139,6 +144,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&CITY_FLOOR_COLLISION_CL,			{3252, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
 	{&CITY_FLOOR_COLLISION_CL,			{3432, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
 	{&CITY_FLOOR_COLLISION_CL,			{3612, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+*/
 
 	{&BULLY_EM,							{ 460, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&BULLY_EM,							{ 520, 152,    0,   0},		0, NULL, NULL, (void*)-2, false},
@@ -157,6 +163,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&BULLY_EM,							{2460, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&BULLY_EM,							{2600, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&BULLY_EM,							{2840, 152,    0,   0},		0, NULL, NULL, (void*)-4, false},
+
 
 	{&HOVER_CAR_EM,						{1200, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&HOVER_CAR_EM,						{1486, 114,    0,   0},		0, NULL, NULL, NULL, false},
@@ -346,7 +353,7 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 		// load padding
 		32,
 		// unload padding
-		4,
+		16,
 		// streaming amplitude
 		16,
 		// particle removal delay cycles
@@ -358,10 +365,10 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 	// rendering
 	{
 		// number of cycles the texture writing is idle
-		1,
+		4,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		48,
+		20,
 
 		// maximum number of rows to compute on each call to the affine functions
 		48,
@@ -418,13 +425,13 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 		// obj segments sizes (must total 1024)
 		{
 			// __spt0
-			256,
+			0,
 			// __spt1
-			256,
+			0,
 			// __spt2
-			256,
+			0,
 			// __spt3
-			256,
+			512,
 		},
 
 		// OBJECT segments z coordinates
