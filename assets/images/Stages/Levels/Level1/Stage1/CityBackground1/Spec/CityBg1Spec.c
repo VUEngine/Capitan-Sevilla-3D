@@ -69,7 +69,7 @@ TextureROMSpec CITY_BG_1_A_TX =
 	64,
 
 	// rows (max 64)
-	64,
+	33,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -98,7 +98,7 @@ TextureROMSpec CITY_BG_1_B_TX =
 	64,
 
 	// rows (max 64)
-	64,
+	33,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -162,6 +162,12 @@ MBgmapSpriteROMSpec CITY_BG_1_SPRITE =
 
 	// y loop
 	false,
+
+	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+	0,
+
+	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+	224,
 };
 
 BgmapSpriteROMSpec* const CITY_BG_1_SPRITES[] =

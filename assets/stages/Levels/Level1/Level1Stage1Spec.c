@@ -118,7 +118,8 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&CLOUDS_DARK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
 	{&CLOUDS_LIGHT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
-	{&CITY_BG_1_EN,						{-256, 112,  256,   0},		0, NULL, NULL, NULL, true},
+//	{&CITY_BG_1_EN,						{-256, 112,  256,   0},		0, NULL, NULL, NULL, true},
+	{&CITY_BG_1_EN,						{-256, -40,  256,   0},		0, NULL, NULL, NULL, true},
 	{&CITY_FLOOR_EN,					{   0, 172,    0,   0},		0, NULL, NULL, NULL, true},
 
 	{&CITY_FLOOR_COLLISION_CL,			{ 3608/2, 200,    0,   0},		0, NULL, NULL, (void*)&collision_3608_16_64, true},
@@ -376,7 +377,7 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 		// colors config
 		{
 			// background color
-			__COLOR_BRIGHT_RED,
+			__COLOR_BLACK,
 
 			// brightness
 			// these values times the repeat values specified in the column table (max. 16) make the final

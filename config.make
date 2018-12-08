@@ -20,7 +20,7 @@ TYPE                    = tools
 
 # Optimization level
 # Do not use O3 for multiplayer games, it causes unexpected out of sync behaviour when framerate drops
-OPTIMIZATION            = O3
+OPTIMIZATION            = O2
 
 # Enable pedantic warnings
 # 0:                    Omit.
