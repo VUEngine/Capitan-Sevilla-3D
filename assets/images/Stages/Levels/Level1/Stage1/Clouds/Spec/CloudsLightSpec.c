@@ -131,6 +131,12 @@ MBgmapSpriteROMSpec CLOUDS_LIGHT_SPRITE =
 
 	// y loop
 	false,
+
+	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+	0,
+
+	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+	0,
 };
 
 BgmapSpriteROMSpec* const CLOUDS_LIGHT_SPRITES[] =
