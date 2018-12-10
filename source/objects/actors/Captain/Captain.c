@@ -418,7 +418,15 @@ bool Captain::stopMovementOnAxis(u16 axis)
 			Dust::showAnimation(this->landDustEntity);
 		}
 
-		if((__Z_AXIS & axis) || (!movementState && State::safeCast(CaptainIdle::getInstance()) != StateMachine::getCurrentState(this->stateMachine)))
+		if(__Z_AXIS & axis)
+		{
+			this->keepAddingForce = false;
+			this->jumps = 0;
+			StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
+			return true;
+		}
+
+		if(!movementState && State::safeCast(CaptainIdle::getInstance()) != StateMachine::getCurrentState(this->stateMachine))
 		{
 			this->keepAddingForce = false;
 			this->jumps = 0;
@@ -427,6 +435,21 @@ bool Captain::stopMovementOnAxis(u16 axis)
 		}
 		else
 		{
+			// make sure that hitting the floor doesn't slow me down because of the friction
+			if(__UNIFORM_MOVEMENT == Body::getMovementType(this->body).x)
+			{
+				fix10_6 maxVelocity = CAPTAIN_MAX_VELOCITY_X;
+
+				Velocity newVelocity =
+				{
+					(int)maxVelocity * this->inputDirection.x,
+					0,
+					0,
+				};
+
+				Body::moveUniformly(this->body, newVelocity);
+			}
+
 			AnimatedEntity::playAnimation(this, "Walk");
 		}
 	}
