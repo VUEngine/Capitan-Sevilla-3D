@@ -33,21 +33,23 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BullyTiles[];
-extern BYTE BullyMap[];
+extern BYTE PunkTiles[];
+extern BYTE PunkBlackTiles[];
+extern BYTE PunkMap[];
+extern BYTE PunkBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec BULLY_MOVE_ANIM =
+AnimationFunctionROMSpec PUNK_MOVE_ANIM =
 {
 	// number of frames of this animation function
-	4,
+	12,
 
 	// frames to play in animation
-	{0, 1, 2, 1},
+	{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11},
 
 	// number of cycles a frame of animation is displayed
 	4,
@@ -62,39 +64,82 @@ AnimationFunctionROMSpec BULLY_MOVE_ANIM =
 	"Move",
 };
 
-AnimationDescriptionROMSpec BULLY_ANIM =
+AnimationDescriptionROMSpec PUNK_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&BULLY_MOVE_ANIM,
+		(AnimationFunction*)&PUNK_MOVE_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMSpec BULLY_CH =
+CharSetROMSpec PUNK_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	18,
+	24,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_SINGLE,
 
 	// char spec
-	BullyTiles,
+	PunkTiles,
 };
 
-TextureROMSpec BULLY_TX =
+CharSetROMSpec PUNK_BLACK_CH =
 {
-	(CharSetSpec*)&BULLY_CH,
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	24,
+
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
+
+	// char spec
+	PunkBlackTiles,
+};
+
+TextureROMSpec PUNK_TX =
+{
+	(CharSetSpec*)&PUNK_CH,
 
 	// bgmap spec
-	BullyMap,
+	PunkMap,
 
 	// cols (max 64)
-	3,
+	4,
+
+	// rows (max 64)
+	6,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	0,
+
+	// recyclable
+	false,
+};
+
+TextureROMSpec PUNK_BLACK_TX =
+{
+	(CharSetSpec*)&PUNK_BLACK_CH,
+
+	// bgmap spec
+	PunkBlackMap,
+
+	// cols (max 64)
+	4,
 
 	// rows (max 64)
 	6,
@@ -114,14 +159,14 @@ TextureROMSpec BULLY_TX =
 	false,
 };
 
-ObjectSpriteROMSpec BULLY_SPRITE =
+ObjectSpriteROMSpec PUNK_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&BULLY_TX,
+		(TextureSpec*)&PUNK_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -138,13 +183,38 @@ ObjectSpriteROMSpec BULLY_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const BULLY_SPRITES[] =
+ObjectSpriteROMSpec PUNK_BLACK_SPRITE =
 {
-	&BULLY_SPRITE,
+	{
+		// sprite's type
+		__TYPE(ObjectAnimatedSprite),
+
+		// texture spec
+		(TextureSpec*)&PUNK_BLACK_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 0, 0, 1},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
+	__WORLD_OBJECT,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+ObjectSpriteROMSpec* const PUNK_SPRITES[] =
+{
+	&PUNK_SPRITE,
+	&PUNK_BLACK_SPRITE,
 	NULL
 };
 
-ShapeROMSpec BULLY_SHAPES[] =
+ShapeROMSpec PUNK_SHAPES[] =
 {
 	{
 		// shape
@@ -175,7 +245,7 @@ ShapeROMSpec BULLY_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-EnemyROMSpec BULLY_EM =
+EnemyROMSpec PUNK_EM =
 {
 	{
 		{
@@ -185,10 +255,10 @@ EnemyROMSpec BULLY_EM =
 					__TYPE(Enemy),
 
 					// sprites
-					(SpriteROMSpec**)BULLY_SPRITES,
+					(SpriteROMSpec**)PUNK_SPRITES,
 
 					// collision shapes
-					(ShapeSpec*)BULLY_SHAPES,
+					(ShapeSpec*)PUNK_SHAPES,
 
 					// size
 					// if 0, width and height will be inferred from the first sprite's texture's size
@@ -202,7 +272,7 @@ EnemyROMSpec BULLY_EM =
 				},
 
 				// pointer to the animation spec for the character
-				(AnimationDescription*)&BULLY_ANIM,
+				(AnimationDescription*)&PUNK_ANIM,
 
 				// initial animation
 				"Move",

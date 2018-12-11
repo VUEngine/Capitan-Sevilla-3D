@@ -39,7 +39,7 @@
 
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 
-extern EntitySpec BULLY_EM;
+extern EntitySpec PUNK_EM;
 extern EntitySpec CITY_BG_2_EN;
 extern EntitySpec CLOUDS_BACK_EN;
 extern EntitySpec CLOUDS_FRONT_EN;
@@ -96,10 +96,10 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_3_BUILDING_2A_EN,	{ 626, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 658, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2B_EN,	{1014, 114,    0,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_EM,							{1040, 148,    0,   0},		0, NULL, NULL, NULL, false},
+	{&PUNK_EM,							{1040, 142,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{1034, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1040,  72,   32,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_EM,							{1200, 148,    0,   0},		0, NULL, NULL, NULL, false},
+	{&PUNK_EM,							{1200, 142,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&KILL_COLLISION_CL,				{1260, 288,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
 

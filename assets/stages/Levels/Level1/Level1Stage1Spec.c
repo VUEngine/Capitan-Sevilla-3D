@@ -44,7 +44,7 @@ extern EntitySpec STOP_YOU_CANNOT_PASS_EN;
 extern EntitySpec LEVEL_1_STAGE_1_MAIN_EXIT_XP;
 extern EntitySpec BENCH_EN;
 extern EntitySpec BIKE_EN;
-extern EntitySpec BULLY_EM;
+extern EntitySpec PUNK_EM;
 extern EntitySpec BUSH_BG_1_EN;
 extern EntitySpec BUSH_BG_2_EN;
 extern EntitySpec CAR_1_AC;
@@ -83,7 +83,7 @@ extern EntitySpec STATUE_1_EN;
 extern EntitySpec TREE_1_EN;
 extern EntitySpec TREE_BG_1_EN;
 
-extern CharSetSpec BULLY_CH;
+extern CharSetSpec PUNK_CH;
 extern CharSetSpec CAR_1_CH;
 extern CharSetSpec FLOWER_POT_CH;
 extern CharSetSpec GUI_CH;
@@ -94,7 +94,7 @@ extern CharSetSpec CITY_BG_1_CH;
 
 extern TextureSpec CITY_BG_1_A_TX;
 extern TextureSpec CITY_BG_1_B_TX;
-extern TextureSpec BULLY_TX;
+extern TextureSpec PUNK_TX;
 extern TextureSpec CAR_1_TX;
 extern TextureSpec GUI_TX;
 extern TextureSpec FLOWER_POT_TX;
@@ -118,29 +118,29 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&CLOUDS_BACK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
 	{&CLOUDS_FRONT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
-	{&CITY_BG_1_EN,						{-256,  56,  256,   0},		0, NULL, NULL, NULL, true},
+	{&CITY_BG_1_EN,						{-256,  37,  256,   0},		0, NULL, NULL, NULL, true},
 
 	{&CITY_FLOOR_EN,					{   0, 172,    0,   0},		0, NULL, NULL, NULL, true},
 
 	{&CITY_FLOOR_COLLISION_CL,			{1804, 200,    0,   0},		0, NULL, NULL, (void*)&collision_3608_16_64, true},
 
-	{&BULLY_EM,							{ 460, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&BULLY_EM,							{ 520, 152,    0,   0},		0, NULL, NULL, (void*)-2, false},
-	{&BULLY_EM,							{ 580, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&BULLY_EM,							{ 660, 152,    0,   0},		0, NULL, NULL, (void*)-2, false},
-	{&BULLY_EM,							{ 860, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&BULLY_EM,							{1230, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&BULLY_EM,							{1330, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&BULLY_EM,							{1430, 152,    0,   0},		0, NULL, NULL, (void*)-2, false},
-	{&BULLY_EM,							{1530, 152,    0,   0},		0, NULL, NULL, (void*)-5, false},
-	{&BULLY_EM,							{1600, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&BULLY_EM,							{2080, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&BULLY_EM,							{2120, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&BULLY_EM,							{2200, 152,    0,   0},		0, NULL, NULL, (void*)-4, false},
-	{&BULLY_EM,							{2300, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&BULLY_EM,							{2460, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&BULLY_EM,							{2600, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&BULLY_EM,							{2840, 152,    0,   0},		0, NULL, NULL, (void*)-4, false},
+	{&PUNK_EM,							{ 460, 146,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{ 520, 146,    0,   0},		0, NULL, NULL, (void*)-2, false},
+	{&PUNK_EM,							{ 580, 146,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{ 660, 146,    0,   0},		0, NULL, NULL, (void*)-2, false},
+	{&PUNK_EM,							{ 860, 146,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{1230, 146,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{1330, 146,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{1430, 146,    0,   0},		0, NULL, NULL, (void*)-2, false},
+	{&PUNK_EM,							{1530, 146,    0,   0},		0, NULL, NULL, (void*)-5, false},
+	{&PUNK_EM,							{1600, 146,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2080, 146,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2120, 146,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2200, 146,    0,   0},		0, NULL, NULL, (void*)-4, false},
+	{&PUNK_EM,							{2300, 146,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2460, 146,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2600, 146,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2840, 146,    0,   0},		0, NULL, NULL, (void*)-4, false},
 
 	{&HOVER_CAR_EM,						{1200, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&HOVER_CAR_EM,						{1486, 114,    0,   0},		0, NULL, NULL, NULL, false},
@@ -243,7 +243,7 @@ FontROMSpec* const LEVEL_1_STAGE_1_ST_FONTS[] =
 CharSetROMSpec* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 {
 	&CITY_BG_1_CH,
-	&BULLY_CH,
+	&PUNK_CH,
 	&CAR_1_CH,
 	&FLOWER_POT_CH,
 	&HOVER_CAR_CH,
@@ -258,7 +258,7 @@ TextureSpec* const LEVEL_1_STAGE_1_ST_TEXTURES[] =
 {
 	&CITY_BG_1_A_TX,
 	&CITY_BG_1_B_TX,
-	&BULLY_TX,
+	&PUNK_TX,
 	&CAR_1_TX,
 	&FLOWER_POT_TX,
 	&HOVER_CAR_TX,

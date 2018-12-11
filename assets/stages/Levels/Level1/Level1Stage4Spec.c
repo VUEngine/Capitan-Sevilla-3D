@@ -41,7 +41,7 @@ extern EntitySpec LEVEL_1_STAGE_1_MAIN_EXIT_XP;
 
 extern EntitySpec ATTACK_DOG_EM;
 extern EntitySpec BENCH_EN;
-extern EntitySpec BULLY_EM;
+extern EntitySpec PUNK_EM;
 extern EntitySpec CLOUDS_BACK_EN;
 extern EntitySpec CLOUDS_FRONT_EN;
 extern EntitySpec COLLISION_CL;
@@ -78,7 +78,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_CHILDREN[] =
 	{&LANTERN_1_EN,						{ 476, 132,    0,   0},		0, NULL, NULL, NULL, false},
 	{&BENCH_EN,							{ 624, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&ATTACK_DOG_EM,					{ 632, 159,    0,   0},		0, NULL, NULL, NULL, false},
-	{&BULLY_EM,							{ 720, 159,    0,   0},		0, NULL, NULL, NULL, false},
+	{&PUNK_EM,							{ 720, 153,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_MAIN_EXIT_XP,		{ 760, 128,    0,   0},		0, NULL, NULL, NULL, false},
 	{&COLLISION_CL,						{ 774,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // right border
