@@ -35,15 +35,17 @@
 #include <PlatformerLevelState.h>
 #include "StageExitPoint.h"
 
+#include <CreditsState.h>
+
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void StageExitPoint::constructor(EntitySpec* inGameEntitySpec, s16 id, s16 internalId, const char* const name)
+void StageExitPoint::constructor(EntitySpec* entitySpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(inGameEntitySpec, id, internalId, name);
+	Base::constructor(entitySpec, id, internalId, name);
 
 	// add event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
@@ -77,7 +79,7 @@ void StageExitPoint::onExitPointReached(Object eventFirer __attribute__ ((unused
 
 void StageExitPoint::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	// TODO: move hardcoded entry point to stageexitpointromdef
+	// TODO: move hardcoded entry point to stageexitpointromspec
 
 	static int times = 0;
 
@@ -89,7 +91,6 @@ void StageExitPoint::onFadeOutComplete(Object eventFirer __attribute__ ((unused)
 	}
 	else
 	{
-		#include <CreditsState.h>
     	Game::changeState(Game::getInstance(), (GameState)CreditsState::getInstance());
 	}
 }

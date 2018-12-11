@@ -34,19 +34,19 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE CloudsTiles[];
-extern BYTE CloudsMap[];
+extern BYTE CloudsFrontMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CLOUDS_DARK_CH =
+CharSetROMSpec CLOUDS_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	7,
+	15,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -56,13 +56,13 @@ CharSetROMSpec CLOUDS_DARK_CH =
 	CloudsTiles,
 };
 
-TextureROMSpec CLOUDS_DARK_TX =
+TextureROMSpec CLOUDS_FRONT_TX =
 {
 	// charset spec
-	(CharSetSpec*)&CLOUDS_DARK_CH,
+	(CharSetSpec*)&CLOUDS_CH,
 
 	// bgmap spec
-	CloudsMap,
+	CloudsFrontMap,
 
 	// cols (max 64)
 	64,
@@ -79,19 +79,19 @@ TextureROMSpec CLOUDS_DARK_TX =
 	1,
 
 	// palette number (0-3)
-	2,
+	0,
 
 	// recyclable
 	false,
 };
 
-TextureROMSpec* const CLOUDS_DARK_TEXTURES[] =
+TextureROMSpec* const CLOUDS_FRONT_TEXTURES[] =
 {
-	(TextureSpec*)&CLOUDS_DARK_TX,
+	(TextureSpec*)&CLOUDS_FRONT_TX,
 	NULL
 };
 
-MBgmapSpriteROMSpec CLOUDS_DARK_SPRITE =
+MBgmapSpriteROMSpec CLOUDS_FRONT_SPRITE =
 {
 	{
 		{
@@ -120,7 +120,7 @@ MBgmapSpriteROMSpec CLOUDS_DARK_SPRITE =
 	},
 
 	// textures
-	(TextureSpec**)CLOUDS_DARK_TEXTURES,
+	(TextureSpec**)CLOUDS_FRONT_TEXTURES,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -132,20 +132,22 @@ MBgmapSpriteROMSpec CLOUDS_DARK_SPRITE =
 	// y loop
 	false,
 
-	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+	// bounds the sprite's width to provide culling
+	// if 0, the value is inferred from the texture
 	0,
 
-	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+	// bounds the sprite's height to provide culling
+	// if 0, the value is inferred from the texture
 	0,
 };
 
-BgmapSpriteROMSpec* const CLOUDS_DARK_SPRITES[] =
+BgmapSpriteROMSpec* const CLOUDS_FRONT_SPRITES[] =
 {
-	(BgmapSpriteROMSpec*)&CLOUDS_DARK_SPRITE,
+	(BgmapSpriteROMSpec*)&CLOUDS_FRONT_SPRITE,
 	NULL
 };
 
-MovingOneWayEntityROMSpec CLOUDS_DARK_EN =
+MovingOneWayEntityROMSpec CLOUDS_FRONT_EN =
 {
 	{
 		{
@@ -154,7 +156,7 @@ MovingOneWayEntityROMSpec CLOUDS_DARK_EN =
 				__TYPE(MovingOneWayEntity),
 
 				// sprites
-				(SpriteROMSpec**)CLOUDS_DARK_SPRITES,
+				(SpriteROMSpec**)CLOUDS_FRONT_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)NULL,
@@ -185,6 +187,6 @@ MovingOneWayEntityROMSpec CLOUDS_DARK_EN =
 	},
 
 	// speed (x axis)
-	__F_TO_FIX10_6(-0.5f),
+	__I_TO_FIX10_6(-1),
 };
 

@@ -34,35 +34,21 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE CloudsTiles[];
-extern BYTE CloudsMap[];
+extern BYTE CloudsBackMap[];
+extern CharSetSpec CLOUDS_CH;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CLOUDS_LIGHT_CH =
-{
-	// number of chars, depending on allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
-	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	7,
-
-	// allocation type
-	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
-
-	// char spec
-	CloudsTiles,
-};
-
-TextureROMSpec CLOUDS_LIGHT_TX =
+TextureROMSpec CLOUDS_BACK_TX =
 {
 	// charset spec
-	(CharSetSpec*)&CLOUDS_LIGHT_CH,
+	(CharSetSpec*)&CLOUDS_CH,
 
 	// bgmap spec
-	CloudsMap,
+	CloudsBackMap,
 
 	// cols (max 64)
 	64,
@@ -85,13 +71,13 @@ TextureROMSpec CLOUDS_LIGHT_TX =
 	false,
 };
 
-TextureROMSpec* const CLOUDS_LIGHT_TEXTURES[] =
+TextureROMSpec* const CLOUDS_BACK_TEXTURES[] =
 {
-	(TextureSpec*)&CLOUDS_LIGHT_TX,
+	(TextureSpec*)&CLOUDS_BACK_TX,
 	NULL
 };
 
-MBgmapSpriteROMSpec CLOUDS_LIGHT_SPRITE =
+MBgmapSpriteROMSpec CLOUDS_BACK_SPRITE =
 {
 	{
 		{
@@ -120,7 +106,7 @@ MBgmapSpriteROMSpec CLOUDS_LIGHT_SPRITE =
 	},
 
 	// textures
-	(TextureSpec**)CLOUDS_LIGHT_TEXTURES,
+	(TextureSpec**)CLOUDS_BACK_TEXTURES,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -132,20 +118,22 @@ MBgmapSpriteROMSpec CLOUDS_LIGHT_SPRITE =
 	// y loop
 	false,
 
-	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+	// bounds the sprite's width to provide culling
+	// if 0, the value is inferred from the texture
 	0,
 
-	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+	// bounds the sprite's height to provide culling
+	// if 0, the value is inferred from the texture
 	0,
 };
 
-BgmapSpriteROMSpec* const CLOUDS_LIGHT_SPRITES[] =
+BgmapSpriteROMSpec* const CLOUDS_BACK_SPRITES[] =
 {
-	(BgmapSpriteROMSpec*)&CLOUDS_LIGHT_SPRITE,
+	(BgmapSpriteROMSpec*)&CLOUDS_BACK_SPRITE,
 	NULL
 };
 
-MovingOneWayEntityROMSpec CLOUDS_LIGHT_EN =
+MovingOneWayEntityROMSpec CLOUDS_BACK_EN =
 {
 	{
 		{
@@ -154,7 +142,7 @@ MovingOneWayEntityROMSpec CLOUDS_LIGHT_EN =
 				__TYPE(MovingOneWayEntity),
 
 				// sprites
-				(SpriteROMSpec**)CLOUDS_LIGHT_SPRITES,
+				(SpriteROMSpec**)CLOUDS_BACK_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)NULL,
@@ -185,5 +173,6 @@ MovingOneWayEntityROMSpec CLOUDS_LIGHT_EN =
 	},
 
 	// speed (x axis)
-	__I_TO_FIX10_6(-1),
+	__F_TO_FIX10_6(-0.5f),
 };
+

@@ -46,7 +46,7 @@ typedef const CollisionSpec CollisionROMSpec;
 class Collision : Entity
 {
 
-	void constructor(EntitySpec* inGameEntitySpec, s16 id, s16 internalId, const char* const name);
+	void constructor(EntitySpec* entitySpec, s16 id, s16 internalId, const char* const name);
 	override void setExtraInfo(void* extraInfo);
 	override void initialTransform(Transformation* environmentTransform, u32 recursive);
 }

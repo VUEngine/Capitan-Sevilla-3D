@@ -47,7 +47,7 @@ CharSetROMSpec CITY_BG_2_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	240,
+	246,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -69,7 +69,7 @@ TextureROMSpec CITY_BG_2_A_TX =
 	64,
 
 	// rows (max 64)
-	64,
+	33,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -98,7 +98,7 @@ TextureROMSpec CITY_BG_2_B_TX =
 	64,
 
 	// rows (max 64)
-	64,
+	33,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -163,11 +163,13 @@ MBgmapSpriteROMSpec CITY_BG_2_SPRITE =
 	// y loop
 	false,
 
-	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
+	// bounds the sprite's width to provide culling
+	// if 0, the value is inferred from the texture
 	0,
 
-	/// Bounds the sprite's size to provide culling; if 0, the value is inferred from the texture
-	100,
+	// bounds the sprite's height to provide culling
+	// if 0, the value is inferred from the texture
+	112,
 };
 
 BgmapSpriteROMSpec* const CITY_BG_2_SPRITES[] =

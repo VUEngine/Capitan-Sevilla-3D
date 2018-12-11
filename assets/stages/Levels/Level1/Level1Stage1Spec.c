@@ -54,8 +54,8 @@ extern EntitySpec CITY_BG_1_EN;
 extern EntitySpec CITY_FLOOR_3D_EN;
 extern EntitySpec CITY_FLOOR_COLLISION_CL;
 extern EntitySpec CITY_FLOOR_EN;
-extern EntitySpec CLOUDS_DARK_EN;
-extern EntitySpec CLOUDS_LIGHT_EN;
+extern EntitySpec CLOUDS_BACK_EN;
+extern EntitySpec CLOUDS_FRONT_EN;
 extern EntitySpec CLOTHES_1_EN;
 extern EntitySpec COLLISION_CL;
 extern EntitySpec COMIC_NIVEL_1_EN;
@@ -116,36 +116,13 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 {
 	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // left border
 
-	{&CLOUDS_DARK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
-	{&CLOUDS_LIGHT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
-//	{&CITY_BG_1_EN,						{-256, 112,  256,   0},		0, NULL, NULL, NULL, true},
-	{&CITY_BG_1_EN,						{-256, -40,  256,   0},		0, NULL, NULL, NULL, true},
+	{&CLOUDS_BACK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
+	{&CLOUDS_FRONT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
+	{&CITY_BG_1_EN,						{-256,  56,  256,   0},		0, NULL, NULL, NULL, true},
+
 	{&CITY_FLOOR_EN,					{   0, 172,    0,   0},		0, NULL, NULL, NULL, true},
 
-	{&CITY_FLOOR_COLLISION_CL,			{ 3608/2, 200,    0,   0},		0, NULL, NULL, (void*)&collision_3608_16_64, true},
-
-/*
-	{&CITY_FLOOR_COLLISION_CL,			{ 192, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 372, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 552, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 732, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{ 912, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1092, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1272, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1452, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1632, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1812, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{1992, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{2172, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{2352, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{2532, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{2712, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{2892, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{3072, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{3252, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{3432, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-	{&CITY_FLOOR_COLLISION_CL,			{3612, 200,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
-*/
+	{&CITY_FLOOR_COLLISION_CL,			{1804, 200,    0,   0},		0, NULL, NULL, (void*)&collision_3608_16_64, true},
 
 	{&BULLY_EM,							{ 460, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&BULLY_EM,							{ 520, 152,    0,   0},		0, NULL, NULL, (void*)-2, false},
@@ -164,7 +141,6 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&BULLY_EM,							{2460, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&BULLY_EM,							{2600, 152,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&BULLY_EM,							{2840, 152,    0,   0},		0, NULL, NULL, (void*)-4, false},
-
 
 	{&HOVER_CAR_EM,						{1200, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&HOVER_CAR_EM,						{1486, 114,    0,   0},		0, NULL, NULL, NULL, false},
