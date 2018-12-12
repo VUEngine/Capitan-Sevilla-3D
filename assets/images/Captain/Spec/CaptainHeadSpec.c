@@ -33,7 +33,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern ActorSpec SAUSAGE_PR;
+extern ActorSpec GUM_PROJECTILE_PR;
 extern BYTE CaptainHeadTiles[];
 extern BYTE CaptainHeadBlackTiles[];
 extern BYTE CaptainHeadMap[];
@@ -68,13 +68,13 @@ AnimationFunctionROMSpec CAPTAIN_HEAD_IDLE_ANIM =
 AnimationFunctionROMSpec CAPTAIN_HEAD_SPIT_ANIM =
 {
 	// number of frames of this animation function
-	8,
+	10,
 
 	// frames to play in animation
-	{1, 2, 3, 4, 4, 4, 4, 4},
+	{1, 2, 3, 4, 4, 4, 4, 4, 4, 4},
 
 	// number of cycles a frame of animation is displayed
-	3,
+	2,
 
 	// whether to play it in loop or not
 	false,
@@ -270,7 +270,7 @@ ProjectileEjectorROMSpec CAPTAIN_HEAD_PE =
 	},
 
 	// projectile
-    {(EntitySpec*)&SAUSAGE_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
+    {(EntitySpec*)&GUM_PROJECTILE_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
 
 	// delay of the first projectile ejection (only relevant if initially active)
 	0,

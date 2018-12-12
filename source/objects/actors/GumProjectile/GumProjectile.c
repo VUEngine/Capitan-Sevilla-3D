@@ -31,19 +31,20 @@
 #include <CollisionManager.h>
 #include <MessageDispatcher.h>
 #include <Enemy.h>
-#include "Sausage.h"
+#include "GumProjectile.h"
+
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Sausage::constructor(ProjectileSpec* projectileSpec, s16 id, s16 internalId, const char* const name)
+void GumProjectile::constructor(ProjectileSpec* projectileSpec, s16 id, s16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(projectileSpec, id, internalId, name);
 }
 
-void Sausage::destructor()
+void GumProjectile::destructor()
 {
 	// delete the super object
 	// must always be called at the end of the destructor
@@ -51,7 +52,7 @@ void Sausage::destructor()
 }
 
 // process collisions
-bool Sausage::enterCollision(const CollisionInformation* collisionInformation)
+bool GumProjectile::enterCollision(const CollisionInformation* collisionInformation)
 {
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape::getOwner(collidingShape);

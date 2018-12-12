@@ -403,6 +403,8 @@ bool Captain::stopMovementOnAxis(u16 axis)
 	{
 		if(__Y_AXIS & axis)
 		{
+			Dust::showAnimation(this->landDustEntity);
+
 			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainCheckVelocity);
 
 			this->jumps = 0;
@@ -414,8 +416,6 @@ bool Captain::stopMovementOnAxis(u16 axis)
 					AnimatedEntity::playAnimation(this, "Walk");
 				}
 			}
-
-			Dust::showAnimation(this->landDustEntity);
 		}
 
 		if(__Z_AXIS & axis)
@@ -436,6 +436,8 @@ bool Captain::stopMovementOnAxis(u16 axis)
 		else
 		{
 			// make sure that hitting the floor doesn't slow me down because of the friction
+			// TODO: this breaks jumping from walking
+			/*
 			if(__UNIFORM_MOVEMENT == Body::getMovementType(this->body).x)
 			{
 				fix10_6 maxVelocity = CAPTAIN_MAX_VELOCITY_X;
@@ -449,6 +451,7 @@ bool Captain::stopMovementOnAxis(u16 axis)
 
 				Body::moveUniformly(this->body, newVelocity);
 			}
+			*/
 
 			AnimatedEntity::playAnimation(this, "Walk");
 		}

@@ -25,32 +25,32 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <ObjectAnimatedSprite.h>
-#include <Box.h>
-#include "Sausage.h"
+#include <Ball.h>
+#include "GumProjectile.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE SausageTiles[];
-extern BYTE SausageMap[];
+extern BYTE GumProjectileTiles[];
+extern BYTE GumProjectileMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec SAUSAGE_DEFAULT_ANIM =
+AnimationFunctionROMSpec GUM_PROJECTILE_DEFAULT_ANIM =
 {
 	// number of frames of this animation function
 	5,
 
 	// frames to play in animation
-	{4, 0, 3, 2, 1},
+	{0, 1, 2, 3},
 
 	// number of cycles a frame of animation is displayed
-	6,
+	4,
 
 	// whether to play it in loop or not
 	true,
@@ -62,13 +62,13 @@ AnimationFunctionROMSpec SAUSAGE_DEFAULT_ANIM =
 	"Default",
 };
 
-AnimationFunctionROMSpec SAUSAGE_HIT_ANIM =
+AnimationFunctionROMSpec GUM_PROJECTILE_HIT_ANIM =
 {
 	// number of frames of this animation function
 	1,
 
 	// frames to play in animation
-	{5},
+	{4},
 
 	// number of cycles a frame of animation is displayed
 	8,
@@ -83,41 +83,41 @@ AnimationFunctionROMSpec SAUSAGE_HIT_ANIM =
 	"Hit",
 };
 
-AnimationDescriptionROMSpec SAUSAGE_ANIM =
+AnimationDescriptionROMSpec GUM_PROJECTILE_ANIM =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&SAUSAGE_DEFAULT_ANIM,
-		(AnimationFunction*)&SAUSAGE_HIT_ANIM,
+		(AnimationFunction*)&GUM_PROJECTILE_DEFAULT_ANIM,
+		(AnimationFunction*)&GUM_PROJECTILE_HIT_ANIM,
 		NULL,
 	}
 };
 
-CharSetROMSpec SAUSAGE_CH =
+CharSetROMSpec GUM_PROJECTILE_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	4 * 3,
+	3 * 3,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_SINGLE,
 
 	// char spec
-	SausageTiles,
+	GumProjectileTiles,
 };
 
-TextureROMSpec SAUSAGE_TX =
+TextureROMSpec GUM_PROJECTILE_TX =
 {
 	// charset spec
-	(CharSetSpec*)&SAUSAGE_CH,
+	(CharSetSpec*)&GUM_PROJECTILE_CH,
 
 	// bgmap spec
-	SausageMap,
+	GumProjectileMap,
 
 	// cols (max 64)
-	4,
+	3,
 
 	// rows (max 64)
 	3,
@@ -131,20 +131,20 @@ TextureROMSpec SAUSAGE_TX =
 	1,
 
 	// palette number (0-3)
-	1,
+	0,
 
 	// recyclable
 	true,
 };
 
-ObjectSpriteROMSpec SAUSAGE_SPRITE =
+ObjectSpriteROMSpec GUM_PROJECTILE_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&SAUSAGE_TX,
+		(TextureSpec*)&GUM_PROJECTILE_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -161,20 +161,20 @@ ObjectSpriteROMSpec SAUSAGE_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const SAUSAGE_SPRITES[] =
+ObjectSpriteROMSpec* const GUM_PROJECTILE_SPRITES[] =
 {
-	&SAUSAGE_SPRITE,
+	&GUM_PROJECTILE_SPRITE,
 	NULL
 };
 
-ShapeROMSpec SAUSAGE_SHAPES[] =
+ShapeROMSpec GUM_PROJECTILE_SHAPES[] =
 {
 	{
 		// shape
-		__TYPE(Box),
+		__TYPE(Ball),
 
 		// size (x, y, z)
-		{16, 16, 128},
+		{8, 8, 16},
 
 		// displacement (x, y, z, p)
 		{0, 0, 0, 0},
@@ -198,34 +198,34 @@ ShapeROMSpec SAUSAGE_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
 };
 
-ProjectileROMSpec SAUSAGE_PR =
+ProjectileROMSpec GUM_PROJECTILE_PR =
 {
 	// actor
 	{
 		{
 			{
 				// class allocator
-				__TYPE(Sausage),
+				__TYPE(GumProjectile),
 
 				// sprites
-				(SpriteROMSpec**)SAUSAGE_SPRITES,
+				(SpriteROMSpec**)GUM_PROJECTILE_SPRITES,
 
 				// collision shapes
-				(ShapeSpec*)SAUSAGE_SHAPES,
+				(ShapeSpec*)GUM_PROJECTILE_SHAPES,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
 				{0, 0, 0},
 
 				// gameworld's character's type
-				kSausage,
+				kGumProjectile,
 
 				// physical specification
 				(PhysicalSpecification*)NULL,
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&SAUSAGE_ANIM,
+			(AnimationDescription*)&GUM_PROJECTILE_ANIM,
 
 			// initial animation
 			"Default",
@@ -247,8 +247,8 @@ ProjectileROMSpec SAUSAGE_PR =
 
 	// position relative to ejector
     {
-    	__PIXELS_TO_METERS(12),
     	__PIXELS_TO_METERS(8),
+    	__PIXELS_TO_METERS(1),
     	0,
     },
 

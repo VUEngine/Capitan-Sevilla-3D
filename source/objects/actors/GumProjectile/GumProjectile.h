@@ -19,8 +19,8 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef SAUSAGE_H_
-#define SAUSAGE_H_
+#ifndef GUM_PROJECTILE_H_
+#define GUM_PROJECTILE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-class Sausage : Projectile
+class GumProjectile : Projectile
 {
 	void constructor(ProjectileSpec* projectileSpec, s16 id, s16 internalId, const char* const name);
 	override bool enterCollision(const CollisionInformation* collisionInformation);

@@ -51,7 +51,7 @@ enum PlatformerTypes
 	kEnemy,
 	kMessage,
 	kFloor,
-	kSausage,
+	kGumProjectile,
 	kEnemyProjectile,
 	kMovingPlatform,
 	kStageExitPoint,
