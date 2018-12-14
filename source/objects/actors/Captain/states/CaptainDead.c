@@ -24,14 +24,15 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "CaptainDead.h"
-#include "CaptainMoving.h"
-#include "../Captain.h"
-
-#include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
+#include <Game.h>
 #include <KeypadManager.h>
+#include <EventManager.h>
+#include <PlatformerLevelState.h>
 #include <debugUtilities.h>
+#include <GameEvents.h>
+#include <Captain.h>
+#include "CaptainDead.h"
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,16 +51,21 @@ void CaptainDead::destructor()
 	Base::destructor();
 }
 
-void CaptainDead::enter(void* owner __attribute__ ((unused)))
+void CaptainDead::enter(void* owner)
 {
-	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED);
-}
+	// show animation
+	AnimatedEntity::playAnimation(owner, "Dead");
 
-void CaptainDead::onKeyPressed(void* owner __attribute__ ((unused)), const UserInput* userInput)
-{
-	if((K_LL | K_LR | K_A) & userInput->pressedKey)
-	{
-		//Container::deleteMyself(Container::safeCast(&owner));
-		return;
-	}
+	// unregister captain's shapes for collision detection
+	Entity::activeCollisionChecks(owner, false);
+
+	// set flashing palette back to original
+	Captain::stopFlashing(owner);
+
+	Actor::stopAllMovement(owner);
+	Game::disableKeypad(Game::getInstance());
+	Captain::setInvincible(owner, true);
+
+	// announce my dead
+	Object::fireEvent(EventManager::getInstance(), kEventCaptainDied);
 }

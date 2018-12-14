@@ -530,6 +530,18 @@ void Captain::takeHitFrom(int energyToReduce)
 	}
 }
 
+void Captain::startFlashing()
+{
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
+	MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kCaptainFlash, NULL);
+}
+
+void Captain::stopFlashing()
+{
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
+ 	Captain::resetPalette(this);
+}
+
 // flash after being hit
 void Captain::flash()
 {
@@ -537,8 +549,7 @@ void Captain::flash()
 	if(Captain::isInvincible(this))
 	{
 		// toggle between original and flash palette
-		Captain::toggleFlashPalette(this, Entity::safeCast(this));
-		Captain::toggleFlashPalette(this, this->headEntity);
+		Captain::toggleFlashPalette(this);
 
 		// next flash state change after CAPTAIN_FLASH_INTERVAL milliseconds
 		MessageDispatcher::dispatchMessage(CAPTAIN_FLASH_INTERVAL, Object::safeCast(this), Object::safeCast(this), kCaptainFlash, NULL);
@@ -546,12 +557,17 @@ void Captain::flash()
 	else
 	{
 		// set palette back to original
-		Captain::resetPalette(this, Entity::safeCast(this));
-		Captain::resetPalette(this, this->headEntity);
+		Captain::resetPalette(this);
 	}
 }
 
-void Captain::toggleFlashPalette(Entity entity)
+void Captain::toggleFlashPalette()
+{
+	Captain::toggleEntityFlashPalette(this, Entity::safeCast(this));
+	Captain::toggleEntityFlashPalette(this, this->headEntity);
+}
+
+void Captain::toggleEntityFlashPalette(Entity entity)
 {
 	// get all of the captain's sprites and loop through them
 	VirtualList sprites = Entity::getSprites(entity);
@@ -580,7 +596,13 @@ void Captain::toggleFlashPalette(Entity entity)
 	}
 }
 
-void Captain::resetPalette(Entity entity)
+void Captain::resetPalette()
+{
+	Captain::resetEntityPalette(this, Entity::safeCast(this));
+	Captain::resetEntityPalette(this, this->headEntity);
+}
+
+void Captain::resetEntityPalette(Entity entity)
 {
 	// get all of captain's sprites and loop through them
 	VirtualList sprites = Entity::getSprites(entity);
@@ -603,26 +625,8 @@ void Captain::resetPalette(Entity entity)
 // die captain
 void Captain::die()
 {
-	// unregister the shape for collision detection
-	Entity::activeCollisionChecks(this, false);
-
-	// show animation
-	AnimatedEntity::playAnimation(this, "Dead");
-
-	// set flashing palette back to original
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
-	Captain::resetPalette(this, Entity::safeCast(this));
-	Captain::resetPalette(this, this->headEntity);
-
-	Actor::stopAllMovement(this);
-	Game::disableKeypad(Game::getInstance());
-	Captain::setInvincible(this, true);
-
 	// go to dead state
 	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainDead::getInstance()));
-
-	// announce my dead
-	Object::fireEvent(EventManager::getInstance(), kEventCaptainDied);
 }
 
 void Captain::onProjectileEjected(Object eventFirer __attribute__ ((unused)))
@@ -1077,8 +1081,7 @@ void Captain::onHitAnimationComplete(Object eventFirer __attribute__ ((unused)))
 	MessageDispatcher::dispatchMessage(CAPTAIN_FLASH_DURATION, Object::safeCast(this), Object::safeCast(this), kCaptainStopInvincibility, NULL);
 
 	// start flashing of captain
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
-	MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kCaptainFlash, NULL);
+	Captain::startFlashing(this);
 
 	// give control back to player
 	Game::enableKeypad(Game::getInstance());

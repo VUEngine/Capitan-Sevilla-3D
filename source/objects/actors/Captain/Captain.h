@@ -119,6 +119,9 @@ class Captain : Actor
 	void startShooting();
 	void stopShooting();
 	void toggleShapes(bool kneeling);
+	void resetPalette();
+	void startFlashing();
+	void stopFlashing();
 	override void ready(bool recursive);
 	override bool handlePropagatedMessage(int message);
 	override bool handleMessage(Telegram telegram);

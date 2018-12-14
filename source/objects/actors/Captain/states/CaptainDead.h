@@ -38,7 +38,6 @@ singleton class CaptainDead : CaptainState
 {
 	static CaptainDead getInstance();
 	override void enter(void* owner);
-	override void onKeyPressed(void* owner, const UserInput* userInput);
 }
 
 
