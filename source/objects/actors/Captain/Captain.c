@@ -283,7 +283,9 @@ void Captain::addForce(u16 axis, bool enableAddingForce)
 
 	Velocity velocity = Body::getVelocity(this->body);
 
-	if(
+	Direction direction = Entity::getDirection(Entity::safeCast(this));
+
+	if( direction.x != this->inputDirection.x ||
 		((__X_AXIS & axis) && maxVelocity > __ABS(velocity.x)) ||
 		((__Z_AXIS & axis) && maxVelocity > __ABS(velocity.z)) ||
 		Actor::hasChangedDirection(this, __X_AXIS) ||
@@ -931,10 +933,6 @@ void Captain::update(u32 elapsedTime)
 void Captain::setDirection(Direction direction)
 {
 	Base::setDirection(this, direction);
-	//Captain::syncRotationWithBody(this);
-	this->inputDirection = direction;
-
-	// set head position
 	Captain::updateHeadXPosition(this);
 }
 
