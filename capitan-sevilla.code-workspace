@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\..\\..\\libs\\vuengine\\core"
+		},
+		{
+			"path": "..\\..\\..\\libs\\vuengine\\plugins"
+		}
+	],
+	"settings": {
+		"files.associations": {
+		}
+	}
+}
