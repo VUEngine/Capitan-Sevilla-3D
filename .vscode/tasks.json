@@ -1,0 +1,52 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Release",
+            "type": "shell",
+            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=release"
+        },
+        {
+            "label": "Build Beta",
+            "type": "shell",
+            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=beta"
+        },
+        {
+            "label": "Build Tools",
+            "type": "shell",
+            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=tools"
+        },
+        {
+            "label": "Build Debug",
+            "type": "shell",
+            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=debug"
+        },
+        {
+            "label": "Run on Mednafen",
+            "type": "shell",
+            "command": "mednafen build/output.vb"
+        },
+        {
+            "label": "Build Release and Run on Mednafen",
+            "type": "shell",
+            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=release && mednafen build/output.vb"
+        },
+        {
+            "label": "Build Beta and Run on Mednafen",
+            "type": "shell",
+            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=beta && mednafen build/output.vb"
+        },
+        {
+            "label": "Build Tools and Run on Mednafen",
+            "type": "shell",
+            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=tools && mednafen build/output.vb"
+        },
+        {
+            "label": "Build Debug and Run on Mednafen",
+            "type": "shell",
+            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=debug && mednafen build/output.vb"
+        }
+    ]
+}
