@@ -4,6 +4,17 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Clean",
+            "type": "shell",
+            "command": "make clean -f $VBDE/libs/vuengine/core/makefile-game",
+            "problemMatcher": []
+        },
+        {
+            "label": "Clean all",
+            "type": "shell",
+            "command": "make clean_all -f $VBDE/libs/vuengine/core/makefile-game"
+        },
+        {
             "label": "Build Release",
             "type": "shell",
             "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=release"
