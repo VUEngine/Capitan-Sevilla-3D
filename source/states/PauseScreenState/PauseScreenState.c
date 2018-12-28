@@ -31,7 +31,7 @@
 #include <MessageDispatcher.h>
 #include <I18n.h>
 #include <PhysicalWorld.h>
-#include <KeyPadManager.h>
+#include <KeypadManager.h>
 #include <Utilities.h>
 #include <Captain.h>
 #include <Languages.h>
