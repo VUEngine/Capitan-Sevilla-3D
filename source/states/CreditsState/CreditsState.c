@@ -40,7 +40,7 @@
 #include <OptionsScreenState.h>
 #include <ProgressManager.h>
 #include <EventManager.h>
-#include <KeyPadManager.h>
+#include <KeypadManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------

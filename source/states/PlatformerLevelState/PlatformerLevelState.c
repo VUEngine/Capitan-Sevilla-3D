@@ -41,7 +41,7 @@
 #include <CustomCameraMovementManager.h>
 #include <CustomCameraEffectManager.h>
 #include <EventManager.h>
-#include <KeyPadManager.h>
+#include <KeypadManager.h>
 #include <debugUtilities.h>
 
 
