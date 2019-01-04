@@ -477,5 +477,8 @@ CaptainROMSpec CAPTAIN_AC =
 	true,
 
 	// axes subject to gravity
+	__Y_AXIS,
+
+	// axis around which to rotate the entity when syncronizing with body
 	__Y_AXIS
 };

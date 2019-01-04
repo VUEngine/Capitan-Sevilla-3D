@@ -305,7 +305,7 @@ void Captain::addForce(u16 axis, bool enableAddingForce)
 	}
 	else
 	{
-		if(__UNIFORM_MOVEMENT != Body::getMovementType(this->body).x || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body::getMovementOnAllAxes(this->body))))
+		if(__UNIFORM_MOVEMENT != Body::getMovementType(this->body).x || (__ABS(velocity.x) > maxVelocity && !(__Y_AXIS & Body::getMovementOnAllAxis(this->body))))
 		{
 			Velocity newVelocity =
 			{
@@ -393,7 +393,7 @@ bool Captain::stopMovementOnAxis(u16 axis)
 		return false;
 	}
 
-	bool movementState = Body::getMovementOnAllAxes(this->body);
+	bool movementState = Body::getMovementOnAllAxis(this->body);
 
 	if((__X_AXIS & axis) && !(__Y_AXIS & movementState))
 	{
@@ -469,7 +469,7 @@ bool Captain::stopMovementOnAxis(u16 axis)
 // check direction
 void Captain::checkDirection(u32 pressedKey, char* animation)
 {
-	bool movementState = Body::getMovementOnAllAxes(this->body);
+	bool movementState = Body::getMovementOnAllAxis(this->body);
 	//Direction direction = Entity::getDirection(this);
 
 	if(K_LR & pressedKey)
@@ -1065,7 +1065,7 @@ void Captain::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool is
 	Base::exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
-u16 Captain::getAxesForShapeSyncWithDirection()
+u16 Captain::getAxisForShapeSyncWithDirection()
 {
 	return __X_AXIS;
 }

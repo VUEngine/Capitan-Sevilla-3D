@@ -169,6 +169,9 @@ MovingOneWayEntityROMSpec CLOUDS_BACK_EN =
 		true,
 
 		// axes subject to gravity
+		__NO_AXIS,
+
+		// axis around which to rotate the entity when syncronizing with body
 		__NO_AXIS
 	},
 

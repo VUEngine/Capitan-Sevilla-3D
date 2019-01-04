@@ -133,7 +133,7 @@ class Captain : Actor
 	override void exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
 	override bool updateCollision(const CollisionInformation* collisionInformation);
 	override void syncRotationWithBody();
-	override u16 getAxesForShapeSyncWithDirection();
+	override u16 getAxisForShapeSyncWithDirection();
 	override void setDirection(Direction direction);
 	override void update(u32 elapsedTime);
 	void onHitAnimationComplete(Object eventFirer);

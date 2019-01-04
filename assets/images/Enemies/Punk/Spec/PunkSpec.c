@@ -282,7 +282,10 @@ EnemyROMSpec PUNK_EM =
 			true,
 
 			// axes subject to gravity
-			__NO_AXIS
+			__NO_AXIS,
+
+			// axis around which to rotate the entity when syncronizing with body
+			__Y_AXIS
 		},
 
 		// speed (x axis)

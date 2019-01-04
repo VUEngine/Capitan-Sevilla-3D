@@ -291,6 +291,9 @@ LiftROMSpec LEVEL_1_STAGE_2_LIFT_EN =
 		true,
 
 		// axes subject to gravity
+		__NO_AXIS,
+
+		// axis around which to rotate the entity when syncronizing with body
 		__NO_AXIS
 	},
 
@@ -337,6 +340,9 @@ LiftROMSpec LEVEL_1_STAGE_3_LIFT_EN =
 		true,
 
 		// axes subject to gravity
+		__NO_AXIS,
+
+		// axis around which to rotate the entity when syncronizing with body
 		__NO_AXIS
 	},
 
