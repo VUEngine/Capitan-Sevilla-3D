@@ -36,7 +36,6 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern FontSpec CAPITAN_DEFAULT_FONT;
-extern FontSpec CAPITAN_GUI_FONT;
 
 
 #endif

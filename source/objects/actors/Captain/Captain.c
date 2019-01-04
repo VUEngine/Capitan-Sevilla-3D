@@ -94,7 +94,8 @@ void Captain::constructor(CaptainSpec* captainSpec, s16 id, s16 internalId, cons
 	this->energy = CAPTAIN_INITIAL_ENERGY;
 	this->invincible = false;
 	this->jumps = 0;
-	this->sausages = CAPTAIN_INITIAL_SAUSAGES;
+	this->gums = CAPTAIN_INITIAL_GUMS;
+	this->ducks = 0;
 	this->keepAddingForce = false;
 	this->headEntity = NULL;
 	this->jumpDustEntity = NULL;
@@ -140,20 +141,20 @@ void Captain::ready(bool recursive)
 	if(progressManager)
 	{
 		this->energy = ProgressManager::getCaptainCurrentEnergy(progressManager);
-		this->sausages = ProgressManager::getCaptainCurrentSausages(progressManager);
+		this->gums = ProgressManager::getCaptainCurrentGums(progressManager);
 	}
 
 	// initialize me as idle
 	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
 
-	// add sausage ejector
-	Captain::addSausageEjectorEntity(this);
+	// add projectile ejector
+	Captain::addProjectileEjectorEntity(this);
 
 	// add dust entities
 	Captain::addDustEntity(this);
 }
 
-void Captain::addSausageEjectorEntity()
+void Captain::addProjectileEjectorEntity()
 {
 	Vector3D position = {__PIXELS_TO_METERS(CAPTAIN_HEAD_X_OFFSET), __PIXELS_TO_METERS(CAPTAIN_HEAD_Y_OFFSET), 0};
 	this->headEntity = Entity::addChildEntity(this, &CAPTAIN_HEAD_PE, -1, NULL, &position, NULL);
@@ -172,9 +173,9 @@ void Captain::addDustEntity()
 
 void Captain::startShooting()
 {
-	if(this->sausages > 0)
+	if(this->gums > 0)
 	{
-		// shoot sausage
+		// shoot gum
 		ProjectileEjector::setActive(this->headEntity, true);
 	}
 }
@@ -631,9 +632,9 @@ void Captain::die()
 
 void Captain::onProjectileEjected(Object eventFirer __attribute__ ((unused)))
 {
-	if(this->sausages > 0)
+	if(this->gums > 0)
 	{
-		this->sausages--;
+		this->gums--;
 
 		Object::fireEvent(EventManager::getInstance(), kEventCaptainShot);
 	}
@@ -671,10 +672,16 @@ s8 Captain::getEnergy()
 	return this->energy;
 }
 
-// get number of sausages
-u8 Captain::getSausages()
+// get number of gums
+u8 Captain::getGums()
 {
-	return this->sausages;
+	return this->gums;
+}
+
+// get number of ducks
+u8 Captain::getDucks()
+{
+	return this->ducks;
 }
 
 // set invincibility
@@ -712,15 +719,15 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 		case kShape:
 			break;
 
-		case kItemSausage:
+		case kItemDuck:
 
-			this->sausages += 5;
+			this->ducks++;
 
-			// inform sausage item
+			// inform item
 			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(collidingObject), kItemTaken, NULL);
 
 			// inform gui
-			Object::fireEvent(EventManager::getInstance(), kEventSausageCollected);
+			Object::fireEvent(EventManager::getInstance(), kEventDuckCollected);
 
 			return true;
 			break;

@@ -101,8 +101,6 @@ PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_UI_CHILDREN[] =
 
 FontROMSpec* const LEVEL_1_STAGE_4_ST_FONTS[] =
 {
-	&CAPITAN_GUI_FONT,
-
 	NULL
 };
 

@@ -39,7 +39,6 @@
 
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 extern EntitySpec GUI_EN;
-extern EntitySpec ITEM_SAUSAGE_EN;
 extern EntitySpec LEVEL_1_STAGE_2_ROOM_EN;
 extern EntitySpec LEVEL_1_STAGE_2_LIFT_EN;
 
@@ -51,7 +50,6 @@ extern EntitySpec LEVEL_1_STAGE_2_LIFT_EN;
 PositionedEntityROMSpec LEVEL_1_STAGE_2_ST_CHILDREN[] =
 {
 	{&LEVEL_1_STAGE_2_ROOM_EN,		{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
-    {&ITEM_SAUSAGE_EN,				{ 342, 108,    0,   0},		0, NULL, NULL, NULL, true},
 	{&LEVEL_1_STAGE_2_LIFT_EN,		{ 693, 130,    0,   0},		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
@@ -72,8 +70,6 @@ PositionedEntityROMSpec LEVEL_1_STAGE_2_ST_UI_CHILDREN[] =
 
 FontROMSpec* const LEVEL_1_STAGE_2_ST_FONTS[] =
 {
-	&CAPITAN_GUI_FONT,
-
 	NULL
 };
 

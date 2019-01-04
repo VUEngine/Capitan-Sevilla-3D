@@ -43,7 +43,7 @@ enum GameEvents
 	kEventCaptainDied,
 	kEventCaptainShot,
 	kEventLiftActivated,
-	kEventSausageCollected,
+	kEventDuckCollected,
 	kEventLevelStarted,
 	kEventCheckpointLoaded,
 	kEventLevelCompleted,

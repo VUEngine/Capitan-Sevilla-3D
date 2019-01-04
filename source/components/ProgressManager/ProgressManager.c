@@ -79,7 +79,7 @@ void ProgressManager::destructor()
 void ProgressManager::resetCaptainState()
 {
 	this->captainCurrentEnergy = CAPTAIN_INITIAL_ENERGY;
-	this->captainCurrentSausages = CAPTAIN_INITIAL_SAUSAGES;
+	this->captainCurrentGums = CAPTAIN_INITIAL_GUMS;
 }
 
 void ProgressManager::resetCurrentLevelProgress()
@@ -112,10 +112,10 @@ u8 ProgressManager::getCaptainCurrentEnergy()
 	return this->captainCurrentEnergy;
 }
 
-// get captain's current number of sausages
-u8 ProgressManager::getCaptainCurrentSausages()
+// get captain's current number of gums
+u8 ProgressManager::getCaptainCurrentGums()
 {
-	return this->captainCurrentSausages;
+	return this->captainCurrentGums;
 }
 
 // get current level time
@@ -136,7 +136,7 @@ void ProgressManager::onHitTaken(Object eventFirer __attribute__ ((unused)))
 
 void ProgressManager::onCaptainShot(Object eventFirer __attribute__ ((unused)))
 {
-	this->captainCurrentSausages = Captain::getSausages(Captain::getInstance());
+	this->captainCurrentGums = Captain::getGums(Captain::getInstance());
 }
 
 void ProgressManager::onLevelStarted(Object eventFirer __attribute__ ((unused)))

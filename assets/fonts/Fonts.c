@@ -34,6 +34,5 @@
 FontSpec* const __FONTS[] =
 {
 	(FontSpec*)&CAPITAN_DEFAULT_FONT,
-	(FontSpec*)&CAPITAN_GUI_FONT,
 	NULL
 };

@@ -47,7 +47,7 @@ enum PlatformerTypes
 	kTopShape,
 	kKillShape,
 	kLift,
-	kItemSausage,
+	kItemDuck,
 	kEnemy,
 	kMessage,
 	kFloor,

@@ -214,7 +214,7 @@ AnimatedEntityROMSpec ITEM_SAUSAGE_EN =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kItemSausage,
+		kItemDuck,
 
 		// physical specification
 		(PhysicalSpecification*)NULL,

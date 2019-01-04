@@ -63,7 +63,6 @@ extern EntitySpec FENCE_EN;
 extern EntitySpec GRANNY_PE;
 extern EntitySpec GUI_EN;
 extern EntitySpec HOVER_CAR_EM;
-extern EntitySpec ITEM_SAUSAGE_EN;
 extern EntitySpec LANTERN_1_EN;
 extern EntitySpec LEVEL_1_STAGE_1_BUILDING_1_EN;
 extern EntitySpec LEVEL_1_STAGE_1_BUILDING_2_EN;
@@ -153,7 +152,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&CAR_1_AC,							{1810, 164,    0,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,							{2608, 164,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&COMIC_NIVEL_1_EN,					{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
+//	{&COMIC_NIVEL_1_EN,					{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,						{  32, 134,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_1_EN,	{ 200,  80,    0,   0},		0, NULL, NULL, NULL, false},
@@ -184,7 +183,6 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&LANTERN_1_EN,						{1570, 134,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_6_EN,	{1746,  79,    0,   0},		0, NULL, NULL, NULL, false},
-	{&ITEM_SAUSAGE_EN,					{1720,  88,    0,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_PE,						{1784,  31,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_7_EN,	{1920, 102,    0,   0},		0, NULL, NULL, NULL, false},
@@ -235,8 +233,6 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_UI_CHILDREN[] =
 
 FontROMSpec* const LEVEL_1_STAGE_1_ST_FONTS[] =
 {
-	&CAPITAN_GUI_FONT,
-
 	NULL
 };
 

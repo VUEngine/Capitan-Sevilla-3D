@@ -44,7 +44,6 @@ extern EntitySpec CITY_BG_2_EN;
 extern EntitySpec CLOUDS_BACK_EN;
 extern EntitySpec CLOUDS_FRONT_EN;
 extern EntitySpec HOVER_CAR_EM;
-extern EntitySpec ITEM_SAUSAGE_EN;
 extern EntitySpec LEVEL_1_STAGE_3_BUILDING_1_EN;
 extern EntitySpec LEVEL_1_STAGE_3_BUILDING_2A_EN;
 extern EntitySpec LEVEL_1_STAGE_3_BUILDING_2B_EN;
@@ -109,7 +108,6 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_3_BUILDING_3B_EN,	{1734,  96,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_LIFT_EN,			{1783, 136,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&ITEM_SAUSAGE_EN,					{1482,  38,    0,   0},		0, NULL, NULL, NULL, false},
 	{&HOVER_CAR_EM,						{1700, 112,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&COLLISION_CL,						{1808,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // right border
@@ -132,8 +130,6 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_UI_CHILDREN[] =
 
 FontROMSpec* const LEVEL_1_STAGE_3_ST_FONTS[] =
 {
-	&CAPITAN_GUI_FONT,
-
 	NULL
 };
 

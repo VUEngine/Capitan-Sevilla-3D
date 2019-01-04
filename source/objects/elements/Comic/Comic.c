@@ -134,6 +134,4 @@ bool Comic::respawn()
 void Comic::onLevelStarted(Object eventFirer __attribute__ ((unused)))
 {
 	PlatformerLevelState::setModeToPaused(PlatformerLevelState::getInstance());
-
-	Printing::text(Printing::getInstance(), "////////////////////////////////////////////////", GUI_X_POS, GUI_Y_POS, "GuiFont");
 }

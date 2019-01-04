@@ -61,13 +61,13 @@ singleton class ProgressManager : SaveDataManager
 	u32 checkpointCurrentLevelTime;
 	// captain's current energy
 	u8 captainCurrentEnergy;
-	// captain's current number of sausages
-	u8 captainCurrentSausages;
+	// captain's current number of gums
+	u8 captainCurrentGums;
 
 	static ProgressManager getInstance();
 	u32  getCurrentLevelTime();
 	u8   getCaptainCurrentEnergy();
-	u8   getCaptainCurrentSausages();
+	u8   getCaptainCurrentGums();
 	void initialize();
 	void loadCheckPointData();
 	void setCheckPointData();

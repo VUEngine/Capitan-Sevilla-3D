@@ -47,12 +47,11 @@
 class Gui : Entity
 {
 	bool active;
-	u8 timeRemaining;
 
 	void constructor(EntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name);
 	void printClock();
 	void printLives();
-	void printSausages();
+	void printGums();
 	void printAll();
 	override void resume();
 }

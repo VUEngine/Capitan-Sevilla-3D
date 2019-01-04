@@ -38,7 +38,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define CAPTAIN_INITIAL_ENERGY					3
-#define CAPTAIN_INITIAL_SAUSAGES				12
+#define CAPTAIN_INITIAL_GUMS					4
 
 #define CAPTAIN_MASS							1
 #define CAPTAIN_BOUNCINESS						0.0f
@@ -48,14 +48,14 @@
 #define CAPTAIN_FLASH_DURATION					2000
 #define CAPTAIN_FLASH_INTERVAL					100
 
-#define CAPTAIN_FORCE_FOR_STOPPING 			__F_TO_FIX10_6(-4.5f)
+#define CAPTAIN_FORCE_FOR_STOPPING 				__F_TO_FIX10_6(-4.5f)
 #define CAPTAIN_INPUT_FORCE 					__I_TO_FIX10_6(60)
-#define CAPTAIN_X_INPUT_FORCE_WHILE_JUMPING	__I_TO_FIX10_6(10)
+#define CAPTAIN_X_INPUT_FORCE_WHILE_JUMPING 	__I_TO_FIX10_6(10)
 
 #define CAPTAIN_MAX_VELOCITY_X					__I_TO_FIX10_6(4)
 #define CAPTAIN_MAX_VELOCITY_Y					__I_TO_FIX10_6(15)
 #define CAPTAIN_MAX_VELOCITY_Z					__I_TO_FIX10_6(4)
-#define CAPTAIN_NORMAL_JUMP_INPUT_FORCE		__I_TO_FIX10_6(-280)
+#define CAPTAIN_NORMAL_JUMP_INPUT_FORCE			__I_TO_FIX10_6(-280)
 
 #define CAPTAIN_CHECK_Y_VELOCITY				(20/16)
 
@@ -89,8 +89,10 @@ class Captain : Actor
 	s8 energy;
 	// number of jumps performed (for double jump)
 	s8 jumps;
-	// number of sausages
-	u8 sausages;
+	// number of gums
+	u8 gums;
+	// number of ducks
+	u8 ducks;
 	// flag for invincible mode (after being hit)
 	bool invincible;
 	// flag to keep applying force to the x axis
@@ -110,7 +112,8 @@ class Captain : Actor
 	void takeHitFrom(int energyToReduce);
 	void die();
 	s8 getEnergy();
-	u8 getSausages();
+	u8 getGums();
+	u8 getDucks();
 	void setInvincible(bool invincible);
 	bool isInvincible();
 	void lockCameraTriggerMovement(u8 axisToLockUp, bool locked);
