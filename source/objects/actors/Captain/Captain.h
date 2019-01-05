@@ -60,7 +60,7 @@
 #define CAPTAIN_CHECK_Y_VELOCITY				(20/16)
 
 #define CAPTAIN_HEAD_X_OFFSET					4
-#define CAPTAIN_HEAD_Y_OFFSET					-7
+#define CAPTAIN_HEAD_Y_OFFSET					-3
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -140,6 +140,8 @@ class Captain : Actor
 	override void setDirection(Direction direction);
 	override void update(u32 elapsedTime);
 	void onHitAnimationComplete(Object eventFirer);
+	void reload();
+	void onReloadAnimationComplete();
 }
 
 

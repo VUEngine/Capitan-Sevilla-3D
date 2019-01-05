@@ -190,13 +190,34 @@ AnimationFunctionROMSpec CAPTAIN_HIT_ANIM =
 	"Hit",
 };
 
+AnimationFunctionROMSpec CAPTAIN_RELOAD_ANIM =
+{
+	// number of frames of this animation function
+	20,
+
+	// frames to play in animation
+	{44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63},
+
+	// number of cycles a frame of animation is displayed
+	4,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	(EventListener)&Captain_onReloadAnimationComplete,
+
+	// function's name
+	"Reload",
+};
+
 AnimationFunctionROMSpec CAPTAIN_DEAD_ANIM =
 {
 	// number of frames of this animation function
 	1,
 
 	// frames to play in animation
-	{44},
+	{64},
 
 	// number of cycles a frame of animation is displayed
 	16,
@@ -222,6 +243,7 @@ AnimationDescriptionROMSpec CAPTAIN_ANIM =
 		(AnimationFunction*)&CAPTAIN_FALL_ANIM,
 		(AnimationFunction*)&CAPTAIN_LAND_ANIM,
 		(AnimationFunction*)&CAPTAIN_HIT_ANIM,
+		(AnimationFunction*)&CAPTAIN_RELOAD_ANIM,
 		(AnimationFunction*)&CAPTAIN_DEAD_ANIM,
 		NULL,
 	}
@@ -232,7 +254,7 @@ CharSetROMSpec CAPTAIN_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	24,
+	35,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -247,7 +269,7 @@ CharSetROMSpec CAPTAIN_BLACK_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	24,
+	35,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -265,10 +287,10 @@ TextureROMSpec CAPTAIN_TX =
 	CaptainMap,
 
 	// cols (max 64)
-	4,
+	5,
 
 	// rows (max 64)
-	6,
+	7,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -293,10 +315,10 @@ TextureROMSpec CAPTAIN_BLACK_TX =
 	CaptainBlackMap,
 
 	// cols (max 64)
-	4,
+	5,
 
 	// rows (max 64)
-	6,
+	7,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -379,7 +401,7 @@ ShapeROMSpec CAPTAIN_AC_SHAPES[] =
 		{19, 37, 48},
 
 		// displacement (x, y, z, p)
-		{0, 3, -16, 0},
+		{4, 7, -16, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -406,7 +428,7 @@ ShapeROMSpec CAPTAIN_AC_SHAPES[] =
 		{19, 28, 48},
 
 		// displacement (x, y, z, p)
-		{0, 7, -16, 0},
+		{4, 11, -16, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

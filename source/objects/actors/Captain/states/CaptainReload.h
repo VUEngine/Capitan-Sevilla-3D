@@ -19,75 +19,26 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef CAPTAIN_RELOAD_H_
+#define CAPTAIN_RELOAD_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "CaptainKneel.h"
-#include "CaptainMoving.h"
-#include "../Captain.h"
-
-#include <PlatformerLevelState.h>
-#include <MessageDispatcher.h>
-#include <KeypadManager.h>
-#include <debugUtilities.h>
+#include <CaptainState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												CLASS'S METHODS
+//											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-void CaptainKneel::constructor()
+singleton class CaptainReload : CaptainState
 {
-	// construct base
-	Base::constructor();
+	static CaptainReload getInstance();
+	override void enter(void* owner);
 }
 
-void CaptainKneel::destructor()
-{
-	// destroy base
-	Base::destructor();
-}
 
-void CaptainKneel::enter(void* owner)
-{
-	// show animation
-	AnimatedEntity::playAnimation(owner, "KneelDown");
-
-	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_RELEASED | __KEY_PRESSED);
-
-	// manipulate captain's shape
-	Captain::toggleShapes(owner, true);
-}
-
-void CaptainKneel::exit(void* owner)
-{
-	// manipulate captain's shape
-	Captain::toggleShapes(owner, false);
-}
-
-void CaptainKneel::onKeyReleased(void* owner, const UserInput* userInput)
-{
-    if(K_LD & userInput->releasedKey)
-    {
-        Captain::standUp(owner);
-    }
-}
-
-void CaptainKneel::onKeyPressed(void* owner, const UserInput* userInput)
-{
-	if(K_RD & userInput->pressedKey)
-	{
-		Captain::reload(owner);
-	}
-	else if(K_A & userInput->pressedKey)
-	{
-		Captain::jump(owner, true);
-	}
-	else if(K_B & userInput->pressedKey)
-	{
-		Captain::startShooting(owner);
-	}
-}
-
+#endif

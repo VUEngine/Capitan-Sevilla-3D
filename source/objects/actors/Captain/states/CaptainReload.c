@@ -24,70 +24,28 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "CaptainKneel.h"
-#include "CaptainMoving.h"
+#include "CaptainReload.h"
 #include "../Captain.h"
-
-#include <PlatformerLevelState.h>
-#include <MessageDispatcher.h>
-#include <KeypadManager.h>
-#include <debugUtilities.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void CaptainKneel::constructor()
+void CaptainReload::constructor()
 {
 	// construct base
 	Base::constructor();
 }
 
-void CaptainKneel::destructor()
+void CaptainReload::destructor()
 {
 	// destroy base
 	Base::destructor();
 }
 
-void CaptainKneel::enter(void* owner)
+void CaptainReload::enter(void* owner)
 {
-	// show animation
-	AnimatedEntity::playAnimation(owner, "KneelDown");
-
-	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_RELEASED | __KEY_PRESSED);
-
-	// manipulate captain's shape
-	Captain::toggleShapes(owner, true);
+	Actor::stopAllMovement(owner);
+	AnimatedEntity::playAnimation(owner, "Reload");
 }
-
-void CaptainKneel::exit(void* owner)
-{
-	// manipulate captain's shape
-	Captain::toggleShapes(owner, false);
-}
-
-void CaptainKneel::onKeyReleased(void* owner, const UserInput* userInput)
-{
-    if(K_LD & userInput->releasedKey)
-    {
-        Captain::standUp(owner);
-    }
-}
-
-void CaptainKneel::onKeyPressed(void* owner, const UserInput* userInput)
-{
-	if(K_RD & userInput->pressedKey)
-	{
-		Captain::reload(owner);
-	}
-	else if(K_A & userInput->pressedKey)
-	{
-		Captain::jump(owner, true);
-	}
-	else if(K_B & userInput->pressedKey)
-	{
-		Captain::startShooting(owner);
-	}
-}
-

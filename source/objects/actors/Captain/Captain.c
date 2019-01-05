@@ -36,6 +36,7 @@
 #include <CaptainIdle.h>
 #include <CaptainMoving.h>
 #include <CaptainKneel.h>
+#include <CaptainReload.h>
 #include <CaptainDead.h>
 #include <CustomCameraMovementManager.h>
 #include <CustomCameraEffectManager.h>
@@ -164,10 +165,10 @@ void Captain::addProjectileEjectorEntity()
 
 void Captain::addDustEntity()
 {
-	Vector3D positionJumpDustEntity = {0, __PIXELS_TO_METERS(16), 0};
+	Vector3D positionJumpDustEntity = {0, __PIXELS_TO_METERS(20), 0};
 	this->jumpDustEntity = Entity::addChildEntity(this, &JUMP_DUST_EN, -1, NULL, &positionJumpDustEntity, NULL);
 
-	Vector3D positionLandDustEntity = {0, __PIXELS_TO_METERS(18), 0};
+	Vector3D positionLandDustEntity = {0, __PIXELS_TO_METERS(22), 0};
 	this->landDustEntity = Entity::addChildEntity(this, &LAND_DUST_EN, -1, NULL, &positionLandDustEntity, NULL);
 }
 
@@ -1116,4 +1117,22 @@ void Captain::toggleShapes(bool kneeling)
 	Shape shapeKneeling = Shape::safeCast(VirtualList::back(shapes));
 	Shape::enable(shapeStanding, !kneeling);
 	Shape::enable(shapeKneeling, kneeling);
+}
+
+void Captain::reload()
+{
+	if(this->gums < CAPTAIN_INITIAL_GUMS)
+	{
+		// switch to reload state
+		StateMachine::swapState(this->stateMachine, State::safeCast(CaptainReload::getInstance()));
+	}
+}
+
+void Captain::onReloadAnimationComplete()
+{
+	// gums reloaded
+	this->gums = CAPTAIN_INITIAL_GUMS;
+
+	// switch back to idle state
+	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
 }

@@ -94,18 +94,19 @@ bool CaptainMoving::processMessage(void* owner, Telegram telegram)
 
 void CaptainMoving::onKeyPressed(void* owner, const UserInput* userInput)
 {
-	if(K_A & userInput->pressedKey)
+	if(K_RD & userInput->pressedKey)
+	{
+		Captain::reload(owner);
+	}
+	else if(K_A & userInput->pressedKey)
 	{
 		Captain::jump(owner, !this->bouncing);
 	}
-
-	if(K_B & userInput->pressedKey)
+	else if(K_B & userInput->pressedKey)
 	{
 		Captain::startShooting(owner);
 	}
-
-	// check direction
-	if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
+	else if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
 	{
 		Captain::addForce(owner, __X_AXIS, true);
 

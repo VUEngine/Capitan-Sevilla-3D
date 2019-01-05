@@ -110,17 +110,23 @@ void CaptainIdle::onKeyHold(void* owner, const UserInput* userInput)
 
 void CaptainIdle::onKeyPressed(void* owner, const UserInput* userInput)
 {
-	if(K_A & userInput->pressedKey)
+	if(K_RD & userInput->pressedKey)
+	{
+		Captain::reload(owner);
+	}
+	else if(K_LD & userInput->pressedKey)
+	{
+		Captain::kneel(owner);
+	}
+	else if(K_A & userInput->pressedKey)
 	{
 		Captain::jump(owner, true);
 	}
-
-	if(K_B & userInput->pressedKey)
+	else if(K_B & userInput->pressedKey)
 	{
 		Captain::startShooting(owner);
 	}
-
-	if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
+	else if((K_LL | K_LR) & (userInput->pressedKey | userInput->holdKey))
 	{
 		Acceleration acceleration =
 		{
@@ -135,10 +141,5 @@ void CaptainIdle::onKeyPressed(void* owner, const UserInput* userInput)
 
 			Captain::startedMovingOnAxis(owner, __X_AXIS);
 		}
-	}
-
-	if(K_LD & userInput->pressedKey)
-	{
-		Captain::kneel(owner);
 	}
 }
