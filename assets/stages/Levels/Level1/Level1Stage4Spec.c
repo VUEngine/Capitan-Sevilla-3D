@@ -78,7 +78,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_CHILDREN[] =
 	{&LANTERN_1_EN,						{ 476, 132,    0,   0},		0, NULL, NULL, NULL, false},
 	{&BENCH_EN,							{ 624, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&ATTACK_DOG_EM,					{ 632, 159,    0,   0},		0, NULL, NULL, NULL, false},
-	{&PUNK_EM,							{ 720, 153,    0,   0},		0, NULL, NULL, NULL, false},
+	{&PUNK_EM,							{ 720, 141,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_MAIN_EXIT_XP,		{ 760, 128,    0,   0},		0, NULL, NULL, NULL, false},
 	{&COLLISION_CL,						{ 774,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // right border
@@ -193,7 +193,7 @@ StageROMSpec LEVEL_1_STAGE_4_ST =
 		48,
 
 		// maximum number of rows to compute on each call to the affine functions
-		48,
+		96,
 
 		// colors config
 		{
@@ -242,7 +242,7 @@ StageROMSpec LEVEL_1_STAGE_4_ST =
 
 		// bgmap segments configuration
 		// number of segments reserved for the param table
-		1,
+		2,
 
 		// obj segments sizes (must total 1024)
 		{

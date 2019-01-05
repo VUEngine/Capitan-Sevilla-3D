@@ -24,9 +24,9 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <ObjectAnimatedSprite.h>
+#include <BgmapAnimatedSprite.h>
 #include <Box.h>
-#include <Enemy.h>
+#include <Punk.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -64,11 +64,35 @@ AnimationFunctionROMSpec PUNK_MOVE_ANIM =
 	"Move",
 };
 
+AnimationFunctionROMSpec PUNK_DIE_ANIM =
+{
+	// number of frames of this animation function
+	32,
+
+	// frames to play in animation
+	{12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
+	 22, 22, 22, 22, 22, 22, 22,
+	 32, 33, 34, 35, 36},
+
+	// number of cycles a frame of animation is displayed
+	4,
+
+	// whether to play it in loop or not
+	false,
+
+	// method to call on function completion
+	(EventListener)&Punk_onDieAnimationComplete,
+
+	// function's name
+	"Die",
+};
+
 AnimationDescriptionROMSpec PUNK_ANIM =
 {
 	// animation functions
 	{
 		(AnimationFunction*)&PUNK_MOVE_ANIM,
+		(AnimationFunction*)&PUNK_DIE_ANIM,
 		NULL,
 	}
 };
@@ -78,11 +102,11 @@ CharSetROMSpec PUNK_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	24,
+	27,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SINGLE,
+	__ANIMATED_SINGLE_OPTIMIZED,
 
 	// char spec
 	PunkTiles,
@@ -97,7 +121,7 @@ CharSetROMSpec PUNK_BLACK_CH =
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SINGLE,
+	__ANIMATED_SINGLE_OPTIMIZED,
 
 	// char spec
 	PunkBlackTiles,
@@ -111,13 +135,13 @@ TextureROMSpec PUNK_TX =
 	PunkMap,
 
 	// cols (max 64)
-	4,
+	12,
 
 	// rows (max 64)
-	6,
+	9,
 
 	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
+	{1, 1},
 
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
@@ -139,13 +163,13 @@ TextureROMSpec PUNK_BLACK_TX =
 	PunkBlackMap,
 
 	// cols (max 64)
-	4,
+	12,
 
 	// rows (max 64)
-	6,
+	9,
 
 	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
+	{1, 1},
 
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
@@ -159,11 +183,11 @@ TextureROMSpec PUNK_BLACK_TX =
 	false,
 };
 
-ObjectSpriteROMSpec PUNK_SPRITE =
+BgmapSpriteROMSpec PUNK_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(ObjectAnimatedSprite),
+		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
 		(TextureSpec*)&PUNK_TX,
@@ -172,22 +196,25 @@ ObjectSpriteROMSpec PUNK_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 1},
+		{0, 0, 1, 1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
-	__WORLD_OBJECT,
+	__WORLD_AFFINE,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec PUNK_BLACK_SPRITE =
+BgmapSpriteROMSpec PUNK_BLACK_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(ObjectAnimatedSprite),
+		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
 		(TextureSpec*)&PUNK_BLACK_TX,
@@ -196,21 +223,24 @@ ObjectSpriteROMSpec PUNK_BLACK_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 1},
+		{0, 0, 1, 1},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
-	__WORLD_OBJECT,
+	__WORLD_AFFINE,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const PUNK_SPRITES[] =
+BgmapSpriteROMSpec* const PUNK_SPRITES[] =
 {
-	&PUNK_SPRITE,
 	&PUNK_BLACK_SPRITE,
+	&PUNK_SPRITE,
 	NULL
 };
 
@@ -224,7 +254,7 @@ ShapeROMSpec PUNK_SHAPES[] =
 		{16, 38, 24},
 
 		// displacement (x, y, z, p)
-		{3, -5, 0, 0},
+		{38, 12, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
@@ -252,7 +282,7 @@ EnemyROMSpec PUNK_EM =
 			{
 				{
 					// class allocator
-					__TYPE(Enemy),
+					__TYPE(Punk),
 
 					// sprites
 					(SpriteROMSpec**)PUNK_SPRITES,
@@ -293,7 +323,7 @@ EnemyROMSpec PUNK_EM =
 	},
 
 	// energy
-	1,
+	2,
 
 	// projectile ejector to add
 	NULL,

@@ -19,70 +19,28 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef ENEMY_H_
-#define ENEMY_H_
+#ifndef PUNK_H_
+#define PUNK_H_
 
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <MovingOneWayEntity.h>
+#include <Enemy.h>
 #include <ProjectileEjector.h>
 #include <macros.h>
-
-
-//---------------------------------------------------------------------------------------------------------
-//												MACROS
-//---------------------------------------------------------------------------------------------------------
-
-#define ENEMY_FLASH_PALETTE						3
-#define ENEMY_FLASH_DURATION					2000
-#define ENEMY_FLASH_INTERVAL					100
-
-
-//---------------------------------------------------------------------------------------------------------
-//											TYPE DEFINITIONS
-//---------------------------------------------------------------------------------------------------------
-
-typedef struct EnemySpec
-{
-	/// MovingOneWayEntity Spec
-	MovingOneWayEntitySpec movingOneWayEntitySpec;
-
-	/// energy
-	u8 energy;
-
-	/// projectile ejector to add
-	ProjectileEjectorSpec* projectileEjectorSpec;
-
-	/// relative position of projectile ejector
-	Vector3D projectileEjectorPosition;
-
-} EnemySpec;
-
-typedef const EnemySpec EnemyROMSpec;
 
 
 //---------------------------------------------------------------------------------------------------------
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-class Enemy : MovingOneWayEntity
+class Punk : Enemy
 {
-	// spec pointer
-	EnemySpec* enemySpec;
-	// projectile ejector entity reference
-	Entity projectileEjectorEntity;
-	// energy
-	u8 energy;
-
 	void constructor(EnemySpec* enemySpec, s16 id, s16 internalId, const char* const name);
-	override void ready(bool recursive);
-	override bool handleMessage(Telegram telegram);
-	void takeHit(u8 power);
-	virtual void onProjectileEjected(Object eventFirer);
-	virtual void die();
+	override void die();
+	void onDieAnimationComplete(Object eventFirer);
 }
 
 

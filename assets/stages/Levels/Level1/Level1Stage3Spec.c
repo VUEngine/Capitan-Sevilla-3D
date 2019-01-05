@@ -95,10 +95,10 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_3_BUILDING_2A_EN,	{ 626, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 658, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2B_EN,	{1014, 114,    0,   0},		0, NULL, NULL, NULL, false},
-	{&PUNK_EM,							{1040, 142,    0,   0},		0, NULL, NULL, NULL, false},
+	{&PUNK_EM,							{1040, 130,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{1034, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1040,  72,   32,   0},		0, NULL, NULL, NULL, false},
-	{&PUNK_EM,							{1200, 142,    0,   0},		0, NULL, NULL, NULL, false},
+	{&PUNK_EM,							{1200, 130,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&KILL_COLLISION_CL,				{1260, 288,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
 
@@ -227,7 +227,7 @@ StageROMSpec LEVEL_1_STAGE_3_ST =
 		48,
 
 		// maximum number of rows to compute on each call to the affine functions
-		48,
+		96,
 
 		// colors config
 		{
@@ -276,7 +276,7 @@ StageROMSpec LEVEL_1_STAGE_3_ST =
 
 		// bgmap segments configuration
 		// number of segments reserved for the param table
-		1,
+		2,
 
 		// obj segments sizes (must total 1024)
 		{

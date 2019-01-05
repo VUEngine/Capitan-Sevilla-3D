@@ -139,9 +139,9 @@ class Captain : Actor
 	override u16 getAxisForShapeSyncWithDirection();
 	override void setDirection(Direction direction);
 	override void update(u32 elapsedTime);
-	void onHitAnimationComplete(Object eventFirer);
 	void reload();
-	void onReloadAnimationComplete();
+	void onHitAnimationComplete(Object eventFirer);
+	void onReloadAnimationComplete(Object eventFirer);
 }
 
 

@@ -27,6 +27,8 @@
 #include <Game.h>
 #include <CustomCameraEffectManager.h>
 #include <SoundManager.h>
+#include <MessageDispatcher.h>
+#include <PlatformerLevelState.h>
 #include "Enemy.h"
 
 //---------------------------------------------------------------------------------------------------------
@@ -59,6 +61,9 @@ void Enemy::destructor()
 		Object::removeEventListener(this->projectileEjectorEntity, Object::safeCast(this), (EventListener)Enemy::onProjectileEjected, kEventProjectileEjected);
 	}
 
+	// discard pending delayed messages
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kEntityFlash);
+
 	// destroy the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
@@ -81,7 +86,7 @@ void Enemy::ready(bool recursive)
 void Enemy::takeHit(u8 power)
 {
 	// start short screen shake
-	//Camera::startEffect(Camera::getInstance(), kShake, 100);
+	Camera::startEffect(Camera::getInstance(), kShake, 100);
 
 	// play sound
 	SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
@@ -91,8 +96,7 @@ void Enemy::takeHit(u8 power)
 	{
 		this->energy -= power;
 
-		// flash
-		// TODO
+		Enemy::startFlashing(this);
 	}
 	else
 	{
@@ -102,11 +106,92 @@ void Enemy::takeHit(u8 power)
 
 void Enemy::die()
 {
+	Enemy::stopFlashing(this);
 	Container::deleteMyself(this);
+}
+
+bool Enemy::handleMessage(Telegram telegram)
+{
+	// handle messages that any state would handle here
+	switch(Telegram::getMessage(telegram))
+	{
+		case kStopFlashing:
+
+			Enemy::stopFlashing(this);
+			return true;
+			break;
+
+		case kEntityFlash:
+
+			Enemy::flash(this);
+			return true;
+			break;
+	}
+
+	return Base::handleMessage(this, telegram);
 }
 
 void Enemy::onProjectileEjected(Object eventFirer __attribute__ ((unused)))
 {
 	// play shoot animation
 	AnimatedEntity::playAnimation(this, "Shoot");
+}
+
+void Enemy::startFlashing()
+{
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kEntityFlash);
+	MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kEntityFlash, NULL);
+	MessageDispatcher::dispatchMessage(ENEMY_FLASH_DURATION, Object::safeCast(this), Object::safeCast(this), kStopFlashing, NULL);
+}
+
+void Enemy::stopFlashing()
+{
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kEntityFlash);
+ 	Enemy::resetPalette(this);
+}
+
+void Enemy::flash()
+{
+	Enemy::toggleFlashPalette(this);
+	MessageDispatcher::dispatchMessage(ENEMY_FLASH_INTERVAL, Object::safeCast(this), Object::safeCast(this), kEntityFlash, NULL);
+}
+
+void Enemy::toggleFlashPalette()
+{
+	VirtualList sprites = Entity::getSprites(this);
+	VirtualNode node = VirtualList::begin(sprites);
+	for(; node; node = VirtualNode::getNext(node))
+	{
+		Sprite sprite = Sprite::safeCast(VirtualNode::getData(node));
+		Texture texture = Sprite::getTexture(sprite);
+
+		TextureSpec* textureSpec = Texture::getSpec(texture);
+
+		if(Texture::getPalette(texture) == textureSpec->palette)
+		{
+			Texture::setPalette(texture, ENEMY_FLASH_PALETTE);
+		}
+		else
+		{
+			Texture::setPalette(texture, textureSpec->palette);
+		}
+
+		Sprite::rewrite(sprite);
+	}
+}
+
+void Enemy::resetPalette()
+{
+	VirtualList sprites = Entity::getSprites(this);
+	VirtualNode node = VirtualList::begin(sprites);
+	for(; node; node = VirtualNode::getNext(node))
+	{
+		Sprite sprite = Sprite::safeCast(VirtualNode::getData(node));
+		Texture texture = Sprite::getTexture(sprite);
+
+		TextureSpec* textureSpec = Texture::getSpec(texture);
+		Texture::setPalette(texture, textureSpec->palette);
+
+		Sprite::rewrite(sprite);
+	}
 }

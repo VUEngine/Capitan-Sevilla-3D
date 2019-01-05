@@ -120,7 +120,7 @@ void Captain::destructor()
 
 	// discard pending delayed messages
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainCheckVelocity);
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kEntityFlash);
 
 	// free the instance pointers
 	captain = NULL;
@@ -534,13 +534,13 @@ void Captain::takeHitFrom(int energyToReduce)
 
 void Captain::startFlashing()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
-	MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kCaptainFlash, NULL);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kEntityFlash);
+	MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kEntityFlash, NULL);
 }
 
 void Captain::stopFlashing()
 {
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainFlash);
+	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kEntityFlash);
  	Captain::resetPalette(this);
 }
 
@@ -554,7 +554,7 @@ void Captain::flash()
 		Captain::toggleFlashPalette(this);
 
 		// next flash state change after CAPTAIN_FLASH_INTERVAL milliseconds
-		MessageDispatcher::dispatchMessage(CAPTAIN_FLASH_INTERVAL, Object::safeCast(this), Object::safeCast(this), kCaptainFlash, NULL);
+		MessageDispatcher::dispatchMessage(CAPTAIN_FLASH_INTERVAL, Object::safeCast(this), Object::safeCast(this), kEntityFlash, NULL);
 	}
 	else
 	{
@@ -866,7 +866,7 @@ bool Captain::handleMessage(Telegram telegram)
 			return true;
 			break;
 
-		case kCaptainFlash:
+		case kEntityFlash:
 
 			Captain::flash(this);
 			return true;
@@ -1128,7 +1128,7 @@ void Captain::reload()
 	}
 }
 
-void Captain::onReloadAnimationComplete()
+void Captain::onReloadAnimationComplete(Object eventFirer __attribute__ ((unused)))
 {
 	// gums reloaded
 	this->gums = CAPTAIN_INITIAL_GUMS;
