@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <BgmapAnimatedSprite.h>
+#include <ObjectAnimatedSprite.h>
 #include <Box.h>
 #include <Punk.h>
 
@@ -67,12 +67,14 @@ AnimationFunctionROMSpec PUNK_MOVE_ANIM =
 AnimationFunctionROMSpec PUNK_DIE_ANIM =
 {
 	// number of frames of this animation function
-	32,
+	38,
 
 	// frames to play in animation
-	{12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
-	 22, 22, 22, 22, 22, 22, 22,
-	 32, 33, 34, 35, 36},
+	{12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
+	 22, 22,
+	 23, 24, 25, 26, 27, 28, 29, 30,
+	 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22,
+	 31, 32, 33, 34, 35},
 
 	// number of cycles a frame of animation is displayed
 	4,
@@ -102,11 +104,11 @@ CharSetROMSpec PUNK_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	27,
+	8*6,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SINGLE_OPTIMIZED,
+	__ANIMATED_SINGLE,
 
 	// char spec
 	PunkTiles,
@@ -117,11 +119,11 @@ CharSetROMSpec PUNK_BLACK_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	24,
+	8*6,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SINGLE_OPTIMIZED,
+	__ANIMATED_SINGLE,
 
 	// char spec
 	PunkBlackTiles,
@@ -135,13 +137,13 @@ TextureROMSpec PUNK_TX =
 	PunkMap,
 
 	// cols (max 64)
-	12,
+	8,
 
 	// rows (max 64)
-	9,
+	6,
 
 	// padding for affine/hbias transformations (cols, rows)
-	{1, 1},
+	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
@@ -163,13 +165,13 @@ TextureROMSpec PUNK_BLACK_TX =
 	PunkBlackMap,
 
 	// cols (max 64)
-	12,
+	8,
 
 	// rows (max 64)
-	9,
+	6,
 
 	// padding for affine/hbias transformations (cols, rows)
-	{1, 1},
+	{0, 0},
 
 	// number of frames, depending on charset's allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
@@ -183,11 +185,11 @@ TextureROMSpec PUNK_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec PUNK_SPRITE =
+ObjectSpriteROMSpec PUNK_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
 		(TextureSpec*)&PUNK_TX,
@@ -201,20 +203,17 @@ BgmapSpriteROMSpec PUNK_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
-	__WORLD_AFFINE,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec PUNK_BLACK_SPRITE =
+ObjectSpriteROMSpec PUNK_BLACK_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapAnimatedSprite),
+		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
 		(TextureSpec*)&PUNK_BLACK_TX,
@@ -228,19 +227,16 @@ BgmapSpriteROMSpec PUNK_BLACK_SPRITE =
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
 	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
-	__WORLD_AFFINE,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
+	__WORLD_OBJECT,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const PUNK_SPRITES[] =
+ObjectSpriteROMSpec* const PUNK_SPRITES[] =
 {
-	&PUNK_BLACK_SPRITE,
 	&PUNK_SPRITE,
+	&PUNK_BLACK_SPRITE,
 	NULL
 };
 
@@ -254,7 +250,7 @@ ShapeROMSpec PUNK_SHAPES[] =
 		{16, 38, 24},
 
 		// displacement (x, y, z, p)
-		{38, 12, 0, 0},
+		{11, 1, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

@@ -204,7 +204,7 @@
 #define __MAX_ANIMATION_FUNCTION_NAME_LENGTH	16
 
 // Maximum number of frames per animation function
-#define __MAX_FRAMES_PER_ANIMATION_FUNCTION		32
+#define __MAX_FRAMES_PER_ANIMATION_FUNCTION		48
 
 // Maximum number of animation functions per description
 #define __MAX_ANIMATION_FUNCTIONS				32

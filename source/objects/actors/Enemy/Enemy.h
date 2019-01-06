@@ -82,6 +82,8 @@ class Enemy : MovingOneWayEntity
 	override bool handleMessage(Telegram telegram);
 	void takeHit(u8 power);
 	virtual void onProjectileEjected(Object eventFirer);
+	void startFlashing();
+	void stopFlashing();
 	virtual void die();
 }
 

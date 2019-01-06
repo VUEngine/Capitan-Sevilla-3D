@@ -123,23 +123,22 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&CITY_FLOOR_COLLISION_CL,			{1804, 200,    0,   0},		0, NULL, NULL, (void*)&collision_3608_16_64, true},
 
-	{&PUNK_EM,							{ 460, 134,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{ 520, 134,    0,   0},		0, NULL, NULL, (void*)-2, false},
-	{&PUNK_EM,							{ 580, 134,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{ 660, 134,    0,   0},		0, NULL, NULL, (void*)-2, false},
-	{&PUNK_EM,							{ 860, 134,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{1230, 134,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{1330, 134,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{1430, 134,    0,   0},		0, NULL, NULL, (void*)-2, false},
-	{&PUNK_EM,							{1530, 134,    0,   0},		0, NULL, NULL, (void*)-5, false},
-	{&PUNK_EM,							{1600, 134,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{2080, 134,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{2120, 134,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{2200, 134,    0,   0},		0, NULL, NULL, (void*)-4, false},
-	{&PUNK_EM,							{2300, 134,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{2460, 134,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{2600, 134,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{2840, 134,    0,   0},		0, NULL, NULL, (void*)-4, false},
+	{&PUNK_EM,							{ 460, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{ 520, 147,    0,   0},		0, NULL, NULL, (void*)-2, false},
+	{&PUNK_EM,							{ 660, 147,    0,   0},		0, NULL, NULL, (void*)-2, false},
+	{&PUNK_EM,							{ 860, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{1230, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{1330, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{1430, 147,    0,   0},		0, NULL, NULL, (void*)-2, false},
+	{&PUNK_EM,							{1530, 147,    0,   0},		0, NULL, NULL, (void*)-5, false},
+	{&PUNK_EM,							{1600, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2080, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2120, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2200, 147,    0,   0},		0, NULL, NULL, (void*)-4, false},
+	{&PUNK_EM,							{2300, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2460, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2600, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2840, 147,    0,   0},		0, NULL, NULL, (void*)-4, false},
 
 	{&HOVER_CAR_EM,						{1200, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&HOVER_CAR_EM,						{1486, 114,    0,   0},		0, NULL, NULL, NULL, false},
@@ -344,7 +343,7 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 		20,
 
 		// maximum number of rows to compute on each call to the affine functions
-		96,
+		48,
 
 		// colors config
 		{
@@ -393,7 +392,7 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 
 		// bgmap segments configuration
 		// number of segments reserved for the param table
-		2,
+		1,
 
 		// obj segments sizes (must total 1024)
 		{

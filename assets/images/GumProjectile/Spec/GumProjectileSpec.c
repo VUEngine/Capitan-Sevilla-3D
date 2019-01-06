@@ -131,7 +131,7 @@ TextureROMSpec GUM_PROJECTILE_TX =
 	1,
 
 	// palette number (0-3)
-	0,
+	1,
 
 	// recyclable
 	true,
