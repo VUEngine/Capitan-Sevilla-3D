@@ -38,7 +38,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #define CAPTAIN_INITIAL_ENERGY					3
-#define CAPTAIN_INITIAL_GUMS					4
+#define CAPTAIN_MAX_GUMS						4
 
 #define CAPTAIN_MASS							1
 #define CAPTAIN_BOUNCINESS						0.0f

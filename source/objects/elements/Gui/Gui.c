@@ -43,6 +43,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE GuiItemsTiles[];
+extern CharSetSpec GUI_ITEMS_CH;
 extern const u16 JUMP_SND[];
 extern EntitySpec GAME_OVER_EN;
 
@@ -66,6 +67,7 @@ void Gui::constructor(EntitySpec* animatedEntitySpec, s16 id, s16 internalId, co
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainShot, kEventCaptainShot);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onGumsReloaded, kEventGumsReloaded);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onDuckCollected, kEventDuckCollected);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onLiftActivated, kEventLiftActivated);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onExitPointReached, kEventExitPointReached);
@@ -80,6 +82,7 @@ void Gui::destructor()
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainShot, kEventCaptainShot);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onGumsReloaded, kEventGumsReloaded);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onDuckCollected, kEventDuckCollected);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onLiftActivated, kEventLiftActivated);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onExitPointReached, kEventExitPointReached);
@@ -98,31 +101,98 @@ void Gui::resume()
 
 void Gui::printGums()
 {
+	u8 gums = Captain::getGums(Captain::getInstance());
+
 	VirtualList sprites = Entity::getSprites(this);
 	VirtualNode node = VirtualList::begin(sprites);
 	Sprite sprite = Sprite::safeCast(VirtualNode::getData(node));
+
+	// print gum icons
+	u8 i = CAPTAIN_MAX_GUMS;
+	u8 hasGumOffset = 0;
+	for(; i > 0; i--)
+	{
+		hasGumOffset = (i <= gums) ? 8 : 0;
+		Sprite::putChar(sprite, &(Point){36 + ((i-1)<<1), 3}, &((BYTE*)GuiItemsTiles)[(20 + ((i-1)<<1) + hasGumOffset + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){37 + ((i-1)<<1), 3}, &((BYTE*)GuiItemsTiles)[(21 + ((i-1)<<1) + hasGumOffset + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){36 + ((i-1)<<1), 4}, &((BYTE*)GuiItemsTiles)[(20 + ((i-1)<<1) + hasGumOffset + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){37 + ((i-1)<<1), 4}, &((BYTE*)GuiItemsTiles)[(21 + ((i-1)<<1) + hasGumOffset + 42 + 1) << 4]);
+	}
+
+	// "reload"
+	if(gums == 0)
+	{
+		Sprite::putChar(sprite, &(Point){37, 1}, &((BYTE*)GuiItemsTiles)[(36 + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){38, 1}, &((BYTE*)GuiItemsTiles)[(37 + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){39, 1}, &((BYTE*)GuiItemsTiles)[(38 + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){40, 1}, &((BYTE*)GuiItemsTiles)[(39 + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){41, 1}, &((BYTE*)GuiItemsTiles)[(40 + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){42, 1}, &((BYTE*)GuiItemsTiles)[(41 + 42 + 1) << 4]);
+	}
+	else
+	{
+		Sprite::putChar(sprite, &(Point){37, 1}, &((BYTE*)GuiItemsTiles)[(36 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){38, 1}, &((BYTE*)GuiItemsTiles)[(37 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){39, 1}, &((BYTE*)GuiItemsTiles)[(38 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){40, 1}, &((BYTE*)GuiItemsTiles)[(39 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){41, 1}, &((BYTE*)GuiItemsTiles)[(40 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){42, 1}, &((BYTE*)GuiItemsTiles)[(41 + 1) << 4]);
+	}
 /*
-	Point point1 = {36, 3};
-	Sprite::putChar(sprite, &point1, &GuiItemsTiles[0]);
+	// gum 1 (empty)
+	Sprite::putChar(sprite, &(Point){36, 3}, &((BYTE*)GuiItemsTiles)[(20 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){37, 3}, &((BYTE*)GuiItemsTiles)[(21 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){36, 4}, &((BYTE*)GuiItemsTiles)[(20 + 42 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){37, 4}, &((BYTE*)GuiItemsTiles)[(21 + 42 + 1) << 4]);
+	// gum 2 (empty)
+	Sprite::putChar(sprite, &(Point){38, 3}, &((BYTE*)GuiItemsTiles)[(22 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){39, 3}, &((BYTE*)GuiItemsTiles)[(23 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){38, 4}, &((BYTE*)GuiItemsTiles)[(22 + 42 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){39, 4}, &((BYTE*)GuiItemsTiles)[(23 + 42 + 1) << 4]);
+	// gum 3 (empty)
+	Sprite::putChar(sprite, &(Point){40, 3}, &((BYTE*)GuiItemsTiles)[(24 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){41, 3}, &((BYTE*)GuiItemsTiles)[(25 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){40, 4}, &((BYTE*)GuiItemsTiles)[(24 + 42 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){41, 4}, &((BYTE*)GuiItemsTiles)[(25 + 42 + 1) << 4]);
+	// gum 4 (empty)
+	Sprite::putChar(sprite, &(Point){42, 3}, &((BYTE*)GuiItemsTiles)[(26 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){43, 3}, &((BYTE*)GuiItemsTiles)[(27 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){42, 4}, &((BYTE*)GuiItemsTiles)[(26 + 42 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){43, 4}, &((BYTE*)GuiItemsTiles)[(27 + 42 + 1) << 4]);
 
-	Point point2 = {37, 3};
-	Sprite::putChar(sprite, &point2, &GuiItemsTiles[5]);
-
-	Point point3 = {38, 3};
-	Sprite::putChar(sprite, &point3, &GuiItemsTiles[36]);
-
-	Point point4 = {39, 3};
-	Sprite::putChar(sprite, &point4, &GuiItemsTiles[37]);
-*/
-/*
-	Point point = {36, 3};
-	Pixel pixel = {2, 2};
-	Sprite::putPixel(sprite, &point, &pixel, 4);
+	// gum 1
+	Sprite::putChar(sprite, &(Point){36, 3}, &((BYTE*)GuiItemsTiles)[(20 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){37, 3}, &((BYTE*)GuiItemsTiles)[(21 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){36, 4}, &((BYTE*)GuiItemsTiles)[(20 + 42 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){37, 4}, &((BYTE*)GuiItemsTiles)[(21 + 42 + 8 + 1) << 4]);
+	// gum 2
+	Sprite::putChar(sprite, &(Point){38, 3}, &((BYTE*)GuiItemsTiles)[(22 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){39, 3}, &((BYTE*)GuiItemsTiles)[(23 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){38, 4}, &((BYTE*)GuiItemsTiles)[(22 + 42 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){39, 4}, &((BYTE*)GuiItemsTiles)[(23 + 42 + 8 + 1) << 4]);
+	// gum 3
+	Sprite::putChar(sprite, &(Point){40, 3}, &((BYTE*)GuiItemsTiles)[(24 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){41, 3}, &((BYTE*)GuiItemsTiles)[(25 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){40, 4}, &((BYTE*)GuiItemsTiles)[(24 + 42 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){41, 4}, &((BYTE*)GuiItemsTiles)[(25 + 42 + 8 + 1) << 4]);
+	// gum 4
+	Sprite::putChar(sprite, &(Point){42, 3}, &((BYTE*)GuiItemsTiles)[(26 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){43, 3}, &((BYTE*)GuiItemsTiles)[(27 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){42, 4}, &((BYTE*)GuiItemsTiles)[(26 + 42 + 8 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){43, 4}, &((BYTE*)GuiItemsTiles)[(27 + 42 + 8 + 1) << 4]);
 */
 }
 
 void Gui::printLives()
 {
+	u8 lives = Captain::getEnergy(Captain::getInstance());
+
+	VirtualList sprites = Entity::getSprites(this);
+	VirtualNode node = VirtualList::begin(sprites);
+	Sprite sprite = Sprite::safeCast(VirtualNode::getData(node));
+
+	Sprite::putChar(sprite, &(Point){43, 1}, &((BYTE*)GuiItemsTiles)[(lives + 10 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){43, 2}, &((BYTE*)GuiItemsTiles)[(lives + 10 + 42 + 1) << 4]);
 }
 
 void Gui::printAll()
@@ -159,6 +229,11 @@ void Gui::onSetModeToPlaying(Object eventFirer __attribute__ ((unused)))
 }
 
 void Gui::onCaptainShot(Object eventFirer __attribute__ ((unused)))
+{
+	Gui::printGums(this);
+}
+
+void Gui::onGumsReloaded(Object eventFirer __attribute__ ((unused)))
 {
 	Gui::printGums(this);
 }

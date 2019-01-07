@@ -79,7 +79,7 @@ void ProgressManager::destructor()
 void ProgressManager::resetCaptainState()
 {
 	this->captainCurrentEnergy = CAPTAIN_INITIAL_ENERGY;
-	this->captainCurrentGums = CAPTAIN_INITIAL_GUMS;
+	this->captainCurrentGums = CAPTAIN_MAX_GUMS;
 }
 
 void ProgressManager::resetCurrentLevelProgress()

@@ -22,6 +22,7 @@
 #ifndef GAME_EVENTS_H_
 #define GAME_EVENTS_H_
 
+
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +43,7 @@ enum GameEvents
 	kEventHitTaken,
 	kEventCaptainDied,
 	kEventCaptainShot,
+	kEventGumsReloaded,
 	kEventLiftActivated,
 	kEventDuckCollected,
 	kEventLevelStarted,

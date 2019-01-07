@@ -95,7 +95,7 @@ void Captain::constructor(CaptainSpec* captainSpec, s16 id, s16 internalId, cons
 	this->energy = CAPTAIN_INITIAL_ENERGY;
 	this->invincible = false;
 	this->jumps = 0;
-	this->gums = CAPTAIN_INITIAL_GUMS;
+	this->gums = CAPTAIN_MAX_GUMS;
 	this->ducks = 0;
 	this->keepAddingForce = false;
 	this->headEntity = NULL;
@@ -1121,7 +1121,7 @@ void Captain::toggleShapes(bool kneeling)
 
 void Captain::reload()
 {
-	if(this->gums < CAPTAIN_INITIAL_GUMS)
+	if(this->gums < CAPTAIN_MAX_GUMS)
 	{
 		// switch to reload state
 		StateMachine::swapState(this->stateMachine, State::safeCast(CaptainReload::getInstance()));
@@ -1130,9 +1130,9 @@ void Captain::reload()
 
 void Captain::onReloadAnimationComplete(Object eventFirer __attribute__ ((unused)))
 {
-	// gums reloaded
-	this->gums = CAPTAIN_INITIAL_GUMS;
+	this->gums = CAPTAIN_MAX_GUMS;
 
-	// switch back to idle state
+	Object::fireEvent(EventManager::getInstance(), kEventGumsReloaded);
+
 	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
 }
