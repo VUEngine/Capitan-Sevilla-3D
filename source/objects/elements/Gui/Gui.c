@@ -113,30 +113,30 @@ void Gui::printGums()
 	for(; i > 0; i--)
 	{
 		hasGumOffset = (i <= gums) ? 8 : 0;
-		Sprite::putChar(sprite, &(Point){36 + ((i-1)<<1), 3}, &((BYTE*)GuiItemsTiles)[(20 + ((i-1)<<1) + hasGumOffset + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){37 + ((i-1)<<1), 3}, &((BYTE*)GuiItemsTiles)[(21 + ((i-1)<<1) + hasGumOffset + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){36 + ((i-1)<<1), 4}, &((BYTE*)GuiItemsTiles)[(20 + ((i-1)<<1) + hasGumOffset + 42 + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){37 + ((i-1)<<1), 4}, &((BYTE*)GuiItemsTiles)[(21 + ((i-1)<<1) + hasGumOffset + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){36 + ((i-1)<<1), 3}, &((BYTE*)GuiItemsTiles)[(19 + ((i-1)<<1) + hasGumOffset + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){37 + ((i-1)<<1), 3}, &((BYTE*)GuiItemsTiles)[(20 + ((i-1)<<1) + hasGumOffset + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){36 + ((i-1)<<1), 4}, &((BYTE*)GuiItemsTiles)[(19 + ((i-1)<<1) + hasGumOffset + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){37 + ((i-1)<<1), 4}, &((BYTE*)GuiItemsTiles)[(20 + ((i-1)<<1) + hasGumOffset + 42 + 1) << 4]);
 	}
 
 	// "reload"
 	if(gums == 0)
 	{
-		Sprite::putChar(sprite, &(Point){37, 1}, &((BYTE*)GuiItemsTiles)[(36 + 42 + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){38, 1}, &((BYTE*)GuiItemsTiles)[(37 + 42 + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){39, 1}, &((BYTE*)GuiItemsTiles)[(38 + 42 + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){40, 1}, &((BYTE*)GuiItemsTiles)[(39 + 42 + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){41, 1}, &((BYTE*)GuiItemsTiles)[(40 + 42 + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){42, 1}, &((BYTE*)GuiItemsTiles)[(41 + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){37, 1}, &((BYTE*)GuiItemsTiles)[(35 + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){38, 1}, &((BYTE*)GuiItemsTiles)[(36 + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){39, 1}, &((BYTE*)GuiItemsTiles)[(37 + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){40, 1}, &((BYTE*)GuiItemsTiles)[(38 + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){41, 1}, &((BYTE*)GuiItemsTiles)[(39 + 42 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){42, 1}, &((BYTE*)GuiItemsTiles)[(40 + 42 + 1) << 4]);
 	}
 	else
 	{
-		Sprite::putChar(sprite, &(Point){37, 1}, &((BYTE*)GuiItemsTiles)[(36 + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){38, 1}, &((BYTE*)GuiItemsTiles)[(37 + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){39, 1}, &((BYTE*)GuiItemsTiles)[(38 + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){40, 1}, &((BYTE*)GuiItemsTiles)[(39 + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){41, 1}, &((BYTE*)GuiItemsTiles)[(40 + 1) << 4]);
-		Sprite::putChar(sprite, &(Point){42, 1}, &((BYTE*)GuiItemsTiles)[(41 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){37, 1}, &((BYTE*)GuiItemsTiles)[(35 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){38, 1}, &((BYTE*)GuiItemsTiles)[(36 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){39, 1}, &((BYTE*)GuiItemsTiles)[(37 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){40, 1}, &((BYTE*)GuiItemsTiles)[(38 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){41, 1}, &((BYTE*)GuiItemsTiles)[(39 + 1) << 4]);
+		Sprite::putChar(sprite, &(Point){42, 1}, &((BYTE*)GuiItemsTiles)[(40 + 1) << 4]);
 	}
 /*
 	// gum 1 (empty)
@@ -191,8 +191,8 @@ void Gui::printLives()
 	VirtualNode node = VirtualList::begin(sprites);
 	Sprite sprite = Sprite::safeCast(VirtualNode::getData(node));
 
-	Sprite::putChar(sprite, &(Point){43, 1}, &((BYTE*)GuiItemsTiles)[(lives + 10 + 1) << 4]);
-	Sprite::putChar(sprite, &(Point){43, 2}, &((BYTE*)GuiItemsTiles)[(lives + 10 + 42 + 1) << 4]);
+	Sprite::putChar(sprite, &(Point){43, 1}, &((BYTE*)GuiItemsTiles)[(lives + 10) << 4]);
+	Sprite::putChar(sprite, &(Point){43, 2}, &((BYTE*)GuiItemsTiles)[(lives + 10 + 42) << 4]);
 }
 
 void Gui::printAll()
