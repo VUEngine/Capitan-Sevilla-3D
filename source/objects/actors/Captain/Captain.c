@@ -497,7 +497,7 @@ void Captain::checkDirection(u32 pressedKey, char* animation)
 	}
 }
 
-void Captain::takeHitFrom(int energyToReduce)
+void Captain::takeDamageFrom(int energyToReduce)
 {
 	if(!Captain::isInvincible(this))
 	{
@@ -765,7 +765,7 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 		case kEnemy:
 		case kEnemyProjectile:
 
-			Captain::takeHitFrom(this, 1);
+			Captain::takeDamageFrom(this, 1);
 			return true;
 			break;
 
@@ -808,7 +808,7 @@ bool Captain::updateCollision(const CollisionInformation* collisionInformation)
 	{
 		case kEnemy:
 
-			Captain::takeHitFrom(this, 1);
+			Captain::takeDamageFrom(this, 1);
 			return false;
 			break;
 	}

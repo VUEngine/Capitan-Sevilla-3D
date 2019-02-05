@@ -109,7 +109,7 @@ class Captain : Actor
 	void jump(bool checkIfYMovement);
 	void addMomentumToJump();
 	void checkDirection(u32 currentPressedKey, char * animation);
-	void takeHitFrom(int energyToReduce);
+	void takeDamageFrom(int energyToReduce);
 	void die();
 	s8 getEnergy();
 	u8 getGums();

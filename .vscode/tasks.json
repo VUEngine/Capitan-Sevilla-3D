@@ -12,7 +12,7 @@
         {
             "label": "Clean all",
             "type": "shell",
-            "command": "make clean_all -f $VBDE/libs/vuengine/core/makefile-game"
+            "command": "make clean -f $VBDE/libs/vuengine/core/makefile-game -e CLEAN_TYPE=all"
         },
         {
             "label": "Build Release",

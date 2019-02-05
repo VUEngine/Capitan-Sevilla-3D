@@ -70,13 +70,13 @@ class Projectile : Actor
 
 	void constructor(ProjectileSpec* projectileSpec, s16 id, s16 internalId, const char* const name);
 	void startMovement();
-	void stopMovement();
 	bool canBeReused();
+	void stop();
+	void onHitAnimationComplete();
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
 	override bool isVisible(int pad, bool recursive);
 	override bool enterCollision(const CollisionInformation* collisionInformation);
-	void onHitAnimationComplete();
 }
 
 

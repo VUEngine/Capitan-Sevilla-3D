@@ -261,7 +261,10 @@ PhysicalSpecificationROMSpec CAR_BG_2_PHYSICAL_PROPERTIES =
 	__F_TO_FIX10_6(FLOOR_BOUNCINESS),
 
 	// maximum velocity
-	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)}
+	{__I_TO_FIX10_6(100), __I_TO_FIX10_6(100), __I_TO_FIX10_6(100)},
+
+	// maximum speed
+	__I_TO_FIX10_6(0)
 };
 
 EntityROMSpec CAR_BG_2_EN =

@@ -63,7 +63,7 @@ void Projectile::ready(bool recursive)
 	// call base
 	Base::ready(this, recursive);
 
-	Projectile::stopMovement(this);
+	Projectile::stop(this);
 }
 
 // start moving
@@ -116,7 +116,7 @@ void Projectile::startMovement()
 	}
 }
 
-void Projectile::stopMovement()
+void Projectile::stop()
 {
 	// stop movement
 	Actor::stopAllMovement(this);
@@ -134,7 +134,7 @@ void Projectile::checkPosition()
 		(this->projectileSpec->maxDistance.y != 0 && __ABS(this->originalPosition.y - this->transformation.globalPosition.y) > this->projectileSpec->maxDistance.y) ||
 		(this->projectileSpec->maxDistance.z != 0 && __ABS(this->originalPosition.z - this->transformation.globalPosition.z) > this->projectileSpec->maxDistance.z) )
 	{
-		Projectile::stopMovement(this);
+		Projectile::stop(this);
 	}
 	else
 	{
@@ -163,7 +163,7 @@ bool Projectile::canBeReused()
 // deactivate a projectile after "hit" animation completes
 void Projectile::onHitAnimationComplete()
 {
-	Projectile::stopMovement(this);
+	Projectile::stop(this);
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileCheckPosition);
 }
 
