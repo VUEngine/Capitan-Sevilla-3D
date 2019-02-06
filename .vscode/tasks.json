@@ -23,7 +23,7 @@
         {
             "label": "Clean",
             "type": "shell",
-            "command": "make clean -e TYPE=${input:cleanType} -f $VBDE/libs/vuengine/core/makefile-game",
+            "command": "make clean -e CLEAN_TYPE=${input:cleanType} -f $VBDE/libs/vuengine/core/makefile-game",
             "windows": {
                 "command": "${command:vbde.getPath}\\batch\\clean.bat ${command:vbde.getPath}\\ ${workspaceFolder:Project} ${input:cleanType}"
             },
@@ -36,7 +36,7 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=${input:buildType} -e CLEAN_TYPE=${input:buildType}",
+            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=${input:buildType}",
             "windows": {
                 "command": "${command:vbde.getPath}\\batch\\build.bat ${command:vbde.getPath}\\ ${workspaceFolder:Project} vuengine/core ${input:buildType}"
             },
