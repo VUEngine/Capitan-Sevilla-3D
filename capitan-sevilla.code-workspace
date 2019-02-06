@@ -1,17 +1,28 @@
 {
 	"folders": [
 		{
+            "name": "Project",
 			"path": "."
 		},
 		{
+			"name": "VUEngine",
 			"path": "..\\..\\..\\libs\\vuengine\\core"
 		},
 		{
+			"name": "Plugins",
 			"path": "..\\..\\..\\libs\\vuengine\\plugins"
 		}
 	],
+	"extensions": {
+        "recommendations": [
+			//"kr155e.vbde",
+			"ms-vscode.cpptools"
+		]
+	},
 	"settings": {
-		"files.associations": {
-		}
+		"files.autoGuessEncoding": true,
+		"C_Cpp.autoAddFileAssociations": false,
+		"editor.insertSpaces": false,
+		"files.hotExit": "onExitAndWindowClose"
 	}
 }

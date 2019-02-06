@@ -4,60 +4,101 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "New VUEngine Project",
+            "type": "shell",
+            "command": "newProject.sh",
+            "windows": {
+                "command": "newProject.bat"
+            },
+            "args": [
+                "'${input:projectFolder}'",
+                "'${input:projectName}'"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
             "label": "Clean",
             "type": "shell",
-            "command": "make clean -f $VBDE/libs/vuengine/core/makefile-game",
-            "problemMatcher": []
+            "command": "make clean -e TYPE=${input:cleanType} -f $VBDE/libs/vuengine/core/makefile-game",
+            "windows": {
+                "command": "${command:vbde.getPath}\\batch\\clean.bat ${command:vbde.getPath}\\ ${workspaceFolder:Project} ${input:cleanType}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
         },
         {
-            "label": "Clean all",
+            "label": "Build",
             "type": "shell",
-            "command": "make clean -f $VBDE/libs/vuengine/core/makefile-game -e CLEAN_TYPE=all"
+            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=${input:buildType} -e CLEAN_TYPE=${input:buildType}",
+            "windows": {
+                "command": "${command:vbde.getPath}\\batch\\build.bat ${command:vbde.getPath}\\ ${workspaceFolder:Project} vuengine/core ${input:buildType}"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         },
         {
-            "label": "Build Release",
+            "label": "Run",
             "type": "shell",
-            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=release"
+            "command": "mednafen build/output.vb",
+            "windows": {
+                "command": "${command:vbde.getPath}\\mednafen\\win\\mednafen.exe build\\output.vb"
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
         },
         {
-            "label": "Build Beta",
+            "label": "Build and Run",
             "type": "shell",
-            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=beta"
+            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=${input:buildType} && mednafen build/output.vb",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "cleanType",
+            "description": "What build type do you want to remove processed files for?",
+            "type": "pickString",
+            "options": ["all", "debug", "tools", "beta", "release"],
+            "default": "all"
         },
         {
-            "label": "Build Tools",
-            "type": "shell",
-            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=tools"
+            "id": "buildType",
+            "description": "What type do you want to build under",
+            "type": "pickString",
+            "options": ["debug", "tools", "beta", "release"],
+            "default": "tools"
         },
         {
-            "label": "Build Debug",
-            "type": "shell",
-            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=debug"
+            "id": "projectName",
+            "description": "Enter project name'",
+            "type": "promptString",
+            "default": "VUEngine Project",
         },
         {
-            "label": "Run on Mednafen",
-            "type": "shell",
-            "command": "mednafen build/output.vb"
-        },
-        {
-            "label": "Build Release and Run on Mednafen",
-            "type": "shell",
-            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=release && mednafen build/output.vb"
-        },
-        {
-            "label": "Build Beta and Run on Mednafen",
-            "type": "shell",
-            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=beta && mednafen build/output.vb"
-        },
-        {
-            "label": "Build Tools and Run on Mednafen",
-            "type": "shell",
-            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=tools && mednafen build/output.vb"
-        },
-        {
-            "label": "Build Debug and Run on Mednafen",
-            "type": "shell",
-            "command": "make all -f $VBDE/libs/vuengine/core/makefile-game -e TYPE=debug && mednafen build/output.vb"
+            "id": "projectFolder",
+            "description": "Enter a project folder, e.g. C:/dev/'",
+            "type": "promptString",
         }
     ]
 }
