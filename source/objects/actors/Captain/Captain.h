@@ -100,7 +100,7 @@ class Captain : Actor
 
 	static Captain getInstance();
 	void constructor(CaptainSpec* captainSpec, s16 id, s16 internalId, const char* const name);
-	void addForce(u16 axis, bool enableAddingForce);
+	void applyForce(u16 axis, bool enableAddingForce);
 	void stopAddingForce();
 	void startedMovingOnAxis(u16 axis);
 	bool stopMovementOnAxis(u16 axis);

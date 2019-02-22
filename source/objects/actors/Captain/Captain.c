@@ -269,7 +269,7 @@ void Captain::jump(bool checkIfYMovement)
 }
 
 // keep movement
-void Captain::addForce(u16 axis, bool enableAddingForce)
+void Captain::applyForce(u16 axis, bool enableAddingForce)
 {
 	if(enableAddingForce)
 	{
