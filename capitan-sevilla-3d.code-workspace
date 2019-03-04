@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "Capitan Sevilla 3D"
+		},
+		{
+			"path": "..\\..\\..\\libs\\vuengine\\core"
+			"name": "VUEngine Core",
+		},
+		{
+			"path": "..\\..\\..\\libs\\vuengine\\plugins"
+			"name": "VUEngine Plugins",
+		}
+	],
+	"extensions": {
+		"recommendations": [
+			//"kr155e.vuengine",
+		]
+	},
+	"settings": {
+		"files.autoGuessEncoding": true,
+		"C_Cpp.autoAddFileAssociations": false,
+		"files.autoSave": "onFocusChange",
+		"editor.insertSpaces": false
+	}
+}
