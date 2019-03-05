@@ -73,6 +73,9 @@ StageExitPointROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_XP =
 	// class allocator
 	__TYPE(StageExitPoint),
 
+	// behaviors 
+	NULL,
+
 	// sprites
 	NULL,
 

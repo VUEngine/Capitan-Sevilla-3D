@@ -185,8 +185,11 @@ ProjectileROMSpec PILL_PR =
 				// class allocator
 				__TYPE(Projectile),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)PILL_SPRITES,
+				(SpriteSpec**)PILL_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)PILL_PR_SHAPES,

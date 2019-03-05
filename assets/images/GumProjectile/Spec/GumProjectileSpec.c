@@ -207,8 +207,11 @@ ProjectileROMSpec GUM_PROJECTILE_PR =
 				// class allocator
 				__TYPE(GumProjectile),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)GUM_PROJECTILE_SPRITES,
+				(SpriteSpec**)GUM_PROJECTILE_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)GUM_PROJECTILE_SHAPES,

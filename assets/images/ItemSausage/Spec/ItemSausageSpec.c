@@ -203,8 +203,11 @@ AnimatedEntityROMSpec ITEM_SAUSAGE_EN =
 		// class allocator
 		__TYPE(ItemSausage),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)ITEM_SAUSAGE_SPRITES,
+		(SpriteSpec**)ITEM_SAUSAGE_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)ITEM_SAUSAGE_AC_SHAPES,

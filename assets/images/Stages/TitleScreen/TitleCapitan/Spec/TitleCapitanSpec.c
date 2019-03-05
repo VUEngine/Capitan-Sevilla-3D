@@ -197,8 +197,11 @@ EntityROMSpec TITLE_CAPITAN_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)TITLE_CAPITAN_SPRITES,
+	(SpriteSpec**)TITLE_CAPITAN_SPRITES,
 
 	// collision shapes
 	NULL,

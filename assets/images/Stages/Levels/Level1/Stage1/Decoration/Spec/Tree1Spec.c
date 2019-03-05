@@ -123,8 +123,11 @@ EntityROMSpec TREE_1_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)TREE_1_SPRITES,
+	(SpriteSpec**)TREE_1_SPRITES,
 
 	// collision shapes
 	NULL,

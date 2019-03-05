@@ -183,8 +183,11 @@ EntityROMSpec CITY_BG_1_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)CITY_BG_1_SPRITES,
+	(SpriteSpec**)CITY_BG_1_SPRITES,
 
 	// collision shapes
 	NULL,

@@ -175,8 +175,11 @@ AnimatedEntityROMSpec JUMP_DUST_EN =
 		// class allocator
 		__TYPE(Dust),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)JUMP_DUST_SPRITES,
+		(SpriteSpec**)JUMP_DUST_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

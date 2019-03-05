@@ -197,8 +197,11 @@ EntityROMSpec PLAYGROUND_SIGN_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)PLAYGROUND_SIGN_SPRITES,
+	(SpriteSpec**)PLAYGROUND_SIGN_SPRITES,
 
 	// collision shapes
 	NULL,

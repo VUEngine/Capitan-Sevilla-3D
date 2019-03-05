@@ -123,8 +123,11 @@ EntityROMSpec FENCE_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)FENCE_SPRITES,
+	(SpriteSpec**)FENCE_SPRITES,
 
 	// collision shapes
 	NULL,

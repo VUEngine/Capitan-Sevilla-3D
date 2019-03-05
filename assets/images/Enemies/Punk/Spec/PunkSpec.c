@@ -280,8 +280,11 @@ EnemyROMSpec PUNK_EM =
 					// class allocator
 					__TYPE(Punk),
 
+					// behaviors 
+					NULL,
+
 					// sprites
-					(SpriteROMSpec**)PUNK_SPRITES,
+					(SpriteSpec**)PUNK_SPRITES,
 
 					// collision shapes
 					(ShapeSpec*)PUNK_SHAPES,

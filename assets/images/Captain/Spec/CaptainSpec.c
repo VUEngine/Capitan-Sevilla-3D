@@ -474,8 +474,11 @@ CaptainROMSpec CAPTAIN_AC =
 			// class allocator
 			__TYPE(Captain),
 
+			// behaviors 
+			NULL,
+
 			// sprites
-			(SpriteROMSpec**)CAPTAIN_SPRITES,
+			(SpriteSpec**)CAPTAIN_SPRITES,
 
 			// collision shapes
 			(ShapeSpec*)CAPTAIN_AC_SHAPES,

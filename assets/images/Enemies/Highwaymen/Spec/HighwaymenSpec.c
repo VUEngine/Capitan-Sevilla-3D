@@ -229,8 +229,11 @@ EntityROMSpec HIGHWAYMEN_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)HIGHWAYMEN_SPRITES,
+	(SpriteSpec**)HIGHWAYMEN_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)HIGHWAYMEN_SHAPES,

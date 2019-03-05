@@ -177,8 +177,11 @@ ProjectileEjectorROMSpec GRANNY_PE =
 			// class allocator
 			__TYPE(ProjectileEjector),
 
+			// behaviors 
+			NULL,
+
 			// sprites
-			(SpriteROMSpec**)GRANNY_SPRITES,
+			(SpriteSpec**)GRANNY_SPRITES,
 
 			// collision shapes
 			(ShapeSpec*)NULL,

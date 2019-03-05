@@ -319,8 +319,11 @@ EntityROMSpec LEVEL_1_STAGE_3_BUILDING_1_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)LEVEL_1_STAGE_3_BUILDING_1_SPRITES,
+	(SpriteSpec**)LEVEL_1_STAGE_3_BUILDING_1_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)LEVEL_1_STAGE_3_BUILDING_1_SHAPES,

@@ -123,8 +123,11 @@ EntityROMSpec LEVEL_1_STAGE_4_BACKGROUND_A_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)LEVEL_1_STAGE_4_BACKGROUND_A_SPRITES,
+	(SpriteSpec**)LEVEL_1_STAGE_4_BACKGROUND_A_SPRITES,
 
 	// collision shapes
 	NULL,

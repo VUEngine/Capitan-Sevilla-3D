@@ -123,8 +123,11 @@ EntityROMSpec BENCH_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)BENCH_SPRITES,
+	(SpriteSpec**)BENCH_SPRITES,
 
 	// collision shapes
 	NULL,

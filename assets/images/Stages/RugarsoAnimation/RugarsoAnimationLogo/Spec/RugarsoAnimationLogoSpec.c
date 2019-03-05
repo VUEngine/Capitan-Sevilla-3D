@@ -123,8 +123,11 @@ EntityROMSpec RUGARSO_ANIMATION_LOGO_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)RUGARSO_ANIMATION_LOGO_SPRITES,
+	(SpriteSpec**)RUGARSO_ANIMATION_LOGO_SPRITES,
 
 	// collision shapes
 	NULL,

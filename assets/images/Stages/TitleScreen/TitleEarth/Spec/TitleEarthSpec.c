@@ -123,8 +123,11 @@ EntityROMSpec TITLE_EARTH_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)TITLE_EARTH_SPRITES,
+	(SpriteSpec**)TITLE_EARTH_SPRITES,
 
 	// collision shapes
 	NULL,

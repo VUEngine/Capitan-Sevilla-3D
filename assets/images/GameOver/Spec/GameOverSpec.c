@@ -123,8 +123,11 @@ EntityROMSpec GAME_OVER_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)GAME_OVER_SPRITES,
+	(SpriteSpec**)GAME_OVER_SPRITES,
 
 	// collision shapes
 	NULL,

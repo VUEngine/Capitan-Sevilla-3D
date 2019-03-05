@@ -155,8 +155,11 @@ MovingOneWayEntityROMSpec CLOUDS_FRONT_EN =
 				// class allocator
 				__TYPE(MovingOneWayEntity),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)CLOUDS_FRONT_SPRITES,
+				(SpriteSpec**)CLOUDS_FRONT_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)NULL,

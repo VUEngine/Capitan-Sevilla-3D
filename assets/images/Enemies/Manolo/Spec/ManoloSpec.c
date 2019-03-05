@@ -209,6 +209,9 @@ ProjectileEjectorROMSpec PILL_EJECTOR_PE =
 			// class allocator
 			__TYPE(ProjectileEjector),
 
+			// behaviors 
+			NULL,
+
 			// sprites
 			NULL,
 
@@ -264,8 +267,11 @@ EnemyROMSpec MANOLO_EM =
 					// class allocator
 					__TYPE(Enemy),
 
+					// behaviors 
+					NULL,
+
 					// sprites
-					(SpriteROMSpec**)MANOLO_SPRITES,
+					(SpriteSpec**)MANOLO_SPRITES,
 
 					// collision shapes
 					(ShapeSpec*)MANOLO_SHAPES,

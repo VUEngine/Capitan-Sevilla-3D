@@ -154,8 +154,11 @@ MovingOneWayEntityROMSpec CAR_1_AC =
 				// class allocator
 				__TYPE(MovingOneWayEntity),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)CAR_1_SPRITES,
+				(SpriteSpec**)CAR_1_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)NULL,

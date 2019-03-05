@@ -224,8 +224,11 @@ ActorROMSpec INTRO_TEXT_6_AC =
 			// class allocator
 			__TYPE(Actor),
 
+			// behaviors 
+			NULL,
+
 			// sprites
-			(SpriteROMSpec**)INTRO_TEXT_6_SPRITES,
+			(SpriteSpec**)INTRO_TEXT_6_SPRITES,
 
 			// collision shapes
 			(ShapeSpec*)NULL,

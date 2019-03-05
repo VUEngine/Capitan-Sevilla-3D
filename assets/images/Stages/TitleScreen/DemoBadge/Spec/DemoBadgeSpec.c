@@ -123,8 +123,11 @@ EntityROMSpec DEMO_BADGE_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)DEMO_BADGE_SPRITES,
+	(SpriteSpec**)DEMO_BADGE_SPRITES,
 
 	// collision shapes
 	NULL,

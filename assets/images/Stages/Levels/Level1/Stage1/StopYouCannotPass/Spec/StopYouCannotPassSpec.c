@@ -295,8 +295,11 @@ AnimatedEntityROMSpec STOP_YOU_CANNOT_PASS_EN =
 		// class allocator
 		__TYPE(Message),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)STOP_YOU_CANNOT_PASS_SPRITES,
+		(SpriteSpec**)STOP_YOU_CANNOT_PASS_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)STOP_YOU_CANNOT_PASS_SHAPES,

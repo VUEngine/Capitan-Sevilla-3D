@@ -123,8 +123,11 @@ EntityROMSpec BIKE_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)BIKE_SPRITES,
+	(SpriteSpec**)BIKE_SPRITES,
 
 	// collision shapes
 	NULL,

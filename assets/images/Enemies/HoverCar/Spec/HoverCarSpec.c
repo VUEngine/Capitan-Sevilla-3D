@@ -184,8 +184,11 @@ EnemyROMSpec HOVER_CAR_EM =
 					// class allocator
 					__TYPE(Enemy),
 
+					// behaviors 
+					NULL,
+
 					// sprites
-					(SpriteROMSpec**)HOVER_CAR_SPRITES,
+					(SpriteSpec**)HOVER_CAR_SPRITES,
 
 					// collision shapes
 					(ShapeSpec*)HOVER_CAR_SHAPES,

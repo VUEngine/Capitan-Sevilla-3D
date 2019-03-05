@@ -125,8 +125,11 @@ EntityROMSpec PLAYGROUND_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)PLAYGROUND_SPRITES,
+	(SpriteSpec**)PLAYGROUND_SPRITES,
 
 	// collision shapes
 	NULL,

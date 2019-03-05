@@ -184,8 +184,11 @@ EnemyROMSpec ATTACK_DOG_EM =
 					// class allocator
 					__TYPE(Enemy),
 
+					// behaviors 
+					NULL,
+
 					// sprites
-					(SpriteROMSpec**)ATTACK_DOG_SPRITES,
+					(SpriteSpec**)ATTACK_DOG_SPRITES,
 
 					// collision shapes
 					(ShapeSpec*)ATTACK_DOG_AC_SHAPES,

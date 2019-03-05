@@ -175,8 +175,11 @@ AnimatedEntityROMSpec LAND_DUST_EN =
 		// class allocator
 		__TYPE(Dust),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)LAND_DUST_SPRITES,
+		(SpriteSpec**)LAND_DUST_SPRITES,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

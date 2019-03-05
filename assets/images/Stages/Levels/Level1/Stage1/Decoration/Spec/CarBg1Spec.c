@@ -123,8 +123,11 @@ EntityROMSpec CAR_BG_1_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)CAR_BG_1_SPRITES,
+	(SpriteSpec**)CAR_BG_1_SPRITES,
 
 	// collision shapes
 	NULL,

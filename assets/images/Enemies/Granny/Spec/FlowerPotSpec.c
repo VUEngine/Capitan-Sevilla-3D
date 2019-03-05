@@ -207,8 +207,11 @@ ProjectileROMSpec FLOWER_POT_PR =
 				// class allocator
 				__TYPE(FlowerPot),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)FLOWER_POT_SPRITES,
+				(SpriteSpec**)FLOWER_POT_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)FLOWER_POT_PR_SHAPES,

@@ -263,8 +263,11 @@ LiftROMSpec LEVEL_1_STAGE_2_LIFT_EN =
 				// class allocator
 				__TYPE(Lift),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+				(SpriteSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)LEVEL_1_STAGE_2_LIFT_SHAPES,
@@ -312,8 +315,11 @@ LiftROMSpec LEVEL_1_STAGE_3_LIFT_EN =
 				// class allocator
 				__TYPE(Lift),
 
+				// behaviors 
+				NULL,
+
 				// sprites
-				(SpriteROMSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+				(SpriteSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
 
 				// collision shapes
 				(ShapeSpec*)LEVEL_1_STAGE_2_LIFT_SHAPES,
@@ -359,8 +365,11 @@ AnimatedEntityROMSpec LEVEL_1_STAGE_4_LIFT_EN =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
+		// behaviors 
+		NULL,
+
 		// sprites
-		(SpriteROMSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+		(SpriteSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
 
 		// collision shapes
 		NULL,

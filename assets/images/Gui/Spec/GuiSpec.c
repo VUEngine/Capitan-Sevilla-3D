@@ -124,8 +124,11 @@ EntityROMSpec GUI_EN =
 	// class allocator
 	__TYPE(Gui),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)GUI_SPRITES,
+	(SpriteSpec**)GUI_SPRITES,
 
 	// collision shapes
 	NULL,

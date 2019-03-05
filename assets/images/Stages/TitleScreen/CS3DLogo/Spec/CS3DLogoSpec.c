@@ -307,8 +307,11 @@ EntityROMSpec CS3D_LOGO_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)CS3D_LOGO_SPRITES,
+	(SpriteSpec**)CS3D_LOGO_SPRITES,
 
 	// collision shapes
 	NULL,

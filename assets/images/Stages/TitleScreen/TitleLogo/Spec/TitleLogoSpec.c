@@ -197,8 +197,11 @@ EntityROMSpec TITLE_LOGO_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)TITLE_LOGO_SPRITES,
+	(SpriteSpec**)TITLE_LOGO_SPRITES,
 
 	// collision shapes
 	NULL,

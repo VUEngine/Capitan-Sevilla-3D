@@ -123,8 +123,11 @@ EntityROMSpec COMIC_NIVEL_1_EN =
 	// class allocator
 	__TYPE(Comic),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)COMIC_NIVEL_1_SPRITES,
+	(SpriteSpec**)COMIC_NIVEL_1_SPRITES,
 
 	// collision shapes
 	NULL,

@@ -123,8 +123,11 @@ EntityROMSpec CITY_FLOOR_3D_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)CITY_FLOOR_3D_SPRITES,
+	(SpriteSpec**)CITY_FLOOR_3D_SPRITES,
 
 	// collision shapes
 	NULL,

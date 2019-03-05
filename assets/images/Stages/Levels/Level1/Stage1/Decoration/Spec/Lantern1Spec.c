@@ -197,8 +197,11 @@ EntityROMSpec LANTERN_1_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)LANTERN_1_SPRITES,
+	(SpriteSpec**)LANTERN_1_SPRITES,
 
 	// collision shapes
 	NULL,

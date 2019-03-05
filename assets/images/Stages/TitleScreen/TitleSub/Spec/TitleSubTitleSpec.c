@@ -123,8 +123,11 @@ EntityROMSpec TITLE_SUBTITLE_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)TITLE_SUBTITLE_SPRITES,
+	(SpriteSpec**)TITLE_SUBTITLE_SPRITES,
 
 	// collision shapes
 	NULL,

@@ -246,8 +246,11 @@ EntityROMSpec CITY_FLOOR_EN =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)CITY_FLOOR_SPRITES,
+	(SpriteSpec**)CITY_FLOOR_SPRITES,
 
 	// collision shapes
 	NULL,
@@ -286,8 +289,11 @@ CollisionROMSpec CITY_FLOOR_COLLISION_CL =
 	// class allocator
 	__TYPE(Collision),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)NULL,
+	(SpriteSpec**)NULL,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

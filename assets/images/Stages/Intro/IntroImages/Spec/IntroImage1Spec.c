@@ -182,8 +182,11 @@ EntityROMSpec INTRO_IMAGE_1_IM =
 	// class allocator
 	__TYPE(Entity),
 
+	// behaviors 
+	NULL,
+
 	// sprites
-	(SpriteROMSpec**)INTRO_IMAGE_1_SPRITES,
+	(SpriteSpec**)INTRO_IMAGE_1_SPRITES,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

@@ -245,8 +245,11 @@ ProjectileEjectorROMSpec CAPTAIN_HEAD_PE =
 			// class allocator
 			__TYPE(ProjectileEjector),
 
+			// behaviors 
+			NULL,
+
 			// sprites
-			(SpriteROMSpec**)CAPTAIN_HEAD_SPRITES,
+			(SpriteSpec**)CAPTAIN_HEAD_SPRITES,
 
 			// collision shapes
 			(ShapeSpec*)NULL,
