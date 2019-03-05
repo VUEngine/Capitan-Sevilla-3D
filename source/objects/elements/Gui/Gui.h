@@ -49,11 +49,12 @@ class Gui : Entity
 	bool active;
 
 	void constructor(EntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name);
+	override void ready(bool recursive);
+	override void resume();
 	void printClock();
 	void printLives();
 	void printGums();
 	void printAll();
-	override void resume();
 }
 
 
