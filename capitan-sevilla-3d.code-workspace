@@ -5,12 +5,12 @@
 			"name": "Capitan Sevilla 3D"
 		},
 		{
-			"path": "..\\..\\..\\libs\\vuengine\\core",
-			"name": "VUEngine Core"
+			"name": "VUEngine",
+			"path": "../../vuengine/core"
 		},
 		{
-			"path": "..\\..\\..\\libs\\vuengine\\plugins",
-			"name": "VUEngine Plugins"
+			"name": "Plugins",
+			"path": "../../vuengine/plugins"
 		}
 	],
 	"extensions": {
