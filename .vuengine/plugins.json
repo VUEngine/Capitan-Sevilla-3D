@@ -1,0 +1,8 @@
+{
+	"plugins": [
+		"vuengine/entities/LowPowerEntity",
+		"vuengine/other/AutomaticPause",
+		"vuengine/other/SaveDataManager",
+		"vuengine/states/SplashScreens"
+	]
+}

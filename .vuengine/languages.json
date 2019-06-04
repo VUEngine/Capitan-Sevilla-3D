@@ -1,0 +1,184 @@
+{
+	"languages": {
+		"EN": {
+			"flag": "FLAG_UNITED_KINGDOM_EN",
+			"name": "English"
+		}
+	},
+	"strings": {
+		"STR_ARE_YOU_SURE": {
+			"DE": "Bist Du sicher?",
+			"EN": "Are you sure?",
+			"ES": "¿Estás seguro?",
+			"FR": "Es tu sûr?"
+		},
+		"STR_AUTO_PAUSE_EXPLANATION": {
+			"DE": " Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
+			"EN": "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
+			"ES": " La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
+			"FR": "  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ"
+		},
+		"STR_AUTOMATIC_PAUSE": {
+			"DE": "Automatische Pause",
+			"EN": "Automatic Pause",
+			"ES": "Pausa Automatica",
+			"FR": "Pause Automatique"
+		},
+		"STR_BACK": {
+			"DE": "Zurück",
+			"EN": "Back",
+			"ES": "Regresar",
+			"FR": "Arrière"
+		},
+		"STR_CHECKPOINT": {
+			"DE": "Kontrollpunkt",
+			"EN": "Checkpoint",
+			"ES": "Punto de control",
+			"FR": "Poste de contrôle"
+		},
+		"STR_CONTINUE": {
+			"DE": "Fortsetzen",
+			"EN": "Continue",
+			"ES": "Continuar",
+			"FR": "Continuer"
+		},
+		"STR_CREDITS": {
+			"DE": "Mitwirkende",
+			"EN": "Credits",
+			"ES": "Créditos",
+			"FR": "Crédits"
+		},
+		"STR_LANGUAGE": {
+			"DE": "Sprache",
+			"EN": "Language",
+			"ES": "Idioma",
+			"FR": "Langue"
+		},
+		"STR_LANGUAGE_SELECT": {
+			"DE": "Sprachauswahl",
+			"EN": "Language Select",
+			"ES": "Seleccionar Idioma",
+			"FR": "Choix de la langue"
+		},
+		"STR_QUIT_GAME": {
+			"DE": "Quit",
+			"EN": "Quit",
+			"ES": "Salir",
+			"FR": "Quiter"
+		},
+		"STR_LEVEL": {
+			"DE": "Level",
+			"EN": "Level",
+			"ES": "Nivel",
+			"FR": "Niveau"
+		},
+		"STR_LEVEL_1_NAME": {
+			"DE": "Plitsch Platsch Berge",
+			"EN": "Splish Splash Hills",
+			"ES": "Montanas Splish Splash",
+			"FR": "Splish Splash Hills"
+		},
+		"STR_LEVEL_1_SLOGAN": {
+			"DE": "   \"Bewölkt mit\nAussicht auf Regen\"",
+			"EN": "\"Cloudy with a \n chance of rain\"",
+			"ES": "\"Nublado con pronóstico\n       de lluvia\"",
+			"FR": "\"Nuageux avec un\n risque de pluie\""
+		},
+		"STR_LEVEL_CONQUERED": {
+			"DE": "Level gemeistert!",
+			"EN": "Level Conquered!",
+			"ES": "¡Nivel conquistado!",
+			"FR": "Niveau conquis!"
+		},
+		"STR_LEVEL_DONE": {
+			"DE": "Level geschafft!",
+			"EN": "Level Completed!",
+			"ES": "¡Nivel completo!",
+			"FR": "Niveau terminé!"
+		},
+		"STR_NEW_BEST": {
+			"DE": "Neue Bestleistung!",
+			"EN": "New Best!",
+			"ES": "¡Nuevo récord!",
+			"FR": "Nouveau Record!"
+		},
+		"STR_NEW_GAME": {
+			"DE": "Neues Spiel",
+			"EN": "New Game",
+			"ES": "Nuevo Juego",
+			"FR": "Nouveau Jeu"
+		},
+		"STR_NO": {
+			"DE": "Nein",
+			"EN": "No",
+			"ES": "No",
+			"FR": "Non"
+		},
+		"STR_OFF": {
+			"DE": "Aus",
+			"EN": "Off",
+			"ES": "Apagado",
+			"FR": "Desactivé"
+		},
+		"STR_ON": {
+			"DE": "An",
+			"EN": "On",
+			"ES": "Encendido",
+			"FR": "Activé"
+		},
+		"STR_OPTIONS": {
+			"DE": "Optionen",
+			"EN": "Options",
+			"ES": "Opciones",
+			"FR": "Options"
+		},
+		"STR_PAUSE": {
+			"DE": "Pause",
+			"EN": "Pause",
+			"ES": "Pausa",
+			"FR": "Pause"
+		},
+		"STR_PRECAUTION_SCREEN_TEXT": {
+			"DE": "        WICHTIG\nBITTE LESEN SIE VOR DEM\n SPIELEN DIE ANLEITUNG\nUND SICHERHEITSHINWEISE",
+			"EN": "     IMPORTANT\nREAD INSTRUCTION AND\nPRECAUTION BOOKLETS\n  BEFORE OPERATING",
+			"ES": "         IMPORTANTE\n     LEE LOS LIBROS DE\nINSTRUCCIONES Y PRECAUCIONES\n       ANTES DE JUGAR",
+			"FR": "        IMPORTANT\nPRENEZ CONAISSANCE DE LA\nNOTICE ET DES PRÉCAUTIONS\n    A AVANT DE JOUER"
+		},
+		"STR_PRESS_START_BUTTON": {
+			"DE": "Start-Knopf drücken",
+			"EN": "Press Start Button",
+			"ES": "Presionar Start",
+			"FR": "Appuyer sur Start"
+		},
+		"STR_PROGRESS_WILL_BE_ERASED": {
+			"DE": "Dein kompletter Fortschritt wird gelöscht.",
+			"EN": "All your progress will be erased.",
+			"ES": "Esto eliminará todo tu progreso.",
+			"FR": "Tout vôtre progrès sera effacé."
+		},
+		"STR_QUIT_LEVEL": {
+			"DE": "Level beenden",
+			"EN": "Quit Level",
+			"ES": "Salir del nivel",
+			"FR": "Quitter Niveau"
+		},
+		"STR_SELECT": {
+			"DE": "Auswählen",
+			"EN": "Select",
+			"ES": "Seleccionar",
+			"FR": "Sélectionner"
+		},
+		"STR_TAKE_A_REST": {
+			"DE": "Bitte mache eine Pause!",
+			"EN": "Please take a rest!",
+			"ES": "¡Por favor, tómate un descanso!",
+			"FR": "Se il vous plaît, prendre un repos!"
+		},
+		"STR_YES": {
+			"DE": "Ja",
+			"EN": "Yes",
+			"ES": "Sí",
+			"FR": "Oui"
+		}
+	}
+}
