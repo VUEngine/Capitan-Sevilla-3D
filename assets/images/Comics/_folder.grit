@@ -1,4 +1,0 @@
--fh! -ftc -gB2 -p!   -mB16:hv_i11 -mRtf
-
-// Creates map and reduced tileset (unique and flipped tiles)
-// Use case: images

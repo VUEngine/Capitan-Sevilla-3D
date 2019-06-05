@@ -13,7 +13,7 @@ COMPILER_OUTPUT					= c
 
 # Optimization level
 # Do not use O3 for multiplayer games, it causes unexpected out of sync behaviour when framerate drops
-OPTIMIZATION					= Ofast
+OPTIMIZATION					= O2
 
 # Frame pointer's usage
 # 0: Omit.

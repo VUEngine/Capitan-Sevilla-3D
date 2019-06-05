@@ -1,115 +1,198 @@
 {
 	"images": {
-		"templates": {
-			"animatedEntity": {
-				"name": "Animated Entity",
-				"description": "",
-				"converterConfig": {
-					"tileset": {
-						"shared": false,
-						"reduce": false
-					},
-					"map": {
-						"generate": true,
-						"reduce": {
-							"flipped": false,
-							"unique": false
-						}
-					},
-					"stackFrames": false
-				}
+		"folders": {
+			"assets/images/Captain": {
+				"template": "animatedEntity"
 			},
-			"entity": {
-				"name": "Entity",
-				"description": "",
-				"converterConfig": {
-					"tileset": {
-						"shared": false,
-						"reduce": true
-					},
-					"map": {
-						"generate": true,
-						"reduce": {
-							"flipped": true,
-							"unique": true
-						}
-					},
-					"stackFrames": false
-				}
+			"assets/images/Comics": {
+				"template": "entity"
 			},
-			"entityAffine": {
-				"name": "Entity (Affine Mode)",
-				"description": "",
-				"converterConfig": {
-					"tileset": {
-						"shared": false,
-						"reduce": true
-					},
-					"map": {
-						"generate": true,
-						"reduce": {
-							"flipped": false,
-							"unique": true
-						}
-					},
-					"stackFrames": false
-				}
+			"assets/images/Dust": {
+				"template": "animatedEntity"
 			},
-			"entitySharedTileset": {
-				"name": "Entity (Shared Tileset)",
-				"description": "",
-				"converterConfig": {
-					"tileset": {
-						"shared": true,
-						"reduce": true
-					},
-					"map": {
-						"generate": true,
-						"reduce": {
-							"flipped": true,
-							"unique": true
-						}
-					},
-					"stackFrames": false
-				}
+			"assets/images/Enemies/AttackDog": {
+				"template": "animatedEntity"
 			},
-			"entityStacked": {
-				"name": "Entity (Stacked)",
-				"description": "",
-				"converterConfig": {
-					"tileset": {
-						"shared": false,
-						"reduce": true
-					},
-					"map": {
-						"generate": true,
-						"reduce": {
-							"flipped": true,
-							"unique": true
-						}
-					},
-					"stackFrames": true
-				}
+			"assets/images/Enemies/Granny": {
+				"template": "animatedEntity"
 			},
-			"font": {
-				"name": "Font",
-				"description": "",
-				"converterConfig": {
-					"tileset": {
-						"shared": false,
-						"reduce": false
-					},
-					"map": {
-						"generate": false,
-						"reduce": {
-							"flipped": false,
-							"unique": false
-						}
-					},
-					"stackFrames": false
-				}
+			"assets/images/Enemies/Highwaymen": {
+				"template": "animatedEntity"
+			},
+			"assets/images/Enemies/HoverCar": {
+				"template": "animatedEntity"
+			},
+			"assets/images/Enemies/Manolo": {
+				"template": "animatedEntity"
+			},
+			"assets/images/Enemies/Punk": {
+				"template": "animatedEntity"
+			},
+			"assets/images/GameOver": {
+				"template": "entity"
+			},
+			"assets/images/Gui/Gui": {
+				"template": "entity"
+			},
+			"assets/images/Gui/GuiItems": {
+				"template": "animatedEntity"
+			},
+			"assets/images/GumProjectile": {
+				"template": "animatedEntity"
+			},
+			"assets/images/ItemSausage": {
+				"template": "animatedEntity"
+			},
+			"assets/images/Stages/Credits": {
+				"name": "Credits",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Intro/IntroImages": {
+				"name": "IntroTexts",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Intro/IntroTexts": {
+				"template": "animatedEntity"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building1": {
+				"name": "Level1Stage1Building1",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building2": {
+				"name": "Level1Stage1Building2",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building3": {
+				"name": "Level1Stage1Building3",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building4": {
+				"name": "Level1Stage1Building4",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building5": {
+				"template": "entity"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building6": {
+				"name": "Level1Stage1Building6",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building7": {
+				"name": "Level1Stage1Building7",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building8": {
+				"name": "Level1Stage1Building8",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building9a": {
+				"name": "Level1Stage1Building9a",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building9b": {
+				"name": "Level1Stage1Building9b",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building10": {
+				"name": "Level1Stage1Building10",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Building11": {
+				"name": "Level1Stage1Building11",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Car": {
+				"template": "animatedEntity"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/CityBackground1": {
+				"name": "CityBackground1",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/CityFloor": {
+				"name": "CityFloor",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Clouds": {
+				"name": "Clouds",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/Decoration": {
+				"template": "entity"
+			},
+			"assets/images/Stages/Levels/Level1/Stage1/StopYouCannotPass": {
+				"template": "animatedEntity"
+			},
+			"assets/images/Stages/Levels/Level1/Stage2/Lift": {
+				"template": "animatedEntity"
+			},
+			"assets/images/Stages/Levels/Level1/Stage2/Room": {
+				"name": "Level1Stage2Room",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage3/Building1": {
+				"name": "Level1Stage3Building1",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage3/Building2a": {
+				"name": "Level1Stage3Building2a",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage3/Building2b": {
+				"name": "Level1Stage3Building2b",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage3/Building3a": {
+				"name": "Level1Stage3Building3a",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage3/Building3b": {
+				"name": "Level1Stage3Building3b",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage3/CityBackground2": {
+				"name": "CityBackground2",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage3/Decoration": {
+				"template": "entity"
+			},
+			"assets/images/Stages/Levels/Level1/Stage4/Background": {
+				"name": "Level1Stage4Background",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage4/Building1": {
+				"name": "Level1Stage4Building1",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/Levels/Level1/Stage4/Park1": {
+				"name": "Level1Stage4Park1",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/RugarsoAnimation/RugarsoAnimationLogo": {
+				"template": "entity"
+			},
+			"assets/images/Stages/TitleScreen/CS3DLogo": {
+				"name": "CS3DLogo",
+				"template": "entitySharedTileset"
+			},
+			"assets/images/Stages/TitleScreen/DemoBadge": {
+				"template": "entity"
+			},
+			"assets/images/Stages/TitleScreen/PressStartButton": {
+				"template": "animatedEntity"
+			},
+			"assets/images/Stages/TitleScreen/TitleCapitan": {
+				"template": "entity"
+			},
+			"assets/images/Stages/TitleScreen/TitleEarth": {
+				"template": "entity"
+			},
+			"assets/images/Stages/TitleScreen/TitleLogo": {
+				"template": "entity"
+			},
+			"assets/images/Stages/TitleScreen/TitleSub": {
+				"template": "entity"
 			}
-		},
-		"folders": {}
+		}
 	}
 }

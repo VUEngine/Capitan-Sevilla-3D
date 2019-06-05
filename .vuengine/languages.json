@@ -2,183 +2,165 @@
 	"languages": {
 		"EN": {
 			"flag": "FLAG_UNITED_KINGDOM_EN",
-			"name": "English"
+			"name": "ENGLISH"
+		},
+		"ES": {
+			"flag": "FLAG_SPAIN_EN",
+			"name": "ESPAÑOL"
+		},
+		"DE": {
+			"flag": "FLAG_GERMANY_EN",
+			"name": "DEUTSCH"
+		},
+		"FR": {
+			"flag": "FLAG_FRANCE_EN",
+			"name": "FRANÇAIS"
 		}
 	},
 	"strings": {
 		"STR_ARE_YOU_SURE": {
-			"DE": "Bist Du sicher?",
-			"EN": "Are you sure?",
-			"ES": "¿Estás seguro?",
-			"FR": "Es tu sûr?"
+			"DE": "BIST DU SICHER?",
+			"EN": "ARE YOU SURE?",
+			"ES": "¿ESTÁS SEGURO?",
+			"FR": "ES TU SÛR?"
 		},
 		"STR_AUTO_PAUSE_EXPLANATION": {
-			"DE": " Die Automatische Pause Funktion\nerinnert dich daran, das Spiel ca.\n  alle 30 Minuten zu pausieren",
-			"EN": "The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
-			"ES": " La función automática de pausa te\nrecordará que debes tomar un descanso\n  approximadamente cada 30 minutos",
-			"FR": "  La fonction Pause automatique va\nvous rappelerez de prendre une pause\n  de jeu chaque 30 minutes environ"
+			"DE": " DIE AUTOMATISCHE PAUSE FUNKTION\nERINNERT DICH DARAN, DAS SPIEL CA.\n  ALLE 30 MINUTEN ZU PAUSIEREN",
+			"EN": "THE AUTOMATIC PAUSE FEATURE WILL\nREMIND YOU TO TAKE A BREAK FROM\nPLAYING APPROX. EVERY 30 MINUTES",
+			"ES": "  LA FUNCIÓN AUTOMÁTICA DE PAUSA TE\nRECORDARÁ QUE DEBES TOMAR UN DESCANSO\n  APPROXIMADAMENTE CADA 30 MINUTOS",
+			"FR": "  LA FONCTION PAUSE AUTOMATIQUE VA\nVOUS RAPPELEREZ DE PRENDRE UNE PAUSE\n  DE JEU CHAQUE 30 MINUTES ENVIRON"
 		},
 		"STR_AUTOMATIC_PAUSE": {
-			"DE": "Automatische Pause",
-			"EN": "Automatic Pause",
-			"ES": "Pausa Automatica",
-			"FR": "Pause Automatique"
+			"DE": "AUTOMATISCHE PAUSE",
+			"EN": "AUTOMATIC PAUSE",
+			"ES": "PAUSA AUTOMÁTICA",
+			"FR": "PAUSE AUTOMATIQUE"
 		},
 		"STR_BACK": {
-			"DE": "Zurück",
-			"EN": "Back",
-			"ES": "Regresar",
-			"FR": "Arrière"
-		},
-		"STR_CHECKPOINT": {
-			"DE": "Kontrollpunkt",
-			"EN": "Checkpoint",
-			"ES": "Punto de control",
-			"FR": "Poste de contrôle"
+			"DE": "ZURÜCK",
+			"EN": "BACK",
+			"ES": "REGRESAR",
+			"FR": "ARRIÈRE"
 		},
 		"STR_CONTINUE": {
-			"DE": "Fortsetzen",
-			"EN": "Continue",
-			"ES": "Continuar",
-			"FR": "Continuer"
+			"DE": "FORTSETZEN",
+			"EN": "CONTINUE",
+			"ES": "CONTINUAR",
+			"FR": "CONTINUER"
 		},
 		"STR_CREDITS": {
-			"DE": "Mitwirkende",
-			"EN": "Credits",
-			"ES": "Créditos",
-			"FR": "Crédits"
+			"DE": "MITWIRKENDE",
+			"EN": "CREDITS",
+			"ES": "CRÉDITOS",
+			"FR": "CRÉDITS"
 		},
 		"STR_LANGUAGE": {
-			"DE": "Sprache",
-			"EN": "Language",
-			"ES": "Idioma",
-			"FR": "Langue"
+			"DE": "SPRACHE",
+			"EN": "LANGUAGE",
+			"ES": "IDIOMA",
+			"FR": "LANGUE"
 		},
 		"STR_LANGUAGE_SELECT": {
-			"DE": "Sprachauswahl",
-			"EN": "Language Select",
-			"ES": "Seleccionar Idioma",
-			"FR": "Choix de la langue"
-		},
-		"STR_QUIT_GAME": {
-			"DE": "Quit",
-			"EN": "Quit",
-			"ES": "Salir",
-			"FR": "Quiter"
+			"DE": "SPRACHAUSWAHL",
+			"EN": "LANGUAGE SELECT",
+			"ES": "SELECCIONAR IDIOMA",
+			"FR": "CHOIX DE LA LANGUE"
 		},
 		"STR_LEVEL": {
-			"DE": "Level",
-			"EN": "Level",
-			"ES": "Nivel",
-			"FR": "Niveau"
+			"DE": "LEVEL",
+			"EN": "LEVEL",
+			"ES": "NIVEL",
+			"FR": "NIVEAU"
 		},
 		"STR_LEVEL_1_NAME": {
-			"DE": "Plitsch Platsch Berge",
-			"EN": "Splish Splash Hills",
-			"ES": "Montanas Splish Splash",
-			"FR": "Splish Splash Hills"
-		},
-		"STR_LEVEL_1_SLOGAN": {
-			"DE": "   \"Bewölkt mit\nAussicht auf Regen\"",
-			"EN": "\"Cloudy with a \n chance of rain\"",
-			"ES": "\"Nublado con pronóstico\n       de lluvia\"",
-			"FR": "\"Nuageux avec un\n risque de pluie\""
-		},
-		"STR_LEVEL_CONQUERED": {
-			"DE": "Level gemeistert!",
-			"EN": "Level Conquered!",
-			"ES": "¡Nivel conquistado!",
-			"FR": "Niveau conquis!"
-		},
-		"STR_LEVEL_DONE": {
-			"DE": "Level geschafft!",
-			"EN": "Level Completed!",
-			"ES": "¡Nivel completo!",
-			"FR": "Niveau terminé!"
+			"DE": "SEVILLA, MISSION:\nBESORGE DAS BUCH",
+			"EN": "SEVILLA,\nMISSION:\nRETRIEVE THE BOOK",
+			"ES": "SEVILLA,\nMISION:\nRECUPERAR EL LIBRO",
+			"FR": "SEVILLA, MISSION:\nRETRIEVE THE BOOK"
 		},
 		"STR_NEW_BEST": {
-			"DE": "Neue Bestleistung!",
-			"EN": "New Best!",
-			"ES": "¡Nuevo récord!",
-			"FR": "Nouveau Record!"
+			"DE": "NEUE BESTLEISTUNG!",
+			"EN": "NEW BEST!",
+			"ES": "¡NUEVO RÉCORD!",
+			"FR": "NOUVEAU RECORD!"
 		},
 		"STR_NEW_GAME": {
-			"DE": "Neues Spiel",
-			"EN": "New Game",
-			"ES": "Nuevo Juego",
-			"FR": "Nouveau Jeu"
+			"DE": "NEUES SPIEL",
+			"EN": "NEW GAME",
+			"ES": "NUEVO JUEGO",
+			"FR": "NOUVEAU JEU"
 		},
 		"STR_NO": {
-			"DE": "Nein",
-			"EN": "No",
-			"ES": "No",
-			"FR": "Non"
+			"DE": "NEIN",
+			"EN": "NO",
+			"ES": "NO",
+			"FR": "NON"
 		},
 		"STR_OFF": {
-			"DE": "Aus",
-			"EN": "Off",
-			"ES": "Apagado",
-			"FR": "Desactivé"
+			"DE": "AUS",
+			"EN": "OFF",
+			"ES": "APAGADO",
+			"FR": "DESACTIVÉ"
 		},
 		"STR_ON": {
-			"DE": "An",
-			"EN": "On",
-			"ES": "Encendido",
-			"FR": "Activé"
+			"DE": "AN",
+			"EN": "ON",
+			"ES": "ENCENDIDO",
+			"FR": "ACTIVÉ"
 		},
 		"STR_OPTIONS": {
-			"DE": "Optionen",
-			"EN": "Options",
-			"ES": "Opciones",
-			"FR": "Options"
+			"DE": "OPTIONEN",
+			"EN": "OPTIONS",
+			"ES": "OPCIONES",
+			"FR": "OPTIONS"
 		},
 		"STR_PAUSE": {
-			"DE": "Pause",
-			"EN": "Pause",
-			"ES": "Pausa",
-			"FR": "Pause"
+			"DE": "PAUSE",
+			"EN": "PAUSE",
+			"ES": "PAUSA",
+			"FR": "PAUSE"
 		},
 		"STR_PRECAUTION_SCREEN_TEXT": {
-			"DE": "        WICHTIG\nBITTE LESEN SIE VOR DEM\n SPIELEN DIE ANLEITUNG\nUND SICHERHEITSHINWEISE",
-			"EN": "     IMPORTANT\nREAD INSTRUCTION AND\nPRECAUTION BOOKLETS\n  BEFORE OPERATING",
-			"ES": "         IMPORTANTE\n     LEE LOS LIBROS DE\nINSTRUCCIONES Y PRECAUCIONES\n       ANTES DE JUGAR",
-			"FR": "        IMPORTANT\nPRENEZ CONAISSANCE DE LA\nNOTICE ET DES PRÉCAUTIONS\n    A AVANT DE JOUER"
+			"DE": "        WICHTIG\n\nBITTE LESEN SIE VOR DEM\n\n SPIELEN DIE ANLEITUNG\n\nUND SICHERHEITSHINWEISE",
+			"EN": "     IMPORTANT\n\nREAD INSTRUCTION AND\n\nPRECAUTION BOOKLETS\n\n  BEFORE OPERATING",
+			"ES": "     IMPORTANTE\n\n  ANTES DE COMENZAR  \n\nLEER LAS INDICACIONES\n\nDEL MANUAL DE USUARIO",
+			"FR": "        IMPORTANT\n\nPRENEZ CONAISSANCE DE LA\n\nNOTICE ET DES PRÉCAUTIONS\n\n    A AVANT DE JOUER"
+		},
+		"STR_PRESENTS": {
+			"DE": "PRÄSENTIERT",
+			"EN": "PRESENTS",
+			"ES": "PRESENTA",
+			"FR": "PRÉSENTE"
 		},
 		"STR_PRESS_START_BUTTON": {
-			"DE": "Start-Knopf drücken",
-			"EN": "Press Start Button",
-			"ES": "Presionar Start",
-			"FR": "Appuyer sur Start"
+			"DE": "START-KNOPF DRÜCKEN",
+			"EN": "PRESS START BUTTON",
+			"ES": "PRESIONAR START",
+			"FR": "APPUYER SUR START"
 		},
-		"STR_PROGRESS_WILL_BE_ERASED": {
-			"DE": "Dein kompletter Fortschritt wird gelöscht.",
-			"EN": "All your progress will be erased.",
-			"ES": "Esto eliminará todo tu progreso.",
-			"FR": "Tout vôtre progrès sera effacé."
-		},
-		"STR_QUIT_LEVEL": {
-			"DE": "Level beenden",
-			"EN": "Quit Level",
-			"ES": "Salir del nivel",
-			"FR": "Quitter Niveau"
+		"STR_QUIT_GAME": {
+			"DE": "SPIEL BEENDEN",
+			"EN": "QUIT GAME",
+			"ES": "SALIR DEL JUEGO",
+			"FR": "QUITTER JEU"
 		},
 		"STR_SELECT": {
-			"DE": "Auswählen",
-			"EN": "Select",
-			"ES": "Seleccionar",
-			"FR": "Sélectionner"
+			"DE": "AUSWÄHLEN",
+			"EN": "SELECT",
+			"ES": "SELECCIONAR",
+			"FR": "SÉLECTIONNER"
 		},
 		"STR_TAKE_A_REST": {
-			"DE": "Bitte mache eine Pause!",
-			"EN": "Please take a rest!",
-			"ES": "¡Por favor, tómate un descanso!",
-			"FR": "Se il vous plaît, prendre un repos!"
+			"DE": "BITTE MACHE EINE PAUSE!",
+			"EN": "PLEASE TAKE A REST!",
+			"ES": "¡POR FAVOR, TÓMATE UN DESCANSO!",
+			"FR": "SE IL VOUS PLAÎT, PRENDRE UN REPOS!"
 		},
 		"STR_YES": {
-			"DE": "Ja",
-			"EN": "Yes",
-			"ES": "Sí",
-			"FR": "Oui"
+			"DE": "JA",
+			"EN": "YES",
+			"ES": "SÍ",
+			"FR": "OUI"
 		}
 	}
 }

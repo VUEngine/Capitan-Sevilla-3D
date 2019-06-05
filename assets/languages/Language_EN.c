@@ -32,70 +32,60 @@ extern EntitySpec FLAG_UNITED_KINGDOM_EN;
 const char* const LANGUAGE_EN_STRINGS[] =
 {
 	/* STR_ARE_YOU_SURE: */
-	"Are you sure?",
+	"ARE YOU SURE?",
 	/* STR_AUTO_PAUSE_EXPLANATION: */
-	"The Automatic Pause feature will\nremind you to take a break from\nplaying approx. every 30 minutes",
+	"THE AUTOMATIC PAUSE FEATURE WILL\nREMIND YOU TO TAKE A BREAK FROM\nPLAYING APPROX. EVERY 30 MINUTES",
 	/* STR_AUTOMATIC_PAUSE: */
-	"Automatic Pause",
+	"AUTOMATIC PAUSE",
 	/* STR_BACK: */
-	"Back",
-	/* STR_CHECKPOINT: */
-	"Checkpoint",
+	"BACK",
 	/* STR_CONTINUE: */
-	"Continue",
+	"CONTINUE",
 	/* STR_CREDITS: */
-	"Credits",
+	"CREDITS",
 	/* STR_LANGUAGE: */
-	"Language",
+	"LANGUAGE",
 	/* STR_LANGUAGE_SELECT: */
-	"Language Select",
-	/* STR_QUIT_GAME: */
-	"Quit",
+	"LANGUAGE SELECT",
 	/* STR_LEVEL: */
-	"Level",
+	"LEVEL",
 	/* STR_LEVEL_1_NAME: */
-	"Splish Splash Hills",
-	/* STR_LEVEL_1_SLOGAN: */
-	"\"Cloudy with a \n chance of rain\"",
-	/* STR_LEVEL_CONQUERED: */
-	"Level Conquered!",
-	/* STR_LEVEL_DONE: */
-	"Level Completed!",
+	"SEVILLA,\nMISSION:\nRETRIEVE THE BOOK",
 	/* STR_NEW_BEST: */
-	"New Best!",
+	"NEW BEST!",
 	/* STR_NEW_GAME: */
-	"New Game",
+	"NEW GAME",
 	/* STR_NO: */
-	"No",
+	"NO",
 	/* STR_OFF: */
-	"Off",
+	"OFF",
 	/* STR_ON: */
-	"On",
+	"ON",
 	/* STR_OPTIONS: */
-	"Options",
+	"OPTIONS",
 	/* STR_PAUSE: */
-	"Pause",
+	"PAUSE",
 	/* STR_PRECAUTION_SCREEN_TEXT: */
-	"     IMPORTANT\nREAD INSTRUCTION AND\nPRECAUTION BOOKLETS\n  BEFORE OPERATING",
+	"     IMPORTANT\n\nREAD INSTRUCTION AND\n\nPRECAUTION BOOKLETS\n\n  BEFORE OPERATING",
+	/* STR_PRESENTS: */
+	"PRESENTS",
 	/* STR_PRESS_START_BUTTON: */
-	"Press Start Button",
-	/* STR_PROGRESS_WILL_BE_ERASED: */
-	"All your progress will be erased.",
-	/* STR_QUIT_LEVEL: */
-	"Quit Level",
+	"PRESS START BUTTON",
+	/* STR_QUIT_GAME: */
+	"QUIT GAME",
 	/* STR_SELECT: */
-	"Select",
+	"SELECT",
 	/* STR_TAKE_A_REST: */
-	"Please take a rest!",
+	"PLEASE TAKE A REST!",
 	/* STR_YES: */
-	"Yes",
+	"YES",
 	
 };
 
 const LangROMSpec LANGUAGE_EN =
 {
 	// Language Name
-	"English",
+	"ENGLISH",
 
 	// Flag Entity
 	&FLAG_UNITED_KINGDOM_EN,

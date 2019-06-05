@@ -1,7 +1,7 @@
 {
 	"compiler": {
 		"framePointer": false,
-		"optimization": "Ofast",
+		"optimization": "O2",
 		"output": "c",
 		"prologFunctions": false
 	},
@@ -107,7 +107,7 @@
 	},
 	"romHeader": {
 		"gameCode": "VCSM",
-		"gameTitle": "Captain VB          ",
+		"gameTitle": "Capitán Sevilla 3D",
 		"makerCode": "TV",
 		"revision": 0
 	},
