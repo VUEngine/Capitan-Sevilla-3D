@@ -20,7 +20,7 @@
 				"template": "animatedEntity"
 			},
 			"assets/images/Enemies/Highwaymen": {
-				"template": "animatedEntity"
+				"template": "entity"
 			},
 			"assets/images/Enemies/HoverCar": {
 				"template": "animatedEntity"
@@ -51,7 +51,7 @@
 				"template": "entitySharedTileset"
 			},
 			"assets/images/Stages/Intro/IntroImages": {
-				"name": "IntroTexts",
+				"name": "IntroImages",
 				"template": "entitySharedTileset"
 			},
 			"assets/images/Stages/Intro/IntroTexts": {
