@@ -106,9 +106,9 @@
 		}
 	},
 	"romHeader": {
-		"gameCode": "VXXX",
-		"gameTitle": "VUENGINE PROJECT",
-		"makerCode": "XX",
+		"gameCode": "VCSM",
+		"gameTitle": "Captain VB          ",
+		"makerCode": "TV",
 		"revision": 0
 	},
 	"sections": {
