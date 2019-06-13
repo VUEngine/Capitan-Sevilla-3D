@@ -3,8 +3,13 @@
         {
             "name": "Win32",
             "includePath": [
-				"${workspaceFolder}/assets/**",
-				"${workspaceFolder}/source/**"
+                "./assets/**",
+                "./source/**",
+                "./../../vuengine/core/assets/**",
+                "./../../vuengine/core/source/**",
+                "./../../vuengine/plugins/**",
+                "./../../tools/gcc/lib/gcc/v810/4.7.4/include",
+                "./../../tools/gcc/v810/include"
             ],
             "defines": [
                 "_DEBUG",

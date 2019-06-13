@@ -129,7 +129,7 @@ void Gui::printGums()
 	// "reload"
 	if(gums == 0)
 	{
-		Sprite::putChar(sprite, &(Point){37, 1}, &((BYTE*)GuiItemsTiles)[(26 + 42) << 4]);
+		Sprite::putChar(sprite, &(Point){37, 1}, &((BYTE*)GuiItemsTiles)[(36 + 42) << 4]);
 		Sprite::putChar(sprite, &(Point){38, 1}, &((BYTE*)GuiItemsTiles)[(37 + 42) << 4]);
 		Sprite::putChar(sprite, &(Point){39, 1}, &((BYTE*)GuiItemsTiles)[(38 + 42) << 4]);
 		Sprite::putChar(sprite, &(Point){40, 1}, &((BYTE*)GuiItemsTiles)[(39 + 42) << 4]);
