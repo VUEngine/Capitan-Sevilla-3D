@@ -44,7 +44,7 @@ extern BYTE GumProjectileMap[];
 AnimationFunctionROMSpec GUM_PROJECTILE_DEFAULT_ANIM =
 {
 	// number of frames of this animation function
-	5,
+	4,
 
 	// frames to play in animation
 	{0, 1, 2, 3},

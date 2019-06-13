@@ -109,7 +109,7 @@ AnimationFunctionROMSpec CAPTAIN_KNEEL_DOWN_ANIM =
 AnimationFunctionROMSpec CAPTAIN_JUMP_ANIM =
 {
 	// number of frames of this animation function
-	20,
+	23,
 
 	// frames to play in animation
 	{26, 27, 28, 29, 30, 31, 32, 31, 32, 31, 32, 31, 32, 31, 32, 31, 32, 31, 32, 31, 32, 31, 32},
@@ -130,7 +130,7 @@ AnimationFunctionROMSpec CAPTAIN_JUMP_ANIM =
 AnimationFunctionROMSpec CAPTAIN_FALL_ANIM =
 {
 	// number of frames of this animation function
-	17,
+	18,
 
 	// frames to play in animation
 	{33, 34, 35, 36, 35, 36, 35, 36, 35, 36, 35, 36, 35, 36, 35, 36, 35, 36},

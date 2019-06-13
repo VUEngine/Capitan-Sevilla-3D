@@ -306,6 +306,11 @@
 #define __STOP_VELOCITY_THRESHOLD					__PIXELS_TO_METERS(4)
 #define __STOP_BOUNCING_VELOCITY_THRESHOLD 			__PIXELS_TO_METERS(48)
 
+// maximum bounciness coefficient allowed
+#define __MAXIMUM_BOUNCINESS_COEFFICIENT			1.0f
+
+#define __FRICTION_FORCE_FACTOR_POWER				2
+
 
 //---------------------------------------------------------------------------------------------------------
 //												SOUND
