@@ -41,6 +41,7 @@ extern EntitySpec LOW_POWER_INDICATOR_LB;
 extern EntitySpec GUI_EN;
 extern EntitySpec LEVEL_1_STAGE_2_ROOM_EN;
 extern EntitySpec LEVEL_1_STAGE_2_LIFT_EN;
+extern EntitySpec PUNK_EM;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,6 +51,8 @@ extern EntitySpec LEVEL_1_STAGE_2_LIFT_EN;
 PositionedEntityROMSpec LEVEL_1_STAGE_2_ST_CHILDREN[] =
 {
 	{&LEVEL_1_STAGE_2_ROOM_EN,		{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
+	//{&PUNK_EM,						{ 380, 137,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,						{ 508, 137,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&LEVEL_1_STAGE_2_LIFT_EN,		{ 693, 130,    0,   0},		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},

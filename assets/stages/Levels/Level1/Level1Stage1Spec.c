@@ -39,6 +39,7 @@
 
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 
+extern EntitySpec ATTACK_DOG_EM;
 extern EntitySpec HIGHWAYMEN_EN;
 extern EntitySpec STOP_YOU_CANNOT_PASS_EN;
 extern EntitySpec LEVEL_1_STAGE_1_MAIN_EXIT_XP;
@@ -123,35 +124,23 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&CITY_FLOOR_COLLISION_CL,			{1804, 200,    0,   0},		0, NULL, NULL, (void*)&collision_3608_16_64, true},
 
-	{&PUNK_EM,							{ 460, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{ 520, 147,    0,   0},		0, NULL, NULL, (void*)-2, false},
-	{&PUNK_EM,							{ 660, 147,    0,   0},		0, NULL, NULL, (void*)-2, false},
-	{&PUNK_EM,							{ 860, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{ 586, 147,    0,   0},		0, NULL, NULL, (void*)-2, false},
 	{&PUNK_EM,							{1230, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&PUNK_EM,							{1330, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{1430, 147,    0,   0},		0, NULL, NULL, (void*)-2, false},
-	{&PUNK_EM,							{1530, 147,    0,   0},		0, NULL, NULL, (void*)-5, false},
-	{&PUNK_EM,							{1600, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{2080, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{2120, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{2200, 147,    0,   0},		0, NULL, NULL, (void*)-4, false},
-	{&PUNK_EM,							{2300, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&ATTACK_DOG_EM,					{1430, 152,    0,   0},		0, NULL, NULL, (void*)-5, false},
+	{&ATTACK_DOG_EM,					{1530, 152,    0,   0},		0, NULL, NULL, (void*)-4, false},
+	{&PUNK_EM,							{1670, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,							{2280, 147,    0,   0},		0, NULL, NULL, (void*)-4, false},
 	{&PUNK_EM,							{2460, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{2600, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&PUNK_EM,							{2840, 147,    0,   0},		0, NULL, NULL, (void*)-4, false},
 
-	{&HOVER_CAR_EM,						{1200, 114,    0,   0},		0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_EM,						{1486, 114,    0,   0},		0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_EM,						{2060, 114,    0,   0},		0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_EM,						{2460, 114,    0,   0},		0, NULL, NULL, NULL, false},
-	{&HOVER_CAR_EM,						{2840, 114,    0,   0},		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_EM,						{2160, 114,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&CAR_1_AC,							{ 580, 164,    0,   0},		0, NULL, NULL, NULL, false},
-	{&CAR_1_AC,							{1240, 164,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_1_AC,							{ 500, 164,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_1_AC,							{1040, 164,    0,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,							{1810, 164,    0,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,							{2608, 164,    0,   0},		0, NULL, NULL, NULL, false},
 
-//	{&COMIC_NIVEL_1_EN,					{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
+	{&COMIC_NIVEL_1_EN,					{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,						{  32, 134,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_1_EN,	{ 200,  80,    0,   0},		0, NULL, NULL, NULL, false},
@@ -164,7 +153,8 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&TREE_BG_1_EN,						{ 694, 112,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_3_EN,	{ 808,  80,    0,   0},		0, NULL, NULL, NULL, false},
-	{&GRANNY_PE,						{ 853,  50,    0,   0},		0, NULL, NULL, NULL, false},
+	{&GRANNY_PE,						{ 765,  50,    0,   0},		0, NULL, NULL, NULL, false},
+	{&GRANNY_PE,						{ 852,  50,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_4_EN,	{ 996, 102,    0,   0},		0, NULL, NULL, NULL, false},
 

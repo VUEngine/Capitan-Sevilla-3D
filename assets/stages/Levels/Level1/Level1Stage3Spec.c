@@ -40,6 +40,7 @@
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 
 extern EntitySpec PUNK_EM;
+extern EntitySpec MANOLO_EM;
 extern EntitySpec CITY_BG_2_EN;
 extern EntitySpec CLOUDS_BACK_EN;
 extern EntitySpec CLOUDS_FRONT_EN;
@@ -59,7 +60,6 @@ extern EntitySpec CITY_FLOOR_COLLISION_CL;
 extern EntitySpec COLLISION_CL;
 extern EntitySpec COLLISION_TOP_CL;
 extern EntitySpec GUI_EN;
-extern EntitySpec MANOLO_EM;
 extern EntitySpec KILL_COLLISION_CL;
 
 extern CharSetSpec CITY_BG_2_CH;
@@ -91,7 +91,8 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_3_PLANK_EN,			{ 397, 164,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_3_SIGN_EN,			{ 624,  77,   32,   0},		0, NULL, NULL, NULL, false},
-	{&MANOLO_EM,						{ 708, 139,    0,   0},		0, NULL, NULL, NULL, false},
+	//{&PUNK_EM,							{ 600, 143,    0,   0},		0, NULL, NULL, NULL, false},
+	{&HOVER_CAR_EM,						{ 716, 113,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2A_EN,	{ 626, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 658, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2B_EN,	{1014, 114,    0,   0},		0, NULL, NULL, NULL, false},
@@ -102,13 +103,9 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 
 	{&KILL_COLLISION_CL,				{1260, 288,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
 
-	{&HOVER_CAR_EM,						{1398, 110,    0,   0},		0, NULL, NULL, NULL, false},
-
 	{&LEVEL_1_STAGE_3_BUILDING_3A_EN,	{1450, 116,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_3B_EN,	{1734,  96,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_LIFT_EN,			{1783, 136,    0,   0},		0, NULL, NULL, NULL, false},
-
-	{&HOVER_CAR_EM,						{1700, 112,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&COLLISION_CL,						{1808,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // right border
 
