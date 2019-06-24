@@ -3,8 +3,10 @@
 ###########################################################################################################
 
 # VUEngine based plugins that the project uses
-PLUGINS 						= vuengine/entities/LowPowerEntity \
+PLUGINS 						= vuengine/entities/LocalizedEntity \
+								  vuengine/entities/LowPowerEntity \
 								  vuengine/other/AutomaticPause \
+								  vuengine/other/I18n \
 								  vuengine/other/SaveDataManager \
 								  vuengine/states/SplashScreens
 
