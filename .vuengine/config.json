@@ -38,7 +38,8 @@
 		"framePointer": false,
 		"optimization": "O2",
 		"output": "c",
-		"prologFunctions": false
+		"prologFunctions": false,
+		"scrambleBinary": false
 	},
 	"debug": {
 		"alertStackOverflow": false,
@@ -65,6 +66,7 @@
 		"forceVipSync": false,
 		"runDelayedMessagesAtHalfFrameRate": false
 	},
+	"game": {},
 	"memoryPools": {
 		"cleanUp": false,
 		"pools": {
@@ -144,6 +146,7 @@
 			"offset": {
 				"x": 0,
 				"y": 0,
+				"parallax": 0,
 				"z": 0
 			},
 			"printableArea": 1792

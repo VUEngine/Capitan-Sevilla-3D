@@ -1,8 +1,6 @@
 {
-	"romHeader": {
-		"gameCode": "VCSM",
-		"gameTitle": "Capitan Sevilla 3D",
-		"makerCode": "TV",
-		"revision": 0
-	}
+	"gameCode": "VCSM",
+	"gameTitle": "Capitan Sevilla 3D",
+	"makerCode": "TV",
+	"revision": 0
 }

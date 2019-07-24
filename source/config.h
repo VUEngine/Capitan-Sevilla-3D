@@ -256,7 +256,7 @@
 // printing area
 #define __PRINTING_BGMAP_X_OFFSET					0
 #define __PRINTING_BGMAP_Y_OFFSET					0
-#define __PRINTING_BGMAP_Z_OFFSET					0
+#define __PRINTING_BGMAP_PARALLAX_OFFSET			0
 #define __PRINTABLE_BGMAP_AREA 						1792
 
 
@@ -373,9 +373,6 @@
 //---------------------------------------------------------------------------------------------------------
 //										RANDOM NUMBER GENERATION
 //---------------------------------------------------------------------------------------------------------
-
-// how many times the randomSeed function cycles generate a random seed
-#define __RANDOM_SEED_CYCLES						2
 
 #undef __ADD_USER_INPUT_AND_TIME_TO_RANDOM_SEED
 
