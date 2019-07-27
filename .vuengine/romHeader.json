@@ -1,5 +1,7 @@
 {
-	"gameCode": "VCSM",
+	"gameCodeSystem": "V",
+	"gameCodeId": "CS",
+	"gameCodeLanguage": "M",
 	"gameTitle": "Capitan Sevilla 3D",
 	"makerCode": "TV",
 	"revision": 0
