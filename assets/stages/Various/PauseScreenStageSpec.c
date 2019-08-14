@@ -60,7 +60,7 @@ PositionedEntityROMSpec PAUSE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 
 FontROMSpec* const PAUSE_SCREEN_STAGE_ST_FONTS[] =
 {
-	&CAPITAN_DEFAULT_FONT,
+	&CAPITAN_FONT,
 
 	NULL
 };
@@ -74,6 +74,18 @@ StageROMSpec PAUSE_SCREEN_STAGE_ST =
 {
 	// allocator
 	__TYPE(Stage),
+
+	// Timer config
+	{
+		__TIMER_100US,
+		10,
+		kMS
+	},
+
+	// Sound config
+	{
+		__DEFAULT_PCM_HZ,
+	},
 
 	// level
 	{

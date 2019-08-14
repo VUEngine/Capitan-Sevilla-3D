@@ -32,13 +32,6 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-extern const u16 COLLECT_SND[];
-
-
-//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
@@ -57,7 +50,7 @@ void ItemSausage::destructor()
 
 void ItemSausage::collect()
 {
-	SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
+	//SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
 
 	// set shape to inactive so no other hits with this item can occur
 	Entity::allowCollisions(this, false);

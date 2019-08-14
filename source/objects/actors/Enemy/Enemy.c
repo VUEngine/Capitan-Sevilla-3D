@@ -31,12 +31,6 @@
 #include <PlatformerLevelState.h>
 #include "Enemy.h"
 
-//---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-extern const u16 FIRE_SND[];
-
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
@@ -89,7 +83,7 @@ void Enemy::takeHit(u8 power)
 	Camera::startEffect(Camera::getInstance(), kShake, 100);
 
 	// play sound
-	SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
+	//SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
 
 	// reduce energy
 	if(power < this->energy)

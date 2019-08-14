@@ -1,3 +1,12 @@
 [
-	"CAPITAN_DEFAULT_FONT"
+	{
+		"name": "Capitan",
+		"image": "FontDefault/FontDefault",
+		"offset": 0,
+		"characterCount": 256,
+		"size": {
+			"x": 1,
+			"y": 1
+		}
+	}
 ]

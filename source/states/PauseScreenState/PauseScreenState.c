@@ -82,13 +82,13 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 
 	// print pause text
 	const char* strPause = I18n::getText(I18n::getInstance(), STR_PAUSE);
-	FontSize strPauseSize = Printing::getTextSize(Printing::getInstance(), strPause, NULL);
+	FontSize strPauseSize = Printing::getTextSize(Printing::getInstance(), strPause, "Capitan");
 	Printing::text(
 		Printing::getInstance(),
 		Utilities::toUppercase(strPause),
 		(((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1),
 		14,
-		NULL
+		"Capitan"
 	);
 
 	// show menu
@@ -183,20 +183,20 @@ void PauseScreenState::processUserInput(UserInput userInput)
 				{
 					// print confirmation message
 					const char* strYes = I18n::getText(I18n::getInstance(), STR_YES);
-					FontSize strYesSize = Printing::getTextSize(Printing::getInstance(), strYes, NULL);
+					FontSize strYesSize = Printing::getTextSize(Printing::getInstance(), strYes, "Capitan");
 					const char* strNo = I18n::getText(I18n::getInstance(), STR_NO);
 					const char* strAreYouSure = I18n::getText(I18n::getInstance(), STR_ARE_YOU_SURE);
 					const char* strPause = I18n::getText(I18n::getInstance(), STR_PAUSE);
-					FontSize strPauseSize = Printing::getTextSize(Printing::getInstance(), strPause, NULL);
+					FontSize strPauseSize = Printing::getTextSize(Printing::getInstance(), strPause, "Capitan");
 
 					u8 strXPos = ((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1;
 					u8 strNoXPos = strXPos + strYesSize.x + 2;
 
-					Printing::text(Printing::getInstance(), strAreYouSure, strXPos, 21, NULL);
-					Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strXPos, 22, NULL);
-					Printing::text(Printing::getInstance(), strYes, strXPos + 1, 22, NULL);
-					Printing::text(Printing::getInstance(), __CHAR_B_BUTTON, strNoXPos, 22, NULL);
-					Printing::text(Printing::getInstance(), strNo, strNoXPos + 1, 22, NULL);
+					Printing::text(Printing::getInstance(), strAreYouSure, strXPos, 21, "Capitan");
+					Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strXPos, 22, "Capitan");
+					Printing::text(Printing::getInstance(), strYes, strXPos + 1, 22, "Capitan");
+					Printing::text(Printing::getInstance(), __CHAR_B_BUTTON, strNoXPos, 22, "Capitan");
+					Printing::text(Printing::getInstance(), strNo, strNoXPos + 1, 22, "Capitan");
 
 					// set mode accordingly
 					this->mode = kPauseScreenModeShowConfirmQuit;
@@ -224,8 +224,8 @@ void PauseScreenState::processUserInput(UserInput userInput)
 	else if((this->mode == kPauseScreenModeShowConfirmQuit) && (userInput.pressedKey & K_B))
 	{
 		// remove confirmation message
-		Printing::text(Printing::getInstance(), "                                                ", 0, 21, NULL);
-		Printing::text(Printing::getInstance(), "                                                ", 0, 22, NULL);
+		Printing::text(Printing::getInstance(), "                                                ", 0, 21, "Capitan");
+		Printing::text(Printing::getInstance(), "                                                ", 0, 22, "Capitan");
 
 		// set mode back to main menu
 		this->mode = kPauseScreenModeShowOptions;

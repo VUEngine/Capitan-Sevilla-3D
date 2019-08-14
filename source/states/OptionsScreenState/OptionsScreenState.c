@@ -108,13 +108,13 @@ void OptionsScreenState::print()
 {
 	// title
 	const char* strOptionsTitle = I18n::getText(I18n::getInstance(), STR_OPTIONS);
-	FontSize strOptionsTextSize = Printing::getTextSize(Printing::getInstance(), strOptionsTitle, NULL);
+	FontSize strOptionsTextSize = Printing::getTextSize(Printing::getInstance(), strOptionsTitle, "Capitan");
 	Printing::text(
 		Printing::getInstance(),
 		strOptionsTitle,
 		((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1,
 		8,
-		NULL
+		"Capitan"
 	);
 
 	// menu
@@ -146,16 +146,16 @@ void OptionsScreenState::print()
 
 	// buttons
 	const char* strSelect = I18n::getText(I18n::getInstance(), STR_SELECT);
-	FontSize strSelectSize = Printing::getTextSize(Printing::getInstance(), strSelect, NULL);
+	FontSize strSelectSize = Printing::getTextSize(Printing::getInstance(), strSelect, "Capitan");
 	const char* strBack = I18n::getText(I18n::getInstance(), STR_BACK);
 
 	u8 strSelectXPos = ((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1;
 	u8 strBackXPos = strSelectXPos + strSelectSize.x + 2;
 
-	Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strSelectXPos, 15, NULL);
-	Printing::text(Printing::getInstance(), strSelect, strSelectXPos + 1, 15, NULL);
-	Printing::text(Printing::getInstance(), __CHAR_B_BUTTON, strBackXPos, 15, NULL);
-	Printing::text(Printing::getInstance(), strBack, strBackXPos + 1, 15, NULL);
+	Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strSelectXPos, 15, "Capitan");
+	Printing::text(Printing::getInstance(), strSelect, strSelectXPos + 1, 15, "Capitan");
+	Printing::text(Printing::getInstance(), __CHAR_B_BUTTON, strBackXPos, 15, "Capitan");
+	Printing::text(Printing::getInstance(), strBack, strBackXPos + 1, 15, "Capitan");
 }
 
 void OptionsScreenState::processUserInput(UserInput userInput)

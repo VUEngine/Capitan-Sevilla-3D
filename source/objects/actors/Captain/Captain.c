@@ -55,9 +55,6 @@
 
 extern double fabs (double);
 
-extern const u16 COLLECT_SND[];
-extern const u16 FIRE_SND[];
-extern const u16 JUMP_SND[];
 extern EntitySpec CAPTAIN_HEAD_PE;
 extern EntitySpec LAND_DUST_EN;
 extern EntitySpec JUMP_DUST_EN;
@@ -241,7 +238,7 @@ void Captain::jump(bool checkIfYMovement)
 				force.y = __FIX10_6_MULT(__ABS(yBouncingPlaneNormal), CAPTAIN_NORMAL_JUMP_INPUT_FORCE);
 
 				// add the force to actually make the captain jump
-				Actor::addForce(this, &force);
+				Actor::addForce(this, &force, true);
 			}
 			else
 			{
@@ -255,7 +252,7 @@ void Captain::jump(bool checkIfYMovement)
 				this->jumps = 2;
 
 				// add the force to actually make the captain jump
-				Actor::addForce(this, &force);
+				Actor::addForce(this, &force, true);
 			}
 
 			// play jump animation
@@ -263,7 +260,7 @@ void Captain::jump(bool checkIfYMovement)
 			Dust::showAnimation(this->jumpDustEntity);
 
 			// play jump sound
-			SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
+			//SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
 		}
 	}
 }
@@ -303,7 +300,7 @@ void Captain::applyForce(u16 axis, bool enableAddingForce)
 			zForce
 		};
 
-		Actor::addForce(this, &force);
+		Actor::addForce(this, &force, true);
 	}
 	else
 	{
@@ -350,7 +347,7 @@ void Captain::stopAddingForce()
 			zForce
 		};
 
-		Actor::addForce(this, &force);
+		Actor::addForce(this, &force, true);
 	}
 	else
 	{
@@ -505,7 +502,7 @@ void Captain::takeDamageFrom(int energyToReduce)
 		Camera::startEffect(Camera::getInstance(), kShake, 200);
 
 		// play hit sound
-		SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
+		//SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
 
 		// reduce energy
 		this->energy -= energyToReduce;

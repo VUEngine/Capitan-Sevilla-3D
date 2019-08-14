@@ -44,7 +44,6 @@
 
 extern BYTE GuiItemsTiles[];
 extern CharSetSpec GUI_ITEMS_CH;
-extern const u16 JUMP_SND[];
 extern EntitySpec GAME_OVER_EN;
 
 

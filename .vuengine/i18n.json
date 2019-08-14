@@ -1,166 +1,530 @@
 {
-	"languages": {
-		"EN": {
+	"languages": [
+		{
+			"id": "EN",
 			"flag": "FLAG_UNITED_KINGDOM_EN",
 			"name": "ENGLISH"
 		},
-		"ES": {
+		{
+			"id": "ES",
 			"flag": "FLAG_SPAIN_EN",
 			"name": "ESPAÑOL"
 		},
-		"DE": {
+		{
+			"id": "DE",
 			"flag": "FLAG_GERMANY_EN",
 			"name": "DEUTSCH"
 		},
-		"FR": {
+		{
+			"id": "FR",
 			"flag": "FLAG_FRANCE_EN",
 			"name": "FRANÇAIS"
 		}
-	},
-	"strings": {
-		"STR_ARE_YOU_SURE": {
-			"DE": "BIST DU SICHER?",
-			"EN": "ARE YOU SURE?",
-			"ES": "¿ESTÁS SEGURO?",
-			"FR": "ES TU SÛR?"
+	],
+	"strings": [
+		{
+			"id": "AreYouSure",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "BIST DU SICHER?"
+				},
+				{
+					"language": "EN",
+					"translation": "ARE YOU SURE?"
+				},
+				{
+					"language": "ES",
+					"translation": "¿ESTÁS SEGURO?"
+				},
+				{
+					"language": "FR",
+					"translation": "ES TU SÛR?"
+				}
+			]
 		},
-		"STR_AUTO_PAUSE_EXPLANATION": {
-			"DE": " DIE AUTOMATISCHE PAUSE FUNKTION\nERINNERT DICH DARAN, DAS SPIEL CA.\n  ALLE 30 MINUTEN ZU PAUSIEREN",
-			"EN": "THE AUTOMATIC PAUSE FEATURE WILL\nREMIND YOU TO TAKE A BREAK FROM\nPLAYING APPROX. EVERY 30 MINUTES",
-			"ES": "  LA FUNCIÓN AUTOMÁTICA DE PAUSA TE\nRECORDARÁ QUE DEBES TOMAR UN DESCANSO\n  APPROXIMADAMENTE CADA 30 MINUTOS",
-			"FR": "  LA FONCTION PAUSE AUTOMATIQUE VA\nVOUS RAPPELEREZ DE PRENDRE UNE PAUSE\n  DE JEU CHAQUE 30 MINUTES ENVIRON"
+		{
+			"id": "AutoPauseExplanation",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": " DIE AUTOMATISCHE PAUSE FUNKTION\nERINNERT DICH DARAN, DAS SPIEL CA.\n  ALLE 30 MINUTEN ZU PAUSIEREN"
+				},
+				{
+					"language": "EN",
+					"translation": "THE AUTOMATIC PAUSE FEATURE WILL\nREMIND YOU TO TAKE A BREAK FROM\nPLAYING APPROX. EVERY 30 MINUTES"
+				},
+				{
+					"language": "ES",
+					"translation": "  LA FUNCIÓN AUTOMÁTICA DE PAUSA TE\nRECORDARÁ QUE DEBES TOMAR UN DESCANSO\n  APPROXIMADAMENTE CADA 30 MINUTOS"
+				},
+				{
+					"language": "FR",
+					"translation": "  LA FONCTION PAUSE AUTOMATIQUE VA\nVOUS RAPPELEREZ DE PRENDRE UNE PAUSE\n  DE JEU CHAQUE 30 MINUTES ENVIRON"
+				}
+			]
 		},
-		"STR_AUTOMATIC_PAUSE": {
-			"DE": "AUTOMATISCHE PAUSE",
-			"EN": "AUTOMATIC PAUSE",
-			"ES": "PAUSA AUTOMÁTICA",
-			"FR": "PAUSE AUTOMATIQUE"
+		{
+			"id": "AutomaticPause",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "AUTOMATISCHE PAUSE"
+				},
+				{
+					"language": "EN",
+					"translation": "AUTOMATIC PAUSE"
+				},
+				{
+					"language": "ES",
+					"translation": "PAUSA AUTOMÁTICA"
+				},
+				{
+					"language": "FR",
+					"translation": "PAUSE AUTOMATIQUE"
+				}
+			]
 		},
-		"STR_BACK": {
-			"DE": "ZURÜCK",
-			"EN": "BACK",
-			"ES": "REGRESAR",
-			"FR": "ARRIÈRE"
+		{
+			"id": "Back",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "ZURÜCK"
+				},
+				{
+					"language": "EN",
+					"translation": "BACK"
+				},
+				{
+					"language": "ES",
+					"translation": "REGRESAR"
+				},
+				{
+					"language": "FR",
+					"translation": "ARRIÈRE"
+				}
+			]
 		},
-		"STR_CONTINUE": {
-			"DE": "FORTSETZEN",
-			"EN": "CONTINUE",
-			"ES": "CONTINUAR",
-			"FR": "CONTINUER"
+		{
+			"id": "Continue",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "FORTSETZEN"
+				},
+				{
+					"language": "EN",
+					"translation": "CONTINUE"
+				},
+				{
+					"language": "ES",
+					"translation": "CONTINUAR"
+				},
+				{
+					"language": "FR",
+					"translation": "CONTINUER"
+				}
+			]
 		},
-		"STR_CREDITS": {
-			"DE": "MITWIRKENDE",
-			"EN": "CREDITS",
-			"ES": "CRÉDITOS",
-			"FR": "CRÉDITS"
+		{
+			"id": "Credits",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "MITWIRKENDE"
+				},
+				{
+					"language": "EN",
+					"translation": "CREDITS"
+				},
+				{
+					"language": "ES",
+					"translation": "CRÉDITOS"
+				},
+				{
+					"language": "FR",
+					"translation": "CRÉDITS"
+				}
+			]
 		},
-		"STR_LANGUAGE": {
-			"DE": "SPRACHE",
-			"EN": "LANGUAGE",
-			"ES": "IDIOMA",
-			"FR": "LANGUE"
+		{
+			"id": "Language",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "SPRACHE"
+				},
+				{
+					"language": "EN",
+					"translation": "LANGUAGE"
+				},
+				{
+					"language": "ES",
+					"translation": "IDIOMA"
+				},
+				{
+					"language": "FR",
+					"translation": "LANGUE"
+				}
+			]
 		},
-		"STR_LANGUAGE_SELECT": {
-			"DE": "SPRACHAUSWAHL",
-			"EN": "LANGUAGE SELECT",
-			"ES": "SELECCIONAR IDIOMA",
-			"FR": "CHOIX DE LA LANGUE"
+		{
+			"id": "LanguageSelect",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "SPRACHAUSWAHL"
+				},
+				{
+					"language": "EN",
+					"translation": "LANGUAGE SELECT"
+				},
+				{
+					"language": "ES",
+					"translation": "SELECCIONAR IDIOMA"
+				},
+				{
+					"language": "FR",
+					"translation": "CHOIX DE LA LANGUE"
+				}
+			]
 		},
-		"STR_LEVEL": {
-			"DE": "LEVEL",
-			"EN": "LEVEL",
-			"ES": "NIVEL",
-			"FR": "NIVEAU"
+		{
+			"id": "Level",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "LEVEL"
+				},
+				{
+					"language": "EN",
+					"translation": "LEVEL"
+				},
+				{
+					"language": "ES",
+					"translation": "NIVEL"
+				},
+				{
+					"language": "FR",
+					"translation": "NIVEAU"
+				}
+			]
 		},
-		"STR_LEVEL_1_NAME": {
-			"DE": "SEVILLA, MISSION:\nBESORGE DAS BUCH",
-			"EN": "SEVILLA,\nMISSION:\nRETRIEVE THE BOOK",
-			"ES": "SEVILLA,\nMISION:\nRECUPERAR EL LIBRO",
-			"FR": "SEVILLA, MISSION:\nRETRIEVE THE BOOK"
+		{
+			"id": "Level_1Name",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "SEVILLA, MISSION:\nBESORGE DAS BUCH"
+				},
+				{
+					"language": "EN",
+					"translation": "SEVILLA,\nMISSION:\nRETRIEVE THE BOOK"
+				},
+				{
+					"language": "ES",
+					"translation": "SEVILLA,\nMISION:\nRECUPERAR EL LIBRO"
+				},
+				{
+					"language": "FR",
+					"translation": "SEVILLA, MISSION:\nRETRIEVE THE BOOK"
+				}
+			]
 		},
-		"STR_NEW_BEST": {
-			"DE": "NEUE BESTLEISTUNG!",
-			"EN": "NEW BEST!",
-			"ES": "¡NUEVO RÉCORD!",
-			"FR": "NOUVEAU RECORD!"
+		{
+			"id": "NewBest",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "NEUE BESTLEISTUNG!"
+				},
+				{
+					"language": "EN",
+					"translation": "NEW BEST!"
+				},
+				{
+					"language": "ES",
+					"translation": "¡NUEVO RÉCORD!"
+				},
+				{
+					"language": "FR",
+					"translation": "NOUVEAU RECORD!"
+				}
+			]
 		},
-		"STR_NEW_GAME": {
-			"DE": "NEUES SPIEL",
-			"EN": "NEW GAME",
-			"ES": "NUEVO JUEGO",
-			"FR": "NOUVEAU JEU"
+		{
+			"id": "NewGame",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "NEUES SPIEL"
+				},
+				{
+					"language": "EN",
+					"translation": "NEW GAME"
+				},
+				{
+					"language": "ES",
+					"translation": "NUEVO JUEGO"
+				},
+				{
+					"language": "FR",
+					"translation": "NOUVEAU JEU"
+				}
+			]
 		},
-		"STR_NO": {
-			"DE": "NEIN",
-			"EN": "NO",
-			"ES": "NO",
-			"FR": "NON"
+		{
+			"id": "No",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "NEIN"
+				},
+				{
+					"language": "EN",
+					"translation": "NO"
+				},
+				{
+					"language": "ES",
+					"translation": "NO"
+				},
+				{
+					"language": "FR",
+					"translation": "NON"
+				}
+			]
 		},
-		"STR_OFF": {
-			"DE": "AUS",
-			"EN": "OFF",
-			"ES": "APAGADO",
-			"FR": "DESACTIVÉ"
+		{
+			"id": "Off",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "AUS"
+				},
+				{
+					"language": "EN",
+					"translation": "OFF"
+				},
+				{
+					"language": "ES",
+					"translation": "APAGADO"
+				},
+				{
+					"language": "FR",
+					"translation": "DESACTIVÉ"
+				}
+			]
 		},
-		"STR_ON": {
-			"DE": "AN",
-			"EN": "ON",
-			"ES": "ENCENDIDO",
-			"FR": "ACTIVÉ"
+		{
+			"id": "On",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "AN"
+				},
+				{
+					"language": "EN",
+					"translation": "ON"
+				},
+				{
+					"language": "ES",
+					"translation": "ENCENDIDO"
+				},
+				{
+					"language": "FR",
+					"translation": "ACTIVÉ"
+				}
+			]
 		},
-		"STR_OPTIONS": {
-			"DE": "OPTIONEN",
-			"EN": "OPTIONS",
-			"ES": "OPCIONES",
-			"FR": "OPTIONS"
+		{
+			"id": "Options",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "OPTIONEN"
+				},
+				{
+					"language": "EN",
+					"translation": "OPTIONS"
+				},
+				{
+					"language": "ES",
+					"translation": "OPCIONES"
+				},
+				{
+					"language": "FR",
+					"translation": "OPTIONS"
+				}
+			]
 		},
-		"STR_PAUSE": {
-			"DE": "PAUSE",
-			"EN": "PAUSE",
-			"ES": "PAUSA",
-			"FR": "PAUSE"
+		{
+			"id": "Pause",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "PAUSE"
+				},
+				{
+					"language": "EN",
+					"translation": "PAUSE"
+				},
+				{
+					"language": "ES",
+					"translation": "PAUSA"
+				},
+				{
+					"language": "FR",
+					"translation": "PAUSE"
+				}
+			]
 		},
-		"STR_PRECAUTION_SCREEN_TEXT": {
-			"DE": "        WICHTIG\n\nBITTE LESEN SIE VOR DEM\n\n SPIELEN DIE ANLEITUNG\n\nUND SICHERHEITSHINWEISE",
-			"EN": "     IMPORTANT\n\nREAD INSTRUCTION AND\n\nPRECAUTION BOOKLETS\n\n  BEFORE OPERATING",
-			"ES": "     IMPORTANTE\n\n  ANTES DE COMENZAR  \n\nLEER LAS INDICACIONES\n\nDEL MANUAL DE USUARIO",
-			"FR": "        IMPORTANT\n\nPRENEZ CONAISSANCE DE LA\n\nNOTICE ET DES PRÉCAUTIONS\n\n    A AVANT DE JOUER"
+		{
+			"id": "PrecautionScreenText",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "        WICHTIG\n\nBITTE LESEN SIE VOR DEM\n\n SPIELEN DIE ANLEITUNG\n\nUND SICHERHEITSHINWEISE"
+				},
+				{
+					"language": "EN",
+					"translation": "     IMPORTANT\n\nREAD INSTRUCTION AND\n\nPRECAUTION BOOKLETS\n\n  BEFORE OPERATING"
+				},
+				{
+					"language": "ES",
+					"translation": "     IMPORTANTE\n\n  ANTES DE COMENZAR  \n\nLEER LAS INDICACIONES\n\nDEL MANUAL DE USUARIO"
+				},
+				{
+					"language": "FR",
+					"translation": "        IMPORTANT\n\nPRENEZ CONAISSANCE DE LA\n\nNOTICE ET DES PRÉCAUTIONS\n\n    A AVANT DE JOUER"
+				}
+			]
 		},
-		"STR_PRESENTS": {
-			"DE": "PRÄSENTIERT",
-			"EN": "PRESENTS",
-			"ES": "PRESENTA",
-			"FR": "PRÉSENTE"
+		{
+			"id": "Presents",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "PRÄSENTIERT"
+				},
+				{
+					"language": "EN",
+					"translation": "PRESENTS"
+				},
+				{
+					"language": "ES",
+					"translation": "PRESENTA"
+				},
+				{
+					"language": "FR",
+					"translation": "PRÉSENTE"
+				}
+			]
 		},
-		"STR_PRESS_START_BUTTON": {
-			"DE": "START-KNOPF DRÜCKEN",
-			"EN": "PRESS START BUTTON",
-			"ES": "PRESIONAR START",
-			"FR": "APPUYER SUR START"
+		{
+			"id": "PressStartButton",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "START-KNOPF DRÜCKEN"
+				},
+				{
+					"language": "EN",
+					"translation": "PRESS START BUTTON"
+				},
+				{
+					"language": "ES",
+					"translation": "PRESIONAR START"
+				},
+				{
+					"language": "FR",
+					"translation": "APPUYER SUR START"
+				}
+			]
 		},
-		"STR_QUIT_GAME": {
-			"DE": "SPIEL BEENDEN",
-			"EN": "QUIT GAME",
-			"ES": "SALIR DEL JUEGO",
-			"FR": "QUITTER JEU"
+		{
+			"id": "QuitGame",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "SPIEL BEENDEN"
+				},
+				{
+					"language": "EN",
+					"translation": "QUIT GAME"
+				},
+				{
+					"language": "ES",
+					"translation": "SALIR DEL JUEGO"
+				},
+				{
+					"language": "FR",
+					"translation": "QUITTER JEU"
+				}
+			]
 		},
-		"STR_SELECT": {
-			"DE": "AUSWÄHLEN",
-			"EN": "SELECT",
-			"ES": "SELECCIONAR",
-			"FR": "SÉLECTIONNER"
+		{
+			"id": "Select",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "AUSWÄHLEN"
+				},
+				{
+					"language": "EN",
+					"translation": "SELECT"
+				},
+				{
+					"language": "ES",
+					"translation": "SELECCIONAR"
+				},
+				{
+					"language": "FR",
+					"translation": "SÉLECTIONNER"
+				}
+			]
 		},
-		"STR_TAKE_A_REST": {
-			"DE": "BITTE MACHE EINE PAUSE!",
-			"EN": "PLEASE TAKE A REST!",
-			"ES": "¡POR FAVOR, TÓMATE UN DESCANSO!",
-			"FR": "SE IL VOUS PLAÎT, PRENDRE UN REPOS!"
+		{
+			"id": "TakeARest",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "BITTE MACHE EINE PAUSE!"
+				},
+				{
+					"language": "EN",
+					"translation": "PLEASE TAKE A REST!"
+				},
+				{
+					"language": "ES",
+					"translation": "¡POR FAVOR, TÓMATE UN DESCANSO!"
+				},
+				{
+					"language": "FR",
+					"translation": "SE IL VOUS PLAÎT, PRENDRE UN REPOS!"
+				}
+			]
 		},
-		"STR_YES": {
-			"DE": "JA",
-			"EN": "YES",
-			"ES": "SÍ",
-			"FR": "OUI"
+		{
+			"id": "Yes",
+			"translations": [
+				{
+					"language": "DE",
+					"translation": "JA"
+				},
+				{
+					"language": "EN",
+					"translation": "YES"
+				},
+				{
+					"language": "ES",
+					"translation": "SÍ"
+				},
+				{
+					"language": "FR",
+					"translation": "OUI"
+				}
+			]
 		}
-	}
+	]
 }

@@ -16,7 +16,8 @@
 
 FontSpec* const __FONTS[] =
 {
-	(FontSpec*)&CAPITAN_DEFAULT_FONT,
+	(FontSpec*)&DEFAULT_FONT,
+	(FontSpec*)&CAPITAN_FONT,
 	
 	NULL
 };

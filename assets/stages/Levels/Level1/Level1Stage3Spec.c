@@ -160,6 +160,18 @@ StageROMSpec LEVEL_1_STAGE_3_ST =
 	// allocator
 	__TYPE(Stage),
 
+	// Timer config
+	{
+		__TIMER_100US,
+		10,
+		kMS
+	},
+
+	// Sound config
+	{
+		__DEFAULT_PCM_HZ,
+	},
+
 	// level
 	{
 		// size
@@ -342,8 +354,8 @@ StageROMSpec LEVEL_1_STAGE_3_ST =
 		// textures to preload
 		(TextureSpec**)LEVEL_1_STAGE_3_ST_TEXTURES,
 
-		// background music
-		NULL,
+		// background sounds
+		(Sound**)NULL,
 	},
 
 	// entities
