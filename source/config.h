@@ -43,7 +43,7 @@
 // dimm screen to make it easier to read the profiling output
 #undef __DIMM_FOR_PROFILING
 
-// print the game's current process while the VIP's frame start and idle interrupts are fired, but the 
+// print the game's current process while the VIP's frame start and idle interrupts are fired, but the
 // game frame is still pending processes to complete
 #undef __PROFILE_GAME_STATE_DURING_VIP_INTERRUPT
 
@@ -55,7 +55,33 @@
 //											DEBUGGING TOOLS
 //---------------------------------------------------------------------------------------------------------
 
+// If tools already defined, enable all
 #ifdef __TOOLS
+
+// tools
+#ifndef __DEBUG_TOOLS
+#define __DEBUG_TOOLS
+#endif
+
+#ifndef __STAGE_EDITOR
+#define __STAGE_EDITOR
+#endif
+
+#ifndef __ANIMATION_INSPECTOR
+#define __ANIMATION_INSPECTOR
+#endif
+
+#ifndef __SOUND_TEST
+#define __SOUND_TEST
+#endif
+
+#endif
+
+// Enable different settings for each tool
+#ifdef __DEBUG_TOOLS
+#ifndef __TOOLS
+#define __TOOLS
+#endif
 
 // print frame rate
 #define __PRINT_FRAMERATE
@@ -67,11 +93,24 @@
 // enable streaming's profiling
 #define __PROFILE_STREAMING
 
-// tools
-#define __DEBUG_TOOLS
-#define __STAGE_EDITOR
-#define __ANIMATION_INSPECTOR
+#endif
 
+#ifdef __STAGE_EDITOR
+#ifndef __TOOLS
+#define __TOOLS
+#endif
+#endif
+
+#ifdef __ANIMATION_INSPECTOR
+#ifndef __TOOLS
+#define __TOOLS
+#endif
+#endif
+
+#ifdef __SOUND_TEST
+#ifndef __TOOLS
+#define __TOOLS
+#endif
 #endif
 
 
@@ -134,7 +173,7 @@
 //											FRAME RATE CONTROL
 //---------------------------------------------------------------------------------------------------------
 
-// when defined, the engine skips to the next game frame when the VIP's GAMESTART interrupt is fired 
+// when defined, the engine skips to the next game frame when the VIP's GAMESTART interrupt is fired
 // beforethe current game frame is done
 #undef __FORCE_VIP_SYNC
 
@@ -149,7 +188,7 @@
 #define __TARGET_FPS 								(50 >> __FRAME_CYCLE)
 
 // milliseconds that must take to complete a game cycle
-#define __GAME_FRAME_DURATION						(__MILLISECONDS_IN_SECOND / __TARGET_FPS)
+#define __GAME_FRAME_DURATION						(__MILLISECONDS_PER_SECOND / __TARGET_FPS)
 
 // target frames per second
 #define __OPTIMUM_FPS 								(__TARGET_FPS >> __FRAME_CYCLE)
@@ -316,19 +355,6 @@
 //												SOUND
 //---------------------------------------------------------------------------------------------------------
 
-// channels per bgms
-#define __BGM_CHANNELS								2
-
-// channels per fx
-#define __FX_CHANNELS								1
-
-// simultaneous bgms
-#define __BGMS										1
-
-// simultaneous fx
-#define __FXS										2
-
-#define __TOTAL_SOUNDS								(__BGMS + __FXS)
 #define __LEFT_EAR_CENTER							96
 #define __RIGHT_EAR_CENTER							288
 
