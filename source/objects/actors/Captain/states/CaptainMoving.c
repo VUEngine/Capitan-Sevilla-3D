@@ -77,13 +77,13 @@ bool CaptainMoving::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kBodyStopped:
+		case kMessageBodyStopped:
 
 			Captain::stopMovementOnAxis(owner, *(int*)Telegram::getExtraInfo(telegram));
 			return true;
 			break;
 
-		case kBodyStartedMoving:
+		case kMessageBodyStartedMoving:
 
 			Captain::startedMovingOnAxis(owner, *(int*)Telegram::getExtraInfo(telegram));
 			break;

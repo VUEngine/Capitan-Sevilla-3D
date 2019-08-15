@@ -123,7 +123,7 @@ EntityROMSpec LEVEL_1_STAGE_4_BACKGROUND_B_EN =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	NULL,

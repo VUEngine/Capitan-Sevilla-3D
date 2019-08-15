@@ -195,7 +195,7 @@ ShapeROMSpec GUM_PROJECTILE_SHAPES[] =
 		kAllLayers & ~kEnemiesLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 ProjectileROMSpec GUM_PROJECTILE_PR =

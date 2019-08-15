@@ -259,7 +259,7 @@ ProjectileEjectorROMSpec CAPTAIN_HEAD_PE =
 			{0, 0, 0},
 
 			// gameworld's character's type
-			kNoType,
+			kTypeNone,
 
 			// physical specification
 			(PhysicalSpecification*)NULL,

@@ -269,7 +269,7 @@ ShapeROMSpec LEVEL_1_STAGE_3_BUILDING_3B_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
 	// small left cabin wall
@@ -296,7 +296,7 @@ ShapeROMSpec LEVEL_1_STAGE_3_BUILDING_3B_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
 	// cabin roof
@@ -323,10 +323,10 @@ ShapeROMSpec LEVEL_1_STAGE_3_BUILDING_3B_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 PhysicalSpecificationROMSpec LEVEL_1_STAGE_3_BUILDING_3B_PHYSICAL_PROPERTIES =
@@ -366,7 +366,7 @@ EntityROMSpec LEVEL_1_STAGE_3_BUILDING_3B_EN =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	(PhysicalSpecification*)&LEVEL_1_STAGE_3_BUILDING_3B_PHYSICAL_PROPERTIES,

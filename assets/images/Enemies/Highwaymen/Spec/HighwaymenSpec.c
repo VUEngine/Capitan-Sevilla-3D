@@ -145,7 +145,7 @@ ShapeROMSpec HIGHWAYMEN_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
 	// Middle
@@ -172,7 +172,7 @@ ShapeROMSpec HIGHWAYMEN_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
 	// Right
@@ -199,10 +199,10 @@ ShapeROMSpec HIGHWAYMEN_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 
@@ -243,7 +243,7 @@ EntityROMSpec HIGHWAYMEN_EN =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	(PhysicalSpecification*)&HIGHWAYMEN_PHYSICAL_PROPERTIES,

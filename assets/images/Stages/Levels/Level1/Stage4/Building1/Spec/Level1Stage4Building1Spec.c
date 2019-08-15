@@ -210,10 +210,10 @@ ShapeROMSpec LEVEL_1_STAGE_4_BUILDING_1_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 PhysicalSpecificationROMSpec LEVEL_1_STAGE_4_BUILDING_1_PHYSICAL_PROPERTIES =
@@ -253,7 +253,7 @@ EntityROMSpec LEVEL_1_STAGE_4_BUILDING_1_EN =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	(PhysicalSpecification*)&LEVEL_1_STAGE_4_BUILDING_1_PHYSICAL_PROPERTIES,

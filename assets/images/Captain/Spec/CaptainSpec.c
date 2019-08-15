@@ -446,7 +446,7 @@ ShapeROMSpec CAPTAIN_AC_SHAPES[] =
 		kParticlesLayer | kPlayerLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 PhysicalSpecificationROMSpec CAPTAIN_PHYSICAL_PROPERTIES =

@@ -137,7 +137,7 @@ EntityROMSpec TITLE_EARTH_IM =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	NULL,

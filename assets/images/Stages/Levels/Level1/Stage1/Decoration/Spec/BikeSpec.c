@@ -137,7 +137,7 @@ EntityROMSpec BIKE_EN =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	NULL,

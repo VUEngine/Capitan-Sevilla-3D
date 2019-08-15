@@ -62,10 +62,10 @@ ShapeROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_POINT_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 StageExitPointROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_XP =

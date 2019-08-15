@@ -283,10 +283,10 @@ ShapeROMSpec STOP_YOU_CANNOT_PASS_SHAPES[] =
 		kMessageLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 AnimatedEntityROMSpec STOP_YOU_CANNOT_PASS_EN =

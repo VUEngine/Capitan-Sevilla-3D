@@ -84,7 +84,7 @@ typedef const PlatformerLevelSpec PlatformerLevelROMSpec;
 
 enum PlatformerLevelStateMessageTypes
 {
-	kLevelSetUp = kLastEngineMessage + 1,
+	kLevelSetUp = kMessageLastEngine + 1,
 	kLevelStarted,
 	kLevelResumed,
 	kCaptainCheckVelocity,

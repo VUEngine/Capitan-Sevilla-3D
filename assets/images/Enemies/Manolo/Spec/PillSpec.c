@@ -173,7 +173,7 @@ ShapeROMSpec PILL_PR_SHAPES[] =
 		kAllLayers & ~kPlayerLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 ProjectileROMSpec PILL_PR =

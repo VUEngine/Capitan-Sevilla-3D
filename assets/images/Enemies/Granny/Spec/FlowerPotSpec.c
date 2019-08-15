@@ -195,7 +195,7 @@ ShapeROMSpec FLOWER_POT_PR_SHAPES[] =
 		kAllLayers & ~kSolidLayer,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 ProjectileROMSpec FLOWER_POT_PR =

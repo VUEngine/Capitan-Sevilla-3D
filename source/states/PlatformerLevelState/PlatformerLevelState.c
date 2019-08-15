@@ -134,7 +134,7 @@ void PlatformerLevelState::enter(void* owner)
 
 		Captain captain = Captain::safeCast(Stage::addChildEntity(this->stage, &positionedEntity, true));
 
-		Object::addEventListener(captain, Object::safeCast(this), (EventListener)PlatformerLevelState::onCaptainStreamedOut, kStageChildStreamedOut);
+		Object::addEventListener(captain, Object::safeCast(this), (EventListener)PlatformerLevelState::onCaptainStreamedOut, kEventStageChildStreamedOut);
 
 		// set direction according to entry point
 		Direction direction = {this->currentStageEntryPoint->direction, __DOWN, __FAR};

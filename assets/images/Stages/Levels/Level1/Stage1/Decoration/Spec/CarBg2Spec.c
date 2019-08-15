@@ -218,7 +218,7 @@ ShapeROMSpec CAR_BG_2_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 	{
 		// shape
@@ -243,10 +243,10 @@ ShapeROMSpec CAR_BG_2_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 PhysicalSpecificationROMSpec CAR_BG_2_PHYSICAL_PROPERTIES =
@@ -286,7 +286,7 @@ EntityROMSpec CAR_BG_2_EN =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	(PhysicalSpecification*)&CAR_BG_2_PHYSICAL_PROPERTIES,

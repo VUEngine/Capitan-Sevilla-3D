@@ -196,7 +196,7 @@ EntityROMSpec INTRO_IMAGE_1_IM =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kNoType,
+	kTypeNone,
 
 	// physical specification
 	(PhysicalSpecification*)NULL,

@@ -42,7 +42,7 @@
 // entity collision types
 enum PlatformerTypes
 {
-	kCaptain = kNoType + 1,
+	kCaptain = kTypeNone + 1,
 	kShape,
 	kTopShape,
 	kKillShape,
@@ -60,15 +60,15 @@ enum PlatformerTypes
 // entity collision layers
 enum CollisionLayers
 {
-    kSolidLayer		 					= 1 << (kNoLayer + 0),
-    kEnemiesLayer						= 1 << (kNoLayer + 1),
-    kPlayerLayer						= 1 << (kNoLayer + 2),
-    kParticlesLayer						= 1 << (kNoLayer + 3),
-    kItemsLayer							= 1 << (kNoLayer + 4),
-    kCollectablesLayer					= 1 << (kNoLayer + 5),
-    kTriggersLayer						= 1 << (kNoLayer + 6),
-    kMovingPlatformsLayer				= 1 << (kNoLayer + 7),
-    kMessageLayer						= 1 << (kNoLayer + 8),
+    kSolidLayer		 					= 1 << (kLayerNone + 0),
+    kEnemiesLayer						= 1 << (kLayerNone + 1),
+    kPlayerLayer						= 1 << (kLayerNone + 2),
+    kParticlesLayer						= 1 << (kLayerNone + 3),
+    kItemsLayer							= 1 << (kLayerNone + 4),
+    kCollectablesLayer					= 1 << (kLayerNone + 5),
+    kTriggersLayer						= 1 << (kLayerNone + 6),
+    kMovingPlatformsLayer				= 1 << (kLayerNone + 7),
+    kMessageLayer						= 1 << (kLayerNone + 8),
     kAllLayers							= 0xFFFFFFFF,
 };
 

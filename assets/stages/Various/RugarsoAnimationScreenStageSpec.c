@@ -272,7 +272,7 @@ StageROMSpec RUGARSO_ANIMATION_SCREEN_STAGE_ST =
 		(TextureSpec**)NULL,
 
 		// background music
-		(const u16 (*)[])NULL,
+		(Sound**)NULL,
 	},
 
 	// entities
@@ -280,7 +280,7 @@ StageROMSpec RUGARSO_ANIMATION_SCREEN_STAGE_ST =
 		// ui
 		{
 			RUGARSO_ANIMATION_SCREEN_STAGE_ST_UI_ENTITIES,
-			__TYPE(UiContainer),
+			__TYPE(UIContainer),
 		},
 
 		// children

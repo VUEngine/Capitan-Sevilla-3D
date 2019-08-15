@@ -242,7 +242,7 @@ void Captain::jump(bool checkIfYMovement)
 			}
 			else
 			{
-				// hack to avoid the processing of kBodyStopped message triggered by the call to Actor::stopMovement
+				// hack to avoid the processing of kMessageBodyStopped message triggered by the call to Actor::stopMovement
 				this->jumps = -1;
 
 				// stop movement to gain full momentum of the jump force that will be added
@@ -869,7 +869,7 @@ bool Captain::handleMessage(Telegram telegram)
 			return true;
 			break;
 
-		case kBodyStopped:
+		case kMessageBodyStopped:
 
 			if(-1 == this->jumps)
 			{

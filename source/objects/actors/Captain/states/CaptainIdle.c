@@ -68,12 +68,12 @@ bool CaptainIdle::processMessage(void* owner, Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
 	{
-		case kBodyStartedMoving:
+		case kMessageBodyStartedMoving:
 
 			Captain::startedMovingOnAxis(owner, *(u16*)Telegram::getExtraInfo(telegram));
 			break;
 
-		case kBodyStopped:
+		case kMessageBodyStopped:
 
 			return true;
 			break;

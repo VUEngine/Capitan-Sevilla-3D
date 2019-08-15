@@ -292,7 +292,7 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 		(TextureSpec**)TITLE_SCREEN_STAGE_ST_TEXTURES,
 
 		// background music
-		(const u16 (*)[])NULL,
+		(Sound**)NULL,
 	},
 
 	// entities
@@ -300,7 +300,7 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 		// ui
 		{
 			TITLE_SCREEN_STAGE_ST_UI_ENTITIES,
-			__TYPE(UiContainer),
+			__TYPE(UIContainer),
 		},
 
 		// children

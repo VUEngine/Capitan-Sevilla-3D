@@ -222,7 +222,7 @@ ShapeROMSpec LEVEL_1_STAGE_2_LIFT_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},*/
 
 	// right
@@ -249,10 +249,10 @@ ShapeROMSpec LEVEL_1_STAGE_2_LIFT_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kNoLayer,
+		kLayerNone,
 	},
 
-	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kNoLayer, kNoLayer}
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
 LiftROMSpec LEVEL_1_STAGE_2_LIFT_EN =
@@ -379,7 +379,7 @@ AnimatedEntityROMSpec LEVEL_1_STAGE_4_LIFT_EN =
 		{0, 0, 0},
 
 		// gameworld's character's type
-		kNoType,
+		kTypeNone,
 
 		// physical specification
 		NULL,
