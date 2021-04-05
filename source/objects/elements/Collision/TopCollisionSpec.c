@@ -57,11 +57,20 @@ CollisionROMSpec COLLISION_TOP_CL =
 	// class allocator
 	__TYPE(Collision),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)NULL,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

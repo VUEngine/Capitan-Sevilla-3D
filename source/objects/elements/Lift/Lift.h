@@ -62,7 +62,7 @@ class Lift : Actor
 	// spec pointer
 	LiftSpec* liftSpec;
 
-	void constructor(LiftSpec* liftSpec, s16 id, s16 internalId, const char* const name);
+	void constructor(LiftSpec* liftSpec, s16 internalId, const char* const name);
 	override bool handleMessage(Telegram telegram);
 }
 

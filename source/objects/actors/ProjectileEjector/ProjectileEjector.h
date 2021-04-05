@@ -89,7 +89,7 @@ class ProjectileEjector : AnimatedEntity
 	// created projectiles counter
 	u8 createdProjectiles;
 
-	void constructor(ProjectileEjectorSpec* projectileEjectorSpec, s16 id, s16 internalId, const char* const name);
+	void constructor(ProjectileEjectorSpec* projectileEjectorSpec, s16 internalId, const char* const name);
 	void ejectProjectile();
 	bool isActive();
 	void onEjectAnimationComplete();

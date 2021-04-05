@@ -111,6 +111,12 @@ TextureROMSpec CAR_1_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec CAR_1_SPRITE =
@@ -154,11 +160,20 @@ MovingOneWayEntityROMSpec CAR_1_AC =
 				// class allocator
 				__TYPE(MovingOneWayEntity),
 
-				// behaviors 
+				// children
+				NULL,
+
+				// behaviors
+				NULL,
+
+				// extra
 				NULL,
 
 				// sprites
 				(SpriteSpec**)CAR_1_SPRITES,
+
+				// use z displacement in projection
+				false,
 
 				// collision shapes
 				(ShapeSpec*)NULL,

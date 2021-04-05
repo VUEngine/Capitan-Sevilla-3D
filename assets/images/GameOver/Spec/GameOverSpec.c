@@ -83,6 +83,12 @@ TextureROMSpec GAME_OVER_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec GAME_OVER_SPRITE =
@@ -123,11 +129,20 @@ EntityROMSpec GAME_OVER_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)GAME_OVER_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,

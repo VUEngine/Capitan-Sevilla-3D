@@ -37,7 +37,7 @@
 
 class GumProjectile : Projectile
 {
-	void constructor(ProjectileSpec* projectileSpec, s16 id, s16 internalId, const char* const name);
+	void constructor(ProjectileSpec* projectileSpec, s16 internalId, const char* const name);
 	override bool enterCollision(const CollisionInformation* collisionInformation);
 }
 

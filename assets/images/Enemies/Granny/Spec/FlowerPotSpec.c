@@ -135,6 +135,12 @@ TextureROMSpec FLOWER_POT_TX =
 
 	// recyclable
 	true,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec FLOWER_POT_SPRITE =
@@ -207,11 +213,20 @@ ProjectileROMSpec FLOWER_POT_PR =
 				// class allocator
 				__TYPE(FlowerPot),
 
-				// behaviors 
+				// children
+				NULL,
+
+				// behaviors
+				NULL,
+
+				// extra
 				NULL,
 
 				// sprites
 				(SpriteSpec**)FLOWER_POT_SPRITES,
+
+				// use z displacement in projection
+				false,
 
 				// collision shapes
 				(ShapeSpec*)FLOWER_POT_PR_SHAPES,

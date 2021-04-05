@@ -100,6 +100,12 @@ TextureROMSpec LANTERN_1_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec LANTERN_1_BLACK_TX =
@@ -128,6 +134,12 @@ TextureROMSpec LANTERN_1_BLACK_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -197,7 +209,13 @@ EntityROMSpec LANTERN_1_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

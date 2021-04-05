@@ -68,6 +68,12 @@ TextureROMSpec INTRO_IMAGE_5_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec INTRO_IMAGE_5_SPRITE =
@@ -109,11 +115,20 @@ EntityROMSpec INTRO_IMAGE_5_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)INTRO_IMAGE_5_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

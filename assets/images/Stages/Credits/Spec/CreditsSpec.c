@@ -86,6 +86,12 @@ TextureROMSpec CREDITS_A_L_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec CREDITS_A_L_SPRITE =
@@ -141,6 +147,12 @@ TextureROMSpec CREDITS_A_R_TX =
 	0,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -198,6 +210,12 @@ TextureROMSpec CREDITS_B_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec CREDITS_B_SPRITE =
@@ -253,6 +271,12 @@ TextureROMSpec CREDITS_C_TX =
 	0,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 

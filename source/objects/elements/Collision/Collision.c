@@ -48,10 +48,10 @@ const PixelSize collision_3608_16_64 = 	{3608, 	 64, 	64};
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Collision::constructor(EntitySpec* entitySpec, s16 id, s16 internalId, const char* const name)
+void Collision::constructor(EntitySpec* entitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(entitySpec, id, internalId, name);
+	Base::constructor(entitySpec, internalId, name);
 }
 
 void Collision::destructor()

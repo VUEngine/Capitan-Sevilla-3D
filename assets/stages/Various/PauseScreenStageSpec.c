@@ -85,6 +85,7 @@ StageROMSpec PAUSE_SCREEN_STAGE_ST =
 	// Sound config
 	{
 		__DEFAULT_PCM_HZ,
+		false
 	},
 
 	// level
@@ -277,12 +278,12 @@ StageROMSpec PAUSE_SCREEN_STAGE_ST =
 	{
 		// ui
 		{
-			PAUSE_SCREEN_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)PAUSE_SCREEN_STAGE_ST_UI_ENTITIES,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		PAUSE_SCREEN_STAGE_ST_ENTITIES,
+		(PositionedEntity*)PAUSE_SCREEN_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects

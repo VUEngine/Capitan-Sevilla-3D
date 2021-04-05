@@ -84,6 +84,12 @@ TextureROMSpec HIGHWAYMEN_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec HIGHWAYMEN_SPRITE =
@@ -229,11 +235,20 @@ EntityROMSpec HIGHWAYMEN_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)HIGHWAYMEN_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	(ShapeSpec*)HIGHWAYMEN_SHAPES,

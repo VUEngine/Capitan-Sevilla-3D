@@ -223,6 +223,12 @@ TextureROMSpec STOP_YOU_CANNOT_PASS_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec STOP_YOU_CANNOT_PASS_SPRITE =
@@ -295,11 +301,20 @@ AnimatedEntityROMSpec STOP_YOU_CANNOT_PASS_EN =
 		// class allocator
 		__TYPE(Message),
 
-		// behaviors 
+		// children
+		NULL,
+
+		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
 		(SpriteSpec**)STOP_YOU_CANNOT_PASS_SPRITES,
+
+		// use z displacement in projection
+		false,
 
 		// collision shapes
 		(ShapeSpec*)STOP_YOU_CANNOT_PASS_SHAPES,

@@ -99,7 +99,7 @@ class Captain : Actor
 	bool keepAddingForce;
 
 	static Captain getInstance();
-	void constructor(CaptainSpec* captainSpec, s16 id, s16 internalId, const char* const name);
+	void constructor(CaptainSpec* captainSpec, s16 internalId, const char* const name);
 	void applyForce(u16 axis, bool enableAddingForce);
 	void stopAddingForce();
 	void startedMovingOnAxis(u16 axis);
@@ -130,7 +130,6 @@ class Captain : Actor
 	override bool handleMessage(Telegram telegram);
 	override void suspend();
 	override void resume();
-	override bool isAffectedByRelativity();
 	override fix10_6 getFrictionOnCollision(SpatialObject collidingObject, const Vector3D* collidingObjectNormal);
 	override bool enterCollision(const CollisionInformation* collisionInformation);
 	override void exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);

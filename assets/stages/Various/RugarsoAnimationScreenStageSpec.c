@@ -87,6 +87,7 @@ StageROMSpec RUGARSO_ANIMATION_SCREEN_STAGE_ST =
 	// Sound config
 	{
 		__DEFAULT_PCM_HZ,
+		false
 	},
 
 	// level
@@ -279,12 +280,12 @@ StageROMSpec RUGARSO_ANIMATION_SCREEN_STAGE_ST =
 	{
 		// ui
 		{
-			RUGARSO_ANIMATION_SCREEN_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)RUGARSO_ANIMATION_SCREEN_STAGE_ST_UI_ENTITIES,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		RUGARSO_ANIMATION_SCREEN_STAGE_ST_ENTITIES,
+		(PositionedEntity*)RUGARSO_ANIMATION_SCREEN_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects

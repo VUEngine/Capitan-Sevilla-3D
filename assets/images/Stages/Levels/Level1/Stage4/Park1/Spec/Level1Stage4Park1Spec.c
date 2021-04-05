@@ -88,6 +88,12 @@ TextureROMSpec LEVEL_1_STAGE_4_PARK_1_L_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec LEVEL_1_STAGE_4_PARK_1_L_SPRITE =
@@ -145,6 +151,12 @@ TextureROMSpec LEVEL_1_STAGE_4_PARK_1_R_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -239,11 +251,20 @@ EntityROMSpec LEVEL_1_STAGE_4_PARK_1_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)LEVEL_1_STAGE_4_PARK_1_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	(ShapeSpec*)LEVEL_1_STAGE_4_PARK_1_SHAPES,

@@ -83,6 +83,12 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_7_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_7_SPRITE =
@@ -123,7 +129,13 @@ EntityROMSpec LEVEL_1_STAGE_1_BUILDING_7_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites

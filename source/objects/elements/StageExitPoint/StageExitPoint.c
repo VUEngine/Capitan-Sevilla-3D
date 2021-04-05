@@ -42,10 +42,10 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void StageExitPoint::constructor(EntitySpec* entitySpec, s16 id, s16 internalId, const char* const name)
+void StageExitPoint::constructor(EntitySpec* entitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(entitySpec, id, internalId, name);
+	Base::constructor(entitySpec, internalId, name);
 
 	// add event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());

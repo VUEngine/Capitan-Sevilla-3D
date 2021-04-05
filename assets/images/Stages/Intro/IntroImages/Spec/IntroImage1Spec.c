@@ -84,6 +84,12 @@ TextureROMSpec INTRO_IMAGE_1_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec INTRO_IMAGE_1_BLACK_TX =
@@ -112,6 +118,12 @@ TextureROMSpec INTRO_IMAGE_1_BLACK_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -182,11 +194,20 @@ EntityROMSpec INTRO_IMAGE_1_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)INTRO_IMAGE_1_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

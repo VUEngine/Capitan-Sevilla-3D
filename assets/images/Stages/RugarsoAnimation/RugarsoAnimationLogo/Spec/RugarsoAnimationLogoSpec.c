@@ -83,6 +83,12 @@ TextureROMSpec RUGARSO_ANIMATION_LOGO_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec RUGARSO_ANIMATION_LOGO_SPRITE =
@@ -123,11 +129,20 @@ EntityROMSpec RUGARSO_ANIMATION_LOGO_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)RUGARSO_ANIMATION_LOGO_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,

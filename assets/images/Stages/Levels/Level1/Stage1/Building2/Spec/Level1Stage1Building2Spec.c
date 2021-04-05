@@ -86,6 +86,12 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_2_L_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_2_L_SPRITE =
@@ -144,6 +150,12 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_2_R_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_2_R_SPRITE =
@@ -185,11 +197,20 @@ EntityROMSpec LEVEL_1_STAGE_1_BUILDING_2_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)LEVEL_1_STAGE_1_BUILDING_2_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,

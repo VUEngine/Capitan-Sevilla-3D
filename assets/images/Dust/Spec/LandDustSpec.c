@@ -137,6 +137,12 @@ TextureROMSpec LAND_DUST_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec LAND_DUST_SPRITE =
@@ -175,11 +181,20 @@ AnimatedEntityROMSpec LAND_DUST_EN =
 		// class allocator
 		__TYPE(Dust),
 
-		// behaviors 
+		// children
+		NULL,
+
+		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
 		(SpriteSpec**)LAND_DUST_SPRITES,
+
+		// use z displacement in projection
+		false,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

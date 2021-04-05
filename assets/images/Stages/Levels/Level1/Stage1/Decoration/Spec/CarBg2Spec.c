@@ -86,6 +86,12 @@ TextureROMSpec CAR_BG_2_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec CAR_BG_2_SPRITE =
@@ -156,6 +162,12 @@ TextureROMSpec CAR_BG_2_BLACK_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -272,11 +284,20 @@ EntityROMSpec CAR_BG_2_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)CAR_BG_2_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	(ShapeSpec*)CAR_BG_2_SHAPES,

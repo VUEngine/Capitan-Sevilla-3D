@@ -89,6 +89,12 @@ TextureROMSpec LEVEL_1_STAGE_2_ROOM_A_L_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_A_L_SPRITE =
@@ -146,6 +152,12 @@ TextureROMSpec LEVEL_1_STAGE_2_ROOM_B_L_TX =
 	0,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -205,6 +217,12 @@ TextureROMSpec LEVEL_1_STAGE_2_ROOM_A_R_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_A_R_SPRITE =
@@ -262,6 +280,12 @@ TextureROMSpec LEVEL_1_STAGE_2_ROOM_B_R_TX =
 	0,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -488,11 +512,20 @@ EntityROMSpec LEVEL_1_STAGE_2_ROOM_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)LEVEL_1_STAGE_2_ROOM_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	(ShapeSpec*)LEVEL_1_STAGE_2_ROOM_SHAPES,

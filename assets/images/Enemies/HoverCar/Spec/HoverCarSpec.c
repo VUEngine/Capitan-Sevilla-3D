@@ -112,6 +112,12 @@ TextureROMSpec HOVER_CAR_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec HOVER_CAR_SPRITE =
@@ -184,11 +190,20 @@ EnemyROMSpec HOVER_CAR_EM =
 					// class allocator
 					__TYPE(Enemy),
 
-					// behaviors 
+					// children
 					NULL,
 
+					// behaviors
+					NULL,
+
+					// extra
+					NULL,
+					
 					// sprites
 					(SpriteSpec**)HOVER_CAR_SPRITES,
+
+					// use z displacement in projection
+					false,
 
 					// collision shapes
 					(ShapeSpec*)HOVER_CAR_SHAPES,

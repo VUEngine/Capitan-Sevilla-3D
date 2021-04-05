@@ -68,14 +68,13 @@ class Projectile : Actor
 	// position at time of ejection
 	Vector3D originalPosition;
 
-	void constructor(ProjectileSpec* projectileSpec, s16 id, s16 internalId, const char* const name);
+	void constructor(ProjectileSpec* projectileSpec, s16 internalId, const char* const name);
 	void startMovement();
 	bool canBeReused();
 	void stop();
 	void onHitAnimationComplete();
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
-	override bool isVisible(int pad, bool recursive);
 	override bool enterCollision(const CollisionInformation* collisionInformation);
 }
 

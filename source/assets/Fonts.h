@@ -19,6 +19,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern FontSpec DEFAULT_FONT;
+extern FontSpec PROFILER_FONT;
 extern FontSpec CAPITAN_FONT;
 
 

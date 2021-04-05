@@ -305,6 +305,12 @@ TextureROMSpec CAPTAIN_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec CAPTAIN_BLACK_TX =
@@ -332,6 +338,12 @@ TextureROMSpec CAPTAIN_BLACK_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 

@@ -152,6 +152,12 @@ TextureROMSpec CAPTAIN_HEAD_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec CAPTAIN_HEAD_BLACK_TX =
@@ -179,6 +185,12 @@ TextureROMSpec CAPTAIN_HEAD_BLACK_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -245,11 +257,20 @@ ProjectileEjectorROMSpec CAPTAIN_HEAD_PE =
 			// class allocator
 			__TYPE(ProjectileEjector),
 
-			// behaviors 
+			// children
 			NULL,
 
+			// behaviors
+			NULL,
+
+			// extra
+			NULL,
+			
 			// sprites
 			(SpriteSpec**)CAPTAIN_HEAD_SPRITES,
+
+			// use z displacement in projection
+			false,
 
 			// collision shapes
 			(ShapeSpec*)NULL,

@@ -34,10 +34,10 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Punk::constructor(EnemySpec* enemySpec, s16 id, s16 internalId, const char* const name)
+void Punk::constructor(EnemySpec* enemySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(enemySpec, id, internalId, name);
+	Base::constructor(enemySpec, internalId, name);
 }
 
 void Punk::destructor()

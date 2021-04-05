@@ -77,7 +77,7 @@ class Enemy : MovingOneWayEntity
 	// energy
 	u8 energy;
 
-	void constructor(EnemySpec* enemySpec, s16 id, s16 internalId, const char* const name);
+	void constructor(EnemySpec* enemySpec, s16 internalId, const char* const name);
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
 	void takeHit(u8 power);

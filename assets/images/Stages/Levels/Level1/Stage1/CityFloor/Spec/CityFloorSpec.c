@@ -87,6 +87,12 @@ TextureROMSpec CITY_FLOOR_L_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec* const CITY_FLOOR_L_TEXTURES[] =
@@ -174,6 +180,12 @@ TextureROMSpec CITY_FLOOR_R_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec* const CITY_FLOOR_R_TEXTURES[] =
@@ -246,11 +258,20 @@ EntityROMSpec CITY_FLOOR_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)CITY_FLOOR_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,
@@ -289,11 +310,20 @@ CollisionROMSpec CITY_FLOOR_COLLISION_CL =
 	// class allocator
 	__TYPE(Collision),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)NULL,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

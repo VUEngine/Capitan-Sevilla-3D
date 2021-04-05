@@ -100,6 +100,12 @@ TextureROMSpec TITLE_CAPITAN_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec TITLE_CAPITAN_BLACK_TX =
@@ -128,6 +134,12 @@ TextureROMSpec TITLE_CAPITAN_BLACK_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -197,11 +209,20 @@ EntityROMSpec TITLE_CAPITAN_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)TITLE_CAPITAN_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,

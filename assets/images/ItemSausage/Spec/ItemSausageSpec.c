@@ -134,6 +134,12 @@ TextureROMSpec ITEM_SAUSAGE_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec ITEM_SAUSAGE_SPRITE =
@@ -203,11 +209,20 @@ AnimatedEntityROMSpec ITEM_SAUSAGE_EN =
 		// class allocator
 		__TYPE(ItemSausage),
 
-		// behaviors 
+		// children
 		NULL,
 
+		// behaviors
+		NULL,
+
+		// extra
+		NULL,
+		
 		// sprites
 		(SpriteSpec**)ITEM_SAUSAGE_SPRITES,
+
+		// use z displacement in projection
+		false,
 
 		// collision shapes
 		(ShapeSpec*)ITEM_SAUSAGE_AC_SHAPES,

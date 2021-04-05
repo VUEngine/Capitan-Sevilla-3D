@@ -80,10 +80,12 @@ static void Captain::setInstance(Captain instance)
 	captain = instance;
 }
 
-void Captain::constructor(CaptainSpec* captainSpec, s16 id, s16 internalId, const char* const name)
+void Captain::constructor(CaptainSpec* captainSpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorSpec*)captainSpec, id, internalId, name);
+	Base::constructor((ActorSpec*)captainSpec, internalId, name);
+
+	this->dontStreamOut = true;
 
 	// construct the captain's state machine
 	this->stateMachine = new StateMachine(this);
@@ -927,11 +929,6 @@ bool Captain::isBelow(Shape shape, const CollisionInformation* collisionInformat
 	return captainBottomPosition > collidingShapeRightBox.y0 || __ABS(collisionInformation->solutionVector.direction.y) < __ABS(collisionInformation->solutionVector.direction.x);
 }
 
-bool Captain::isAffectedByRelativity()
-{
-	return true;
-}
-
 void Captain::update(u32 elapsedTime)
 {
 	Base::update(this, elapsedTime);
@@ -1073,11 +1070,6 @@ void Captain::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool is
 u16 Captain::getAxisForShapeSyncWithDirection()
 {
 	return __X_AXIS;
-}
-
-bool Captain::isVisible(int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
-{
-	return true;
 }
 
 void Captain::onHitAnimationComplete(Object eventFirer __attribute__ ((unused)))

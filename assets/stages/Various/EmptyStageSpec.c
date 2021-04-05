@@ -85,6 +85,7 @@ StageROMSpec EMPTY_STAGE_ST =
 	// Sound config
 	{
 		__DEFAULT_PCM_HZ,
+		false
 	},
 
 	// level
@@ -277,12 +278,12 @@ StageROMSpec EMPTY_STAGE_ST =
 	{
 		// ui
 		{
-			EMPTY_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)EMPTY_STAGE_ST_UI_ENTITIES,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		EMPTY_STAGE_ST_ENTITIES,
+		(PositionedEntity*)EMPTY_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects

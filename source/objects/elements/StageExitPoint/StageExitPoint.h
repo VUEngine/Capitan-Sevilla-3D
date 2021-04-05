@@ -45,7 +45,7 @@ typedef const StageExitPointSpec StageExitPointROMSpec;
 
 class StageExitPoint : Entity
 {
-	void constructor(EntitySpec* entitySpec, s16 id, s16 internalId, const char* const name);
+	void constructor(EntitySpec* entitySpec, s16 internalId, const char* const name);
 }
 
 

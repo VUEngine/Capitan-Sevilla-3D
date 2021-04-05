@@ -88,6 +88,12 @@ TextureROMSpec CS3D_LOGO_L_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec CS3D_LOGO_L_SPRITE =
@@ -145,6 +151,12 @@ TextureROMSpec CS3D_LOGO_L_BLACK_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -204,6 +216,12 @@ TextureROMSpec CS3D_LOGO_R_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec CS3D_LOGO_R_SPRITE =
@@ -262,6 +280,12 @@ TextureROMSpec CS3D_LOGO_R_BLACK_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec CS3D_LOGO_R_BLACK_SPRITE =
@@ -307,11 +331,20 @@ EntityROMSpec CS3D_LOGO_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)CS3D_LOGO_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,

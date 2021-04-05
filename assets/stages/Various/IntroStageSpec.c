@@ -124,6 +124,7 @@ StageROMSpec INTRO_STAGE_ST =
 	// Sound config
 	{
 		__DEFAULT_PCM_HZ,
+		false
 	},
 
 	// level
@@ -316,12 +317,12 @@ StageROMSpec INTRO_STAGE_ST =
 	{
 		// ui
 		{
-			INTRO_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)INTRO_STAGE_ST_UI_ENTITIES,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		INTRO_STAGE_ST_ENTITIES,
+		(PositionedEntity*)INTRO_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects

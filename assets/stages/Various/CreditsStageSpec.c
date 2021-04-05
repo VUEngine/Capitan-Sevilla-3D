@@ -87,6 +87,7 @@ StageROMSpec CREDITS_STAGE_ST =
 	// Sound config
 	{
 		__DEFAULT_PCM_HZ,
+		false
 	},
 
 	// level
@@ -279,12 +280,12 @@ StageROMSpec CREDITS_STAGE_ST =
 	{
 		// ui
 		{
-			CREDITS_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)CREDITS_STAGE_ST_UI_ENTITIES,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		CREDITS_STAGE_ST_ENTITIES,
+		(PositionedEntity*)(PositionedEntity*)CREDITS_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects

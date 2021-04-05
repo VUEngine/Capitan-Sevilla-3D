@@ -83,6 +83,12 @@ TextureROMSpec TITLE_SUBTITLE_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec TITLE_SUBTITLE_SPRITE =
@@ -123,11 +129,20 @@ EntityROMSpec TITLE_SUBTITLE_IM =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)TITLE_SUBTITLE_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,

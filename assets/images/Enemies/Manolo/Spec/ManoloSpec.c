@@ -138,6 +138,12 @@ TextureROMSpec MANOLO_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec MANOLO_SPRITE =
@@ -209,11 +215,20 @@ ProjectileEjectorROMSpec PILL_EJECTOR_PE =
 			// class allocator
 			__TYPE(ProjectileEjector),
 
-			// behaviors 
+			// children
 			NULL,
 
+			// behaviors
+			NULL,
+
+			// extra
+			NULL,
+			
 			// sprites
 			NULL,
+
+			// use z displacement in projection
+			false,
 
 			// collision shapes
 			NULL,
@@ -267,11 +282,20 @@ EnemyROMSpec MANOLO_EM =
 					// class allocator
 					__TYPE(Enemy),
 
-					// behaviors 
+					// children
+					NULL,
+
+					// behaviors
+					NULL,
+
+					// extra
 					NULL,
 
 					// sprites
 					(SpriteSpec**)MANOLO_SPRITES,
+
+					// use z displacement in projection
+					false,
 
 					// collision shapes
 					(ShapeSpec*)MANOLO_SHAPES,

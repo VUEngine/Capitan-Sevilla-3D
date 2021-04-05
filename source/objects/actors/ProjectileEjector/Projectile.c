@@ -37,10 +37,12 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Projectile::constructor(ProjectileSpec* projectileSpec, s16 id, s16 internalId, const char* const name)
+void Projectile::constructor(ProjectileSpec* projectileSpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((ActorSpec*)&projectileSpec->actorSpec, id, internalId, name);
+	Base::constructor((ActorSpec*)&projectileSpec->actorSpec, internalId, name);
+
+	this->dontStreamOut = true;
 
 	// save spec
 	this->projectileSpec = projectileSpec;
@@ -165,12 +167,6 @@ void Projectile::onHitAnimationComplete()
 {
 	Projectile::stop(this);
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kProjectileCheckPosition);
-}
-
-bool Projectile::isVisible(int pad __attribute__ ((unused)), bool recursive __attribute__ ((unused)))
-{
-	// always return true so the Projectile is never streamed out
-	return true;
 }
 
 // process collisions

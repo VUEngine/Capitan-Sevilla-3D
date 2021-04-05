@@ -159,6 +159,12 @@ TextureROMSpec LEVEL_1_STAGE_2_LIFT_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false
 };
 
 BgmapSpriteROMSpec LEVEL_1_STAGE_2_LIFT_SPRITE =
@@ -321,6 +327,9 @@ LiftROMSpec LEVEL_1_STAGE_3_LIFT_EN =
 				// sprites
 				(SpriteSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
 
+				// use z displacement in projection
+				false,
+
 				// collision shapes
 				(ShapeSpec*)LEVEL_1_STAGE_2_LIFT_SHAPES,
 
@@ -365,11 +374,20 @@ AnimatedEntityROMSpec LEVEL_1_STAGE_4_LIFT_EN =
 		// class allocator
 		__TYPE(AnimatedEntity),
 
-		// behaviors 
+		// children
+		NULL,
+
+		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
 		(SpriteSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+
+		// use z displacement in projection
+		false,
 
 		// collision shapes
 		NULL,

@@ -100,6 +100,12 @@ TextureROMSpec PLAYGROUND_SIGN_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec PLAYGROUND_SIGN_BLACK_TX =
@@ -128,6 +134,12 @@ TextureROMSpec PLAYGROUND_SIGN_BLACK_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -197,11 +209,20 @@ EntityROMSpec PLAYGROUND_SIGN_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)PLAYGROUND_SIGN_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,

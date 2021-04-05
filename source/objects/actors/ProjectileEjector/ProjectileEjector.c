@@ -38,10 +38,10 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void ProjectileEjector::constructor(ProjectileEjectorSpec* projectileEjectorSpec, s16 id, s16 internalId, const char* const name)
+void ProjectileEjector::constructor(ProjectileEjectorSpec* projectileEjectorSpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor((AnimatedEntitySpec*)&projectileEjectorSpec->animatedEntitySpec, id, internalId, name);
+	Base::constructor((AnimatedEntitySpec*)&projectileEjectorSpec->animatedEntitySpec, internalId, name);
 
 	// save spec
 	this->projectileEjectorSpec = projectileEjectorSpec;

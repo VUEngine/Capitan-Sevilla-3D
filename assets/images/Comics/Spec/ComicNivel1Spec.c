@@ -83,6 +83,12 @@ TextureROMSpec COMIC_NIVEL_1_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec COMIC_NIVEL_1_SPRITE =
@@ -123,11 +129,20 @@ EntityROMSpec COMIC_NIVEL_1_EN =
 	// class allocator
 	__TYPE(Comic),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)COMIC_NIVEL_1_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,

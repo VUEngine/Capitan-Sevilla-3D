@@ -36,9 +36,9 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Message::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
+void Message::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
 {
-	Base::constructor(animatedEntitySpec, id, internalId, name);
+	Base::constructor(animatedEntitySpec, internalId, name);
 }
 
 void Message::destructor()

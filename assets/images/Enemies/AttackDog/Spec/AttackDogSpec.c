@@ -112,6 +112,12 @@ TextureROMSpec ATTACK_DOG_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec ATTACK_DOG_SPRITE =
@@ -184,11 +190,20 @@ EnemyROMSpec ATTACK_DOG_EM =
 					// class allocator
 					__TYPE(Enemy),
 
-					// behaviors 
+					// children
 					NULL,
 
+					// behaviors
+					NULL,
+
+					// extra
+					NULL,
+					
 					// sprites
 					(SpriteSpec**)ATTACK_DOG_SPRITES,
+
+					// use z displacement in projection
+					false,
 
 					// collision shapes
 					(ShapeSpec*)ATTACK_DOG_AC_SHAPES,

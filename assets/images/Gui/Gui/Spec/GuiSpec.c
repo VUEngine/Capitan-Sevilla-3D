@@ -84,6 +84,12 @@ TextureROMSpec GUI_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec GUI_SPRITE =
@@ -124,11 +130,20 @@ EntityROMSpec GUI_EN =
 	// class allocator
 	__TYPE(Gui),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)GUI_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,

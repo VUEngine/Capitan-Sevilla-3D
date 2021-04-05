@@ -111,6 +111,7 @@ StageROMSpec LEVEL_1_STAGE_2_ST =
 	// Sound config
 	{
 		__DEFAULT_PCM_HZ,
+		false
 	},
 
 	// level
@@ -303,12 +304,12 @@ StageROMSpec LEVEL_1_STAGE_2_ST =
 	{
 		// ui
 		{
-			LEVEL_1_STAGE_2_ST_UI_CHILDREN,
+			(PositionedEntity*)LEVEL_1_STAGE_2_ST_UI_CHILDREN,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		LEVEL_1_STAGE_2_ST_CHILDREN,
+		(PositionedEntity*)LEVEL_1_STAGE_2_ST_CHILDREN,
 	},
 
 	// post processing effects

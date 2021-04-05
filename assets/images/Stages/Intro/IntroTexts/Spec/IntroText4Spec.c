@@ -182,6 +182,12 @@ TextureROMSpec INTRO_TEXT_4_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec INTRO_TEXT_4_SPRITE =

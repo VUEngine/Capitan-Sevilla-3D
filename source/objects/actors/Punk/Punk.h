@@ -38,7 +38,7 @@
 
 class Punk : Enemy
 {
-	void constructor(EnemySpec* enemySpec, s16 id, s16 internalId, const char* const name);
+	void constructor(EnemySpec* enemySpec, s16 internalId, const char* const name);
 	override void die();
 	void onDieAnimationComplete(Object eventFirer);
 }

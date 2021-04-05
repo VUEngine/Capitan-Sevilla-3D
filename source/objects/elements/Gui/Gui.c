@@ -51,10 +51,10 @@ extern EntitySpec GAME_OVER_EN;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Gui::constructor(EntitySpec* animatedEntitySpec, s16 id, s16 internalId, const char* const name)
+void Gui::constructor(EntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntitySpec, id, internalId, name);
+	Base::constructor(animatedEntitySpec, internalId, name);
 
 	// init members
 	this->active = false;

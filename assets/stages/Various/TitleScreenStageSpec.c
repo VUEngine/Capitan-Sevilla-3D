@@ -107,6 +107,7 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 	// Sound config
 	{
 		__DEFAULT_PCM_HZ,
+		false
 	},
 
 	// level
@@ -299,12 +300,12 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 	{
 		// ui
 		{
-			TITLE_SCREEN_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)TITLE_SCREEN_STAGE_ST_UI_ENTITIES,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		TITLE_SCREEN_STAGE_ST_ENTITIES,
+		(PositionedEntity*)TITLE_SCREEN_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects

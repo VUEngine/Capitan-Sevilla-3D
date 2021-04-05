@@ -113,6 +113,12 @@ TextureROMSpec PILL_TX =
 
 	// recyclable
 	true,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec PILL_SPRITE =
@@ -185,11 +191,20 @@ ProjectileROMSpec PILL_PR =
 				// class allocator
 				__TYPE(Projectile),
 
-				// behaviors 
+				// children
 				NULL,
 
+				// behaviors
+				NULL,
+
+				// extra
+				NULL,
+				
 				// sprites
 				(SpriteSpec**)PILL_SPRITES,
+
+				// use z displacement in projection
+				false,
 
 				// collision shapes
 				(ShapeSpec*)PILL_PR_SHAPES,

@@ -137,6 +137,12 @@ TextureROMSpec GRANNY_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec GRANNY_SPRITE =
@@ -177,11 +183,20 @@ ProjectileEjectorROMSpec GRANNY_PE =
 			// class allocator
 			__TYPE(ProjectileEjector),
 
-			// behaviors 
+			// children
+			NULL,
+
+			// behaviors
+			NULL,
+
+			// extra
 			NULL,
 
 			// sprites
 			(SpriteSpec**)GRANNY_SPRITES,
+
+			// use z displacement in projection
+			false,
 
 			// collision shapes
 			(ShapeSpec*)NULL,

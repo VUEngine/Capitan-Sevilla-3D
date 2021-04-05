@@ -83,6 +83,12 @@ TextureROMSpec CITY_FLOOR_3D_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec CITY_FLOOR_3D_SPRITE =
@@ -123,11 +129,20 @@ EntityROMSpec CITY_FLOOR_3D_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)CITY_FLOOR_3D_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,

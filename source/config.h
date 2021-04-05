@@ -14,28 +14,32 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//											COMMUNICATIONS
+//---------------------------------------------------------------------------------------------------------
+
+// Enable communications at the start of the game
+#undef __ENABLE_COMMUNICATIONS
+
+
+//---------------------------------------------------------------------------------------------------------
 //											DEBUGGING / PROFILING
 //---------------------------------------------------------------------------------------------------------
 
 // print memory pool's status
-#undef __PRINT_MEMORY_POOL_STATUS
-#undef __PRINT_DETAILED_MEMORY_POOL_STATUS
+#undef __SHOW_MEMORY_POOL_STATUS
+#undef __SHOW_DETAILED_MEMORY_POOL_STATUS
+
+// Enable profiler
+#undef __ENABLE_PROFILER
 
 // print frame rate
 #undef __PRINT_FRAMERATE
 
 // alert stack overflows
-#undef __ALERT_STACK_OVERFLOW
-
-// enable detailed profiling of each of the game's main processes
-// • it is more useful when __TIMER_RESOLUTION approaches 1
-#undef __PROFILE_GAME
+#undef __SHOW_STACK_OVERFLOW_ALERT
 
 // enable streaming's profiling
 #undef __PROFILE_STREAMING
-
-// show games's profiling during game
-#undef __SHOW_GAME_PROFILING
 
 // show streaming's profiling during game
 #undef __SHOW_STREAMING_PROFILING
@@ -43,12 +47,11 @@
 // dimm screen to make it easier to read the profiling output
 #undef __DIMM_FOR_PROFILING
 
-// print the game's current process while the VIP's frame start and idle interrupts are fired, but the
-// game frame is still pending processes to complete
-#undef __PROFILE_GAME_STATE_DURING_VIP_INTERRUPT
-
 // alert vip's overtime
-#define __ALERT_VIP_OVERTIME
+#undef __SHOW_VIP_OVERTIME_COUNT
+
+// stack headroom
+#define __STACK_HEADROOM								500
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -82,16 +85,6 @@
 #ifndef __TOOLS
 #define __TOOLS
 #endif
-
-// print frame rate
-#define __PRINT_FRAMERATE
-
-// enable detailed profiling of each of the game's main processes
-// • it is more useful when __TIMER_RESOLUTION approaches 1
-#define __PROFILE_GAME
-
-// enable streaming's profiling
-#define __PROFILE_STREAMING
 
 #endif
 
@@ -175,7 +168,7 @@
 
 // when defined, the engine skips to the next game frame when the VIP's GAMESTART interrupt is fired
 // beforethe current game frame is done
-#undef __FORCE_VIP_SYNC
+#define __FORCE_VIP_SYNC
 
 // timer resolution
 #define __TIMER_RESOLUTION							10
@@ -224,31 +217,31 @@
 
 #undef __MEMORY_POOL_ARRAYS
 #define __MEMORY_POOL_ARRAYS \
-	__BLOCK_DEFINITION(164, 1) \
-	__BLOCK_DEFINITION(152, 20) \
-	__BLOCK_DEFINITION(144, 16) \
-	__BLOCK_DEFINITION(116, 40) \
-	__BLOCK_DEFINITION(108, 40) \
-	__BLOCK_DEFINITION(80, 50) \
-	__BLOCK_DEFINITION(68, 60) \
-	__BLOCK_DEFINITION(40, 96) \
-	__BLOCK_DEFINITION(28, 550) \
-	__BLOCK_DEFINITION(20, 700) \
-	__BLOCK_DEFINITION(16, 450) \
+	__BLOCK_DEFINITION(168, 5) \
+	__BLOCK_DEFINITION(156, 12) \
+	__BLOCK_DEFINITION(148, 52) \
+	__BLOCK_DEFINITION(120, 40) \
+	__BLOCK_DEFINITION(112, 40) \
+	__BLOCK_DEFINITION(88, 60) \
+	__BLOCK_DEFINITION(76, 40) \
+	__BLOCK_DEFINITION(44, 20) \
+	__BLOCK_DEFINITION(32, 340) \
+	__BLOCK_DEFINITION(24, 600) \
+	__BLOCK_DEFINITION(20, 400) \
 
 #undef __SET_MEMORY_POOL_ARRAYS
 #define __SET_MEMORY_POOL_ARRAYS \
-	__SET_MEMORY_POOL_ARRAY(164) \
-	__SET_MEMORY_POOL_ARRAY(152) \
-	__SET_MEMORY_POOL_ARRAY(144) \
-	__SET_MEMORY_POOL_ARRAY(116) \
-	__SET_MEMORY_POOL_ARRAY(108) \
-	__SET_MEMORY_POOL_ARRAY(80) \
-	__SET_MEMORY_POOL_ARRAY(68) \
-	__SET_MEMORY_POOL_ARRAY(40) \
-	__SET_MEMORY_POOL_ARRAY(28) \
+	__SET_MEMORY_POOL_ARRAY(168) \
+	__SET_MEMORY_POOL_ARRAY(156) \
+	__SET_MEMORY_POOL_ARRAY(148) \
+	__SET_MEMORY_POOL_ARRAY(120) \
+	__SET_MEMORY_POOL_ARRAY(112) \
+	__SET_MEMORY_POOL_ARRAY(88) \
+	__SET_MEMORY_POOL_ARRAY(76) \
+	__SET_MEMORY_POOL_ARRAY(44) \
+	__SET_MEMORY_POOL_ARRAY(32) \
+	__SET_MEMORY_POOL_ARRAY(24) \
 	__SET_MEMORY_POOL_ARRAY(20) \
-	__SET_MEMORY_POOL_ARRAY(16) \
 
 // percentage (0-100) above which the memory pool's status shows the pool usage
 #define __MEMORY_POOL_WARNING_THRESHOLD				85
@@ -278,23 +271,29 @@
 // total number of layers (basically the number of worlds)
 #define __TOTAL_LAYERS								32
 
+// Account for VIP's design to draw 8 pixel when BGMAP WORLD's height is less than 8
+#define __HACK_BGMAP_SPRITE_HEIGHT
+
 
 //---------------------------------------------------------------------------------------------------------
 //											TEXTURE MANAGEMENT
 //---------------------------------------------------------------------------------------------------------
 
 // total number of bgmap segments
-#define __TOTAL_NUMBER_OF_BGMAPS_SEGMENTS 			14
+#define __TOTAL_NUMBER_OF_BGMAPS_SEGMENTS 			11
 
-// bgmap segments to use (leave 2 to allocate param table, 1 for printing)
-#define __MAX_NUMBER_OF_BGMAPS_SEGMENTS 			(__TOTAL_NUMBER_OF_BGMAPS_SEGMENTS - 3)
+// number of segments for param tables
+#define __PARAM_TABLE_SEGMENTS						1
+
+// bgmap segments to use (1 for printing)
+#define __MAX_NUMBER_OF_BGMAPS_SEGMENTS 			(__TOTAL_NUMBER_OF_BGMAPS_SEGMENTS - __PARAM_TABLE_SEGMENTS)
 
 // number of bgmap specs in each bgmap segment
 #define __NUM_BGMAPS_PER_SEGMENT 					16
 
 // printing area
 #define __PRINTING_BGMAP_X_OFFSET					0
-#define __PRINTING_BGMAP_Y_OFFSET					0
+#define __PRINTING_BGMAP_Y_OFFSET					(64 * 8 - __SCREEN_HEIGHT)
 #define __PRINTING_BGMAP_PARALLAX_OFFSET			0
 #define __PRINTABLE_BGMAP_AREA 						1792
 
@@ -308,25 +307,6 @@
 
 // maximum number of rows to write on each call to affine calculation functions
 #define __MAXIMUM_AFFINE_ROWS_PER_CALL				16
-
-
-//---------------------------------------------------------------------------------------------------------
-//												STREAMING
-//---------------------------------------------------------------------------------------------------------
-
-// number of total calls to the streaming method which completes a cycle
-// there are 4 parts for the streaming algorithm:
-// 1) unload entities
-// 2) select the next entity to load
-// 3) create the selected entity
-// 4) initialize the loaded entity
-#define __STREAM_CYCLE_DURATION						24
-
-// padding to determine if an entity must be loaded/unloaded
-// • load pad must always be lower than unload pad!
-// • too close values will put the streaming under heavy usage!
-#define __ENTITY_LOAD_PAD 							256
-#define __ENTITY_UNLOAD_PAD 						312
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -355,12 +335,13 @@
 //												SOUND
 //---------------------------------------------------------------------------------------------------------
 
-#define __LEFT_EAR_CENTER							96
-#define __RIGHT_EAR_CENTER							288
+#define __LEFT_EAR_CENTER							144
+#define __RIGHT_EAR_CENTER							240
 
 // affects the amount of attenuation caused by the distance between the x coordinate and each ear's
 // position defined by __LEFT_EAR_CENTER and __RIGHT_EAR_CENTER
-#define __SOUND_STEREO_ATTENUATION_FACTOR			__F_TO_FIX10_6(0.75f)
+#define __SOUND_STEREO_HORIZONTAL_ATTENUATION_FACTOR		50
+#define __SOUND_STEREO_VERTICAL_ATTENUATION_FACTOR			50
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -377,6 +358,8 @@
 // default delay between steps in fade effect
 #define __FADE_DELAY								8
 
+// defaul step increment in fade transitions
+#define __CAMERA_EFFECT_FADE_INCREMENT				8
 
 //---------------------------------------------------------------------------------------------------------
 //											COLOR PALETTES
@@ -410,6 +393,12 @@
 // camera coordinates for the output of exceptions
 #define __EXCEPTION_COLUMN							0
 #define __EXCEPTION_LINE							0
+
+
+//---------------------------------------------------------------------------------------------------------
+//												  HACKS
+//---------------------------------------------------------------------------------------------------------
+
 
 
 #endif

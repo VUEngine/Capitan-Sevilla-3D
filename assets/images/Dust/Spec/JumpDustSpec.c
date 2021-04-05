@@ -137,6 +137,12 @@ TextureROMSpec JUMP_DUST_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec JUMP_DUST_SPRITE =
@@ -175,11 +181,20 @@ AnimatedEntityROMSpec JUMP_DUST_EN =
 		// class allocator
 		__TYPE(Dust),
 
-		// behaviors 
+		// children
+		NULL,
+
+		// behaviors
+		NULL,
+
+		// extra
 		NULL,
 
 		// sprites
 		(SpriteSpec**)JUMP_DUST_SPRITES,
+
+		// use z displacement in projection
+		false,
 
 		// collision shapes
 		(ShapeSpec*)NULL,

@@ -73,11 +73,20 @@ StageExitPointROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_XP =
 	// class allocator
 	__TYPE(StageExitPoint),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	NULL,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	(ShapeSpec*)LEVEL_1_STAGE_1_MAIN_EXIT_POINT_SHAPES,

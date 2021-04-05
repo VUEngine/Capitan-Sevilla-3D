@@ -5,21 +5,21 @@
 	},
 	"animation": {
 		"maxAnimationFunctionNameLength": 16,
-		"maxFramesPerAnimationFunction": 48,
-		"maxAnimationFunctions": 32
+		"maxAnimationFunctions": 32,
+		"maxFramesPerAnimationFunction": 48
 	},
 	"char": {
 		"totalChars": 2048
 	},
 	"colors": {
 		"brightness": {
-			"darkRed": 32,
-			"mediumRed": 64,
 			"brightRed": 128,
-			"fadeDelay": 8
+			"mediumRed": 64,
+			"darkRed": 32,
+			"fadeDelay": 8,
+			"fadeIncrement": 8
 		},
 		"palettes": {
-			"printingPalette": 0,
 			"bgMap": {
 				"0": {
 					"0": "11",
@@ -63,7 +63,8 @@
 					"1": "01",
 					"2": "00"
 				}
-			}
+			},
+			"printingPalette": 0
 		}
 	},
 	"compiler": {
@@ -74,17 +75,17 @@
 		"scrambleBinary": false
 	},
 	"debug": {
-		"alertStackOverflow": false,
-		"alertVipOvertime": true,
+		"alertVipOvertime": false,
+		"alertForTornFrames": false,
 		"dimmForProfiling": false,
-		"printDetailedMemoryPoolStatus": false,
+		"enableProfiler": false,
 		"printFramerate": false,
-		"printMemoryPoolStatus": false,
-		"profileGame": false,
-		"profileGameStateDuringVipInterrupt": false,
 		"profileStreaming": false,
-		"showGameProfiling": false,
-		"showStreamingProfiling": false
+		"showDetailedMemoryPoolStatus": false,
+		"showMemoryPoolStatus": false,
+		"showStackOverflowAlert": false,
+		"showStreamingProfiling": false,
+		"stackHeadroom": 500
 	},
 	"exception": {
 		"position": {
@@ -93,123 +94,150 @@
 		}
 	},
 	"frameRate": {
-		"timerResolution": 10,
+		"forceVipSync": true,
 		"frameCycle": 0,
-		"forceVipSync": false,
-		"runDelayedMessagesAtHalfFrameRate": false
+		"runDelayedMessagesAtHalfFrameRate": false,
+		"timerResolution": 10
 	},
 	"game": [],
+	"communications":{
+		"enable": false
+	},
 	"memoryPools": {
 		"cleanUp": false,
 		"pools": [
 			{
-				"size": 16,
-				"objects": 450
-			},
-			{
 				"size": 20,
-				"objects": 700
+				"objects": 400
 			},
 			{
-				"size": 28,
-				"objects": 550
+				"size": 24,
+				"objects": 600
 			},
 			{
-				"size": 40,
-				"objects": 96
+				"size": 32,
+				"objects": 340
 			},
 			{
-				"size": 68,
-				"objects": 60
-			},
-			{
-				"size": 80,
-				"objects": 50
-			},
-			{
-				"size": 108,
-				"objects": 40
-			},
-			{
-				"size": 116,
-				"objects": 40
-			},
-			{
-				"size": 144,
-				"objects": 16
-			},
-			{
-				"size": 152,
+				"size": 44,
 				"objects": 20
 			},
 			{
-				"size": 164,
-				"objects": 1
+				"size": 76,
+				"objects": 40
+			},
+			{
+				"size": 88,
+				"objects": 60
+			},
+			{
+				"size": 112,
+				"objects": 40
+			},
+			{
+				"size": 120,
+				"objects": 40
+			},
+			{
+				"size": 148,
+				"objects": 52
+			},
+			{
+				"size": 156,
+				"objects": 12
+			},
+			{
+				"size": 168,
+				"objects": 5
 			}
 		],
 		"warningThreshold": 85
 	},
 	"optics": {
-		"screenWidth": 384,
-		"screenHeight": 224,
-		"screenDepth": 2048,
+		"baseFactor": 32,
+		"cameraMinimumDisplacementPixelsPower": 1,
 		"distanceEyeScreen": 384,
+		"horizontalViewPointCenter": 192,
 		"maximumXViewDistance": 2048,
 		"maximumYViewDistance": 4096,
-		"baseFactor": 32,
-		"horizontalViewPointCenter": 192,
-		"verticalViewPointCenter": 112,
 		"parallaxCorrectionFactor": 4,
 		"scalingModifierFactor": 0.2,
-		"cameraMinimumDisplacementPixelsPower": 1
+		"screenDepth": 2048,
+		"screenHeight": 224,
+		"screenWidth": 384,
+		"verticalViewPointCenter": 112
 	},
 	"physics": {
 		"bodiesToCheckForGravity": 10,
 		"frictionForceFactorPower": 2,
 		"gravity": 19.6,
 		"maximumBouncinessCoefficient": 1,
-		"timeElapsedDivisor": 2,
+		"stopBouncingVelocityThreshold": 48,
 		"stopVelocityThreshold": 4,
-		"stopBouncingVelocityThreshold": 48
+		"timeElapsedDivisor": 2
 	},
 	"random": {
 		"addUserInputAndTimeToRandomSeed": false,
 		"seedCycles": 2
 	},
-	"sections": {
-		"initializedData": ".sdata",
-		"memoryPool": ".sbss",
-		"staticSingletons": ".dram_bss",
-		"uninitializedData": ".sbss",
-		"virtualTables": ".dram_bss"
+	"memory": {
+		"sections": {
+			"dram": {
+				"length": -26,
+				"origin": "0x0003D800"
+			},
+			"exp": {
+				"length": 16,
+				"origin": "0x04000000"
+			},
+			"rom": {
+				"length": 16,
+				"origin": "0x07000000"
+			},
+			"sram": {
+				"length": 16,
+				"origin": "0x06000000"
+			},
+			"wram": {
+				"length": 64,
+				"origin": "0x05000000"
+			}
+		},
+		"usage": {
+			"initializedData": ".sdata",
+			"memoryPool": ".sdata",
+			"staticSingletons": ".dram_bss",
+			"uninitializedData": ".sbss",
+			"virtualTables": ".dram_bss"
+		}
 	},
 	"sound": {
-		"leftEarCenter": 96,
-		"rightEarCenter": 288,
-		"stereoAttenuationFactor": 0.75
+		"leftEarCenter": 144,
+		"rightEarCenter": 240,
+		"stereoHorizontalAttenuationFactor": 50,
+		"stereoVerticalAttenuationFactor": 50,
+		"stereoAttenuationFactor": 75
 	},
 	"sprite": {
-		"totalLayers": 32
+		"totalLayers": 32,
+		"hackBgmapSpriteHeight": true
 	},
 	"sram": {
-		"totalSram": 8192,
-		"amount": 8192
-	},
-	"streaming": {
-		"cycleDuration": 24,
-		"loadPad": 256,
-		"unloadPad": 312
+		"totalSram": 8192
 	},
 	"texture": {
-		"totalBgmapSegments": 14,
 		"bgmapsPerSegments": 16,
 		"printing": {
 			"offset": {
+				"parallax": 0,
 				"x": 0,
 				"y": 0,
-				"parallax": 0
+				"z": 0
 			},
 			"printableArea": 1792
-		}
+		},
+		"paramTableSegments": 1
+	},
+	"hacks": {
 	}
 }

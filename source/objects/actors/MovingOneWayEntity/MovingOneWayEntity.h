@@ -56,7 +56,7 @@ class MovingOneWayEntity : Actor
 {
 	fix10_6 speed;
 
-	void constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, s16 id, s16 internalId, const char* const name);
+	void constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, s16 internalId, const char* const name);
 	void startMovement();
 	void stopMovement();
 	override void ready(bool recursive);

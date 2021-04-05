@@ -84,6 +84,12 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_9_A_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec LEVEL_1_STAGE_1_BUILDING_9_A_BLACK_TX =
@@ -112,6 +118,12 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_9_A_BLACK_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -181,11 +193,20 @@ EntityROMSpec LEVEL_1_STAGE_1_BUILDING_9_A_EN =
 	// class allocator
 	__TYPE(Entity),
 
-	// behaviors 
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
 	NULL,
 
 	// sprites
 	(SpriteSpec**)LEVEL_1_STAGE_1_BUILDING_9_A_SPRITES,
+
+	// use z displacement in projection
+	false,
 
 	// collision shapes
 	NULL,

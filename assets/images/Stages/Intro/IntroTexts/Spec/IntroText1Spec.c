@@ -182,6 +182,12 @@ TextureROMSpec INTRO_TEXT_1_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 BgmapSpriteROMSpec INTRO_TEXT_1_SPRITE =
@@ -224,11 +230,20 @@ ActorROMSpec INTRO_TEXT_1_AC =
 			// class allocator
 			__TYPE(Actor),
 
-			// behaviors 
+			// children
+			NULL,
+
+			// behaviors
+			NULL,
+
+			// extra
 			NULL,
 
 			// sprites
 			(SpriteSpec**)INTRO_TEXT_1_SPRITES,
+
+			// use z displacement in projection
+			false,
 
 			// collision shapes
 			(ShapeSpec*)NULL,

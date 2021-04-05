@@ -58,7 +58,7 @@ class Comic : Entity
 {
 	u8 mode;
 
-	void constructor(EntitySpec* entitySpec, s16 id, s16 internalId, const char* const name);
+	void constructor(EntitySpec* entitySpec, s16 internalId, const char* const name);
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
 	override bool respawn();

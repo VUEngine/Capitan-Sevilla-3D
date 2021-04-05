@@ -155,6 +155,12 @@ TextureROMSpec PUNK_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec PUNK_BLACK_TX =
@@ -182,6 +188,12 @@ TextureROMSpec PUNK_BLACK_TX =
 	1,
 
 	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
 	false,
 };
 
@@ -280,11 +292,20 @@ EnemyROMSpec PUNK_EM =
 					// class allocator
 					__TYPE(Punk),
 
-					// behaviors 
+					// children
 					NULL,
 
+					// behaviors
+					NULL,
+
+					// extra
+					NULL,
+					
 					// sprites
 					(SpriteSpec**)PUNK_SPRITES,
+
+					// use z displacement in projection
+					false,
 
 					// collision shapes
 					(ShapeSpec*)PUNK_SHAPES,

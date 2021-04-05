@@ -135,6 +135,12 @@ TextureROMSpec GUM_PROJECTILE_TX =
 
 	// recyclable
 	true,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 ObjectSpriteROMSpec GUM_PROJECTILE_SPRITE =

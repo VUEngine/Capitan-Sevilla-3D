@@ -83,6 +83,12 @@ TextureROMSpec CLOUDS_FRONT_TX =
 
 	// recyclable
 	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
 };
 
 TextureROMSpec* const CLOUDS_FRONT_TEXTURES[] =
@@ -155,11 +161,20 @@ MovingOneWayEntityROMSpec CLOUDS_FRONT_EN =
 				// class allocator
 				__TYPE(MovingOneWayEntity),
 
-				// behaviors 
+				// children
+				NULL,
+
+				// behaviors
+				NULL,
+
+				// extra
 				NULL,
 
 				// sprites
 				(SpriteSpec**)CLOUDS_FRONT_SPRITES,
+
+				// use z displacement in projection
+				false,
 
 				// collision shapes
 				(ShapeSpec*)NULL,

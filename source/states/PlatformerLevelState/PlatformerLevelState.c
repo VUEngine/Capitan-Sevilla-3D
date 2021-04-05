@@ -316,7 +316,7 @@ void PlatformerLevelState::resetProgress()
 void PlatformerLevelState::setPrintingLayerCoordinates()
 {
 	extern TextureROMSpec GUI_TX;
-	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8, 0);
+	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8, -32, 0);
 }
 
 UserInput PlatformerLevelState::getUserInput(bool force)

@@ -41,9 +41,9 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Lift::constructor(LiftSpec* liftSpec, s16 id, s16 internalId, const char* const name)
+void Lift::constructor(LiftSpec* liftSpec, s16 internalId, const char* const name)
 {
-	Base::constructor((ActorSpec*)&liftSpec->actorSpec, id, internalId, name);
+	Base::constructor((ActorSpec*)&liftSpec->actorSpec, internalId, name);
 
 	this->liftSpec = liftSpec;
 }

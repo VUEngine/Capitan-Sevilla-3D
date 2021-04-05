@@ -1,0 +1,52 @@
+{
+	"events": [
+		{
+			"name": "CaptainDied"
+		},
+		{
+			"name": "CaptainShot"
+		},
+		{
+			"name": "CheckpointLoaded"
+		},
+		{
+			"name": "DuckCollected"
+		},
+		{
+			"name": "GumsReloaded"
+		},
+		{
+			"name": "HitTaken"
+		},
+		{
+			"name": "LevelCompleted"
+		},
+		{
+			"name": "LevelStarted"
+		},
+		{
+			"name": "LiftActivated"
+		},
+		{
+			"name": "ScreenFocused"
+		},
+		{
+			"name": "SetModeToPaused"
+		},
+		{
+			"name": "ShakeCompleted"
+		},
+		{
+			"name": "UserInput"
+		},
+		{
+			"name": "ExitPointReached"
+		},
+		{
+			"name": "SetModeToPlaying"
+		}
+	],
+	"messages": [],
+	"layers": [],
+	"types": []
+}
