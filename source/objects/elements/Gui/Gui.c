@@ -95,7 +95,10 @@ void Gui::ready(bool recursive)
 {
 	Base::ready(this, recursive);
 
-	Gui::printAll(this);
+	if(!isDeleted(Captain::getInstance()))
+	{
+		Gui::printAll(this);
+	}
 }
 
 void Gui::resume()

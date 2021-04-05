@@ -269,11 +269,20 @@ LiftROMSpec LEVEL_1_STAGE_2_LIFT_EN =
 				// class allocator
 				__TYPE(Lift),
 
-				// behaviors 
+				// children
+				NULL,
+
+				// behaviors
+				NULL,
+
+				// extra
 				NULL,
 
 				// sprites
 				(SpriteSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+
+				// use z displacement in projection
+				false,
 
 				// collision shapes
 				(ShapeSpec*)LEVEL_1_STAGE_2_LIFT_SHAPES,
@@ -321,7 +330,13 @@ LiftROMSpec LEVEL_1_STAGE_3_LIFT_EN =
 				// class allocator
 				__TYPE(Lift),
 
-				// behaviors 
+				// children
+				NULL,
+
+				// behaviors
+				NULL,
+
+				// extra
 				NULL,
 
 				// sprites

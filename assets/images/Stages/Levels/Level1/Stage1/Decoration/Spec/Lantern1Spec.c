@@ -221,6 +221,9 @@ EntityROMSpec LANTERN_1_EN =
 	// sprites
 	(SpriteSpec**)LANTERN_1_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	NULL,
 

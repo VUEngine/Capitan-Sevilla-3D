@@ -323,11 +323,20 @@ ActorROMSpec CREDITS_EN =
 			// class allocator
 			__TYPE(Actor),
 
-			// behaviors 
+			// children
 			NULL,
 
+			// behaviors
+			NULL,
+
+			// extra
+			NULL,
+			
 			// sprites
 			(SpriteSpec**)CREDITS_SPRITES,
+
+			// use z displacement in projection
+			false,
 
 			// collision shapes
 			NULL,

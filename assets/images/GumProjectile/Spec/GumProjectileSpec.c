@@ -213,11 +213,20 @@ ProjectileROMSpec GUM_PROJECTILE_PR =
 				// class allocator
 				__TYPE(GumProjectile),
 
-				// behaviors 
+				// children
 				NULL,
 
+				// behaviors
+				NULL,
+
+				// extra
+				NULL,
+				
 				// sprites
 				(SpriteSpec**)GUM_PROJECTILE_SPRITES,
+
+				// use z displacement in projection
+				false,
 
 				// collision shapes
 				(ShapeSpec*)GUM_PROJECTILE_SHAPES,

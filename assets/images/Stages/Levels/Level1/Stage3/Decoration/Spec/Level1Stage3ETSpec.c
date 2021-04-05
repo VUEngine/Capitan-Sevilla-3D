@@ -141,6 +141,9 @@ EntityROMSpec LEVEL_1_STAGE_3_ET_EN =
 	// sprites
 	(SpriteSpec**)LEVEL_1_STAGE_3_ET_SPRITES,
 
+	// use z displacement in projection
+	false,
+
 	// collision shapes
 	NULL,
 

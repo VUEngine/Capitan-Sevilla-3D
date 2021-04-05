@@ -230,11 +230,20 @@ ActorROMSpec INTRO_TEXT_2_AC =
 			// class allocator
 			__TYPE(Actor),
 
-			// behaviors 
+			// children
+			NULL,
+
+			// behaviors
+			NULL,
+
+			// extra
 			NULL,
 
 			// sprites
 			(SpriteSpec**)INTRO_TEXT_2_SPRITES,
+
+			// use z displacement in projection
+			false,
 
 			// collision shapes
 			(ShapeSpec*)NULL,
