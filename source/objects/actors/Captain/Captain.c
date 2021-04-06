@@ -1039,16 +1039,12 @@ void Captain::syncRotationWithBody()
 	if(0 < xLastDisplacement)
 	{
 		direction.x = __RIGHT;
-		//Captain::updateSprite(this, direction);
 		Entity::setDirection(this, direction);
-		Entity::setDirection(this->headEntity, direction);
 	}
 	else if(0 > xLastDisplacement)
 	{
 		direction.x = __LEFT;
-		//Captain::updateSprite(this, direction);
 		Entity::setDirection(this, direction);
-		Entity::setDirection(this->headEntity, direction);
 	}
 }
 
