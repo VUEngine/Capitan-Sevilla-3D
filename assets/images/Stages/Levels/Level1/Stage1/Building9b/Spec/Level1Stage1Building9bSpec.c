@@ -167,7 +167,7 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_9_B_BLACK_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, -40, 2, 4},
+		{0, -40, 3, 4},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
