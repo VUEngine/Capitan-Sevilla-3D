@@ -57,5 +57,11 @@ void Punk::die()
 
 void Punk::onDieAnimationComplete(Object eventFirer __attribute__ ((unused)))
 {
+	// Hack to prevent it from being deleted twice
+	if(this->deleteMe)
+	{
+		return;
+	}
+
 	Container::deleteMyself(this);
 }
