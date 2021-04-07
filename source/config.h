@@ -322,7 +322,7 @@
 #define __PHYSICS_TIME_ELAPSED_DIVISOR				2
 
 // thresholds to stop bodies
-#define __STOP_VELOCITY_THRESHOLD					__PIXELS_TO_METERS(4)
+#define __STOP_VELOCITY_THRESHOLD					__PIXELS_TO_METERS(8)
 #define __STOP_BOUNCING_VELOCITY_THRESHOLD 			__PIXELS_TO_METERS(48)
 
 // maximum bounciness coefficient allowed

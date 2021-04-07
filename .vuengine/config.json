@@ -173,7 +173,7 @@
 		"gravity": 19.6,
 		"maximumBouncinessCoefficient": 1,
 		"stopBouncingVelocityThreshold": 48,
-		"stopVelocityThreshold": 4,
+		"stopVelocityThreshold": 8,
 		"timeElapsedDivisor": 2
 	},
 	"random": {

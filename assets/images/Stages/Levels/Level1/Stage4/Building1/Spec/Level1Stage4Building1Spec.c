@@ -198,6 +198,32 @@ BgmapSpriteROMSpec* const LEVEL_1_STAGE_4_BUILDING_1_SPRITES[] =
 
 ShapeROMSpec LEVEL_1_STAGE_4_BUILDING_1_SHAPES[] =
 {
+	// first inner wall
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{16, 96, 64},
+
+		// displacement (x, y, z, p)
+		{-130, -28, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kLayerNone,
+	},
 	// floor
 	{
 		// shape
