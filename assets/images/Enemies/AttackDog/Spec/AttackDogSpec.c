@@ -133,7 +133,7 @@ ObjectSpriteROMSpec ATTACK_DOG_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 1},
+		{0, 0, 0, 2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

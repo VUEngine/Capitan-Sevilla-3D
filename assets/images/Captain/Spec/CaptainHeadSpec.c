@@ -207,7 +207,7 @@ ObjectSpriteROMSpec CAPTAIN_HEAD_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, -2, 1},
+		{0, 0, -2, 2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -231,7 +231,7 @@ ObjectSpriteROMSpec CAPTAIN_HEAD_BLACK_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, -1, 1},
+		{0, 0, -1, 2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)

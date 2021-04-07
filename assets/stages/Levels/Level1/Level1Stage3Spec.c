@@ -82,7 +82,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 
 	{&CLOUDS_BACK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
 	{&CLOUDS_FRONT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
-	{&CITY_BG_2_EN,						{-416,  54,  256,   0},		0, NULL, NULL, NULL, true},
+	{&CITY_BG_2_EN,						{-416,  53,  256,   0},		0, NULL, NULL, NULL, true},
 	{&LEVEL_1_STAGE_3_ET_EN,			{-122,  31,  255,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{  56, 159,    0,   0},		0, NULL, NULL, NULL, false},

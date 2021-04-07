@@ -110,7 +110,7 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_A_L_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{-180, 0, 0, 0}
+		{-180, 0, 0, 1}
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -174,7 +174,7 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_B_L_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{180, 0, 0, 0}
+		{180, 0, 0, 1}
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -238,7 +238,7 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_A_R_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{-180, 0, 0, 0}
+		{-180, 0, 0, 1}
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -302,7 +302,7 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_B_R_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{180, 0, 0, 0}
+		{180, 0, 0, 1}
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -364,7 +364,7 @@ ShapeROMSpec LEVEL_1_STAGE_2_ROOM_SHAPES[] =
 		{720, 16, 64},
 
 		// displacement (x, y, z, p)
-		{0, 81, 0, 0},
+		{0, 82, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

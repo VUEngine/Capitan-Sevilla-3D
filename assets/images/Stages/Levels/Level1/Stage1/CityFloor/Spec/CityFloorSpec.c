@@ -115,7 +115,7 @@ MBgmapSpriteROMSpec CITY_FLOOR_L_SPRITE =
 			false,
 
 			// displacement
-			{0, 0, 2, 0},
+			{0, 0, 2, 1},
 		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -208,7 +208,7 @@ MBgmapSpriteROMSpec CITY_FLOOR_R_SPRITE =
 			false,
 
 			// displacement
-			{0, 0, 2, 0},
+			{0, 0, 2, 1},
 		},
 
 		// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
