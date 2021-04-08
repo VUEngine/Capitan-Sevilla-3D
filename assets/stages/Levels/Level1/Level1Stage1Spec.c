@@ -145,12 +145,12 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&LANTERN_1_EN,						{  32, 134,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_1_EN,	{ 200,  80,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&TREE_1_EN,						{ 356, 108,    0,   0},		0, NULL, NULL, NULL, false},
+	{&TREE_1_EN,						{ 350, 108,   24,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_2_EN,	{ 520, 124,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LANTERN_1_EN,						{ 616, 134,    0,   0},		0, NULL, NULL, NULL, false},
-	{&CAR_BG_1_EN,						{ 664, 136,    0,   0},		0, NULL, NULL, NULL, false},
-	{&TREE_BG_1_EN,						{ 694, 112,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_BG_1_EN,						{ 664, 136,   16,   0},		0, NULL, NULL, NULL, false},
+	{&TREE_BG_1_EN,						{ 694, 112,   32,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_3_EN,	{ 808,  80,    0,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_PE,						{ 765,  50,    0,   0},		0, NULL, NULL, NULL, false},
@@ -174,11 +174,13 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_1_BUILDING_6_EN,	{1746,  79,    0,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_PE,						{1784,  31,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_STAGE_1_BUILDING_7_EN,	{1920, 102,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_1_BUILDING_7_EN,	{1920, 100,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_8_EN,	{2106,  80,    0,   0},		0, NULL, NULL, NULL, false},
 	{&CLOTHES_1_EN,						{2254,  39,    0,   0},		0, NULL, NULL, NULL, false},
-	{&BIKE_EN,							{2288, 143,    0,   0},		0, NULL, NULL, NULL, false},
+	{&BIKE_EN,							{2288, 144,    0,   0},		0, NULL, NULL, NULL, false},
+
+	//{&BUSH_BG_1_EN,						{2250, 112,   64,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_9_A_EN,	{2406,  80,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_9_B_EN,	{2662,  80,    0,   0},		0, NULL, NULL, NULL, false},
@@ -191,7 +193,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&MANOLO_EM,						{3136, 142,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,						{3238, 134,    0,   0},		0, NULL, NULL, NULL, false},
-	{&TREE_1_EN,						{3262, 111,    0,   0},		0, NULL, NULL, NULL, false},
+	{&TREE_1_EN,						{3262, 109,   24,   0},		0, NULL, NULL, NULL, false},
 	{&BENCH_EN,							{3318, 143,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&HIGHWAYMEN_EN,					{3440, 144,    0,   0},		0, NULL, NULL, NULL, false},

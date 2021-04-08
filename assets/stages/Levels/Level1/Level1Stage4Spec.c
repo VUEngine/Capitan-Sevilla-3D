@@ -67,8 +67,8 @@ PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_CHILDREN[] =
 
 	{&CLOUDS_BACK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
 	{&CLOUDS_FRONT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_4_BACKGROUND_A_EN,	{-160, 112,  256,   0},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_STAGE_4_BACKGROUND_B_EN,	{ 560, 112,  256,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_4_BACKGROUND_A_EN,	{-112, 112,  256,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_4_BACKGROUND_B_EN,	{ 590, 112,  256,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_4_BUILDING_1_EN,	{ 248,  92,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_4_LIFT_EN,			{ 236,  76,    0,   0},		0, NULL, NULL, NULL, false},
