@@ -158,7 +158,7 @@
 		"cameraMinimumDisplacementPixelsPower": 1,
 		"distanceEyeScreen": 384,
 		"horizontalViewPointCenter": 192,
-		"maximumXViewDistance": 16384,
+		"maximumXViewDistance": 2048,
 		"maximumYViewDistance": 16384,
 		"parallaxCorrectionFactor": 4,
 		"scalingModifierFactor": 0.2,
