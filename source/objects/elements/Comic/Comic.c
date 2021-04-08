@@ -112,7 +112,7 @@ bool Comic::handleMessage(Telegram telegram)
 	return false;
 }
 
-// move lava up
+// move comic down
 void Comic::move()
 {
 	// get local position of comic and modify y value

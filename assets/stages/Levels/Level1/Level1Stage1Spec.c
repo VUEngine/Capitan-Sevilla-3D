@@ -140,17 +140,17 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&CAR_1_AC,							{1810, 164,    0,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,							{2608, 164,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&COMIC_NIVEL_1_EN,					{ 192,  96,   -2,   0},		0, NULL, NULL, NULL, false},
+	{&COMIC_NIVEL_1_EN,					{ 192,  92,   -2,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,						{  32, 134,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_1_EN,	{ 200,  80,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&TREE_1_EN,						{ 350, 108,   24,   0},		0, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_STAGE_1_BUILDING_2_EN,	{ 520, 124,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_1_BUILDING_2_EN,	{ 518, 126,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LANTERN_1_EN,						{ 616, 134,    0,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_BG_1_EN,						{ 664, 136,   16,   0},		0, NULL, NULL, NULL, false},
-	{&TREE_BG_1_EN,						{ 694, 112,   32,   0},		0, NULL, NULL, NULL, false},
+	{&TREE_BG_1_EN,						{ 698, 112,   32,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_3_EN,	{ 808,  80,    0,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_PE,						{ 765,  50,    0,   0},		0, NULL, NULL, NULL, false},
@@ -233,7 +233,7 @@ CharSetROMSpec* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 	&PUNK_CH,
 	&CAR_1_CH,
 	&FLOWER_POT_CH,
-	&HOVER_CAR_CH,
+	//&HOVER_CAR_CH,
 	&GUI_CH,
 	&CAPTAIN_CH,
 	&CAPTAIN_BLACK_CH,
@@ -248,7 +248,7 @@ TextureSpec* const LEVEL_1_STAGE_1_ST_TEXTURES[] =
 	&PUNK_TX,
 	&CAR_1_TX,
 	&FLOWER_POT_TX,
-	&HOVER_CAR_TX,
+	//&HOVER_CAR_TX,
 	&GUI_TX,
 	&CAPTAIN_TX,
 	&CAPTAIN_BLACK_TX,
