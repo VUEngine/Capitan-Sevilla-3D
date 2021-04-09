@@ -15,7 +15,6 @@ enum LanguageIdentifiers
 	LNG_EN,
 	LNG_ES,
 	LNG_DE,
-	LNG_FR,
 	
 };
 

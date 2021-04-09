@@ -18,7 +18,6 @@
 extern LangROMSpec LANGUAGE_EN;
 extern LangROMSpec LANGUAGE_ES;
 extern LangROMSpec LANGUAGE_DE;
-extern LangROMSpec LANGUAGE_FR;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -30,7 +29,6 @@ LangROMSpec* const __LANGUAGES[] =
 	&LANGUAGE_EN,
 	&LANGUAGE_ES,
 	&LANGUAGE_DE,
-	&LANGUAGE_FR,
 	
 	NULL
 };

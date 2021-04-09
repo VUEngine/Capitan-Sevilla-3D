@@ -25,6 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Comic.h>
+#include <LocalizedEntity.h>
 #include <BgmapSprite.h>
 #include <macros.h>
 
@@ -35,6 +36,7 @@
 
 extern BYTE ComicNivel1Tiles[];
 extern BYTE ComicNivel1Map[];
+extern AnimationDescription LOCALIZED_ENTITY_ANIM;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,11 +48,11 @@ CharSetROMSpec COMIC_NIVEL_1_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	555,
+	574,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
+	__ANIMATED_SINGLE_OPTIMIZED,
 
 	// char spec
 	ComicNivel1Tiles,
@@ -95,7 +97,7 @@ BgmapSpriteROMSpec COMIC_NIVEL_1_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapSprite),
+		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
 		(TextureSpec*)&COMIC_NIVEL_1_TX,
@@ -124,36 +126,44 @@ BgmapSpriteROMSpec* const COMIC_NIVEL_1_SPRITES[] =
 	NULL
 };
 
-EntityROMSpec COMIC_NIVEL_1_EN =
+LocalizedEntityROMSpec COMIC_NIVEL_1_EN =
 {
-	// class allocator
-	__TYPE(Comic),
+	{
+		// class allocator
+		__TYPE(Comic),
 
-	// children
-	NULL,
+		// children
+		NULL,
 
-	// behaviors
-	NULL,
+		// behaviors
+		NULL,
 
-	// extra
-	NULL,
+		// extra
+		NULL,
 
-	// sprites
-	(SpriteSpec**)COMIC_NIVEL_1_SPRITES,
+		// sprites
+		(SpriteSpec**)COMIC_NIVEL_1_SPRITES,
 
-	// use z displacement in projection
-	false,
+		// use z displacement in projection
+		false,
 
-	// collision shapes
-	NULL,
+		// collision shapes
+		NULL,
 
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
 
-	// gameworld's character's type
-	kTypeNone,
+		// gameworld's character's type
+		kTypeNone,
 
-	// physical specification
-	NULL,
+		// physical specification
+		NULL,
+	},
+
+	// pointer to the animation spec for the character
+	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
+
+	// initial animation
+	"0",
 };

@@ -14,11 +14,6 @@
 			"id": "DE",
 			"flag": "FLAG_GERMANY_EN",
 			"name": "DEUTSCH"
-		},
-		{
-			"id": "FR",
-			"flag": "FLAG_FRANCE_EN",
-			"name": "FRANÇAIS"
 		}
 	],
 	"strings": [
@@ -36,10 +31,6 @@
 				{
 					"language": "ES",
 					"translation": "¿ESTÁS SEGURO?"
-				},
-				{
-					"language": "FR",
-					"translation": "ES TU SÛR?"
 				}
 			]
 		},
@@ -57,10 +48,6 @@
 				{
 					"language": "ES",
 					"translation": "  LA FUNCIÓN AUTOMÁTICA DE PAUSA TE\nRECORDARÁ QUE DEBES TOMAR UN DESCANSO\n  APPROXIMADAMENTE CADA 30 MINUTOS"
-				},
-				{
-					"language": "FR",
-					"translation": "  LA FONCTION PAUSE AUTOMATIQUE VA\nVOUS RAPPELEREZ DE PRENDRE UNE PAUSE\n  DE JEU CHAQUE 30 MINUTES ENVIRON"
 				}
 			]
 		},
@@ -78,10 +65,6 @@
 				{
 					"language": "ES",
 					"translation": "PAUSA AUTOMÁTICA"
-				},
-				{
-					"language": "FR",
-					"translation": "PAUSE AUTOMATIQUE"
 				}
 			]
 		},
@@ -99,10 +82,6 @@
 				{
 					"language": "ES",
 					"translation": "REGRESAR"
-				},
-				{
-					"language": "FR",
-					"translation": "ARRIÈRE"
 				}
 			]
 		},
@@ -120,10 +99,6 @@
 				{
 					"language": "ES",
 					"translation": "CONTINUAR"
-				},
-				{
-					"language": "FR",
-					"translation": "CONTINUER"
 				}
 			]
 		},
@@ -141,10 +116,6 @@
 				{
 					"language": "ES",
 					"translation": "CRÉDITOS"
-				},
-				{
-					"language": "FR",
-					"translation": "CRÉDITS"
 				}
 			]
 		},
@@ -162,10 +133,6 @@
 				{
 					"language": "ES",
 					"translation": "IDIOMA"
-				},
-				{
-					"language": "FR",
-					"translation": "LANGUE"
 				}
 			]
 		},
@@ -183,10 +150,6 @@
 				{
 					"language": "ES",
 					"translation": "SELECCIONAR IDIOMA"
-				},
-				{
-					"language": "FR",
-					"translation": "CHOIX DE LA LANGUE"
 				}
 			]
 		},
@@ -204,10 +167,6 @@
 				{
 					"language": "ES",
 					"translation": "NIVEL"
-				},
-				{
-					"language": "FR",
-					"translation": "NIVEAU"
 				}
 			]
 		},
@@ -225,10 +184,6 @@
 				{
 					"language": "ES",
 					"translation": "SEVILLA,\nMISION:\nRECUPERAR EL LIBRO"
-				},
-				{
-					"language": "FR",
-					"translation": "SEVILLA, MISSION:\nRETRIEVE THE BOOK"
 				}
 			]
 		},
@@ -246,10 +201,6 @@
 				{
 					"language": "ES",
 					"translation": "¡NUEVO RÉCORD!"
-				},
-				{
-					"language": "FR",
-					"translation": "NOUVEAU RECORD!"
 				}
 			]
 		},
@@ -267,10 +218,6 @@
 				{
 					"language": "ES",
 					"translation": "NUEVO JUEGO"
-				},
-				{
-					"language": "FR",
-					"translation": "NOUVEAU JEU"
 				}
 			]
 		},
@@ -288,10 +235,6 @@
 				{
 					"language": "ES",
 					"translation": "NO"
-				},
-				{
-					"language": "FR",
-					"translation": "NON"
 				}
 			]
 		},
@@ -309,10 +252,6 @@
 				{
 					"language": "ES",
 					"translation": "APAGADO"
-				},
-				{
-					"language": "FR",
-					"translation": "DESACTIVÉ"
 				}
 			]
 		},
@@ -330,10 +269,6 @@
 				{
 					"language": "ES",
 					"translation": "ENCENDIDO"
-				},
-				{
-					"language": "FR",
-					"translation": "ACTIVÉ"
 				}
 			]
 		},
@@ -351,10 +286,6 @@
 				{
 					"language": "ES",
 					"translation": "OPCIONES"
-				},
-				{
-					"language": "FR",
-					"translation": "OPTIONS"
 				}
 			]
 		},
@@ -372,10 +303,6 @@
 				{
 					"language": "ES",
 					"translation": "PAUSA"
-				},
-				{
-					"language": "FR",
-					"translation": "PAUSE"
 				}
 			]
 		},
@@ -393,10 +320,6 @@
 				{
 					"language": "ES",
 					"translation": "     IMPORTANTE\n\n  ANTES DE COMENZAR  \n\nLEER LAS INDICACIONES\n\nDEL MANUAL DE USUARIO"
-				},
-				{
-					"language": "FR",
-					"translation": "        IMPORTANT\n\nPRENEZ CONAISSANCE DE LA\n\nNOTICE ET DES PRÉCAUTIONS\n\n    A AVANT DE JOUER"
 				}
 			]
 		},
@@ -414,10 +337,6 @@
 				{
 					"language": "ES",
 					"translation": "PRESENTA"
-				},
-				{
-					"language": "FR",
-					"translation": "PRÉSENTE"
 				}
 			]
 		},
@@ -435,10 +354,6 @@
 				{
 					"language": "ES",
 					"translation": "PRESIONAR START"
-				},
-				{
-					"language": "FR",
-					"translation": "APPUYER SUR START"
 				}
 			]
 		},
@@ -456,10 +371,6 @@
 				{
 					"language": "ES",
 					"translation": "SALIR DEL JUEGO"
-				},
-				{
-					"language": "FR",
-					"translation": "QUITTER JEU"
 				}
 			]
 		},
@@ -477,10 +388,6 @@
 				{
 					"language": "ES",
 					"translation": "SELECCIONAR"
-				},
-				{
-					"language": "FR",
-					"translation": "SÉLECTIONNER"
 				}
 			]
 		},
@@ -498,10 +405,6 @@
 				{
 					"language": "ES",
 					"translation": "¡POR FAVOR, TÓMATE UN DESCANSO!"
-				},
-				{
-					"language": "FR",
-					"translation": "SE IL VOUS PLAÎT, PRENDRE UN REPOS!"
 				}
 			]
 		},
@@ -519,10 +422,6 @@
 				{
 					"language": "ES",
 					"translation": "SÍ"
-				},
-				{
-					"language": "FR",
-					"translation": "OUI"
 				}
 			]
 		}
