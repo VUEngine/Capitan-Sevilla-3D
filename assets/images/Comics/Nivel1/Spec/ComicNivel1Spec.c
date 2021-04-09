@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Comic.h>
-#include <TranslatedEntity.h>
+#include <LocalizedEntity.h>
 #include <BgmapSprite.h>
 #include <macros.h>
 
@@ -36,107 +36,12 @@
 
 extern BYTE ComicNivel1Tiles[];
 extern BYTE ComicNivel1Map[];
+extern AnimationDescription LOCALIZED_ENTITY_ANIM;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
-
-AnimationFunctionROMSpec COMIC_NIVEL_1_ENGLISH_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{1},
-
-	// number of cycles a frame of animation is displayed
-	2,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"0",
-};
-
-AnimationFunctionROMSpec COMIC_NIVEL_1_SPANISH_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{1},
-
-	// number of cycles a frame of animation is displayed
-	2,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"1",
-};
-
-AnimationFunctionROMSpec COMIC_NIVEL_1_GERMAN_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{1},
-
-	// number of cycles a frame of animation is displayed
-	2,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"2",
-};
-
-AnimationFunctionROMSpec COMIC_NIVEL_1_FRENCH_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{1},
-
-	// number of cycles a frame of animation is displayed
-	2,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"3",
-};
-
-AnimationDescriptionROMSpec COMIC_NIVEL_1_ANIM =
-{
-	// animation functions
-	{
-		(AnimationFunction*)&COMIC_NIVEL_1_ENGLISH_ANIM,
-		(AnimationFunction*)&COMIC_NIVEL_1_SPANISH_ANIM,
-		(AnimationFunction*)&COMIC_NIVEL_1_GERMAN_ANIM,
-		(AnimationFunction*)&COMIC_NIVEL_1_FRENCH_ANIM,
-		NULL,
-	}
-};
 
 CharSetROMSpec COMIC_NIVEL_1_CH =
 {
@@ -221,7 +126,7 @@ BgmapSpriteROMSpec* const COMIC_NIVEL_1_SPRITES[] =
 	NULL
 };
 
-TranslatedEntityROMSpec COMIC_NIVEL_1_EN =
+LocalizedEntityROMSpec COMIC_NIVEL_1_EN =
 {
 	{
 		// class allocator
@@ -257,7 +162,7 @@ TranslatedEntityROMSpec COMIC_NIVEL_1_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&COMIC_NIVEL_1_ANIM,
+	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
 
 	// initial animation
 	"0",

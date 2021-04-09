@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
-#include <TranslatedEntity.h>
+#include <LocalizedEntity.h>
 #include <macros.h>
 
 
@@ -35,110 +35,12 @@
 
 extern BYTE IntroText5Tiles[];
 extern BYTE IntroText5Map[];
+extern AnimationDescription LOCALIZED_ENTITY_ANIM;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
-
-AnimationFunctionROMSpec INTRO_TEXT_5_ENGLISH_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{1},
-	//{0},
-
-	// number of cycles a frame of animation is displayed
-	2,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"0",
-};
-
-AnimationFunctionROMSpec INTRO_TEXT_5_SPANISH_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{1},
-
-	// number of cycles a frame of animation is displayed
-	2,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"1",
-};
-
-AnimationFunctionROMSpec INTRO_TEXT_5_GERMAN_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{1},
-	//{2},
-
-	// number of cycles a frame of animation is displayed
-	2,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"2",
-};
-
-AnimationFunctionROMSpec INTRO_TEXT_5_FRENCH_ANIM =
-{
-	// number of frames of this animation function
-	1,
-
-	// frames to play in animation
-	{1},
-	//{3},
-
-	// number of cycles a frame of animation is displayed
-	2,
-
-	// whether to play it in loop or not
-	false,
-
-	// method to call on function completion
-	NULL,
-
-	// function's name
-	"3",
-};
-
-AnimationDescriptionROMSpec INTRO_TEXT_5_ANIM =
-{
-	// animation functions
-	{
-		(AnimationFunction*)&INTRO_TEXT_5_ENGLISH_ANIM,
-		(AnimationFunction*)&INTRO_TEXT_5_SPANISH_ANIM,
-		(AnimationFunction*)&INTRO_TEXT_5_GERMAN_ANIM,
-		(AnimationFunction*)&INTRO_TEXT_5_FRENCH_ANIM,
-		NULL,
-	}
-};
 
 CharSetROMSpec INTRO_TEXT_5_CH =
 {
@@ -223,11 +125,11 @@ BgmapSpriteROMSpec* const INTRO_TEXT_5_SPRITES[] =
 	NULL
 };
 
-TranslatedEntityROMSpec INTRO_TEXT_5_AC =
+LocalizedEntityROMSpec INTRO_TEXT_5_AC =
 {
 	{
 		// class allocator
-		__TYPE(TranslatedEntity),
+		__TYPE(LocalizedEntity),
 
 		// children
 		NULL,
@@ -259,7 +161,7 @@ TranslatedEntityROMSpec INTRO_TEXT_5_AC =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&INTRO_TEXT_5_ANIM,
+	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
 
 	// initial animation
 	"0",
