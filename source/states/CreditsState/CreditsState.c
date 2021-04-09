@@ -140,7 +140,7 @@ void CreditsState::execute(void* owner __attribute__ ((unused)))
 	{
 		const Vector3D* position = Actor::getPosition(this->entityCredits);
 
-    	if(__METERS_TO_PIXELS(position->y) < -720)
+    	if(__METERS_TO_PIXELS(position->y) < -940)
     	{
     		Actor::stopAllMovement(this->entityCredits);
     		this->finishedScrolling = true;
