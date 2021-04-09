@@ -27,7 +27,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
+#include <TranslatedEntity.h>
 #include <macros.h>
 
 
@@ -54,7 +54,7 @@ enum ComicModes
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-class Comic : Entity
+class Comic : TranslatedEntity
 {
 	u8 mode;
 

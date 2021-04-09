@@ -3,8 +3,9 @@
 		"Captain": {
 			"template": "animatedEntity"
 		},
-		"Comics": {
-			"template": "entity"
+		"Comics/Nivel1": {
+			"name": "ComicNivel1",
+			"template": "entityStacked"
 		},
 		"Dust": {
 			"template": "animatedEntity"

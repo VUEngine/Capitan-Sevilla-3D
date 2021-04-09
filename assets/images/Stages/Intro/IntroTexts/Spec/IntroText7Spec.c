@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
-#include <Actor.h>
+#include <TranslatedEntity.h>
 #include <macros.h>
 
 
@@ -223,56 +223,45 @@ BgmapSpriteROMSpec* const INTRO_TEXT_7_SPRITES[] =
 	NULL
 };
 
-ActorROMSpec INTRO_TEXT_7_AC =
+TranslatedEntityROMSpec INTRO_TEXT_7_AC =
 {
 	{
-		{
-			// class allocator
-			__TYPE(Actor),
+		// class allocator
+		__TYPE(TranslatedEntity),
 
-			// children
-			NULL,
+		// children
+		NULL,
 
-			// behaviors
-			NULL,
+		// behaviors
+		NULL,
 
-			// extra
-			NULL,
+		// extra
+		NULL,
 
-			// sprites
-			(SpriteSpec**)INTRO_TEXT_7_SPRITES,
+		// sprites
+		(SpriteSpec**)INTRO_TEXT_7_SPRITES,
 
-			// use z displacement in projection
-			false,
+		// use z displacement in projection
+		false,
 
-			// collision shapes
-			(ShapeSpec*)NULL,
+		// collision shapes
+		(ShapeSpec*)NULL,
 
-			// size
-			// if 0, width and height will be inferred from the first sprite's texture's size
-			{0, 0, 0},
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
 
-			// gameworld's character's type
-			kTypeNone,
+		// gameworld's character's type
+		kTypeNone,
 
-			// physical specification
-			(PhysicalSpecification*)NULL,
-		},
-
-		// pointer to the animation spec for the character
-		(AnimationDescription*)&INTRO_TEXT_7_ANIM,
-
-		// initial animation
-		"0"
+		// physical specification
+		(PhysicalSpecification*)NULL,
 	},
 
-	// true to create a body
-	false,
+	// pointer to the animation spec for the character
+	(AnimationDescription*)&INTRO_TEXT_7_ANIM,
 
-	// axes subject to gravity
-	__NO_AXIS,
-
-	// axis around which to rotate the entity when syncronizing with body
-	__NO_AXIS
+	// initial animation
+	"0",
 };
 
