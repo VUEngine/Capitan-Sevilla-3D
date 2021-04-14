@@ -61,6 +61,9 @@ extern EntitySpec CLOTHES_1_EN;
 extern EntitySpec COLLISION_CL;
 extern EntitySpec COMIC_NIVEL_1_EN;
 extern EntitySpec FENCE_EN;
+extern EntitySpec FOLDING_STAND_EN;
+extern EntitySpec GARAGE_CAR_EN;
+extern EntitySpec GARAGE_SIGN_EN;
 extern EntitySpec GRANNY_PE;
 extern EntitySpec GUI_EN;
 extern EntitySpec HOVER_CAR_EM;
@@ -142,6 +145,8 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&COMIC_NIVEL_1_EN,					{ 192,  92,   -2,   0},		0, NULL, NULL, NULL, false},
 
+	{&TREE_1_EN,						{  24, 108,   24,   0},		0, NULL, NULL, NULL, false},
+
 	{&LANTERN_1_EN,						{  32, 134,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_1_EN,	{ 200,  80,    0,   0},		0, NULL, NULL, NULL, false},
 
@@ -177,10 +182,8 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_1_BUILDING_7_EN,	{1920, 100,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_8_EN,	{2106,  80,    0,   0},		0, NULL, NULL, NULL, false},
-	{&CLOTHES_1_EN,						{2254,  39,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CLOTHES_1_EN,						{2253,  39,    0,   0},		0, NULL, NULL, NULL, false},
 	{&BIKE_EN,							{2288, 144,    0,   0},		0, NULL, NULL, NULL, false},
-
-	//{&BUSH_BG_1_EN,						{2250, 112,   64,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_9_A_EN,	{2406,  80,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_9_B_EN,	{2662,  80,    0,   0},		0, NULL, NULL, NULL, false},
@@ -189,15 +192,22 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&GRANNY_PE,						{2552,  18,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_10_EN,	{2978,  80,    0,   0},		0, NULL, NULL, NULL, false},
+	{&GARAGE_CAR_EN,					{2914, 140,    0,   0},		0, NULL, NULL, NULL, false},
+	{&FOLDING_STAND_EN,					{3024, 147,    0,   0},		0, NULL, NULL, NULL, false},
+	{&GARAGE_SIGN_EN,					{3152,  63,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&MANOLO_EM,						{3136, 142,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,						{3238, 134,    0,   0},		0, NULL, NULL, NULL, false},
-	{&TREE_1_EN,						{3262, 109,   24,   0},		0, NULL, NULL, NULL, false},
+	{&TREE_1_EN,						{3254, 109,   24,   0},		0, NULL, NULL, NULL, false},
 	{&BENCH_EN,							{3318, 143,    0,   0},		0, NULL, NULL, NULL, false},
+
+	{&TREE_1_EN,						{3356, 109,   24,   0},		0, NULL, NULL, NULL, false},
 
 	{&HIGHWAYMEN_EN,					{3440, 144,    0,   0},		0, NULL, NULL, NULL, false},
 	{&STOP_YOU_CANNOT_PASS_EN,			{3444,  96,    0,   0},		0, NULL, NULL, NULL, false},
+
+	{&BUSH_BG_1_EN,						{3486, 128,   64,   0},		0, NULL, NULL, NULL, false},
 
 	{&CAR_BG_2_EN,						{3579, 141,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_11_EN,	{3583,  68,    0,   0},		0, NULL, NULL, NULL, false},

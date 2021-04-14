@@ -33,114 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage1Building11Tiles[];
-extern BYTE Level1Stage1Building11LMap[];
-extern BYTE Level1Stage1Building11RMap[];
-extern BYTE Level1Stage1Building11BlackMap[];
+extern BYTE FoldingStandTiles[];
+extern BYTE FoldingStandMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_STAGE_1_BUILDING_11_CH =
+CharSetROMSpec FOLDING_STAND_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	100,
+	16,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char spec
-	Level1Stage1Building11Tiles,
+	FoldingStandTiles,
 };
 
-TextureROMSpec LEVEL_1_STAGE_1_BUILDING_11_L_TX =
+TextureROMSpec FOLDING_STAND_TX =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_1_BUILDING_11_CH,
+	(CharSetSpec*)&FOLDING_STAND_CH,
 
 	// bgmap spec
-	Level1Stage1Building11LMap,
+	FoldingStandMap,
 
 	// cols (max 64)
-	7,
+	4,
 
 	// rows (max 64)
-	17,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
-	1,
-
-	// palette number (0-3)
-	0,
-
-	// recyclable
-	false,
-
-	// vertical flip
-	false,
-
-	// horizontal flip
-	false,
-};
-
-TextureROMSpec LEVEL_1_STAGE_1_BUILDING_11_R_TX =
-{
-	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_1_BUILDING_11_CH,
-
-	// bgmap spec
-	Level1Stage1Building11RMap,
-
-	// cols (max 64)
-	7,
-
-	// rows (max 64)
-	17,
-
-	// padding for affine/hbias transformations (cols, rows)
-	{0, 0},
-
-	// number of frames, depending on charset's allocation type:
-	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
-	// __ANIMATED_MULTI: total number of frames
-	1,
-
-	// palette number (0-3)
-	0,
-
-	// recyclable
-	false,
-
-	// vertical flip
-	false,
-
-	// horizontal flip
-	false,
-};
-
-TextureROMSpec LEVEL_1_STAGE_1_BUILDING_11_BLACK_TX =
-{
-	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_1_BUILDING_11_CH,
-
-	// bgmap spec
-	Level1Stage1Building11BlackMap,
-
-	// cols (max 64)
-	7,
-
-	// rows (max 64)
-	10,
+	4,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -163,74 +91,20 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_11_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_11_L_SPRITE =
+BgmapSpriteROMSpec FOLDING_STAND_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_1_BUILDING_11_L_TX,
+		(TextureSpec*)&FOLDING_STAND_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 2, 3},
-	},
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_LON,
-};
-
-BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_11_R_SPRITE =
-{
-	{
-		// sprite's type
-		__TYPE(BgmapSprite),
-
-		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_1_BUILDING_11_R_TX,
-
-		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-		__TRANSPARENCY_NONE,
-
-		// displacement
-		{0, 0, 2, 3},
-	},
-
-	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
-	__WORLD_BGMAP,
-
-	// pointer to affine/hbias manipulation function
-	NULL,
-
-	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
-	__WORLD_RON,
-};
-
-BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_11_BLACK_SPRITE =
-{
-	{
-		// sprite's type
-		__TYPE(BgmapSprite),
-
-		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_1_BUILDING_11_BLACK_TX,
-
-		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
-		__TRANSPARENCY_NONE,
-
-		// displacement
-		{0, -28, 3, 3},
+		{0, 0, 1, 3},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -244,15 +118,13 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_11_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_STAGE_1_BUILDING_11_SPRITES[] =
+BgmapSpriteROMSpec* const FOLDING_STAND_SPRITES[] =
 {
-	&LEVEL_1_STAGE_1_BUILDING_11_BLACK_SPRITE,
-	&LEVEL_1_STAGE_1_BUILDING_11_L_SPRITE,
-	&LEVEL_1_STAGE_1_BUILDING_11_R_SPRITE,
+	&FOLDING_STAND_SPRITE,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_STAGE_1_BUILDING_11_EN =
+EntityROMSpec FOLDING_STAND_EN =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -267,7 +139,7 @@ EntityROMSpec LEVEL_1_STAGE_1_BUILDING_11_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_STAGE_1_BUILDING_11_SPRITES,
+	(SpriteSpec**)FOLDING_STAND_SPRITES,
 
 	// use z displacement in projection
 	false,
