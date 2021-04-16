@@ -34,6 +34,7 @@ enum GameEvents
 	kEventUserInput,
 	kEventExitPointReached,
 	kEventSetModeToPlaying,
+	kEventComicDeleted,
 };
 
 

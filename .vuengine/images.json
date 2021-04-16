@@ -122,6 +122,9 @@
 		"Stages/Levels/Level1/Stage1/Decoration": {
 			"template": "entity"
 		},
+		"Stages/Levels/Level1/Stage1/Mission": {
+			"template": "animatedEntity"
+		},
 		"Stages/Levels/Level1/Stage1/StopYouCannotPass": {
 			"template": "animatedEntity"
 		},

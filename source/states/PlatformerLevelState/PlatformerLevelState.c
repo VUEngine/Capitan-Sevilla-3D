@@ -178,6 +178,7 @@ void PlatformerLevelState::enter(void* owner)
 
 	// register event listeners
 	Object::addEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onCaptainDied, kEventCaptainDied);
+	Object::addEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onComicDeleted, kEventComicDeleted);
 
 	// activate pulsating effect in indoor stages
 	if(this->currentStageEntryPoint->stageSpec->rendering.colorConfig.brightnessRepeat != NULL)
@@ -190,7 +191,9 @@ void PlatformerLevelState::enter(void* owner)
 
 void PlatformerLevelState::exit(void* owner)
 {
+	// remove event listeners
 	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onCaptainDied, kEventCaptainDied);
+	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onComicDeleted, kEventComicDeleted);
 
 	// call base
 	Base::exit(this, owner);
@@ -285,8 +288,10 @@ void PlatformerLevelState::resume(void* owner)
 	}
 #endif
 
-	// pause physical simulations
+	// resume physical simulations
 	GameState::pausePhysics(this, false);
+
+	PlatformerLevelState::setPrintingLayerCoordinates(this);
 
 	PlatformerLevelState::setModeToPlaying(this);
 
@@ -300,8 +305,6 @@ void PlatformerLevelState::resume(void* owner)
 
 	// make sure that user input is taken into account
 	Object::fireEvent(this, kEventUserInput);
-
-	PlatformerLevelState::setPrintingLayerCoordinates(this);
 }
 
 void PlatformerLevelState::resetProgress()
@@ -518,6 +521,12 @@ void PlatformerLevelState::setModeToPlaying()
 
 	Object::fireEvent(EventManager::getInstance(), kEventSetModeToPlaying);
 }
+
+void PlatformerLevelState::onComicDeleted(Object eventFirer __attribute__ ((unused)))
+{
+	 PlatformerLevelState::setModeToPlaying(this);
+}
+
 
 void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
