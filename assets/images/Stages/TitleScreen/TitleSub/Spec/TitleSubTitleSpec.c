@@ -24,8 +24,8 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Entity.h>
-#include <BgmapSprite.h>
+#include <BgmapAnimatedSprite.h>
+#include <LocalizedEntity.h>
 #include <macros.h>
 
 
@@ -35,6 +35,7 @@
 
 extern BYTE TitleSubTitleTiles[];
 extern BYTE TitleSubTitleMap[];
+extern AnimationDescription LOCALIZED_ENTITY_ANIM;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,11 +47,11 @@ CharSetROMSpec TITLE_SUBTITLE_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	45,
+	36,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
+	__ANIMATED_SINGLE,
 
 	// char spec
 	TitleSubTitleTiles,
@@ -65,7 +66,7 @@ TextureROMSpec TITLE_SUBTITLE_TX =
 	TitleSubTitleMap,
 
 	// cols (max 64)
-	24,
+	18,
 
 	// rows (max 64)
 	2,
@@ -79,7 +80,7 @@ TextureROMSpec TITLE_SUBTITLE_TX =
 	1,
 
 	// palette number (0-3)
-	0,
+	1,
 
 	// recyclable
 	false,
@@ -95,7 +96,7 @@ BgmapSpriteROMSpec TITLE_SUBTITLE_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapSprite),
+		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
 		(TextureSpec*)&TITLE_SUBTITLE_TX,
@@ -124,36 +125,45 @@ BgmapSpriteROMSpec* const TITLE_SUBTITLE_SPRITES[] =
 	NULL
 };
 
-EntityROMSpec TITLE_SUBTITLE_IM =
+LocalizedEntityROMSpec TITLE_SUBTITLE_EN =
 {
-	// class allocator
-	__TYPE(Entity),
+	{
+		// class allocator
+		__TYPE(LocalizedEntity),
 
-	// children
-	NULL,
+		// children
+		NULL,
 
-	// behaviors
-	NULL,
+		// behaviors
+		NULL,
 
-	// extra
-	NULL,
+		// extra
+		NULL,
 
-	// sprites
-	(SpriteSpec**)TITLE_SUBTITLE_SPRITES,
+		// sprites
+		(SpriteSpec**)TITLE_SUBTITLE_SPRITES,
 
-	// use z displacement in projection
-	false,
+		// use z displacement in projection
+		false,
 
-	// collision shapes
-	NULL,
+		// collision shapes
+		(ShapeSpec*)NULL,
 
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
 
-	// gameworld's character's type
-	kTypeNone,
+		// gameworld's character's type
+		kTypeNone,
 
-	// physical specification
-	NULL,
+		// physical specification
+		(PhysicalSpecification*)NULL,
+	},
+
+	// pointer to the animation spec for the character
+	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
+
+	// initial animation
+	"0",
 };
+

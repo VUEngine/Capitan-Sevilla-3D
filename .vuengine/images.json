@@ -194,7 +194,7 @@
 			"template": "entity"
 		},
 		"Stages/TitleScreen/TitleSub": {
-			"template": "entity"
+			"template": "animatedEntity"
 		}
 	}
 }

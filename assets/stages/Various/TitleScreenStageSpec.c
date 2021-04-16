@@ -38,7 +38,7 @@ extern EntitySpec CS3D_LOGO_EN;
 extern EntitySpec DEMO_BADGE_EN;
 extern EntitySpec TITLE_CAPITAN_IM;
 extern EntitySpec TITLE_EARTH_IM;
-extern EntitySpec TITLE_SUBTITLE_IM;
+extern EntitySpec TITLE_SUBTITLE_EN;
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 
 
@@ -48,12 +48,12 @@ extern EntitySpec LOW_POWER_INDICATOR_LB;
 
 PositionedEntityROMSpec TITLE_SCREEN_STAGE_ST_ENTITIES[] =
 {
-	{&CS3D_LOGO_EN, 			{192,  48,  0, 0}, 	0, NULL, NULL, NULL, false},
-	{&DEMO_BADGE_EN, 			{276, 100,  0, 0}, 	0, NULL, NULL, NULL, false},
-	{&TITLE_CAPITAN_IM, 		{192, 131, 32, 0}, 	0, NULL, NULL, NULL, false},
-	{&TITLE_EARTH_IM, 			{ 94, 129, 48, 0}, 	0, NULL, NULL, NULL, false},
+	{&CS3D_LOGO_EN, 			{204,  45,  0, 0}, 	0, NULL, NULL, NULL, false},
+	{&DEMO_BADGE_EN, 			{284, 100,  0, 0}, 	0, NULL, NULL, NULL, false},
+	{&TITLE_CAPITAN_IM, 		{204, 135, 32, 0}, 	0, NULL, NULL, NULL, false},
+	{&TITLE_EARTH_IM, 			{106, 136, 48, 0}, 	0, NULL, NULL, NULL, false},
 	{&PRESS_START_BUTTON_EN, 	{192, 216, 16, 0}, 	0, NULL, NULL, NULL, false},
-	//{&TITLE_SUBTITLE_IM, 		{184, 216, 16, 0}, 	0, NULL, NULL, NULL, false},
+	{&TITLE_SUBTITLE_EN, 		{163,  74, 16, 0}, 	0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
