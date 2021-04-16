@@ -87,7 +87,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_CHILDREN[] =
 PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_UI_CHILDREN[] =
 {
 	{&GUI_EN, 							{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
-	{&LOW_POWER_INDICATOR_LB, 			{  16, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&LOW_POWER_INDICATOR_LB, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -353,7 +353,7 @@ StageEntryPointROMSpec LEVEL_1_STAGE_4_MAIN_EP =
 	(StageSpec*)&LEVEL_1_STAGE_4_ST,
 
 	// starting position (x, y, z)
-	{200, 64, CAPTAIN_DSPL},
+	{236,  76, CAPTAIN_DSPL},
 
 	// facing direction of the captain
 	__RIGHT,

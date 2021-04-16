@@ -224,7 +224,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_UI_CHILDREN[] =
 	//{&CITY_FLOOR_3D_EN, 				{ 192, 172,  16,   0}, 		0, NULL, NULL, NULL, true},
 	{&LEVEL_1_MISSION_EN,				{  60, 204,  -2,   0},		0, NULL, NULL, NULL, false},
 	{&GUI_EN, 							{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
-	{&LOW_POWER_INDICATOR_LB, 			{  16, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&LOW_POWER_INDICATOR_LB, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

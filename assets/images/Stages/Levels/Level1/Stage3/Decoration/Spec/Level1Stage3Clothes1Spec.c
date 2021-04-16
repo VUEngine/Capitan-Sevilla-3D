@@ -33,42 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage3ETTiles[];
-extern BYTE Level1Stage3ETMap[];
+extern BYTE Level1Stage3Clothes1Tiles[];
+extern BYTE Level1Stage3Clothes1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_STAGE_3_ET_CH =
+CharSetROMSpec LEVEL_1_STAGE_3_CLOTHES_1_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	13,
+	69,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char spec
-	Level1Stage3ETTiles,
+	Level1Stage3Clothes1Tiles,
 };
 
-TextureROMSpec LEVEL_1_STAGE_3_ET_TX =
+TextureROMSpec LEVEL_1_STAGE_3_CLOTHES_1_TX =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_3_ET_CH,
+	(CharSetSpec*)&LEVEL_1_STAGE_3_CLOTHES_1_CH,
 
 	// bgmap spec
-	Level1Stage3ETMap,
+	Level1Stage3Clothes1Map,
 
 	// cols (max 64)
-	5,
+	13,
 
 	// rows (max 64)
-	3,
+	9,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -91,20 +91,20 @@ TextureROMSpec LEVEL_1_STAGE_3_ET_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_3_ET_SPRITE =
+BgmapSpriteROMSpec LEVEL_1_STAGE_3_CLOTHES_1_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_3_ET_TX,
+		(TextureSpec*)&LEVEL_1_STAGE_3_CLOTHES_1_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 5},
+		{0, 0, 0, 4},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -118,13 +118,13 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_3_ET_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_STAGE_3_ET_SPRITES[] =
+BgmapSpriteROMSpec* const LEVEL_1_STAGE_3_CLOTHES_1_SPRITES[] =
 {
-	&LEVEL_1_STAGE_3_ET_SPRITE,
+	&LEVEL_1_STAGE_3_CLOTHES_1_SPRITE,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_STAGE_3_ET_EN =
+EntityROMSpec LEVEL_1_STAGE_3_CLOTHES_1_EN =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -139,7 +139,7 @@ EntityROMSpec LEVEL_1_STAGE_3_ET_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_STAGE_3_ET_SPRITES,
+	(SpriteSpec**)LEVEL_1_STAGE_3_CLOTHES_1_SPRITES,
 
 	// use z displacement in projection
 	false,

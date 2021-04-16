@@ -56,6 +56,8 @@ extern EntitySpec LEVEL_1_STAGE_3_HOTEL_SIGN_EN;
 extern EntitySpec LEVEL_1_STAGE_3_LIFT_EN;
 extern EntitySpec LEVEL_1_STAGE_3_PLANK_EN;
 extern EntitySpec LEVEL_1_STAGE_3_SIGN_EN;
+extern EntitySpec LEVEL_1_STAGE_3_BOX_1_EN;
+extern EntitySpec LEVEL_1_STAGE_3_CLOTHES_1_EN;
 extern EntitySpec CITY_FLOOR_COLLISION_CL;
 extern EntitySpec COLLISION_CL;
 extern EntitySpec COLLISION_TOP_CL;
@@ -68,7 +70,7 @@ extern TextureSpec CITY_BG_2_A_TX;
 extern TextureSpec CITY_BG_2_B_TX;
 
 extern Size collision_16_224_64;
-extern Size collision_56_56_64;
+extern Size collision_48_56_64;
 extern Size collision_384_16_64;
 
 
@@ -82,12 +84,14 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 
 	{&CLOUDS_BACK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
 	{&CLOUDS_FRONT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
-	{&CITY_BG_2_EN,						{-416,  53,  256,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_3_ET_EN,			{-122,  31,  255,   0},		0, NULL, NULL, NULL, false},
+	{&CITY_BG_2_EN,						{-440,  53,  256,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_3_ET_EN,			{ -62,  31,  255,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{  56, 159,    0,   0},		0, NULL, NULL, NULL, false},
-	{&COLLISION_TOP_CL,					{ 160, 146,    0,   0},		0, NULL, NULL, (void*)&collision_56_56_64, false}, // box
+	{&COLLISION_TOP_CL,					{ 160, 146,    0,   0},		0, NULL, NULL, (void*)&collision_48_56_64, false}, // box
 	{&LEVEL_1_STAGE_3_BUILDING_1_EN,	{ 172,  96,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_CLOTHES_1_EN,		{  48, 131,    1,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_3_BOX_1_EN,			{ 156, 142,    1,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_PLANK_EN,			{ 397, 164,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_3_SIGN_EN,			{ 624,  77,   32,   0},		0, NULL, NULL, NULL, false},
@@ -115,7 +119,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_UI_CHILDREN[] =
 {
 	{&GUI_EN, 							{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
-	{&LOW_POWER_INDICATOR_LB, 			{  16, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&LOW_POWER_INDICATOR_LB, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -386,11 +390,11 @@ StageEntryPointROMSpec LEVEL_1_STAGE_3_MAIN_EP =
 	(StageSpec*)&LEVEL_1_STAGE_3_ST,
 
 	// starting position (x, y, z)
-	{280, 133, CAPTAIN_DSPL},
+	{280, 148, CAPTAIN_DSPL},
 
 	// facing direction of the captain
-	__RIGHT,
-	//__LEFT,
+	//__RIGHT,
+	__LEFT,
 
 	// whether this entry point acts as a checkpoint
 	true,
