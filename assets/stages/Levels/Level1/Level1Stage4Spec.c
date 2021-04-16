@@ -44,6 +44,7 @@ extern EntitySpec BENCH_EN;
 extern EntitySpec CLOUDS_BACK_EN;
 extern EntitySpec CLOUDS_FRONT_EN;
 extern EntitySpec COLLISION_CL;
+extern EntitySpec DOG_POO_1_EN;
 extern EntitySpec GUI_EN;
 extern EntitySpec LANTERN_1_EN;
 extern EntitySpec LEVEL_1_STAGE_4_BACKGROUND_A_EN;
@@ -73,6 +74,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_4_BUILDING_1_EN,	{ 248,  92,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_4_LIFT_EN,			{ 236,  76,    0,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_1_EN,						{ 320, 128,    0,   0},		0, NULL, NULL, NULL, false},
+	{&DOG_POO_1_EN,						{ 416, 166,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_4_PARK_1_EN,		{ 604,  92,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LANTERN_1_EN,						{ 476, 132,    0,   0},		0, NULL, NULL, NULL, false},
 	{&BENCH_EN,							{ 624, 159,    0,   0},		0, NULL, NULL, NULL, false},

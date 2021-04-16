@@ -7,6 +7,9 @@
 			"name": "ComicNivel1",
 			"template": "entityStacked"
 		},
+		"DogPoo1": {
+			"template": "animatedEntity"
+		},
 		"Dust": {
 			"template": "animatedEntity"
 		},
