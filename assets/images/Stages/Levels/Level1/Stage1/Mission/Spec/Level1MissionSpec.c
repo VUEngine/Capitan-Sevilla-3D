@@ -43,14 +43,14 @@ extern BYTE Level1MissionMap[];
 AnimationFunctionROMSpec LEVEL_1_MISSION_EN_ANIM =
 {
 	// number of frames of this animation function
-	44,
+	38,
 
 	// frames to play in animation
 	{
 		0, 3, 2, 1,
-		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		1, 1, 1, 1, 1, 1, 1, 1, 1,
+		1, 1, 1, 1, 1, 1, 1, 1, 1,
+		1, 1, 1, 1, 1, 1, 1, 1, 1,
 		1, 2, 3, 0,
 	},
 
@@ -70,14 +70,14 @@ AnimationFunctionROMSpec LEVEL_1_MISSION_EN_ANIM =
 AnimationFunctionROMSpec LEVEL_1_MISSION_ES_ANIM =
 {
 	// number of frames of this animation function
-	44,
+	38,
 
 	// frames to play in animation
 	{
 		0, 6, 5, 4,
-		4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-		4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
-		4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+		4, 4, 4, 4, 4, 4, 4, 4, 4,
+		4, 4, 4, 4, 4, 4, 4, 4, 4,
+		4, 4, 4, 4, 4, 4, 4, 4, 4,
 		4, 5, 6, 0,
 	},
 
@@ -96,14 +96,14 @@ AnimationFunctionROMSpec LEVEL_1_MISSION_ES_ANIM =
 AnimationFunctionROMSpec LEVEL_1_MISSION_DE_ANIM =
 {
 	// number of frames of this animation function
-	44,
+	38,
 
 	// frames to play in animation
 	{
 		0, 9, 8, 7,
-		7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
-		7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
-		7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+		7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+		7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+		7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
 		7, 8, 9, 0,
 	},
 
@@ -123,14 +123,14 @@ AnimationFunctionROMSpec LEVEL_1_MISSION_DE_ANIM =
 AnimationFunctionROMSpec LEVEL_1_MISSION_FR_ANIM =
 {
 	// number of frames of this animation function
-	44,
+	38,
 
 	// frames to play in animation
 	{
 		 0, 12, 11, 10,
-		10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
-		10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
-		10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+		10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+		10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+		10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
 		10, 11, 12, 0,
 	},
 

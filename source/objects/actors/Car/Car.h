@@ -19,61 +19,30 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+#ifndef CAR_H_
+#define CAR_H_
+
 
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <GameEvents.h>
-#include <Game.h>
-#include <SoundManager.h>
-#include <EventManager.h>
-#include "ItemSausage.h"
+#include <MovingOneWayEntity.h>
+#include <SoundWrapper.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound JUMP_SND;
-
-
-//---------------------------------------------------------------------------------------------------------
-//												CLASS'S METHODS
-//---------------------------------------------------------------------------------------------------------
-
-void ItemSausage::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+class Car : MovingOneWayEntity
 {
-	// construct base
-	Base::constructor(animatedEntitySpec, internalId, name);
+	SoundWrapper engineSound;
+
+	void constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, s16 internalId, const char* const name);
+	override void ready(bool recursive);
 }
 
-void ItemSausage::destructor()
-{
-	// delete the super object
-	// must always be called at the end of the destructor
-	Base::destructor();
-}
 
-void ItemSausage::collect()
-{
-	SoundManager::playSound(
-		SoundManager::getInstance(),
-		&JUMP_SND,
-		kPlayAll,
-		(const Vector3D*)&this->transformation.globalPosition,
-		kSoundWrapperPlaybackNormal,
-		NULL,
-		NULL
-	);
-
-	// set shape to inactive so no other hits with this item can occur
-	Entity::allowCollisions(this, false);
-
-	AnimatedEntity::playAnimation(this, "Taken");
-}
-
-void ItemSausage::onTakenAnimationComplete()
-{
-	Container::deleteMyself(this);
-}
+#endif

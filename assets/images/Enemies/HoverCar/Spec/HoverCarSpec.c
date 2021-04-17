@@ -26,7 +26,7 @@
 
 #include <ObjectAnimatedSprite.h>
 #include <Box.h>
-#include <Enemy.h>
+#include <HoverCar.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -188,7 +188,7 @@ EnemyROMSpec HOVER_CAR_EM =
 			{
 				{
 					// class allocator
-					__TYPE(Enemy),
+					__TYPE(HoverCar),
 
 					// children
 					NULL,
@@ -198,7 +198,7 @@ EnemyROMSpec HOVER_CAR_EM =
 
 					// extra
 					NULL,
-					
+
 					// sprites
 					(SpriteSpec**)HOVER_CAR_SPRITES,
 

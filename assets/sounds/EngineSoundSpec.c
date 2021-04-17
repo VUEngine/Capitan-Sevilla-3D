@@ -1,7 +1,7 @@
 /* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
  * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * Copyright (C) 2007, 2019 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction, including
@@ -24,56 +24,101 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <GameEvents.h>
-#include <Game.h>
 #include <SoundManager.h>
-#include <EventManager.h>
-#include "ItemSausage.h"
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound JUMP_SND;
+#define ENGINE_FREQ				MINIMUM_AUDIBLE_NOTE + 0x0AA + 256
+#define ENGINE_DURATION			17
+#define ENGINE_VOLUME_DELTA		15
 
 
 //---------------------------------------------------------------------------------------------------------
-//												CLASS'S METHODS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-void ItemSausage::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+const u16 EngineSoundTrack1[] =
 {
-	// construct base
-	Base::constructor(animatedEntitySpec, internalId, name);
-}
+  0x016 + ENGINE_FREQ, 0x024 + ENGINE_FREQ, 0x032 + ENGINE_FREQ, 0x040 + ENGINE_FREQ, 0x032 + ENGINE_FREQ, 0x024 + ENGINE_FREQ, 0x016 + ENGINE_FREQ, ENDSOUND,
+  ENGINE_DURATION * 4, ENGINE_DURATION * 3, ENGINE_DURATION * 2, ENGINE_DURATION * 1, ENGINE_DURATION * 2, ENGINE_DURATION * 3, ENGINE_DURATION * 4,
+  ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA,
+};
 
-void ItemSausage::destructor()
+SoundChannelConfigurationROM ENGINE_SOUND_CHANNEL_1_CONFIGURATION =
 {
-	// delete the super object
-	// must always be called at the end of the destructor
-	Base::destructor();
-}
+	/// kMIDI, kPCM
+	kMIDI,
 
-void ItemSausage::collect()
+	/// SxINT
+	0x00,
+
+	/// Volume SxLRV
+	0x00,
+
+	/// SxRAM (this is overrode by the SoundManager)
+	0x00,
+
+	/// SxEV0
+	0xF0,
+
+	/// SxEV1
+	0x00,
+
+	/// SxFQH
+	0x00,
+
+	/// SxFQL
+	0x00,
+
+	/// Ch. 5 only
+	0x00,
+
+	/// Waveform data pointer
+	engineWaveForm,
+
+	/// kChannelNormal, kChannelModulation, kChannelNoise
+	kChannelNormal,
+
+	/// Volume
+	__SOUND_LR
+};
+
+SoundChannelROM ENGINE_SOUND_CHANNEL_1 =
 {
-	SoundManager::playSound(
-		SoundManager::getInstance(),
-		&JUMP_SND,
-		kPlayAll,
-		(const Vector3D*)&this->transformation.globalPosition,
-		kSoundWrapperPlaybackNormal,
-		NULL,
-		NULL
-	);
+	/// Configuration
+	(SoundChannelConfiguration*)&ENGINE_SOUND_CHANNEL_1_CONFIGURATION,
 
-	// set shape to inactive so no other hits with this item can occur
-	Entity::allowCollisions(this, false);
+	/// Length (PCM)
+	0,
 
-	AnimatedEntity::playAnimation(this, "Taken");
-}
+	/// Sound track
+	{
+		(const u8*)EngineSoundTrack1
+	}
+};
 
-void ItemSausage::onTakenAnimationComplete()
+
+SoundChannelROM* ENGINE_SOUND_CHANNELS[] =
 {
-	Container::deleteMyself(this);
-}
+	&ENGINE_SOUND_CHANNEL_1,
+	NULL
+};
+
+SoundROM ENGINE_SND =
+{
+	/// Name
+	"Engine",
+
+	/// Play in loop
+	true,
+
+	/// Target timer resolution in us
+	3000,
+
+	/// Tracks
+	(SoundChannel**)ENGINE_SOUND_CHANNELS
+};

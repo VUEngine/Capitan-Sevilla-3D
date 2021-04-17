@@ -24,56 +24,67 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <GameEvents.h>
 #include <Game.h>
+#include <CustomCameraEffectManager.h>
 #include <SoundManager.h>
-#include <EventManager.h>
-#include "ItemSausage.h"
+#include "Car.h"
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound JUMP_SND;
+extern Sound ENGINE_SND;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void ItemSausage::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void Car::constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(animatedEntitySpec, internalId, name);
+	Base::constructor(movingOneWayEntitySpec, internalId, name);
+
+	this->engineSound = NULL;
 }
 
-void ItemSausage::destructor()
+void Car::destructor()
 {
-	// delete the super object
+	if(!isDeleted(this->engineSound))
+	{
+		SoundWrapper::release(this->engineSound);
+		this->engineSound = NULL;
+	}
+
+	// destroy the super object
 	// must always be called at the end of the destructor
 	Base::destructor();
 }
 
-void ItemSausage::collect()
+void Car::ready(bool recursive)
 {
-	SoundManager::playSound(
+	// call base
+	Base::ready(this, recursive);
+
+	this->engineSound = SoundManager::getSound(
 		SoundManager::getInstance(),
-		&JUMP_SND,
+		&ENGINE_SND,
 		kPlayAll,
-		(const Vector3D*)&this->transformation.globalPosition,
-		kSoundWrapperPlaybackNormal,
-		NULL,
-		NULL
+		(EventListener)Car::onEngineSoundReleased,
+		Object::safeCast(this)
 	);
 
-	// set shape to inactive so no other hits with this item can occur
-	Entity::allowCollisions(this, false);
-
-	AnimatedEntity::playAnimation(this, "Taken");
+	if(!isDeleted(this->engineSound))
+	{
+		SoundWrapper::play(this->engineSound, (const Vector3D*)&this->transformation.globalPosition, kSoundWrapperPlaybackFadeIn);
+	}
 }
 
-void ItemSausage::onTakenAnimationComplete()
+void Car::onEngineSoundReleased(Object eventFirer __attribute__((unused)))
 {
-	Container::deleteMyself(this);
+	NM_ASSERT(eventFirer == Object::safeCast(this->engineSound), "Car::onEngineSoundReleased: no engine sound");
+
+	this->engineSound = NULL;
 }
+

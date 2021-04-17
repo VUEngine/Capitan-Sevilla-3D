@@ -1,7 +1,8 @@
+
 /* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
  * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * Copyright (C) 2007, 2019 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction, including
@@ -24,56 +25,101 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <GameEvents.h>
-#include <Game.h>
 #include <SoundManager.h>
-#include <EventManager.h>
-#include "ItemSausage.h"
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound JUMP_SND;
+#define HOVER_ENGINE_FREQ				MINIMUM_AUDIBLE_NOTE + 0xAAA + 256
+#define HOVER_ENGINE_DURATION			17
+#define HOVER_ENGINE_VOLUME_DELTA		15
 
 
 //---------------------------------------------------------------------------------------------------------
-//												CLASS'S METHODS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-void ItemSausage::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+const u16 HoverEngineSoundTrack1[] =
 {
-	// construct base
-	Base::constructor(animatedEntitySpec, internalId, name);
-}
+  0x016 + HOVER_ENGINE_FREQ, 0x024 + HOVER_ENGINE_FREQ, 0x032 + HOVER_ENGINE_FREQ, 0x040 + HOVER_ENGINE_FREQ, 0x032 + HOVER_ENGINE_FREQ, 0x024 + HOVER_ENGINE_FREQ, 0x016 + HOVER_ENGINE_FREQ, ENDSOUND,
+  HOVER_ENGINE_DURATION * 4, HOVER_ENGINE_DURATION * 3, HOVER_ENGINE_DURATION * 2, HOVER_ENGINE_DURATION * 1, HOVER_ENGINE_DURATION * 2, HOVER_ENGINE_DURATION * 3, HOVER_ENGINE_DURATION * 4,
+  HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA,
+};
 
-void ItemSausage::destructor()
+SoundChannelConfigurationROM HOVER_ENGINE_SOUND_CHANNEL_1_CONFIGURATION =
 {
-	// delete the super object
-	// must always be called at the end of the destructor
-	Base::destructor();
-}
+	/// kMIDI, kPCM
+	kMIDI,
 
-void ItemSausage::collect()
+	/// SxINT
+	0x00,
+
+	/// Volume SxLRV
+	0x00,
+
+	/// SxRAM (this is overrode by the SoundManager)
+	0x00,
+
+	/// SxEV0
+	0xF0,
+
+	/// SxEV1
+	0x00,
+
+	/// SxFQH
+	0x00,
+
+	/// SxFQL
+	0x00,
+
+	/// Ch. 5 only
+	0x00,
+
+	/// Waveform data pointer
+	engineWaveForm,
+
+	/// kChannelNormal, kChannelModulation, kChannelNoise
+	kChannelNormal,
+
+	/// Volume
+	__SOUND_LR
+};
+
+SoundChannelROM HOVER_ENGINE_SOUND_CHANNEL_1 =
 {
-	SoundManager::playSound(
-		SoundManager::getInstance(),
-		&JUMP_SND,
-		kPlayAll,
-		(const Vector3D*)&this->transformation.globalPosition,
-		kSoundWrapperPlaybackNormal,
-		NULL,
-		NULL
-	);
+	/// Configuration
+	(SoundChannelConfiguration*)&HOVER_ENGINE_SOUND_CHANNEL_1_CONFIGURATION,
 
-	// set shape to inactive so no other hits with this item can occur
-	Entity::allowCollisions(this, false);
+	/// Length (PCM)
+	0,
 
-	AnimatedEntity::playAnimation(this, "Taken");
-}
+	/// Sound track
+	{
+		(const u8*)HoverEngineSoundTrack1
+	}
+};
 
-void ItemSausage::onTakenAnimationComplete()
+
+SoundChannelROM* HOVER_ENGINE_SOUND_CHANNELS[] =
 {
-	Container::deleteMyself(this);
-}
+	&HOVER_ENGINE_SOUND_CHANNEL_1,
+	NULL
+};
+
+SoundROM HOVER_ENGINE_SND =
+{
+	/// Name
+	"Hover Engine",
+
+	/// Play in loop
+	true,
+
+	/// Target timer resolution in us
+	3000,
+
+	/// Tracks
+	(SoundChannel**)HOVER_ENGINE_SOUND_CHANNELS
+};

@@ -25,7 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <BgmapAnimatedSprite.h>
-#include <MovingOneWayEntity.h>
+#include <Car.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -158,7 +158,7 @@ MovingOneWayEntityROMSpec CAR_1_AC =
 		{
 			{
 				// class allocator
-				__TYPE(MovingOneWayEntity),
+				__TYPE(Car),
 
 				// children
 				NULL,

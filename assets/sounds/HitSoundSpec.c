@@ -1,7 +1,7 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+/* VUEngine - Virtual Utopia Hit <http://vuengine.planetvb.com/>
  * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * Copyright (C) 2007, 2019 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction, including
@@ -24,56 +24,101 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <GameEvents.h>
-#include <Game.h>
 #include <SoundManager.h>
-#include <EventManager.h>
-#include "ItemSausage.h"
+#include <WaveForms.h>
+#include <MIDI.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound JUMP_SND;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												CLASS'S METHODS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-void ItemSausage::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+
+const u16 HitTrack[] =
 {
-	// construct base
-	Base::constructor(animatedEntitySpec, internalId, name);
-}
+  A_4, B_4, E_5, HOLD, ENDSOUND,
+  100, 80, 100, 1, 1,
+  15, 15, 15, 15 , 0,
+  1, 4, 1, 2 , 0
+};
 
-void ItemSausage::destructor()
+SoundChannelConfigurationROM HIT_SND_CHANNEL_1_CONFIGURATION =
 {
-	// delete the super object
-	// must always be called at the end of the destructor
-	Base::destructor();
-}
+	/// kMIDI, kPCM
+	kMIDI,
 
-void ItemSausage::collect()
+	/// SxINT
+	0x9F,
+
+	/// Volume SxLRV
+	0xFF,
+
+	/// SxRAM (this is overrode by the SoundManager)
+	0x00,
+
+	/// SxEV0
+	0x80,
+
+	/// SxEV1
+	0x01,
+
+	/// SxFQH
+	0x00,
+
+	/// SxFQL
+	0x00,
+
+	/// Ch. 5 only
+	0x00,
+
+	/// Waveform data pointer
+	sawtoothWaveForm,
+
+	/// kChannelNormal, kChannelModulation, kChannelNoise
+	kChannelNoise,
+
+	/// Volume
+	__SOUND_LR
+};
+
+SoundChannelROM HIT_SND_CHANNEL_1 =
 {
-	SoundManager::playSound(
-		SoundManager::getInstance(),
-		&JUMP_SND,
-		kPlayAll,
-		(const Vector3D*)&this->transformation.globalPosition,
-		kSoundWrapperPlaybackNormal,
-		NULL,
-		NULL
-	);
+	/// Configuration
+	(SoundChannelConfiguration*)&HIT_SND_CHANNEL_1_CONFIGURATION,
 
-	// set shape to inactive so no other hits with this item can occur
-	Entity::allowCollisions(this, false);
+	/// Length (PCM)
+	0,
 
-	AnimatedEntity::playAnimation(this, "Taken");
-}
+	/// Sound track
+	{
+		(const u8*)HitTrack
+	}
+};
 
-void ItemSausage::onTakenAnimationComplete()
+
+SoundChannelROM* HIT_SND_CHANNELS[] =
 {
-	Container::deleteMyself(this);
-}
+	&HIT_SND_CHANNEL_1,
+	NULL
+};
+
+SoundROM HIT_SND =
+{
+	/// Name
+	"Fire sound",
+
+	/// Play in loop
+	false,
+
+	/// Target timer resolution in us
+	500,
+
+	/// Tracks
+	(SoundChannel**)HIT_SND_CHANNELS
+};
