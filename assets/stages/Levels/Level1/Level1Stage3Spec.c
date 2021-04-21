@@ -97,7 +97,6 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_3_PLANK_EN,			{ 397, 164,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_3_SIGN_EN,			{ 624,  77,   32,   0},		0, NULL, NULL, NULL, false},
-	//{&PUNK_EM,							{ 600, 143,    0,   0},		0, NULL, NULL, NULL, false},
 	{&HOVER_CAR_EM,						{ 716, 108,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2A_EN,	{ 626, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 658, 159,    0,   0},		0, NULL, NULL, NULL, false},

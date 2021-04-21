@@ -69,7 +69,7 @@ TextureROMSpec CITY_BG_2_A_TX =
 	64,
 
 	// rows (max 64)
-	33,
+	64,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -104,7 +104,7 @@ TextureROMSpec CITY_BG_2_B_TX =
 	64,
 
 	// rows (max 64)
-	33,
+	64,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
