@@ -241,28 +241,11 @@ FontROMSpec* const LEVEL_1_STAGE_1_ST_FONTS[] =
 
 CharSetROMSpec* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 {
-	&CITY_BG_1_CH,
-	&PUNK_CH,
-	&CAR_1_CH,
-	&FLOWER_POT_CH,
-	//&HOVER_CAR_CH,
-	&GUI_CH,
-	&CAPTAIN_CH,
-	&CAPTAIN_BLACK_CH,
-
 	NULL
 };
 
 TextureSpec* const LEVEL_1_STAGE_1_ST_TEXTURES[] =
 {
-	&PUNK_TX,
-	&CAR_1_TX,
-	&FLOWER_POT_TX,
-	//&HOVER_CAR_TX,
-	&GUI_TX,
-	&CAPTAIN_TX,
-	&CAPTAIN_BLACK_TX,
-
 	NULL
 };
 
