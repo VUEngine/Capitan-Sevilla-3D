@@ -46,6 +46,7 @@
 #include <MovingOneWayEntity.h>
 #include <ProjectileEjector.h>
 #include <Dust.h>
+#include <RumblePakEffects.h>
 #include <debugConfig.h>
 
 
@@ -177,6 +178,7 @@ void Captain::startShooting()
 	{
 		// shoot gum
 		ProjectileEjector::setActive(this->headEntity, true);
+		RumblePakManager::startEffect(&RumbleEffectSpit);
 	}
 }
 
@@ -260,6 +262,9 @@ void Captain::jump(bool checkIfYMovement)
 			// play jump animation
 			AnimatedEntity::playAnimation(this, "Jump");
 			Dust::showAnimation(this->jumpDustEntity);
+
+			// rumble effect
+			RumblePakManager::startEffect(&RumbleEffectJump);
 
 			// play jump sound
 			//SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
@@ -523,10 +528,15 @@ void Captain::takeDamageFrom(int energyToReduce)
 
 			// inform others to update ui etc
 			Object::fireEvent(EventManager::getInstance(), kEventHitTaken);
+
+			RumblePakManager::startEffect(&RumbleEffectTakeStrongDamage);			
+
 		}
 		else
 		{
 			Captain::die(this);
+
+			RumblePakManager::startEffect(&RumbleEffectDieStrong);			
 		}
 	}
 }
@@ -717,6 +727,12 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 	{
 		// speed things up by breaking early
 		case kShape:
+
+			break;
+
+		case kFloor:
+
+			RumblePakManager::startEffect(&RumbleEffectLand);
 			break;
 
 		case kItemDuck:
@@ -1108,6 +1124,8 @@ void Captain::reload()
 {
 	if(this->gums < CAPTAIN_MAX_GUMS)
 	{
+		RumblePakManager::startEffect(&RumbleEffectReload);
+		
 		// switch to reload state
 		StateMachine::swapState(this->stateMachine, State::safeCast(CaptainReload::getInstance()));
 	}

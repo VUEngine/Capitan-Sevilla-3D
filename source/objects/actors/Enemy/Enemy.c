@@ -29,6 +29,7 @@
 #include <SoundManager.h>
 #include <MessageDispatcher.h>
 #include <PlatformerLevelState.h>
+#include <RumblePakEffects.h>
 #include "Enemy.h"
 
 
@@ -91,10 +92,14 @@ void Enemy::takeHit(u8 power)
 		this->energy -= power;
 
 		Enemy::startFlashing(this);
+
+		RumblePakManager::startEffect(&RumbleEffectTakeLightDamage);
 	}
 	else
 	{
 		Enemy::die(this);
+
+		RumblePakManager::startEffect(&RumbleEffectDieLight);
 	}
 }
 
