@@ -39,6 +39,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 const PixelSize collision_16_224_64 = 	{ 16, 	224,	64};
+const PixelSize collision_48_56_64 = 	{ 48, 	 56,	64};
 const PixelSize collision_56_56_64 = 	{ 56, 	 56,	64};
 const PixelSize collision_384_16_64 = 	{384, 	 64, 	64};
 const PixelSize collision_3608_16_64 = 	{3608, 	 64, 	64};

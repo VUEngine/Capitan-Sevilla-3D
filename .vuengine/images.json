@@ -7,6 +7,9 @@
 			"name": "ComicNivel1",
 			"template": "entityStacked"
 		},
+		"DogPoo1": {
+			"template": "animatedEntity"
+		},
 		"Dust": {
 			"template": "animatedEntity"
 		},
@@ -122,6 +125,9 @@
 		"Stages/Levels/Level1/Stage1/Decoration": {
 			"template": "entity"
 		},
+		"Stages/Levels/Level1/Stage1/Mission": {
+			"template": "animatedEntity"
+		},
 		"Stages/Levels/Level1/Stage1/StopYouCannotPass": {
 			"template": "animatedEntity"
 		},
@@ -194,7 +200,7 @@
 			"template": "entity"
 		},
 		"Stages/TitleScreen/TitleSub": {
-			"template": "entity"
+			"template": "animatedEntity"
 		}
 	}
 }

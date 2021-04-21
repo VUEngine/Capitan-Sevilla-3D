@@ -35,6 +35,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern Sound SHOOT_SND;
+
+
+//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
@@ -126,6 +133,17 @@ void ProjectileEjector::ejectProjectile()
 
 				// fire ejection event
 				Object::fireEvent(this, kEventProjectileEjected);
+
+				// play shooting sound
+				SoundManager::playSound(
+					SoundManager::getInstance(),
+					&SHOOT_SND,
+					kPlayAll,
+					(const Vector3D*)&this->transformation.globalPosition,
+					kSoundWrapperPlaybackNormal,
+					NULL,
+					NULL
+				);
 
 				break;
 			}

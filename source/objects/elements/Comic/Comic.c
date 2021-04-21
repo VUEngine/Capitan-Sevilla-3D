@@ -39,10 +39,10 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Comic::constructor(EntitySpec* entitySpec, s16 internalId, const char* const name)
+void Comic::constructor(LocalizedEntitySpec* localizedEntitySpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(entitySpec, internalId, name);
+	Base::constructor(localizedEntitySpec, internalId, name);
 
 	// init members
 	this->mode = kComicStill;
@@ -57,7 +57,7 @@ void Comic::destructor()
 {
 	// If set right after the user presses the key, a race condition with the other objects listening
 	// for the kEventUserInput event will crash the game
-	PlatformerLevelState::setModeToPlaying(PlatformerLevelState::getInstance());
+	Object::fireEvent(EventManager::getInstance(), kEventComicDeleted);
 
 	// remove event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());

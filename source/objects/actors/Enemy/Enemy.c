@@ -34,6 +34,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern Sound HIT_SND;
+
+
+//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
@@ -84,7 +91,15 @@ void Enemy::takeHit(u8 power)
 	Camera::startEffect(Camera::getInstance(), kShake, 100);
 
 	// play sound
-	//SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
+	SoundManager::playSound(
+		SoundManager::getInstance(),
+		&HIT_SND,
+		kPlayAll,
+		(const Vector3D*)&this->transformation.globalPosition,
+		kSoundWrapperPlaybackNormal,
+		NULL,
+		NULL
+	);
 
 	// reduce energy
 	if(power < this->energy)

@@ -59,6 +59,10 @@ extern double fabs (double);
 extern EntitySpec CAPTAIN_HEAD_PE;
 extern EntitySpec LAND_DUST_EN;
 extern EntitySpec JUMP_DUST_EN;
+extern Sound SHOOT_SND;
+extern Sound JUMP_SND;
+extern Sound RELOAD_SND;
+extern Sound HIT_SND;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -179,6 +183,17 @@ void Captain::startShooting()
 		// shoot gum
 		ProjectileEjector::setActive(this->headEntity, true);
 		RumblePakManager::startEffect(&RumbleEffectSpit);
+
+		// play shooting sound
+		SoundManager::playSound(
+			SoundManager::getInstance(),
+			&SHOOT_SND,
+			kPlayAll,
+			(const Vector3D*)&this->transformation.globalPosition,
+			kSoundWrapperPlaybackNormal,
+			NULL,
+			NULL
+		);
 	}
 }
 
@@ -267,7 +282,15 @@ void Captain::jump(bool checkIfYMovement)
 			RumblePakManager::startEffect(&RumbleEffectJump);
 
 			// play jump sound
-			//SoundManager::playFxSound(SoundManager::getInstance(), JUMP_SND, this->transformation.globalPosition);
+			SoundManager::playSound(
+				SoundManager::getInstance(),
+				&JUMP_SND,
+				kPlayAll,
+				(const Vector3D*)&this->transformation.globalPosition,
+				kSoundWrapperPlaybackNormal,
+				NULL,
+				NULL
+			);
 		}
 	}
 }
@@ -509,7 +532,15 @@ void Captain::takeDamageFrom(int energyToReduce)
 		Camera::startEffect(Camera::getInstance(), kShake, 200);
 
 		// play hit sound
-		//SoundManager::playFxSound(SoundManager::getInstance(), FIRE_SND, this->transformation.globalPosition);
+		SoundManager::playSound(
+			SoundManager::getInstance(),
+			&HIT_SND,
+			kPlayAll,
+			(const Vector3D*)&this->transformation.globalPosition,
+			kSoundWrapperPlaybackNormal,
+			NULL,
+			NULL
+		);
 
 		// reduce energy
 		this->energy -= energyToReduce;
@@ -526,11 +557,15 @@ void Captain::takeDamageFrom(int energyToReduce)
 			// play animation
 			AnimatedEntity::playAnimation(this, "Hit");
 
+			if(!StateMachine::isInState(this->stateMachine, State::safeCast(CaptainIdle::getInstance())))
+			{
+				StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
+			}
+
 			// inform others to update ui etc
 			Object::fireEvent(EventManager::getInstance(), kEventHitTaken);
 
-			RumblePakManager::startEffect(&RumbleEffectTakeStrongDamage);			
-
+			RumblePakManager::startEffect(&RumbleEffectTakeStrongDamage);
 		}
 		else
 		{
@@ -1128,6 +1163,16 @@ void Captain::reload()
 		
 		// switch to reload state
 		StateMachine::swapState(this->stateMachine, State::safeCast(CaptainReload::getInstance()));
+
+		SoundManager::playSound(
+			SoundManager::getInstance(),
+			&RELOAD_SND,
+			kPlayAll,
+			(const Vector3D*)&this->transformation.globalPosition,
+			kSoundWrapperPlaybackNormal,
+			NULL,
+			NULL
+		);
 	}
 }
 

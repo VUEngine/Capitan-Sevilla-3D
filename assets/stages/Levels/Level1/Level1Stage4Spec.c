@@ -44,6 +44,7 @@ extern EntitySpec BENCH_EN;
 extern EntitySpec CLOUDS_BACK_EN;
 extern EntitySpec CLOUDS_FRONT_EN;
 extern EntitySpec COLLISION_CL;
+extern EntitySpec DOG_POO_1_EN;
 extern EntitySpec GUI_EN;
 extern EntitySpec LANTERN_1_EN;
 extern EntitySpec LEVEL_1_STAGE_4_BACKGROUND_A_EN;
@@ -73,6 +74,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_4_BUILDING_1_EN,	{ 248,  92,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_4_LIFT_EN,			{ 236,  76,    0,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_1_EN,						{ 320, 128,    0,   0},		0, NULL, NULL, NULL, false},
+	{&DOG_POO_1_EN,						{ 416, 166,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_4_PARK_1_EN,		{ 604,  92,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LANTERN_1_EN,						{ 476, 132,    0,   0},		0, NULL, NULL, NULL, false},
 	{&BENCH_EN,							{ 624, 159,    0,   0},		0, NULL, NULL, NULL, false},
@@ -87,7 +89,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_CHILDREN[] =
 PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_UI_CHILDREN[] =
 {
 	{&GUI_EN, 							{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
-	{&LOW_POWER_INDICATOR_LB, 			{  16, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&LOW_POWER_INDICATOR_LB, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -353,7 +355,7 @@ StageEntryPointROMSpec LEVEL_1_STAGE_4_MAIN_EP =
 	(StageSpec*)&LEVEL_1_STAGE_4_ST,
 
 	// starting position (x, y, z)
-	{200, 64, CAPTAIN_DSPL},
+	{236,  76, CAPTAIN_DSPL},
 
 	// facing direction of the captain
 	__RIGHT,

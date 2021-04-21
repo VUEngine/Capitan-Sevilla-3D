@@ -32,6 +32,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern Sound JUMP_SND;
+
+
+//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
@@ -50,7 +57,15 @@ void ItemSausage::destructor()
 
 void ItemSausage::collect()
 {
-	//SoundManager::playFxSound(SoundManager::getInstance(), COLLECT_SND, this->transformation.globalPosition);
+	SoundManager::playSound(
+		SoundManager::getInstance(),
+		&JUMP_SND,
+		kPlayAll,
+		(const Vector3D*)&this->transformation.globalPosition,
+		kSoundWrapperPlaybackNormal,
+		NULL,
+		NULL
+	);
 
 	// set shape to inactive so no other hits with this item can occur
 	Entity::allowCollisions(this, false);

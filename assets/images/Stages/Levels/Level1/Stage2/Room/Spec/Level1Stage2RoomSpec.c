@@ -37,8 +37,10 @@
 extern BYTE Level1Stage2RoomTiles[];
 extern BYTE Level1Stage2RoomALMap[];
 extern BYTE Level1Stage2RoomARMap[];
+extern BYTE Level1Stage2RoomABlackMap[];
 extern BYTE Level1Stage2RoomBLMap[];
 extern BYTE Level1Stage2RoomBRMap[];
+extern BYTE Level1Stage2RoomBBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,7 +52,7 @@ CharSetROMSpec LEVEL_1_STAGE_2_ROOM_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	1357,
+	1372,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -316,6 +318,134 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_B_R_SPRITE =
 	__WORLD_RON,
 };
 
+/* Black (A) */
+
+TextureROMSpec LEVEL_1_STAGE_2_ROOM_A_BLACK_TX =
+{
+	// charset spec
+	(CharSetSpec*)&LEVEL_1_STAGE_2_ROOM_CH,
+
+	// bgmap spec
+	Level1Stage2RoomABlackMap,
+
+	// cols (max 64)
+	45,
+
+	// rows (max 64)
+	21,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
+
+	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
+};
+
+BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_A_BLACK_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture spec
+		(TextureSpec*)&LEVEL_1_STAGE_2_ROOM_A_BLACK_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{-180, 0, -6, 1}
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+/* Black (B) */
+
+TextureROMSpec LEVEL_1_STAGE_2_ROOM_B_BLACK_TX =
+{
+	// charset spec
+	(CharSetSpec*)&LEVEL_1_STAGE_2_ROOM_CH,
+
+	// bgmap spec
+	Level1Stage2RoomBBlackMap,
+
+	// cols (max 64)
+	45,
+
+	// rows (max 64)
+	21,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
+
+	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
+};
+
+BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_B_BLACK_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(BgmapSprite),
+
+		// texture spec
+		(TextureSpec*)&LEVEL_1_STAGE_2_ROOM_B_BLACK_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{180, 0, -6, 1}
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
 /* Entity */
 
 BgmapSpriteROMSpec* const LEVEL_1_STAGE_2_ROOM_SPRITES[] =
@@ -324,6 +454,8 @@ BgmapSpriteROMSpec* const LEVEL_1_STAGE_2_ROOM_SPRITES[] =
 	&LEVEL_1_STAGE_2_ROOM_B_L_SPRITE,
 	&LEVEL_1_STAGE_2_ROOM_A_R_SPRITE,
 	&LEVEL_1_STAGE_2_ROOM_B_R_SPRITE,
+	&LEVEL_1_STAGE_2_ROOM_A_BLACK_SPRITE,
+	&LEVEL_1_STAGE_2_ROOM_B_BLACK_SPRITE,
 	NULL
 };
 
@@ -338,7 +470,7 @@ ShapeROMSpec LEVEL_1_STAGE_2_ROOM_SHAPES[] =
 		{16, 224, 64},
 
 		// displacement (x, y, z, p)
-		{-318, 0, 0, 0},
+		{-338, 0, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},

@@ -60,6 +60,7 @@ extern EntitySpec CLOUDS_FRONT_EN;
 extern EntitySpec CLOTHES_1_EN;
 extern EntitySpec COLLISION_CL;
 extern EntitySpec COMIC_NIVEL_1_EN;
+extern EntitySpec LEVEL_1_MISSION_EN;
 extern EntitySpec FENCE_EN;
 extern EntitySpec FOLDING_STAND_EN;
 extern EntitySpec GARAGE_CAR_EN;
@@ -138,22 +139,22 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&HOVER_CAR_EM,						{2160, 114,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&CAR_1_AC,							{ 500, 164,    0,   0},		0, NULL, NULL, NULL, false},
-	{&CAR_1_AC,							{1040, 164,    0,   0},		0, NULL, NULL, NULL, false},
-	{&CAR_1_AC,							{1810, 164,    0,   0},		0, NULL, NULL, NULL, false},
-	{&CAR_1_AC,							{2608, 164,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_1_AC,							{ 500, 166,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_1_AC,							{1040, 166,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_1_AC,							{1810, 166,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_1_AC,							{2608, 166,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&COMIC_NIVEL_1_EN,					{ 192,  92,   -2,   0},		0, NULL, NULL, NULL, false},
 
 	{&TREE_1_EN,						{  24, 108,   24,   0},		0, NULL, NULL, NULL, false},
 
-	{&LANTERN_1_EN,						{  32, 134,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_EN,						{  32, 137,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_1_BUILDING_1_EN,	{ 200,  80,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&TREE_1_EN,						{ 350, 108,   24,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_2_EN,	{ 518, 126,    0,   0},		0, NULL, NULL, NULL, false},
-	{&LANTERN_1_EN,						{ 616, 134,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_EN,						{ 616, 137,    0,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_BG_1_EN,						{ 664, 136,   16,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_BG_1_EN,						{ 698, 112,   32,   0},		0, NULL, NULL, NULL, false},
 
@@ -164,7 +165,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_1_BUILDING_4_EN,	{ 996, 102,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&BUSH_BG_1_EN,						{1138, 112,   64,   0},		0, NULL, NULL, NULL, false},
-	{&LANTERN_1_EN,						{1166, 134,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_EN,						{1166, 137,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&TREE_1_EN,						{1256, 104,    0,   0},		0, NULL, NULL, NULL, false},
 	{&PLAYGROUND_SIGN_EN,				{1288,  76,    0,   0},		0, NULL, NULL, NULL, false},
@@ -174,7 +175,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&STATUE_1_EN,						{1486,  80,    0,   0},		0, NULL, NULL, NULL, false},
 	{&BUSH_BG_2_EN,						{1534, 112,   64,   0},		0, NULL, NULL, NULL, false},
 
-	{&LANTERN_1_EN,						{1570, 134,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_EN,						{1570, 137,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_6_EN,	{1746,  79,    0,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_PE,						{1784,  31,    0,   0},		0, NULL, NULL, NULL, false},
@@ -198,7 +199,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&MANOLO_EM,						{3136, 142,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&LANTERN_1_EN,						{3238, 134,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LANTERN_1_EN,						{3238, 137,    0,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_1_EN,						{3254, 109,   24,   0},		0, NULL, NULL, NULL, false},
 	{&BENCH_EN,							{3318, 143,    0,   0},		0, NULL, NULL, NULL, false},
 
@@ -221,8 +222,9 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_UI_CHILDREN[] =
 {
 	//{&CITY_FLOOR_3D_EN, 				{ 192, 172,  16,   0}, 		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_MISSION_EN,				{  60, 204,  -2,   0},		0, NULL, NULL, NULL, false},
 	{&GUI_EN, 							{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
-	{&LOW_POWER_INDICATOR_LB, 			{  16, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&LOW_POWER_INDICATOR_LB, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

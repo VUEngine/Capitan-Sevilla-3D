@@ -105,6 +105,7 @@ void Gui::resume()
 {
 	Base::resume(this);
 
+	// TODO: this does not work
 	Gui::printAll(this);
 }
 
