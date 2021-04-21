@@ -255,8 +255,6 @@ CharSetROMSpec* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 
 TextureSpec* const LEVEL_1_STAGE_1_ST_TEXTURES[] =
 {
-	&CITY_BG_1_A_TX,
-	&CITY_BG_1_B_TX,
 	&PUNK_TX,
 	&CAR_1_TX,
 	&FLOWER_POT_TX,
