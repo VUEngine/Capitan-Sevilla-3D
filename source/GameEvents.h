@@ -19,7 +19,8 @@
 
 enum GameEvents
 {
-	kEventCaptainDied = kEventEngineLast + 1,
+	kEventCaptainSpawned = kEventEngineLast + 1,
+	kEventCaptainDied,
 	kEventCaptainShot,
 	kEventCheckpointLoaded,
 	kEventDuckCollected,

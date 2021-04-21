@@ -1,6 +1,9 @@
 {
 	"events": [
 		{
+			"name": "CaptainSpawned"
+		},
+		{
 			"name": "CaptainDied"
 		},
 		{

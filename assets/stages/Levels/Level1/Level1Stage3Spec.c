@@ -65,9 +65,11 @@ extern EntitySpec GUI_EN;
 extern EntitySpec KILL_COLLISION_CL;
 
 extern CharSetSpec CITY_BG_2_CH;
+extern CharSetSpec GUI_CH;
 
 extern TextureSpec CITY_BG_2_A_TX;
 extern TextureSpec CITY_BG_2_B_TX;
+extern TextureSpec GUI_TX;
 
 extern Size collision_16_224_64;
 extern Size collision_48_56_64;
@@ -136,6 +138,7 @@ FontROMSpec* const LEVEL_1_STAGE_3_ST_FONTS[] =
 
 CharSetROMSpec* const LEVEL_1_STAGE_3_ST_CHARSETS[] =
 {
+	&GUI_CH,
 	&CITY_BG_2_CH,
 
 	NULL
@@ -143,6 +146,7 @@ CharSetROMSpec* const LEVEL_1_STAGE_3_ST_CHARSETS[] =
 
 TextureSpec* const LEVEL_1_STAGE_3_ST_TEXTURES[] =
 {
+	&GUI_TX,
 	&CITY_BG_2_B_TX,
 	&CITY_BG_2_A_TX,
 

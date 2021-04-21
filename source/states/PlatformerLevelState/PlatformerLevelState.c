@@ -524,9 +524,8 @@ void PlatformerLevelState::setModeToPlaying()
 
 void PlatformerLevelState::onComicDeleted(Object eventFirer __attribute__ ((unused)))
 {
-	 PlatformerLevelState::setModeToPlaying(this);
+	PlatformerLevelState::setModeToPlaying(this);
 }
-
 
 void PlatformerLevelState::onLevelStartedFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {

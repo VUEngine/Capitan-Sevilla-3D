@@ -62,6 +62,7 @@ void Gui::constructor(EntitySpec* animatedEntitySpec, s16 internalId, const char
 	// add event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainSpawned, kEventCaptainSpawned);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainDied, kEventCaptainDied);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
@@ -77,6 +78,7 @@ void Gui::destructor()
 	// remove event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainSpawned, kEventCaptainSpawned);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainDied, kEventCaptainDied);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);
@@ -104,6 +106,8 @@ void Gui::ready(bool recursive)
 void Gui::resume()
 {
 	Base::resume(this);
+
+	NM_ASSERT(!isDeleted(Captain::getInstance()), "Gui::resume: no Captain");
 
 	// TODO: this does not work
 	Gui::printAll(this);
@@ -214,6 +218,11 @@ void Gui::printAll()
 void Gui::onHitTaken(Object eventFirer __attribute__ ((unused)))
 {
 	Gui::printLives(this);
+}
+
+void Gui::onCaptainSpawned(Object eventFirer __attribute__ ((unused)))
+{
+	Gui::printAll(this);
 }
 
 void Gui::onCaptainDied(Object eventFirer __attribute__ ((unused)))

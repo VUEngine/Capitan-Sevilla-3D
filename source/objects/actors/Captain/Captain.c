@@ -24,6 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
+#include <EventManager.h>
 #include <GameEvents.h>
 #include <Game.h>
 #include <CollisionManager.h>
@@ -157,6 +158,8 @@ void Captain::ready(bool recursive)
 
 	// add dust entities
 	Captain::addDustEntity(this);
+
+	Object::fireEvent(EventManager::getInstance(), kEventCaptainSpawned);
 }
 
 void Captain::addProjectileEjectorEntity()
