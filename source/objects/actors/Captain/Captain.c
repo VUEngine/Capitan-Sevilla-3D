@@ -557,11 +557,6 @@ void Captain::takeDamageFrom(int energyToReduce)
 			// play animation
 			AnimatedEntity::playAnimation(this, "Hit");
 
-			if(!StateMachine::isInState(this->stateMachine, State::safeCast(CaptainIdle::getInstance())))
-			{
-				StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
-			}
-
 			// inform others to update ui etc
 			Object::fireEvent(EventManager::getInstance(), kEventHitTaken);
 
@@ -1134,16 +1129,7 @@ void Captain::onHitAnimationComplete(Object eventFirer __attribute__ ((unused)))
 	GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), false);
 	GameState::pauseAnimations(Game::getCurrentState(Game::getInstance()), false);
 
-	// play next animation
-	Velocity velocity = Body::getVelocity(this->body);
-	if(velocity.x)
-	{
-		AnimatedEntity::playAnimation(this, "Walk");
-	}
-	else
-	{
-		AnimatedEntity::playAnimation(this, "Idle");
-	}
+	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
 }
 
 void Captain::toggleShapes(bool kneeling)
