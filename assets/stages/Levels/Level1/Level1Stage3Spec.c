@@ -86,7 +86,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 
 	{&CLOUDS_BACK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
 	{&CLOUDS_FRONT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
-	{&CITY_BG_2_EN,						{-440,  53,  256,   0},		0, NULL, NULL, NULL, true},
+	{&CITY_BG_2_EN,						{ 128,  53,  256,   0},		0, NULL, NULL, NULL, true},
 	{&LEVEL_1_STAGE_3_ET_EN,			{ -62,  31,  255,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{  56, 159,    0,   0},		0, NULL, NULL, NULL, false},
@@ -107,7 +107,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1040,  72,   32,   0},		0, NULL, NULL, NULL, false},
 	{&PUNK_EM,							{1200, 143,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&KILL_COLLISION_CL,				{1260, 288,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, false},
+	{&KILL_COLLISION_CL,				{1260, 248,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, true},
 
 	{&LEVEL_1_STAGE_3_BUILDING_3A_EN,	{1450, 116,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_3B_EN,	{1734,  96,    0,   0},		0, NULL, NULL, NULL, false},
