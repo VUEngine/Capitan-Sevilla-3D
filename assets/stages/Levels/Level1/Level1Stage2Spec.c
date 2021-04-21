@@ -158,7 +158,7 @@ StageROMSpec LEVEL_1_STAGE_2_ST =
 	// streaming
 	{
 		// load padding
-		24,
+		16,
 		// unload padding
 		4,
 		// streaming amplitude
