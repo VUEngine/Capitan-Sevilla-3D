@@ -101,6 +101,12 @@ void Gui::ready(bool recursive)
 	{
 		Gui::printAll(this);
 	}
+
+	VirtualList sprites = Entity::getSprites(this);
+	VirtualNode node = VirtualList::begin(sprites);
+	Sprite sprite = Sprite::safeCast(VirtualNode::getData(node));
+
+	Texture::addEventListener(Sprite::getTexture(sprite), Object::safeCast(this), (EventListener)Gui::onSpriteTextureRewritten, kEventTextureRewritten);
 }
 
 void Gui::resume()
@@ -213,6 +219,11 @@ void Gui::printAll()
 {
 	Gui::printLives(this);
 	Gui::printGums(this);
+}
+
+void Gui::onSpriteTextureRewritten(Object eventFirer __attribute__ ((unused)))
+{
+	Gui::printAll(this);
 }
 
 void Gui::onHitTaken(Object eventFirer __attribute__ ((unused)))
