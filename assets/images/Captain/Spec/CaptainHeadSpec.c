@@ -306,7 +306,7 @@ ProjectileEjectorROMSpec CAPTAIN_HEAD_PE =
 	false,
 
 	// maximum number of projectiles on screen at the same time
-	3,
+	4,
 
 	// name of animation to play on projectile ejection
 	"Spit",
