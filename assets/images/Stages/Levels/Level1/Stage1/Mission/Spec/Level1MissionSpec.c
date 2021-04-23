@@ -43,12 +43,11 @@ extern BYTE Level1MissionMap[];
 AnimationFunctionROMSpec LEVEL_1_MISSION_EN_ANIM =
 {
 	// number of frames of this animation function
-	38,
+	29,
 
 	// frames to play in animation
 	{
 		0, 3, 2, 1,
-		1, 1, 1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1, 1, 1,
 		1, 1, 1, 1, 1, 1, 1, 1, 1,
 		1, 2, 3, 0,
