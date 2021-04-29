@@ -56,6 +56,7 @@ void ProgressManager::constructor()
 	Object::addEventListener(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCaptainShot, kEventCaptainShot);
+	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onGumsReloaded, kEventGumsReloaded);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
 	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
@@ -68,6 +69,7 @@ void ProgressManager::destructor()
 	Object::removeEventListener(PlatformerLevelState::getClock(PlatformerLevelState::getInstance()), Object::safeCast(this), (EventListener)ProgressManager::onSecondChange, kEventSecondChanged);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onHitTaken, kEventHitTaken);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCaptainShot, kEventCaptainShot);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onGumsReloaded, kEventGumsReloaded);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelStarted, kEventLevelStarted);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onCheckpointLoaded, kEventCheckpointLoaded);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)ProgressManager::onLevelCompleted, kEventLevelCompleted);
@@ -135,6 +137,11 @@ void ProgressManager::onHitTaken(Object eventFirer __attribute__ ((unused)))
 }
 
 void ProgressManager::onCaptainShot(Object eventFirer __attribute__ ((unused)))
+{
+	this->captainCurrentGums = Captain::getGums(Captain::getInstance());
+}
+
+void ProgressManager::onGumsReloaded(Object eventFirer __attribute__ ((unused)))
 {
 	this->captainCurrentGums = Captain::getGums(Captain::getInstance());
 }
