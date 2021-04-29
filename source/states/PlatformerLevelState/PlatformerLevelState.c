@@ -170,6 +170,7 @@ void PlatformerLevelState::enter(void* owner)
 	PlatformerLevelState::setModeToPaused(this);
 
 	// show up level after a little delay
+	Camera::startEffect(Camera::getInstance(), kHide);
 	MessageDispatcher::dispatchMessage(200, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelSetUp, NULL);
 
 	// start clocks
