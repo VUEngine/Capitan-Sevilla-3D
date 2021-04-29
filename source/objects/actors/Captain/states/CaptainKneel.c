@@ -77,7 +77,7 @@ void CaptainKneel::onKeyReleased(void* owner, const UserInput* userInput)
 
 void CaptainKneel::onKeyPressed(void* owner, const UserInput* userInput)
 {
-	if(K_RD & userInput->pressedKey)
+	if((K_SEL|K_RD|K_RU|K_RL|K_RR|K_LT|K_RT) & userInput->pressedKey)
 	{
 		Captain::reload(owner);
 	}

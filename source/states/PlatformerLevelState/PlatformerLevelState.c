@@ -347,23 +347,9 @@ void PlatformerLevelState::processUserInput(UserInput userInput)
 
 	if(kPlaying == this->mode)
 	{
-		if(this->userInput.pressedKey)
+		if(this->userInput.pressedKey & ~K_PWR)
 		{
-			if(K_SEL & this->userInput.pressedKey)
-			{
-				// adjustment screen
-				PlatformerLevelState::setModeToPaused(this);
-
-				// set next state of adjustment screen state to null so it can differentiate between
-				// being called the splash screen sequence or from within the game (a bit hacky...)
-				SplashScreenState::setNextState(SplashScreenState::safeCast(AdjustmentScreenState::getInstance()), NULL);
-
-				// pause game and switch to adjustment screen state
-				Game::pause(Game::getInstance(), GameState::safeCast(AdjustmentScreenState::getInstance()));
-
-				return;
-			}
-			else if(K_STA & this->userInput.pressedKey)
+			if(K_STA & this->userInput.pressedKey)
 			{
 				// pause game and switch to pause screen state
 				Game::pause(Game::getInstance(), GameState::safeCast(PauseScreenState::getInstance()));

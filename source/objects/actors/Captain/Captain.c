@@ -678,7 +678,6 @@ void Captain::onProjectileEjected(Object eventFirer __attribute__ ((unused)))
 	if(this->gums > 0)
 	{
 		this->gums--;
-
 		Object::fireEvent(EventManager::getInstance(), kEventCaptainShot);
 	}
 
