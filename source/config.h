@@ -356,10 +356,10 @@
 #define __BRIGHTNESS_BRIGHT_RED						128
 
 // default delay between steps in fade effect
-#define __FADE_DELAY								8
+#define __FADE_DELAY								48
 
 // defaul step increment in fade transitions
-#define __CAMERA_EFFECT_FADE_INCREMENT				8
+#define __CAMERA_EFFECT_FADE_INCREMENT				4
 
 //---------------------------------------------------------------------------------------------------------
 //											COLOR PALETTES

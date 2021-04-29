@@ -90,6 +90,7 @@ void CreditsState::enter(void* owner)
 	this->finishedScrolling = false;
 
 	// fade in screen
+	Camera::startEffect(Camera::getInstance(), kHide);
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		1500, // initial delay (in ms)

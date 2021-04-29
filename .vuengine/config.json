@@ -16,8 +16,8 @@
 			"brightRed": 128,
 			"mediumRed": 64,
 			"darkRed": 32,
-			"fadeDelay": 8,
-			"fadeIncrement": 8
+			"fadeDelay": 48,
+			"fadeIncrement": 4
 		},
 		"palettes": {
 			"bgMap": {
@@ -100,7 +100,7 @@
 		"timerResolution": 10
 	},
 	"game": [],
-	"communications":{
+	"communications": {
 		"enable": false
 	},
 	"memoryPools": {
@@ -238,6 +238,5 @@
 		},
 		"paramTableSegments": 1
 	},
-	"hacks": {
-	}
+	"hacks": {}
 }

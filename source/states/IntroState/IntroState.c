@@ -48,6 +48,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern StageROMSpec INTRO_STAGE_ST;
+extern PlatformerLevelSpec LEVEL_1_LV;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -150,6 +151,7 @@ void IntroState::enter(void* owner)
 	MessageDispatcher::dispatchMessage(INTRO_IMAGE_DURATION, Object::safeCast(this), Object::safeCast(this), kIntroNextImage, NULL);
 
 	// fade in screen
+	Camera::startEffect(Camera::getInstance(), kHide);
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		50, // initial delay (in ms)
@@ -299,10 +301,8 @@ void IntroState::nextImageStep()
 			break;
 		default:
 		{
-			// disable user input
 			Game::disableKeypad(Game::getInstance());
 
-			// fade out screen
 			Brightness brightness = (Brightness){0, 0, 0};
 			Camera::startEffect(Camera::getInstance(),
 				kFadeTo, // effect type
@@ -318,12 +318,10 @@ void IntroState::nextImageStep()
 
 void IntroState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	// enable user input
 	Game::enableKeypad(Game::getInstance());
 }
 
 void IntroState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	extern PlatformerLevelSpec LEVEL_1_LV;
 	PlatformerLevelState::startLevel(PlatformerLevelState::getInstance(), &LEVEL_1_LV);
 }
