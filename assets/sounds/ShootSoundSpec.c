@@ -110,7 +110,7 @@ SoundChannelROM* SHOOT_SND_CHANNELS[] =
 SoundROM SHOOT_SND =
 {
 	/// Name
-	"Collect sound",
+	"Shoot",
 
 	/// Play in loop
 	false,

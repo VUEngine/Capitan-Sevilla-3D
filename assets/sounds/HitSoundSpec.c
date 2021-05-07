@@ -111,7 +111,7 @@ SoundChannelROM* HIT_SND_CHANNELS[] =
 SoundROM HIT_SND =
 {
 	/// Name
-	"Fire sound",
+	"Hit",
 
 	/// Play in loop
 	false,

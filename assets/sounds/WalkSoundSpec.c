@@ -30,24 +30,18 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 ReloadTrack[] =
+const u16 WalkTrack[] =
 {
-  A_3, B_3, E_4, HOLD, ENDSOUND,
-  80, 80, 80, 1, 1,
-  15, 15, 15, 15, 0,
+  A_3, HOLD, ENDSOUND,
+  200, 1, 1,
+  12, 12, 0,
 };
 
-SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -77,7 +71,7 @@ SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sineWaveForm,
+	pianoWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -86,31 +80,31 @@ SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM RELOAD_SND_CHANNEL_1 =
+SoundChannelROM WALK_SND_CHANNEL_1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&RELOAD_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&WALK_SND_CHANNEL_1_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
 
 	/// Sound track
 	{
-		(const u8*)ReloadTrack
+		(const u8*)WalkTrack
 	}
 };
 
 
-SoundChannelROM* RELOAD_SND_CHANNELS[] =
+SoundChannelROM* WALK_SND_CHANNELS[] =
 {
-	&RELOAD_SND_CHANNEL_1,
+	&WALK_SND_CHANNEL_1,
 	NULL
 };
 
-SoundROM RELOAD_SND =
+SoundROM WALK_SND =
 {
 	/// Name
-	"Reload",
+	"Walk",
 
 	/// Play in loop
 	false,
@@ -119,5 +113,5 @@ SoundROM RELOAD_SND =
 	500,
 
 	/// Tracks
-	(SoundChannel**)RELOAD_SND_CHANNELS
+	(SoundChannel**)WALK_SND_CHANNELS
 };

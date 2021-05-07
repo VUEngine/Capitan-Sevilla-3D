@@ -31,7 +31,15 @@
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
 #include <KeypadManager.h>
+#include <SoundManager.h>
 #include <debugUtilities.h>
+
+
+//---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern Sound WALK_SND;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -70,6 +78,24 @@ void CaptainMoving::execute(void* owner)
 	if(((K_LL | K_LR ) & KeypadManager::getHoldKey(KeypadManager::getInstance())) && Body::isAwake(Actor::getBody(owner)))
 	{
 		Captain::applyForce(owner, __X_AXIS, false);
+	}
+
+	// play footstep sounds
+	if (AnimatedEntity::isAnimationLoaded(AnimatedEntity::safeCast(owner), "Walk"))
+	{
+		s8 currentFrame = AnimatedEntity::getActualFrame(AnimatedEntity::safeCast(owner));
+		if (currentFrame == 0 || currentFrame == 6)
+		{
+			SoundManager::playSound(
+				SoundManager::getInstance(),
+				&WALK_SND,
+				kPlayAll,
+				Actor::getPosition(Actor::safeCast(owner)),
+				kSoundWrapperPlaybackNormal,
+				NULL,
+				NULL
+			);
+		}
 	}
 }
 
