@@ -30,25 +30,18 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 CrumbleTrack[] =
+const u16 ReloadTrack[] =
 {
-  A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, ENDSOUND,
-  100, 80, 100, 1, 100, 80, 100, 1, 100, 80, 100, 1, 1,
-  15, 15, 15, 15 , 15, 15, 15, 15 , 15, 15, 15, 15 , 0,
-  1, 4, 1, 2 , 1, 4, 1, 2 , 1, 4, 1, 2 , 0
+  A_3, B_3, E_4, HOLD, ENDSOUND,
+  80, 80, 80, 1, 1,
+  15, 15, 15, 15, 0,
 };
 
-SoundChannelConfigurationROM CRUMBLE_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -66,7 +59,7 @@ SoundChannelConfigurationROM CRUMBLE_SND_CHANNEL_1_CONFIGURATION =
 	0x80,
 
 	/// SxEV1
-	0x00,
+	0x01,
 
 	/// SxFQH
 	0x00,
@@ -78,47 +71,47 @@ SoundChannelConfigurationROM CRUMBLE_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sawtoothWaveForm,
+	sineWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
-	kChannelNoise,
+	kChannelNormal,
 
 	/// Volume
 	__SOUND_LR
 };
 
-SoundChannelROM CRUMBLE_SND_CHANNEL_1 =
+SoundChannelROM RELOAD_SND_CHANNEL_1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&CRUMBLE_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&RELOAD_SND_CHANNEL_1_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
 
 	/// Sound track
 	{
-		(const u8*)CrumbleTrack
+		(const u8*)ReloadTrack
 	}
 };
 
 
-SoundChannelROM* CRUMBLE_SND_CHANNELS[] =
+SoundChannelROM* RELOAD_SND_CHANNELS[] =
 {
-	&CRUMBLE_SND_CHANNEL_1,
+	&RELOAD_SND_CHANNEL_1,
 	NULL
 };
 
-SoundROM CRUMBLE_SND =
+SoundROM RELOAD_SND =
 {
 	/// Name
-	"Fire sound",
+	"Reload",
 
 	/// Play in loop
 	false,
 
 	/// Target timer resolution in us
-	5000,
+	500,
 
 	/// Tracks
-	(SoundChannel**)CRUMBLE_SND_CHANNELS
+	(SoundChannel**)RELOAD_SND_CHANNELS
 };

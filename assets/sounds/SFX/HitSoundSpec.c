@@ -44,8 +44,7 @@ const u16 HitTrack[] =
 {
   A_4, B_4, E_5, HOLD, ENDSOUND,
   100, 80, 100, 1, 1,
-  15, 15, 15, 15 , 0,
-  1, 4, 1, 2 , 0
+  15, 15, 15, 15, 0,
 };
 
 SoundChannelConfigurationROM HIT_SND_CHANNEL_1_CONFIGURATION =

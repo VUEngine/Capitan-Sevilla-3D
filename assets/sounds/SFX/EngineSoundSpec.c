@@ -1,4 +1,4 @@
-/* VUEngine - Virtual Utopia Hit <http://vuengine.planetvb.com/>
+/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
  * A universal game engine for the Nintendo Virtual Boy
  *
  * Copyright (C) 2007, 2019 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
@@ -26,46 +26,47 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+#define ENGINE_FREQ				MINIMUM_AUDIBLE_NOTE + 0x0AA + 256
+#define ENGINE_DURATION			17
+#define ENGINE_VOLUME_DELTA		15
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-
-const u16 ReloadTrack[] =
+const u16 EngineSoundTrack1[] =
 {
-  A_3, B_3, E_4, HOLD, ENDSOUND,
-  80, 80, 80, 1, 1,
-  15, 15, 15, 15, 0,
+  PAU, 0x016 + ENGINE_FREQ, 0x024 + ENGINE_FREQ, 0x032 + ENGINE_FREQ, 0x040 + ENGINE_FREQ, 0x032 + ENGINE_FREQ, 0x024 + ENGINE_FREQ, 0x016 + ENGINE_FREQ, ENDSOUND,
+  50, ENGINE_DURATION * 4, ENGINE_DURATION * 3, ENGINE_DURATION * 2, ENGINE_DURATION * 1, ENGINE_DURATION * 2, ENGINE_DURATION * 3, ENGINE_DURATION * 4,
+  0, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA,
 };
 
-SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM ENGINE_SOUND_CHANNEL_1_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
 
 	/// SxINT
-	0x9F,
+	0x00,
 
 	/// Volume SxLRV
-	0xFF,
+	0x00,
 
 	/// SxRAM (this is overrode by the SoundManager)
 	0x00,
 
 	/// SxEV0
-	0x80,
+	0xF0,
 
 	/// SxEV1
-	0x01,
+	0x00,
 
 	/// SxFQH
 	0x00,
@@ -77,47 +78,47 @@ SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sineWaveForm,
+	engineWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
-	kChannelNormal,
+	kChannelModulation,
 
 	/// Volume
 	__SOUND_LR
 };
 
-SoundChannelROM RELOAD_SND_CHANNEL_1 =
+SoundChannelROM ENGINE_SOUND_CHANNEL_1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&RELOAD_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&ENGINE_SOUND_CHANNEL_1_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
 
 	/// Sound track
 	{
-		(const u8*)ReloadTrack
+		(const u8*)EngineSoundTrack1
 	}
 };
 
 
-SoundChannelROM* RELOAD_SND_CHANNELS[] =
+SoundChannelROM* ENGINE_SOUND_CHANNELS[] =
 {
-	&RELOAD_SND_CHANNEL_1,
+	&ENGINE_SOUND_CHANNEL_1,
 	NULL
 };
 
-SoundROM RELOAD_SND =
+SoundROM ENGINE_SND =
 {
 	/// Name
-	"Reload",
+	"Engine",
 
 	/// Play in loop
-	false,
+	true,
 
 	/// Target timer resolution in us
-	500,
+	3000,
 
 	/// Tracks
-	(SoundChannel**)RELOAD_SND_CHANNELS
+	(SoundChannel**)ENGINE_SOUND_CHANNELS
 };

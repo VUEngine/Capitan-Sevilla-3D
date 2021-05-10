@@ -30,18 +30,24 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 WalkTrack[] =
+const u16 CrumbleTrack[] =
 {
-  A_3, HOLD, ENDSOUND,
-  200, 1, 1,
-  12, 12, 0,
+  A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, ENDSOUND,
+  100,  80, 100,    1, 100,  80, 100,    1, 100,  80, 100,    1, 1,
+   15,  15,  15,   15,  15,  15,  15,   15 , 15,  15,  15,   15, 0,
 };
 
-SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM CRUMBLE_SND_CHANNEL_1_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -59,7 +65,7 @@ SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
 	0x80,
 
 	/// SxEV1
-	0x01,
+	0x00,
 
 	/// SxFQH
 	0x00,
@@ -71,47 +77,47 @@ SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	pianoWaveForm,
+	sawtoothWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
-	kChannelNormal,
+	kChannelNoise,
 
 	/// Volume
 	__SOUND_LR
 };
 
-SoundChannelROM WALK_SND_CHANNEL_1 =
+SoundChannelROM CRUMBLE_SND_CHANNEL_1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&WALK_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&CRUMBLE_SND_CHANNEL_1_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
 
 	/// Sound track
 	{
-		(const u8*)WalkTrack
+		(const u8*)CrumbleTrack
 	}
 };
 
 
-SoundChannelROM* WALK_SND_CHANNELS[] =
+SoundChannelROM* CRUMBLE_SND_CHANNELS[] =
 {
-	&WALK_SND_CHANNEL_1,
+	&CRUMBLE_SND_CHANNEL_1,
 	NULL
 };
 
-SoundROM WALK_SND =
+SoundROM CRUMBLE_SND =
 {
 	/// Name
-	"Walk",
+	"Fire sound",
 
 	/// Play in loop
 	false,
 
 	/// Target timer resolution in us
-	500,
+	5000,
 
 	/// Tracks
-	(SoundChannel**)WALK_SND_CHANNELS
+	(SoundChannel**)CRUMBLE_SND_CHANNELS
 };
