@@ -40,14 +40,14 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 ReloadTrack[] =
+const u16 CrumbleTrack[] =
 {
-  A_3, B_3, E_4, HOLD, ENDSOUND,
-  80, 80, 80, 1, 1,
-  15, 15, 15, 15 , 0,
+  A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, ENDSOUND,
+  100,  80, 100,    1, 100,  80, 100,    1, 100,  80, 100,    1, 1,
+   15,  15,  15,   15,  15,  15,  15,   15 , 15,  15,  15,   15, 0,
 };
 
-SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM CRUMBLE_SND_CHANNEL_1_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -65,7 +65,7 @@ SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
 	0x80,
 
 	/// SxEV1
-	0x01,
+	0x00,
 
 	/// SxFQH
 	0x00,
@@ -77,47 +77,47 @@ SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sineWaveForm,
+	sawtoothWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
-	kChannelNormal,
+	kChannelNoise,
 
 	/// Volume
 	__SOUND_LR
 };
 
-SoundChannelROM RELOAD_SND_CHANNEL_1 =
+SoundChannelROM CRUMBLE_SND_CHANNEL_1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&RELOAD_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&CRUMBLE_SND_CHANNEL_1_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
 
 	/// Sound track
 	{
-		(const u8*)ReloadTrack
+		(const u8*)CrumbleTrack
 	}
 };
 
 
-SoundChannelROM* RELOAD_SND_CHANNELS[] =
+SoundChannelROM* CRUMBLE_SND_CHANNELS[] =
 {
-	&RELOAD_SND_CHANNEL_1,
+	&CRUMBLE_SND_CHANNEL_1,
 	NULL
 };
 
-SoundROM RELOAD_SND =
+SoundROM CRUMBLE_SND =
 {
 	/// Name
-	"Collect sound",
+	"Fire sound",
 
 	/// Play in loop
 	false,
 
 	/// Target timer resolution in us
-	500,
+	5000,
 
 	/// Tracks
-	(SoundChannel**)RELOAD_SND_CHANNELS
+	(SoundChannel**)CRUMBLE_SND_CHANNELS
 };

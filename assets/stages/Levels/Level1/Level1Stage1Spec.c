@@ -110,11 +110,12 @@ extern Size collision_16_224_64;
 extern Size collision_384_16_64;
 extern Size collision_3608_16_64;
 
+extern Sound CAPTAIN_SONG;
+
 
 //---------------------------------------------------------------------------------------------------------
 //											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
-
 
 PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 {
@@ -252,6 +253,12 @@ TextureSpec* const LEVEL_1_STAGE_1_ST_TEXTURES[] =
 const PostProcessingEffect LEVEL_1_STAGE_1_ST_POST_PROCESSING_EFFECTS[] =
 {
 	NULL
+};
+
+SoundROM* const LEVEL_1_STAGE_1_ST_BGM[] =
+{
+	&CAPTAIN_SONG,
+	NULL,
 };
 
 
@@ -460,7 +467,7 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 		(TextureSpec**)LEVEL_1_STAGE_1_ST_TEXTURES,
 
 		// background sounds
-		(Sound**)NULL,
+		(Sound**)LEVEL_1_STAGE_1_ST_BGM,
 	},
 
 	// entities

@@ -31,7 +31,15 @@
 #include <PlatformerLevelState.h>
 #include <MessageDispatcher.h>
 #include <KeypadManager.h>
+#include <SoundManager.h>
 #include <debugUtilities.h>
+
+
+//---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern Sound WALK_SND;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -71,6 +79,24 @@ void CaptainMoving::execute(void* owner)
 	{
 		Captain::applyForce(owner, __X_AXIS, false);
 	}
+
+	// play footstep sounds
+	if (AnimatedEntity::isAnimationLoaded(AnimatedEntity::safeCast(owner), "Walk"))
+	{
+		s8 currentFrame = AnimatedEntity::getActualFrame(AnimatedEntity::safeCast(owner));
+		if (currentFrame == 0 || currentFrame == 6)
+		{
+			SoundManager::playSound(
+				SoundManager::getInstance(),
+				&WALK_SND,
+				kPlayAll,
+				Actor::getPosition(Actor::safeCast(owner)),
+				kSoundWrapperPlaybackNormal,
+				NULL,
+				NULL
+			);
+		}
+	}
 }
 
 bool CaptainMoving::processMessage(void* owner, Telegram telegram)
@@ -94,7 +120,7 @@ bool CaptainMoving::processMessage(void* owner, Telegram telegram)
 
 void CaptainMoving::onKeyPressed(void* owner, const UserInput* userInput)
 {
-	if(K_RD & userInput->pressedKey)
+	if((K_SEL|K_RD|K_RU|K_RL|K_RR|K_LT|K_RT) & userInput->pressedKey)
 	{
 		Captain::reload(owner);
 	}

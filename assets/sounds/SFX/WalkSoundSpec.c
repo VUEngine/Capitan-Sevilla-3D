@@ -1,7 +1,7 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+/* VUEngine - Virtual Utopia Hit <http://vuengine.planetvb.com/>
  * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * Copyright (C) 2007, 2019 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction, including
@@ -24,70 +24,94 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include "CaptainKneel.h"
-#include "CaptainMoving.h"
-#include "../Captain.h"
-
-#include <PlatformerLevelState.h>
-#include <MessageDispatcher.h>
-#include <KeypadManager.h>
-#include <debugUtilities.h>
+#include <SoundManager.h>
+#include <WaveForms.h>
+#include <MIDI.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												CLASS'S METHODS
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-void CaptainKneel::constructor()
+
+const u16 WalkTrack[] =
 {
-	// construct base
-	Base::constructor();
-}
+  PAU, A_3, HOLD, ENDSOUND,
+  50, 200, 1, 1,
+  0, 12, 12, 0,
+};
 
-void CaptainKneel::destructor()
+SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
 {
-	// destroy base
-	Base::destructor();
-}
+	/// kMIDI, kPCM
+	kMIDI,
 
-void CaptainKneel::enter(void* owner)
+	/// SxINT
+	0x9F,
+
+	/// Volume SxLRV
+	0xFF,
+
+	/// SxRAM (this is overrode by the SoundManager)
+	0x00,
+
+	/// SxEV0
+	0x80,
+
+	/// SxEV1
+	0x01,
+
+	/// SxFQH
+	0x00,
+
+	/// SxFQL
+	0x00,
+
+	/// Ch. 5 only
+	0x00,
+
+	/// Waveform data pointer
+	pianoWaveForm,
+
+	/// kChannelNormal, kChannelModulation, kChannelNoise
+	kChannelNormal,
+
+	/// Volume
+	__SOUND_LR
+};
+
+SoundChannelROM WALK_SND_CHANNEL_1 =
 {
-	// show animation
-	AnimatedEntity::playAnimation(owner, "KneelDown");
+	/// Configuration
+	(SoundChannelConfiguration*)&WALK_SND_CHANNEL_1_CONFIGURATION,
 
-	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_RELEASED | __KEY_PRESSED);
+	/// Length (PCM)
+	0,
 
-	// manipulate captain's shape
-	Captain::toggleShapes(owner, true);
-}
-
-void CaptainKneel::exit(void* owner)
-{
-	// manipulate captain's shape
-	Captain::toggleShapes(owner, false);
-}
-
-void CaptainKneel::onKeyReleased(void* owner, const UserInput* userInput)
-{
-    if(K_LD & userInput->releasedKey)
-    {
-        Captain::standUp(owner);
-    }
-}
-
-void CaptainKneel::onKeyPressed(void* owner, const UserInput* userInput)
-{
-	if((K_SEL|K_RD|K_RU|K_RL|K_RR|K_LT|K_RT) & userInput->pressedKey)
+	/// Sound track
 	{
-		Captain::reload(owner);
+		(const u8*)WalkTrack
 	}
-	else if(K_A & userInput->pressedKey)
-	{
-		Captain::jump(owner, true);
-	}
-	else if(K_B & userInput->pressedKey)
-	{
-		Captain::startShooting(owner);
-	}
-}
+};
 
+
+SoundChannelROM* WALK_SND_CHANNELS[] =
+{
+	&WALK_SND_CHANNEL_1,
+	NULL
+};
+
+SoundROM WALK_SND =
+{
+	/// Name
+	"Walk",
+
+	/// Play in loop
+	false,
+
+	/// Target timer resolution in us
+	500,
+
+	/// Tracks
+	(SoundChannel**)WALK_SND_CHANNELS
+};

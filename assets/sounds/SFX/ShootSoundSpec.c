@@ -30,25 +30,18 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
-
-
-//---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 HitTrack[] =
+const u16 ShootTrack[] =
 {
-  A_4, B_4, E_5, HOLD, ENDSOUND,
-  100, 80, 100, 1, 1,
+  A_3, G_3, E_4, HOLD, ENDSOUND,
+  80, 80, 80, 1, 1,
   15, 15, 15, 15 , 0,
-  1, 4, 1, 2 , 0
 };
 
-SoundChannelConfigurationROM HIT_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM SHOOT_SND_CHANNEL_1_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -78,40 +71,40 @@ SoundChannelConfigurationROM HIT_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sawtoothWaveForm,
+	pianoWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
-	kChannelNoise,
+	kChannelNormal,
 
 	/// Volume
 	__SOUND_LR
 };
 
-SoundChannelROM HIT_SND_CHANNEL_1 =
+SoundChannelROM SHOOT_SND_CHANNEL_1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&HIT_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&SHOOT_SND_CHANNEL_1_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
 
 	/// Sound track
 	{
-		(const u8*)HitTrack
+		(const u8*)ShootTrack
 	}
 };
 
 
-SoundChannelROM* HIT_SND_CHANNELS[] =
+SoundChannelROM* SHOOT_SND_CHANNELS[] =
 {
-	&HIT_SND_CHANNEL_1,
+	&SHOOT_SND_CHANNEL_1,
 	NULL
 };
 
-SoundROM HIT_SND =
+SoundROM SHOOT_SND =
 {
 	/// Name
-	"Fire sound",
+	"Shoot",
 
 	/// Play in loop
 	false,
@@ -120,5 +113,5 @@ SoundROM HIT_SND =
 	500,
 
 	/// Tracks
-	(SoundChannel**)HIT_SND_CHANNELS
+	(SoundChannel**)SHOOT_SND_CHANNELS
 };

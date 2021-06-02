@@ -110,7 +110,7 @@ void CaptainIdle::onKeyHold(void* owner, const UserInput* userInput)
 
 void CaptainIdle::onKeyPressed(void* owner, const UserInput* userInput)
 {
-	if(K_RD & userInput->pressedKey)
+	if((K_SEL|K_RD|K_RU|K_RL|K_RR|K_LT|K_RT) & userInput->pressedKey)
 	{
 		Captain::reload(owner);
 	}
