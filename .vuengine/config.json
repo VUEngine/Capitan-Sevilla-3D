@@ -14,10 +14,10 @@
 	"colors": {
 		"brightness": {
 			"brightRed": 128,
-			"mediumRed": 64,
 			"darkRed": 32,
 			"fadeDelay": 48,
-			"fadeIncrement": 4
+			"fadeIncrement": 4,
+			"mediumRed": 64
 		},
 		"palettes": {
 			"bgMap": {
@@ -75,17 +75,17 @@
 		"scrambleBinary": false
 	},
 	"debug": {
-		"alertVipOvertime": false,
-		"alertForTornFrames": false,
-		"dimmForProfiling": false,
 		"enableProfiler": false,
-		"printFramerate": false,
-		"profileStreaming": false,
-		"showDetailedMemoryPoolStatus": false,
-		"showMemoryPoolStatus": false,
 		"showStackOverflowAlert": false,
+		"alertVipOvertime": false,
+		"dimmForProfiling": false,
+		"showDetailedMemoryPoolStatus": false,
+		"printFramerate": false,
+		"showMemoryPoolStatus": false,
+		"profileStreaming": false,
 		"showStreamingProfiling": false,
-		"stackHeadroom": 500
+		"stackHeadroom": 500,
+		"alertForTornFrames": false
 	},
 	"exception": {
 		"position": {

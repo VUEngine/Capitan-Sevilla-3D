@@ -191,6 +191,8 @@ void PlatformerLevelState::enter(void* owner)
 
 void PlatformerLevelState::exit(void* owner)
 {
+	Camera::startEffect(Camera::getInstance(), kHide);
+
 	// remove event listeners
 	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onCaptainDied, kEventCaptainDied);
 	Object::removeEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onComicDeleted, kEventComicDeleted);
@@ -269,7 +271,6 @@ void PlatformerLevelState::resume(void* owner)
 	GameState::propagateMessage(this, kLevelResumed);
 
 	// start a fade in effect
-	Camera::startEffect(Camera::getInstance(), kHide);
 	Camera::startEffect(Camera::getInstance(),
 		kFadeTo, // effect type
 		0, // initial delay (in ms)
@@ -397,7 +398,6 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 		case kLevelStarted:
 
 			// fade in screen
-			Camera::startEffect(Camera::getInstance(), kHide);
 			Camera::startEffect(Camera::getInstance(),
 				kFadeTo, // effect type
 				0, // initial delay (in ms)

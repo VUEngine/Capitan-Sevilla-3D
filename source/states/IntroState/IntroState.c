@@ -164,6 +164,8 @@ void IntroState::enter(void* owner)
 
 void IntroState::exit(void* owner)
 {
+	Camera::startEffect(Camera::getInstance(), kHide);
+
 	// call base
 	Base::exit(this, owner);
 }
