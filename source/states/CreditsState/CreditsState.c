@@ -75,7 +75,7 @@ void CreditsState::enter(void* owner)
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&CREDITS_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&CREDITS_STAGE_ST, NULL, true, false);
 
 	// get entity reference
 	this->entityCredits = Actor::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "CREDITS", true));

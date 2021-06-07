@@ -120,8 +120,9 @@ void Enemy::takeHit(u8 power)
 
 void Enemy::die()
 {
+	this->respawn = false;
 	Enemy::stopFlashing(this);
-	Container::deleteMyself(this);
+	Enemy::deleteMyself(this);
 }
 
 bool Enemy::handleMessage(Telegram telegram)

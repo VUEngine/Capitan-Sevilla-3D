@@ -49,6 +49,7 @@ void Punk::destructor()
 
 void Punk::die()
 {
+	this->respawn = false;
 	Actor::stopAllMovement(this);
 	Entity::allowCollisions(this, false);
 	Enemy::stopFlashing(this);

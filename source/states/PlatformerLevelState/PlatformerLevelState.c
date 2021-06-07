@@ -113,7 +113,7 @@ void PlatformerLevelState::enter(void* owner)
 		Camera::setPosition(Camera::getInstance(), screenPosition);
 
 		// load stage
-		GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, false);
+		GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, false, true);
 
 		// create captain
 		PositionedEntity positionedEntity =
@@ -158,7 +158,7 @@ void PlatformerLevelState::enter(void* owner)
 	else
 	{
 		// load stage
-		GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, true);
+		GameState::loadStage(this, this->currentStageEntryPoint->stageSpec, positionedEntitiesToIgnore, true, true);
 	}
 
 	CustomCameraMovementManager::disable(CustomCameraMovementManager::getInstance());

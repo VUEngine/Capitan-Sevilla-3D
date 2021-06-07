@@ -96,7 +96,7 @@ void IntroState::enter(void* owner)
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&INTRO_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&INTRO_STAGE_ST, NULL, true, false);
 
 	// init members
 	this->currentStep = 0;

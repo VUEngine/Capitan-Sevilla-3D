@@ -76,7 +76,7 @@ void TitleScreenState::enter(void* owner)
 	GameState::startClocks(this);
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&TITLE_SCREEN_STAGE_ST, NULL, true);
+	GameState::loadStage(this, (StageSpec*)&TITLE_SCREEN_STAGE_ST, NULL, true, false);
 
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(), kHide);

@@ -55,6 +55,7 @@ typedef const MovingOneWayEntitySpec MovingOneWayEntityROMSpec;
 class MovingOneWayEntity : Actor
 {
 	fix10_6 speed;
+	bool respawn;
 
 	void constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, s16 internalId, const char* const name);
 	void startMovement();

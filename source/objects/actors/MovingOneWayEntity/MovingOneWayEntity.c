@@ -31,6 +31,7 @@
 #include <MessageDispatcher.h>
 #include <PlatformerLevelState.h>
 #include <debugUtilities.h>
+#include <Captain.h>
 #include "MovingOneWayEntity.h"
 
 
@@ -44,6 +45,7 @@ void MovingOneWayEntity::constructor(MovingOneWayEntitySpec* movingOneWayEntityS
 	Base::constructor((ActorSpec*)&movingOneWayEntitySpec->actorSpec, internalId, name);
 
 	this->speed = movingOneWayEntitySpec->speed;
+	this->respawn = true;
 }
 
 void MovingOneWayEntity::destructor()
@@ -75,7 +77,14 @@ void MovingOneWayEntity::startMovement()
 {
 	if(this->speed != 0)
 	{
-		Velocity velocity = {this->speed, 0, 0};
+		if(isDeleted(Captain::getInstance()))
+		{
+			return;
+		}
+		
+		const Vector3D* captainPosition = Captain::getPosition(Captain::getInstance());
+
+		Velocity velocity = {captainPosition->x <= this->transformation.globalPosition.x ? this->speed : this->speed, 0, 0};
 		Actor::moveUniformly(this, &velocity);
 	}
 }
@@ -87,5 +96,5 @@ void MovingOneWayEntity::stopMovement()
 
 bool MovingOneWayEntity::respawn()
 {
-	return false;
+	return this->respawn;
 }
