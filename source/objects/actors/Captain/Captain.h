@@ -106,6 +106,7 @@ class Captain : Actor
 	bool stopMovementOnAxis(u16 axis);
 	void kneel();
 	void standUp();
+	bool isJumping();
 	void jump(bool checkIfYMovement);
 	void addMomentumToJump();
 	void checkDirection(u32 currentPressedKey, char * animation);

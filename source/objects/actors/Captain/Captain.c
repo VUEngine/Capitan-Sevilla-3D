@@ -220,6 +220,11 @@ void Captain::standUp()
 	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainIdle::getInstance()));
 }
 
+bool Captain::isJumping()
+{
+	return 0 < this->jumps;
+}
+
 // make him jump
 void Captain::jump(bool checkIfYMovement)
 {

@@ -122,7 +122,10 @@ void CaptainMoving::onKeyPressed(void* owner, const UserInput* userInput)
 {
 	if((K_SEL|K_RD|K_RU|K_RL|K_RR|K_LT|K_RT) & userInput->pressedKey)
 	{
-		Captain::reload(owner);
+		if(!Captain::isJumping(owner))
+		{
+			Captain::reload(owner);
+		}
 	}
 	else if(K_A & userInput->pressedKey)
 	{
@@ -140,7 +143,10 @@ void CaptainMoving::onKeyPressed(void* owner, const UserInput* userInput)
 	}
 	else if(K_LD & userInput->pressedKey)
 	{
-		Captain::kneel(owner);
+		if(!Captain::isJumping(owner))
+		{
+			Captain::kneel(owner);
+		}
 	}
 }
 
