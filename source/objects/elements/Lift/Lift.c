@@ -72,18 +72,6 @@ bool Lift::handleMessage(Telegram telegram)
 
 			// start delayed moving
 			MessageDispatcher::dispatchMessage(500, Object::safeCast(this), Object::safeCast(this), kLiftStart, NULL);
-
-			// start fade out effect
-			Brightness brightness = (Brightness){0, 0, 0};
-			Camera::startEffect(Camera::getInstance(),
-				kFadeTo, // effect type
-				0, // initial delay (in ms)
-				&brightness, // target brightness
-				__FADE_DELAY, // delay between fading steps (in ms)
-				(void (*)(Object, Object))Lift::onFadeOutComplete, // callback function
-				Object::safeCast(this) // callback scope
-			);
-
 			break;
 		}
 
@@ -101,6 +89,17 @@ bool Lift::handleMessage(Telegram telegram)
 
 			Actor::moveUniformly(this, &this->liftSpec->velocity);
 
+			// start fade out effect
+			Brightness brightness = (Brightness){0, 0, 0};
+			Camera::startEffect(Camera::getInstance(),
+				kFadeTo, // effect type
+				0, // initial delay (in ms)
+				&brightness, // target brightness
+				__FADE_DELAY * 5, // delay between fading steps (in ms)
+				(void (*)(Object, Object))Lift::onFadeOutComplete, // callback function
+				Object::safeCast(this) // callback scope
+			);
+			
 			break;
 		}
 	}

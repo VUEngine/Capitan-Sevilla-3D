@@ -78,7 +78,7 @@ void Gui::destructor()
 	// remove event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onHitTaken, kEventHitTaken);
-	Object::addEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainSpawned, kEventCaptainSpawned);
+	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainSpawned, kEventCaptainSpawned);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onCaptainDied, kEventCaptainDied);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPaused, kEventSetModeToPaused);
 	Object::removeEventListener(eventManager, Object::safeCast(this), (EventListener)Gui::onSetModeToPlaying, kEventSetModeToPlaying);

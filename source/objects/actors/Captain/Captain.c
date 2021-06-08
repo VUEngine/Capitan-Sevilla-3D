@@ -675,7 +675,7 @@ void Captain::resetEntityPalette(Entity entity)
 // die captain
 void Captain::die()
 {
-	SoundManager::stopAllSounds(this);
+	SoundManager::stopAllSounds(SoundManager::getInstance());
 	
 	SoundManager::playSound(
 		SoundManager::getInstance(),
@@ -807,8 +807,9 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 			Object::fireEvent(EventManager::getInstance(), kEventLiftActivated);
 
 			// stop and hide captain
-			Entity::hide(this);
-			Actor::stopAllMovement(this);
+			Captain::hide(this);
+			Captain::stopAllMovement(this);
+			Captain::activeCollisionChecks(this, false);
 
 			// disable user input
 			Game::disableKeypad(Game::getInstance());
