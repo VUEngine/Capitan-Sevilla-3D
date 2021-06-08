@@ -130,9 +130,9 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&CITY_FLOOR_COLLISION_CL,			{1804, 200,    0,   0},		0, NULL, NULL, (void*)&collision_3608_16_64, true},
 
 	{&PUNK_EM,							{ 586, 147,    0,   0},		0, NULL, NULL, (void*)-2, false},
-	{&PUNK_EM,							{1230, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&ATTACK_DOG_EM,					{830, 152,    0,   0},		0, NULL, NULL, (void*)-5, false},
+	{&PUNK_EM,							{1130, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&PUNK_EM,							{1330, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&ATTACK_DOG_EM,					{1430, 152,    0,   0},		0, NULL, NULL, (void*)-5, false},
 	{&ATTACK_DOG_EM,					{1530, 152,    0,   0},		0, NULL, NULL, (void*)-4, false},
 	{&PUNK_EM,							{1670, 147,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&PUNK_EM,							{2280, 147,    0,   0},		0, NULL, NULL, (void*)-4, false},
@@ -142,8 +142,8 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&CAR_1_AC,							{ 500, 166,    0,   0},		0, NULL, NULL, NULL, false},
 	{&CAR_1_AC,							{1040, 166,    0,   0},		0, NULL, NULL, NULL, false},
-	{&CAR_1_AC,							{1810, 166,    0,   0},		0, NULL, NULL, NULL, false},
-	{&CAR_1_AC,							{2608, 166,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_1_AC,							{3608, 166,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CAR_1_AC,							{4810, 166,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&COMIC_NIVEL_1_EN,					{ 192,  92,   -2,   0},		0, NULL, NULL, NULL, false},
 
@@ -225,7 +225,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_UI_CHILDREN[] =
 	//{&CITY_FLOOR_3D_EN, 				{ 192, 172,  16,   0}, 		0, NULL, NULL, NULL, true},
 	{&LEVEL_1_MISSION_EN,				{  60, 204,  -2,   0},		0, NULL, NULL, NULL, false},
 	{&GUI_EN, 							{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
-	{&LOW_POWER_INDICATOR_LB, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
+//	{&LOW_POWER_INDICATOR_LB, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -274,7 +274,7 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 	// Timer config
 	{
 		__TIMER_100US,
-		10,
+		20,
 		kMS
 	},
 
@@ -345,7 +345,7 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 		4,
 
 		// maximum number of texture's rows to write each time the texture writing is active
-		64,
+		8,
 
 		// maximum number of rows to compute on each call to the affine functions
 		48,

@@ -188,6 +188,10 @@ void PlatformerLevelState::enter(void* owner)
 	}
 
 	PlatformerLevelState::setPrintingLayerCoordinates(this);
+
+#ifdef __ENABLE_PROFILER
+	Game::startProfiling(Game::getInstance());
+#endif
 }
 
 void PlatformerLevelState::exit(void* owner)
@@ -323,7 +327,7 @@ void PlatformerLevelState::setPrintingLayerCoordinates()
 {
 #ifdef __RELEASE
 	extern TextureROMSpec GUI_TX;
-	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8, -32, 0);
+	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8 * 0, -32, 0);
 #endif
 }
 

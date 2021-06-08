@@ -85,7 +85,7 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_2_L_TX =
 	0,
 
 	// recyclable
-	false,
+	true,
 
 	// vertical flip
 	false,
@@ -149,7 +149,7 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_2_R_TX =
 	0,
 
 	// recyclable
-	false,
+	true,
 
 	// vertical flip
 	false,

@@ -82,7 +82,7 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_7_TX =
 	1,
 
 	// recyclable
-	false,
+	true,
 
 	// vertical flip
 	false,
