@@ -47,5 +47,5 @@ void CaptainReload::destructor()
 void CaptainReload::enter(void* owner)
 {
 	Actor::stopAllMovement(owner);
-	AnimatedEntity::playAnimation(owner, "Reload");
+	Captain::playAnimation(owner, "Reload");
 }

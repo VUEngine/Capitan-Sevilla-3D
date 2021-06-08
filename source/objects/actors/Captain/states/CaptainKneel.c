@@ -53,7 +53,7 @@ void CaptainKneel::destructor()
 void CaptainKneel::enter(void* owner)
 {
 	// show animation
-	AnimatedEntity::playAnimation(owner, "KneelDown");
+	Captain::playAnimation(owner, "KneelDown");
 
 	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_RELEASED | __KEY_PRESSED);
 

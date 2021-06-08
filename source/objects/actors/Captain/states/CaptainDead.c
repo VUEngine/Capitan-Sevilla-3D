@@ -54,7 +54,7 @@ void CaptainDead::destructor()
 void CaptainDead::enter(void* owner)
 {
 	// show animation
-	AnimatedEntity::playAnimation(owner, "Dead");
+	Captain::playAnimation(owner, "Dead");
 
 	// unregister captain's shapes for collision detection
 	Entity::activeCollisionChecks(owner, false);

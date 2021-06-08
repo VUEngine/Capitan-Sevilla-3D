@@ -53,7 +53,7 @@ void CaptainIdle::destructor()
 void CaptainIdle::enter(void* owner)
 {
 	// show animation
-	AnimatedEntity::playAnimation(owner, "Idle");
+	Captain::playAnimation(owner, "Idle");
 
 	KeypadManager::registerInput(KeypadManager::getInstance(), __KEY_PRESSED | __KEY_RELEASED | __KEY_HOLD);
 }
@@ -80,7 +80,7 @@ bool CaptainIdle::processMessage(void* owner, Telegram telegram)
 
 		case kCaptainSleep:
 
-			AnimatedEntity::playAnimation(owner, "Sleep");
+			Captain::playAnimation(owner, "Sleep");
 			return true;
 			break;
 	}

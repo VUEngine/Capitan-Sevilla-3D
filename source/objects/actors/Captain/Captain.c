@@ -283,7 +283,7 @@ void Captain::jump(bool checkIfYMovement)
 			}
 
 			// play jump animation
-			AnimatedEntity::playAnimation(this, "Jump");
+			Captain::playAnimation(this, "Jump");
 			Dust::showAnimation(this->jumpDustEntity);
 
 			// rumble effect
@@ -407,7 +407,7 @@ void Captain::startedMovingOnAxis(u16 axis)
 		if(__X_AXIS & axis)
 		{
 			this->keepAddingForce = true;
-			AnimatedEntity::playAnimation(this, "Walk");
+			Captain::playAnimation(this, "Walk");
 		}
 
 		StateMachine::swapState(this->stateMachine, State::safeCast(CaptainMoving::getInstance()));
@@ -434,7 +434,7 @@ bool Captain::stopMovementOnAxis(u16 axis)
 
 	if((__X_AXIS & axis) && !(__Y_AXIS & movementState))
 	{
-		AnimatedEntity::playAnimation(this, "Idle");
+		Captain::playAnimation(this, "Idle");
 	}
 
 	// if there is something below
@@ -452,7 +452,7 @@ bool Captain::stopMovementOnAxis(u16 axis)
 			{
 				if(this->inputDirection.x)
 				{
-					AnimatedEntity::playAnimation(this, "Walk");
+					Captain::playAnimation(this, "Walk");
 				}
 			}
 		}
@@ -492,12 +492,12 @@ bool Captain::stopMovementOnAxis(u16 axis)
 			}
 			*/
 
-			AnimatedEntity::playAnimation(this, "Walk");
+			Captain::playAnimation(this, "Walk");
 		}
 	}
 	else
 	{
-		AnimatedEntity::playAnimation(this, "Fall");
+		Captain::playAnimation(this, "Fall");
 	}
 
 	return false;
@@ -528,7 +528,7 @@ void Captain::checkDirection(u32 pressedKey, char* animation)
 
 	if(animation && !(__Y_AXIS & movementState))
 	{
-		AnimatedEntity::playAnimation(this, animation);
+		Captain::playAnimation(this, animation);
 	}
 }
 
@@ -563,7 +563,7 @@ void Captain::takeDamageFrom(int energyToReduce)
 			GameState::pausePhysics(Game::getCurrentState(Game::getInstance()), true);
 
 			// play animation
-			AnimatedEntity::playAnimation(this, "Hit");
+			Captain::playAnimation(this, "Hit");
 
 			// inform others to update ui etc
 			Object::fireEvent(EventManager::getInstance(), kEventHitTaken);
