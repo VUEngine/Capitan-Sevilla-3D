@@ -43,6 +43,8 @@ extern EntitySpec LEVEL_1_STAGE_2_ROOM_EN;
 extern EntitySpec LEVEL_1_STAGE_2_LIFT_EN;
 extern EntitySpec PUNK_EM;
 
+extern Sound INTRO_LOWER_SONG;
+
 
 //---------------------------------------------------------------------------------------------------------
 //											ENTITY LISTS
@@ -89,6 +91,12 @@ TextureSpec* const LEVEL_1_STAGE_2_ST_TEXTURES[] =
 const PostProcessingEffect LEVEL_1_STAGE_2_ST_POST_PROCESSING_EFFECTS[] =
 {
 	NULL
+};
+
+SoundROM* const LEVEL_1_STAGE_2_ST_BGM[] =
+{
+	&INTRO_LOWER_SONG,
+	NULL,
 };
 
 
@@ -297,7 +305,7 @@ StageROMSpec LEVEL_1_STAGE_2_ST =
 		(TextureSpec**)LEVEL_1_STAGE_2_ST_TEXTURES,
 
 		// background sounds
-		(Sound**)NULL,
+		(Sound**)LEVEL_1_STAGE_2_ST_BGM,
 	},
 
 	// entities

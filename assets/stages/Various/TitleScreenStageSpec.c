@@ -41,6 +41,8 @@ extern EntitySpec TITLE_EARTH_IM;
 extern EntitySpec TITLE_SUBTITLE_EN;
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 
+extern Sound TITLE_SONG;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
@@ -85,6 +87,12 @@ CharSetROMSpec* const TITLE_SCREEN_STAGE_ST_CHARSETS[] =
 TextureSpec* const TITLE_SCREEN_STAGE_ST_TEXTURES[] =
 {
 	NULL
+};
+
+SoundROM* const TITLE_SCREEN_STAGE_ST_BGM[] =
+{
+	&TITLE_SONG,
+	NULL,
 };
 
 
@@ -293,7 +301,7 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 		(TextureSpec**)TITLE_SCREEN_STAGE_ST_TEXTURES,
 
 		// background music
-		(Sound**)NULL,
+		(Sound**)TITLE_SCREEN_STAGE_ST_BGM,
 	},
 
 	// entities

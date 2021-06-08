@@ -32,6 +32,8 @@
 #include <AutoPauseSelectScreenState.h>
 #include <LangSelectScreenState.h>
 #include <RugarsoAnimationScreenState.h>
+#include <TitleScreenState.h>
+#include <CreditsState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -50,8 +52,10 @@ int main()
 	);
 
 	// start the game
-	//Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
-	Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
+	//Game::start(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
+	//Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+	//Game::start(Game::getInstance(), GameState::safeCast(CreditsState::getInstance()));
 
 	// end program
 	return true;

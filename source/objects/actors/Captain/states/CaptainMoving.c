@@ -81,7 +81,7 @@ void CaptainMoving::execute(void* owner)
 	}
 
 	// play footstep sounds
-	if (AnimatedEntity::isAnimationLoaded(AnimatedEntity::safeCast(owner), "Walk"))
+	/*if (AnimatedEntity::isAnimationLoaded(AnimatedEntity::safeCast(owner), "Walk"))
 	{
 		s8 currentFrame = AnimatedEntity::getActualFrame(AnimatedEntity::safeCast(owner));
 		if (currentFrame == 0 || currentFrame == 6)
@@ -96,7 +96,7 @@ void CaptainMoving::execute(void* owner)
 				NULL
 			);
 		}
-	}
+	}*/
 }
 
 bool CaptainMoving::processMessage(void* owner, Telegram telegram)

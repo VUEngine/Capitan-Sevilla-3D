@@ -38,6 +38,13 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+extern Sound LIFT_SND;
+
+
+//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
@@ -82,6 +89,16 @@ bool Lift::handleMessage(Telegram telegram)
 
 		case kLiftStart:
 		{
+			SoundManager::playSound(
+				SoundManager::getInstance(),
+				&LIFT_SND,
+				kPlayAll,
+				(const Vector3D*)&this->transformation.globalPosition,
+				kSoundWrapperPlaybackNormal,
+				NULL,
+				NULL
+			);
+
 			Actor::moveUniformly(this, &this->liftSpec->velocity);
 
 			break;

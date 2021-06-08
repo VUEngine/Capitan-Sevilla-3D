@@ -110,7 +110,7 @@ extern Size collision_16_224_64;
 extern Size collision_384_16_64;
 extern Size collision_3608_16_64;
 
-extern Sound CAPTAIN_SONG;
+extern Sound CAPITANO_SONG;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -257,7 +257,7 @@ const PostProcessingEffect LEVEL_1_STAGE_1_ST_POST_PROCESSING_EFFECTS[] =
 
 SoundROM* const LEVEL_1_STAGE_1_ST_BGM[] =
 {
-	&CAPTAIN_SONG,
+	&CAPITANO_SONG,
 	NULL,
 };
 

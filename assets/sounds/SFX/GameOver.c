@@ -33,15 +33,25 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-
-const u16 WalkTrack[] =
+// Instrument: 0 patchchange ch: 1 electric guitar(jazz);
+const u16 GAME_OVER_TRACK_1[] =
 {
-  PAU, A_3, HOLD, ENDSOUND,
-  50, 200, 1, 1,
-  0, 12, 12, 0,
+  PAU, GS5, PAU, GS5, PAU, B_5, PAU, GS5, PAU, B_5, PAU, A_5, PAU, A_5, PAU, CS6, PAU, A_5, PAU, CS6, PAU, B_5, PAU, B_5, PAU, E_6, PAU, DS6, PAU, CS6, PAU, B_5, PAU, ENDSOUND,
+  1, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 94, 96,
+  15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15
 };
 
-SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
+// Instrument: 0 patchchange ch: 2 electric guitar(jazz);
+const u16 GAME_OVER_TRACK_2[] =
+{
+  PAU, E_4, PAU, E_4, PAU, GS4, PAU, E_4, PAU, GS4, PAU, FS4, PAU, FS4, PAU, A_4, PAU, FS4, PAU, A_4, PAU, GS4, PAU, GS4, PAU, CS5, PAU, B_4, PAU, A_4, PAU, E_4, PAU, B_3, PAU, GS3, PAU, E_3, ENDSOUND,
+  1, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 46, 2, 46, 2, 46, 2, 46,
+  15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15
+};
+
+
+
+SoundChannelConfigurationROM GAME_OVER_CHANNEL_1_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -71,7 +81,7 @@ SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	pianoWaveForm,
+	triangleWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -80,38 +90,92 @@ SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM WALK_SND_CHANNEL_1 =
+SoundChannelROM GAME_OVER_CHANNEL_1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&WALK_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&GAME_OVER_CHANNEL_1_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
 
 	/// Sound track
 	{
-		(const u8*)WalkTrack
+		(const u8*)GAME_OVER_TRACK_1
+	}
+};
+
+SoundChannelConfigurationROM GAME_OVER_CHANNEL_2_CONFIGURATION =
+{
+	/// kMIDI, kPCM
+	kMIDI,
+
+	/// SxINT
+	0x9F,
+
+	/// Volume SxLRV
+	0xFF,
+
+	/// SxRAM (this is overrode by the SoundManager)
+	0x00,
+
+	/// SxEV0
+	0x80,
+
+	/// SxEV1
+	0x01,
+
+	/// SxFQH
+	0x00,
+
+	/// SxFQL
+	0x00,
+
+	/// Ch. 5 only
+	0x00,
+
+	/// Waveform data pointer
+	trumpetWaveForm,
+
+	/// kChannelNormal, kChannelModulation, kChannelNoise
+	kChannelNormal,
+
+	/// Volume
+	__SOUND_LR
+};
+
+SoundChannelROM GAME_OVER_CHANNEL_2 =
+{
+	/// Configuration
+	(SoundChannelConfiguration*)&GAME_OVER_CHANNEL_2_CONFIGURATION,
+
+	/// Length (PCM)
+	0,
+
+	/// Sound track
+	{
+		(const u8*)GAME_OVER_TRACK_2
 	}
 };
 
 
-SoundChannelROM* WALK_SND_CHANNELS[] =
+SoundChannelROM* GAME_OVER_CHANNELS[] =
 {
-	&WALK_SND_CHANNEL_1,
+	&GAME_OVER_CHANNEL_1,
+	&GAME_OVER_CHANNEL_2,
 	NULL
 };
 
-SoundROM WALK_SND =
+SoundROM GAME_OVER_SND =
 {
 	/// Name
-	"Walk",
+	"GameOver",
 
 	/// Play in loop
 	false,
 
 	/// Target timer resolution in us
-	500,
+	2240,
 
 	/// Tracks
-	(SoundChannel**)WALK_SND_CHANNELS
+	(SoundChannel**)GAME_OVER_CHANNELS
 };

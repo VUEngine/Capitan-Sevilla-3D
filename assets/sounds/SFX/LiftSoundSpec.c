@@ -1,4 +1,4 @@
-/* VUEngine - Virtual Utopia Hit <http://vuengine.planetvb.com/>
+/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
  * A universal game engine for the Nintendo Virtual Boy
  *
  * Copyright (C) 2007, 2019 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
@@ -26,43 +26,44 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
+#define LIFT_FREQ				MINIMUM_AUDIBLE_NOTE + 480
+#define LIFT_DURATION			140
+#define LIFT_VOLUME_DELTA		6
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-
-const u16 CrumbleTrack[] =
+const u16 LIFT_TRACK_1[] =
 {
-  A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, ENDSOUND,
-  100,  80, 100,    1, 100,  80, 100,    1, 100,  80, 100,    1, 1,
-   15,  15,  15,   15,  15,  15,  15,   15 , 15,  15,  15,   15, 0,
+  PAU, 0x016 + LIFT_FREQ, 0x024 + LIFT_FREQ, 0x032 + LIFT_FREQ, 0x040 + LIFT_FREQ, 0x032 + LIFT_FREQ, 0x024 + LIFT_FREQ, 0x016 + LIFT_FREQ, ENDSOUND,
+  50, LIFT_DURATION * 4, LIFT_DURATION * 3, LIFT_DURATION * 2, LIFT_DURATION * 1, LIFT_DURATION * 2, LIFT_DURATION * 3, LIFT_DURATION * 4,
+  0, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA,
 };
 
-SoundChannelConfigurationROM CRUMBLE_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM LIFT_CHANNEL_1_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
 
 	/// SxINT
-	0x9F,
+	0x00,
 
 	/// Volume SxLRV
-	0xFF,
+	0x00,
 
 	/// SxRAM (this is overrode by the SoundManager)
 	0x00,
 
 	/// SxEV0
-	0x80,
+	0xF0,
 
 	/// SxEV1
 	0x00,
@@ -77,47 +78,47 @@ SoundChannelConfigurationROM CRUMBLE_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sawtoothWaveForm,
+	engineWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
-	kChannelNoise,
+	kChannelModulation,
 
 	/// Volume
 	__SOUND_LR
 };
 
-SoundChannelROM CRUMBLE_SND_CHANNEL_1 =
+SoundChannelROM LIFT_CHANNEL_1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&CRUMBLE_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&LIFT_CHANNEL_1_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
 
 	/// Sound track
 	{
-		(const u8*)CrumbleTrack
+		(const u8*)LIFT_TRACK_1
 	}
 };
 
 
-SoundChannelROM* CRUMBLE_SND_CHANNELS[] =
+SoundChannelROM* LIFT_CHANNELS[] =
 {
-	&CRUMBLE_SND_CHANNEL_1,
+	&LIFT_CHANNEL_1,
 	NULL
 };
 
-SoundROM CRUMBLE_SND =
+SoundROM LIFT_SND =
 {
 	/// Name
-	"Fire sound",
+	"Lift",
 
 	/// Play in loop
-	false,
+	true,
 
 	/// Target timer resolution in us
-	5000,
+	3000,
 
 	/// Tracks
-	(SoundChannel**)CRUMBLE_SND_CHANNELS
+	(SoundChannel**)LIFT_CHANNELS
 };

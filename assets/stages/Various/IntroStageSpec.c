@@ -54,6 +54,8 @@ extern EntitySpec INTRO_TEXT_7_AC;
 extern EntitySpec INTRO_TEXT_8_AC;
 extern EntitySpec INTRO_TEXT_9_AC;
 
+extern Sound INTRO_SONG;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
@@ -102,6 +104,12 @@ FontROMSpec* const INTRO_STAGE_ST_FONTS[] =
 	//&CAPITAN_FONT,
 
 	NULL
+};
+
+SoundROM* const INTRO_STAGE_ST_BGM[] =
+{
+	&INTRO_SONG,
+	NULL,
 };
 
 
@@ -310,7 +318,7 @@ StageROMSpec INTRO_STAGE_ST =
 		(TextureSpec**)NULL,
 
 		// background music
-		(Sound**)NULL,
+		(Sound**)INTRO_STAGE_ST_BGM,
 	},
 
 	// entities

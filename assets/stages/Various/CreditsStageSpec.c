@@ -36,6 +36,8 @@
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 extern EntitySpec CREDITS_EN;
 
+extern Sound CREDITS_SONG;
+
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
@@ -65,6 +67,12 @@ FontROMSpec* const CREDITS_STAGE_ST_FONTS[] =
 	//&CAPITAN_FONT,
 
 	NULL
+};
+
+SoundROM* const CREDITS_STAGE_ST_BGM[] =
+{
+	&CREDITS_SONG,
+	NULL,
 };
 
 
@@ -273,7 +281,7 @@ StageROMSpec CREDITS_STAGE_ST =
 		(TextureSpec**)NULL,
 
 		// background music
-		(Sound**)NULL,
+		(Sound**)CREDITS_STAGE_ST_BGM,
 	},
 
 	// entities

@@ -1,4 +1,4 @@
-/* VUEngine - Virtual Utopia Hit <http://vuengine.planetvb.com/>
+/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
  * A universal game engine for the Nintendo Virtual Boy
  *
  * Copyright (C) 2007, 2019 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>

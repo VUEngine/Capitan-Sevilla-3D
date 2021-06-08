@@ -30,18 +30,24 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+
+
+//---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 WalkTrack[] =
+const u16 LIFT_BREAK_TRACK_1[] =
 {
-  PAU, A_3, HOLD, ENDSOUND,
-  50, 200, 1, 1,
-  0, 12, 12, 0,
+  A_4, B_4, E_5, A_4, B_4, E_5, A_4, B_4, E_5, A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, ENDSOUND,
+  100,  80, 100,100,  80, 100,100,  80, 100,100,  80, 100,    1, 100,  80, 100,    1, 100,  80, 100,    1, 1,
+   12,  12,  12,12,  12,  12,12,  12,  12,12,  12,  12,   12,  12,  12,  12,   12 , 12,  12,  12,   12, 0,
 };
 
-SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM LIFT_BREAK_SND_CHANNEL_1_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -59,7 +65,7 @@ SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
 	0x80,
 
 	/// SxEV1
-	0x01,
+	0x00,
 
 	/// SxFQH
 	0x00,
@@ -71,47 +77,47 @@ SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	pianoWaveForm,
+	sawtoothWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
-	kChannelNormal,
+	kChannelNoise,
 
 	/// Volume
 	__SOUND_LR
 };
 
-SoundChannelROM WALK_SND_CHANNEL_1 =
+SoundChannelROM LIFT_BREAK_SND_CHANNEL_1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&WALK_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&LIFT_BREAK_SND_CHANNEL_1_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
 
 	/// Sound track
 	{
-		(const u8*)WalkTrack
+		(const u8*)LIFT_BREAK_TRACK_1
 	}
 };
 
 
-SoundChannelROM* WALK_SND_CHANNELS[] =
+SoundChannelROM* LIFT_BREAK_SND_CHANNELS[] =
 {
-	&WALK_SND_CHANNEL_1,
+	&LIFT_BREAK_SND_CHANNEL_1,
 	NULL
 };
 
-SoundROM WALK_SND =
+SoundROM LIFT_BREAK_SND =
 {
 	/// Name
-	"Walk",
+	"Lift break",
 
 	/// Play in loop
 	false,
 
 	/// Target timer resolution in us
-	500,
+	5000,
 
 	/// Tracks
-	(SoundChannel**)WALK_SND_CHANNELS
+	(SoundChannel**)LIFT_BREAK_SND_CHANNELS
 };
