@@ -80,7 +80,7 @@ AnimationFunctionROMSpec MANOLO_SHOOT_ANIM =
 	false,
 
 	// method to call on function completion
-	(EventListener)&ProjectileEjector_onEjectAnimationComplete,
+	(EventListener)&Enemy_onEjectAnimationComplete,
 
 	// function's name
 	"Shoot",

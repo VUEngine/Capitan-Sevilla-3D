@@ -84,6 +84,7 @@ class Enemy : MovingOneWayEntity
 	virtual void onProjectileEjected(Object eventFirer);
 	void startFlashing();
 	void stopFlashing();
+	void onEjectAnimationComplete();
 	virtual void die();
 }
 

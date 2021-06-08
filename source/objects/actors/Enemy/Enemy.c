@@ -210,3 +210,10 @@ void Enemy::resetPalette()
 		Sprite::rewrite(sprite);
 	}
 }
+
+// spawn a projectile, this is the callback of the "Eject" animation
+void Enemy::onEjectAnimationComplete()
+{
+	// play idle animation
+	AnimatedEntity::playAnimation(this, "Idle");
+}
