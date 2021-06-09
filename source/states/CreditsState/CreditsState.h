@@ -36,7 +36,7 @@
 
 singleton class CreditsState : GameState
 {
-	Actor entityCredits;
+	u8 cameraSpeed;
 	bool finishedScrolling;
 
 	static CreditsState getInstance();

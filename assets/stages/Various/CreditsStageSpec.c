@@ -34,7 +34,9 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern EntitySpec LOW_POWER_INDICATOR_LB;
-extern EntitySpec CREDITS_EN;
+extern EntitySpec CREDITS_A_EN;
+extern EntitySpec CREDITS_B_EN;
+extern EntitySpec CREDITS_C_EN;
 
 extern Sound CREDITS_SONG;
 
@@ -45,7 +47,9 @@ extern Sound CREDITS_SONG;
 
 PositionedEntityROMSpec CREDITS_STAGE_ST_ENTITIES[] =
 {
-	{&CREDITS_EN, 	{192, 256, 0, 0}, 0, "CREDITS", NULL, NULL, false},
+	{&CREDITS_A_EN, 	{192, 32, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&CREDITS_B_EN, 	{192, 32+512, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&CREDITS_C_EN, 	{192, 32+1024, 0, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

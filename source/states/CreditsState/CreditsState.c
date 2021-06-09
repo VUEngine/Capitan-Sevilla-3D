@@ -58,7 +58,7 @@ void CreditsState::constructor()
 {
 	Base::constructor();
 
-	this->entityCredits = NULL;
+	this->cameraSpeed = 1;
 	this->finishedScrolling = false;
 }
 
@@ -76,9 +76,6 @@ void CreditsState::enter(void* owner)
 
 	// load stage
 	GameState::loadStage(this, (StageSpec*)&CREDITS_STAGE_ST, NULL, true, false);
-
-	// get entity reference
-	this->entityCredits = Actor::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "CREDITS", true));
 
 	// disable user input
 	Game::disableKeypad(Game::getInstance());
@@ -139,11 +136,12 @@ void CreditsState::execute(void* owner __attribute__ ((unused)))
 {
 	if(!this->finishedScrolling)
 	{
-		const Vector3D* position = Actor::getPosition(this->entityCredits);
+		Vector3D cameraPosition = Camera::getPosition(Camera::getInstance());
+		cameraPosition.y -= __PIXELS_TO_METER(this->cameraSpeed);
+		Camera::move(Camera::getInstance(), cameraPosition, false);
 
-    	if(__METERS_TO_PIXELS(position->y) < -940)
+    	if(__METERS_TO_PIXELS(cameraPosition->y) < -996)
     	{
-    		Actor::stopAllMovement(this->entityCredits);
     		this->finishedScrolling = true;
     	}
 	}
@@ -151,14 +149,12 @@ void CreditsState::execute(void* owner __attribute__ ((unused)))
 
 void CreditsState::scrollSlow()
 {
-	Velocity velocity = {0, __I_TO_FIX10_6(-1), 0};
-	Actor::moveUniformly(this->entityCredits, &velocity);
+	this->cameraSpeed = 1;
 }
 
 void CreditsState::scrollFast()
 {
-	Velocity velocity = {0, __I_TO_FIX10_6(-3), 0};
-	Actor::moveUniformly(this->entityCredits, &velocity);
+	this->cameraSpeed = 3;
 }
 
 void CreditsState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
