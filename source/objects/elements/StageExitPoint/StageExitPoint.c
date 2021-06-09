@@ -42,10 +42,12 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void StageExitPoint::constructor(EntitySpec* entitySpec, s16 internalId, const char* const name)
+void StageExitPoint::constructor(StageExitPointSpec* stageExitPointSpec, s16 internalId, const char* const name)
 {
 	// construct base
-	Base::constructor(entitySpec, internalId, name);
+	Base::constructor((EntitySpec*)&stageExitPointSpec->entitySpec, internalId, name);
+
+	this->stageEntryPointSpec = stageExitPointSpec->stageEntryPointSpec;
 
 	// add event listeners
 	Object eventManager = Object::safeCast(EventManager::getInstance());
@@ -79,15 +81,9 @@ void StageExitPoint::onExitPointReached(Object eventFirer __attribute__ ((unused
 
 void StageExitPoint::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	// TODO: move hardcoded entry point to stageexitpointromspec
-
-	static int times = 0;
-
-	if(times == 0)
+	if(this->stageEntryPointSpec != NULL)
 	{
-		times++;
-		extern StageEntryPointSpec LEVEL_1_STAGE_2_MAIN_EP;
-		PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), (StageEntryPointSpec*)&LEVEL_1_STAGE_2_MAIN_EP);
+		PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->stageEntryPointSpec);
 	}
 	else
 	{

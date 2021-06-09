@@ -28,6 +28,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Entity.h>
+#include <PlatformerLevelState.h>
 #include <macros.h>
 
 
@@ -35,7 +36,16 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-typedef const EntitySpec StageExitPointSpec;
+typedef struct StageExitPointSpec
+{
+	/// entity spec
+	EntitySpec entitySpec;
+
+	/// target entry point
+	StageEntryPointSpec* stageEntryPointSpec;
+
+} StageExitPointSpec;
+
 typedef const StageExitPointSpec StageExitPointROMSpec;
 
 
@@ -45,7 +55,9 @@ typedef const StageExitPointSpec StageExitPointROMSpec;
 
 class StageExitPoint : Entity
 {
-	void constructor(EntitySpec* entitySpec, s16 internalId, const char* const name);
+	StageEntryPointSpec* stageEntryPointSpec;
+
+	void constructor(StageExitPointSpec* stageExitPointSpec, s16 internalId, const char* const name);
 }
 
 

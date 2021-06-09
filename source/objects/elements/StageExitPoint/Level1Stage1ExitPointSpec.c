@@ -25,6 +25,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Entity.h>
+#include <PlatformerLevelState.h>
 #include <StageExitPoint.h>
 #include <Body.h>
 #include <Box.h>
@@ -32,10 +33,15 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-// TODO: one spec per exit point
+extern StageEntryPointSpec LEVEL_1_STAGE_2_MAIN_EP;
+
+
+//---------------------------------------------------------------------------------------------------------
+//												DEFINITIONS
+//---------------------------------------------------------------------------------------------------------
 
 ShapeROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_POINT_SHAPES[] =
 {
@@ -70,34 +76,39 @@ ShapeROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_POINT_SHAPES[] =
 
 StageExitPointROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_XP =
 {
-	// class allocator
-	__TYPE(StageExitPoint),
+	{
+		// class allocator
+		__TYPE(StageExitPoint),
 
-	// children
-	NULL,
+		// children
+		NULL,
 
-	// behaviors
-	NULL,
+		// behaviors
+		NULL,
 
-	// extra
-	NULL,
+		// extra
+		NULL,
 
-	// sprites
-	NULL,
+		// sprites
+		NULL,
 
-	// use z displacement in projection
-	false,
+		// use z displacement in projection
+		false,
 
-	// collision shapes
-	(ShapeSpec*)LEVEL_1_STAGE_1_MAIN_EXIT_POINT_SHAPES,
+		// collision shapes
+		(ShapeSpec*)LEVEL_1_STAGE_1_MAIN_EXIT_POINT_SHAPES,
 
-	// pixelSize
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
+		// pixelSize
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
 
-	// gameworld's character's type
-	kStageExitPoint,
+		// gameworld's character's type
+		kStageExitPoint,
 
-	// physical specification
-	NULL,
+		// physical specification
+		NULL,
+	},
+
+	// target entry point
+	(StageEntryPointSpec*)&LEVEL_1_STAGE_2_MAIN_EP,
 };

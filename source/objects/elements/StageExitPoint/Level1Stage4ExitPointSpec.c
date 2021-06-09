@@ -1,7 +1,7 @@
 /* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
  * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007, 2019 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction, including
@@ -24,100 +24,84 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <SoundManager.h>
-#include <WaveForms.h>
-#include <MIDI.h>
-
-
-//---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
-//---------------------------------------------------------------------------------------------------------
-
+#include <Entity.h>
+#include <PlatformerLevelState.h>
+#include <StageExitPoint.h>
+#include <Body.h>
+#include <Box.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-
-const u16 LIFT_BREAK_TRACK_1[] =
+ShapeROMSpec LEVEL_1_STAGE_4_MAIN_EXIT_POINT_SHAPES[] =
 {
-  A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, ENDSOUND,
-  100,  80, 100,    1, 100,  80, 100,    1, 1,
-   12,  12,  12,   12 , 12,  12,  12,   12, 0,
-};
-
-SoundChannelConfigurationROM LIFT_BREAK_SND_CHANNEL_1_CONFIGURATION =
-{
-	/// kMIDI, kPCM
-	kMIDI,
-
-	/// SxINT
-	0x9F,
-
-	/// Volume SxLRV
-	0xFF,
-
-	/// SxRAM (this is overrode by the SoundManager)
-	0x00,
-
-	/// SxEV0
-	0x80,
-
-	/// SxEV1
-	0x00,
-
-	/// SxFQH
-	0x00,
-
-	/// SxFQL
-	0x00,
-
-	/// Ch. 5 only
-	0x00,
-
-	/// Waveform data pointer
-	sawtoothWaveForm,
-
-	/// kChannelNormal, kChannelModulation, kChannelNoise
-	kChannelNoise,
-
-	/// Volume
-	__SOUND_LR
-};
-
-SoundChannelROM LIFT_BREAK_SND_CHANNEL_1 =
-{
-	/// Configuration
-	(SoundChannelConfiguration*)&LIFT_BREAK_SND_CHANNEL_1_CONFIGURATION,
-
-	/// Length (PCM)
-	0,
-
-	/// Sound track
 	{
-		(const u8*)LIFT_BREAK_TRACK_1
-	}
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{16, 80, 64},
+
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{0, 0, 0},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kLayerNone,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-
-SoundChannelROM* LIFT_BREAK_SND_CHANNELS[] =
+StageExitPointROMSpec LEVEL_1_STAGE_4_MAIN_EXIT_XP =
 {
-	&LIFT_BREAK_SND_CHANNEL_1,
-	NULL
-};
+	{
+		// class allocator
+		__TYPE(StageExitPoint),
 
-SoundROM LIFT_BREAK_SND =
-{
-	/// Name
-	"Lift break",
+		// children
+		NULL,
 
-	/// Play in loop
-	false,
+		// behaviors
+		NULL,
 
-	/// Target timer resolution in us
-	5000,
+		// extra
+		NULL,
 
-	/// Tracks
-	(SoundChannel**)LIFT_BREAK_SND_CHANNELS
+		// sprites
+		NULL,
+
+		// use z displacement in projection
+		false,
+
+		// collision shapes
+		(ShapeSpec*)LEVEL_1_STAGE_4_MAIN_EXIT_POINT_SHAPES,
+
+		// pixelSize
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
+
+		// gameworld's character's type
+		kStageExitPoint,
+
+		// physical specification
+		NULL,
+	},
+
+	// target entry point
+	NULL,
 };

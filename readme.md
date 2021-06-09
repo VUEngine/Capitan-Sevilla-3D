@@ -8,9 +8,9 @@ scrolling action platformer where you jump and shoot your way through a total of
 Under the name of “Capitán Sevilla 2”, the original demo by Rubén Garcerá Soto won 
 2nd prize in the PVB Coding Competition 2010. 
 
-Starting in 2018, the game has been rebuilt from the ground up in VUEngine, under the 
-new name “Capitán Sevilla 3D”. Since the original game demo was 2D-only, all the environments 
-have been remastered in 3-D by the VUEngine team. 
+Starting in 2018, the game has been rebuilt from the ground up, based on the VUEngine 
+Platformer Demo, under the new name “Capitán Sevilla 3D”. Since the original demo was 
+2D-only, all the environments have been remastered in 3-D by the VUEngine team. 
 
 This demo contains all the content of the original 2010 demo, with remastered graphics, new 
 sprites and animations, updated game mechanics, many sounds and music and much more.

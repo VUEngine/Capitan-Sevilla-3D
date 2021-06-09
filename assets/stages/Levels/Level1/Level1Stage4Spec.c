@@ -37,7 +37,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec LEVEL_1_STAGE_1_MAIN_EXIT_XP;
+extern EntitySpec LEVEL_1_STAGE_4_MAIN_EXIT_XP;
 
 extern EntitySpec ATTACK_DOG_EM;
 extern EntitySpec BENCH_EN;
@@ -57,7 +57,7 @@ extern EntitySpec TREE_1_EN;
 
 extern Size collision_16_224_64;
 
-extern Sound CAPTAIN_SONG;
+extern Sound LIFT_BREAK_SND;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -70,10 +70,10 @@ PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_CHILDREN[] =
 
 	{&CLOUDS_BACK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
 	{&CLOUDS_FRONT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_4_BACKGROUND_A_EN,	{-112, 112,  256,   0},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_STAGE_4_BACKGROUND_B_EN,	{ 590, 112,  256,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_4_BACKGROUND_A_EN,	{-112, 112,  256,   0},		0, NULL, NULL, NULL, true},
+	{&LEVEL_1_STAGE_4_BACKGROUND_B_EN,	{ 590, 112,  256,   0},		0, NULL, NULL, NULL, true},
 
-	{&LEVEL_1_STAGE_4_BUILDING_1_EN,	{ 248,  92,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_4_BUILDING_1_EN,	{ 248,  92,    0,   0},		0, NULL, NULL, NULL, true},
 	{&LEVEL_1_STAGE_4_LIFT_EN,			{ 236,  76,    0,   0},		0, NULL, NULL, NULL, false},
 	{&TREE_1_EN,						{ 320, 128,    0,   0},		0, NULL, NULL, NULL, false},
 	{&DOG_POO_1_EN,						{ 416, 166,    0,   0},		0, NULL, NULL, NULL, false},
@@ -82,7 +82,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_CHILDREN[] =
 	{&BENCH_EN,							{ 624, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&ATTACK_DOG_EM,					{ 632, 159,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_STAGE_1_MAIN_EXIT_XP,		{ 760, 128,    0,   0},		0, NULL, NULL, NULL, false},
+	{&LEVEL_1_STAGE_4_MAIN_EXIT_XP,		{ 760, 128,    0,   0},		0, NULL, NULL, NULL, false},
 	{&COLLISION_CL,						{ 774,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // right border
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
@@ -123,7 +123,7 @@ const PostProcessingEffect LEVEL_1_STAGE_4_ST_POST_PROCESSING_EFFECTS[] =
 
 SoundROM* const LEVEL_1_STAGE_4_ST_BGM[] =
 {
-	&CAPTAIN_SONG,
+	&LIFT_BREAK_SND,
 	NULL,
 };
 
