@@ -100,6 +100,7 @@ enum PlatformerLevelStateMessageTypes
 	kRemoveFromStage,
 	kComicMove,
 	kIntroNextImage,
+	kCreditsStart,
 	kProjectileEject,
 	kProjectileCheckPosition,
 	kLoadCheckPoint,

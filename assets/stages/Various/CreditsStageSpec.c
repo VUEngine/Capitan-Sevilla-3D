@@ -34,6 +34,9 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern EntitySpec LOW_POWER_INDICATOR_LB;
+extern EntitySpec CS3D_LOGO_EN;
+extern EntitySpec DEMO_BADGE_EN;
+extern EntitySpec TITLE_CAPITAN_IM;
 extern EntitySpec CREDITS_A_EN;
 extern EntitySpec CREDITS_B_EN;
 extern EntitySpec CREDITS_C_EN;
@@ -47,9 +50,13 @@ extern Sound CREDITS_SONG;
 
 PositionedEntityROMSpec CREDITS_STAGE_ST_ENTITIES[] =
 {
-	{&CREDITS_A_EN, 	{192, 32, 0, 0}, 0, NULL, NULL, NULL, false},
-	{&CREDITS_B_EN, 	{192, 32+512, 0, 0}, 0, NULL, NULL, NULL, false},
-	{&CREDITS_C_EN, 	{192, 32+1024, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&CS3D_LOGO_EN, 		{192,   93,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&DEMO_BADGE_EN, 		{272,  148,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&CREDITS_A_EN, 		{192,  636,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_B_EN, 		{192, 636+512, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&CREDITS_C_EN, 		{192, 636+1024, 0, 0}, 0, NULL, NULL, NULL, false},
+
+	{&TITLE_CAPITAN_IM, 	{192, 1035, 32, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -109,7 +116,7 @@ StageROMSpec CREDITS_STAGE_ST =
 			// x
 			__SCREEN_WIDTH,
 			// y
-			__SCREEN_HEIGHT,
+			512*3,
 			// z
 			__SCREEN_DEPTH,
 		},
@@ -139,22 +146,22 @@ StageROMSpec CREDITS_STAGE_ST =
         	// y1
         	__SCREEN_HEIGHT,
         	// z1
-        	__SCREEN_WIDTH * 5
+        	__SCREEN_DEPTH
         }
 	},
 
 	// streaming
 	{
 		// load padding
-		40,
+		0,
 		// unload padding
-		16,
+		0,
 		// streaming amplitude
-		24,
+		256,
 		// particle removal delay cycles
 		0,
 		// deferred
-		false
+		true
 	},
 
 	// rendering

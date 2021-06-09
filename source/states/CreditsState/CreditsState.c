@@ -51,6 +51,13 @@ extern StageROMSpec CREDITS_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
+//												GLOBALS
+//---------------------------------------------------------------------------------------------------------
+
+static Camera _camera = NULL;
+
+
+//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
@@ -58,8 +65,13 @@ void CreditsState::constructor()
 {
 	Base::constructor();
 
-	this->cameraSpeed = 1;
-	this->finishedScrolling = false;
+	this->cameraTranslation.x = 0;
+	this->cameraTranslation.y = 0;
+	this->cameraTranslation.z = 0;
+	this->totalScrolled = 0;
+	this->finishedScrolling = true;
+
+	_camera = Camera::getInstance();
 }
 
 void CreditsState::destructor()
@@ -84,7 +96,9 @@ void CreditsState::enter(void* owner)
 	GameState::startClocks(this);
 
 	// scrolling state
-	this->finishedScrolling = false;
+	CreditsState::scrollSlow(this);
+	this->totalScrolled = 0;
+	this->finishedScrolling = true;
 
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(), kHide);
@@ -136,34 +150,49 @@ void CreditsState::execute(void* owner __attribute__ ((unused)))
 {
 	if(!this->finishedScrolling)
 	{
-		Vector3D cameraPosition = Camera::getPosition(Camera::getInstance());
-		cameraPosition.y -= __PIXELS_TO_METER(this->cameraSpeed);
-		Camera::move(Camera::getInstance(), cameraPosition, false);
+		Camera::move(_camera, this->cameraTranslation, false);
+		this->totalScrolled += this->cameraTranslation.y;
 
-    	if(__METERS_TO_PIXELS(cameraPosition->y) < -996)
+    	if(this->totalScrolled > 5000)
     	{
     		this->finishedScrolling = true;
     	}
 	}
 }
 
+void CreditsState::startScroll()
+{
+	this->finishedScrolling = false;
+}
+
 void CreditsState::scrollSlow()
 {
-	this->cameraSpeed = 1;
+	this->cameraTranslation.y = 2;
 }
 
 void CreditsState::scrollFast()
 {
-	this->cameraSpeed = 3;
+	this->cameraTranslation.y = 6;
+}
+
+bool CreditsState::handleMessage(Telegram telegram)
+{
+	switch(Telegram::getMessage(telegram))
+	{
+		case kCreditsStart:
+
+			CreditsState::startScroll(this);
+			break;
+	}
+
+	return false;
 }
 
 void CreditsState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	// enable user input
 	Game::enableKeypad(Game::getInstance());
-
-	// start scrolling credits
 	CreditsState::scrollSlow(this);
+	MessageDispatcher::dispatchMessage(CREDITS_INITIAL_DELAY, Object::safeCast(this), Object::safeCast(this), kCreditsStart, NULL);
 }
 
 void CreditsState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
