@@ -33,8 +33,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CreditsThanksYouForPlayingTiles[];
-extern BYTE CreditsThanksYouForPlayingMap[];
+extern BYTE CreditsThankYouForPlayingTiles[];
+extern BYTE CreditsThankYouForPlayingMap[];
 extern AnimationDescription LOCALIZED_ENTITY_ANIM;
 
 
@@ -54,7 +54,7 @@ CharSetROMSpec CREDITS_THANK_YOU_CH =
 	__ANIMATED_SINGLE,
 
 	// char spec
-	CreditsThanksYouForPlayingTiles,
+	CreditsThankYouForPlayingTiles,
 };
 
 TextureROMSpec CREDITS_THANK_YOU_TX =
@@ -63,7 +63,7 @@ TextureROMSpec CREDITS_THANK_YOU_TX =
 	(CharSetSpec*)&CREDITS_THANK_YOU_CH,
 
 	// bgmap spec
-	CreditsThanksYouForPlayingMap,
+	CreditsThankYouForPlayingMap,
 
 	// cols (max 64)
 	30,

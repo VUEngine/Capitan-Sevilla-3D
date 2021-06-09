@@ -153,7 +153,7 @@ void CreditsState::execute(void* owner __attribute__ ((unused)))
 		Camera::move(_camera, this->cameraTranslation, false);
 		this->totalScrolled += this->cameraTranslation.y;
 
-    	if(this->totalScrolled > 5000)
+    	if(this->totalScrolled > 6450)
     	{
     		this->finishedScrolling = true;
     	}
@@ -172,7 +172,7 @@ void CreditsState::scrollSlow()
 
 void CreditsState::scrollFast()
 {
-	this->cameraTranslation.y = 6;
+	this->cameraTranslation.y = 8;
 }
 
 bool CreditsState::handleMessage(Telegram telegram)

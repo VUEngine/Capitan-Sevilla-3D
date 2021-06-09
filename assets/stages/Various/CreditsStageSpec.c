@@ -42,6 +42,7 @@ extern EntitySpec CREDITS_DEVELOPERS_EN;
 extern EntitySpec CREDITS_SUPPORTED_BY_EN;
 extern EntitySpec CREDITS_BACKERS_A_EN;
 extern EntitySpec CREDITS_BACKERS_B_EN;
+extern EntitySpec CREDITS_FORMER_BACKERS_EN;
 extern EntitySpec CREDITS_FORMER_BACKERS_LABEL_EN;
 extern EntitySpec CREDITS_THANK_YOU_EN;
 extern EntitySpec TITLE_CAPITAN_IM;
@@ -55,19 +56,20 @@ extern Sound CREDITS_SONG;
 
 PositionedEntityROMSpec CREDITS_STAGE_ST_ENTITIES[] =
 {
-	{&CS3D_LOGO_EN, 					{192,   93,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&DEMO_BADGE_EN, 					{272,  148,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&CS3D_LOGO_EN, 					{192,   93,  0, 0},  0, NULL, NULL, NULL, false},
+	{&DEMO_BADGE_EN, 					{272,  148,  0, 0},  0, NULL, NULL, NULL, false},
 
-	{&CREDITS_BASED_ON_EN, 				{192,  500,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_DEVELOPED_BY_EN, 			{192,  500,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_DEVELOPERS_EN, 			{192,  500,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_SUPPORTED_BY_EN, 			{192,  636,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_BACKERS_A_EN, 			{192,  636,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_BACKERS_B_EN, 			{192, 1148, 0, 0}, 0, NULL, NULL, NULL, false},
-	{&CREDITS_FORMER_BACKERS_LABEL_EN, 	{192, 1148, 0, 0}, 0, NULL, NULL, NULL, false},
-	{&CREDITS_THANK_YOU_EN, 			{192, 1148, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&CREDITS_BASED_ON_EN, 				{192,  300,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_DEVELOPED_BY_EN, 			{192,  400,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_DEVELOPERS_EN, 			{192,  454,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_SUPPORTED_BY_EN, 			{192,  580,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_BACKERS_A_EN, 			{192,  800,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_BACKERS_B_EN, 			{192, 1136,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_FORMER_BACKERS_LABEL_EN, 	{192, 1328,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_FORMER_BACKERS_EN, 		{192, 1364,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_THANK_YOU_EN, 			{192, 1648,  0, 0},  0, NULL, NULL, NULL, false},
 
-	{&TITLE_CAPITAN_IM, 				{192, 1035, 32, 0}, 0, NULL, NULL, NULL, false},
+	{&TITLE_CAPITAN_IM, 				{192, 1740, 32, 0},  0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -127,7 +129,7 @@ StageROMSpec CREDITS_STAGE_ST =
 			// x
 			__SCREEN_WIDTH,
 			// y
-			512*3,
+			2048,
 			// z
 			__SCREEN_DEPTH,
 		},
@@ -164,15 +166,15 @@ StageROMSpec CREDITS_STAGE_ST =
 	// streaming
 	{
 		// load padding
-		0,
+		64,
 		// unload padding
-		0,
+		64,
 		// streaming amplitude
-		256,
+		64,
 		// particle removal delay cycles
 		0,
 		// deferred
-		true
+		false
 	},
 
 	// rendering
