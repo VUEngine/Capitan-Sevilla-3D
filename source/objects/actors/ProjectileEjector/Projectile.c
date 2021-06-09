@@ -42,6 +42,8 @@ void Projectile::constructor(ProjectileSpec* projectileSpec, s16 internalId, con
 	// construct base
 	Base::constructor((ActorSpec*)&projectileSpec->actorSpec, internalId, name);
 
+	this->update = false;
+
 	this->dontStreamOut = true;
 
 	// save spec
@@ -71,6 +73,8 @@ void Projectile::ready(bool recursive)
 // start moving
 void Projectile::startMovement()
 {
+	this->update = true;
+
 	// adjustments relative to ejector direction
  	Direction direction = Entity::getDirection(Entity::safeCast(this->parent));
 	Velocity velocity = this->projectileSpec->velocity;
@@ -120,6 +124,8 @@ void Projectile::startMovement()
 
 void Projectile::stop()
 {
+	this->update = false;
+
 	// stop movement
 	Actor::stopAllMovement(this);
 
