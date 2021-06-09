@@ -176,7 +176,7 @@ StageROMSpec LEVEL_1_STAGE_3_ST =
 	// Timer config
 	{
 		__TIMER_100US,
-		20,
+		10,
 		kMS
 	},
 
