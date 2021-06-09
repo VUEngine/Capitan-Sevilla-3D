@@ -33,42 +33,42 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CreditsBTiles[];
-extern BYTE CreditsBMap[];
+extern BYTE CreditsBackersBTiles[];
+extern BYTE CreditsBackersBMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CREDITS_B_CH =
+CharSetROMSpec CREDITS_BACKERS_B_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	777,
+	516,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__NOT_ANIMATED,
 
 	// char spec
-	CreditsBTiles,
+	CreditsBackersBTiles,
 };
 
-TextureROMSpec CREDITS_B_TX =
+TextureROMSpec CREDITS_BACKERS_B_TX =
 {
 	// charset spec
-	(CharSetSpec*)&CREDITS_B_CH,
+	(CharSetSpec*)&CREDITS_BACKERS_B_CH,
 
 	// bgmap spec
-	CreditsBMap,
+	CreditsBackersBMap,
 
 	// cols (max 64)
-	48,
+	24,
 
 	// rows (max 64)
-	64,
+	42,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -91,14 +91,14 @@ TextureROMSpec CREDITS_B_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CREDITS_B_SPRITE =
+BgmapSpriteROMSpec CREDITS_BACKERS_B_SPRITE =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CREDITS_B_TX,
+		(TextureSpec*)&CREDITS_BACKERS_B_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -118,13 +118,13 @@ BgmapSpriteROMSpec CREDITS_B_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CREDITS_B_SPRITES[] =
+BgmapSpriteROMSpec* const CREDITS_BACKERS_B_SPRITES[] =
 {
-	&CREDITS_B_SPRITE,
+	&CREDITS_BACKERS_B_SPRITE,
 	NULL
 };
 
-EntityROMSpec CREDITS_B_EN =
+EntityROMSpec CREDITS_BACKERS_B_EN =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -139,7 +139,7 @@ EntityROMSpec CREDITS_B_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CREDITS_B_SPRITES,
+	(SpriteSpec**)CREDITS_BACKERS_B_SPRITES,
 
 	// use z displacement in projection
 	false,

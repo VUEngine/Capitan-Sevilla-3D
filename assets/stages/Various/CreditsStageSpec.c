@@ -36,10 +36,15 @@
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 extern EntitySpec CS3D_LOGO_EN;
 extern EntitySpec DEMO_BADGE_EN;
+extern EntitySpec CREDITS_BASED_ON_EN;
+extern EntitySpec CREDITS_DEVELOPED_BY_EN;
+extern EntitySpec CREDITS_DEVELOPERS_EN;
+extern EntitySpec CREDITS_SUPPORTED_BY_EN;
+extern EntitySpec CREDITS_BACKERS_A_EN;
+extern EntitySpec CREDITS_BACKERS_B_EN;
+extern EntitySpec CREDITS_FORMER_BACKERS_LABEL_EN;
+extern EntitySpec CREDITS_THANK_YOU_EN;
 extern EntitySpec TITLE_CAPITAN_IM;
-extern EntitySpec CREDITS_A_EN;
-extern EntitySpec CREDITS_B_EN;
-extern EntitySpec CREDITS_C_EN;
 
 extern Sound CREDITS_SONG;
 
@@ -50,13 +55,19 @@ extern Sound CREDITS_SONG;
 
 PositionedEntityROMSpec CREDITS_STAGE_ST_ENTITIES[] =
 {
-	{&CS3D_LOGO_EN, 		{192,   93,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&DEMO_BADGE_EN, 		{272,  148,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CREDITS_A_EN, 		{192,  636,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_B_EN, 		{192, 636+512, 0, 0}, 0, NULL, NULL, NULL, false},
-	{&CREDITS_C_EN, 		{192, 636+1024, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&CS3D_LOGO_EN, 					{192,   93,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&DEMO_BADGE_EN, 					{272,  148,  0, 0}, 0, NULL, NULL, NULL, false},
 
-	{&TITLE_CAPITAN_IM, 	{192, 1035, 32, 0}, 0, NULL, NULL, NULL, false},
+	{&CREDITS_BASED_ON_EN, 				{192,  500,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_DEVELOPED_BY_EN, 			{192,  500,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_DEVELOPERS_EN, 			{192,  500,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_SUPPORTED_BY_EN, 			{192,  636,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_BACKERS_A_EN, 			{192,  636,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_BACKERS_B_EN, 			{192, 1148, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&CREDITS_FORMER_BACKERS_LABEL_EN, 	{192, 1148, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&CREDITS_THANK_YOU_EN, 			{192, 1148, 0, 0}, 0, NULL, NULL, NULL, false},
+
+	{&TITLE_CAPITAN_IM, 				{192, 1035, 32, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };

@@ -24,8 +24,8 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <Actor.h>
-#include <BgmapSprite.h>
+#include <BgmapAnimatedSprite.h>
+#include <LocalizedEntity.h>
 #include <macros.h>
 
 
@@ -33,42 +33,43 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CreditsCTiles[];
-extern BYTE CreditsCMap[];
+extern BYTE CreditsSupportedByTiles[];
+extern BYTE CreditsSupportedByMap[];
+extern AnimationDescription LOCALIZED_ENTITY_ANIM;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CREDITS_C_CH =
+CharSetROMSpec CREDITS_SUPPORTED_BY_CH =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	613,
+	336,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__NOT_ANIMATED,
+	__ANIMATED_SINGLE,
 
 	// char spec
-	CreditsCTiles,
+	CreditsSupportedByTiles,
 };
 
-TextureROMSpec CREDITS_C_TX =
+TextureROMSpec CREDITS_SUPPORTED_BY_TX =
 {
 	// charset spec
-	(CharSetSpec*)&CREDITS_C_CH,
+	(CharSetSpec*)&CREDITS_SUPPORTED_BY_CH,
 
 	// bgmap spec
-	CreditsCMap,
+	CreditsSupportedByMap,
 
 	// cols (max 64)
 	48,
 
 	// rows (max 64)
-	64,
+	7,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
@@ -79,7 +80,7 @@ TextureROMSpec CREDITS_C_TX =
 	1,
 
 	// palette number (0-3)
-	0,
+	1,
 
 	// recyclable
 	false,
@@ -91,20 +92,20 @@ TextureROMSpec CREDITS_C_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CREDITS_C_SPRITE =
+BgmapSpriteROMSpec CREDITS_SUPPORTED_BY_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(BgmapSprite),
+		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CREDITS_C_TX,
+		(TextureSpec*)&CREDITS_SUPPORTED_BY_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 0, 0}
+		{0, 0, 0, 0},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -118,42 +119,51 @@ BgmapSpriteROMSpec CREDITS_C_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CREDITS_C_SPRITES[] =
+BgmapSpriteROMSpec* const CREDITS_SUPPORTED_BY_SPRITES[] =
 {
-	&CREDITS_C_SPRITE,
+	&CREDITS_SUPPORTED_BY_SPRITE,
 	NULL
 };
 
-EntityROMSpec CREDITS_C_EN =
+LocalizedEntityROMSpec CREDITS_SUPPORTED_BY_EN =
 {
-	// class allocator
-	__TYPE(Entity),
+	{
+		// class allocator
+		__TYPE(LocalizedEntity),
 
-	// children
-	NULL,
+		// children
+		NULL,
 
-	// behaviors
-	NULL,
+		// behaviors
+		NULL,
 
-	// extra
-	NULL,
+		// extra
+		NULL,
 
-	// sprites
-	(SpriteSpec**)CREDITS_C_SPRITES,
+		// sprites
+		(SpriteSpec**)CREDITS_SUPPORTED_BY_SPRITES,
 
-	// use z displacement in projection
-	false,
+		// use z displacement in projection
+		false,
 
-	// collision shapes
-	NULL,
+		// collision shapes
+		(ShapeSpec*)NULL,
 
-	// size
-	// if 0, width and height will be inferred from the first sprite's texture's size
-	{0, 0, 0},
+		// size
+		// if 0, width and height will be inferred from the first sprite's texture's size
+		{0, 0, 0},
 
-	// gameworld's character's type
-	kTypeNone,
+		// gameworld's character's type
+		kTypeNone,
 
-	// physical specification
-	NULL,
+		// physical specification
+		(PhysicalSpecification*)NULL,
+	},
+
+	// pointer to the animation spec for the character
+	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
+
+	// initial animation
+	"0",
 };
+

@@ -49,14 +49,10 @@
 		"ItemSausage": {
 			"template": "animatedEntity"
 		},
-		"Stages/Credits/A": {
-			"name": "CreditsA",
-			"template": "entitySharedTileset"
+		"Stages/Credits/Localized": {
+			"template": "animatedEntity"
 		},
-		"Stages/Credits/B": {
-			"template": "entity"
-		},
-		"Stages/Credits/C": {
+		"Stages/Credits/Single": {
 			"template": "entity"
 		},
 		"Stages/Intro/IntroImages": {
