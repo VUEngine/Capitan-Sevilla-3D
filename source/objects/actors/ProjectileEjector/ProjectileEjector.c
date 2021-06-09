@@ -153,7 +153,7 @@ void ProjectileEjector::ejectProjectile()
 					NULL
 				);
 
-				this->coolingDown = true;
+				this->coolingDown = NULL != this->projectileEjectorSpec->ejectAnimationName;
 
 				break;
 			}
