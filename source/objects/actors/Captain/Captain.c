@@ -589,7 +589,7 @@ void Captain::startFlashing()
 void Captain::stopFlashing()
 {
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kEntityFlash);
- 	Captain::resetPalette(this);
+	Captain::resetPalette(this);
 }
 
 // flash after being hit
@@ -640,9 +640,6 @@ void Captain::toggleEntityFlashPalette(Entity entity)
 		{
 			Texture::setPalette(texture, textureSpec->palette);
 		}
-
-		// rewrite sprite to bgmap to apply changed palette
-		Sprite::rewrite(sprite);
 	}
 }
 
@@ -666,9 +663,6 @@ void Captain::resetEntityPalette(Entity entity)
 		// get original palette and set it
 		TextureSpec* textureSpec = Texture::getSpec(texture);
 		Texture::setPalette(texture, textureSpec->palette);
-
-		// rewrite sprite to bgmap to apply changed palette
-		Sprite::rewrite(sprite);
 	}
 }
 
@@ -772,8 +766,24 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 {
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape::getOwner(collidingShape);
+	u32 collidingObjectInGameType = SpatialObject::getInGameType(collidingObject);
 
-	switch(SpatialObject::getInGameType(collidingObject))
+	if(0 > this->energy)
+	{
+		switch(collidingObjectInGameType)
+		{
+			// speed things up by breaking early
+			case kShape:
+			case kFloor:
+				break;
+
+			default:
+
+				return false;
+		}
+	}
+
+	switch(collidingObjectInGameType)
 	{
 		// speed things up by breaking early
 		case kShape:
@@ -965,7 +975,6 @@ bool Captain::handlePropagatedMessage(int message)
 				CustomCameraMovementManager::setPositionFlag(CustomCameraMovementManager::getInstance(), positionFlag);
 			}
 			break;
-
 	}
 
 	return false;

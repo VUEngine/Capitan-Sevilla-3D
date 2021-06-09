@@ -53,18 +53,16 @@ void CaptainDead::destructor()
 
 void CaptainDead::enter(void* owner)
 {
-	// show animation
-	Captain::playAnimation(owner, "Dead");
-
-	// unregister captain's shapes for collision detection
-	Entity::activeCollisionChecks(owner, false);
-
 	// set flashing palette back to original
 	Captain::stopFlashing(owner);
 
-	Actor::stopAllMovement(owner);
+
+	Captain::stopAllMovement(owner);
 	Game::disableKeypad(Game::getInstance());
 	Captain::setInvincible(owner, true);
+
+	// show animation
+	Captain::playAnimation(owner, "Dead");
 
 	// announce my dead
 	Object::fireEvent(EventManager::getInstance(), kEventCaptainDied);
