@@ -669,7 +669,7 @@ void Captain::resetEntityPalette(Entity entity)
 // die captain
 void Captain::die()
 {
-	SoundManager::stopAllSounds(SoundManager::getInstance());
+	SoundManager::stopAllSounds(SoundManager::getInstance(), true);
 	
 	SoundManager::playSound(
 		SoundManager::getInstance(),
