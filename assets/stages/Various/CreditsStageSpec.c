@@ -34,7 +34,18 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern EntitySpec LOW_POWER_INDICATOR_LB;
-extern EntitySpec CREDITS_EN;
+extern EntitySpec CS3D_LOGO_EN;
+extern EntitySpec DEMO_BADGE_EN;
+extern EntitySpec CREDITS_BASED_ON_EN;
+extern EntitySpec CREDITS_DEVELOPED_BY_EN;
+extern EntitySpec CREDITS_DEVELOPERS_EN;
+extern EntitySpec CREDITS_SUPPORTED_BY_EN;
+extern EntitySpec CREDITS_BACKERS_A_EN;
+extern EntitySpec CREDITS_BACKERS_B_EN;
+extern EntitySpec CREDITS_FORMER_BACKERS_EN;
+extern EntitySpec CREDITS_FORMER_BACKERS_LABEL_EN;
+extern EntitySpec CREDITS_THANK_YOU_EN;
+extern EntitySpec TITLE_CAPITAN_IM;
 
 extern Sound CREDITS_SONG;
 
@@ -45,7 +56,20 @@ extern Sound CREDITS_SONG;
 
 PositionedEntityROMSpec CREDITS_STAGE_ST_ENTITIES[] =
 {
-	{&CREDITS_EN, 	{192, 256, 0, 0}, 0, "CREDITS", NULL, NULL, false},
+	{&CS3D_LOGO_EN, 					{192,   93,  0, 0},  0, NULL, NULL, NULL, false},
+	{&DEMO_BADGE_EN, 					{272,  148,  0, 0},  0, NULL, NULL, NULL, false},
+
+	{&CREDITS_BASED_ON_EN, 				{192,  300,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_DEVELOPED_BY_EN, 			{192,  400,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_DEVELOPERS_EN, 			{192,  454,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_SUPPORTED_BY_EN, 			{192,  580,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_BACKERS_A_EN, 			{192,  800,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_BACKERS_B_EN, 			{192, 1136,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_FORMER_BACKERS_LABEL_EN, 	{192, 1328,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_FORMER_BACKERS_EN, 		{192, 1364,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CREDITS_THANK_YOU_EN, 			{192, 1648,  0, 0},  0, NULL, NULL, NULL, false},
+
+	{&TITLE_CAPITAN_IM, 				{192, 1740, 32, 0},  0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -105,7 +129,7 @@ StageROMSpec CREDITS_STAGE_ST =
 			// x
 			__SCREEN_WIDTH,
 			// y
-			__SCREEN_HEIGHT,
+			2048,
 			// z
 			__SCREEN_DEPTH,
 		},
@@ -135,18 +159,18 @@ StageROMSpec CREDITS_STAGE_ST =
         	// y1
         	__SCREEN_HEIGHT,
         	// z1
-        	__SCREEN_WIDTH * 5
+        	__SCREEN_DEPTH
         }
 	},
 
 	// streaming
 	{
 		// load padding
-		40,
+		64,
 		// unload padding
-		16,
+		64,
 		// streaming amplitude
-		24,
+		64,
 		// particle removal delay cycles
 		0,
 		// deferred

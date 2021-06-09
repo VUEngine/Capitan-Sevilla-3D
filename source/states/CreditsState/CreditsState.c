@@ -51,6 +51,13 @@ extern StageROMSpec CREDITS_STAGE_ST;
 
 
 //---------------------------------------------------------------------------------------------------------
+//												GLOBALS
+//---------------------------------------------------------------------------------------------------------
+
+static Camera _camera = NULL;
+
+
+//---------------------------------------------------------------------------------------------------------
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
@@ -58,8 +65,13 @@ void CreditsState::constructor()
 {
 	Base::constructor();
 
-	this->entityCredits = NULL;
-	this->finishedScrolling = false;
+	this->cameraTranslation.x = 0;
+	this->cameraTranslation.y = 0;
+	this->cameraTranslation.z = 0;
+	this->totalScrolled = 0;
+	this->finishedScrolling = true;
+
+	_camera = Camera::getInstance();
 }
 
 void CreditsState::destructor()
@@ -77,9 +89,6 @@ void CreditsState::enter(void* owner)
 	// load stage
 	GameState::loadStage(this, (StageSpec*)&CREDITS_STAGE_ST, NULL, true, false);
 
-	// get entity reference
-	this->entityCredits = Actor::safeCast(Container::getChildByName(Game::getStage(Game::getInstance()), "CREDITS", true));
-
 	// disable user input
 	Game::disableKeypad(Game::getInstance());
 
@@ -87,7 +96,9 @@ void CreditsState::enter(void* owner)
 	GameState::startClocks(this);
 
 	// scrolling state
-	this->finishedScrolling = false;
+	CreditsState::scrollSlow(this);
+	this->totalScrolled = 0;
+	this->finishedScrolling = true;
 
 	// fade in screen
 	Camera::startEffect(Camera::getInstance(), kHide);
@@ -139,35 +150,49 @@ void CreditsState::execute(void* owner __attribute__ ((unused)))
 {
 	if(!this->finishedScrolling)
 	{
-		const Vector3D* position = Actor::getPosition(this->entityCredits);
+		Camera::move(_camera, this->cameraTranslation, false);
+		this->totalScrolled += this->cameraTranslation.y;
 
-    	if(__METERS_TO_PIXELS(position->y) < -940)
+    	if(this->totalScrolled > 6450)
     	{
-    		Actor::stopAllMovement(this->entityCredits);
     		this->finishedScrolling = true;
     	}
 	}
 }
 
+void CreditsState::startScroll()
+{
+	this->finishedScrolling = false;
+}
+
 void CreditsState::scrollSlow()
 {
-	Velocity velocity = {0, __I_TO_FIX10_6(-1), 0};
-	Actor::moveUniformly(this->entityCredits, &velocity);
+	this->cameraTranslation.y = 2;
 }
 
 void CreditsState::scrollFast()
 {
-	Velocity velocity = {0, __I_TO_FIX10_6(-3), 0};
-	Actor::moveUniformly(this->entityCredits, &velocity);
+	this->cameraTranslation.y = 8;
+}
+
+bool CreditsState::handleMessage(Telegram telegram)
+{
+	switch(Telegram::getMessage(telegram))
+	{
+		case kCreditsStart:
+
+			CreditsState::startScroll(this);
+			break;
+	}
+
+	return false;
 }
 
 void CreditsState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 {
-	// enable user input
 	Game::enableKeypad(Game::getInstance());
-
-	// start scrolling credits
 	CreditsState::scrollSlow(this);
+	MessageDispatcher::dispatchMessage(CREDITS_INITIAL_DELAY, Object::safeCast(this), Object::safeCast(this), kCreditsStart, NULL);
 }
 
 void CreditsState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))

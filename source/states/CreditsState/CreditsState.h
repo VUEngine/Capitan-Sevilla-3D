@@ -31,17 +31,26 @@
 
 
 //---------------------------------------------------------------------------------------------------------
+//												DECLARATIONS
+//---------------------------------------------------------------------------------------------------------
+
+#define CREDITS_INITIAL_DELAY	800
+
+
+//---------------------------------------------------------------------------------------------------------
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
 singleton class CreditsState : GameState
 {
-	Actor entityCredits;
+	Vector3D cameraTranslation;
 	bool finishedScrolling;
+	u16 totalScrolled;
 
 	static CreditsState getInstance();
 	override void enter(void* owner);
 	override void execute(void* owner);
+	override bool handleMessage(Telegram telegram);
 	override void processUserInput(UserInput userInput);
 }
 
