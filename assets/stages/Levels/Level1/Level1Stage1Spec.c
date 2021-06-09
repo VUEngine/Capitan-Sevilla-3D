@@ -408,7 +408,7 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 			// __spt2
 			0,
 			// __spt3
-			384,
+			448,
 		},
 
 		// OBJECT segments z coordinates
