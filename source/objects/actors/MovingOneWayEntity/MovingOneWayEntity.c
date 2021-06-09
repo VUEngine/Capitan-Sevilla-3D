@@ -60,7 +60,7 @@ void MovingOneWayEntity::setExtraInfo(void* extraInfo)
 {
 	if(extraInfo != NULL)
 	{
-		this->speed = __F_TO_FIX10_6((int)extraInfo);
+		this->speed = __I_TO_FIX10_6((int)extraInfo);
 	}
 }
 
@@ -77,14 +77,14 @@ void MovingOneWayEntity::startMovement()
 {
 	if(this->speed != 0)
 	{
-		if(isDeleted(Captain::getInstance()))
-		{
-			return;
-		}
-		
-		const Vector3D* captainPosition = Captain::getPosition(Captain::getInstance());
+		Velocity velocity = {this->speed, 0, 0};
 
-		Velocity velocity = {captainPosition->x <= this->transformation.globalPosition.x ? this->speed : this->speed, 0, 0};
+		if(!isDeleted(Captain::getInstance()))
+		{
+			const Vector3D* captainPosition = Captain::getPosition(Captain::getInstance());
+			velocity.x = captainPosition->x <= this->transformation.globalPosition.x ? this->speed : this->speed;
+		}
+
 		Actor::moveUniformly(this, &velocity);
 	}
 }
