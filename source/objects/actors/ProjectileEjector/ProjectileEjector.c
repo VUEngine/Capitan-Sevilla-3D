@@ -58,6 +58,9 @@ void ProjectileEjector::constructor(ProjectileEjectorSpec* projectileEjectorSpec
 
 	// No projectiles created yet
 	this->createdProjectiles = 0;
+
+	// Ready to fire
+	this->coolingDown = false;
 }
 
 void ProjectileEjector::destructor()
@@ -115,6 +118,11 @@ bool ProjectileEjector::handleMessage(Telegram telegram)
 // eject a projectile
 void ProjectileEjector::ejectProjectile()
 {
+	if(this->coolingDown)
+	{
+		return;
+	}
+
 	if(this->active)
 	{
 		// poll all projectiles to find a (re)useable one
@@ -145,6 +153,8 @@ void ProjectileEjector::ejectProjectile()
 					NULL
 				);
 
+				this->coolingDown = true;
+
 				break;
 			}
 		}
@@ -160,7 +170,10 @@ void ProjectileEjector::setActive(bool active)
 
 	if(this->active)
 	{
-		MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
+		if(ProjectileEjector::canEject(this))
+		{
+			MessageDispatcher::dispatchMessage(0, Object::safeCast(this), Object::safeCast(this), kProjectileEject, NULL);
+		}
 	}
 	else
 	{
@@ -173,9 +186,16 @@ bool ProjectileEjector::isActive()
 	return this->active;
 }
 
+bool ProjectileEjector::canEject()
+{
+	return !this->coolingDown;
+}
+
 // spawn a projectile, this is the callback of the "Eject" animation
 void ProjectileEjector::onEjectAnimationComplete()
 {
 	// play idle animation
 	AnimatedEntity::playAnimation(this, this->projectileEjectorSpec->idleAnimationName);
+
+	this->coolingDown = false;
 }

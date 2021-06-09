@@ -88,10 +88,13 @@ class ProjectileEjector : AnimatedEntity
 	u8 active;
 	// created projectiles counter
 	u8 createdProjectiles;
+	// cooldown flag
+	bool coolingDown;
 
 	void constructor(ProjectileEjectorSpec* projectileEjectorSpec, s16 internalId, const char* const name);
 	void ejectProjectile();
 	bool isActive();
+	bool canEject();
 	void onEjectAnimationComplete();
 	void setActive(bool active);
 	override bool handleMessage(Telegram telegram);

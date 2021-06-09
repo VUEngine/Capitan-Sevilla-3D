@@ -182,7 +182,7 @@ void Captain::addDustEntity()
 
 void Captain::startShooting()
 {
-	if(this->gums > 0)
+	if(this->gums > 0 && ProjectileEjector::canEject(this->headEntity))
 	{
 		// shoot gum
 		ProjectileEjector::setActive(this->headEntity, true);
