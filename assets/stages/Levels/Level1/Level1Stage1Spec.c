@@ -161,7 +161,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 
 	{&LEVEL_1_STAGE_1_BUILDING_3_EN,	{ 808,  80,    0,   0},		0, NULL, NULL, NULL, false},
 	{&GRANNY_PE,						{ 765,  50,    0,   0},		0, NULL, NULL, NULL, false},
-	{&GRANNY_PE,						{ 852,  50,    0,   0},		0, NULL, NULL, NULL, false},
+	//{&GRANNY_PE,						{ 852,  50,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{&LEVEL_1_STAGE_1_BUILDING_4_EN,	{ 996, 102,    0,   0},		0, NULL, NULL, NULL, false},
 

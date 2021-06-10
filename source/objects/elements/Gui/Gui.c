@@ -44,7 +44,6 @@
 
 extern BYTE GuiItemsTiles[];
 extern CharSetSpec GUI_ITEMS_CH;
-extern EntitySpec GAME_OVER_EN;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -239,11 +238,6 @@ void Gui::onCaptainSpawned(Object eventFirer __attribute__ ((unused)))
 void Gui::onCaptainDied(Object eventFirer __attribute__ ((unused)))
 {
 	Container::deleteMyself(this);
-
-	// add "game over"
-	Vector3D cameraPosition = Camera::getPosition(Camera::getInstance());
-	PositionedEntity gameOverPositionedEntity = {&GAME_OVER_EN, {__METERS_TO_PIXELS(cameraPosition.x) + 192, 112, 0, 0}, 0, NULL, NULL, NULL, false};
-	Stage::addChildEntity(Game::getStage(Game::getInstance()), &gameOverPositionedEntity, true);
 }
 
 void Gui::onSetModeToPaused(Object eventFirer __attribute__ ((unused)))

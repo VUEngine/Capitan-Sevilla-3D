@@ -64,7 +64,6 @@ extern Sound SHOOT_SND;
 extern Sound JUMP_SND;
 extern Sound RELOAD_SND;
 extern Sound HIT_SND;
-extern Sound GAME_OVER_SND;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -573,9 +572,7 @@ void Captain::takeDamageFrom(int energyToReduce)
 		}
 		else
 		{
-			Captain::die(this);
-
-			RumblePakManager::startEffect(&RumbleEffectDieStrong);			
+			Captain::die(this);		
 		}
 	}
 }
@@ -669,18 +666,6 @@ void Captain::resetEntityPalette(Entity entity)
 // die captain
 void Captain::die()
 {
-	SoundManager::stopAllSounds(SoundManager::getInstance(), true);
-	
-	SoundManager::playSound(
-		SoundManager::getInstance(),
-		&GAME_OVER_SND,
-		kPlayAll,
-		(const Vector3D*)&this->transformation.globalPosition,
-		kSoundWrapperPlaybackNormal,
-		NULL,
-		NULL
-	);
-
 	// go to dead state
 	StateMachine::swapState(this->stateMachine, State::safeCast(CaptainDead::getInstance()));
 }
