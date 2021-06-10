@@ -71,7 +71,7 @@ class Projectile : Actor
 	void constructor(ProjectileSpec* projectileSpec, s16 internalId, const char* const name);
 	void startMovement();
 	bool canBeReused();
-	void stop();
+	void stop(bool hide);
 	void onHitAnimationComplete();
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);

@@ -60,11 +60,7 @@ bool FlowerPot::enterCollision(const CollisionInformation* collisionInformation)
 	{
 		case kFloor:
 		{
-			// stop movement
-			Actor::stopAllMovement(this);
-
-			// deactivate shapes
-			Entity::allowCollisions(this, false);
+			FlowerPot::stop(this, false);
 
 			// play breaking animation
 			AnimatedEntity::playAnimation(this, "Break");
