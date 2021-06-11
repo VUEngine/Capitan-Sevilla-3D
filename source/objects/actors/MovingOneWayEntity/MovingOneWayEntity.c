@@ -76,8 +76,17 @@ void MovingOneWayEntity::startMovement()
 {
 	if(this->speed != 0)
 	{
-		Velocity velocity = {this->speed, 0, 0};
-		Actor::moveUniformly(this, &velocity);
+		if(isDeleted(Captain::getInstance()))
+ 		{
+			Velocity velocity = {this->speed, 0, 0};
+			Actor::moveUniformly(this, &velocity);
+ 			return;
+ 		}
+
+ 		const Vector3D* captainPosition = Captain::getPosition(Captain::getInstance());
+
+ 		Velocity velocity = {captainPosition->x <= this->transformation.globalPosition.x ? this->speed : -this->speed, 0, 0};
+ 		Actor::moveUniformly(this, &velocity);
 	}
 }
 
