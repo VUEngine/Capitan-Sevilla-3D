@@ -273,7 +273,7 @@ EntityROMSpec LEVEL_1_STAGE_3_BUILDING_2A_EN =
 	{0, 0, 0},
 
 	// gameworld's character's type
-	kTypeNone,
+	kFloor,
 
 	// physical specification
 	(PhysicalSpecification*)&LEVEL_1_STAGE_3_BUILDING_2A_PHYSICAL_PROPERTIES,

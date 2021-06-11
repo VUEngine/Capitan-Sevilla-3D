@@ -124,7 +124,6 @@ void Captain::destructor()
 	Object::removeEventListener(this->headEntity, Object::safeCast(this), (EventListener)Captain::onProjectileEjected, kEventProjectileEjected);
 
 	// discard pending delayed messages
-	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainCheckVelocity);
 	MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kEntityFlash);
 
 	// free the instance pointers
@@ -396,11 +395,6 @@ void Captain::stopAddingForce()
 // started moving over axis
 void Captain::startedMovingOnAxis(u16 axis)
 {
-	if(__Y_AXIS & axis)
-	{
-		Captain::capVelocity(this, true);
-	}
-
 	// start movement
 	if(State::safeCast(CaptainMoving::getInstance()) != StateMachine::getCurrentState(this->stateMachine))
 	{
@@ -443,8 +437,6 @@ bool Captain::stopMovementOnAxis(u16 axis)
 		if(__Y_AXIS & axis)
 		{
 			Dust::showAnimation(this->landDustEntity);
-
-			MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainCheckVelocity);
 
 			this->jumps = 0;
 
@@ -772,11 +764,11 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 	{
 		// speed things up by breaking early
 		case kShape:
-
 			break;
 
 		case kFloor:
 
+			this->jumps = 0;
 			RumblePakManager::startEffect(&RumbleEffectLand);
 			break;
 
@@ -877,50 +869,11 @@ bool Captain::updateCollision(const CollisionInformation* collisionInformation)
 	return false;
 }
 
-void Captain::capVelocity(bool discardPreviousMessages)
-{
-	if(discardPreviousMessages)
-	{
-		MessageDispatcher::discardDelayedMessagesFromSender(MessageDispatcher::getInstance(), Object::safeCast(this), kCaptainCheckVelocity);
-	}
-
-	if(Body::isActive(this->body))
-	{
-		Velocity velocity = Body::getVelocity(this->body);
-
-		if(velocity.y)
-		{
-			if(CAPTAIN_MAX_VELOCITY_Y < velocity.y && __UNIFORM_MOVEMENT != Body::getMovementType(this->body).y)
-			{
-				velocity.x = 0;
-				velocity.y = CAPTAIN_MAX_VELOCITY_Y;
-				velocity.z = 0;
-
-				//Body::moveUniformly(this->body, velocity);
-			}
-			else if(0 < velocity.y)
-			{
-				MessageDispatcher::dispatchMessage(CAPTAIN_CHECK_Y_VELOCITY, Object::safeCast(this), Object::safeCast(this), kCaptainCheckVelocity, NULL);
-			}
-		}
-		else
-		{
-			MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), kCaptainCheckVelocity, NULL);
-		}
-	}
-}
-
 bool Captain::handleMessage(Telegram telegram)
 {
 	// handle messages that any state would handle here
 	switch(Telegram::getMessage(telegram))
 	{
-		case kCaptainCheckVelocity:
-
-			Captain::capVelocity(this, false);
-			return true;
-			break;
-
 		case kCaptainStopInvincibility:
 
 			Captain::setInvincible(this, false);
