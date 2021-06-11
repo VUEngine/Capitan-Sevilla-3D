@@ -52,7 +52,7 @@ PositionedEntityROMSpec CS_ADJUSTMENT_SCREEN_STAGE_ENTITIES[] =
 	{&CS_ADJUSTMENT_SCREEN_ICON_L_EN, 		{ 16,  22,  0, 0}, 0, NULL, NULL, NULL, false},
 	{&CS_ADJUSTMENT_SCREEN_SPLAT_EN, 		{192, 112,  1, 0}, 0, NULL, NULL, NULL, false},
 	//{&CS_ADJUSTMENT_SCREEN_MADE_WITH_EN, 	{130,  90,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CS_ADJUSTMENT_SCREEN_LOGO_EN, 		{192, 100,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&CS_ADJUSTMENT_SCREEN_LOGO_EN, 		{192, 110,  0, 0}, 0, NULL, NULL, NULL, false},
 	{&CS_ADJUSTMENT_SCREEN_ICON_L_EN, 		{368, 202,  0, 0}, 0, NULL, NULL, NULL, false},
 	{&CS_ADJUSTMENT_SCREEN_ICON_R_EN, 		{368,  22,  0, 0}, 0, NULL, NULL, NULL, false},
 
@@ -167,12 +167,7 @@ StageROMSpec CS_ADJUSTMENT_SCREEN_STAGE =
 			// brightness values on the respective regions of the screen. maximum brightness is 128.
 			{
 				// dark red
-#if(__CS_ADJUSTMENT_SCREEN_VARIANT == 0)
-				16,
-#endif
-#if(__CS_ADJUSTMENT_SCREEN_VARIANT > 0)
 				__BRIGHTNESS_DARK_RED,
-#endif
 				// medium red
 				__BRIGHTNESS_MEDIUM_RED,
 				// bright red
