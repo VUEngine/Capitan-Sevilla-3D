@@ -121,7 +121,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 
 PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_UI_CHILDREN[] =
 {
-	{&GUI_EN, 							{ 192, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&GUI_EN, 							{ 332, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
 	{&LOW_POWER_INDICATOR_LB, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},

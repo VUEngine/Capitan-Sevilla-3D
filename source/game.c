@@ -58,7 +58,7 @@ int main()
 
 	// start the game
 	//Game::start(Game::getInstance(), GameState::safeCast(CreditsState::getInstance()));
-	//Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
 	//Game::start(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
 	//Game::start(Game::getInstance(), GameState::safeCast(CsAdjustmentScreenState::getInstance()));
 	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));

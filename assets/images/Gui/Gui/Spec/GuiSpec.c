@@ -66,7 +66,7 @@ TextureROMSpec GUI_TX =
 	GuiMap,
 
 	// cols (max 64)
-	48,
+	13,
 
 	// rows (max 64)
 	5,
