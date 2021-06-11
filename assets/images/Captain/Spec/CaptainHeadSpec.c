@@ -68,10 +68,10 @@ AnimationFunctionROMSpec CAPTAIN_HEAD_IDLE_ANIM =
 AnimationFunctionROMSpec CAPTAIN_HEAD_SPIT_ANIM =
 {
 	// number of frames of this animation function
-	10,
+	4,
 
 	// frames to play in animation
-	{1, 2, 3, 4, 4, 4, 4, 4, 4, 4},
+	{1, 2, 3, 4},
 
 	// number of cycles a frame of animation is displayed
 	2,
