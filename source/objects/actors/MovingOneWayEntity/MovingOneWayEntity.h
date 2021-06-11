@@ -61,7 +61,6 @@ class MovingOneWayEntity : Actor
 	void startMovement();
 	void stopMovement();
 	override void ready(bool recursive);
-	override bool respawn();
 	override void setExtraInfo(void* extraInfo);
 }
 

@@ -50,6 +50,7 @@ void Enemy::constructor(EnemySpec* enemySpec, s16 internalId, const char* const 
 	Base::constructor((MovingOneWayEntitySpec*)&enemySpec->movingOneWayEntitySpec, internalId, name);
 
 	// init members
+	this->respawn = enemySpec->respawn;
 	this->energy = enemySpec->energy;
 	this->enemySpec = enemySpec;
 	this->projectileEjectorEntity = NULL;
@@ -216,4 +217,9 @@ void Enemy::onEjectAnimationComplete()
 {
 	// play idle animation
 	AnimatedEntity::playAnimation(this, "Idle");
+}
+
+bool Enemy::respawn()
+{
+	return this->respawn;
 }

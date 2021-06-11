@@ -59,6 +59,9 @@ typedef struct EnemySpec
 	/// relative position of projectile ejector
 	Vector3D projectileEjectorPosition;
 
+	// respawn
+	bool respawn;
+
 } EnemySpec;
 
 typedef const EnemySpec EnemyROMSpec;
@@ -86,6 +89,7 @@ class Enemy : MovingOneWayEntity
 	void stopFlashing();
 	void onEjectAnimationComplete();
 	virtual void die();
+	override bool respawn();
 }
 
 

@@ -45,7 +45,6 @@ void MovingOneWayEntity::constructor(MovingOneWayEntitySpec* movingOneWayEntityS
 	Base::constructor((ActorSpec*)&movingOneWayEntitySpec->actorSpec, internalId, name);
 
 	this->speed = movingOneWayEntitySpec->speed;
-	this->respawn = true;
 }
 
 void MovingOneWayEntity::destructor()
@@ -85,9 +84,4 @@ void MovingOneWayEntity::startMovement()
 void MovingOneWayEntity::stopMovement()
 {
 	Actor::stopAllMovement(this);
-}
-
-bool MovingOneWayEntity::respawn()
-{
-	return this->respawn;
 }

@@ -248,4 +248,7 @@ EnemyROMSpec HOVER_CAR_EM =
 
 	// relative position of projectile ejector
 	{0, 0, 0},
+
+	// respawn
+	false
 };
