@@ -43,7 +43,7 @@ CharSetROMSpec CS_ADJUSTMENT_SCREEN_SPLAT_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	85,
+	90,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -62,10 +62,10 @@ TextureROMSpec CS_ADJUSTMENT_SCREEN_SPLAT_TX =
 	CsAdjustmentScreenSplatMap,
 
 	// cols (max 64)
-	17,
+	23,
 
 	// rows (max 64)
-	15,
+	20,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
