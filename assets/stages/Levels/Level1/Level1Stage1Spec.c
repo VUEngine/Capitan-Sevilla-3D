@@ -328,11 +328,11 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 	// streaming
 	{
 		// load padding
-		16,
+		32,
 		// unload padding
-		16,
+		12,
 		// streaming amplitude
-		16,
+		8,
 		// particle removal delay cycles
 		4,
 		// deferred
@@ -341,9 +341,6 @@ StageROMSpec LEVEL_1_STAGE_1_ST =
 
 	// rendering
 	{
-		// number of cycles the texture writing is idle
-		4,
-
 		// maximum number of texture's rows to write each time the texture writing is active
 		8,
 

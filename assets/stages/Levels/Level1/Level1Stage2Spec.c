@@ -166,9 +166,9 @@ StageROMSpec LEVEL_1_STAGE_2_ST =
 	// streaming
 	{
 		// load padding
-		16,
+		64,
 		// unload padding
-		4,
+		16,
 		// streaming amplitude
 		16,
 		// particle removal delay cycles
