@@ -1,9 +1,9 @@
 
-//{{BLOCK(VUEngineLogo)
+//{{BLOCK(CsAdjustmentScreenLogo)
 
 //======================================================================
 //
-//	VUEngineLogo, 152x40@2, 
+//	CsAdjustmentScreenLogo, 152x40@2, 
 //	+ 65 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 19x5 
 //	Total size: 1040 + 192 = 1232
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int VUEngineLogoTiles[260] __attribute__((aligned(4)))=
+const unsigned int CsAdjustmentScreenLogoTiles[260] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x3F401900,
 	0x00000000,0x00000000,0x40000000,0xF800E000,0x00000000,0x00000000,0x00020000,0x3F4B1A0B,
@@ -54,7 +54,7 @@ const unsigned int VUEngineLogoTiles[260] __attribute__((aligned(4)))=
 	0x007F00FF,0x000B002F,0x00000000,0x00000000,
 };
 
-const unsigned short VUEngineLogoMap[96] __attribute__((aligned(4)))=
+const unsigned short CsAdjustmentScreenLogoMap[96] __attribute__((aligned(4)))=
 {
 	0x0001,0x0000,0x0002,0x0003,0x0000,0x0004,0x0005,0x0006,
 	0x0007,0x0000,0x0000,0x0000,0x0000,0x0008,0x0009,0x0000,
@@ -71,4 +71,4 @@ const unsigned short VUEngineLogoMap[96] __attribute__((aligned(4)))=
 	0x0040,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
 };
 
-//}}BLOCK(VUEngineLogo)
+//}}BLOCK(CsAdjustmentScreenLogo)

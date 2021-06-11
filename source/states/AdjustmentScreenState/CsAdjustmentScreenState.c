@@ -1,7 +1,7 @@
-/* VUEngine - Virtual Utopia Engine <http://vuengine.planetvb.com/>
+/* VUEngine - Virtual Utopia Engine <https://www.vuengine.dev>
  * A universal game engine for the Nintendo Virtual Boy
  *
- * Copyright (C) 2007, 2018 by Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <chris@vr32.de>
+ * © Jorge Eremiev <jorgech3@gmail.com> and Christian Radke <c.radke@posteo.de>, 2007-2020
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
  * associated documentation files (the "Software"), to deal in the Software without restriction, including
@@ -19,50 +19,58 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-
 //---------------------------------------------------------------------------------------------------------
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
 #include <Game.h>
-#include <ProgressManager.h>
-#include <AutoPauseManager.h>
-#include <LowPowerManager.h>
-#include <PrecautionScreenState.h>
+#include <Camera.h>
+#include <MessageDispatcher.h>
 #include <CsAdjustmentScreenState.h>
 #include <AutoPauseSelectScreenState.h>
-#include <LangSelectScreenState.h>
-#include <RugarsoAnimationScreenState.h>
-#include <TitleScreenState.h>
-#include <CreditsState.h>
+#include <DirectDraw.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//											GAME'S MAIN LOOP
+//												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-int main()
+extern StageROMSpec CS_ADJUSTMENT_SCREEN_STAGE;
+
+
+//---------------------------------------------------------------------------------------------------------
+//												CLASS'S METHODS
+//---------------------------------------------------------------------------------------------------------
+
+// class's constructor
+void CsAdjustmentScreenState::constructor()
 {
-	// initialize plugins
-	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
-	AutoPauseManager::setAutomaticPauseDelay(AutoPauseManager::getInstance(), 30);
-	ProgressManager::restoreSettings(ProgressManager::getInstance());
-	SplashScreenState::setNextState(
-		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),
-		GameState::safeCast(RugarsoAnimationScreenState::getInstance())
-	);
-	SplashScreenState::setNextState(
-		SplashScreenState::safeCast(PrecautionScreenState::getInstance()),
-		GameState::safeCast(CsAdjustmentScreenState::getInstance())
-	);
+	Base::constructor();
 
-	// start the game
-	//Game::start(Game::getInstance(), GameState::safeCast(CreditsState::getInstance()));
-	//Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
-	//Game::start(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
-	//Game::start(Game::getInstance(), GameState::safeCast(CsAdjustmentScreenState::getInstance()));
-	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
+	this->stageSpec = (StageSpec*)&CS_ADJUSTMENT_SCREEN_STAGE;
+}
 
-	// end program
-	return true;
+// class's destructor
+void CsAdjustmentScreenState::destructor()
+{
+	// destroy base
+	Base::destructor();
+}
+
+// state's enter
+void CsAdjustmentScreenState::enter(void* owner)
+{
+	// call base
+	Base::enter(this, owner);
+
+	this->stream = false;
+	this->transform = false;
+	this->synchronizeGraphics = false;
+	this->updatePhysics = false;
+	this->processCollisions = false;
+}
+
+void CsAdjustmentScreenState::initNextState()
+{
+	this->nextState = GameState::safeCast(AutoPauseSelectScreenState::getInstance());
 }

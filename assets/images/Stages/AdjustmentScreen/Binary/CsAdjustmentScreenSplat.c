@@ -1,9 +1,9 @@
 
-//{{BLOCK(AdjustmentScreenSplat)
+//{{BLOCK(CsAdjustmentScreenSplat)
 
 //======================================================================
 //
-//	AdjustmentScreenSplat, 136x120@2, 
+//	CsAdjustmentScreenSplat, 136x120@2, 
 //	+ 85 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 17x15 
 //	Total size: 1360 + 512 = 1872
@@ -13,7 +13,7 @@
 //
 //======================================================================
 
-const unsigned int AdjustmentScreenSplatTiles[340] __attribute__((aligned(4)))=
+const unsigned int CsAdjustmentScreenSplatTiles[340] __attribute__((aligned(4)))=
 {
 	0x00000000,0x00000000,0x00000000,0x00000000,0x00000000,0x40004000,0x40004000,0x40004000,
 	0x00150005,0x00150015,0x00150015,0x00050015,0x00000000,0x00000000,0x54005000,0x55005500,
@@ -65,7 +65,7 @@ const unsigned int AdjustmentScreenSplatTiles[340] __attribute__((aligned(4)))=
 	0x14005500,0x00000000,0x00000000,0x00000000,
 };
 
-const unsigned short AdjustmentScreenSplatMap[256] __attribute__((aligned(4)))=
+const unsigned short CsAdjustmentScreenSplatMap[256] __attribute__((aligned(4)))=
 {
 	0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,0x0000,
 	0x0000,0x0000,0x0000,0x0000,0x0001,0x0002,0x0000,0x0000,
@@ -104,4 +104,4 @@ const unsigned short AdjustmentScreenSplatMap[256] __attribute__((aligned(4)))=
 	0x0053,0x0033,0x0000,0x0054,0x0000,0x0000,0x0000,0x0000,
 };
 
-//}}BLOCK(AdjustmentScreenSplat)
+//}}BLOCK(CsAdjustmentScreenSplat)

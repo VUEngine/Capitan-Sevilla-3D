@@ -1,10 +1,10 @@
 
 
-//{{BLOCK(AdjustmentScreenIcon)
+//{{BLOCK(CsAdjustmentScreenIcon)
 
 //======================================================================
 //
-//	AdjustmentScreenIcon, 24x32@2, 
+//	CsAdjustmentScreenIcon, 24x32@2, 
 //	+ 12 tiles (t|f reduced) not compressed
 //	+ regular map (flat), not compressed, 3x4 
 //	Total size: 208 + 24 = 232
@@ -14,7 +14,7 @@
 //
 //======================================================================
 
-const unsigned int AdjustmentScreenIconTiles[52] __attribute__((aligned(4)))=
+const unsigned int CsAdjustmentScreenIconTiles[52] __attribute__((aligned(4)))=
 {
 	0xFC000000,0x57C05F00,0x55C055C0,0xDDC055C0,
 	0x000F0000,0xFF5503F5,0x55555555,0x6FFF56AA,0x00000000,0x00000000,0x000D0003,0x00350035,
@@ -25,10 +25,10 @@ const unsigned int AdjustmentScreenIconTiles[52] __attribute__((aligned(4)))=
 	0x0D570D5F,0x03560D57,0x003F00D5,0x00000000,
 };
 
-const unsigned short AdjustmentScreenIconMap[12] __attribute__((aligned(4)))=
+const unsigned short CsAdjustmentScreenIconMap[12] __attribute__((aligned(4)))=
 {
 	0x0000,0x0001,0x0002,0x0003,0x0004,0x0005,0x0006,0x0007,
 	0x0008,0x0009,0x000a,0x000b,
 };
 
-//}}BLOCK(AdjustmentScreenIcon)
+//}}BLOCK(CsAdjustmentScreenIcon)

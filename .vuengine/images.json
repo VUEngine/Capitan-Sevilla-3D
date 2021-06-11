@@ -49,16 +49,7 @@
 		"ItemSausage": {
 			"template": "animatedEntity"
 		},
-		"Stages/AdjustmentScreen/Icon": {
-			"template": "entity"
-		},
-		"Stages/AdjustmentScreen/Splat": {
-			"template": "entity"
-		},
-		"Stages/AdjustmentScreen/MadeWith": {
-			"template": "entity"
-		},
-		"Stages/AdjustmentScreen/VUEngineLogo": {
+		"Stages/AdjustmentScreen": {
 			"template": "entity"
 		},
 		"Stages/Credits/Localized": {
