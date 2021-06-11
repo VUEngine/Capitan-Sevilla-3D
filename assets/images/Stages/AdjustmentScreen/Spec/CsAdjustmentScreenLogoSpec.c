@@ -65,7 +65,7 @@ TextureROMSpec CS_ADJUSTMENT_SCREEN_LOGO_TX =
 	21,
 
 	// rows (max 64)
-	5,
+	6,
 
 	// padding for affine/hbias transformations (cols, rows)
 	{0, 0},
