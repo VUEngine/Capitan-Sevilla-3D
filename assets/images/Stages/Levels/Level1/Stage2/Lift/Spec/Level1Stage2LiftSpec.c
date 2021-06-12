@@ -228,7 +228,7 @@ ShapeROMSpec LEVEL_1_STAGE_2_LIFT_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kLayerNone,
+		kAllLayers,
 	},*/
 
 	// right
@@ -255,7 +255,7 @@ ShapeROMSpec LEVEL_1_STAGE_2_LIFT_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kLayerNone,
+		kAllLayers,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}

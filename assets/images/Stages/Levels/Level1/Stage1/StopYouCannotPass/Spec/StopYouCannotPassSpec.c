@@ -289,7 +289,7 @@ ShapeROMSpec STOP_YOU_CANNOT_PASS_SHAPES[] =
 		kMessageLayer,
 
 		// layers to ignore when checking for collisions
-		kLayerNone,
+		~kPlayerLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}

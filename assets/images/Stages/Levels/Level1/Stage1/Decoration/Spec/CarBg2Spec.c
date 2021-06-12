@@ -230,7 +230,7 @@ ShapeROMSpec CAR_BG_2_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kLayerNone,
+		kAllLayers,
 	},
 	{
 		// shape
@@ -255,7 +255,7 @@ ShapeROMSpec CAR_BG_2_SHAPES[] =
 		kSolidLayer,
 
 		// layers to ignore when checking for collisions
-		kLayerNone,
+		kAllLayers,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
