@@ -111,7 +111,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1040,  72,   32,   0},		0, NULL, NULL, NULL, false},
 	{&PUNK_EM,							{1100, 143,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&ENEMY_WALL_CL,					{1220, 143,    0,   0},		0, NULL, NULL, NULL, false}, // right border
+	{&ENEMY_WALL_CL,					{1240, 143,    0,   0},		0, NULL, NULL, NULL, false}, // right border
 	{&KILL_COLLISION_CL,				{1260, 248,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, true},
 
 	{&LEVEL_1_STAGE_3_BUILDING_3A_EN,	{1450, 116,    0,   0},		0, NULL, NULL, NULL, false},
