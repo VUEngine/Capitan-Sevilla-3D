@@ -38,6 +38,11 @@ extern BYTE PunkBlackTiles[];
 extern BYTE PunkMap[];
 extern BYTE PunkBlackMap[];
 
+extern BYTE PunkDyingTiles[];
+extern BYTE PunkDyingBlackTiles[];
+extern BYTE PunkDyingMap[];
+extern BYTE PunkDyingBlackMap[];
+
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
@@ -70,11 +75,11 @@ AnimationFunctionROMSpec PUNK_DIE_ANIM =
 	38,
 
 	// frames to play in animation
-	{12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
-	 22, 22,
-	 23, 24, 25, 26, 27, 28, 29, 30,
-	 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22,
-	 31, 32, 33, 34, 35},
+	{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+	 10, 10,
+	 11, 12, 13, 14, 15, 16, 17, 18,
+	 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10,
+	 19, 20, 21, 22, 23},
 
 	// number of cycles a frame of animation is displayed
 	4,
@@ -104,7 +109,7 @@ CharSetROMSpec PUNK_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	8*6,
+	4*6,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -119,7 +124,7 @@ CharSetROMSpec PUNK_BLACK_CH =
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	8*6,
+	4*6,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -137,7 +142,7 @@ TextureROMSpec PUNK_TX =
 	PunkMap,
 
 	// cols (max 64)
-	8,
+	4,
 
 	// rows (max 64)
 	6,
@@ -171,7 +176,7 @@ TextureROMSpec PUNK_BLACK_TX =
 	PunkBlackMap,
 
 	// cols (max 64)
-	8,
+	4,
 
 	// rows (max 64)
 	6,
@@ -373,7 +378,7 @@ CharSetROMSpec PUNK_DYING_CH =
 	__ANIMATED_SINGLE,
 
 	// char spec
-	PunkTiles,
+	PunkDyingTiles,
 };
 
 CharSetROMSpec PUNK_DYING_BLACK_CH =
@@ -388,7 +393,7 @@ CharSetROMSpec PUNK_DYING_BLACK_CH =
 	__ANIMATED_SINGLE,
 
 	// char spec
-	PunkBlackTiles,
+	PunkDyingBlackTiles,
 };
 
 TextureROMSpec PUNK_DYING_TX =
@@ -396,7 +401,7 @@ TextureROMSpec PUNK_DYING_TX =
 	(CharSetSpec*)&PUNK_DYING_CH,
 
 	// bgmap spec
-	PunkMap,
+	PunkDyingMap,
 
 	// cols (max 64)
 	8,
@@ -430,7 +435,7 @@ TextureROMSpec PUNK_DYING_BLACK_TX =
 	(CharSetSpec*)&PUNK_DYING_BLACK_CH,
 
 	// bgmap spec
-	PunkBlackMap,
+	PunkDyingBlackMap,
 
 	// cols (max 64)
 	8,
