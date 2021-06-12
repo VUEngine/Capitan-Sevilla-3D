@@ -24,7 +24,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-#include <ObjectAnimatedSprite.h>
+#include <BgmapAnimatedSprite.h>
 #include <Box.h>
 #include <Punk.h>
 
@@ -108,7 +108,7 @@ CharSetROMSpec PUNK_CH =
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SINGLE,
+	__ANIMATED_SHARED_COORDINATED,
 
 	// char spec
 	PunkTiles,
@@ -123,7 +123,7 @@ CharSetROMSpec PUNK_BLACK_CH =
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
-	__ANIMATED_SINGLE,
+	__ANIMATED_SHARED_COORDINATED,
 
 	// char spec
 	PunkBlackTiles,
@@ -197,11 +197,11 @@ TextureROMSpec PUNK_BLACK_TX =
 	false,
 };
 
-ObjectSpriteROMSpec PUNK_SPRITE =
+BgmapSpriteROMSpec PUNK_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(ObjectAnimatedSprite),
+		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
 		(TextureSpec*)&PUNK_TX,
@@ -214,18 +214,21 @@ ObjectSpriteROMSpec PUNK_SPRITE =
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
-	__WORLD_OBJECT,
+	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or BgmapSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec PUNK_BLACK_SPRITE =
+BgmapSpriteROMSpec PUNK_BLACK_SPRITE =
 {
 	{
 		// sprite's type
-		__TYPE(ObjectAnimatedSprite),
+		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
 		(TextureSpec*)&PUNK_BLACK_TX,
@@ -238,14 +241,17 @@ ObjectSpriteROMSpec PUNK_BLACK_SPRITE =
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
-	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or ObjectSprite)
-	__WORLD_OBJECT,
+	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or BgmapSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
 
 	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const PUNK_SPRITES[] =
+BgmapSpriteROMSpec* const PUNK_SPRITES[] =
 {
 	&PUNK_SPRITE,
 	&PUNK_BLACK_SPRITE,
