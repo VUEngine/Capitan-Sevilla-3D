@@ -843,6 +843,7 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 		case kKillShape:
 			{
 				Captain::die(this);
+				Body::setAxisSubjectToGravity(this->body, __NO_AXIS);
 				return false;
 				break;
 			}
