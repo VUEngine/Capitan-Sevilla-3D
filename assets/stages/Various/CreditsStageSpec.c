@@ -314,7 +314,7 @@ StageROMSpec CREDITS_STAGE_ST =
 		},
 
 		// children
-		(PositionedEntity*)(PositionedEntity*)CREDITS_STAGE_ST_ENTITIES,
+		(PositionedEntity*)CREDITS_STAGE_ST_ENTITIES,
 	},
 
 	// post processing effects
