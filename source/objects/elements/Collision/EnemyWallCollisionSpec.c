@@ -42,7 +42,7 @@ ShapeROMSpec ENEMY_WALL_CL_SHPS[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{16, 224, 16},
+		{32, 224, 32},
 
 		// displacement (x, y, z, p)
 		{0, 0, 0, 0},

@@ -175,7 +175,7 @@ ShapeROMSpec HOVER_CAR_SHAPES[] =
 		kEnemiesLayer,
 
 		// layers to ignore when checking for collisions
-		kLayerNone,
+		kAllLayers,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}

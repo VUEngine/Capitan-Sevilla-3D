@@ -63,6 +63,7 @@ extern EntitySpec COLLISION_CL;
 extern EntitySpec COLLISION_TOP_CL;
 extern EntitySpec GUI_EN;
 extern EntitySpec KILL_COLLISION_CL;
+extern EntitySpec ENEMY_WALL_CL;
 
 extern CharSetSpec CITY_BG_2_CH;
 extern CharSetSpec GUI_CH;
@@ -86,6 +87,8 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 {
 	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // left border
 
+	{&ENEMY_WALL_CL,					{ 435, 143,    0,   0},		0, NULL, NULL, NULL, false}, // left border
+
 	{&CLOUDS_BACK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
 	{&CLOUDS_FRONT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
 	{&CITY_BG_2_EN,						{ 128,  53,  256,   0},		0, NULL, NULL, NULL, true},
@@ -103,11 +106,12 @@ PositionedEntityROMSpec LEVEL_1_STAGE_3_ST_CHILDREN[] =
 	{&LEVEL_1_STAGE_3_BUILDING_2A_EN,	{ 626, 114,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{ 658, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_BUILDING_2B_EN,	{1014, 114,    0,   0},		0, NULL, NULL, NULL, false},
-	{&PUNK_EM,							{1040, 143,    0,   0},		0, NULL, NULL, NULL, false},
+	{&PUNK_EM,							{900, 143,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_FENCE_EN,			{1034, 159,    0,   0},		0, NULL, NULL, NULL, false},
 	{&LEVEL_1_STAGE_3_HOTEL_SIGN_EN,	{1040,  72,   32,   0},		0, NULL, NULL, NULL, false},
-	{&PUNK_EM,							{1200, 143,    0,   0},		0, NULL, NULL, NULL, false},
+	{&PUNK_EM,							{1100, 143,    0,   0},		0, NULL, NULL, NULL, false},
 
+	{&ENEMY_WALL_CL,					{1220, 143,    0,   0},		0, NULL, NULL, NULL, false}, // right border
 	{&KILL_COLLISION_CL,				{1260, 248,    0,   0},		0, NULL, NULL, (void*)&collision_384_16_64, true},
 
 	{&LEVEL_1_STAGE_3_BUILDING_3A_EN,	{1450, 116,    0,   0},		0, NULL, NULL, NULL, false},
