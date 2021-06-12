@@ -49,10 +49,14 @@ void Punk::destructor()
 
 void Punk::die()
 {
+	extern BgmapSpriteROMSpec* const PUNK_DYING_SPRITES[];
+	Punk::releaseSprites(this);
+	Punk::addSprites(this, PUNK_DYING_SPRITES);
 	this->respawn = false;
 	Actor::stopAllMovement(this);
 	Entity::allowCollisions(this, false);
-	Enemy::stopFlashing(this);
+	this->invalidateGraphics |= __INVALIDATE_ROTATION;
+
 	AnimatedEntity::playAnimation(this, "Die");
 }
 

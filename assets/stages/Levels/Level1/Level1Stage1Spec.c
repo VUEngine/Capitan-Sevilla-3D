@@ -89,6 +89,7 @@ extern EntitySpec TREE_BG_1_EN;
 
 extern CharSetSpec PUNK_CH;
 extern CharSetSpec PUNK_BLACK_CH;
+extern CharSetSpec PUNK_DYING_CH;
 extern CharSetSpec CAR_1_CH;
 extern CharSetSpec FLOWER_POT_CH;
 extern CharSetSpec GUI_CH;
@@ -96,7 +97,6 @@ extern CharSetSpec CAPTAIN_CH;
 extern CharSetSpec CAPTAIN_BLACK_CH;
 extern CharSetSpec HOVER_CAR_CH;
 extern CharSetSpec CITY_BG_1_CH;
-extern CharSetSpec PUNK_CH;
 
 extern TextureSpec CITY_BG_1_A_TX;
 extern TextureSpec CITY_BG_1_B_TX;
@@ -245,7 +245,6 @@ FontROMSpec* const LEVEL_1_STAGE_1_ST_FONTS[] =
 CharSetROMSpec* const LEVEL_1_STAGE_1_ST_CHARSETS[] =
 {
 	&PUNK_CH,
-	&PUNK_BLACK_CH,	
 	NULL
 };
 
