@@ -210,7 +210,7 @@ BgmapSpriteROMSpec PUNK_SPRITE =
 		__TRANSPARENCY_NONE,
 
 		// displacement
-		{0, 0, 1, 2},
+		{0, 0, 0, 2},
 	},
 
 	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
@@ -361,7 +361,6 @@ EnemyROMSpec PUNK_EM =
 	true
 };
 
-
 CharSetROMSpec PUNK_DYING_CH =
 {
 	// number of chars, depending on allocation type:
@@ -375,6 +374,21 @@ CharSetROMSpec PUNK_DYING_CH =
 
 	// char spec
 	PunkTiles,
+};
+
+CharSetROMSpec PUNK_DYING_BLACK_CH =
+{
+	// number of chars, depending on allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
+	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
+	8*6,
+
+	// allocation type
+	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
+	__ANIMATED_SINGLE,
+
+	// char spec
+	PunkBlackTiles,
 };
 
 TextureROMSpec PUNK_DYING_TX =
@@ -411,6 +425,40 @@ TextureROMSpec PUNK_DYING_TX =
 	false,
 };
 
+TextureROMSpec PUNK_DYING_BLACK_TX =
+{
+	(CharSetSpec*)&PUNK_DYING_BLACK_CH,
+
+	// bgmap spec
+	PunkBlackMap,
+
+	// cols (max 64)
+	8,
+
+	// rows (max 64)
+	6,
+
+	// padding for affine/hbias transformations (cols, rows)
+	{0, 0},
+
+	// number of frames, depending on charset's allocation type:
+	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*, __NOT_ANIMATED: 1
+	// __ANIMATED_MULTI: total number of frames
+	1,
+
+	// palette number (0-3)
+	1,
+
+	// recyclable
+	false,
+
+	// vertical flip
+	false,
+
+	// horizontal flip
+	false,
+};
+
 BgmapSpriteROMSpec PUNK_DYING_SPRITE =
 {
 	{
@@ -419,6 +467,34 @@ BgmapSpriteROMSpec PUNK_DYING_SPRITE =
 
 		// texture spec
 		(TextureSpec*)&PUNK_DYING_TX,
+
+		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
+		__TRANSPARENCY_NONE,
+
+		// displacement
+		{0, 0, 0, 2},
+	},
+
+	// bgmap mode (__WORLD_BGMAP, __WORLD_AFFINE, __WORLD_OBJECT or __WORLD_HBIAS)
+	// make sure to use the proper corresponding sprite type throughout the spec (BgmapSprite or BgmapSprite)
+	__WORLD_BGMAP,
+
+	// pointer to affine/hbias manipulation function
+	NULL,
+
+	// display mode (__WORLD_ON, __WORLD_LON or __WORLD_RON)
+	__WORLD_ON,
+};
+
+
+BgmapSpriteROMSpec PUNK_DYING_BLACK_SPRITE =
+{
+	{
+		// sprite's type
+		__TYPE(BgmapAnimatedSprite),
+
+		// texture spec
+		(TextureSpec*)&PUNK_DYING_BLACK_TX,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -441,5 +517,6 @@ BgmapSpriteROMSpec PUNK_DYING_SPRITE =
 BgmapSpriteROMSpec* const PUNK_DYING_SPRITES[] =
 {
 	&PUNK_DYING_SPRITE,
+	&PUNK_DYING_BLACK_SPRITE,
 	NULL
 };
