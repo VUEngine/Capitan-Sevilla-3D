@@ -49,20 +49,19 @@ void Punk::destructor()
 
 void Punk::die()
 {
-	extern SpriteSpec** PUNK_DYING_SPRITES;
+	extern SpriteSpec* const PUNK_DYING_SPRITES[];
 	Punk::releaseSprites(this);
-	Punk::addSprites(this, PUNK_DYING_SPRITES);
-	this->respawn = false;
-	Actor::stopAllMovement(this);
-	Entity::allowCollisions(this, false);
+	Punk::addSprites(this, (SpriteSpec**)PUNK_DYING_SPRITES);
+	Punk::stopAllMovement(this);
+	Punk::allowCollisions(this, false);
+	Punk::playAnimation(this, "Die");
 	this->invalidateGraphics |= __INVALIDATE_ROTATION;
-
-	AnimatedEntity::playAnimation(this, "Die");
+	this->respawn = false;
 }
 
 void Punk::onDieAnimationComplete(Object eventFirer __attribute__ ((unused)))
 {
-	Container::deleteMyself(this);
+	Punk::deleteMyself(this);
 }
 
 // process collisions
