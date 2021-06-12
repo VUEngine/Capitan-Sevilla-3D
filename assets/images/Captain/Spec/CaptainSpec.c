@@ -428,7 +428,7 @@ ShapeROMSpec CAPTAIN_AC_SHAPES[] =
 		kPlayerLayer,
 
 		// layers to ignore when checking for collisions
-		kParticlesLayer | kPlayerLayer,
+		kParticlesLayer | kPlayerLayer | kEnemiesWallsLayer,
 	},
 
 	// kneeling
@@ -455,7 +455,7 @@ ShapeROMSpec CAPTAIN_AC_SHAPES[] =
 		kPlayerLayer,
 
 		// layers to ignore when checking for collisions
-		kParticlesLayer | kPlayerLayer,
+		kParticlesLayer | kPlayerLayer | kEnemiesWallsLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}

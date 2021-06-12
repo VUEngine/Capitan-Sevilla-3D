@@ -49,7 +49,7 @@ void Punk::destructor()
 
 void Punk::die()
 {
-	extern BgmapSpriteROMSpec* const PUNK_DYING_SPRITES[];
+	extern SpriteSpec** PUNK_DYING_SPRITES;
 	Punk::releaseSprites(this);
 	Punk::addSprites(this, PUNK_DYING_SPRITES);
 	this->respawn = false;
@@ -63,4 +63,26 @@ void Punk::die()
 void Punk::onDieAnimationComplete(Object eventFirer __attribute__ ((unused)))
 {
 	Container::deleteMyself(this);
+}
+
+// process collisions
+bool Punk::enterCollision(const CollisionInformation* collisionInformation)
+{
+	Shape collidingShape = collisionInformation->collidingShape;
+	SpatialObject collidingObject = Shape::getOwner(collidingShape);
+	u32 collidingObjectInGameType = SpatialObject::getInGameType(collidingObject);
+
+	Velocity velocity = (Velocity){-this->speed, 0, 0};
+
+	switch(collidingObjectInGameType)
+	{
+		// speed things up by breaking early
+		case kEnemyWall:
+
+			this->speed = -this->speed;
+			Punk::moveUniformly(this, &velocity);
+			break;
+	}
+
+	return false;
 }

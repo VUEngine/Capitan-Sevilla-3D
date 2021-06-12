@@ -19,60 +19,84 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#ifndef MACROS_H_
-#define MACROS_H_
+
+//---------------------------------------------------------------------------------------------------------
+//												INCLUDES
+//---------------------------------------------------------------------------------------------------------
+
+#include <Entity.h>
+#include <Collision.h>
+#include <Box.h>
+#include <Body.h>
+#include <macros.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINES
+//												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-// general
-#define COINS_PER_LEVEL		64
-#define LEVELS_IN_GAME		1
-
-// layers
-#define CAPTAIN_DSPL			1
-
-// physics
-#define NO_FRICTION 		0
-#define FLOOR_FRICTION 		0.75f
-#define FLOOR_BOUNCINESS 	0.0f
-
-// entity collision types
-enum PlatformerTypes
+ShapeROMSpec ENEMY_WALL_CL_SHPS[] =
 {
-	kCaptain = kTypeNone + 1,
-	kShape,
-	kTopShape,
-	kKillShape,
-	kLift,
-	kItemDuck,
-	kEnemy,
-	kMessage,
-	kFloor,
+	{
+		// shape
+		__TYPE(Box),
+
+		// size (x, y, z)
+		{16, 224, 16},
+
+		// displacement (x, y, z, p)
+		{0, 0, 0, 0},
+
+		// rotation (x, y, z)
+		{0, 0, 0},
+
+		// scale (x, y, z)
+		{__I_TO_FIX7_9(1), __I_TO_FIX7_9(1), __I_TO_FIX7_9(1)},
+
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kEnemiesWallsLayer,
+
+		// layers to ignore when checking for collisions
+		kAllLayers,
+	},
+
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
+};
+
+EntityROMSpec ENEMY_WALL_CL =
+{
+	// class allocator
+	__TYPE(Entity),
+
+	// children
+	NULL,
+
+	// behaviors
+	NULL,
+
+	// extra
+	NULL,
+
+	// sprites
+	NULL,
+
+	// use z displacement in projection
+	false,
+
+	// collision shapes
+	(ShapeSpec*)ENEMY_WALL_CL_SHPS,
+
+	// size
+	// if 0, width and height will be inferred from the first sprite's texture's size
+	{0, 0, 0},
+
+	// gameworld's character's type
 	kEnemyWall,
-	kGumProjectile,
-	kEnemyProjectile,
-	kMovingPlatform,
-	kStageExitPoint,
+
+	// physical specification
+	(PhysicalSpecification*)NULL,
 };
 
-// entity collision layers
-enum CollisionLayers
-{
-    kSolidLayer		 					= 1 << (kLayerNone + 0),
-    kEnemiesLayer						= 1 << (kLayerNone + 1),
-    kPlayerLayer						= 1 << (kLayerNone + 2),
-    kParticlesLayer						= 1 << (kLayerNone + 3),
-    kItemsLayer							= 1 << (kLayerNone + 4),
-    kCollectablesLayer					= 1 << (kLayerNone + 5),
-    kTriggersLayer						= 1 << (kLayerNone + 6),
-    kMovingPlatformsLayer				= 1 << (kLayerNone + 7),
-    kMessageLayer						= 1 << (kLayerNone + 8),
-	kEnemiesWallsLayer					= 1 << (kLayerNone + 9),
-    kAllLayers							= 0xFFFFFFFF,
-};
-
-
-#endif

@@ -277,13 +277,13 @@ ShapeROMSpec PUNK_SHAPES[] =
 		{0, 0, 0},
 
 		// if true this shape checks for collisions against other shapes
-		false,
+		true,
 
 		// layers in which I live
 		kEnemiesLayer,
 
 		// layers to ignore when checking for collisions
-		kLayerNone,
+		~kEnemiesWallsLayer,
 	},
 
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}

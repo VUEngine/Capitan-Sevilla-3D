@@ -136,8 +136,6 @@ void Captain::destructor()
 
 void Captain::ready(bool recursive)
 {
-	Entity::activeCollisionChecks(this, true);
-
 	// call base
 	Base::ready(this, recursive);
 
