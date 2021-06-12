@@ -836,6 +836,9 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 					// don't further process collision
 					return false;
 				}
+
+				this->jumps = 0;
+				RumblePakManager::startEffect(&RumbleEffectLand);
 			}
 			break;
 

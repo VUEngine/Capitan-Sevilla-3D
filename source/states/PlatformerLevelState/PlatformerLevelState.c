@@ -138,7 +138,7 @@ void PlatformerLevelState::enter(void* owner)
 
 		// set direction according to entry point
 		Direction direction = {this->currentStageEntryPoint->direction, __DOWN, __FAR};
-		Entity::setDirection(captain, direction);
+		Captain::setDirection(captain, direction);
 
 		// make sure that focusing gets completed immediately
 		CustomCameraMovementManager::enable(CustomCameraMovementManager::getInstance());

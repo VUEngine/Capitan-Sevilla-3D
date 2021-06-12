@@ -312,7 +312,7 @@ LiftROMSpec LEVEL_1_STAGE_2_LIFT_EN =
 		__NO_AXIS,
 
 		// axis around which to rotate the entity when syncronizing with body
-		__NO_AXIS
+		__LOCK_AXIS
 	},
 
 	// velocity after entering
