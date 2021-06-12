@@ -95,7 +95,7 @@ bool Lift::handleMessage(Telegram telegram)
 				kFadeTo, // effect type
 				0, // initial delay (in ms)
 				&brightness, // target brightness
-				__FADE_DELAY * 5, // delay between fading steps (in ms)
+				__FADE_DELAY * 1, // delay between fading steps (in ms)
 				(void (*)(Object, Object))Lift::onFadeOutComplete, // callback function
 				Object::safeCast(this) // callback scope
 			);
