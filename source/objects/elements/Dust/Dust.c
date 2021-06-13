@@ -49,10 +49,10 @@ void Dust::destructor()
 void Dust::showAnimation()
 {
 	AnimatedEntity::playAnimation(this, "Show");
-	Container::setInheritEnvironment(this, false);
+	Container::setInheritEnvironment(this, __INHERIT_NONE);
 }
 
 void Dust::onShowAnimationComplete()
 {
-	Container::setInheritEnvironment(this, true);
+	Container::setInheritEnvironment(this, __INHERIT_POSITION);
 }
