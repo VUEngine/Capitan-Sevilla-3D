@@ -24,7 +24,7 @@ This software is licensed under the MIT license.
 For the full copyright and license information, please view the LICENSE file
 that was distributed with this source code.
 
-This program contains several placeholder music songs (assets/sounds/Songs) which were
+This program contains several placeholder music songs (in assets/sounds/Songs) which were
 converted from MIDIs from other sources and thus are not subject to the MIT license.
 
 
