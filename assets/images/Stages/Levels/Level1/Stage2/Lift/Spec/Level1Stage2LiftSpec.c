@@ -393,7 +393,7 @@ ShapeROMSpec LEVEL_1_STAGE_4_LIFT_SHAPES[] =
 		__TYPE(Box),
 
 		// size (x, y, z)
-		{58, 6, 64},
+		{32, 6, 64},
 
 		// displacement (x, y, z, p)
 		{0, 31, 0, 0},
