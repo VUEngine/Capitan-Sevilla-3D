@@ -114,7 +114,7 @@ void CreditsState::enter(void* owner)
 
 void CreditsState::processUserInput(UserInput userInput)
 {
-	if(userInput.pressedKey & K_B)
+	if(userInput.pressedKey & (K_A|K_B|K_STA|K_SEL))
 	{
 		// disable user input
 		Game::disableKeypad(Game::getInstance());
@@ -130,14 +130,14 @@ void CreditsState::processUserInput(UserInput userInput)
 			Object::safeCast(this) // callback scope
 		);
 	}
-	else if(userInput.holdKey & (K_LD|K_RD|K_A))
+	else if(userInput.holdKey & (K_LD|K_RD))
 	{
 		if(!this->finishedScrolling)
 		{
 			CreditsState::scrollFast(this);
 		}
 	}
-	else if(userInput.releasedKey & (K_LD|K_RD|K_A))
+	else if(userInput.releasedKey & (K_LD|K_RD))
 	{
 		if(!this->finishedScrolling)
 		{
