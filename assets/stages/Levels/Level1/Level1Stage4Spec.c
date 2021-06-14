@@ -57,8 +57,6 @@ extern EntitySpec TREE_1_EN;
 
 extern Size collision_16_224_64;
 
-extern Sound LIFT_BREAK_SND;
-
 
 //---------------------------------------------------------------------------------------------------------
 //											ENTITY LISTS
@@ -123,7 +121,6 @@ const PostProcessingEffect LEVEL_1_STAGE_4_ST_POST_PROCESSING_EFFECTS[] =
 
 SoundROM* const LEVEL_1_STAGE_4_ST_BGM[] =
 {
-	&LIFT_BREAK_SND,
 	NULL,
 };
 
@@ -360,7 +357,7 @@ StageEntryPointROMSpec LEVEL_1_STAGE_4_MAIN_EP =
 	(StageSpec*)&LEVEL_1_STAGE_4_ST,
 
 	// starting position (x, y, z)
-	{236,  76, CAPTAIN_DSPL},
+	{236,  0, CAPTAIN_DSPL},
 
 	// facing direction of the captain
 	__RIGHT,

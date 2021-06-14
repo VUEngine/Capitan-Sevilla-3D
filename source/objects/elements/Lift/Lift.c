@@ -62,6 +62,16 @@ void Lift::destructor()
 	Base::destructor();
 }
 
+void Lift::ready(bool recursive)
+{
+	Base::ready(this, recursive);
+
+	if(NULL == this->liftSpec->entryPoint)
+	{
+		Lift::break(this);
+	}
+}
+
 bool Lift::handleMessage(Telegram telegram)
 {
 	switch(Telegram::getMessage(telegram))
@@ -111,3 +121,27 @@ void Lift::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
 	PlatformerLevelState::enterStage(PlatformerLevelState::getInstance(), this->liftSpec->entryPoint);
 }
+
+void Lift::break()
+{
+	extern Sound LIFT_BREAK_SND;
+
+	// play shooting sound
+	SoundManager::playSound(
+		SoundManager::getInstance(),
+		&LIFT_BREAK_SND,
+		kPlayAll,
+		(const Vector3D*)&this->transformation.globalPosition,
+		kSoundWrapperPlaybackNormal,
+		(EventListener)Lift::onBreakingSoundReleased, 
+		Object::safeCast(this)
+	);
+}
+
+void Lift::onBreakingSoundReleased(Object eventFirer __attribute__((unused)))
+{
+	Lift::allowCollisions(this, false);
+
+	Lift::playAnimation(this, "Broken");
+}
+

@@ -383,44 +383,99 @@ LiftROMSpec LEVEL_1_STAGE_3_LIFT_EN =
 	(StageEntryPointSpec*)&LEVEL_1_STAGE_4_MAIN_EP,
 };
 
-AnimatedEntityROMSpec LEVEL_1_STAGE_4_LIFT_EN =
+
+ShapeROMSpec LEVEL_1_STAGE_4_LIFT_SHAPES[] =
 {
+	// TODO: this shape should not activate lift
+	// bottom
 	{
-		// class allocator
-		__TYPE(AnimatedEntity),
+		// shape
+		__TYPE(Box),
 
-		// children
-		NULL,
+		// size (x, y, z)
+		{58, 6, 64},
 
-		// behaviors
-		NULL,
+		// displacement (x, y, z, p)
+		{0, 31, 0, 0},
 
-		// extra
-		NULL,
-
-		// sprites
-		(SpriteSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
-
-		// use z displacement in projection
-		false,
-
-		// collision shapes
-		NULL,
-
-		// size
-		// if 0, width and height will be inferred from the first sprite's texture's size
+		// rotation (x, y, z)
 		{0, 0, 0},
 
-		// gameworld's character's type
-		kTypeNone,
+		// scale (x, y, z)
+		{0, 0, 0},
 
-		// physical specification
-		NULL,
+		// if true this shape checks for collisions against other shapes
+		false,
+
+		// layers in which I live
+		kSolidLayer,
+
+		// layers to ignore when checking for collisions
+		kAllLayers,
 	},
 
-	// pointer to the animation spec for the character
-	(AnimationDescription*)&LEVEL_1_STAGE_2_LIFT_ANIM,
 
-	// initial animation
-	"Broken"
+	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
+};
+
+
+LiftROMSpec LEVEL_1_STAGE_4_LIFT_EN =
+{
+	{
+		{
+			{
+				// class allocator
+				__TYPE(Lift),
+
+				// children
+				NULL,
+
+				// behaviors
+				NULL,
+
+				// extra
+				NULL,
+
+				// sprites
+				(SpriteSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+
+				// use z displacement in projection
+				false,
+
+				// collision shapes
+				(ShapeSpec*)LEVEL_1_STAGE_4_LIFT_SHAPES,
+
+				// size
+				// if 0, width and height will be inferred from the first sprite's texture's size
+				{0, 0, 0},
+
+				// gameworld's character's type
+				kFloor,
+
+				// physical specification
+				(PhysicalSpecification*)NULL,
+			},
+
+			// pointer to the animation spec for the character
+			(AnimationDescription*)&LEVEL_1_STAGE_2_LIFT_ANIM,
+
+			// initial animation
+			"Closed"
+		},
+
+		// true to create a body
+		true,
+
+		// axes subject to gravity
+		__NO_AXIS,
+
+		// axis around which to rotate the entity when syncronizing with body
+		__NO_AXIS
+	},
+
+	// velocity after entering
+	{0, __I_TO_FIX10_6(2), 0},
+
+	// entry point to load after entering
+	NULL,
 };
