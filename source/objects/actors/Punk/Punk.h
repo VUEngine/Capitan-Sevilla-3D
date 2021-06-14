@@ -40,6 +40,7 @@ class Punk : Enemy
 {
 	void constructor(EnemySpec* enemySpec, s16 internalId, const char* const name);
 	void onDieAnimationComplete(Object eventFirer);
+	override bool handleMessage(Telegram telegram);
 	override bool enterCollision(const CollisionInformation* collisionInformation);
 	override void die();
 }

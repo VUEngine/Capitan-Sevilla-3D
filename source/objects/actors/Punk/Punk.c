@@ -47,16 +47,44 @@ void Punk::destructor()
 	Base::destructor();
 }
 
+bool Punk::handleMessage(Telegram telegram)
+{
+	// handle messages that any state would handle here
+	switch(Telegram::getMessage(telegram))
+	{
+		case 1234:
+
+			Punk::doDie(this);
+			return true;
+			break;
+
+	}
+
+	return Base::handleMessage(this, telegram);
+}
+
 void Punk::die()
 {
 	extern SpriteSpec* const PUNK_DYING_SPRITES[];
-	Punk::releaseSprites(this);
 	Punk::addSprites(this, (SpriteSpec**)PUNK_DYING_SPRITES);
+
 	Punk::stopAllMovement(this);
 	Punk::allowCollisions(this, false);
-	Punk::playAnimation(this, "Die");
 	this->invalidateGraphics |= __INVALIDATE_ROTATION;
 	this->respawn = false;
+
+	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(this), 1234, NULL);
+}
+
+void Punk::doDie()
+{
+	if(this->sprites)
+	{
+		SpriteManager::disposeSprite(SpriteManager::getInstance(), Sprite::safeCast(VirtualList::popFront(this->sprites)));
+		SpriteManager::disposeSprite(SpriteManager::getInstance(), Sprite::safeCast(VirtualList::popFront(this->sprites)));
+	}
+
+	Punk::playAnimation(this, "Die");
 }
 
 void Punk::onDieAnimationComplete(Object eventFirer __attribute__ ((unused)))
