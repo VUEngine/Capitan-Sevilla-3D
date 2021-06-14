@@ -67,6 +67,10 @@ bool GumProjectile::enterCollision(const CollisionInformation* collisionInformat
 			// deactivate shapes
 			Entity::activeCollisionChecks(this, false);
 
+			// set direction to right, so that the text is never mirrored
+			Direction direction = {__RIGHT, __DOWN, __FAR};
+			Actor::setDirection(this, direction);
+
 			// play hitting animation
 			AnimatedEntity::playAnimation(this, "Hit");
 
