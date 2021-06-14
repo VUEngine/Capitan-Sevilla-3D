@@ -273,7 +273,7 @@ ShapeROMSpec PUNK_SHAPES[] =
 		{16, 38, 24},
 
 		// displacement (x, y, z, p)
-		{11, 1, 0, 0},
+		{0, 1, 0, 0},
 
 		// rotation (x, y, z)
 		{0, 0, 0},
