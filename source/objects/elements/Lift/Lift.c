@@ -42,6 +42,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern Sound LIFT_SND;
+extern Sound LIFT_BREAK_SND;
+extern Sound INTRO_LOWER_SONG;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -70,6 +72,21 @@ void Lift::ready(bool recursive)
 	{
 		Lift::break(this);
 	}
+}
+
+void Lift::resume()
+{
+	Base::resume(this);
+
+	SoundManager::playSound(
+		SoundManager::getInstance(),
+		&INTRO_LOWER_SONG,
+		kPlayAll,
+		(const Vector3D*)&this->transformation.globalPosition,
+		kSoundWrapperPlaybackNormal,
+		NULL,
+		NULL
+	);
 }
 
 bool Lift::handleMessage(Telegram telegram)
@@ -105,7 +122,7 @@ bool Lift::handleMessage(Telegram telegram)
 				kFadeTo, // effect type
 				0, // initial delay (in ms)
 				&brightness, // target brightness
-				__FADE_DELAY * 1, // delay between fading steps (in ms)
+				__FADE_DELAY * 2, // delay between fading steps (in ms)
 				(void (*)(Object, Object))Lift::onFadeOutComplete, // callback function
 				Object::safeCast(this) // callback scope
 			);
@@ -124,9 +141,6 @@ void Lift::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 
 void Lift::break()
 {
-	extern Sound LIFT_BREAK_SND;
-
-	// play shooting sound
 	SoundManager::playSound(
 		SoundManager::getInstance(),
 		&LIFT_BREAK_SND,
@@ -143,5 +157,15 @@ void Lift::onBreakingSoundReleased(Object eventFirer __attribute__((unused)))
 	Lift::allowCollisions(this, false);
 
 	Lift::playAnimation(this, "Broken");
+
+	SoundManager::playSound(
+		SoundManager::getInstance(),
+		&INTRO_LOWER_SONG,
+		kPlayAll,
+		(const Vector3D*)&this->transformation.globalPosition,
+		kSoundWrapperPlaybackNormal,
+		NULL,
+		NULL
+	);
 }
 

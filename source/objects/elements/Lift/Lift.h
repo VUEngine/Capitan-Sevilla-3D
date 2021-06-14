@@ -65,6 +65,7 @@ class Lift : Actor
 	void constructor(LiftSpec* liftSpec, s16 internalId, const char* const name);
 	override bool handleMessage(Telegram telegram);
 	override void ready(bool recursive);
+	override void resume();
 }
 
 

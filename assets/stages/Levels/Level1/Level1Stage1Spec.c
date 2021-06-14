@@ -179,7 +179,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_1_ST_CHILDREN[] =
 	{&FENCE_EN,							{1376, 135,    0,   0},		0, NULL, NULL, NULL, false},
 	{&PLAYGROUND_EN,					{1390,  92,    0,   0},		0, NULL, NULL, NULL, false},
 	{&STATUE_1_EN,						{1486,  80,    0,   0},		0, NULL, NULL, NULL, false},
-	{&BUSH_BG_2_EN,						{1534, 112,   64,   0},		0, NULL, NULL, NULL, false},
+	{&BUSH_BG_2_EN,						{1572, 112,   64,   0},		0, NULL, NULL, NULL, false},
 
 	{&LANTERN_1_EN,						{1570, 137,    0,   0},		0, NULL, NULL, NULL, false},
 
