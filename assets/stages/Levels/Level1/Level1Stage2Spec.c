@@ -44,6 +44,9 @@ extern EntitySpec LEVEL_1_STAGE_2_LIFT_EN;
 extern EntitySpec PUNK_EM;
 extern EntitySpec ENEMY_WALL_CL;
 
+extern CharSetSpec PUNK_CH;
+extern CharSetSpec PUNK_BLACK_CH;
+
 extern Sound INTRO_LOWER_SONG;
 
 extern Size collision_16_224_64;
@@ -58,8 +61,8 @@ PositionedEntityROMSpec LEVEL_1_STAGE_2_ST_CHILDREN[] =
 	{&ENEMY_WALL_CL,				{ 20, 137,    0,   0},		0, NULL, NULL, NULL, false}, // left border
 	{&ENEMY_WALL_CL,				{ 695, 137,    0,   0},		0, NULL, NULL, NULL, false}, // right border
 	{&LEVEL_1_STAGE_2_ROOM_EN,		{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
-	{&PUNK_EM,						{ 508, 137,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&LEVEL_1_STAGE_2_LIFT_EN,		{ 693, 130,    0,   0},		0, NULL, NULL, NULL, true},
+	{&PUNK_EM,						{ 508, 137,    -10,   0},		0, NULL, NULL, (void*)-3, false},
+	{&LEVEL_1_STAGE_2_LIFT_EN,		{ 693, 130,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -82,8 +85,11 @@ FontROMSpec* const LEVEL_1_STAGE_2_ST_FONTS[] =
 	NULL
 };
 
+
 CharSetROMSpec* const LEVEL_1_STAGE_2_ST_CHARSETS[] =
 {
+	&PUNK_CH,
+	&PUNK_BLACK_CH,
 	NULL
 };
 

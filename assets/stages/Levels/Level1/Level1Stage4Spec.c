@@ -55,6 +55,9 @@ extern EntitySpec LEVEL_1_STAGE_4_PARK_1_EN;
 extern EntitySpec LOW_POWER_INDICATOR_LB;
 extern EntitySpec TREE_1_EN;
 
+extern CharSetSpec PUNK_CH;
+extern CharSetSpec PUNK_BLACK_CH;
+
 extern Size collision_16_224_64;
 
 
@@ -106,6 +109,8 @@ FontROMSpec* const LEVEL_1_STAGE_4_ST_FONTS[] =
 
 CharSetROMSpec* const LEVEL_1_STAGE_4_ST_CHARSETS[] =
 {
+	&PUNK_CH,
+	&PUNK_BLACK_CH,
 	NULL
 };
 

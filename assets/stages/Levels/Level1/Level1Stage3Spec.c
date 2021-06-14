@@ -67,6 +67,8 @@ extern EntitySpec ENEMY_WALL_CL;
 
 extern CharSetSpec CITY_BG_2_CH;
 extern CharSetSpec GUI_CH;
+extern CharSetSpec PUNK_CH;
+extern CharSetSpec PUNK_BLACK_CH;
 
 extern TextureSpec CITY_BG_2_A_TX;
 extern TextureSpec CITY_BG_2_B_TX;
@@ -145,6 +147,8 @@ CharSetROMSpec* const LEVEL_1_STAGE_3_ST_CHARSETS[] =
 {
 	&GUI_CH,
 	&CITY_BG_2_CH,
+	&PUNK_CH,
+	&PUNK_BLACK_CH,
 
 	NULL
 };
