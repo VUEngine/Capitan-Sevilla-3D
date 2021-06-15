@@ -46,7 +46,7 @@ extern Size collision_16_224_64;
 
 PositionedEntityROMSpec LEVEL_1_STAGE_2_ST_CHILDREN[] =
 {
-	{&ENEMY_WALL_CL,				{ 20, 137,    0,   0},		0, NULL, NULL, NULL, false}, // left border
+	{&ENEMY_WALL_CL,				{ 40, 137,    0,   0},		0, NULL, NULL, NULL, false}, // left border
 	{&ENEMY_WALL_CL,				{ 695, 137,    0,   0},		0, NULL, NULL, NULL, false}, // right border
 	{&LEVEL_1_STAGE_2_ROOM_EN,		{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
 	{&PUNK_EM,						{ 508, 137,    -10,   0},		0, NULL, NULL, (void*)-3, false},
@@ -76,8 +76,6 @@ FontROMSpec* const LEVEL_1_STAGE_2_ST_FONTS[] =
 
 CharSetROMSpec* const LEVEL_1_STAGE_2_ST_CHARSETS[] =
 {
-	&PUNK_CH,
-	&PUNK_BLACK_CH,
 	NULL
 };
 
