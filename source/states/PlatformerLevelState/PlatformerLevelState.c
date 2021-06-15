@@ -165,6 +165,9 @@ void PlatformerLevelState::enter(void* owner)
 	Clock::start(this->clock);
 	GameState::startClocks(this);
 
+	// Allow collision checks with shapes out of view
+	CollisionManager::setCheckShapesOutOfCameraRange(this->collisionManager, true);
+
 	// register event listeners
 	Object::addEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onCaptainDied, kEventCaptainDied);
 	Object::addEventListener(EventManager::getInstance(), Object::safeCast(this), (EventListener)PlatformerLevelState::onComicDeleted, kEventComicDeleted);
