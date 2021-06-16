@@ -15,6 +15,7 @@
 #include <Game.h>
 #include <CustomCameraEffectManager.h>
 #include <SoundManager.h>
+#include <MessageDispatcher.h>
 #include "Punk.h"
 
 
