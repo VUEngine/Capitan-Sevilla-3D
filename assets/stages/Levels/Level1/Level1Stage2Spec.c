@@ -49,7 +49,7 @@ PositionedEntityROMSpec LEVEL_1_STAGE_2_ST_CHILDREN[] =
 	{&ENEMY_WALL_CL,				{ 40, 137,    0,   0},		0, NULL, NULL, NULL, false}, // left border
 	{&ENEMY_WALL_CL,				{ 695, 137,    0,   0},		0, NULL, NULL, NULL, false}, // right border
 	{&LEVEL_1_STAGE_2_ROOM_EN,		{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
-	{&PUNK_EM,						{ 508, 137,    -10,   0},		0, NULL, NULL, (void*)-3, false},
+	{&PUNK_EM,						{ 508, 137,    0,   0},		0, NULL, NULL, (void*)-3, false},
 	{&LEVEL_1_STAGE_2_LIFT_EN,		{ 693, 130,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
