@@ -41,7 +41,7 @@ int32 main()
 	);
 	SplashScreenState::setNextState(
 		SplashScreenState::safeCast(PrecautionScreenState::getInstance()),
-		GameState::safeCast(CsAdjustmentScreenState::getInstance())
+		GameState::safeCast(TitleScreenState::getInstance())
 	);
 
 	// start the game
