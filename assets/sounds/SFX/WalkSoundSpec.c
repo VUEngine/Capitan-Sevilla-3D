@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 WalkTrack[] =
+const uint16 WalkTrack[] =
 {
   PAU, A_3, HOLD, ENDSOUND,
   50, 200, 1, 1,
@@ -78,7 +78,7 @@ SoundChannelROM WALK_SND_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)WalkTrack
+		(const uint8*)WalkTrack
 	}
 };
 

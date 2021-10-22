@@ -29,7 +29,7 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-const u16 EngineSoundTrack1[] =
+const uint16 EngineSoundTrack1[] =
 {
   PAU, 0x016 + ENGINE_FREQ, 0x024 + ENGINE_FREQ, 0x032 + ENGINE_FREQ, 0x040 + ENGINE_FREQ, 0x032 + ENGINE_FREQ, 0x024 + ENGINE_FREQ, 0x016 + ENGINE_FREQ, ENDSOUND,
   50, ENGINE_DURATION * 4, ENGINE_DURATION * 3, ENGINE_DURATION * 2, ENGINE_DURATION * 1, ENGINE_DURATION * 2, ENGINE_DURATION * 3, ENGINE_DURATION * 4,
@@ -85,7 +85,7 @@ SoundChannelROM ENGINE_SOUND_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)EngineSoundTrack1
+		(const uint8*)EngineSoundTrack1
 	}
 };
 

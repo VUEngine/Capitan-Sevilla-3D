@@ -22,7 +22,7 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Dust::constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void Dust::constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	Base::constructor(animatedEntitySpec, internalId, name);
 }

@@ -41,11 +41,11 @@ typedef const StageExitPointSpec StageExitPointROMSpec;
 //										PUBLIC INTERFACE
 //---------------------------------------------------------------------------------------------------------
 
-class StageExitPoint : Entity
+class StageExitPoint: Entity
 {
 	StageEntryPointSpec* stageEntryPointSpec;
 
-	void constructor(StageExitPointSpec* stageExitPointSpec, s16 internalId, const char* const name);
+	void constructor(StageExitPointSpec* stageExitPointSpec, int16 internalId, const char* const name);
 }
 
 

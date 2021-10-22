@@ -24,7 +24,7 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Mission::constructor(MissionSpec* missionSpec, s16 internalId, const char* const name)
+void Mission::constructor(MissionSpec* missionSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor((AnimatedEntitySpec*)missionSpec, internalId, name);

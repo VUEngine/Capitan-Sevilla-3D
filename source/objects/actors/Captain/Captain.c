@@ -74,7 +74,7 @@ static void Captain::setInstance(Captain instance)
 	captain = instance;
 }
 
-void Captain::constructor(CaptainSpec* captainSpec, s16 internalId, const char* const name)
+void Captain::constructor(CaptainSpec* captainSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor((ActorSpec*)captainSpec, internalId, name);
@@ -216,7 +216,7 @@ void Captain::jump(bool checkIfYMovement)
 	if(this->body)
 	{
 		// determine the maximum number of possible jumps before reaching ground again
-		s8 allowedNumberOfJumps = 1;
+		int8 allowedNumberOfJumps = 1;
 
 		// check if more jumps are allowed
 		if(this->jumps < allowedNumberOfJumps)
@@ -289,7 +289,7 @@ void Captain::jump(bool checkIfYMovement)
 }
 
 // keep movement
-void Captain::applyForce(u16 axis, bool enableAddingForce)
+void Captain::applyForce(uint16 axis, bool enableAddingForce)
 {
 	if(enableAddingForce)
 	{
@@ -354,7 +354,7 @@ void Captain::stopAddingForce()
 //	this->inputDirection.z = 0;
 
 	// begin to decelerate
-	u16 axisOfDeacceleration = 0;
+	uint16 axisOfDeacceleration = 0;
 	axisOfDeacceleration |= velocity.x? __X_AXIS: 0;
 	axisOfDeacceleration |= velocity.z? __Z_AXIS: 0;
 
@@ -379,7 +379,7 @@ void Captain::stopAddingForce()
 }
 
 // started moving over axis
-void Captain::startedMovingOnAxis(u16 axis)
+void Captain::startedMovingOnAxis(uint16 axis)
 {
 	// start movement
 	if(State::safeCast(CaptainMoving::getInstance()) != StateMachine::getCurrentState(this->stateMachine))
@@ -402,7 +402,7 @@ void Captain::startedMovingOnAxis(u16 axis)
 }
 
 // stop moving over axis
-bool Captain::stopMovementOnAxis(u16 axis)
+bool Captain::stopMovementOnAxis(uint16 axis)
 {
 	// if being hit do nothing
 	if(!Body::isActive(this->body))
@@ -482,7 +482,7 @@ bool Captain::stopMovementOnAxis(u16 axis)
 }
 
 // check direction
-void Captain::checkDirection(u32 pressedKey, char* animation)
+void Captain::checkDirection(uint32 pressedKey, char* animation)
 {
 	bool movementState = Body::getMovementOnAllAxis(this->body);
 	//Direction direction = Entity::getDirection(this);
@@ -510,7 +510,7 @@ void Captain::checkDirection(u32 pressedKey, char* animation)
 	}
 }
 
-void Captain::takeDamageFrom(int energyToReduce)
+void Captain::takeDamageFrom(int32 energyToReduce)
 {
 	if(!Captain::isInvincible(this))
 	{
@@ -684,19 +684,19 @@ void Captain::onUserInput(Object eventFirer __attribute__ ((unused)))
 }
 
 // get energy
-s8 Captain::getEnergy()
+int8 Captain::getEnergy()
 {
 	return this->energy;
 }
 
 // get number of gums
-u8 Captain::getGums()
+uint8 Captain::getGums()
 {
 	return this->gums;
 }
 
 // get number of ducks
-u8 Captain::getDucks()
+uint8 Captain::getDucks()
 {
 	return this->ducks;
 }
@@ -729,7 +729,7 @@ bool Captain::enterCollision(const CollisionInformation* collisionInformation)
 {
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape::getOwner(collidingShape);
-	u32 collidingObjectInGameType = SpatialObject::getInGameType(collidingObject);
+	uint32 collidingObjectInGameType = SpatialObject::getInGameType(collidingObject);
 
 	if(0 > this->energy)
 	{
@@ -889,7 +889,7 @@ bool Captain::handleMessage(Telegram telegram)
 }
 
 // process message
-bool Captain::handlePropagatedMessage(int message)
+bool Captain::handlePropagatedMessage(int32 message)
 {
 	switch(message)
 	{
@@ -933,7 +933,7 @@ bool Captain::isBelow(Shape shape, const CollisionInformation* collisionInformat
 	return captainBottomPosition > collidingShapeRightBox.y0 || __ABS(collisionInformation->solutionVector.direction.y) < __ABS(collisionInformation->solutionVector.direction.x);
 }
 
-void Captain::update(u32 elapsedTime)
+void Captain::update(uint32 elapsedTime)
 {
 	Base::update(this, elapsedTime);
 
@@ -954,10 +954,10 @@ void Captain::updateHeadXPosition()
 
 void Captain::updateHeadYPosition()
 {
-	s8 offsetX = 0;
-	s8 offsetY = 0;
+	int8 offsetX = 0;
+	int8 offsetY = 0;
 
-	s16 actualFrame = AnimatedEntity::getActualFrame(this);
+	int16 actualFrame = AnimatedEntity::getActualFrame(this);
 	AnimationController animationController = Sprite::getAnimationController(VirtualNode::getData(VirtualList::begin(Entity::getSprites(this))));
 
 	if(AnimationController::isPlayingFunction(animationController, "Idle"))
@@ -1067,7 +1067,7 @@ void Captain::exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool is
 	Base::exitCollision(this, shape, shapeNotCollidingAnymore, isShapeImpenetrable);
 }
 
-u16 Captain::getAxisForShapeSyncWithDirection()
+uint16 Captain::getAxisForShapeSyncWithDirection()
 {
 	return __X_AXIS;
 }

@@ -33,7 +33,7 @@ typedef struct LiftSpec
 	// velocity after entering
 	Velocity velocity;
 
-	// entry point to load after entering
+	// entry poto load after entering
 	StageEntryPointSpec* entryPoint;
 
 } LiftSpec;
@@ -50,7 +50,7 @@ class Lift : Actor
 	// spec pointer
 	LiftSpec* liftSpec;
 
-	void constructor(LiftSpec* liftSpec, s16 internalId, const char* const name);
+	void constructor(LiftSpec* liftSpec, int16 internalId, const char* const name);
 	override bool handleMessage(Telegram telegram);
 	override void ready(bool recursive);
 	override void resume();

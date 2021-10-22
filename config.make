@@ -3,12 +3,17 @@
 ###########################################################################################################
 
 # VUEngine based plugins that the project uses
-PLUGINS 						= vuengine/entities/LocalizedEntity \
-								  vuengine/entities/LowPowerEntity \
-								  vuengine/other/AutomaticPause \
-								  vuengine/other/I18n \
-								  vuengine/other/SaveDataManager \
-								  vuengine/states/SplashScreens
+PLUGINS 						= vuengine//entities/LocalizedEntity \
+								  vuengine//entities/LowPowerEntity \
+								  vuengine//other/AutomaticPause \
+								  vuengine//other/I18n \
+								  vuengine//other/SaveDataManager \
+								  vuengine//other/LowPowerIndicator \
+								  vuengine//states/splash/SplashScreen \
+								  vuengine//states/splash/AdjustmentScreenVUEngine \
+								  vuengine//states/splash/AutomaticPauseSelectionScreen \
+								  vuengine//states/splash/LanguageSelectionScreen \
+								  vuengine//states/splash/PrecautionScreen
 
 # Compiler's output
 COMPILER_OUTPUT					= c

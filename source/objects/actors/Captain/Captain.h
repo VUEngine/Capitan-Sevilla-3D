@@ -74,38 +74,38 @@ class Captain : Actor
 	// used to know if gap must be changed
 	Direction inputDirection;
 	// captain has energy
-	s8 energy;
+	int8 energy;
 	// number of jumps performed (for double jump)
-	s8 jumps;
+	int8 jumps;
 	// number of gums
-	u8 gums;
+	uint8 gums;
 	// number of ducks
-	u8 ducks;
+	uint8 ducks;
 	// flag for invincible mode (after being hit)
 	bool invincible;
 	// flag to keep applying force to the x axis
 	bool keepAddingForce;
 
 	static Captain getInstance();
-	void constructor(CaptainSpec* captainSpec, s16 internalId, const char* const name);
-	void applyForce(u16 axis, bool enableAddingForce);
+	void constructor(CaptainSpec* captainSpec, int16 internalId, const char* const name);
+	void applyForce(uint16 axis, bool enableAddingForce);
 	void stopAddingForce();
-	void startedMovingOnAxis(u16 axis);
-	bool stopMovementOnAxis(u16 axis);
+	void startedMovingOnAxis(uint16 axis);
+	bool stopMovementOnAxis(uint16 axis);
 	void kneel();
 	void standUp();
 	bool isJumping();
 	void jump(bool checkIfYMovement);
 	void addMomentumToJump();
-	void checkDirection(u32 currentPressedKey, char * animation);
-	void takeDamageFrom(int energyToReduce);
+	void checkDirection(uint32 currentPressedKey, char * animation);
+	void takeDamageFrom(int32 energyToReduce);
 	void die();
-	s8 getEnergy();
-	u8 getGums();
-	u8 getDucks();
+	int8 getEnergy();
+	uint8 getGums();
+	uint8 getDucks();
 	void setInvincible(bool invincible);
 	bool isInvincible();
-	void lockCameraTriggerMovement(u8 axisToLockUp, bool locked);
+	void lockCameraTriggerMovement(uint8 axisToLockUp, bool locked);
 	bool isBelow(Shape shape, const CollisionInformation* collisionInformation);
 	void capVelocity(bool discardPreviousMessages);
 	void startShooting();
@@ -115,7 +115,7 @@ class Captain : Actor
 	void startFlashing();
 	void stopFlashing();
 	override void ready(bool recursive);
-	override bool handlePropagatedMessage(int message);
+	override bool handlePropagatedMessage(int32 message);
 	override bool handleMessage(Telegram telegram);
 	override void suspend();
 	override void resume();
@@ -124,9 +124,9 @@ class Captain : Actor
 	override void exitCollision(Shape shape, Shape shapeNotCollidingAnymore, bool isShapeImpenetrable);
 	override bool updateCollision(const CollisionInformation* collisionInformation);
 	override void syncRotationWithBody();
-	override u16 getAxisForShapeSyncWithDirection();
+	override uint16 getAxisForShapeSyncWithDirection();
 	override void setDirection(Direction direction);
-	override void update(u32 elapsedTime);
+	override void update(uint32 elapsedTime);
 	void reload();
 	void onHitAnimationComplete(Object eventFirer);
 	void onReloadAnimationComplete(Object eventFirer);

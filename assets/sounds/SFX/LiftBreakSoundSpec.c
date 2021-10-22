@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 LIFT_BREAK_TRACK_1[] =
+const uint16 LIFT_BREAK_TRACK_1[] =
 {
   A_4, B_4, E_5, HOLD, A_4, B_4, E_5, HOLD, ENDSOUND,
   100,  80, 100,    1, 100,  80, 100,    1, 1,
@@ -84,7 +84,7 @@ SoundChannelROM LIFT_BREAK_SND_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)LIFT_BREAK_TRACK_1
+		(const uint8*)LIFT_BREAK_TRACK_1
 	}
 };
 

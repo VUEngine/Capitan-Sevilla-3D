@@ -28,7 +28,7 @@ class HoverCar : Enemy
 {
 	SoundWrapper engineSound;
 
-	void constructor(EnemySpec* enemySpec, s16 internalId, const char* const name);
+	void constructor(EnemySpec* enemySpec, int16 internalId, const char* const name);
 	override void ready(bool recursive);
 }
 

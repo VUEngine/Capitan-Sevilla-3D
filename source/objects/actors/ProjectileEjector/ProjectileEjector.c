@@ -33,7 +33,7 @@ extern Sound SHOOT_SND;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void ProjectileEjector::constructor(ProjectileEjectorSpec* projectileEjectorSpec, s16 internalId, const char* const name)
+void ProjectileEjector::constructor(ProjectileEjectorSpec* projectileEjectorSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor((AnimatedEntitySpec*)&projectileEjectorSpec->animatedEntitySpec, internalId, name);
@@ -73,7 +73,7 @@ void ProjectileEjector::ready(bool recursive)
 	AnimatedEntity::playAnimation(this, this->projectileEjectorSpec->idleAnimationName);
 
 	// add projectiles to stage as children of this ejector
-	for(u8 i = 0; i < this->projectileEjectorSpec->maxProjectiles; i++)
+	for(uint8 i = 0; i < this->projectileEjectorSpec->maxProjectiles; i++)
 	{
 		Stage::spawnEntity(Game::getStage(Game::getInstance()), &this->projectileEjectorSpec->projectilePositionedEntitySpec, Container::safeCast(this), (EventListener)ProjectileEjector::onProjectileSpawned);
 	}

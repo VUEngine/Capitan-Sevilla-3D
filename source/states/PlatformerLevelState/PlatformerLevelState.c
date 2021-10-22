@@ -310,7 +310,7 @@ void PlatformerLevelState::resetProgress()
 	// TODO: move to progress manager?
 	// set default entry point
 	this->currentLevel = (PlatformerLevelSpec*)&LEVEL_1_LV;
-	this->currentStageEntryPoint = this->currentLevel->entryPoint;
+	this->currentStageEntryPoint= this->currentLevel->entryPoint;
 	this->currentCheckPoint = this->currentLevel->entryPoint;
 }
 
@@ -400,7 +400,7 @@ bool PlatformerLevelState::processMessage(void* owner __attribute__ ((unused)), 
 
 			PlatformerLevelState::startStage(this, this->currentCheckPoint);
 
-			// announce checkpoint loaded
+			// announce checkpoloaded
 			Object::fireEvent(EventManager::getInstance(), kEventCheckpointLoaded);
 			break;
 	}
@@ -467,7 +467,7 @@ void PlatformerLevelState::enterStage(StageEntryPointSpec* entryPointSpec)
 	// save stats if is checkpoint
 	if(entryPointSpec->isCheckPoint)
 	{
-		// write checkpoint stats
+		// write checkpostats
 		ProgressManager::setCheckPointData(ProgressManager::getInstance());
 
 		// set current checkpoint
@@ -481,7 +481,7 @@ void PlatformerLevelState::enterStage(StageEntryPointSpec* entryPointSpec)
 void PlatformerLevelState::startStage(StageEntryPointSpec* entryPointSpec)
 {
 	// set current entry point
-	this->currentStageEntryPoint = entryPointSpec;
+	this->currentStageEntryPoint= entryPointSpec;
 
 	Game::changeState(Game::getInstance(), GameState::safeCast(this));
 }
@@ -489,7 +489,7 @@ void PlatformerLevelState::startStage(StageEntryPointSpec* entryPointSpec)
 // determine if starting a new level
 bool PlatformerLevelState::isStartingLevel()
 {
-	return (this->currentStageEntryPoint == this->currentLevel->entryPoint);
+	return (this->currentStageEntryPoint== this->currentLevel->entryPoint);
 }
 
 // set paused mode

@@ -38,7 +38,7 @@ typedef struct ProjectileSpec
 	Vector3D maxDistance;
 
 	// delay between position checks (-1 to disable)
-	int checkDelay;
+	int32 checkDelay;
 
 } ProjectileSpec;
 
@@ -56,7 +56,7 @@ class Projectile : Actor
 	// position at time of ejection
 	Vector3D originalPosition;
 
-	void constructor(ProjectileSpec* projectileSpec, s16 internalId, const char* const name);
+	void constructor(ProjectileSpec* projectileSpec, int16 internalId, const char* const name);
 	void startMovement();
 	bool canBeReused();
 	void stop(bool hide);

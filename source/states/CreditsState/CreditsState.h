@@ -33,7 +33,7 @@ singleton class CreditsState : GameState
 {
 	Vector3D cameraTranslation;
 	bool finishedScrolling;
-	u16 totalScrolled;
+	uint16 totalScrolled;
 
 	static CreditsState getInstance();
 	override void enter(void* owner);

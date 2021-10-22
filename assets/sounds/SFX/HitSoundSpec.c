@@ -28,7 +28,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 HitTrack[] =
+const uint16 HitTrack[] =
 {
   A_4, B_4, E_5, HOLD, ENDSOUND,
   100, 80, 100, 1, 1,
@@ -84,7 +84,7 @@ SoundChannelROM HIT_SND_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)HitTrack
+		(const uint8*)HitTrack
 	}
 };
 

@@ -29,7 +29,7 @@ extern Sound ENGINE_SND;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Car::constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, s16 internalId, const char* const name)
+void Car::constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(movingOneWayEntitySpec, internalId, name);

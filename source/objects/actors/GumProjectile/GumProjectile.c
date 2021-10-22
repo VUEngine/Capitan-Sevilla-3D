@@ -26,7 +26,7 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void GumProjectile::constructor(ProjectileSpec* projectileSpec, s16 internalId, const char* const name)
+void GumProjectile::constructor(ProjectileSpec* projectileSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(projectileSpec, internalId, name);

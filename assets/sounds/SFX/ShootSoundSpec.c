@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 ShootTrack[] =
+const uint16 ShootTrack[] =
 {
   A_3, G_3, E_4, HOLD, ENDSOUND,
   80, 80, 80, 1, 1,
@@ -78,7 +78,7 @@ SoundChannelROM SHOOT_SND_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)ShootTrack
+		(const uint8*)ShootTrack
 	}
 };
 

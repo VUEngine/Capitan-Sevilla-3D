@@ -145,7 +145,7 @@ void PauseScreenState::processUserInput(UserInput userInput)
 	{
 		if(this->mode == kPauseScreenModeShowOptions)
 		{
-			int selectedOption = OptionsSelector::getSelectedOption(this->optionsSelector);
+			int32 selectedOption = OptionsSelector::getSelectedOption(this->optionsSelector);
 
 			switch(selectedOption)
 			{
@@ -178,8 +178,8 @@ void PauseScreenState::processUserInput(UserInput userInput)
 					const char* strPause = I18n::getText(I18n::getInstance(), STR_PAUSE);
 					FontSize strPauseSize = Printing::getTextSize(Printing::getInstance(), strPause, "Capitan");
 
-					u8 strXPos = ((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1;
-					u8 strNoXPos = strXPos + strYesSize.x + 2;
+					uint8 strXPos = ((__SCREEN_WIDTH_IN_CHARS) - strPauseSize.x) >> 1;
+					uint8 strNoXPos = strXPos + strYesSize.x + 2;
 
 					Printing::text(Printing::getInstance(), strAreYouSure, strXPos, 21, "Capitan");
 					Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strXPos, 22, "Capitan");
@@ -240,7 +240,7 @@ void PauseScreenState::onFadeOutComplete(Object eventFirer __attribute__ ((unuse
 	Game::enableKeypad(Game::getInstance());
 
 	// switch state according to selection
-	int selectedOption = OptionsSelector::getSelectedOption(this->optionsSelector);
+	int32 selectedOption = OptionsSelector::getSelectedOption(this->optionsSelector);
 	switch(selectedOption)
 	{
 		case kPauseScreenOptionContinue:

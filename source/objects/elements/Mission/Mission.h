@@ -33,7 +33,7 @@ typedef const MissionSpec MissionROMSpec;
 
 class Mission : AnimatedEntity
 {
-	void constructor(MissionSpec* missionSpec, s16 internalId, const char* const name);
+	void constructor(MissionSpec* missionSpec, int16 internalId, const char* const name);
 	override bool respawn();
 	override void resume();
 	void delete();

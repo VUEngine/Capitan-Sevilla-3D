@@ -19,8 +19,8 @@
 #include <I18n.h>
 #include <Languages.h>
 #include <SplashScreenState.h>
-#include <AutoPauseSelectScreenState.h>
-#include <LangSelectScreenState.h>
+#include <AutomaticPauseSelectionScreenState.h>
+#include <LanguageSelectionScreenState.h>
 #include <TitleScreenState.h>
 #include <KeypadManager.h>
 #include "OptionsScreenState.h"
@@ -62,7 +62,7 @@ void OptionsScreenState::enter(void* owner __attribute__ ((unused)))
 	// load stage
 	GameState::loadStage(this, (StageSpec*)&EMPTY_STAGE_ST, NULL, true, false);
 
-	// print options
+	// proptions
 	OptionsScreenState::print(this);
 
 	// disable user input
@@ -92,7 +92,7 @@ void OptionsScreenState::setNextState(GameState nextState)
 	this->nextState = nextState;
 }
 
-// print level stats
+// prlevel stats
 void OptionsScreenState::print()
 {
 	// title
@@ -113,7 +113,7 @@ void OptionsScreenState::print()
 	option = new Option;
 	option->value = (char*)I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
 	option->type = kString;
-	option->callback = (void (*)(Object))OptionsScreenState::onOptionAutoPauseSelect;
+	option->callback = (void (*)(Object))OptionsScreenState::onOptionAutomaticPauseSelect;
 	option->callbackScope = Object::safeCast(this);
 	VirtualList::pushBack(options, option);
 
@@ -138,8 +138,8 @@ void OptionsScreenState::print()
 	FontSize strSelectSize = Printing::getTextSize(Printing::getInstance(), strSelect, "Capitan");
 	const char* strBack = I18n::getText(I18n::getInstance(), STR_BACK);
 
-	u8 strSelectXPos = ((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1;
-	u8 strBackXPos = strSelectXPos + strSelectSize.x + 2;
+	uint8 strSelectXPos = ((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1;
+	uint8 strBackXPos = strSelectXPos + strSelectSize.x + 2;
 
 	Printing::text(Printing::getInstance(), __CHAR_A_BUTTON, strSelectXPos, 15, "Capitan");
 	Printing::text(Printing::getInstance(), strSelect, strSelectXPos + 1, 15, "Capitan");
@@ -207,14 +207,14 @@ void OptionsScreenState::onOptionSelectedFadeOutComplete(Object eventFirer __att
 	OptionsSelector::doCurrentSelectionCallback(this->optionsSelector);
 }
 
-void OptionsScreenState::onOptionAutoPauseSelect()
+void OptionsScreenState::onOptionAutomaticPauseSelect()
 {
-	SplashScreenState::setNextState(SplashScreenState::safeCast(AutoPauseSelectScreenState::getInstance()), GameState::safeCast(this));
-	Game::changeState(Game::getInstance(), GameState::safeCast(AutoPauseSelectScreenState::getInstance()));
+	SplashScreenState::setNextState(SplashScreenState::safeCast(AutomaticPauseSelectionScreenState::getInstance()), GameState::safeCast(this));
+	Game::changeState(Game::getInstance(), GameState::safeCast(AutomaticPauseSelectionScreenState::getInstance()));
 }
 
 void OptionsScreenState::onOptionLanguageSelect()
 {
-	SplashScreenState::setNextState(SplashScreenState::safeCast(LangSelectScreenState::getInstance()), GameState::safeCast(this));
-	Game::changeState(Game::getInstance(), GameState::safeCast(LangSelectScreenState::getInstance()));
+	SplashScreenState::setNextState(SplashScreenState::safeCast(LanguageSelectionScreenState::getInstance()), GameState::safeCast(this));
+	Game::changeState(Game::getInstance(), GameState::safeCast(LanguageSelectionScreenState::getInstance()));
 }

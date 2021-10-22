@@ -47,13 +47,13 @@ singleton class CustomCameraEffectManager : CameraEffectManager
 	// last offset set by shake function
 	Vector3D lastShakeOffset;
 	// time left in current shaking fx (in ms)
-	int shakeTimeLeft;
+	int32 shakeTimeLeft;
 	// values to load on next pulsate fx step
-	u8 pulsateNextStep;
+	uint8 pulsateNextStep;
 
 	static CustomCameraEffectManager getInstance();
-	override void startEffect(int effect, va_list args);
-	override void stopEffect(int effect);
+	override void startEffect(int32 effect, va_list args);
+	override void stopEffect(int32 effect);
 	override bool handleMessage(Telegram telegram);
 }
 

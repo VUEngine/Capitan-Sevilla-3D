@@ -29,7 +29,7 @@ extern Sound HOVER_ENGINE_SND;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void HoverCar::constructor(EnemySpec* enemySpec, s16 internalId, const char* const name)
+void HoverCar::constructor(EnemySpec* enemySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(enemySpec, internalId, name);

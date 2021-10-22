@@ -14,12 +14,12 @@
 
 #include <Game.h>
 #include <ProgressManager.h>
-#include <AutoPauseManager.h>
+#include <AutomaticPauseManager.h>
 #include <LowPowerManager.h>
 #include <PrecautionScreenState.h>
 #include <CsAdjustmentScreenState.h>
-#include <AutoPauseSelectScreenState.h>
-#include <LangSelectScreenState.h>
+#include <AutomaticPauseSelectionScreenState.h>
+#include <LanguageSelectionScreenState.h>
 #include <RugarsoAnimationScreenState.h>
 #include <TitleScreenState.h>
 #include <CreditsState.h>
@@ -29,14 +29,14 @@
 //											GAME'S MAIN LOOP
 //---------------------------------------------------------------------------------------------------------
 
-int main()
+int32 main()
 {
 	// initialize plugins
-	AutoPauseManager::setActive(AutoPauseManager::getInstance(), true);
-	AutoPauseManager::setAutomaticPauseDelay(AutoPauseManager::getInstance(), 30);
+	AutomaticPauseManager::setActive(AutomaticPauseManager::getInstance(), true);
+	AutomaticPauseManager::setAutomaticPauseDelay(AutomaticPauseManager::getInstance(), 30);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
 	SplashScreenState::setNextState(
-		SplashScreenState::safeCast(LangSelectScreenState::getInstance()),
+		SplashScreenState::safeCast(LanguageSelectionScreenState::getInstance()),
 		GameState::safeCast(RugarsoAnimationScreenState::getInstance())
 	);
 	SplashScreenState::setNextState(
