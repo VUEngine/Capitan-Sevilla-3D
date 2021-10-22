@@ -35,14 +35,19 @@ int32 main()
 	AutomaticPauseManager::setActive(AutomaticPauseManager::getInstance(), true);
 	AutomaticPauseManager::setAutomaticPauseDelay(AutomaticPauseManager::getInstance(), 30);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
-	SplashScreenState::setNextState(
-		SplashScreenState::safeCast(LanguageSelectionScreenState::getInstance()),
+
+	PrecautionScreenState::setNextState(PrecautionScreenState::getInstance(),
+		GameState::safeCast(CsAdjustmentScreenState::getInstance())
+	);
+
+	AutomaticPauseSelectionScreenState::setNextState(AutomaticPauseSelectionScreenState::getInstance(),
+		GameState::safeCast(LanguageSelectionScreenState::getInstance())
+	);
+
+	LanguageSelectionScreenState::setNextState(LanguageSelectionScreenState::getInstance(),
 		GameState::safeCast(RugarsoAnimationScreenState::getInstance())
 	);
-	SplashScreenState::setNextState(
-		SplashScreenState::safeCast(PrecautionScreenState::getInstance()),
-		GameState::safeCast(TitleScreenState::getInstance())
-	);
+	
 
 	// start the game
 	//Game::start(Game::getInstance(), GameState::safeCast(CreditsState::getInstance()));
@@ -54,3 +59,4 @@ int32 main()
 	// end program
 	return true;
 }
+
