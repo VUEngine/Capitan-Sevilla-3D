@@ -1,0 +1,21 @@
+{
+    "images": [
+        "."
+    ],
+    "converter": {
+        "tileset": {
+            "shared": true,
+            "reduce": true
+        },
+        "map": {
+            "generate": true,
+            "reduce": {
+                "flipped": true,
+                "unique": true
+            }
+        },
+        "stackFrames": false
+    },
+    "name": "Level1Stage1Building8",
+    "section": "rom"
+}

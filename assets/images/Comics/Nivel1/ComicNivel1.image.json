@@ -1,0 +1,21 @@
+{
+    "images": [
+        "."
+    ],
+    "converter": {
+        "tileset": {
+            "shared": false,
+            "reduce": true
+        },
+        "map": {
+            "generate": true,
+            "reduce": {
+                "flipped": true,
+                "unique": true
+            }
+        },
+        "stackFrames": true
+    },
+    "name": "ComicNivel1",
+    "section": "rom"
+}
