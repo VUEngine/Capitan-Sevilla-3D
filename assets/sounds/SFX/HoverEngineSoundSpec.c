@@ -30,7 +30,7 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-const u16 HoverEngineSoundTrack1[] =
+const uint16 HoverEngineSoundTrack1[] =
 {
   0x016 + HOVER_ENGINE_FREQ, 0x024 + HOVER_ENGINE_FREQ, 0x032 + HOVER_ENGINE_FREQ, 0x040 + HOVER_ENGINE_FREQ, 0x032 + HOVER_ENGINE_FREQ, 0x024 + HOVER_ENGINE_FREQ, 0x016 + HOVER_ENGINE_FREQ, ENDSOUND,
   HOVER_ENGINE_DURATION * 4, HOVER_ENGINE_DURATION * 3, HOVER_ENGINE_DURATION * 2, HOVER_ENGINE_DURATION * 1, HOVER_ENGINE_DURATION * 2, HOVER_ENGINE_DURATION * 3, HOVER_ENGINE_DURATION * 4,
@@ -86,7 +86,7 @@ SoundChannelROM HOVER_ENGINE_SOUND_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)HoverEngineSoundTrack1
+		(const uint8*)HoverEngineSoundTrack1
 	}
 };
 

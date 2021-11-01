@@ -30,7 +30,7 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void StageExitPoint::constructor(StageExitPointSpec* stageExitPointSpec, s16 internalId, const char* const name)
+void StageExitPoint::constructor(StageExitPointSpec* stageExitPointSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor((EntitySpec*)&stageExitPointSpec->entitySpec, internalId, name);

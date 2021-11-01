@@ -38,7 +38,7 @@ extern Sound INTRO_LOWER_SONG;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Lift::constructor(LiftSpec* liftSpec, s16 internalId, const char* const name)
+void Lift::constructor(LiftSpec* liftSpec, int16 internalId, const char* const name)
 {
 	Base::constructor((ActorSpec*)&liftSpec->actorSpec, internalId, name);
 

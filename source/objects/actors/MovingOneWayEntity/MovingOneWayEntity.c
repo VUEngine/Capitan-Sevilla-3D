@@ -27,7 +27,7 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void MovingOneWayEntity::constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, s16 internalId, const char* const name)
+void MovingOneWayEntity::constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor((ActorSpec*)&movingOneWayEntitySpec->actorSpec, internalId, name);

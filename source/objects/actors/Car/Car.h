@@ -28,7 +28,7 @@ class Car : MovingOneWayEntity
 {
 	SoundWrapper engineSound;
 
-	void constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, s16 internalId, const char* const name);
+	void constructor(MovingOneWayEntitySpec* movingOneWayEntitySpec, int16 internalId, const char* const name);
 	override void ready(bool recursive);
 }
 

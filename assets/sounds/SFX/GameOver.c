@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // Instrument: 0 patchchange ch: 1 electric guitar(jazz);
-const u16 GAME_OVER_TRACK_1[] =
+const uint16 GAME_OVER_TRACK_1[] =
 {
   PAU, GS5, PAU, GS5, PAU, B_5, PAU, GS5, PAU, B_5, PAU, A_5, PAU, A_5, PAU, CS6, PAU, A_5, PAU, CS6, PAU, B_5, PAU, B_5, PAU, E_6, PAU, DS6, PAU, CS6, PAU, B_5, PAU, ENDSOUND,
   1, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 94, 96,
@@ -30,7 +30,7 @@ const u16 GAME_OVER_TRACK_1[] =
 };
 
 // Instrument: 0 patchchange ch: 2 electric guitar(jazz);
-const u16 GAME_OVER_TRACK_2[] =
+const uint16 GAME_OVER_TRACK_2[] =
 {
   PAU, E_4, PAU, E_4, PAU, GS4, PAU, E_4, PAU, GS4, PAU, FS4, PAU, FS4, PAU, A_4, PAU, FS4, PAU, A_4, PAU, GS4, PAU, GS4, PAU, CS5, PAU, B_4, PAU, A_4, PAU, E_4, PAU, B_3, PAU, GS3, PAU, E_3, ENDSOUND,
   1, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 94, 2, 46, 2, 94, 2, 46, 2, 94, 2, 46, 2, 46, 2, 46, 2, 46,
@@ -88,7 +88,7 @@ SoundChannelROM GAME_OVER_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)GAME_OVER_TRACK_1
+		(const uint8*)GAME_OVER_TRACK_1
 	}
 };
 
@@ -141,7 +141,7 @@ SoundChannelROM GAME_OVER_CHANNEL_2 =
 
 	/// Sound track
 	{
-		(const u8*)GAME_OVER_TRACK_2
+		(const uint8*)GAME_OVER_TRACK_2
 	}
 };
 

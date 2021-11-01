@@ -38,7 +38,7 @@ extern CharSetSpec GUI_ITEMS_CH;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Gui::constructor(EntitySpec* animatedEntitySpec, s16 internalId, const char* const name)
+void Gui::constructor(EntitySpec* animatedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(animatedEntitySpec, internalId, name);
@@ -108,15 +108,15 @@ void Gui::resume()
 
 void Gui::printGums()
 {
-	u8 gums = Captain::getGums(Captain::getInstance());
+	uint8 gums = Captain::getGums(Captain::getInstance());
 
 	VirtualList sprites = Entity::getSprites(this);
 	VirtualNode node = VirtualList::begin(sprites);
 	Sprite sprite = Sprite::safeCast(VirtualNode::getData(node));
 
-	// print gum icons
-	u8 i = CAPTAIN_MAX_GUMS;
-	u8 hasGumOffset = 0;
+	// prgum icons
+	uint8 i = CAPTAIN_MAX_GUMS;
+	uint8 hasGumOffset = 0;
 	for(; i > 0; i--)
 	{
 		hasGumOffset = (i <= gums) ? 8 : 0;
@@ -192,7 +192,7 @@ void Gui::printGums()
 
 void Gui::printLives()
 {
-	u8 lives = Captain::getEnergy(Captain::getInstance());
+	uint8 lives = Captain::getEnergy(Captain::getInstance());
 
 	VirtualList sprites = Entity::getSprites(this);
 	VirtualNode node = VirtualList::begin(sprites);

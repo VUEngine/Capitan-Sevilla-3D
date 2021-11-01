@@ -25,7 +25,7 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Projectile::constructor(ProjectileSpec* projectileSpec, s16 internalId, const char* const name)
+void Projectile::constructor(ProjectileSpec* projectileSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor((ActorSpec*)&projectileSpec->actorSpec, internalId, name);

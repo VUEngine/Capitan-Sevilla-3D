@@ -81,7 +81,7 @@ void CustomCameraEffectManager::destructor()
 	Base::destructor();
 }
 
-void CustomCameraEffectManager::startEffect(int effect, va_list args)
+void CustomCameraEffectManager::startEffect(int32 effect, va_list args)
 {
 	switch(effect)
 	{
@@ -102,7 +102,7 @@ void CustomCameraEffectManager::startEffect(int effect, va_list args)
 	}
 }
 
-void CustomCameraEffectManager::stopEffect(int effect)
+void CustomCameraEffectManager::stopEffect(int32 effect)
 {
 	switch(effect)
 	{
@@ -142,7 +142,7 @@ bool CustomCameraEffectManager::handleMessage(Telegram telegram)
 }
 
 // start shaking the screen
-void CustomCameraEffectManager::fxShakeStart(u16 duration)
+void CustomCameraEffectManager::fxShakeStart(uint16 duration)
 {
 	// don't follow the focus entity while shaking
 	//Camera _camera = Camera::getInstance();
@@ -203,7 +203,7 @@ void CustomCameraEffectManager::onScreenShake()
 
 	long seed = Utilities::randomSeed();
 
-	int nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities::random(seed, __ABS(SHAKE_DELAY_DELTA));
+	int32 nextShakeDelay = MINIMUM_SHAKE_DELAY + Utilities::random(seed, __ABS(SHAKE_DELAY_DELTA));
 
 	// subtract time until next shake
 	this->shakeTimeLeft = (this->shakeTimeLeft <= nextShakeDelay) ? 0 : this->shakeTimeLeft - nextShakeDelay;

@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 // Instrument: ;
-const u16 TITLE_TRACK_1[] =
+const uint16 TITLE_TRACK_1[] =
 {
   PAU, E_5, PAU, B_4, PAU, D_5, PAU, E_5, PAU, B_4, PAU, D_5, PAU, E_5, PAU, G_5, PAU, E_5, PAU, D_5, PAU, B_4, PAU, E_5, PAU, B_4, PAU, D_5, PAU, E_5, PAU, B_4, PAU, D_5, PAU, E_5, PAU, A_5, PAU, G_5, PAU, E_5, PAU, D_5, PAU, E_5, ENDSOUND,
   1, 342, 18, 114, 6, 342, 18, 1416, 24, 114, 6, 342, 18, 114, 6, 342, 18, 114, 6, 342, 18, 114, 6, 342, 18, 114, 6, 342, 18, 1416, 24, 114, 6, 342, 18, 114, 6, 342, 18, 114, 6, 342, 18, 114, 6, 456,
@@ -30,7 +30,7 @@ const u16 TITLE_TRACK_1[] =
 };
 
 // Instrument: ;
-const u16 TITLE_TRACK_2[] =
+const uint16 TITLE_TRACK_2[] =
 {
   PAU, B_4, PAU, B_4, PAU, CS5, PAU, CS5, PAU, D_5, PAU, D_5, PAU, CS5, PAU, D_5, PAU, B_4, PAU, B_4, PAU, CS5, PAU, CS5, PAU, D_5, PAU, D_5, PAU, CS5, PAU, D_5, PAU, GS4, ENDSOUND,
   1, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 342, 18, 594, 6, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 342, 18, 594, 6, 456,
@@ -38,7 +38,7 @@ const u16 TITLE_TRACK_2[] =
 };
 
 // Instrument: ;
-const u16 TITLE_TRACK_3[] =
+const uint16 TITLE_TRACK_3[] =
 {
   PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, PAU, E_3, ENDSOUND,
   1, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456, 24, 456,
@@ -95,7 +95,7 @@ SoundChannelROM TITLE_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)TITLE_TRACK_1
+		(const uint8*)TITLE_TRACK_1
 	}
 };
 
@@ -148,7 +148,7 @@ SoundChannelROM TITLE_CHANNEL_2 =
 
 	/// Sound track
 	{
-		(const u8*)TITLE_TRACK_2
+		(const uint8*)TITLE_TRACK_2
 	}
 };
 
@@ -201,7 +201,7 @@ SoundChannelROM TITLE_CHANNEL_3 =
 
 	/// Sound track
 	{
-		(const u8*)TITLE_TRACK_3
+		(const uint8*)TITLE_TRACK_3
 	}
 };
 

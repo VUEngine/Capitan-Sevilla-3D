@@ -25,7 +25,7 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void FlowerPot::constructor(ProjectileSpec* projectileSpec, s16 internalId, const char* const name)
+void FlowerPot::constructor(ProjectileSpec* projectileSpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(projectileSpec, internalId, name);

@@ -29,7 +29,7 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-const u16 LIFT_TRACK_1[] =
+const uint16 LIFT_TRACK_1[] =
 {
   PAU, 0x016 + LIFT_FREQ, 0x024 + LIFT_FREQ, 0x032 + LIFT_FREQ, 0x040 + LIFT_FREQ, 0x032 + LIFT_FREQ, 0x024 + LIFT_FREQ, 0x016 + LIFT_FREQ, ENDSOUND,
   50, LIFT_DURATION * 4, LIFT_DURATION * 3, LIFT_DURATION * 2, LIFT_DURATION * 1, LIFT_DURATION * 2, LIFT_DURATION * 3, LIFT_DURATION * 4,
@@ -85,7 +85,7 @@ SoundChannelROM LIFT_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)LIFT_TRACK_1
+		(const uint8*)LIFT_TRACK_1
 	}
 };
 

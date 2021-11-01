@@ -44,9 +44,9 @@ enum ComicModes
 
 class Comic : LocalizedEntity
 {
-	u8 mode;
+	uint8 mode;
 
-	void constructor(LocalizedEntitySpec* localizedEntitySpec, s16 internalId, const char* const name);
+	void constructor(LocalizedEntitySpec* localizedEntitySpec, int16 internalId, const char* const name);
 	override void ready(bool recursive);
 	override bool handleMessage(Telegram telegram);
 	override bool respawn();

@@ -25,14 +25,14 @@
 //											DEBUGGING / PROFILING
 //---------------------------------------------------------------------------------------------------------
 
-// print memory pool's status
+// prmemory pool's status
 #undef __SHOW_MEMORY_POOL_STATUS
 #undef __SHOW_DETAILED_MEMORY_POOL_STATUS
 
 // Enable profiler
 #undef __ENABLE_PROFILER
 
-// print frame rate
+// prframe rate
 #undef __PRINT_FRAMERATE
 
 // alert stack overflows

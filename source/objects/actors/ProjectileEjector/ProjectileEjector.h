@@ -32,16 +32,16 @@ typedef struct ProjectileEjectorSpec
 	PositionedEntity projectilePositionedEntitySpec;
 
 	// delay of the first projectile ejection (only relevant if initially active)
-	u16 initialEjectDelay;
+	uint16 initialEjectDelay;
 
 	// pause between projectile ejections
-	u16 ejectDelay;
+	uint16 ejectDelay;
 
 	// whether the ejector should be active on creation
-	u8 initiallyActive;
+	uint8 initiallyActive;
 
 	// maximum number of projectiles on screen at the same time
-	u8 maxProjectiles;
+	uint8 maxProjectiles;
 
 	// name of animation to play on projectile ejection
 	char* ejectAnimationName;
@@ -73,13 +73,13 @@ class ProjectileEjector : AnimatedEntity
 	// spec pointer
 	ProjectileEjectorSpec* projectileEjectorSpec;
 	// ejection flag
-	u8 active;
+	uint8 active;
 	// created projectiles counter
-	u8 createdProjectiles;
+	uint8 createdProjectiles;
 	// cooldown flag
 	bool coolingDown;
 
-	void constructor(ProjectileEjectorSpec* projectileEjectorSpec, s16 internalId, const char* const name);
+	void constructor(ProjectileEjectorSpec* projectileEjectorSpec, int16 internalId, const char* const name);
 	void ejectProjectile();
 	bool isActive();
 	bool canEject();

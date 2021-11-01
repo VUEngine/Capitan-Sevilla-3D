@@ -23,7 +23,7 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Punk::constructor(EnemySpec* enemySpec, s16 internalId, const char* const name)
+void Punk::constructor(EnemySpec* enemySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(enemySpec, internalId, name);
@@ -86,7 +86,7 @@ bool Punk::enterCollision(const CollisionInformation* collisionInformation)
 {
 	Shape collidingShape = collisionInformation->collidingShape;
 	SpatialObject collidingObject = Shape::getOwner(collidingShape);
-	u32 collidingObjectInGameType = SpatialObject::getInGameType(collidingObject);
+	uint32 collidingObjectInGameType = SpatialObject::getInGameType(collidingObject);
 
 	Velocity velocity = (Velocity){-this->speed, 0, 0};
 

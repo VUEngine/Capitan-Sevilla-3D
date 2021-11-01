@@ -32,7 +32,7 @@ extern Sound HIT_SND;
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Enemy::constructor(EnemySpec* enemySpec, s16 internalId, const char* const name)
+void Enemy::constructor(EnemySpec* enemySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor((MovingOneWayEntitySpec*)&enemySpec->movingOneWayEntitySpec, internalId, name);
@@ -74,7 +74,7 @@ void Enemy::ready(bool recursive)
 	}
 }
 
-void Enemy::takeHit(u8 power)
+void Enemy::takeHit(uint8 power)
 {
 	// start short screen shake
 	Camera::startEffect(Camera::getInstance(), kShake, 100);

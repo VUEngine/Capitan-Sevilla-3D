@@ -71,7 +71,7 @@ void CaptainMoving::execute(void* owner)
 	// play footstep sounds
 	/*if (AnimatedEntity::isAnimationLoaded(AnimatedEntity::safeCast(owner), "Walk"))
 	{
-		s8 currentFrame = AnimatedEntity::getActualFrame(AnimatedEntity::safeCast(owner));
+		int8 currentFrame = AnimatedEntity::getActualFrame(AnimatedEntity::safeCast(owner));
 		if (currentFrame == 0 || currentFrame == 6)
 		{
 			SoundManager::playSound(

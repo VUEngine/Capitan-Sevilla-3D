@@ -44,9 +44,9 @@ typedef struct StageEntryPointSpec
 	Vector3D startingPosition;
 
 	// facing direction of the captain
-	s8 direction;
+	int8 direction;
 
-	// whether this entry point acts as a checkpoint
+	// whether this entry point32 acts as a checkpoint
 	bool isCheckPoint;
 
 } StageEntryPointSpec;
@@ -60,7 +60,7 @@ typedef struct PlatformerLevelSpec
 	StageEntryPointSpec* entryPoint;
 
 	// id
-	u8 id;
+	uint8 id;
 
 	// name
 	void* name;
@@ -113,7 +113,7 @@ singleton class PlatformerLevelState : GameState
 	// the last reached checkpoint
 	StageEntryPointSpec* currentCheckPoint;
 	// to allow moving the screen
-	u8 mode;
+	uint8 mode;
 	// in-game clock
 	Clock clock;
 	// previous user input

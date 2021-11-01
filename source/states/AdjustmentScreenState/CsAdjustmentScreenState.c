@@ -15,7 +15,7 @@
 #include <Camera.h>
 #include <MessageDispatcher.h>
 #include <CsAdjustmentScreenState.h>
-#include <AutoPauseSelectScreenState.h>
+#include <AutomaticPauseSelectionScreenState.h>
 #include <DirectDraw.h>
 
 
@@ -60,5 +60,5 @@ void CsAdjustmentScreenState::enter(void* owner)
 
 void CsAdjustmentScreenState::initNextState()
 {
-	this->nextState = GameState::safeCast(AutoPauseSelectScreenState::getInstance());
+	this->nextState = GameState::safeCast(AutomaticPauseSelectionScreenState::getInstance());
 }

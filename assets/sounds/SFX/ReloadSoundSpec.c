@@ -22,7 +22,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-const u16 ReloadTrack[] =
+const uint16 ReloadTrack[] =
 {
   A_3, B_3, E_4, HOLD, ENDSOUND,
   80, 80, 80, 1, 1,
@@ -78,7 +78,7 @@ SoundChannelROM RELOAD_SND_CHANNEL_1 =
 
 	/// Sound track
 	{
-		(const u8*)ReloadTrack
+		(const uint8*)ReloadTrack
 	}
 };
 

@@ -97,19 +97,19 @@ void ProgressManager::loadCheckPointData()
 }
 
 // get captain's current energy
-u8 ProgressManager::getCaptainCurrentEnergy()
+uint8 ProgressManager::getCaptainCurrentEnergy()
 {
 	return this->captainCurrentEnergy;
 }
 
 // get captain's current number of gums
-u8 ProgressManager::getCaptainCurrentGums()
+uint8 ProgressManager::getCaptainCurrentGums()
 {
 	return this->captainCurrentGums;
 }
 
 // get current level time
-u32 ProgressManager::getCurrentLevelTime()
+uint32 ProgressManager::getCurrentLevelTime()
 {
 	return this->currentLevelTime;
 }

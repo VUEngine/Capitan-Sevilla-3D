@@ -27,7 +27,7 @@
 //												CLASS'S METHODS
 //---------------------------------------------------------------------------------------------------------
 
-void Comic::constructor(LocalizedEntitySpec* localizedEntitySpec, s16 internalId, const char* const name)
+void Comic::constructor(LocalizedEntitySpec* localizedEntitySpec, int16 internalId, const char* const name)
 {
 	// construct base
 	Base::constructor(localizedEntitySpec, internalId, name);

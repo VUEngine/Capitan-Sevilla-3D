@@ -51,7 +51,7 @@ singleton class IntroState : GameState
 	Entity entityText8;
 	Entity entityText9;
 	// current intro step
-	u8 currentStep;
+	uint8 currentStep;
 
 	static IntroState getInstance();
 	void nextImageStep();

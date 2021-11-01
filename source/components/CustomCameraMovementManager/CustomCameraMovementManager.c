@@ -54,12 +54,12 @@ void CustomCameraMovementManager::destructor()
 }
 
 // center world's this->camera in function of focus actor's position
-void CustomCameraMovementManager::focus(u32 checkIfFocusEntityIsMoving __attribute__ ((unused)))
+void CustomCameraMovementManager::focus(uint32 checkIfFocusEntityIsMoving __attribute__ ((unused)))
 {
 	this->focusFunction(this, checkIfFocusEntityIsMoving, false);
 }
 
-bool CustomCameraMovementManager::doFocusWithNoEasing(u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
+bool CustomCameraMovementManager::doFocusWithNoEasing(uint32 checkIfFocusEntityIsMoving __attribute__ ((unused)), uint32 introFocusing __attribute__ ((unused)))
 {
 	Vector3D focusEntityPosition = Camera::getFocusEntityPosition(this->camera);
 	Direction direction = Entity::getDirection(Camera::getFocusEntity(this->camera));
@@ -77,13 +77,13 @@ bool CustomCameraMovementManager::doFocusWithNoEasing(u32 checkIfFocusEntityIsMo
 }
 
 // center world's this->camera in function of focus actor's position
-bool CustomCameraMovementManager::dontFocus(u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
+bool CustomCameraMovementManager::dontFocus(uint32 checkIfFocusEntityIsMoving __attribute__ ((unused)), uint32 introFocusing __attribute__ ((unused)))
 {
 	return false;
 }
 
 // center world's this->camera in function of focus actor's position
-bool CustomCameraMovementManager::doFocus(u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
+bool CustomCameraMovementManager::doFocus(uint32 checkIfFocusEntityIsMoving __attribute__ ((unused)), uint32 introFocusing __attribute__ ((unused)))
 {
 	// if focusEntity is defined
 	if(!Camera::getFocusEntity(this->camera))
@@ -221,7 +221,7 @@ bool CustomCameraMovementManager::doFocus(u32 checkIfFocusEntityIsMoving __attri
 }
 
 // center world's this->camera in function of focus actor's position
-bool CustomCameraMovementManager::doFocusAndAlertWhenTargetReached(u32 checkIfFocusEntityIsMoving __attribute__ ((unused)), u32 introFocusing __attribute__ ((unused)))
+bool CustomCameraMovementManager::doFocusAndAlertWhenTargetReached(uint32 checkIfFocusEntityIsMoving __attribute__ ((unused)), uint32 introFocusing __attribute__ ((unused)))
 {
 	if(CustomCameraMovementManager::doFocus(this, checkIfFocusEntityIsMoving, true))
 	{

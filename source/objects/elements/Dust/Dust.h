@@ -25,7 +25,7 @@
 
 class Dust : AnimatedEntity
 {
-	void constructor(AnimatedEntitySpec* animatedEntitySpec, s16 internalId, const char* const name);
+	void constructor(AnimatedEntitySpec* animatedEntitySpec, int16 internalId, const char* const name);
 	void showAnimation();
 	void onShowAnimationComplete();
 }
