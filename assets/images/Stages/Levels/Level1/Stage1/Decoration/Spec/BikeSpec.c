@@ -29,7 +29,7 @@ extern BYTE BikeMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec BIKE_CH =
+CharSetROMSpec BikeCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec BIKE_CH =
 	BikeTiles,
 };
 
-TextureROMSpec BIKE_TX =
+TextureROMSpec BikeTexture =
 {
 	// charset spec
-	(CharSetSpec*)&BIKE_CH,
+	(CharSetSpec*)&BikeCharset,
 
 	// bgmap spec
 	BikeMap,
@@ -79,14 +79,14 @@ TextureROMSpec BIKE_TX =
 	false,
 };
 
-BgmapSpriteROMSpec BIKE_SPRITE =
+BgmapSpriteROMSpec BikeSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&BIKE_TX,
+		(TextureSpec*)&BikeTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec BIKE_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const BIKE_SPRITES[] =
+BgmapSpriteROMSpec* const BikeSprites[] =
 {
-	&BIKE_SPRITE,
+	&BikeSprite,
 	NULL
 };
 
-EntityROMSpec BIKE_EN =
+EntityROMSpec BikeEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec BIKE_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)BIKE_SPRITES,
+	(SpriteSpec**)BikeSprites,
 
 	// use z displacement in projection
 	false,

@@ -23,7 +23,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern ActorSpec PILL_PR;
+extern ActorSpec PillPr;
 extern BYTE ManoloTiles[];
 extern BYTE ManoloMap[];
 
@@ -32,7 +32,7 @@ extern BYTE ManoloMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec MANOLO_IDLE_ANIM =
+AnimationFunctionROMSpec ManoloIdleAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -53,7 +53,7 @@ AnimationFunctionROMSpec MANOLO_IDLE_ANIM =
 	"Idle",
 };
 
-AnimationFunctionROMSpec MANOLO_SHOOT_ANIM =
+AnimationFunctionROMSpec ManoloShootAnimation =
 {
 	// number of frames of this animation function
 	6,
@@ -74,17 +74,17 @@ AnimationFunctionROMSpec MANOLO_SHOOT_ANIM =
 	"Shoot",
 };
 
-AnimationDescriptionROMSpec MANOLO_ANIM =
+AnimationDescriptionROMSpec ManoloAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&MANOLO_IDLE_ANIM,
-		(AnimationFunction*)&MANOLO_SHOOT_ANIM,
+		(AnimationFunction*)&ManoloIdleAnimation,
+		(AnimationFunction*)&ManoloShootAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec MANOLO_CH =
+CharSetROMSpec ManoloCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -99,10 +99,10 @@ CharSetROMSpec MANOLO_CH =
 	ManoloTiles,
 };
 
-TextureROMSpec MANOLO_TX =
+TextureROMSpec ManoloTexture =
 {
 	// charset spec
-	(CharSetSpec*)&MANOLO_CH,
+	(CharSetSpec*)&ManoloCharset,
 
 	// bgmap spec
 	ManoloMap,
@@ -134,14 +134,14 @@ TextureROMSpec MANOLO_TX =
 	false,
 };
 
-ObjectSpriteROMSpec MANOLO_SPRITE =
+ObjectSpriteROMSpec ManoloSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&MANOLO_TX,
+		(TextureSpec*)&ManoloTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -158,13 +158,13 @@ ObjectSpriteROMSpec MANOLO_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const MANOLO_SPRITES[] =
+ObjectSpriteROMSpec* const ManoloSprites[] =
 {
-	&MANOLO_SPRITE,
+	&ManoloSprite,
 	NULL
 };
 
-ShapeROMSpec MANOLO_SHAPES[] =
+ShapeROMSpec ManoloShapes[] =
 {
 	{
 		// shape
@@ -195,7 +195,7 @@ ShapeROMSpec MANOLO_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-ProjectileEjectorROMSpec PILL_EJECTOR_PE =
+ProjectileEjectorROMSpec PillEjectorPe =
 {
 	// animated entity
 	{
@@ -240,7 +240,7 @@ ProjectileEjectorROMSpec PILL_EJECTOR_PE =
 	},
 
 	// projectile
-    {(EntitySpec*)&PILL_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
+    {(EntitySpec*)&PillPr, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
 
 	// delay of the first projectile ejection (only relevant if initially active)
 	800,
@@ -261,7 +261,7 @@ ProjectileEjectorROMSpec PILL_EJECTOR_PE =
 	NULL,
 };
 
-EnemyROMSpec MANOLO_EM =
+EnemyROMSpec ManoloEm =
 {
 	{
 		{
@@ -280,13 +280,13 @@ EnemyROMSpec MANOLO_EM =
 					NULL,
 
 					// sprites
-					(SpriteSpec**)MANOLO_SPRITES,
+					(SpriteSpec**)ManoloSprites,
 
 					// use z displacement in projection
 					false,
 
 					// collision shapes
-					(ShapeSpec*)MANOLO_SHAPES,
+					(ShapeSpec*)ManoloShapes,
 
 					// size
 					// if 0, width and height will be inferred from the first sprite's texture's size
@@ -300,7 +300,7 @@ EnemyROMSpec MANOLO_EM =
 				},
 
 				// pointer to the animation spec for the character
-				(AnimationDescription*)&MANOLO_ANIM,
+				(AnimationDescription*)&ManoloAnimation,
 
 				// initial animation
 				"Idle"
@@ -324,7 +324,7 @@ EnemyROMSpec MANOLO_EM =
 	3,
 
 	// projectile ejector to add
-	(ProjectileEjectorSpec*)&PILL_EJECTOR_PE,
+	(ProjectileEjectorSpec*)&PillEjectorPe,
 
 	// relative position of projectile ejector
 	{0, 0, 0},

@@ -28,7 +28,7 @@ extern BYTE Car1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec CAR_1_MOVE_ANIM =
+AnimationFunctionROMSpec Car1MoveAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -49,16 +49,16 @@ AnimationFunctionROMSpec CAR_1_MOVE_ANIM =
 	"Move",
 };
 
-AnimationDescriptionROMSpec CAR_1_ANIM =
+AnimationDescriptionROMSpec Car1Animation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&CAR_1_MOVE_ANIM,
+		(AnimationFunction*)&Car1MoveAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec CAR_1_CH =
+CharSetROMSpec Car1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -73,9 +73,9 @@ CharSetROMSpec CAR_1_CH =
 	Car1Tiles,
 };
 
-TextureROMSpec CAR_1_TX =
+TextureROMSpec Car1Texture =
 {
-	(CharSetSpec*)&CAR_1_CH,
+	(CharSetSpec*)&Car1Charset,
 
 	// bgmap spec
 	Car1Map,
@@ -107,14 +107,14 @@ TextureROMSpec CAR_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CAR_1_SPRITE =
+BgmapSpriteROMSpec Car1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CAR_1_TX,
+		(TextureSpec*)&Car1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -134,13 +134,13 @@ BgmapSpriteROMSpec CAR_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CAR_1_SPRITES[] =
+BgmapSpriteROMSpec* const Car1Sprites[] =
 {
-	&CAR_1_SPRITE,
+	&Car1Sprite,
 	NULL
 };
 
-MovingOneWayEntityROMSpec CAR_1_AC =
+MovingOneWayEntityROMSpec Car1Entity =
 {
 	{
 		{
@@ -158,7 +158,7 @@ MovingOneWayEntityROMSpec CAR_1_AC =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)CAR_1_SPRITES,
+				(SpriteSpec**)Car1Sprites,
 
 				// use z displacement in projection
 				false,
@@ -178,7 +178,7 @@ MovingOneWayEntityROMSpec CAR_1_AC =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&CAR_1_ANIM,
+			(AnimationDescription*)&Car1Animation,
 
 			// initial animation
 			"Move",

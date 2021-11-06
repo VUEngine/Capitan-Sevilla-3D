@@ -32,7 +32,7 @@ extern BYTE CS3DLogoRBlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CS3D_LOGO_CH =
+CharSetROMSpec Cs3dLogoCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -49,10 +49,10 @@ CharSetROMSpec CS3D_LOGO_CH =
 
 /* Left */
 
-TextureROMSpec CS3D_LOGO_L_TX =
+TextureROMSpec Cs3dLogoLTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CS3D_LOGO_CH,
+	(CharSetSpec*)&Cs3dLogoCharset,
 
 	// bgmap spec
 	CS3DLogoLMap,
@@ -84,14 +84,14 @@ TextureROMSpec CS3D_LOGO_L_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CS3D_LOGO_L_SPRITE =
+BgmapSpriteROMSpec Cs3dLogoLSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CS3D_LOGO_L_TX,
+		(TextureSpec*)&Cs3dLogoLTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -113,10 +113,10 @@ BgmapSpriteROMSpec CS3D_LOGO_L_SPRITE =
 
 /* Left (Black) */
 
-TextureROMSpec CS3D_LOGO_L_BLACK_TX =
+TextureROMSpec Cs3dLogoLBlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CS3D_LOGO_CH,
+	(CharSetSpec*)&Cs3dLogoCharset,
 
 	// bgmap spec
 	CS3DLogoLBlackMap,
@@ -148,14 +148,14 @@ TextureROMSpec CS3D_LOGO_L_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CS3D_LOGO_L_BLACK_SPRITE =
+BgmapSpriteROMSpec Cs3dLogoLBlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CS3D_LOGO_L_BLACK_TX,
+		(TextureSpec*)&Cs3dLogoLBlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -177,10 +177,10 @@ BgmapSpriteROMSpec CS3D_LOGO_L_BLACK_SPRITE =
 
 /* Right */
 
-TextureROMSpec CS3D_LOGO_R_TX =
+TextureROMSpec Cs3dLogoRTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CS3D_LOGO_CH,
+	(CharSetSpec*)&Cs3dLogoCharset,
 
 	// bgmap spec
 	CS3DLogoRMap,
@@ -212,14 +212,14 @@ TextureROMSpec CS3D_LOGO_R_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CS3D_LOGO_R_SPRITE =
+BgmapSpriteROMSpec Cs3dLogoRSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CS3D_LOGO_R_TX,
+		(TextureSpec*)&Cs3dLogoRTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -241,10 +241,10 @@ BgmapSpriteROMSpec CS3D_LOGO_R_SPRITE =
 
 /* Right (Black) */
 
-TextureROMSpec CS3D_LOGO_R_BLACK_TX =
+TextureROMSpec Cs3dLogoRBlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CS3D_LOGO_CH,
+	(CharSetSpec*)&Cs3dLogoCharset,
 
 	// bgmap spec
 	CS3DLogoRBlackMap,
@@ -276,14 +276,14 @@ TextureROMSpec CS3D_LOGO_R_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CS3D_LOGO_R_BLACK_SPRITE =
+BgmapSpriteROMSpec Cs3dLogoRBlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CS3D_LOGO_R_BLACK_TX,
+		(TextureSpec*)&Cs3dLogoRBlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -305,16 +305,16 @@ BgmapSpriteROMSpec CS3D_LOGO_R_BLACK_SPRITE =
 
 /* Entity */
 
-BgmapSpriteROMSpec* const CS3D_LOGO_SPRITES[] =
+BgmapSpriteROMSpec* const Cs3dLogoSprites[] =
 {
-	&CS3D_LOGO_L_BLACK_SPRITE,
-	&CS3D_LOGO_L_SPRITE,
-	&CS3D_LOGO_R_BLACK_SPRITE,
-	&CS3D_LOGO_R_SPRITE,
+	&Cs3dLogoLBlackSprite,
+	&Cs3dLogoLSprite,
+	&Cs3dLogoRBlackSprite,
+	&Cs3dLogoRSprite,
 	NULL
 };
 
-EntityROMSpec CS3D_LOGO_EN =
+EntityROMSpec Cs3dLogoEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -329,7 +329,7 @@ EntityROMSpec CS3D_LOGO_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CS3D_LOGO_SPRITES,
+	(SpriteSpec**)Cs3dLogoSprites,
 
 	// use z displacement in projection
 	false,

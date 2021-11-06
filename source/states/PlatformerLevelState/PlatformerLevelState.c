@@ -37,8 +37,8 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern PlatformerLevelSpec LEVEL_1_LV;
-extern EntitySpec CAPTAIN_AC;
+extern PlatformerLevelSpec Level1;
+extern EntitySpec CaptainEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -106,7 +106,7 @@ void PlatformerLevelState::enter(void* owner)
 		// create captain
 		PositionedEntity positionedEntity =
 		{
-			&CAPTAIN_AC,
+			&CaptainEntity,
 			{
 				initialPosition->x,
 				initialPosition->y,
@@ -309,7 +309,7 @@ void PlatformerLevelState::resetProgress()
 {
 	// TODO: move to progress manager?
 	// set default entry point
-	this->currentLevel = (PlatformerLevelSpec*)&LEVEL_1_LV;
+	this->currentLevel = (PlatformerLevelSpec*)&Level1;
 	this->currentStageEntryPoint= this->currentLevel->entryPoint;
 	this->currentCheckPoint = this->currentLevel->entryPoint;
 }
@@ -317,8 +317,8 @@ void PlatformerLevelState::resetProgress()
 void PlatformerLevelState::setPrintingLayerCoordinates()
 {
 #ifdef __RELEASE
-	extern TextureROMSpec GUI_TX;
-	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GUI_TX.rows * 8 * 0, -32, 0);
+	extern TextureROMSpec GuiTexture;
+	Printing::setWorldCoordinates(Printing::getInstance(), __PRINTING_BGMAP_X_OFFSET, __SCREEN_HEIGHT - GuiTexture.rows * 8 * 0, -32, 0);
 #endif
 }
 

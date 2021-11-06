@@ -19,7 +19,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec FLAG_GERMANY_EN;
+extern EntitySpec FlagGermanyEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	/* STR_AUTOMATIC_PAUSE: */
 	"AUTOMATISCHE PAUSE",
 	/* STR_BACK: */
-	"ZURÜCK",
+	"ZURï¿½CK",
 	/* STR_CONTINUE: */
 	"FORTSETZEN",
 	/* STR_CREDITS: */
@@ -65,13 +65,13 @@ const char* const LANGUAGE_DE_STRINGS[] =
 	/* STR_PRECAUTION_SCREEN_TEXT: */
 	"        WICHTIG\n\nBITTE LESEN SIE VOR DEM\n\n SPIELEN DIE ANLEITUNG\n\nUND SICHERHEITSHINWEISE",
 	/* STR_PRESENTS: */
-	"PRÄSENTIERT",
+	"PRï¿½SENTIERT",
 	/* STR_PRESS_START_BUTTON: */
-	"START-KNOPF DRÜCKEN",
+	"START-KNOPF DRï¿½CKEN",
 	/* STR_QUIT_GAME: */
 	"SPIEL BEENDEN",
 	/* STR_SELECT: */
-	"AUSWÄHLEN",
+	"AUSWï¿½HLEN",
 	/* STR_TAKE_A_REST: */
 	"BITTE MACHE EINE PAUSE!",
 	/* STR_YES: */
@@ -85,7 +85,7 @@ const LangROMSpec LANGUAGE_DE =
 	"DEUTSCH",
 
 	// flag entity
-	&FLAG_GERMANY_EN,
+	&FlagGermanyEntity,
 	
 	// strings
 	(const char**)LANGUAGE_DE_STRINGS

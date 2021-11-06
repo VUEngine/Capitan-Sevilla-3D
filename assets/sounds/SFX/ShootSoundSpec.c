@@ -14,7 +14,7 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ const uint16 ShootTrack[] =
   15, 15, 15, 15 , 0,
 };
 
-SoundChannelConfigurationROM SHOOT_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM ShootSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -59,7 +59,7 @@ SoundChannelConfigurationROM SHOOT_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	pianoWaveForm,
+	PianoWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -68,10 +68,10 @@ SoundChannelConfigurationROM SHOOT_SND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM SHOOT_SND_CHANNEL_1 =
+SoundChannelROM ShootSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&SHOOT_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&ShootSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -83,13 +83,13 @@ SoundChannelROM SHOOT_SND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* SHOOT_SND_CHANNELS[] =
+SoundChannelROM* ShootSoundChannels[] =
 {
-	&SHOOT_SND_CHANNEL_1,
+	&ShootSoundChannel1,
 	NULL
 };
 
-SoundROM SHOOT_SND =
+SoundROM ShootSound =
 {
 	/// Name
 	"Shoot",
@@ -101,5 +101,5 @@ SoundROM SHOOT_SND =
 	500,
 
 	/// Tracks
-	(SoundChannel**)SHOOT_SND_CHANNELS
+	(SoundChannel**)ShootSoundChannels
 };

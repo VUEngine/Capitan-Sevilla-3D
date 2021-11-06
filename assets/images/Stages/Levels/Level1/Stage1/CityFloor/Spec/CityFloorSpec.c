@@ -31,7 +31,7 @@ extern BYTE CityFloorRMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CITY_FLOOR_CH =
+CharSetROMSpec CityFloorCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -48,10 +48,10 @@ CharSetROMSpec CITY_FLOOR_CH =
 
 /* LEFT */
 
-TextureROMSpec CITY_FLOOR_L_TX =
+TextureROMSpec CityFloorLTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CITY_FLOOR_CH,
+	(CharSetSpec*)&CityFloorCharset,
 
 	// bgmap spec
 	CityFloorLMap,
@@ -83,13 +83,13 @@ TextureROMSpec CITY_FLOOR_L_TX =
 	false,
 };
 
-TextureROMSpec* const CITY_FLOOR_L_TEXTURES[] =
+TextureROMSpec* const CityFloorLTextures[] =
 {
-	(TextureSpec*)&CITY_FLOOR_L_TX,
+	(TextureSpec*)&CityFloorLTexture,
 	NULL
 };
 
-MBgmapSpriteROMSpec CITY_FLOOR_L_SPRITE =
+MBgmapSpriteROMSpec CityFloorLSprite =
 {
 	{
 		{
@@ -118,7 +118,7 @@ MBgmapSpriteROMSpec CITY_FLOOR_L_SPRITE =
 	},
 
 	// textures
-	(TextureSpec**)CITY_FLOOR_L_TEXTURES,
+	(TextureSpec**)CityFloorLTextures,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -141,10 +141,10 @@ MBgmapSpriteROMSpec CITY_FLOOR_L_SPRITE =
 
 /* RIGHT */
 
-TextureROMSpec CITY_FLOOR_R_TX =
+TextureROMSpec CityFloorRTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CITY_FLOOR_CH,
+	(CharSetSpec*)&CityFloorCharset,
 
 	// bgmap spec
 	CityFloorRMap,
@@ -176,13 +176,13 @@ TextureROMSpec CITY_FLOOR_R_TX =
 	false,
 };
 
-TextureROMSpec* const CITY_FLOOR_R_TEXTURES[] =
+TextureROMSpec* const CityFloorRTextures[] =
 {
-	(TextureSpec*)&CITY_FLOOR_R_TX,
+	(TextureSpec*)&CityFloorRTexture,
 	NULL
 };
 
-MBgmapSpriteROMSpec CITY_FLOOR_R_SPRITE =
+MBgmapSpriteROMSpec CityFloorRSprite =
 {
 	{
 		{
@@ -211,7 +211,7 @@ MBgmapSpriteROMSpec CITY_FLOOR_R_SPRITE =
 	},
 
 	// textures
-	(TextureSpec**)CITY_FLOOR_R_TEXTURES,
+	(TextureSpec**)CityFloorRTextures,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -234,14 +234,14 @@ MBgmapSpriteROMSpec CITY_FLOOR_R_SPRITE =
 
 /* ENTITY */
 
-BgmapSpriteROMSpec* const CITY_FLOOR_SPRITES[] =
+BgmapSpriteROMSpec* const CityFloorSprites[] =
 {
-	(BgmapSpriteROMSpec*)&CITY_FLOOR_L_SPRITE,
-	(BgmapSpriteROMSpec*)&CITY_FLOOR_R_SPRITE,
+	(BgmapSpriteROMSpec*)&CityFloorLSprite,
+	(BgmapSpriteROMSpec*)&CityFloorRSprite,
 	NULL
 };
 
-EntityROMSpec CITY_FLOOR_EN =
+EntityROMSpec CityFloorEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -256,7 +256,7 @@ EntityROMSpec CITY_FLOOR_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CITY_FLOOR_SPRITES,
+	(SpriteSpec**)CityFloorSprites,
 
 	// use z displacement in projection
 	false,
@@ -275,7 +275,7 @@ EntityROMSpec CITY_FLOOR_EN =
 	NULL,
 };
 
-PhysicalSpecificationROMSpec CITY_FLOOR_COLLISION_CL_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec CITY_FLOOR_CollisionClPhysicalProperties =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -293,7 +293,7 @@ PhysicalSpecificationROMSpec CITY_FLOOR_COLLISION_CL_PHYSICAL_PROPERTIES =
 	__I_TO_FIX10_6(0)
 };
 
-CollisionROMSpec CITY_FLOOR_COLLISION_CL =
+CollisionROMSpec CITY_FLOOR_CollisionCl =
 {
 	// class allocator
 	__TYPE(Collision),
@@ -324,5 +324,5 @@ CollisionROMSpec CITY_FLOOR_COLLISION_CL =
 	kFloor,
 
 	// physical specification
-	(PhysicalSpecification*)&CITY_FLOOR_COLLISION_CL_PHYSICAL_PROPERTIES,
+	(PhysicalSpecification*)&CITY_FLOOR_CollisionClPhysicalProperties,
 };

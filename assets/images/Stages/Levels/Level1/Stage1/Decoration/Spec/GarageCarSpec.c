@@ -31,7 +31,7 @@ extern BYTE GarageSignRMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec GARAGE_SIGN_L_CH =
+CharSetROMSpec GarageSignLCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -46,7 +46,7 @@ CharSetROMSpec GARAGE_SIGN_L_CH =
 	GarageSignLTiles,
 };
 
-CharSetROMSpec GARAGE_SIGN_R_CH =
+CharSetROMSpec GarageSignRCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -61,10 +61,10 @@ CharSetROMSpec GARAGE_SIGN_R_CH =
 	GarageSignRTiles,
 };
 
-TextureROMSpec GARAGE_SIGN_L_TX =
+TextureROMSpec GarageSignLTexture =
 {
 	// charset spec
-	(CharSetSpec*)&GARAGE_SIGN_L_CH,
+	(CharSetSpec*)&GarageSignLCharset,
 
 	// bgmap spec
 	GarageSignLMap,
@@ -96,10 +96,10 @@ TextureROMSpec GARAGE_SIGN_L_TX =
 	false,
 };
 
-TextureROMSpec GARAGE_SIGN_R_TX =
+TextureROMSpec GarageSignRTexture =
 {
 	// charset spec
-	(CharSetSpec*)&GARAGE_SIGN_R_CH,
+	(CharSetSpec*)&GarageSignRCharset,
 
 	// bgmap spec
 	GarageSignRMap,
@@ -131,14 +131,14 @@ TextureROMSpec GARAGE_SIGN_R_TX =
 	false,
 };
 
-BgmapSpriteROMSpec GARAGE_SIGN_L_SPRITE =
+BgmapSpriteROMSpec GarageSignLSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&GARAGE_SIGN_L_TX,
+		(TextureSpec*)&GarageSignLTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -158,14 +158,14 @@ BgmapSpriteROMSpec GARAGE_SIGN_L_SPRITE =
 	__WORLD_LON,
 };
 
-BgmapSpriteROMSpec GARAGE_SIGN_R_SPRITE =
+BgmapSpriteROMSpec GarageSignRSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&GARAGE_SIGN_R_TX,
+		(TextureSpec*)&GarageSignRTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -185,14 +185,14 @@ BgmapSpriteROMSpec GARAGE_SIGN_R_SPRITE =
 	__WORLD_RON,
 };
 
-BgmapSpriteROMSpec* const GARAGE_SIGN_SPRITES[] =
+BgmapSpriteROMSpec* const GarageSignSprites[] =
 {
-	&GARAGE_SIGN_L_SPRITE,
-	&GARAGE_SIGN_R_SPRITE,
+	&GarageSignLSprite,
+	&GarageSignRSprite,
 	NULL
 };
 
-EntityROMSpec GARAGE_SIGN_EN =
+EntityROMSpec GarageSignEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -207,7 +207,7 @@ EntityROMSpec GARAGE_SIGN_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)GARAGE_SIGN_SPRITES,
+	(SpriteSpec**)GarageSignSprites,
 
 	// use z displacement in projection
 	false,

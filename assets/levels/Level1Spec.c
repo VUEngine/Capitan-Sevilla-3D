@@ -20,17 +20,17 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageEntryPointROMSpec LEVEL_1_STAGE_1_MAIN_EP;
+extern StageEntryPointROMSpec Level1Stage1MainEntryPoint;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												LEVEL DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-PlatformerLevelROMSpec LEVEL_1_LV =
+PlatformerLevelROMSpec Level1 =
 {
 	// starting entry point
-	(StageEntryPointSpec*)&LEVEL_1_STAGE_1_MAIN_EP,
+	(StageEntryPointSpec*)&Level1Stage1MainEntryPoint,
 
 	// id
 	1,

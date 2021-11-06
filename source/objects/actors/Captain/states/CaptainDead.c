@@ -29,7 +29,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern Sound GAME_OVER_SND;
-extern EntitySpec GAME_OVER_EN;
+extern EntitySpec GameOverEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ void CaptainDead::enter(void* owner)
 
 	// add "game over"
 	Vector3D position = {0, __PIXELS_TO_METERS(-48), __PIXELS_TO_METERS(-16)};
-	Entity::addChildEntity(owner, &GAME_OVER_EN, -1, NULL, &position, NULL);
+	Entity::addChildEntity(owner, &GameOverEntity, -1, NULL, &position, NULL);
 
 	// announce my dead
 	Object::fireEvent(EventManager::getInstance(), kEventCaptainDied);

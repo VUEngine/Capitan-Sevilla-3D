@@ -22,7 +22,7 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-PhysicalSpecificationROMSpec COLLISION_CL_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec CollisionClPhysicalProperties =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -40,7 +40,7 @@ PhysicalSpecificationROMSpec COLLISION_CL_PHYSICAL_PROPERTIES =
 	__I_TO_FIX10_6(0)
 };
 
-CollisionROMSpec COLLISION_CL =
+CollisionROMSpec CollisionCl =
 {
 	// class allocator
 	__TYPE(Collision),
@@ -71,5 +71,5 @@ CollisionROMSpec COLLISION_CL =
 	kShape,
 
 	// physical specification
-	(PhysicalSpecification*)&COLLISION_CL_PHYSICAL_PROPERTIES,
+	(PhysicalSpecification*)&CollisionClPhysicalProperties,
 };

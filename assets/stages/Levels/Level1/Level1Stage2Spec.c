@@ -25,17 +25,17 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec LOW_POWER_INDICATOR_LB;
-extern EntitySpec GUI_EN;
-extern EntitySpec LEVEL_1_STAGE_2_ROOM_EN;
-extern EntitySpec LEVEL_1_STAGE_2_LIFT_EN;
-extern EntitySpec PUNK_EM;
-extern EntitySpec ENEMY_WALL_CL;
+extern EntitySpec LowPowerIndicatorEntity;
+extern EntitySpec GuiEntity;
+extern EntitySpec Level1Stage2RoomEntity;
+extern EntitySpec Level1Stage2LiftEntity;
+extern EntitySpec PunkEm;
+extern EntitySpec EnemyWallCl;
 
-extern CharSetSpec PUNK_CH;
-extern CharSetSpec PUNK_BLACK_CH;
+extern CharSetSpec PunkCharset;
+extern CharSetSpec PunkBlackCharset;
 
-extern Sound INTRO_LOWER_SONG;
+extern Sound IntroLowerSong;
 
 extern Size collision_16_224_64;
 
@@ -44,21 +44,21 @@ extern Size collision_16_224_64;
 //											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec LEVEL_1_STAGE_2_ST_CHILDREN[] =
+PositionedEntityROMSpec Level1Stage2StChildren[] =
 {
-	{&ENEMY_WALL_CL,				{ 40, 137,    0,   0},		0, NULL, NULL, NULL, false}, // left border
-	{&ENEMY_WALL_CL,				{ 695, 137,    0,   0},		0, NULL, NULL, NULL, false}, // right border
-	{&LEVEL_1_STAGE_2_ROOM_EN,		{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
-	{&PUNK_EM,						{ 508, 137,    0,   0},		0, NULL, NULL, (void*)-3, false},
-	{&LEVEL_1_STAGE_2_LIFT_EN,		{ 693, 130,    0,   0},		0, NULL, NULL, NULL, false},
+	{&EnemyWallCl,				{ 40, 137,    0,   0},		0, NULL, NULL, NULL, false}, // left border
+	{&EnemyWallCl,				{ 695, 137,    0,   0},		0, NULL, NULL, NULL, false}, // right border
+	{&Level1Stage2RoomEntity,		{ 360,  84,    4,   0},		0, NULL, NULL, NULL, true},
+	{&PunkEm,						{ 508, 137,    0,   0},		0, NULL, NULL, (void*)-3, false},
+	{&Level1Stage2LiftEntity,		{ 693, 130,    0,   0},		0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec LEVEL_1_STAGE_2_ST_UI_CHILDREN[] =
+PositionedEntityROMSpec Level1Stage2StUiChildren[] =
 {
-	{&GUI_EN, 							{ 332, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
-	{&LOW_POWER_INDICATOR_LB, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
+	{&GuiEntity, 							{ 332, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&LowPowerIndicatorEntity, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -68,30 +68,30 @@ PositionedEntityROMSpec LEVEL_1_STAGE_2_ST_UI_CHILDREN[] =
 //											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const LEVEL_1_STAGE_2_ST_FONTS[] =
+FontROMSpec* const Level1Stage2StFonts[] =
 {
 	NULL
 };
 
 
-CharSetROMSpec* const LEVEL_1_STAGE_2_ST_CHARSETS[] =
+CharSetROMSpec* const Level1Stage2StCharsets[] =
 {
 	NULL
 };
 
-TextureSpec* const LEVEL_1_STAGE_2_ST_TEXTURES[] =
+TextureSpec* const Level1Stage2StTextures[] =
 {
 	NULL
 };
 
-const PostProcessingEffect LEVEL_1_STAGE_2_ST_POST_PROCESSING_EFFECTS[] =
+const PostProcessingEffect Level1Stage2St_POST_PROCESSING_EFFECTS[] =
 {
 	NULL
 };
 
-SoundROM* const LEVEL_1_STAGE_2_ST_BGM[] =
+SoundROM* const Level1Stage2St_BGM[] =
 {
-	&INTRO_LOWER_SONG,
+	&IntroLowerSong,
 	NULL,
 };
 
@@ -100,7 +100,7 @@ SoundROM* const LEVEL_1_STAGE_2_ST_BGM[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec LEVEL_1_STAGE_2_ST =
+StageROMSpec Level1Stage2St =
 {
 	// allocator
 	__TYPE(Stage),
@@ -289,32 +289,32 @@ StageROMSpec LEVEL_1_STAGE_2_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)LEVEL_1_STAGE_2_ST_FONTS,
+		(FontSpec**)Level1Stage2StFonts,
 
 		// char sets to preload
-		(CharSetSpec**)LEVEL_1_STAGE_2_ST_CHARSETS,
+		(CharSetSpec**)Level1Stage2StCharsets,
 
 		// textures to preload
-		(TextureSpec**)LEVEL_1_STAGE_2_ST_TEXTURES,
+		(TextureSpec**)Level1Stage2StTextures,
 
 		// background sounds
-		(Sound**)LEVEL_1_STAGE_2_ST_BGM,
+		(Sound**)Level1Stage2St_BGM,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			(PositionedEntity*)LEVEL_1_STAGE_2_ST_UI_CHILDREN,
+			(PositionedEntity*)Level1Stage2StUiChildren,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)LEVEL_1_STAGE_2_ST_CHILDREN,
+		(PositionedEntity*)Level1Stage2StChildren,
 	},
 
 	// post processing effects
-	(PostProcessingEffect*)LEVEL_1_STAGE_2_ST_POST_PROCESSING_EFFECTS,
+	(PostProcessingEffect*)Level1Stage2St_POST_PROCESSING_EFFECTS,
 };
 
 
@@ -322,10 +322,10 @@ StageROMSpec LEVEL_1_STAGE_2_ST =
 //												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMSpec LEVEL_1_STAGE_2_MAIN_EP =
+StageEntryPointROMSpec Level1Stage2MainEntryPoint =
 {
 	// the stage to load
-	(StageSpec*)&LEVEL_1_STAGE_2_ST,
+	(StageSpec*)&Level1Stage2St,
 
 	// starting position (x, y, z)
 	{80, 96, CAPTAIN_DSPL},

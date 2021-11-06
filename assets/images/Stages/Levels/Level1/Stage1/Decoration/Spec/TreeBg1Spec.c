@@ -29,7 +29,7 @@ extern BYTE TreeBg1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec TREE_BG_1_CH =
+CharSetROMSpec TreeBg1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec TREE_BG_1_CH =
 	TreeBg1Tiles,
 };
 
-TextureROMSpec TREE_BG_1_TX =
+TextureROMSpec TreeBg1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&TREE_BG_1_CH,
+	(CharSetSpec*)&TreeBg1Charset,
 
 	// bgmap spec
 	TreeBg1Map,
@@ -79,14 +79,14 @@ TextureROMSpec TREE_BG_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec TREE_BG_1_SPRITE =
+BgmapSpriteROMSpec TreeBg1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&TREE_BG_1_TX,
+		(TextureSpec*)&TreeBg1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec TREE_BG_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const TREE_BG_1_SPRITES[] =
+BgmapSpriteROMSpec* const TreeBg1Sprites[] =
 {
-	&TREE_BG_1_SPRITE,
+	&TreeBg1Sprite,
 	NULL
 };
 
-EntityROMSpec TREE_BG_1_EN =
+EntityROMSpec TreeBg1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec TREE_BG_1_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)TREE_BG_1_SPRITES,
+	(SpriteSpec**)TreeBg1Sprites,
 
 	// use z displacement in projection
 	false,

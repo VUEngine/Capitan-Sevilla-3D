@@ -30,7 +30,7 @@ extern BYTE StopYouCannotPassMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_HIDDEN_ANIM =
+AnimationFunctionROMSpec StopYouCannotPassHiddenAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -51,7 +51,7 @@ AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_HIDDEN_ANIM =
 	"Hidden",
 };
 
-AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_HIDE_ANIM =
+AnimationFunctionROMSpec StopYouCannotPassHideAnimation =
 {
 	// number of frames of this animation function
 	5,
@@ -72,7 +72,7 @@ AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_HIDE_ANIM =
 	"Hide",
 };
 
-AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_EN_ANIM =
+AnimationFunctionROMSpec StopYouCannotPassEnglishAnimation =
 {
 	// number of frames of this animation function
 	5,
@@ -93,7 +93,7 @@ AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_EN_ANIM =
 	"0",
 };
 
-AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_ES_ANIM =
+AnimationFunctionROMSpec StopYouCannotPassSpanishAnimation =
 {
 	// number of frames of this animation function
 	5,
@@ -114,7 +114,7 @@ AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_ES_ANIM =
 	"1",
 };
 
-AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_DE_ANIM =
+AnimationFunctionROMSpec StopYouCannotPassGermanAnimation =
 {
 	// number of frames of this animation function
 	5,
@@ -135,7 +135,7 @@ AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_DE_ANIM =
 	"2",
 };
 
-AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_FR_ANIM =
+AnimationFunctionROMSpec StopYouCannotPassFrenchAnimation =
 {
 	// number of frames of this animation function
 	5,
@@ -156,21 +156,21 @@ AnimationFunctionROMSpec STOP_YOU_CANNOT_PASS_FR_ANIM =
 	"3",
 };
 
-AnimationDescriptionROMSpec STOP_YOU_CANNOT_PASS_ANIM =
+AnimationDescriptionROMSpec StopYouCannotPassAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&STOP_YOU_CANNOT_PASS_HIDDEN_ANIM,
-		(AnimationFunction*)&STOP_YOU_CANNOT_PASS_HIDE_ANIM,
-		(AnimationFunction*)&STOP_YOU_CANNOT_PASS_EN_ANIM,
-		(AnimationFunction*)&STOP_YOU_CANNOT_PASS_ES_ANIM,
-		(AnimationFunction*)&STOP_YOU_CANNOT_PASS_DE_ANIM,
-		(AnimationFunction*)&STOP_YOU_CANNOT_PASS_FR_ANIM,
+		(AnimationFunction*)&StopYouCannotPassHiddenAnimation,
+		(AnimationFunction*)&StopYouCannotPassHideAnimation,
+		(AnimationFunction*)&StopYouCannotPassEnglishAnimation,
+		(AnimationFunction*)&StopYouCannotPassSpanishAnimation,
+		(AnimationFunction*)&StopYouCannotPassGermanAnimation,
+		(AnimationFunction*)&StopYouCannotPassFrenchAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec STOP_YOU_CANNOT_PASS_CH =
+CharSetROMSpec StopYouCannotPassCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -185,9 +185,9 @@ CharSetROMSpec STOP_YOU_CANNOT_PASS_CH =
 	StopYouCannotPassTiles,
 };
 
-TextureROMSpec STOP_YOU_CANNOT_PASS_TX =
+TextureROMSpec StopYouCannotPassTexture =
 {
-	(CharSetSpec*)&STOP_YOU_CANNOT_PASS_CH,
+	(CharSetSpec*)&StopYouCannotPassCharset,
 
 	// bgmap spec
 	StopYouCannotPassMap,
@@ -219,14 +219,14 @@ TextureROMSpec STOP_YOU_CANNOT_PASS_TX =
 	false,
 };
 
-BgmapSpriteROMSpec STOP_YOU_CANNOT_PASS_SPRITE =
+BgmapSpriteROMSpec StopYouCannotPassSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&STOP_YOU_CANNOT_PASS_TX,
+		(TextureSpec*)&StopYouCannotPassTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -246,13 +246,13 @@ BgmapSpriteROMSpec STOP_YOU_CANNOT_PASS_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const STOP_YOU_CANNOT_PASS_SPRITES[] =
+BgmapSpriteROMSpec* const StopYouCannotPassSprites[] =
 {
-	&STOP_YOU_CANNOT_PASS_SPRITE,
+	&StopYouCannotPassSprite,
 	NULL
 };
 
-ShapeROMSpec STOP_YOU_CANNOT_PASS_SHAPES[] =
+ShapeROMSpec StopYouCannotPassShapes[] =
 {
 	{
 		// shape
@@ -283,7 +283,7 @@ ShapeROMSpec STOP_YOU_CANNOT_PASS_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-AnimatedEntityROMSpec STOP_YOU_CANNOT_PASS_EN =
+AnimatedEntityROMSpec StopYouCannotPassEntity =
 {
 	{
 		// class allocator
@@ -299,13 +299,13 @@ AnimatedEntityROMSpec STOP_YOU_CANNOT_PASS_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)STOP_YOU_CANNOT_PASS_SPRITES,
+		(SpriteSpec**)StopYouCannotPassSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)STOP_YOU_CANNOT_PASS_SHAPES,
+		(ShapeSpec*)StopYouCannotPassShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -319,7 +319,7 @@ AnimatedEntityROMSpec STOP_YOU_CANNOT_PASS_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&STOP_YOU_CANNOT_PASS_ANIM,
+	(AnimationDescription*)&StopYouCannotPassAnimation,
 
 	// initial animation
 	"Hidden",

@@ -30,7 +30,7 @@ extern BYTE Level1Stage3PlankMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_STAGE_3_PLANK_CH =
+CharSetROMSpec Level1Stage3PlankCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec LEVEL_1_STAGE_3_PLANK_CH =
 	Level1Stage3PlankTiles,
 };
 
-TextureROMSpec LEVEL_1_STAGE_3_PLANK_TX =
+TextureROMSpec Level1Stage3PlankTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_3_PLANK_CH,
+	(CharSetSpec*)&Level1Stage3PlankCharset,
 
 	// bgmap spec
 	Level1Stage3PlankMap,
@@ -80,14 +80,14 @@ TextureROMSpec LEVEL_1_STAGE_3_PLANK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_3_PLANK_SPRITE =
+BgmapSpriteROMSpec Level1Stage3PlankSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_3_PLANK_TX,
+		(TextureSpec*)&Level1Stage3PlankTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -107,13 +107,13 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_3_PLANK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_STAGE_3_PLANK_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Stage3PlankSprites[] =
 {
-	&LEVEL_1_STAGE_3_PLANK_SPRITE,
+	&Level1Stage3PlankSprite,
 	NULL
 };
 
-ShapeROMSpec LEVEL_1_STAGE_3_PLANK_SHAPES[] =
+ShapeROMSpec Level1Stage3PlankShapes[] =
 {
 	{
 		// shape
@@ -144,7 +144,7 @@ ShapeROMSpec LEVEL_1_STAGE_3_PLANK_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-PhysicalSpecificationROMSpec LEVEL_1_STAGE_3_PLANK_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec Level1Stage3PlankPhysicalProperties =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -162,7 +162,7 @@ PhysicalSpecificationROMSpec LEVEL_1_STAGE_3_PLANK_PHYSICAL_PROPERTIES =
 	__I_TO_FIX10_6(0)
 };
 
-EntityROMSpec LEVEL_1_STAGE_3_PLANK_EN =
+EntityROMSpec Level1Stage3PlankEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -177,13 +177,13 @@ EntityROMSpec LEVEL_1_STAGE_3_PLANK_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_STAGE_3_PLANK_SPRITES,
+	(SpriteSpec**)Level1Stage3PlankSprites,
 
 	// use z displacement in projection
 	false,
 
 	// collision shapes
-	(ShapeSpec*)LEVEL_1_STAGE_3_PLANK_SHAPES,
+	(ShapeSpec*)Level1Stage3PlankShapes,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
@@ -193,5 +193,5 @@ EntityROMSpec LEVEL_1_STAGE_3_PLANK_EN =
 	kTypeNone,
 
 	// physical specification
-	(PhysicalSpecification*)&LEVEL_1_STAGE_3_PLANK_PHYSICAL_PROPERTIES,
+	(PhysicalSpecification*)&Level1Stage3PlankPhysicalProperties,
 };

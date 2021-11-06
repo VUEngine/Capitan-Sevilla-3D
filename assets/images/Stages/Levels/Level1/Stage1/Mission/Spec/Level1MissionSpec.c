@@ -28,7 +28,7 @@ extern BYTE Level1MissionMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec LEVEL_1_MISSION_EN_ANIM =
+AnimationFunctionROMSpec Level1MissionEnglishAnimation =
 {
 	// number of frames of this animation function
 	29,
@@ -54,7 +54,7 @@ AnimationFunctionROMSpec LEVEL_1_MISSION_EN_ANIM =
 	"0",
 };
 
-AnimationFunctionROMSpec LEVEL_1_MISSION_ES_ANIM =
+AnimationFunctionROMSpec Level1MissionSpanishAnimation =
 {
 	// number of frames of this animation function
 	38,
@@ -80,7 +80,7 @@ AnimationFunctionROMSpec LEVEL_1_MISSION_ES_ANIM =
 	// function's name
 	"1",
 };
-AnimationFunctionROMSpec LEVEL_1_MISSION_DE_ANIM =
+AnimationFunctionROMSpec Level1MissionGermanAnimation =
 {
 	// number of frames of this animation function
 	38,
@@ -107,7 +107,7 @@ AnimationFunctionROMSpec LEVEL_1_MISSION_DE_ANIM =
 	"2",
 };
 
-AnimationFunctionROMSpec LEVEL_1_MISSION_FR_ANIM =
+AnimationFunctionROMSpec Level1MissionFrenchAnimation =
 {
 	// number of frames of this animation function
 	38,
@@ -134,7 +134,7 @@ AnimationFunctionROMSpec LEVEL_1_MISSION_FR_ANIM =
 	"3",
 };
 
-AnimationFunctionROMSpec LEVEL_1_MISSION_TRANSPARENT_ANIM =
+AnimationFunctionROMSpec Level1MissionTransparentAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -157,20 +157,20 @@ AnimationFunctionROMSpec LEVEL_1_MISSION_TRANSPARENT_ANIM =
 	"Transparent",
 };
 
-AnimationDescriptionROMSpec LEVEL_1_MISSION_ANIM =
+AnimationDescriptionROMSpec Level1MissionAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&LEVEL_1_MISSION_EN_ANIM,
-		(AnimationFunction*)&LEVEL_1_MISSION_ES_ANIM,
-		(AnimationFunction*)&LEVEL_1_MISSION_DE_ANIM,
-		(AnimationFunction*)&LEVEL_1_MISSION_FR_ANIM,
-		(AnimationFunction*)&LEVEL_1_MISSION_TRANSPARENT_ANIM,
+		(AnimationFunction*)&Level1MissionEnglishAnimation,
+		(AnimationFunction*)&Level1MissionSpanishAnimation,
+		(AnimationFunction*)&Level1MissionGermanAnimation,
+		(AnimationFunction*)&Level1MissionFrenchAnimation,
+		(AnimationFunction*)&Level1MissionTransparentAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec LEVEL_1_MISSION_CH =
+CharSetROMSpec Level1MissionCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -185,10 +185,10 @@ CharSetROMSpec LEVEL_1_MISSION_CH =
 	Level1MissionTiles,
 };
 
-TextureROMSpec LEVEL_1_MISSION_TX =
+TextureROMSpec Level1MissionTexture =
 {
 	// charset definition
-	(CharSetSpec*)&LEVEL_1_MISSION_CH,
+	(CharSetSpec*)&Level1MissionCharset,
 
 	// bgmap definition
 	Level1MissionMap,
@@ -220,14 +220,14 @@ TextureROMSpec LEVEL_1_MISSION_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_MISSION_SPRITE =
+BgmapSpriteROMSpec Level1MissionSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture definition
-		(TextureSpec*)&LEVEL_1_MISSION_TX,
+		(TextureSpec*)&Level1MissionTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -247,13 +247,13 @@ BgmapSpriteROMSpec LEVEL_1_MISSION_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_MISSION_SPRITES[] =
+BgmapSpriteROMSpec* const Level1MissionSprites[] =
 {
-	&LEVEL_1_MISSION_SPRITE,
+	&Level1MissionSprite,
 	NULL
 };
 
-MissionROMSpec LEVEL_1_MISSION_EN =
+MissionROMSpec Level1MissionEntity =
 {
 	{
 		// class allocator
@@ -269,7 +269,7 @@ MissionROMSpec LEVEL_1_MISSION_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)LEVEL_1_MISSION_SPRITES,
+		(SpriteSpec**)Level1MissionSprites,
 
 		// use z displacement in projection
 		false,
@@ -289,7 +289,7 @@ MissionROMSpec LEVEL_1_MISSION_EN =
 	},
 
 	// pointer to the animation definition for the item
-	(AnimationDescription*)&LEVEL_1_MISSION_ANIM,
+	(AnimationDescription*)&Level1MissionAnimation,
 
 	// initial animation
 	"Transparent",

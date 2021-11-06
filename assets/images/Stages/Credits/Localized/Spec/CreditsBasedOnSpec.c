@@ -23,14 +23,14 @@
 
 extern BYTE CreditsBasedOnTiles[];
 extern BYTE CreditsBasedOnMap[];
-extern AnimationDescription LOCALIZED_ENTITY_ANIM;
+extern AnimationDescription LocalizedEntityAnimation;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CREDITS_BASED_ON_CH =
+CharSetROMSpec CreditsBasedOnCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec CREDITS_BASED_ON_CH =
 	CreditsBasedOnTiles,
 };
 
-TextureROMSpec CREDITS_BASED_ON_TX =
+TextureROMSpec CreditsBasedOnTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CREDITS_BASED_ON_CH,
+	(CharSetSpec*)&CreditsBasedOnCharset,
 
 	// bgmap spec
 	CreditsBasedOnMap,
@@ -80,14 +80,14 @@ TextureROMSpec CREDITS_BASED_ON_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CREDITS_BASED_ON_SPRITE =
+BgmapSpriteROMSpec CreditsBasedOnSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CREDITS_BASED_ON_TX,
+		(TextureSpec*)&CreditsBasedOnTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -107,13 +107,13 @@ BgmapSpriteROMSpec CREDITS_BASED_ON_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CREDITS_BASED_ON_SPRITES[] =
+BgmapSpriteROMSpec* const CreditsBasedOnSprites[] =
 {
-	&CREDITS_BASED_ON_SPRITE,
+	&CreditsBasedOnSprite,
 	NULL
 };
 
-LocalizedEntityROMSpec CREDITS_BASED_ON_EN =
+LocalizedEntityROMSpec CreditsBasedOnEntity =
 {
 	{
 		// class allocator
@@ -129,7 +129,7 @@ LocalizedEntityROMSpec CREDITS_BASED_ON_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)CREDITS_BASED_ON_SPRITES,
+		(SpriteSpec**)CreditsBasedOnSprites,
 
 		// use z displacement in projection
 		false,
@@ -149,7 +149,7 @@ LocalizedEntityROMSpec CREDITS_BASED_ON_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
+	(AnimationDescription*)&LocalizedEntityAnimation,
 
 	// initial animation
 	"0",

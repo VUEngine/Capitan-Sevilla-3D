@@ -26,7 +26,7 @@ extern BYTE CsAdjustmentScreenMadeWithMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CS_ADJUSTMENT_SCREEN_MADE_WITH_CH =
+CharSetROMSpec CsAdjustmentScreenMadeWithCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -41,10 +41,10 @@ CharSetROMSpec CS_ADJUSTMENT_SCREEN_MADE_WITH_CH =
 	CsAdjustmentScreenMadeWithTiles,
 };
 
-TextureROMSpec CS_ADJUSTMENT_SCREEN_MADE_WITH_TX =
+TextureROMSpec CsAdjustmentScreenMadeWithTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CS_ADJUSTMENT_SCREEN_MADE_WITH_CH,
+	(CharSetSpec*)&CsAdjustmentScreenMadeWithCharset,
 
 	// bgmap spec
 	CsAdjustmentScreenMadeWithMap,
@@ -76,14 +76,14 @@ TextureROMSpec CS_ADJUSTMENT_SCREEN_MADE_WITH_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CS_ADJUSTMENT_SCREEN_MADE_WITH_SPRITE =
+BgmapSpriteROMSpec CsAdjustmentScreenMadeWithSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CS_ADJUSTMENT_SCREEN_MADE_WITH_TX,
+		(TextureSpec*)&CsAdjustmentScreenMadeWithTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -103,13 +103,13 @@ BgmapSpriteROMSpec CS_ADJUSTMENT_SCREEN_MADE_WITH_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CS_ADJUSTMENT_SCREEN_MADE_WITH_SPRITES[] =
+BgmapSpriteROMSpec* const CsAdjustmentScreenMadeWithSprites[] =
 {
-	&CS_ADJUSTMENT_SCREEN_MADE_WITH_SPRITE,
+	&CsAdjustmentScreenMadeWithSprite,
 	NULL
 };
 
-EntityROMSpec CS_ADJUSTMENT_SCREEN_MADE_WITH_EN =
+EntityROMSpec CsAdjustmentScreenMadeWithEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -124,7 +124,7 @@ EntityROMSpec CS_ADJUSTMENT_SCREEN_MADE_WITH_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CS_ADJUSTMENT_SCREEN_MADE_WITH_SPRITES,
+	(SpriteSpec**)CsAdjustmentScreenMadeWithSprites,
 
 	// use z displacement in projection
 	false,

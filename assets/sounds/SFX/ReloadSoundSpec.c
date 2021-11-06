@@ -14,7 +14,7 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ const uint16 ReloadTrack[] =
   15, 15, 15, 15, 0,
 };
 
-SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM ReloadSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -59,7 +59,7 @@ SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sineWaveForm,
+	SineWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -68,10 +68,10 @@ SoundChannelConfigurationROM RELOAD_SND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM RELOAD_SND_CHANNEL_1 =
+SoundChannelROM ReloadSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&RELOAD_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&ReloadSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -83,13 +83,13 @@ SoundChannelROM RELOAD_SND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* RELOAD_SND_CHANNELS[] =
+SoundChannelROM* ReloadSoundChannels[] =
 {
-	&RELOAD_SND_CHANNEL_1,
+	&ReloadSoundChannel1,
 	NULL
 };
 
-SoundROM RELOAD_SND =
+SoundROM ReloadSound =
 {
 	/// Name
 	"Reload",
@@ -101,5 +101,5 @@ SoundROM RELOAD_SND =
 	500,
 
 	/// Tracks
-	(SoundChannel**)RELOAD_SND_CHANNELS
+	(SoundChannel**)ReloadSoundChannels
 };

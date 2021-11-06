@@ -33,7 +33,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMSpec PAUSE_SCREEN_STAGE_ST;
+extern StageROMSpec PauseScreenStage;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -63,7 +63,7 @@ void PauseScreenState::enter(void* owner __attribute__ ((unused)))
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&PAUSE_SCREEN_STAGE_ST, NULL, true, false);
+	GameState::loadStage(this, (StageSpec*)&PauseScreenStage, NULL, true, false);
 
 	// show up level after a little delay
 	MessageDispatcher::dispatchMessage(1, Object::safeCast(this), Object::safeCast(Game::getInstance()), kLevelSetUp, NULL);

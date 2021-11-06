@@ -29,7 +29,7 @@ extern BYTE RugarsoAnimationLogoMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec RUGARSO_ANIMATION_LOGO_CH =
+CharSetROMSpec RugarsoAnimationLogoCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec RUGARSO_ANIMATION_LOGO_CH =
 	RugarsoAnimationLogoTiles,
 };
 
-TextureROMSpec RUGARSO_ANIMATION_LOGO_TX =
+TextureROMSpec RugarsoAnimationLogoTexture =
 {
 	// charset spec
-	(CharSetSpec*)&RUGARSO_ANIMATION_LOGO_CH,
+	(CharSetSpec*)&RugarsoAnimationLogoCharset,
 
 	// bgmap spec
 	RugarsoAnimationLogoMap,
@@ -79,14 +79,14 @@ TextureROMSpec RUGARSO_ANIMATION_LOGO_TX =
 	false,
 };
 
-BgmapSpriteROMSpec RUGARSO_ANIMATION_LOGO_SPRITE =
+BgmapSpriteROMSpec RugarsoAnimationLogoSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&RUGARSO_ANIMATION_LOGO_TX,
+		(TextureSpec*)&RugarsoAnimationLogoTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec RUGARSO_ANIMATION_LOGO_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const RUGARSO_ANIMATION_LOGO_SPRITES[] =
+BgmapSpriteROMSpec* const RugarsoAnimationLogoSprites[] =
 {
-	&RUGARSO_ANIMATION_LOGO_SPRITE,
+	&RugarsoAnimationLogoSprite,
 	NULL
 };
 
-EntityROMSpec RUGARSO_ANIMATION_LOGO_EN =
+EntityROMSpec RugarsoAnimationLogoEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec RUGARSO_ANIMATION_LOGO_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)RUGARSO_ANIMATION_LOGO_SPRITES,
+	(SpriteSpec**)RugarsoAnimationLogoSprites,
 
 	// use z displacement in projection
 	false,

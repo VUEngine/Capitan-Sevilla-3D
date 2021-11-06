@@ -29,7 +29,7 @@ extern BYTE FoldingStandMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec FOLDING_STAND_CH =
+CharSetROMSpec FoldingStandCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec FOLDING_STAND_CH =
 	FoldingStandTiles,
 };
 
-TextureROMSpec FOLDING_STAND_TX =
+TextureROMSpec FoldingStandTexture =
 {
 	// charset spec
-	(CharSetSpec*)&FOLDING_STAND_CH,
+	(CharSetSpec*)&FoldingStandCharset,
 
 	// bgmap spec
 	FoldingStandMap,
@@ -79,14 +79,14 @@ TextureROMSpec FOLDING_STAND_TX =
 	false,
 };
 
-BgmapSpriteROMSpec FOLDING_STAND_SPRITE =
+BgmapSpriteROMSpec FoldingStandSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&FOLDING_STAND_TX,
+		(TextureSpec*)&FoldingStandTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec FOLDING_STAND_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const FOLDING_STAND_SPRITES[] =
+BgmapSpriteROMSpec* const FoldingStandSprites[] =
 {
-	&FOLDING_STAND_SPRITE,
+	&FoldingStandSprite,
 	NULL
 };
 
-EntityROMSpec FOLDING_STAND_EN =
+EntityROMSpec FoldingStandEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec FOLDING_STAND_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)FOLDING_STAND_SPRITES,
+	(SpriteSpec**)FoldingStandSprites,
 
 	// use z displacement in projection
 	false,

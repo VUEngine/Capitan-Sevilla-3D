@@ -29,7 +29,7 @@ extern BYTE BenchMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec BENCH_CH =
+CharSetROMSpec BenchCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec BENCH_CH =
 	BenchTiles,
 };
 
-TextureROMSpec BENCH_TX =
+TextureROMSpec BenchTexture =
 {
 	// charset spec
-	(CharSetSpec*)&BENCH_CH,
+	(CharSetSpec*)&BenchCharset,
 
 	// bgmap spec
 	BenchMap,
@@ -79,14 +79,14 @@ TextureROMSpec BENCH_TX =
 	false,
 };
 
-BgmapSpriteROMSpec BENCH_SPRITE =
+BgmapSpriteROMSpec BenchSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&BENCH_TX,
+		(TextureSpec*)&BenchTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec BENCH_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const BENCH_SPRITES[] =
+BgmapSpriteROMSpec* const BenchSprites[] =
 {
-	&BENCH_SPRITE,
+	&BenchSprite,
 	NULL
 };
 
-EntityROMSpec BENCH_EN =
+EntityROMSpec BenchEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec BENCH_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)BENCH_SPRITES,
+	(SpriteSpec**)BenchSprites,
 
 	// use z displacement in projection
 	false,

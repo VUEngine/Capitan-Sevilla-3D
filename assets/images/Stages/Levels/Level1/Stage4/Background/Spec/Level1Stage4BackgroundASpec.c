@@ -29,7 +29,7 @@ extern BYTE Level1Stage4BackgroundAMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_STAGE_4_BACKGROUND_CH =
+CharSetROMSpec Level1Stage4BackgroundCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec LEVEL_1_STAGE_4_BACKGROUND_CH =
 	Level1Stage4BackgroundTiles,
 };
 
-TextureROMSpec LEVEL_1_STAGE_4_BACKGROUND_A_TX =
+TextureROMSpec Level1Stage4BackgroundATexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_4_BACKGROUND_CH,
+	(CharSetSpec*)&Level1Stage4BackgroundCharset,
 
 	// bgmap spec
 	Level1Stage4BackgroundAMap,
@@ -79,14 +79,14 @@ TextureROMSpec LEVEL_1_STAGE_4_BACKGROUND_A_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_4_BACKGROUND_A_SPRITE =
+BgmapSpriteROMSpec Level1Stage4BackgroundASprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_4_BACKGROUND_A_TX,
+		(TextureSpec*)&Level1Stage4BackgroundATexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_4_BACKGROUND_A_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_STAGE_4_BACKGROUND_A_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Stage4BackgroundASprites[] =
 {
-	&LEVEL_1_STAGE_4_BACKGROUND_A_SPRITE,
+	&Level1Stage4BackgroundASprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_STAGE_4_BACKGROUND_A_EN =
+EntityROMSpec Level1Stage4BackgroundAEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec LEVEL_1_STAGE_4_BACKGROUND_A_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_STAGE_4_BACKGROUND_A_SPRITES,
+	(SpriteSpec**)Level1Stage4BackgroundASprites,
 
 	// use z displacement in projection
 	false,

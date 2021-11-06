@@ -31,7 +31,7 @@ extern BYTE PlaygroundBlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec PLAYGROUND_CH =
+CharSetROMSpec PlaygroundCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -46,10 +46,10 @@ CharSetROMSpec PLAYGROUND_CH =
 	PlaygroundTiles,
 };
 
-TextureROMSpec PLAYGROUND_TX =
+TextureROMSpec PlaygroundTexture =
 {
 	// charset spec
-	(CharSetSpec*)&PLAYGROUND_CH,
+	(CharSetSpec*)&PlaygroundCharset,
 
 	// bgmap spec
 	PlaygroundMap,
@@ -81,14 +81,14 @@ TextureROMSpec PLAYGROUND_TX =
 	false,
 };
 
-BgmapSpriteROMSpec PLAYGROUND_SPRITE =
+BgmapSpriteROMSpec PlaygroundSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&PLAYGROUND_TX,
+		(TextureSpec*)&PlaygroundTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -108,13 +108,13 @@ BgmapSpriteROMSpec PLAYGROUND_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const PLAYGROUND_SPRITES[] =
+BgmapSpriteROMSpec* const PlaygroundSprites[] =
 {
-	&PLAYGROUND_SPRITE,
+	&PlaygroundSprite,
 	NULL
 };
 
-EntityROMSpec PLAYGROUND_EN =
+EntityROMSpec PlaygroundEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -129,7 +129,7 @@ EntityROMSpec PLAYGROUND_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)PLAYGROUND_SPRITES,
+	(SpriteSpec**)PlaygroundSprites,
 
 	// use z displacement in projection
 	false,

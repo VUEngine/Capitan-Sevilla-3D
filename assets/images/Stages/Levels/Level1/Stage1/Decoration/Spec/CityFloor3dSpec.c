@@ -29,7 +29,7 @@ extern BYTE CityFloor3DMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CITY_FLOOR_3D_CH =
+CharSetROMSpec CityFloor3dCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec CITY_FLOOR_3D_CH =
 	CityFloor3DTiles,
 };
 
-TextureROMSpec CITY_FLOOR_3D_TX =
+TextureROMSpec CityFloor3dTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CITY_FLOOR_3D_CH,
+	(CharSetSpec*)&CityFloor3dCharset,
 
 	// bgmap spec
 	CityFloor3DMap,
@@ -79,14 +79,14 @@ TextureROMSpec CITY_FLOOR_3D_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CITY_FLOOR_3D_SPRITE =
+BgmapSpriteROMSpec CityFloor3dSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CITY_FLOOR_3D_TX,
+		(TextureSpec*)&CityFloor3dTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec CITY_FLOOR_3D_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CITY_FLOOR_3D_SPRITES[] =
+BgmapSpriteROMSpec* const CityFloor3dSprites[] =
 {
-	&CITY_FLOOR_3D_SPRITE,
+	&CityFloor3dSprite,
 	NULL
 };
 
-EntityROMSpec CITY_FLOOR_3D_EN =
+EntityROMSpec CityFloor3dEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec CITY_FLOOR_3D_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CITY_FLOOR_3D_SPRITES,
+	(SpriteSpec**)CityFloor3dSprites,
 
 	// use z displacement in projection
 	false,

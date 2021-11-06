@@ -30,7 +30,7 @@ extern BYTE GuiMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec GUI_CH =
+CharSetROMSpec GuiCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec GUI_CH =
 	GuiTiles,
 };
 
-TextureROMSpec GUI_TX =
+TextureROMSpec GuiTexture =
 {
 	// charset spec
-	(CharSetSpec*)&GUI_CH,
+	(CharSetSpec*)&GuiCharset,
 
 	// bgmap spec
 	GuiMap,
@@ -80,14 +80,14 @@ TextureROMSpec GUI_TX =
 	false,
 };
 
-BgmapSpriteROMSpec GUI_SPRITE =
+BgmapSpriteROMSpec GuiSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&GUI_TX,
+		(TextureSpec*)&GuiTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -107,13 +107,13 @@ BgmapSpriteROMSpec GUI_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const GUI_SPRITES[] =
+BgmapSpriteROMSpec* const GuiSprites[] =
 {
-	&GUI_SPRITE,
+	&GuiSprite,
 	NULL
 };
 
-EntityROMSpec GUI_EN =
+EntityROMSpec GuiEntity =
 {
 	// class allocator
 	__TYPE(Gui),
@@ -128,7 +128,7 @@ EntityROMSpec GUI_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)GUI_SPRITES,
+	(SpriteSpec**)GuiSprites,
 
 	// use z displacement in projection
 	false,

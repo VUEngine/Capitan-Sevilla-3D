@@ -19,7 +19,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec FLAG_SPAIN_EN;
+extern EntitySpec FlagSpainEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -29,17 +29,17 @@ extern EntitySpec FLAG_SPAIN_EN;
 const char* const LANGUAGE_ES_STRINGS[] =
 {
 	/* STR_ARE_YOU_SURE: */
-	"¿ESTÁS SEGURO?",
+	"ï¿½ESTï¿½S SEGURO?",
 	/* STR_AUTO_PAUSE_EXPLANATION: */
-	"  LA FUNCIÓN AUTOMÁTICA DE PAUSA TE\n\nRECORDARÁ QUE DEBES TOMAR UN DESCANSO\n\n  APPROXIMADAMENTE CADA 30 MINUTOS.",
+	"  LA FUNCIï¿½N AUTOMï¿½TICA DE PAUSA TE\n\nRECORDARï¿½ QUE DEBES TOMAR UN DESCANSO\n\n  APPROXIMADAMENTE CADA 30 MINUTOS.",
 	/* STR_AUTOMATIC_PAUSE: */
-	"PAUSA AUTOMÁTICA",
+	"PAUSA AUTOMï¿½TICA",
 	/* STR_BACK: */
 	"REGRESAR",
 	/* STR_CONTINUE: */
 	"CONTINUAR",
 	/* STR_CREDITS: */
-	"CRÉDITOS",
+	"CRï¿½DITOS",
 	/* STR_LANGUAGE: */
 	"IDIOMA",
 	/* STR_LANGUAGE_SELECT: */
@@ -49,7 +49,7 @@ const char* const LANGUAGE_ES_STRINGS[] =
 	/* STR_LEVEL_1_NAME: */
 	"SEVILLA,\nMISION:\nRECUPERAR EL LIBRO",
 	/* STR_NEW_BEST: */
-	"¡NUEVO RÉCORD!",
+	"ï¿½NUEVO Rï¿½CORD!",
 	/* STR_NEW_GAME: */
 	"NUEVO JUEGO",
 	/* STR_NO: */
@@ -73,19 +73,19 @@ const char* const LANGUAGE_ES_STRINGS[] =
 	/* STR_SELECT: */
 	"SELECCIONAR",
 	/* STR_TAKE_A_REST: */
-	"¡POR FAVOR, TÓMATE UN DESCANSO!",
+	"ï¿½POR FAVOR, Tï¿½MATE UN DESCANSO!",
 	/* STR_YES: */
-	"SÍ",
+	"Sï¿½",
 	
 };
 
 const LangROMSpec LANGUAGE_ES =
 {
 	// language name
-	"ESPAÑOL",
+	"ESPAï¿½OL",
 
 	// flag entity
-	&FLAG_SPAIN_EN,
+	&FlagSpainEntity,
 	
 	// strings
 	(const char**)LANGUAGE_ES_STRINGS

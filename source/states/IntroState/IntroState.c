@@ -35,8 +35,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMSpec INTRO_STAGE_ST;
-extern PlatformerLevelSpec LEVEL_1_LV;
+extern StageROMSpec IntroStage;
+extern PlatformerLevelSpec Level1;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -84,7 +84,7 @@ void IntroState::enter(void* owner)
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&INTRO_STAGE_ST, NULL, true, false);
+	GameState::loadStage(this, (StageSpec*)&IntroStage, NULL, true, false);
 
 	// init members
 	this->currentStep = 0;
@@ -313,5 +313,5 @@ void IntroState::onFadeInComplete(Object eventFirer __attribute__ ((unused)))
 
 void IntroState::onFadeOutComplete(Object eventFirer __attribute__ ((unused)))
 {
-	PlatformerLevelState::startLevel(PlatformerLevelState::getInstance(), &LEVEL_1_LV);
+	PlatformerLevelState::startLevel(PlatformerLevelState::getInstance(), &Level1);
 }

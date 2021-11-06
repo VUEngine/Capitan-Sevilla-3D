@@ -31,7 +31,7 @@ extern BYTE JumpDustMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec JUMP_DUST_HIDDEN_ANIM =
+AnimationFunctionROMSpec JumpDustHiddenAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -52,7 +52,7 @@ AnimationFunctionROMSpec JUMP_DUST_HIDDEN_ANIM =
 	"Hidden",
 };
 
-AnimationFunctionROMSpec JUMP_DUST_SHOW_ANIM =
+AnimationFunctionROMSpec JumpDustShowAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -73,17 +73,17 @@ AnimationFunctionROMSpec JUMP_DUST_SHOW_ANIM =
 	"Show",
 };
 
-AnimationDescriptionROMSpec JUMP_DUST_ANIM =
+AnimationDescriptionROMSpec JumpDustAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&JUMP_DUST_HIDDEN_ANIM,
-		(AnimationFunction*)&JUMP_DUST_SHOW_ANIM,
+		(AnimationFunction*)&JumpDustHiddenAnimation,
+		(AnimationFunction*)&JumpDustShowAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec JUMP_DUST_CH =
+CharSetROMSpec JumpDustCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -98,10 +98,10 @@ CharSetROMSpec JUMP_DUST_CH =
 	JumpDustTiles,
 };
 
-TextureROMSpec JUMP_DUST_TX =
+TextureROMSpec JumpDustTexture =
 {
 	// charset definition
-	(CharSetSpec*)&JUMP_DUST_CH,
+	(CharSetSpec*)&JumpDustCharset,
 
 	// bgmap definition
 	JumpDustMap,
@@ -133,14 +133,14 @@ TextureROMSpec JUMP_DUST_TX =
 	false,
 };
 
-ObjectSpriteROMSpec JUMP_DUST_SPRITE =
+ObjectSpriteROMSpec JumpDustSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureSpec*)&JUMP_DUST_TX,
+		(TextureSpec*)&JumpDustTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -157,13 +157,13 @@ ObjectSpriteROMSpec JUMP_DUST_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const JUMP_DUST_SPRITES[] =
+ObjectSpriteROMSpec* const JumpDustSprites[] =
 {
-	&JUMP_DUST_SPRITE,
+	&JumpDustSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec JUMP_DUST_EN =
+AnimatedEntityROMSpec JumpDustEntity =
 {
 	{
 		// class allocator
@@ -179,7 +179,7 @@ AnimatedEntityROMSpec JUMP_DUST_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)JUMP_DUST_SPRITES,
+		(SpriteSpec**)JumpDustSprites,
 
 		// use z displacement in projection
 		false,
@@ -199,7 +199,7 @@ AnimatedEntityROMSpec JUMP_DUST_EN =
 	},
 
 	// pointer to the animation definition for the item
-	(AnimationDescription*)&JUMP_DUST_ANIM,
+	(AnimationDescription*)&JumpDustAnimation,
 
 	// initial animation
 	"Hidden",

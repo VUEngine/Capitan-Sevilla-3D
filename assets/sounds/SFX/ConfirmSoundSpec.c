@@ -13,7 +13,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <SoundManager.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ const uint16 CONFIRM_TRACK_1[] =
   15, 15, 15, 15 , 0
 };
 
-SoundChannelConfigurationROM CONFIRM_SOUND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM ConfirmSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -64,7 +64,7 @@ SoundChannelConfigurationROM CONFIRM_SOUND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sawtoothWaveForm,
+	SawtoothWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -73,10 +73,10 @@ SoundChannelConfigurationROM CONFIRM_SOUND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM CONFIRM_SOUND_CHANNEL_1 =
+SoundChannelROM ConfirmSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&CONFIRM_SOUND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&ConfirmSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -88,13 +88,13 @@ SoundChannelROM CONFIRM_SOUND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* const CONFIRM_SOUND_CHANNELS[] =
+SoundChannelROM* const ConfirmSoundChannels[] =
 {
-	&CONFIRM_SOUND_CHANNEL_1,
+	&ConfirmSoundChannel1,
 	NULL
 };
 
-SoundROM CONFIRM_SOUND =
+SoundROM ConfirmSound =
 {
 	/// Name
 	"Confirm",
@@ -106,5 +106,5 @@ SoundROM CONFIRM_SOUND =
 	500,
 
 	/// Tracks
-	(SoundChannel**)CONFIRM_SOUND_CHANNELS
+	(SoundChannel**)ConfirmSoundChannels
 };

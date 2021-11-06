@@ -29,7 +29,7 @@ extern BYTE GameOverMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec GAME_OVER_CH =
+CharSetROMSpec GameOverCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec GAME_OVER_CH =
 	GameOverTiles,
 };
 
-TextureROMSpec GAME_OVER_TX =
+TextureROMSpec GameOverTexture =
 {
 	// charset spec
-	(CharSetSpec*)&GAME_OVER_CH,
+	(CharSetSpec*)&GameOverCharset,
 
 	// bgmap spec
 	GameOverMap,
@@ -79,14 +79,14 @@ TextureROMSpec GAME_OVER_TX =
 	false,
 };
 
-BgmapSpriteROMSpec GAME_OVER_SPRITE =
+BgmapSpriteROMSpec GameOverSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&GAME_OVER_TX,
+		(TextureSpec*)&GameOverTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec GAME_OVER_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const GAME_OVER_SPRITES[] =
+BgmapSpriteROMSpec* const GameOverSprites[] =
 {
-	&GAME_OVER_SPRITE,
+	&GameOverSprite,
 	NULL
 };
 
-EntityROMSpec GAME_OVER_EN =
+EntityROMSpec GameOverEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec GAME_OVER_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)GAME_OVER_SPRITES,
+	(SpriteSpec**)GameOverSprites,
 
 	// use z displacement in projection
 	false,

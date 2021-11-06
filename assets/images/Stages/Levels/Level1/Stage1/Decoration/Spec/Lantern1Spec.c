@@ -31,7 +31,7 @@ extern BYTE Lantern1BlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LANTERN_1_CH =
+CharSetROMSpec Lantern1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -46,7 +46,7 @@ CharSetROMSpec LANTERN_1_CH =
 	Lantern1Tiles,
 };
 
-CharSetROMSpec LANTERN_1_BLACK_CH =
+CharSetROMSpec Lantern1BlackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -61,10 +61,10 @@ CharSetROMSpec LANTERN_1_BLACK_CH =
 	Lantern1BlackTiles,
 };
 
-TextureROMSpec LANTERN_1_TX =
+TextureROMSpec Lantern1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LANTERN_1_CH,
+	(CharSetSpec*)&Lantern1Charset,
 
 	// bgmap spec
 	Lantern1Map,
@@ -96,10 +96,10 @@ TextureROMSpec LANTERN_1_TX =
 	false,
 };
 
-TextureROMSpec LANTERN_1_BLACK_TX =
+TextureROMSpec Lantern1BlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LANTERN_1_BLACK_CH,
+	(CharSetSpec*)&Lantern1BlackCharset,
 
 	// bgmap spec
 	Lantern1BlackMap,
@@ -131,14 +131,14 @@ TextureROMSpec LANTERN_1_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LANTERN_1_SPRITE =
+BgmapSpriteROMSpec Lantern1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LANTERN_1_TX,
+		(TextureSpec*)&Lantern1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -158,14 +158,14 @@ BgmapSpriteROMSpec LANTERN_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec LANTERN_1_BLACK_SPRITE =
+BgmapSpriteROMSpec Lantern1BlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LANTERN_1_BLACK_TX,
+		(TextureSpec*)&Lantern1BlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -185,14 +185,14 @@ BgmapSpriteROMSpec LANTERN_1_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LANTERN_1_SPRITES[] =
+BgmapSpriteROMSpec* const Lantern1Sprites[] =
 {
-	&LANTERN_1_BLACK_SPRITE,
-	&LANTERN_1_SPRITE,
+	&Lantern1BlackSprite,
+	&Lantern1Sprite,
 	NULL
 };
 
-EntityROMSpec LANTERN_1_EN =
+EntityROMSpec Lantern1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -207,7 +207,7 @@ EntityROMSpec LANTERN_1_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LANTERN_1_SPRITES,
+	(SpriteSpec**)Lantern1Sprites,
 
 	// use z displacement in projection
 	false,

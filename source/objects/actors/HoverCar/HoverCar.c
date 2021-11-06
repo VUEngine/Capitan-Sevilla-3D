@@ -22,7 +22,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound HOVER_ENGINE_SND;
+extern Sound HoverEngineSound;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ void HoverCar::ready(bool recursive)
 
 	this->engineSound = SoundManager::getSound(
 		SoundManager::getInstance(),
-		&HOVER_ENGINE_SND,
+		&HoverEngineSound,
 		kPlayAll,
 		(EventListener)HoverCar::onEngineSoundReleased,
 		Object::safeCast(this)

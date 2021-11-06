@@ -14,7 +14,7 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ const uint16 LIFT_BREAK_TRACK_1[] =
    12,  12,  12,   12 , 12,  12,  12,   12, 0,
 };
 
-SoundChannelConfigurationROM LIFT_BREAK_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM LiftBreakSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -65,7 +65,7 @@ SoundChannelConfigurationROM LIFT_BREAK_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sawtoothWaveForm,
+	SawtoothWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNoise,
@@ -74,10 +74,10 @@ SoundChannelConfigurationROM LIFT_BREAK_SND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM LIFT_BREAK_SND_CHANNEL_1 =
+SoundChannelROM LiftBreakSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&LIFT_BREAK_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&LiftBreakSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -89,13 +89,13 @@ SoundChannelROM LIFT_BREAK_SND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* LIFT_BREAK_SND_CHANNELS[] =
+SoundChannelROM* LiftBreakSoundChannels[] =
 {
-	&LIFT_BREAK_SND_CHANNEL_1,
+	&LiftBreakSoundChannel1,
 	NULL
 };
 
-SoundROM LIFT_BREAK_SND =
+SoundROM LiftBreakSound =
 {
 	/// Name
 	"Lift break",
@@ -107,5 +107,5 @@ SoundROM LIFT_BREAK_SND =
 	5000,
 
 	/// Tracks
-	(SoundChannel**)LIFT_BREAK_SND_CHANNELS
+	(SoundChannel**)LiftBreakSoundChannels
 };

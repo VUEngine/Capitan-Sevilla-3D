@@ -29,7 +29,7 @@ extern BYTE Statue1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec STATUE_1_CH =
+CharSetROMSpec Statue1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec STATUE_1_CH =
 	Statue1Tiles,
 };
 
-TextureROMSpec STATUE_1_TX =
+TextureROMSpec Statue1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&STATUE_1_CH,
+	(CharSetSpec*)&Statue1Charset,
 
 	// bgmap spec
 	Statue1Map,
@@ -79,14 +79,14 @@ TextureROMSpec STATUE_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec STATUE_1_SPRITE =
+BgmapSpriteROMSpec Statue1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&STATUE_1_TX,
+		(TextureSpec*)&Statue1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec STATUE_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const STATUE_1_SPRITES[] =
+BgmapSpriteROMSpec* const Statue1Sprites[] =
 {
-	&STATUE_1_SPRITE,
+	&Statue1Sprite,
 	NULL
 };
 
-EntityROMSpec STATUE_1_EN =
+EntityROMSpec Statue1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec STATUE_1_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)STATUE_1_SPRITES,
+	(SpriteSpec**)Statue1Sprites,
 
 	// use z displacement in projection
 	false,

@@ -2,26 +2,25 @@
 //                              THIS FILE WAS AUTO-GENERATED - DO NOT EDIT                               //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 //---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES                                                 
 //---------------------------------------------------------------------------------------------------------
 
 #include <Printing.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//                                              DECLARATIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE FontDefaultTiles[];
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//                                               DEFINITIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CAPITAN_FONT_CH =
+CharSetROMSpec CapitanFontCharSet =
 {
 	// number of chars
 	256,
@@ -33,10 +32,10 @@ CharSetROMSpec CAPITAN_FONT_CH =
 	FontDefaultTiles,
 };
 
-FontROMSpec CAPITAN_FONT =
+FontROMSpec CapitanFont =
 {
 	// font charset spec pointer
-	(CharSetSpec*)&CAPITAN_FONT_CH,
+	(CharSetSpec*)&CapitanFontCharSet,
 
 	// character number at which the font starts, allows you to skip the control characters for example
 	0,

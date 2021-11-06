@@ -23,14 +23,14 @@
 
 extern BYTE CreditsFormerBackersLabelTiles[];
 extern BYTE CreditsFormerBackersLabelMap[];
-extern AnimationDescription LOCALIZED_ENTITY_ANIM;
+extern AnimationDescription LocalizedEntityAnimation;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CREDITS_FORMER_BACKERS_LABEL_CH =
+CharSetROMSpec CreditsFormerBackersLabelCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec CREDITS_FORMER_BACKERS_LABEL_CH =
 	CreditsFormerBackersLabelTiles,
 };
 
-TextureROMSpec CREDITS_FORMER_BACKERS_LABEL_TX =
+TextureROMSpec CreditsFormerBackersLabelTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CREDITS_FORMER_BACKERS_LABEL_CH,
+	(CharSetSpec*)&CreditsFormerBackersLabelCharset,
 
 	// bgmap spec
 	CreditsFormerBackersLabelMap,
@@ -80,14 +80,14 @@ TextureROMSpec CREDITS_FORMER_BACKERS_LABEL_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CREDITS_FORMER_BACKERS_LABEL_SPRITE =
+BgmapSpriteROMSpec CreditsFormerBackersLabelSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CREDITS_FORMER_BACKERS_LABEL_TX,
+		(TextureSpec*)&CreditsFormerBackersLabelTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -107,13 +107,13 @@ BgmapSpriteROMSpec CREDITS_FORMER_BACKERS_LABEL_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CREDITS_FORMER_BACKERS_LABEL_SPRITES[] =
+BgmapSpriteROMSpec* const CreditsFormerBackersLabelSprites[] =
 {
-	&CREDITS_FORMER_BACKERS_LABEL_SPRITE,
+	&CreditsFormerBackersLabelSprite,
 	NULL
 };
 
-LocalizedEntityROMSpec CREDITS_FORMER_BACKERS_LABEL_EN =
+LocalizedEntityROMSpec CreditsFormerBackersLabelEntity =
 {
 	{
 		// class allocator
@@ -129,7 +129,7 @@ LocalizedEntityROMSpec CREDITS_FORMER_BACKERS_LABEL_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)CREDITS_FORMER_BACKERS_LABEL_SPRITES,
+		(SpriteSpec**)CreditsFormerBackersLabelSprites,
 
 		// use z displacement in projection
 		false,
@@ -149,7 +149,7 @@ LocalizedEntityROMSpec CREDITS_FORMER_BACKERS_LABEL_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
+	(AnimationDescription*)&LocalizedEntityAnimation,
 
 	// initial animation
 	"0",

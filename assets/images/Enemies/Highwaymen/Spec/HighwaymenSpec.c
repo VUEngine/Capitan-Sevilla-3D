@@ -30,7 +30,7 @@ extern BYTE HighwaymenMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec HIGHWAYMEN_CH =
+CharSetROMSpec HighwaymenCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec HIGHWAYMEN_CH =
 	HighwaymenTiles,
 };
 
-TextureROMSpec HIGHWAYMEN_TX =
+TextureROMSpec HighwaymenTexture =
 {
 	// charset spec
-	(CharSetSpec*)&HIGHWAYMEN_CH,
+	(CharSetSpec*)&HighwaymenCharset,
 
 	// bgmap spec
 	HighwaymenMap,
@@ -80,14 +80,14 @@ TextureROMSpec HIGHWAYMEN_TX =
 	false,
 };
 
-BgmapSpriteROMSpec HIGHWAYMEN_SPRITE =
+BgmapSpriteROMSpec HighwaymenSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&HIGHWAYMEN_TX,
+		(TextureSpec*)&HighwaymenTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -107,13 +107,13 @@ BgmapSpriteROMSpec HIGHWAYMEN_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const HIGHWAYMEN_SPRITES[] =
+BgmapSpriteROMSpec* const HighwaymenSprites[] =
 {
-	&HIGHWAYMEN_SPRITE,
+	&HighwaymenSprite,
 	NULL
 };
 
-ShapeROMSpec HIGHWAYMEN_SHAPES[] =
+ShapeROMSpec HighwaymenShapes[] =
 {
 	// Left
 	{
@@ -200,7 +200,7 @@ ShapeROMSpec HIGHWAYMEN_SHAPES[] =
 };
 
 
-PhysicalSpecificationROMSpec HIGHWAYMEN_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec HighwaymenPhysicalProperties =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -218,7 +218,7 @@ PhysicalSpecificationROMSpec HIGHWAYMEN_PHYSICAL_PROPERTIES =
 	__I_TO_FIX10_6(0)
 };
 
-EntityROMSpec HIGHWAYMEN_EN =
+EntityROMSpec HighwaymenEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -233,13 +233,13 @@ EntityROMSpec HIGHWAYMEN_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)HIGHWAYMEN_SPRITES,
+	(SpriteSpec**)HighwaymenSprites,
 
 	// use z displacement in projection
 	false,
 
 	// collision shapes
-	(ShapeSpec*)HIGHWAYMEN_SHAPES,
+	(ShapeSpec*)HighwaymenShapes,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
@@ -249,5 +249,5 @@ EntityROMSpec HIGHWAYMEN_EN =
 	kTypeNone,
 
 	// physical specification
-	(PhysicalSpecification*)&HIGHWAYMEN_PHYSICAL_PROPERTIES,
+	(PhysicalSpecification*)&HighwaymenPhysicalProperties,
 };

@@ -29,7 +29,7 @@ extern BYTE GumProjectileMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec GUM_PROJECTILE_DEFAULT_ANIM =
+AnimationFunctionROMSpec GumProjectileDefaultAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -50,7 +50,7 @@ AnimationFunctionROMSpec GUM_PROJECTILE_DEFAULT_ANIM =
 	"Default",
 };
 
-AnimationFunctionROMSpec GUM_PROJECTILE_HIT_ANIM =
+AnimationFunctionROMSpec GumProjectileHitAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -71,17 +71,17 @@ AnimationFunctionROMSpec GUM_PROJECTILE_HIT_ANIM =
 	"Hit",
 };
 
-AnimationDescriptionROMSpec GUM_PROJECTILE_ANIM =
+AnimationDescriptionROMSpec GumProjectileAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&GUM_PROJECTILE_DEFAULT_ANIM,
-		(AnimationFunction*)&GUM_PROJECTILE_HIT_ANIM,
+		(AnimationFunction*)&GumProjectileDefaultAnimation,
+		(AnimationFunction*)&GumProjectileHitAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec GUM_PROJECTILE_CH =
+CharSetROMSpec GumProjectileCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -96,10 +96,10 @@ CharSetROMSpec GUM_PROJECTILE_CH =
 	GumProjectileTiles,
 };
 
-TextureROMSpec GUM_PROJECTILE_TX =
+TextureROMSpec GumProjectileTexture =
 {
 	// charset spec
-	(CharSetSpec*)&GUM_PROJECTILE_CH,
+	(CharSetSpec*)&GumProjectileCharset,
 
 	// bgmap spec
 	GumProjectileMap,
@@ -131,14 +131,14 @@ TextureROMSpec GUM_PROJECTILE_TX =
 	false,
 };
 
-ObjectSpriteROMSpec GUM_PROJECTILE_SPRITE =
+ObjectSpriteROMSpec GumProjectileSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&GUM_PROJECTILE_TX,
+		(TextureSpec*)&GumProjectileTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -155,13 +155,13 @@ ObjectSpriteROMSpec GUM_PROJECTILE_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const GUM_PROJECTILE_SPRITES[] =
+ObjectSpriteROMSpec* const GumProjectileSprites[] =
 {
-	&GUM_PROJECTILE_SPRITE,
+	&GumProjectileSprite,
 	NULL
 };
 
-ShapeROMSpec GUM_PROJECTILE_SHAPES[] =
+ShapeROMSpec GumProjectileShapes[] =
 {
 	{
 		// shape
@@ -192,7 +192,7 @@ ShapeROMSpec GUM_PROJECTILE_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-ProjectileROMSpec GUM_PROJECTILE_PR =
+ProjectileROMSpec GumProjectilePr =
 {
 	// actor
 	{
@@ -211,13 +211,13 @@ ProjectileROMSpec GUM_PROJECTILE_PR =
 				NULL,
 				
 				// sprites
-				(SpriteSpec**)GUM_PROJECTILE_SPRITES,
+				(SpriteSpec**)GumProjectileSprites,
 
 				// use z displacement in projection
 				false,
 
 				// collision shapes
-				(ShapeSpec*)GUM_PROJECTILE_SHAPES,
+				(ShapeSpec*)GumProjectileShapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -231,7 +231,7 @@ ProjectileROMSpec GUM_PROJECTILE_PR =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&GUM_PROJECTILE_ANIM,
+			(AnimationDescription*)&GumProjectileAnimation,
 
 			// initial animation
 			"Default",

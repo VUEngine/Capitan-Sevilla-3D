@@ -25,7 +25,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound HIT_SND;
+extern Sound HitSound;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ void Enemy::takeHit(uint8 power)
 	// play sound
 	SoundManager::playSound(
 		SoundManager::getInstance(),
-		&HIT_SND,
+		&HitSound,
 		kPlayAll,
 		(const Vector3D*)&this->transformation.globalPosition,
 		kSoundWrapperPlaybackNormal,

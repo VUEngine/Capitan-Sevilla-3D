@@ -29,7 +29,7 @@ extern BYTE FlowerPotMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec FLOWER_POT_DEFAULT_ANIM =
+AnimationFunctionROMSpec FlowerPotDefaultAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -50,7 +50,7 @@ AnimationFunctionROMSpec FLOWER_POT_DEFAULT_ANIM =
 	"Default",
 };
 
-AnimationFunctionROMSpec FLOWER_POT_BREAK_ANIM =
+AnimationFunctionROMSpec FlowerPotBreakAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -71,17 +71,17 @@ AnimationFunctionROMSpec FLOWER_POT_BREAK_ANIM =
 	"Break",
 };
 
-AnimationDescriptionROMSpec FLOWER_POT_ANIM =
+AnimationDescriptionROMSpec FlowerPotAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&FLOWER_POT_DEFAULT_ANIM,
-		(AnimationFunction*)&FLOWER_POT_BREAK_ANIM,
+		(AnimationFunction*)&FlowerPotDefaultAnimation,
+		(AnimationFunction*)&FlowerPotBreakAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec FLOWER_POT_CH =
+CharSetROMSpec FlowerPotCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -96,10 +96,10 @@ CharSetROMSpec FLOWER_POT_CH =
 	FlowerPotTiles,
 };
 
-TextureROMSpec FLOWER_POT_TX =
+TextureROMSpec FlowerPotTexture =
 {
 	// charset spec
-	(CharSetSpec*)&FLOWER_POT_CH,
+	(CharSetSpec*)&FlowerPotCharset,
 
 	// bgmap spec
 	FlowerPotMap,
@@ -131,14 +131,14 @@ TextureROMSpec FLOWER_POT_TX =
 	false,
 };
 
-ObjectSpriteROMSpec FLOWER_POT_SPRITE =
+ObjectSpriteROMSpec FlowerPotSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&FLOWER_POT_TX,
+		(TextureSpec*)&FlowerPotTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -155,13 +155,13 @@ ObjectSpriteROMSpec FLOWER_POT_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const FLOWER_POT_SPRITES[] =
+ObjectSpriteROMSpec* const FlowerPotSprites[] =
 {
-	&FLOWER_POT_SPRITE,
+	&FlowerPotSprite,
 	NULL
 };
 
-ShapeROMSpec FLOWER_POT_PR_SHAPES[] =
+ShapeROMSpec FlowerPotPrShapes[] =
 {
 	{
 		// shape
@@ -192,7 +192,7 @@ ShapeROMSpec FLOWER_POT_PR_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-ProjectileROMSpec FLOWER_POT_PR =
+ProjectileROMSpec FlowerPotPr =
 {
 	// actor
 	{
@@ -211,13 +211,13 @@ ProjectileROMSpec FLOWER_POT_PR =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)FLOWER_POT_SPRITES,
+				(SpriteSpec**)FlowerPotSprites,
 
 				// use z displacement in projection
 				false,
 
 				// collision shapes
-				(ShapeSpec*)FLOWER_POT_PR_SHAPES,
+				(ShapeSpec*)FlowerPotPrShapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -231,7 +231,7 @@ ProjectileROMSpec FLOWER_POT_PR =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&FLOWER_POT_ANIM,
+			(AnimationDescription*)&FlowerPotAnimation,
 
 			// initial animation
 			"Default",

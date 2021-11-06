@@ -31,7 +31,7 @@ extern BYTE TitleCapitanBlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec TITLE_CAPITAN_CH =
+CharSetROMSpec TitleCapitanCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -46,7 +46,7 @@ CharSetROMSpec TITLE_CAPITAN_CH =
 	TitleCapitanTiles,
 };
 
-CharSetROMSpec TITLE_CAPITAN_BLACK_CH =
+CharSetROMSpec TitleCapitanBlackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -61,10 +61,10 @@ CharSetROMSpec TITLE_CAPITAN_BLACK_CH =
 	TitleCapitanBlackTiles,
 };
 
-TextureROMSpec TITLE_CAPITAN_TX =
+TextureROMSpec TitleCapitanTexture =
 {
 	// charset spec
-	(CharSetSpec*)&TITLE_CAPITAN_CH,
+	(CharSetSpec*)&TitleCapitanCharset,
 
 	// bgmap spec
 	TitleCapitanMap,
@@ -96,10 +96,10 @@ TextureROMSpec TITLE_CAPITAN_TX =
 	false,
 };
 
-TextureROMSpec TITLE_CAPITAN_BLACK_TX =
+TextureROMSpec TitleCapitanBlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&TITLE_CAPITAN_BLACK_CH,
+	(CharSetSpec*)&TitleCapitanBlackCharset,
 
 	// bgmap spec
 	TitleCapitanBlackMap,
@@ -131,14 +131,14 @@ TextureROMSpec TITLE_CAPITAN_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec TITLE_CAPITAN_SPRITE =
+BgmapSpriteROMSpec TitleCapitanSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&TITLE_CAPITAN_TX,
+		(TextureSpec*)&TitleCapitanTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -158,14 +158,14 @@ BgmapSpriteROMSpec TITLE_CAPITAN_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec TITLE_CAPITAN_BLACK_SPRITE =
+BgmapSpriteROMSpec TitleCapitanBlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&TITLE_CAPITAN_BLACK_TX,
+		(TextureSpec*)&TitleCapitanBlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -185,14 +185,14 @@ BgmapSpriteROMSpec TITLE_CAPITAN_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const TITLE_CAPITAN_SPRITES[] =
+BgmapSpriteROMSpec* const TitleCapitanSprites[] =
 {
-	&TITLE_CAPITAN_BLACK_SPRITE,
-	&TITLE_CAPITAN_SPRITE,
+	&TitleCapitanBlackSprite,
+	&TitleCapitanSprite,
 	NULL
 };
 
-EntityROMSpec TITLE_CAPITAN_IM =
+EntityROMSpec TitleCapitanEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -207,7 +207,7 @@ EntityROMSpec TITLE_CAPITAN_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)TITLE_CAPITAN_SPRITES,
+	(SpriteSpec**)TitleCapitanSprites,
 
 	// use z displacement in projection
 	false,

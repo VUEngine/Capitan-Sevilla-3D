@@ -31,7 +31,7 @@ extern BYTE TitleLogoBlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec TITLE_LOGO_CH =
+CharSetROMSpec TitleLogoCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -46,7 +46,7 @@ CharSetROMSpec TITLE_LOGO_CH =
 	TitleLogoTiles,
 };
 
-CharSetROMSpec TITLE_LOGO_BLACK_CH =
+CharSetROMSpec TitleLogoBlackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -61,10 +61,10 @@ CharSetROMSpec TITLE_LOGO_BLACK_CH =
 	TitleLogoBlackTiles,
 };
 
-TextureROMSpec TITLE_LOGO_TX =
+TextureROMSpec TitleLogoTexture =
 {
 	// charset spec
-	(CharSetSpec*)&TITLE_LOGO_CH,
+	(CharSetSpec*)&TitleLogoCharset,
 
 	// bgmap spec
 	TitleLogoMap,
@@ -96,10 +96,10 @@ TextureROMSpec TITLE_LOGO_TX =
 	false,
 };
 
-TextureROMSpec TITLE_LOGO_BLACK_TX =
+TextureROMSpec TitleLogoBlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&TITLE_LOGO_BLACK_CH,
+	(CharSetSpec*)&TitleLogoBlackCharset,
 
 	// bgmap spec
 	TitleLogoBlackMap,
@@ -131,14 +131,14 @@ TextureROMSpec TITLE_LOGO_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec TITLE_LOGO_SPRITE =
+BgmapSpriteROMSpec TitleLogoSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&TITLE_LOGO_TX,
+		(TextureSpec*)&TitleLogoTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -158,14 +158,14 @@ BgmapSpriteROMSpec TITLE_LOGO_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec TITLE_LOGO_BLACK_SPRITE =
+BgmapSpriteROMSpec TitleLogoBlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&TITLE_LOGO_BLACK_TX,
+		(TextureSpec*)&TitleLogoBlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -185,14 +185,14 @@ BgmapSpriteROMSpec TITLE_LOGO_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const TITLE_LOGO_SPRITES[] =
+BgmapSpriteROMSpec* const TitleLogoSprites[] =
 {
-	&TITLE_LOGO_BLACK_SPRITE,
-	&TITLE_LOGO_SPRITE,
+	&TitleLogoBlackSprite,
+	&TitleLogoSprite,
 	NULL
 };
 
-EntityROMSpec TITLE_LOGO_IM =
+EntityROMSpec TitleLogoEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -207,7 +207,7 @@ EntityROMSpec TITLE_LOGO_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)TITLE_LOGO_SPRITES,
+	(SpriteSpec**)TitleLogoSprites,
 
 	// use z displacement in projection
 	false,

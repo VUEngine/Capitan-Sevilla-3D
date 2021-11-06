@@ -29,7 +29,7 @@ extern BYTE Level1Stage3SignMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_STAGE_3_SIGN_CH =
+CharSetROMSpec Level1Stage3SignCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec LEVEL_1_STAGE_3_SIGN_CH =
 	Level1Stage3SignTiles,
 };
 
-TextureROMSpec LEVEL_1_STAGE_3_SIGN_TX =
+TextureROMSpec Level1Stage3SignTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_3_SIGN_CH,
+	(CharSetSpec*)&Level1Stage3SignCharset,
 
 	// bgmap spec
 	Level1Stage3SignMap,
@@ -79,14 +79,14 @@ TextureROMSpec LEVEL_1_STAGE_3_SIGN_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_3_SIGN_SPRITE =
+BgmapSpriteROMSpec Level1Stage3SignSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_3_SIGN_TX,
+		(TextureSpec*)&Level1Stage3SignTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_3_SIGN_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_STAGE_3_SIGN_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Stage3SignSprites[] =
 {
-	&LEVEL_1_STAGE_3_SIGN_SPRITE,
+	&Level1Stage3SignSprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_STAGE_3_SIGN_EN =
+EntityROMSpec Level1Stage3SignEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec LEVEL_1_STAGE_3_SIGN_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_STAGE_3_SIGN_SPRITES,
+	(SpriteSpec**)Level1Stage3SignSprites,
 
 	// use z displacement in projection
 	false,

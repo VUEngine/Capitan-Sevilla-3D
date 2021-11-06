@@ -29,7 +29,7 @@ extern BYTE Level1Stage3ETMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_STAGE_3_ET_CH =
+CharSetROMSpec Level1Stage3EtCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec LEVEL_1_STAGE_3_ET_CH =
 	Level1Stage3ETTiles,
 };
 
-TextureROMSpec LEVEL_1_STAGE_3_ET_TX =
+TextureROMSpec Level1Stage3EtTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_3_ET_CH,
+	(CharSetSpec*)&Level1Stage3EtCharset,
 
 	// bgmap spec
 	Level1Stage3ETMap,
@@ -79,14 +79,14 @@ TextureROMSpec LEVEL_1_STAGE_3_ET_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_3_ET_SPRITE =
+BgmapSpriteROMSpec Level1Stage3EtSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_3_ET_TX,
+		(TextureSpec*)&Level1Stage3EtTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_3_ET_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_STAGE_3_ET_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Stage3EtSprites[] =
 {
-	&LEVEL_1_STAGE_3_ET_SPRITE,
+	&Level1Stage3EtSprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_STAGE_3_ET_EN =
+EntityROMSpec Level1Stage3EtEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec LEVEL_1_STAGE_3_ET_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_STAGE_3_ET_SPRITES,
+	(SpriteSpec**)Level1Stage3EtSprites,
 
 	// use z displacement in projection
 	false,

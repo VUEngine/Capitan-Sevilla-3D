@@ -24,15 +24,15 @@
 
 extern BYTE Level1Stage2LiftTiles[];
 extern BYTE Level1Stage2LiftMap[];
-extern StageEntryPointSpec LEVEL_1_STAGE_3_MAIN_EP;
-extern StageEntryPointSpec LEVEL_1_STAGE_4_MAIN_EP;
+extern StageEntryPointSpec Level1Stage3MainEntryPoint;
+extern StageEntryPointSpec Level1Stage4MainEntryPoint;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec LEVEL_1_STAGE_2_LIFT_OPEN_ANIM =
+AnimationFunctionROMSpec Level1Stage2LiftOpenAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -53,7 +53,7 @@ AnimationFunctionROMSpec LEVEL_1_STAGE_2_LIFT_OPEN_ANIM =
 	"Open",
 };
 
-AnimationFunctionROMSpec LEVEL_1_STAGE_2_LIFT_CLOSED_ANIM =
+AnimationFunctionROMSpec Level1Stage2LiftClosedAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -74,7 +74,7 @@ AnimationFunctionROMSpec LEVEL_1_STAGE_2_LIFT_CLOSED_ANIM =
 	"Closed",
 };
 
-AnimationFunctionROMSpec LEVEL_1_STAGE_2_LIFT_BROKEN_ANIM =
+AnimationFunctionROMSpec Level1Stage2LiftBrokenAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -95,18 +95,18 @@ AnimationFunctionROMSpec LEVEL_1_STAGE_2_LIFT_BROKEN_ANIM =
 	"Broken",
 };
 
-AnimationDescriptionROMSpec LEVEL_1_STAGE_2_LIFT_ANIM =
+AnimationDescriptionROMSpec Level1Stage2LiftAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&LEVEL_1_STAGE_2_LIFT_OPEN_ANIM,
-		(AnimationFunction*)&LEVEL_1_STAGE_2_LIFT_CLOSED_ANIM,
-		(AnimationFunction*)&LEVEL_1_STAGE_2_LIFT_BROKEN_ANIM,
+		(AnimationFunction*)&Level1Stage2LiftOpenAnimation,
+		(AnimationFunction*)&Level1Stage2LiftClosedAnimation,
+		(AnimationFunction*)&Level1Stage2LiftBrokenAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec LEVEL_1_STAGE_2_LIFT_CH =
+CharSetROMSpec Level1Stage2LiftCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -121,9 +121,9 @@ CharSetROMSpec LEVEL_1_STAGE_2_LIFT_CH =
 	Level1Stage2LiftTiles,
 };
 
-TextureROMSpec LEVEL_1_STAGE_2_LIFT_TX =
+TextureROMSpec Level1Stage2LiftTexture =
 {
-	(CharSetSpec*)&LEVEL_1_STAGE_2_LIFT_CH,
+	(CharSetSpec*)&Level1Stage2LiftCharset,
 
 	// bgmap spec
 	Level1Stage2LiftMap,
@@ -155,14 +155,14 @@ TextureROMSpec LEVEL_1_STAGE_2_LIFT_TX =
 	false
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_2_LIFT_SPRITE =
+BgmapSpriteROMSpec Level1Stage2LiftSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_2_LIFT_TX,
+		(TextureSpec*)&Level1Stage2LiftTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -182,13 +182,13 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_LIFT_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_STAGE_2_LIFT_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Stage2LiftSprites[] =
 {
-	&LEVEL_1_STAGE_2_LIFT_SPRITE,
+	&Level1Stage2LiftSprite,
 	NULL
 };
 
-ShapeROMSpec LEVEL_1_STAGE_2_LIFT_SHAPES[] =
+ShapeROMSpec Level1Stage2LiftShapes[] =
 {
 	// TODO: this shape should not activate lift
 	/*
@@ -249,7 +249,7 @@ ShapeROMSpec LEVEL_1_STAGE_2_LIFT_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-LiftROMSpec LEVEL_1_STAGE_2_LIFT_EN =
+LiftROMSpec Level1Stage2LiftEntity =
 {
 	{
 		{
@@ -267,13 +267,13 @@ LiftROMSpec LEVEL_1_STAGE_2_LIFT_EN =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+				(SpriteSpec**)Level1Stage2LiftSprites,
 
 				// use z displacement in projection
 				false,
 
 				// collision shapes
-				(ShapeSpec*)LEVEL_1_STAGE_2_LIFT_SHAPES,
+				(ShapeSpec*)Level1Stage2LiftShapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -287,7 +287,7 @@ LiftROMSpec LEVEL_1_STAGE_2_LIFT_EN =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&LEVEL_1_STAGE_2_LIFT_ANIM,
+			(AnimationDescription*)&Level1Stage2LiftAnimation,
 
 			// initial animation
 			"Open"
@@ -307,10 +307,10 @@ LiftROMSpec LEVEL_1_STAGE_2_LIFT_EN =
 	{0, __I_TO_FIX10_6(-2), 0},
 
 	// entry point to load after entering
-	(StageEntryPointSpec*)&LEVEL_1_STAGE_3_MAIN_EP,
+	(StageEntryPointSpec*)&Level1Stage3MainEntryPoint,
 };
 
-LiftROMSpec LEVEL_1_STAGE_3_LIFT_EN =
+LiftROMSpec Level1Stage3LiftEntity =
 {
 	{
 		{
@@ -328,13 +328,13 @@ LiftROMSpec LEVEL_1_STAGE_3_LIFT_EN =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+				(SpriteSpec**)Level1Stage2LiftSprites,
 
 				// use z displacement in projection
 				false,
 
 				// collision shapes
-				(ShapeSpec*)LEVEL_1_STAGE_2_LIFT_SHAPES,
+				(ShapeSpec*)Level1Stage2LiftShapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -348,7 +348,7 @@ LiftROMSpec LEVEL_1_STAGE_3_LIFT_EN =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&LEVEL_1_STAGE_2_LIFT_ANIM,
+			(AnimationDescription*)&Level1Stage2LiftAnimation,
 
 			// initial animation
 			"Open"
@@ -368,11 +368,11 @@ LiftROMSpec LEVEL_1_STAGE_3_LIFT_EN =
 	{0, __I_TO_FIX10_6(2), 0},
 
 	// entry point to load after entering
-	(StageEntryPointSpec*)&LEVEL_1_STAGE_4_MAIN_EP,
+	(StageEntryPointSpec*)&Level1Stage4MainEntryPoint,
 };
 
 
-ShapeROMSpec LEVEL_1_STAGE_4_LIFT_SHAPES[] =
+ShapeROMSpec Level1Stage4LiftShapes[] =
 {
 	// TODO: this shape should not activate lift
 	// bottom
@@ -407,7 +407,7 @@ ShapeROMSpec LEVEL_1_STAGE_4_LIFT_SHAPES[] =
 };
 
 
-LiftROMSpec LEVEL_1_STAGE_4_LIFT_EN =
+LiftROMSpec Level1Stage4LiftEntity =
 {
 	{
 		{
@@ -425,13 +425,13 @@ LiftROMSpec LEVEL_1_STAGE_4_LIFT_EN =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)LEVEL_1_STAGE_2_LIFT_SPRITES,
+				(SpriteSpec**)Level1Stage2LiftSprites,
 
 				// use z displacement in projection
 				false,
 
 				// collision shapes
-				(ShapeSpec*)LEVEL_1_STAGE_4_LIFT_SHAPES,
+				(ShapeSpec*)Level1Stage4LiftShapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -445,7 +445,7 @@ LiftROMSpec LEVEL_1_STAGE_4_LIFT_EN =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&LEVEL_1_STAGE_2_LIFT_ANIM,
+			(AnimationDescription*)&Level1Stage2LiftAnimation,
 
 			// initial animation
 			"Closed"

@@ -29,7 +29,7 @@ extern BYTE TitleEarthMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec TITLE_EARTH_CH =
+CharSetROMSpec TitleEarthCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec TITLE_EARTH_CH =
 	TitleEarthTiles,
 };
 
-TextureROMSpec TITLE_EARTH_TX =
+TextureROMSpec TitleEarthTexture =
 {
 	// charset spec
-	(CharSetSpec*)&TITLE_EARTH_CH,
+	(CharSetSpec*)&TitleEarthCharset,
 
 	// bgmap spec
 	TitleEarthMap,
@@ -79,14 +79,14 @@ TextureROMSpec TITLE_EARTH_TX =
 	false,
 };
 
-BgmapSpriteROMSpec TITLE_EARTH_SPRITE =
+BgmapSpriteROMSpec TitleEarthSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&TITLE_EARTH_TX,
+		(TextureSpec*)&TitleEarthTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec TITLE_EARTH_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const TITLE_EARTH_SPRITES[] =
+BgmapSpriteROMSpec* const TitleEarthSprites[] =
 {
-	&TITLE_EARTH_SPRITE,
+	&TitleEarthSprite,
 	NULL
 };
 
-EntityROMSpec TITLE_EARTH_IM =
+EntityROMSpec TitleEarthEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec TITLE_EARTH_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)TITLE_EARTH_SPRITES,
+	(SpriteSpec**)TitleEarthSprites,
 
 	// use z displacement in projection
 	false,

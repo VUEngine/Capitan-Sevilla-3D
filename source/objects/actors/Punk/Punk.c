@@ -54,8 +54,8 @@ bool Punk::handleMessage(Telegram telegram)
 
 void Punk::die()
 {
-	extern SpriteSpec* const PUNK_DYING_SPRITES[];
-	Punk::addSprites(this, (SpriteSpec**)PUNK_DYING_SPRITES);
+	extern SpriteSpec* const PunkDyingSprites[];
+	Punk::addSprites(this, (SpriteSpec**)PunkDyingSprites);
 
 	Punk::stopAllMovement(this);
 	Punk::allowCollisions(this, false);

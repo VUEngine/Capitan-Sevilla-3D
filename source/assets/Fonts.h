@@ -7,7 +7,7 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES                                                 
 //---------------------------------------------------------------------------------------------------------
 
 #include <Printing.h>
@@ -15,12 +15,12 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//                                              DECLARATIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-extern FontSpec DEFAULT_FONT;
-extern FontSpec PROFILER_FONT;
-extern FontSpec CAPITAN_FONT;
+extern FontSpec DefaultFont;
+extern FontSpec ProfilerFont;
+extern FontSpec CapitanFont;
 
 
 #endif

@@ -24,7 +24,7 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-#include <MIDI.h>
+#include <WaveForms.h>
 
 const uint16 SELECT_TRACK_1[] =
 {
@@ -33,7 +33,7 @@ const uint16 SELECT_TRACK_1[] =
   15, 15, 15, 
 };
 
-SoundChannelConfigurationROM SELECT_SOUND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM SelectSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -63,7 +63,7 @@ SoundChannelConfigurationROM SELECT_SOUND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sawtoothWaveForm,
+	SawtoothWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -72,10 +72,10 @@ SoundChannelConfigurationROM SELECT_SOUND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM SELECT_SOUND_CHANNEL_1 =
+SoundChannelROM SelectSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&SELECT_SOUND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&SelectSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -87,13 +87,13 @@ SoundChannelROM SELECT_SOUND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* SELECT_SOUND_CHANNELS[] =
+SoundChannelROM* SelectSoundChannels[] =
 {
-	&SELECT_SOUND_CHANNEL_1,
+	&SelectSoundChannel1,
 	NULL
 };
 
-SoundROM SELECT_SOUND =
+SoundROM SelectSound =
 {
 	/// Name
 	"Select",
@@ -105,5 +105,5 @@ SoundROM SELECT_SOUND =
 	1000,
 
 	/// Tracks
-	(SoundChannel**)SELECT_SOUND_CHANNELS
+	(SoundChannel**)SelectSoundChannels
 };

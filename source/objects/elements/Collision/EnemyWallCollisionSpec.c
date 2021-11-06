@@ -23,7 +23,7 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ShapeROMSpec ENEMY_WALL_CL_SHPS[] =
+ShapeROMSpec EnemyWallClShapes[] =
 {
 	{
 		// shape
@@ -54,7 +54,7 @@ ShapeROMSpec ENEMY_WALL_CL_SHPS[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-EntityROMSpec ENEMY_WALL_CL =
+EntityROMSpec EnemyWallCl =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -75,7 +75,7 @@ EntityROMSpec ENEMY_WALL_CL =
 	false,
 
 	// collision shapes
-	(ShapeSpec*)ENEMY_WALL_CL_SHPS,
+	(ShapeSpec*)EnemyWallClShapes,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size

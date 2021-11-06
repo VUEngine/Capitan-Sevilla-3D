@@ -22,7 +22,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound ENGINE_SND;
+extern Sound EngineSound;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ void Car::ready(bool recursive)
 
 	this->engineSound = SoundManager::getSound(
 		SoundManager::getInstance(),
-		&ENGINE_SND,
+		&EngineSound,
 		kPlayAll,
 		(EventListener)Car::onEngineSoundReleased,
 		Object::safeCast(this)

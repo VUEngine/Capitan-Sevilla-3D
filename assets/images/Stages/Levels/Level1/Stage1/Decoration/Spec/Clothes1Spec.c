@@ -29,7 +29,7 @@ extern BYTE Clothes1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CLOTHES_1_CH =
+CharSetROMSpec Clothes1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec CLOTHES_1_CH =
 	Clothes1Tiles,
 };
 
-TextureROMSpec CLOTHES_1_TX =
+TextureROMSpec Clothes1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&CLOTHES_1_CH,
+	(CharSetSpec*)&Clothes1Charset,
 
 	// bgmap spec
 	Clothes1Map,
@@ -79,14 +79,14 @@ TextureROMSpec CLOTHES_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CLOTHES_1_SPRITE =
+BgmapSpriteROMSpec Clothes1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CLOTHES_1_TX,
+		(TextureSpec*)&Clothes1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec CLOTHES_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CLOTHES_1_SPRITES[] =
+BgmapSpriteROMSpec* const Clothes1Sprites[] =
 {
-	&CLOTHES_1_SPRITE,
+	&Clothes1Sprite,
 	NULL
 };
 
-EntityROMSpec CLOTHES_1_EN =
+EntityROMSpec Clothes1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec CLOTHES_1_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CLOTHES_1_SPRITES,
+	(SpriteSpec**)Clothes1Sprites,
 
 	// use z displacement in projection
 	false,
