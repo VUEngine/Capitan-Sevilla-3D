@@ -36,5 +36,5 @@ PlatformerLevelROMSpec Level1 =
 	1,
 
 	// name
-	(void*)STR_LEVEL_1_NAME,
+	(void*)kStringLevel1Name,
 };

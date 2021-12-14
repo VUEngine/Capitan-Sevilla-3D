@@ -18,15 +18,15 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CsAdjustmentScreenLogoTiles[];
-extern BYTE CsAdjustmentScreenLogoMap[];
+extern BYTE AdjustmentScreenLogoTiles[];
+extern BYTE AdjustmentScreenLogoMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CsAdjustmentScreenLogoCharset =
+CharSetROMSpec AdjustmentScreenLogoCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -38,16 +38,16 @@ CharSetROMSpec CsAdjustmentScreenLogoCharset =
 	__NOT_ANIMATED,
 
 	// char spec
-	CsAdjustmentScreenLogoTiles,
+	AdjustmentScreenLogoTiles,
 };
 
-TextureROMSpec CsAdjustmentScreenLogoTexture =
+TextureROMSpec AdjustmentScreenLogoTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CsAdjustmentScreenLogoCharset,
+	(CharSetSpec*)&AdjustmentScreenLogoCharset,
 
 	// bgmap spec
-	CsAdjustmentScreenLogoMap,
+	AdjustmentScreenLogoMap,
 
 	// cols (max 64)
 	21,
@@ -76,14 +76,14 @@ TextureROMSpec CsAdjustmentScreenLogoTexture =
 	false,
 };
 
-BgmapSpriteROMSpec CsAdjustmentScreenLogoSprite =
+BgmapSpriteROMSpec AdjustmentScreenLogoSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CsAdjustmentScreenLogoTexture,
+		(TextureSpec*)&AdjustmentScreenLogoTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -103,13 +103,13 @@ BgmapSpriteROMSpec CsAdjustmentScreenLogoSprite =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CsAdjustmentScreenLogoSprites[] =
+BgmapSpriteROMSpec* const AdjustmentScreenLogoSprites[] =
 {
-	&CsAdjustmentScreenLogoSprite,
+	&AdjustmentScreenLogoSprite,
 	NULL
 };
 
-EntityROMSpec CsAdjustmentScreenLogoEntity =
+EntityROMSpec AdjustmentScreenLogoEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -124,7 +124,7 @@ EntityROMSpec CsAdjustmentScreenLogoEntity =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CsAdjustmentScreenLogoSprites,
+	(SpriteSpec**)AdjustmentScreenLogoSprites,
 
 	// use z displacement in projection
 	false,

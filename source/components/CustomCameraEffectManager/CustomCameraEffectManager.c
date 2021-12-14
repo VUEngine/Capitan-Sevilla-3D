@@ -32,9 +32,9 @@
 
 friend class Camera;
 
-extern BrightnessRepeatROMSpec EDGE_FADE_OUT_BRIGHTNESS_REPEAT;
-extern BrightnessRepeatROMSpec EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT;
-extern BrightnessRepeatROMSpec EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT;
+extern BrightnessRepeatROMSpec EdgeFadeOutBrightnessRepeat;
+extern BrightnessRepeatROMSpec EdgeFadeOutWideBrightnessRepeat;
+extern BrightnessRepeatROMSpec EdgeFadeOutVeryWideBrightnessRepeat;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -45,10 +45,10 @@ static Camera _camera = NULL;
 
 BrightnessRepeatROMSpec* SCREEN_PULSATE_STEPS[] =
 {
-	&EDGE_FADE_OUT_BRIGHTNESS_REPEAT,
-	&EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT,
-	//&EDGE_FADE_OUT_VERY_WIDE_BRIGHTNESS_REPEAT,
-	//&EDGE_FADE_OUT_WIDE_BRIGHTNESS_REPEAT,
+	&EdgeFadeOutBrightnessRepeat,
+	&EdgeFadeOutWideBrightnessRepeat,
+	//&EdgeFadeOutVeryWideBrightnessRepeat,
+	//&EdgeFadeOutWideBrightnessRepeat,
 	NULL
 };
 

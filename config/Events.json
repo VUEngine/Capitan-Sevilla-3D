@@ -1,0 +1,19 @@
+[
+	"CaptainDied",
+	"CaptainShot",
+	"CaptainSpawned",
+	"CheckpointLoaded",
+	"ComicDeleted",
+	"DuckCollected",
+	"ExitPointReached",
+	"GumsReloaded",
+	"HitTaken",
+	"LevelCompleted",
+	"LevelStarted",
+	"LiftActivated",
+	"ScreenFocused",
+	"SetModeToPaused",
+	"SetModeToPlaying",
+	"ShakeCompleted",
+	"UserInput"
+]

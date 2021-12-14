@@ -2,91 +2,82 @@
 //                              THIS FILE WAS AUTO-GENERATED - DO NOT EDIT                               //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 //---------------------------------------------------------------------------------------------------------
-// IMPORTANT: Ensure that this file is encoded in Windows-1252 to make use of the full
-//            character set including special characters of European languages.
-//---------------------------------------------------------------------------------------------------------
-
-//---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES                                                 
 //---------------------------------------------------------------------------------------------------------
 
 #include <I18n.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//                                              DECLARATIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
 extern EntitySpec FlagSpainEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//                                               DEFINITIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-const char* const LANGUAGE_ES_STRINGS[] =
+const char* const SpanishLanguageStrings[] =
 {
-	/* STR_ARE_YOU_SURE: */
-	"ï¿½ESTï¿½S SEGURO?",
-	/* STR_AUTO_PAUSE_EXPLANATION: */
-	"  LA FUNCIï¿½N AUTOMï¿½TICA DE PAUSA TE\n\nRECORDARï¿½ QUE DEBES TOMAR UN DESCANSO\n\n  APPROXIMADAMENTE CADA 30 MINUTOS.",
-	/* STR_AUTOMATIC_PAUSE: */
-	"PAUSA AUTOMï¿½TICA",
-	/* STR_BACK: */
-	"REGRESAR",
-	/* STR_CONTINUE: */
-	"CONTINUAR",
-	/* STR_CREDITS: */
-	"CRï¿½DITOS",
-	/* STR_LANGUAGE: */
-	"IDIOMA",
-	/* STR_LANGUAGE_SELECT: */
-	"SELECCIONAR IDIOMA",
-	/* STR_LEVEL: */
-	"NIVEL",
-	/* STR_LEVEL_1_NAME: */
-	"SEVILLA,\nMISION:\nRECUPERAR EL LIBRO",
-	/* STR_NEW_BEST: */
-	"ï¿½NUEVO Rï¿½CORD!",
-	/* STR_NEW_GAME: */
-	"NUEVO JUEGO",
-	/* STR_NO: */
-	"NO",
-	/* STR_OFF: */
+	/* kStringAreYouSure: */
+	"¿ESTÁS SEGURO?",
+	/* kStringAutomaticPauseBody: */
+	"¡POR FAVOR, TÓMATE UN DESCANSO!",
+	/* kStringAutomaticPauseSelectionBody: */
+	"  LA FUNCIÓN AUTOMÁTICA DE PAUSA TE\n\nRECORDARÁ QUE DEBES TOMAR UN DESCANSO\n\n  APPROXIMADAMENTE CADA 30 MINUTOS.",
+	/* kStringAutomaticPauseSelectionOff: */
 	"APAGADO",
-	/* STR_ON: */
+	/* kStringAutomaticPauseSelectionOn: */
 	"ENCENDIDO",
-	/* STR_OPTIONS: */
+	/* kStringAutomaticPauseSelectionTitle: */
+	"PAUSA AUTOMÁTICA",
+	/* kStringAutomaticPauseTitle: */
+	"PAUSA AUTOMÁTICA",
+	/* kStringBack: */
+	"REGRESAR",
+	/* kStringContinue: */
+	"CONTINUAR",
+	/* kStringCredits: */
+	"CRÉDITOS",
+	/* kStringLanguage: */
+	"IDIOMA",
+	/* kStringLanguageSelectTitle: */
+	"SELECCIONAR IDIOMA",
+	/* kStringLevel: */
+	"NIVEL",
+	/* kStringLevel1Name: */
+	"SEVILLA,\nMISION:\nRECUPERAR EL LIBRO",
+	/* kStringNo: */
+	"NO",
+	/* kStringOptions: */
 	"OPCIONES",
-	/* STR_PAUSE: */
+	/* kStringPause: */
 	"PAUSA",
-	/* STR_PRECAUTION_SCREEN_TEXT: */
+	/* kStringPrecautionScreenBody: */
 	"     IMPORTANTE\n\n  ANTES DE COMENZAR  \n\nLEER LAS INDICACIONES\n\nDEL MANUAL DE USUARIO",
-	/* STR_PRESENTS: */
+	/* kStringPresents: */
 	"PRESENTA",
-	/* STR_PRESS_START_BUTTON: */
+	/* kStringPressStartButton: */
 	"PRESIONAR START",
-	/* STR_QUIT_GAME: */
+	/* kStringQuitGame: */
 	"SALIR DEL JUEGO",
-	/* STR_SELECT: */
+	/* kStringSelect: */
 	"SELECCIONAR",
-	/* STR_TAKE_A_REST: */
-	"ï¿½POR FAVOR, Tï¿½MATE UN DESCANSO!",
-	/* STR_YES: */
-	"Sï¿½",
-	
+	/* kStringYes: */
+	"SÍ",
 };
 
-const LangROMSpec LANGUAGE_ES =
+const LangROMSpec SpanishLanguage =
 {
 	// language name
-	"ESPAï¿½OL",
+	"ESPAÑOL",
 
 	// flag entity
 	&FlagSpainEntity,
 	
 	// strings
-	(const char**)LANGUAGE_ES_STRINGS
+	(const char**)SpanishLanguageStrings
 };

@@ -1,5 +1,4 @@
-Capitán Sevilla 3D
-==================
+# Capitán Sevilla 3D
 
 Capitán Sevilla 3D is a tribute and sequel to Hi-Score's and Dinamic Software's 
 Capitán Sevilla for Amstrad CPC, ZX Spectrum and MSX from 1988. It's a humorous side-
@@ -43,7 +42,3 @@ Credits
   - Rubén Garcerá Soto
     - Original idea & demo
     - Graphics and animation
-
-
-V810 is a trade mark of NEC. Virtual Boy is a trade mark of Nintendo.
-Jorge Eremiev and Christian Radke are in no way affiliated with either of these parties.

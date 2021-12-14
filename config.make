@@ -8,12 +8,10 @@ PLUGINS 						= vuengine//entities/LocalizedEntity \
 								  vuengine//other/AutomaticPause \
 								  vuengine//other/I18n \
 								  vuengine//other/SaveDataManager \
-								  vuengine//other/LowPowerIndicator \
-								  vuengine//states/splash/SplashScreen \
-								  vuengine//states/splash/AdjustmentScreenVUEngine \
 								  vuengine//states/splash/AutomaticPauseSelectionScreen \
 								  vuengine//states/splash/LanguageSelectionScreen \
-								  vuengine//states/splash/PrecautionScreen
+								  vuengine//states/splash/PrecautionScreen \
+								  vuengine//states/splash/SplashScreen
 
 # Compiler's output
 COMPILER_OUTPUT					= c

@@ -2,41 +2,26 @@
 //                              THIS FILE WAS AUTO-GENERATED - DO NOT EDIT                               //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef GAME_EVENTS_H_
-#define GAME_EVENTS_H_
-
-
 //---------------------------------------------------------------------------------------------------------
 //                                                INCLUDES                                                 
 //---------------------------------------------------------------------------------------------------------
 
-#include <Events.h>
+#include <VIPManager.h>
 
 
 //---------------------------------------------------------------------------------------------------------
 //                                               DEFINITIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-enum GameEvents
+BrightnessRepeatROMSpec EdgeFadeOutVeryWideBrightnessRepeat =
 {
-	kEventCaptainDied = kEventEngineLast + 1,
-	kEventCaptainShot,
-	kEventCaptainSpawned,
-	kEventCheckpointLoaded,
-	kEventComicDeleted,
-	kEventDuckCollected,
-	kEventExitPointReached,
-	kEventGumsReloaded,
-	kEventHitTaken,
-	kEventLevelCompleted,
-	kEventLevelStarted,
-	kEventLiftActivated,
-	kEventScreenFocused,
-	kEventSetModeToPaused,
-	kEventSetModeToPlaying,
-	kEventShakeCompleted,
-	kEventUserInput,
+	// mirror spec?
+	true,
+
+	// brightness repeat values
+	{
+		 0,  0,  0,  1,  1,  1,  2,  2,  2,  3,  3,  3,  4,  4,  4,  5, 
+		 5,  5,  6,  6,  6,  7,  7,  7,  8,  8,  8,  9,  9,  9, 10, 10, 
+		10, 11, 11, 11, 12, 12, 12, 13, 13, 13, 14, 14, 14, 15, 15, 15, 
+	}
 };
-
-
-#endif

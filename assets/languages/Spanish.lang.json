@@ -1,0 +1,32 @@
+{
+	"id": "Spanish",
+	"code": "ES",
+	"flag": "FlagSpainEntity",
+	"name": "ESPAÑOL",
+	"order": 2,
+	"strings": {
+		"AreYouSure": "¿ESTÁS SEGURO?",
+		"AutomaticPauseBody": "¡POR FAVOR, TÓMATE UN DESCANSO!",
+		"AutomaticPauseSelectionBody": "  LA FUNCIÓN AUTOMÁTICA DE PAUSA TE\n\nRECORDARÁ QUE DEBES TOMAR UN DESCANSO\n\n  APPROXIMADAMENTE CADA 30 MINUTOS.",
+		"AutomaticPauseSelectionOff": "APAGADO",
+		"AutomaticPauseSelectionOn": "ENCENDIDO",
+		"AutomaticPauseSelectionTitle": "PAUSA AUTOMÁTICA",
+		"AutomaticPauseTitle": "PAUSA AUTOMÁTICA",
+		"Back": "REGRESAR",
+		"Continue": "CONTINUAR",
+		"Credits": "CRÉDITOS",
+		"Language": "IDIOMA",
+		"LanguageSelectTitle": "SELECCIONAR IDIOMA",
+		"Level": "NIVEL",
+		"Level1Name": "SEVILLA,\nMISION:\nRECUPERAR EL LIBRO",
+		"No": "NO",
+		"Options": "OPCIONES",
+		"Pause": "PAUSA",
+		"PrecautionScreenBody": "     IMPORTANTE\n\n  ANTES DE COMENZAR  \n\nLEER LAS INDICACIONES\n\nDEL MANUAL DE USUARIO",
+		"Presents": "PRESENTA",
+		"PressStartButton": "PRESIONAR START",
+		"QuitGame": "SALIR DEL JUEGO",
+		"Select": "SELECCIONAR",
+		"Yes": "SÍ"
+	}
+}

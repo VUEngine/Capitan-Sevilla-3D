@@ -12,7 +12,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 #include <Stage.h>
-#include <CsAdjustmentScreenState.h>
+#include <AdjustmentScreenState.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -20,11 +20,11 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-extern EntitySpec CsAdjustmentScreenSplatEntity;
-extern EntitySpec CsAdjustmentScreenIconLEntity;
-extern EntitySpec CsAdjustmentScreenIconREntity;
-extern EntitySpec CsAdjustmentScreenLogoEntity;
-extern EntitySpec CsAdjustmentScreenMadeWithEntity;
+extern EntitySpec AdjustmentScreenSplatEntity;
+extern EntitySpec AdjustmentScreenIconLEntity;
+extern EntitySpec AdjustmentScreenIconREntity;
+extern EntitySpec AdjustmentScreenLogoEntity;
+extern EntitySpec AdjustmentScreenMadeWithEntity;
 
 extern EntitySpec LowPowerIndicatorEntity;
 
@@ -33,28 +33,28 @@ extern EntitySpec LowPowerIndicatorEntity;
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec CsAdjustmentScreenStageEntities[] =
+PositionedEntityROMSpec AdjustmentScreenStageEntities[] =
 {
 
-	{&CsAdjustmentScreenIconREntity, 		{ 16, 202,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CsAdjustmentScreenIconLEntity, 		{ 16,  22,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CsAdjustmentScreenSplatEntity, 		{192, 112,  1, 0}, 0, NULL, NULL, NULL, false},
-	//{&CsAdjustmentScreenMadeWithEntity, 	{130,  90,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CsAdjustmentScreenLogoEntity, 		{192, 110,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CsAdjustmentScreenIconLEntity, 		{368, 202,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CsAdjustmentScreenIconREntity, 		{368,  22,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&AdjustmentScreenIconREntity, 		{ 16, 202,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&AdjustmentScreenIconLEntity, 		{ 16,  22,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&AdjustmentScreenSplatEntity, 		{192, 112,  1, 0}, 0, NULL, NULL, NULL, false},
+	//{&AdjustmentScreenMadeWithEntity, 	{130,  90,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&AdjustmentScreenLogoEntity, 		{192, 110,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&AdjustmentScreenIconLEntity, 		{368, 202,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&AdjustmentScreenIconREntity, 		{368,  22,  0, 0}, 0, NULL, NULL, NULL, false},
 
 	{&LowPowerIndicatorEntity, 				{ 40,  12,  0, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec CsAdjustmentScreenStageUiEntities[] =
+PositionedEntityROMSpec AdjustmentScreenStageUiEntities[] =
 {
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-SoundROM* const CsAdjustmentScreenStage_SOUNDS[] =
+SoundROM* const AdjustmentScreenStage_SOUNDS[] =
 {
 	NULL
 };
@@ -64,7 +64,7 @@ SoundROM* const CsAdjustmentScreenStage_SOUNDS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec CsAdjustmentScreenStage =
+StageROMSpec AdjustmentScreenStage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -263,19 +263,19 @@ StageROMSpec CsAdjustmentScreenStage =
 		(TextureSpec**)NULL,
 
 		// background sounds
-		(Sound**)CsAdjustmentScreenStage_SOUNDS,
+		(Sound**)AdjustmentScreenStage_SOUNDS,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			(PositionedEntity*)CsAdjustmentScreenStageUiEntities,
+			(PositionedEntity*)AdjustmentScreenStageUiEntities,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)CsAdjustmentScreenStageEntities,
+		(PositionedEntity*)AdjustmentScreenStageEntities,
 	},
 
 	// post processing effects
