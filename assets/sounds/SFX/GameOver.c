@@ -14,7 +14,7 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -39,7 +39,7 @@ const uint16 GAME_OVER_TRACK_2[] =
 
 
 
-SoundChannelConfigurationROM GAME_OVER_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM GameOverCharsetANNEL_1_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -69,7 +69,7 @@ SoundChannelConfigurationROM GAME_OVER_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	triangleWaveForm,
+	TriangleWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -78,10 +78,10 @@ SoundChannelConfigurationROM GAME_OVER_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM GAME_OVER_CHANNEL_1 =
+SoundChannelROM GameOverCharsetANNEL_1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&GAME_OVER_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&GameOverCharsetANNEL_1_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
@@ -92,7 +92,7 @@ SoundChannelROM GAME_OVER_CHANNEL_1 =
 	}
 };
 
-SoundChannelConfigurationROM GAME_OVER_CHANNEL_2_CONFIGURATION =
+SoundChannelConfigurationROM GameOverCharsetANNEL_2_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -122,7 +122,7 @@ SoundChannelConfigurationROM GAME_OVER_CHANNEL_2_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	trumpetWaveForm,
+	TrumpetWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -131,10 +131,10 @@ SoundChannelConfigurationROM GAME_OVER_CHANNEL_2_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM GAME_OVER_CHANNEL_2 =
+SoundChannelROM GameOverCharsetANNEL_2 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&GAME_OVER_CHANNEL_2_CONFIGURATION,
+	(SoundChannelConfiguration*)&GameOverCharsetANNEL_2_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
@@ -146,10 +146,10 @@ SoundChannelROM GAME_OVER_CHANNEL_2 =
 };
 
 
-SoundChannelROM* GAME_OVER_CHANNELS[] =
+SoundChannelROM* GameOverCharsetANNELS[] =
 {
-	&GAME_OVER_CHANNEL_1,
-	&GAME_OVER_CHANNEL_2,
+	&GameOverCharsetANNEL_1,
+	&GameOverCharsetANNEL_2,
 	NULL
 };
 
@@ -165,5 +165,5 @@ SoundROM GAME_OVER_SND =
 	2240,
 
 	/// Tracks
-	(SoundChannel**)GAME_OVER_CHANNELS
+	(SoundChannel**)GameOverCharsetANNELS
 };

@@ -45,13 +45,13 @@
 
 extern double fabs (double);
 
-extern EntitySpec CAPTAIN_HEAD_PE;
-extern EntitySpec LAND_DUST_EN;
-extern EntitySpec JUMP_DUST_EN;
-extern Sound SHOOT_SND;
-extern Sound JUMP_SND;
-extern Sound RELOAD_SND;
-extern Sound HIT_SND;
+extern EntitySpec CaptainHeadPe;
+extern EntitySpec LandDustEntity;
+extern EntitySpec JumpDustEntity;
+extern Sound ShootSound;
+extern Sound JumpSound;
+extern Sound ReloadSound;
+extern Sound HitSound;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -150,7 +150,7 @@ void Captain::ready(bool recursive)
 void Captain::addProjectileEjectorEntity()
 {
 	Vector3D position = {__PIXELS_TO_METERS(CAPTAIN_HEAD_X_OFFSET), __PIXELS_TO_METERS(CAPTAIN_HEAD_Y_OFFSET), 0};
-	this->headEntity = Entity::addChildEntity(this, &CAPTAIN_HEAD_PE, -1, NULL, &position, NULL);
+	this->headEntity = Entity::addChildEntity(this, &CaptainHeadPe, -1, NULL, &position, NULL);
 
 	Object::addEventListener(this->headEntity, Object::safeCast(this), (EventListener)Captain::onProjectileEjected, kEventProjectileEjected);
 }
@@ -158,10 +158,10 @@ void Captain::addProjectileEjectorEntity()
 void Captain::addDustEntity()
 {
 	Vector3D positionJumpDustEntity = {0, __PIXELS_TO_METERS(20), 0};
-	this->jumpDustEntity = Entity::addChildEntity(this, &JUMP_DUST_EN, -1, NULL, &positionJumpDustEntity, NULL);
+	this->jumpDustEntity = Entity::addChildEntity(this, &JumpDustEntity, -1, NULL, &positionJumpDustEntity, NULL);
 
 	Vector3D positionLandDustEntity = {0, __PIXELS_TO_METERS(22), 0};
-	this->landDustEntity = Entity::addChildEntity(this, &LAND_DUST_EN, -1, NULL, &positionLandDustEntity, NULL);
+	this->landDustEntity = Entity::addChildEntity(this, &LandDustEntity, -1, NULL, &positionLandDustEntity, NULL);
 }
 
 void Captain::startShooting()
@@ -175,7 +175,7 @@ void Captain::startShooting()
 		// play shooting sound
 		SoundManager::playSound(
 			SoundManager::getInstance(),
-			&SHOOT_SND,
+			&ShootSound,
 			kPlayAll,
 			(const Vector3D*)&this->transformation.globalPosition,
 			kSoundWrapperPlaybackNormal,
@@ -277,7 +277,7 @@ void Captain::jump(bool checkIfYMovement)
 			// play jump sound
 			SoundManager::playSound(
 				SoundManager::getInstance(),
-				&JUMP_SND,
+				&JumpSound,
 				kPlayAll,
 				(const Vector3D*)&this->transformation.globalPosition,
 				kSoundWrapperPlaybackNormal,
@@ -520,7 +520,7 @@ void Captain::takeDamageFrom(int32 energyToReduce)
 		// play hit sound
 		SoundManager::playSound(
 			SoundManager::getInstance(),
-			&HIT_SND,
+			&HitSound,
 			kPlayAll,
 			(const Vector3D*)&this->transformation.globalPosition,
 			kSoundWrapperPlaybackNormal,
@@ -1015,15 +1015,15 @@ void Captain::updateSprite(Direction direction)
 	{
 		case __LEFT:
 
-			charSetSpec = &CAPTAIN_LEFT_CH;
-			charSetBlackSpec = &CAPTAIN_LEFT_BLACK_CH;
+			charSetSpec = &CaptainLeftCharset;
+			charSetBlackSpec = &CaptainLeftBlackCharset;
 			break;
 
 		default:
 		case __RIGHT:
 
-			charSetSpec = &CAPTAIN_RIGHT_CH;
-			charSetBlackSpec = &CAPTAIN_RIGHT_BLACK_CH;
+			charSetSpec = &CaptainRightCharset;
+			charSetBlackSpec = &CaptainRightBlackCharset;
 			break;
 	}
 
@@ -1110,7 +1110,7 @@ void Captain::reload()
 
 		SoundManager::playSound(
 			SoundManager::getInstance(),
-			&RELOAD_SND,
+			&ReloadSound,
 			kPlayAll,
 			(const Vector3D*)&this->transformation.globalPosition,
 			kSoundWrapperPlaybackNormal,

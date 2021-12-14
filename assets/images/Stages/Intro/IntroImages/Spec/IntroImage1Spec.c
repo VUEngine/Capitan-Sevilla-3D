@@ -30,7 +30,7 @@ extern BYTE IntroImage1BlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec INTRO_IMAGES_CH =
+CharSetROMSpec IntroImagesCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec INTRO_IMAGES_CH =
 	IntroImagesTiles,
 };
 
-TextureROMSpec INTRO_IMAGE_1_TX =
+TextureROMSpec IntroImage1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&INTRO_IMAGES_CH,
+	(CharSetSpec*)&IntroImagesCharset,
 
 	// bgmap spec
 	IntroImage1Map,
@@ -80,10 +80,10 @@ TextureROMSpec INTRO_IMAGE_1_TX =
 	false,
 };
 
-TextureROMSpec INTRO_IMAGE_1_BLACK_TX =
+TextureROMSpec IntroImage1BlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&INTRO_IMAGES_CH,
+	(CharSetSpec*)&IntroImagesCharset,
 
 	// bgmap spec
 	IntroImage1BlackMap,
@@ -115,14 +115,14 @@ TextureROMSpec INTRO_IMAGE_1_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec INTRO_IMAGE_1_SPRITE =
+BgmapSpriteROMSpec IntroImage1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&INTRO_IMAGE_1_TX,
+		(TextureSpec*)&IntroImage1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD) (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -142,14 +142,14 @@ BgmapSpriteROMSpec INTRO_IMAGE_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec INTRO_IMAGE_1_BLACK_SPRITE =
+BgmapSpriteROMSpec IntroImage1BlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&INTRO_IMAGE_1_BLACK_TX,
+		(TextureSpec*)&IntroImage1BlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD) (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -169,15 +169,15 @@ BgmapSpriteROMSpec INTRO_IMAGE_1_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const INTRO_IMAGE_1_SPRITES[] =
+BgmapSpriteROMSpec* const IntroImage1Sprites[] =
 {
-	&INTRO_IMAGE_1_BLACK_SPRITE,
-	&INTRO_IMAGE_1_SPRITE,
+	&IntroImage1BlackSprite,
+	&IntroImage1Sprite,
 	NULL
 
 };
 
-EntityROMSpec INTRO_IMAGE_1_IM =
+EntityROMSpec IntroImage1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -192,7 +192,7 @@ EntityROMSpec INTRO_IMAGE_1_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)INTRO_IMAGE_1_SPRITES,
+	(SpriteSpec**)IntroImage1Sprites,
 
 	// use z displacement in projection
 	false,

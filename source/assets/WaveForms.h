@@ -10,7 +10,7 @@
 //												INCLUDES
 //---------------------------------------------------------------------------------------------------------
 
-extern const int8 engineWaveForm[];
+extern const int8 EngineWaveForm[];
 
 
 #endif

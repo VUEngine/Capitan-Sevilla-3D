@@ -24,14 +24,14 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageEntryPointSpec LEVEL_1_STAGE_2_MAIN_EP;
+extern StageEntryPointSpec Level1Stage2MainEntryPoint;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ShapeROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_POINT_SHAPES[] =
+ShapeROMSpec Level1Stage1MainExitPointShapes[] =
 {
 	{
 		// shape
@@ -62,7 +62,7 @@ ShapeROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_POINT_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-StageExitPointROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_XP =
+StageExitPointROMSpec Level1Stage1MainExitXp =
 {
 	{
 		// class allocator
@@ -84,7 +84,7 @@ StageExitPointROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_XP =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)LEVEL_1_STAGE_1_MAIN_EXIT_POINT_SHAPES,
+		(ShapeSpec*)Level1Stage1MainExitPointShapes,
 
 		// pixelSize
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -98,5 +98,5 @@ StageExitPointROMSpec LEVEL_1_STAGE_1_MAIN_EXIT_XP =
 	},
 
 	// target entry point
-	(StageEntryPointSpec*)&LEVEL_1_STAGE_2_MAIN_EP,
+	(StageEntryPointSpec*)&Level1Stage2MainEntryPoint,
 };

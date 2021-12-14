@@ -29,7 +29,7 @@ extern BYTE FenceMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec FENCE_CH =
+CharSetROMSpec FenceCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec FENCE_CH =
 	FenceTiles,
 };
 
-TextureROMSpec FENCE_TX =
+TextureROMSpec FenceTexture =
 {
 	// charset spec
-	(CharSetSpec*)&FENCE_CH,
+	(CharSetSpec*)&FenceCharset,
 
 	// bgmap spec
 	FenceMap,
@@ -79,14 +79,14 @@ TextureROMSpec FENCE_TX =
 	false,
 };
 
-BgmapSpriteROMSpec FENCE_SPRITE =
+BgmapSpriteROMSpec FenceSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&FENCE_TX,
+		(TextureSpec*)&FenceTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec FENCE_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const FENCE_SPRITES[] =
+BgmapSpriteROMSpec* const FenceSprites[] =
 {
-	&FENCE_SPRITE,
+	&FenceSprite,
 	NULL
 };
 
-EntityROMSpec FENCE_EN =
+EntityROMSpec FenceEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec FENCE_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)FENCE_SPRITES,
+	(SpriteSpec**)FenceSprites,
 
 	// use z displacement in projection
 	false,

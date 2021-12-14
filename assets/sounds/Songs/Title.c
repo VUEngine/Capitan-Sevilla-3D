@@ -14,7 +14,7 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ SoundChannelConfigurationROM TITLE_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	squareWaveForm,
+	SquareWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -129,7 +129,7 @@ SoundChannelConfigurationROM TITLE_CHANNEL_2_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	squareWaveForm,
+	SquareWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -182,7 +182,7 @@ SoundChannelConfigurationROM TITLE_CHANNEL_3_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	triangleWaveForm,
+	TriangleWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -205,7 +205,7 @@ SoundChannelROM TITLE_CHANNEL_3 =
 	}
 };
 
-SoundChannelROM* TITLE_CHANNELS[] =
+SoundChannelROM* TITLEChannels[] =
 {
 	&TITLE_CHANNEL_1,
 	&TITLE_CHANNEL_2,
@@ -213,7 +213,7 @@ SoundChannelROM* TITLE_CHANNELS[] =
 	NULL
 };
 
-SoundROM TITLE_SONG =
+SoundROM TitleSong =
 {
 	/// Name
 	"Title",
@@ -225,5 +225,5 @@ SoundROM TITLE_SONG =
 	1060,
 
 	/// Tracks
-	(SoundChannel**)TITLE_CHANNELS
+	(SoundChannel**)TITLEChannels
 };

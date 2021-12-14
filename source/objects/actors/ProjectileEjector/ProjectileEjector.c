@@ -26,7 +26,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound SHOOT_SND;
+extern Sound ShootSound;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -133,7 +133,7 @@ void ProjectileEjector::ejectProjectile()
 				// play shooting sound
 				SoundManager::playSound(
 					SoundManager::getInstance(),
-					&SHOOT_SND,
+					&ShootSound,
 					kPlayAll,
 					(const Vector3D*)&this->transformation.globalPosition,
 					kSoundWrapperPlaybackNormal,

@@ -21,63 +21,63 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec LOW_POWER_INDICATOR_LB;
+extern EntitySpec LowPowerIndicatorEntity;
 
-extern EntitySpec INTRO_IMAGE_1_IM;
-extern EntitySpec INTRO_IMAGE_2_IM;
-extern EntitySpec INTRO_IMAGE_3_IM;
-extern EntitySpec INTRO_IMAGE_4_IM;
-extern EntitySpec INTRO_IMAGE_5_IM;
-extern EntitySpec INTRO_IMAGE_6_IM;
-extern EntitySpec INTRO_IMAGE_7_IM;
-extern EntitySpec INTRO_IMAGE_8_IM;
+extern EntitySpec IntroImage1Entity;
+extern EntitySpec IntroImage2Entity;
+extern EntitySpec IntroImage3Entity;
+extern EntitySpec IntroImage4Entity;
+extern EntitySpec IntroImage5Entity;
+extern EntitySpec IntroImage6Entity;
+extern EntitySpec IntroImage7Entity;
+extern EntitySpec IntroImage8Entity;
 
-extern EntitySpec INTRO_TEXT_1_AC;
-extern EntitySpec INTRO_TEXT_2_AC;
-extern EntitySpec INTRO_TEXT_3_AC;
-extern EntitySpec INTRO_TEXT_4_AC;
-extern EntitySpec INTRO_TEXT_5_AC;
-extern EntitySpec INTRO_TEXT_6_AC;
-extern EntitySpec INTRO_TEXT_7_AC;
-extern EntitySpec INTRO_TEXT_8_AC;
-extern EntitySpec INTRO_TEXT_9_AC;
+extern EntitySpec IntroText1Entity;
+extern EntitySpec IntroText2Entity;
+extern EntitySpec IntroText3Entity;
+extern EntitySpec IntroText4Entity;
+extern EntitySpec IntroText5Entity;
+extern EntitySpec IntroText6Entity;
+extern EntitySpec IntroText7Entity;
+extern EntitySpec IntroText8Entity;
+extern EntitySpec IntroText9Entity;
 
-extern Sound INTRO_SONG;
+extern Sound IntroSong;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec INTRO_STAGE_ST_ENTITIES[] =
+PositionedEntityROMSpec IntroStageEntities[] =
 {
-	{&INTRO_IMAGE_1_IM,	{ 80,  68, 1, 0}, 	0, "IMAGE1", NULL, NULL, false},
-	{&INTRO_IMAGE_2_IM,	{188, 126, 2, 0}, 	0, "IMAGE2", NULL, NULL, false},
-	{&INTRO_IMAGE_3_IM,	{328,  56, 6, 0}, 	0, "IMAGE3", NULL, NULL, false},
-	{&INTRO_IMAGE_4_IM,	{296, 164, 4, 0}, 	0, "IMAGE4", NULL, NULL, false},
+	{&IntroImage1Entity,	{ 80,  68, 1, 0}, 	0, "IMAGE1", NULL, NULL, false},
+	{&IntroImage2Entity,	{188, 126, 2, 0}, 	0, "IMAGE2", NULL, NULL, false},
+	{&IntroImage3Entity,	{328,  56, 6, 0}, 	0, "IMAGE3", NULL, NULL, false},
+	{&IntroImage4Entity,	{296, 164, 4, 0}, 	0, "IMAGE4", NULL, NULL, false},
 
-	{&INTRO_TEXT_1_AC,	{ 80,  32, 0, 0}, 	0, "TEXT1", NULL, NULL, false},
-	{&INTRO_TEXT_2_AC, 	{ 84, 172, 0, 0}, 	0, "TEXT2", NULL, NULL, false},
-	{&INTRO_TEXT_3_AC, 	{228,  36, 0, 0}, 	0, "TEXT3", NULL, NULL, false},
-	{&INTRO_TEXT_4_AC, 	{264, 197, 0, 0}, 	0, "TEXT4", NULL, NULL, false},
-	{&INTRO_TEXT_5_AC, 	{353, 197, 0, 0}, 	0, "TEXT5", NULL, NULL, false},
+	{&IntroText1Entity,	{ 80,  32, 0, 0}, 	0, "TEXT1", NULL, NULL, false},
+	{&IntroText2Entity, 	{ 84, 172, 0, 0}, 	0, "TEXT2", NULL, NULL, false},
+	{&IntroText3Entity, 	{228,  36, 0, 0}, 	0, "TEXT3", NULL, NULL, false},
+	{&IntroText4Entity, 	{264, 197, 0, 0}, 	0, "TEXT4", NULL, NULL, false},
+	{&IntroText5Entity, 	{353, 197, 0, 0}, 	0, "TEXT5", NULL, NULL, false},
 
-	{&INTRO_IMAGE_5_IM,	{ 65,  60, 1, 0}, 	0, "IMAGE5", NULL, NULL, false},
-	{&INTRO_IMAGE_6_IM,	{181,  47, 2, 0}, 	0, "IMAGE6", NULL, NULL, false},
-	{&INTRO_IMAGE_7_IM,	{308,  47, 3, 0}, 	0, "IMAGE7", NULL, NULL, false},
-	{&INTRO_IMAGE_8_IM,	{308, 179, 3, 0}, 	0, "IMAGE8", NULL, NULL, false},
+	{&IntroImage5Entity,	{ 65,  60, 1, 0}, 	0, "IMAGE5", NULL, NULL, false},
+	{&IntroImage6Entity,	{181,  47, 2, 0}, 	0, "IMAGE6", NULL, NULL, false},
+	{&IntroImage7Entity,	{308,  47, 3, 0}, 	0, "IMAGE7", NULL, NULL, false},
+	{&IntroImage8Entity,	{308, 179, 3, 0}, 	0, "IMAGE8", NULL, NULL, false},
 
-	{&INTRO_TEXT_6_AC,	{ 65, 165, 0, 0}, 	0, "TEXT6", NULL, NULL, false},
-	{&INTRO_TEXT_7_AC,	{181, 148, 0, 0}, 	0, "TEXT7", NULL, NULL, false},
-	{&INTRO_TEXT_8_AC,	{310, 106, 0, 0}, 	0, "TEXT8", NULL, NULL, false},
-	{&INTRO_TEXT_9_AC,	{344, 154, 0, 0}, 	0, "TEXT9", NULL, NULL, false},
+	{&IntroText6Entity,	{ 65, 165, 0, 0}, 	0, "TEXT6", NULL, NULL, false},
+	{&IntroText7Entity,	{181, 148, 0, 0}, 	0, "TEXT7", NULL, NULL, false},
+	{&IntroText8Entity,	{310, 106, 0, 0}, 	0, "TEXT8", NULL, NULL, false},
+	{&IntroText9Entity,	{344, 154, 0, 0}, 	0, "TEXT9", NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec INTRO_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMSpec IntroStageUiEntities[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{16, 12, -1, 0}, 0, NULL, NULL, NULL, false},
+	{&LowPowerIndicatorEntity, 	{16, 12, -1, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -87,16 +87,16 @@ PositionedEntityROMSpec INTRO_STAGE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const INTRO_STAGE_ST_FONTS[] =
+FontROMSpec* const IntroStageFonts[] =
 {
-	//&CAPITAN_FONT,
+	//&CapitanFont,
 
 	NULL
 };
 
-SoundROM* const INTRO_STAGE_ST_BGM[] =
+SoundROM* const IntroStage_BGM[] =
 {
-	&INTRO_SONG,
+	&IntroSong,
 	NULL,
 };
 
@@ -105,7 +105,7 @@ SoundROM* const INTRO_STAGE_ST_BGM[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec INTRO_STAGE_ST =
+StageROMSpec IntroStage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -294,7 +294,7 @@ StageROMSpec INTRO_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)INTRO_STAGE_ST_FONTS,
+		(FontSpec**)IntroStageFonts,
 
 		// char sets to preload
 		(CharSetSpec**)NULL,
@@ -303,19 +303,19 @@ StageROMSpec INTRO_STAGE_ST =
 		(TextureSpec**)NULL,
 
 		// background music
-		(Sound**)INTRO_STAGE_ST_BGM,
+		(Sound**)IntroStage_BGM,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			(PositionedEntity*)INTRO_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)IntroStageUiEntities,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)INTRO_STAGE_ST_ENTITIES,
+		(PositionedEntity*)IntroStageEntities,
 	},
 
 	// post processing effects

@@ -37,7 +37,7 @@ const uint16 HoverEngineSoundTrack1[] =
   HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA, HOVER_ENGINE_VOLUME_DELTA,
 };
 
-SoundChannelConfigurationROM HOVER_ENGINE_SOUND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM HoverEngineSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -67,7 +67,7 @@ SoundChannelConfigurationROM HOVER_ENGINE_SOUND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	engineWaveForm,
+	EngineWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -76,10 +76,10 @@ SoundChannelConfigurationROM HOVER_ENGINE_SOUND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM HOVER_ENGINE_SOUND_CHANNEL_1 =
+SoundChannelROM HoverEngineSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&HOVER_ENGINE_SOUND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&HoverEngineSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -91,13 +91,13 @@ SoundChannelROM HOVER_ENGINE_SOUND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* HOVER_ENGINE_SOUND_CHANNELS[] =
+SoundChannelROM* HoverEngineSoundChannels[] =
 {
-	&HOVER_ENGINE_SOUND_CHANNEL_1,
+	&HoverEngineSoundChannel1,
 	NULL
 };
 
-SoundROM HOVER_ENGINE_SND =
+SoundROM HoverEngineSound =
 {
 	/// Name
 	"Hover Engine",
@@ -109,5 +109,5 @@ SoundROM HOVER_ENGINE_SND =
 	3000,
 
 	/// Tracks
-	(SoundChannel**)HOVER_ENGINE_SOUND_CHANNELS
+	(SoundChannel**)HoverEngineSoundChannels
 };

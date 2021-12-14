@@ -23,17 +23,17 @@
 
 extern BYTE IntroImage2Map[];
 extern BYTE IntroImage2BlackMap[];
-extern CharSetROMSpec INTRO_IMAGES_CH;
+extern CharSetROMSpec IntroImagesCharset;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMSpec INTRO_IMAGE_2_TX =
+TextureROMSpec IntroImage2Texture =
 {
 	// charset spec
-	(CharSetSpec*)&INTRO_IMAGES_CH,
+	(CharSetSpec*)&IntroImagesCharset,
 
 	// bgmap spec
 	IntroImage2Map,
@@ -65,10 +65,10 @@ TextureROMSpec INTRO_IMAGE_2_TX =
 	false,
 };
 
-TextureROMSpec INTRO_IMAGE_2_BLACK_TX =
+TextureROMSpec IntroImage2BlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&INTRO_IMAGES_CH,
+	(CharSetSpec*)&IntroImagesCharset,
 
 	// bgmap spec
 	IntroImage2BlackMap,
@@ -100,14 +100,14 @@ TextureROMSpec INTRO_IMAGE_2_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec INTRO_IMAGE_2_SPRITE =
+BgmapSpriteROMSpec IntroImage2Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&INTRO_IMAGE_2_TX,
+		(TextureSpec*)&IntroImage2Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD) (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -127,14 +127,14 @@ BgmapSpriteROMSpec INTRO_IMAGE_2_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec INTRO_IMAGE_2_BLACK_SPRITE =
+BgmapSpriteROMSpec IntroImage2BlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&INTRO_IMAGE_2_BLACK_TX,
+		(TextureSpec*)&IntroImage2BlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD) (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -154,15 +154,15 @@ BgmapSpriteROMSpec INTRO_IMAGE_2_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const INTRO_IMAGE_2_SPRITES[] =
+BgmapSpriteROMSpec* const IntroImage2Sprites[] =
 {
-	&INTRO_IMAGE_2_BLACK_SPRITE,
-	&INTRO_IMAGE_2_SPRITE,
+	&IntroImage2BlackSprite,
+	&IntroImage2Sprite,
 	NULL
 
 };
 
-EntityROMSpec INTRO_IMAGE_2_IM =
+EntityROMSpec IntroImage2Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -177,7 +177,7 @@ EntityROMSpec INTRO_IMAGE_2_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)INTRO_IMAGE_2_SPRITES,
+	(SpriteSpec**)IntroImage2Sprites,
 
 	// use z displacement in projection
 	false,

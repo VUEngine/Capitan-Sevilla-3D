@@ -14,7 +14,7 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ const uint16 CREDITS_TRACK_2[] =
   11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11
 };
 
-// Instrument: 0 patchchange ch: 3 lead 2 (sawtooth);
+// Instrument: 0 patchchange ch: 3 lead 2 (Sawtooth);
 const uint16 CREDITS_TRACK_3[] =
 {
   PAU, C_3, PAU, E_2, PAU, G_2, PAU, E_2, PAU, C_3, PAU, E_2, PAU, G_2, PAU, E_2, PAU, F_2, PAU, F_2, PAU, A_2, PAU, F_2, PAU, C_3, PAU, G_2, GS2, A_2, GS2, G_2, PAU, C_3, PAU, E_2, PAU, G_2, PAU, E_2, PAU, C_3, PAU, E_2, PAU, G_2, PAU, E_2, PAU, F_2, PAU, F_2, PAU, A_2, PAU, F_2, PAU, C_3, PAU, C_3, PAU, G_2, PAU, F_2, PAU, B_2, PAU, D_2, PAU, C_3, PAU, E_2, PAU, E_2, PAU, D_3, PAU, FS2, PAU, A_2, PAU, FS2, PAU, G_1, PAU, G_2, PAU, A_2, AS2, B_2, C_3, PAU, E_2, PAU, G_2, PAU, E_2, PAU, C_3, PAU, E_2, PAU, G_2, PAU, E_2, PAU, F_2, PAU, F_2, PAU, A_2, PAU, F_2, PAU, C_3, PAU, G_2, GS2, A_2, GS2, G_2, PAU, C_3, PAU, E_2, PAU, G_2, PAU, E_2, PAU, C_3, PAU, E_2, PAU, G_2, PAU, E_2, PAU, F_2, PAU, F_2, PAU, A_2, PAU, F_2, PAU, C_3, PAU, C_3, PAU, G_2, PAU, F_2, PAU, B_2, PAU, D_2, PAU, C_3, PAU, E_2, PAU, E_2, PAU, D_3, PAU, FS2, PAU, A_2, PAU, FS2, PAU, G_1, PAU, G_2, PAU, A_2, AS2, B_2, ENDSOUND,
@@ -84,7 +84,7 @@ SoundChannelConfigurationROM CREDITS_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	squareWaveForm,
+	SquareWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -137,7 +137,7 @@ SoundChannelConfigurationROM CREDITS_CHANNEL_2_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	squareWaveForm,
+	SquareWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -190,7 +190,7 @@ SoundChannelConfigurationROM CREDITS_CHANNEL_3_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sawtoothWaveForm,
+	SawtoothWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -244,7 +244,7 @@ SoundChannelConfigurationROM CREDITS_CHANNEL_4_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	pianoWaveForm,
+	PianoWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -268,7 +268,7 @@ SoundChannelROM CREDITS_CHANNEL_4 =
 };
 
 
-SoundChannelROM* CREDITS_CHANNELS[] =
+SoundChannelROM* CREDITSChannels[] =
 {
 	&CREDITS_CHANNEL_1,
 	&CREDITS_CHANNEL_2,
@@ -277,7 +277,7 @@ SoundChannelROM* CREDITS_CHANNELS[] =
 	NULL
 };
 
-SoundROM CREDITS_SONG =
+SoundROM CreditsSong =
 {
 	/// Name
 	"Credits",
@@ -289,7 +289,7 @@ SoundROM CREDITS_SONG =
 	3340,
 
 	/// Tracks
-	(SoundChannel**)CREDITS_CHANNELS
+	(SoundChannel**)CREDITSChannels
 };
 
 

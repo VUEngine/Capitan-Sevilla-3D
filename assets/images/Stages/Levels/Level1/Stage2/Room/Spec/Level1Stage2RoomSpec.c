@@ -35,7 +35,7 @@ extern BYTE Level1Stage2RoomBBlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_STAGE_2_ROOM_CH =
+CharSetROMSpec Level1Stage2RoomCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -52,10 +52,10 @@ CharSetROMSpec LEVEL_1_STAGE_2_ROOM_CH =
 
 /* Left (A) */
 
-TextureROMSpec LEVEL_1_STAGE_2_ROOM_A_L_TX =
+TextureROMSpec Level1Stage2RoomALTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_2_ROOM_CH,
+	(CharSetSpec*)&Level1Stage2RoomCharset,
 
 	// bgmap spec
 	Level1Stage2RoomALMap,
@@ -87,14 +87,14 @@ TextureROMSpec LEVEL_1_STAGE_2_ROOM_A_L_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_A_L_SPRITE =
+BgmapSpriteROMSpec Level1Stage2RoomALSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_2_ROOM_A_L_TX,
+		(TextureSpec*)&Level1Stage2RoomALTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -116,10 +116,10 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_A_L_SPRITE =
 
 /* Left (B) */
 
-TextureROMSpec LEVEL_1_STAGE_2_ROOM_B_L_TX =
+TextureROMSpec Level1Stage2RoomBLTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_2_ROOM_CH,
+	(CharSetSpec*)&Level1Stage2RoomCharset,
 
 	// bgmap spec
 	Level1Stage2RoomBLMap,
@@ -151,14 +151,14 @@ TextureROMSpec LEVEL_1_STAGE_2_ROOM_B_L_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_B_L_SPRITE =
+BgmapSpriteROMSpec Level1Stage2RoomBLSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_2_ROOM_B_L_TX,
+		(TextureSpec*)&Level1Stage2RoomBLTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -180,10 +180,10 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_B_L_SPRITE =
 
 /* Right (A) */
 
-TextureROMSpec LEVEL_1_STAGE_2_ROOM_A_R_TX =
+TextureROMSpec Level1Stage2RoomARTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_2_ROOM_CH,
+	(CharSetSpec*)&Level1Stage2RoomCharset,
 
 	// bgmap spec
 	Level1Stage2RoomARMap,
@@ -215,14 +215,14 @@ TextureROMSpec LEVEL_1_STAGE_2_ROOM_A_R_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_A_R_SPRITE =
+BgmapSpriteROMSpec Level1Stage2RoomARSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_2_ROOM_A_R_TX,
+		(TextureSpec*)&Level1Stage2RoomARTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -244,10 +244,10 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_A_R_SPRITE =
 
 /* Right (B) */
 
-TextureROMSpec LEVEL_1_STAGE_2_ROOM_B_R_TX =
+TextureROMSpec Level1Stage2RoomBRTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_2_ROOM_CH,
+	(CharSetSpec*)&Level1Stage2RoomCharset,
 
 	// bgmap spec
 	Level1Stage2RoomBRMap,
@@ -279,14 +279,14 @@ TextureROMSpec LEVEL_1_STAGE_2_ROOM_B_R_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_B_R_SPRITE =
+BgmapSpriteROMSpec Level1Stage2RoomBRSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_2_ROOM_B_R_TX,
+		(TextureSpec*)&Level1Stage2RoomBRTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -308,10 +308,10 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_B_R_SPRITE =
 
 /* Black (A) */
 
-TextureROMSpec LEVEL_1_STAGE_2_ROOM_A_BLACK_TX =
+TextureROMSpec Level1Stage2RoomABlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_2_ROOM_CH,
+	(CharSetSpec*)&Level1Stage2RoomCharset,
 
 	// bgmap spec
 	Level1Stage2RoomABlackMap,
@@ -343,14 +343,14 @@ TextureROMSpec LEVEL_1_STAGE_2_ROOM_A_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_A_BLACK_SPRITE =
+BgmapSpriteROMSpec Level1Stage2RoomABlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_2_ROOM_A_BLACK_TX,
+		(TextureSpec*)&Level1Stage2RoomABlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -372,10 +372,10 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_A_BLACK_SPRITE =
 
 /* Black (B) */
 
-TextureROMSpec LEVEL_1_STAGE_2_ROOM_B_BLACK_TX =
+TextureROMSpec Level1Stage2RoomBBlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_2_ROOM_CH,
+	(CharSetSpec*)&Level1Stage2RoomCharset,
 
 	// bgmap spec
 	Level1Stage2RoomBBlackMap,
@@ -407,14 +407,14 @@ TextureROMSpec LEVEL_1_STAGE_2_ROOM_B_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_B_BLACK_SPRITE =
+BgmapSpriteROMSpec Level1Stage2RoomBBlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_2_ROOM_B_BLACK_TX,
+		(TextureSpec*)&Level1Stage2RoomBBlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -436,18 +436,18 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_2_ROOM_B_BLACK_SPRITE =
 
 /* Entity */
 
-BgmapSpriteROMSpec* const LEVEL_1_STAGE_2_ROOM_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Stage2RoomSprites[] =
 {
-	&LEVEL_1_STAGE_2_ROOM_A_L_SPRITE,
-	&LEVEL_1_STAGE_2_ROOM_B_L_SPRITE,
-	&LEVEL_1_STAGE_2_ROOM_A_R_SPRITE,
-	&LEVEL_1_STAGE_2_ROOM_B_R_SPRITE,
-	&LEVEL_1_STAGE_2_ROOM_A_BLACK_SPRITE,
-	&LEVEL_1_STAGE_2_ROOM_B_BLACK_SPRITE,
+	&Level1Stage2RoomALSprite,
+	&Level1Stage2RoomBLSprite,
+	&Level1Stage2RoomARSprite,
+	&Level1Stage2RoomBRSprite,
+	&Level1Stage2RoomABlackSprite,
+	&Level1Stage2RoomBBlackSprite,
 	NULL
 };
 
-ShapeROMSpec LEVEL_1_STAGE_2_ROOM_SHAPES[] =
+ShapeROMSpec Level1Stage2RoomShapes[] =
 {
 	// left wall
 	{
@@ -609,7 +609,7 @@ ShapeROMSpec LEVEL_1_STAGE_2_ROOM_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-PhysicalSpecificationROMSpec LEVEL_1_STAGE_2_ROOM_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec Level1Stage2RoomPhysicalProperties =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -627,7 +627,7 @@ PhysicalSpecificationROMSpec LEVEL_1_STAGE_2_ROOM_PHYSICAL_PROPERTIES =
 	__I_TO_FIX10_6(0)
 };
 
-EntityROMSpec LEVEL_1_STAGE_2_ROOM_EN =
+EntityROMSpec Level1Stage2RoomEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -642,13 +642,13 @@ EntityROMSpec LEVEL_1_STAGE_2_ROOM_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_STAGE_2_ROOM_SPRITES,
+	(SpriteSpec**)Level1Stage2RoomSprites,
 
 	// use z displacement in projection
 	false,
 
 	// collision shapes
-	(ShapeSpec*)LEVEL_1_STAGE_2_ROOM_SHAPES,
+	(ShapeSpec*)Level1Stage2RoomShapes,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
@@ -658,5 +658,5 @@ EntityROMSpec LEVEL_1_STAGE_2_ROOM_EN =
 	kFloor,
 
 	// physical specification
-	(PhysicalSpecification*)&LEVEL_1_STAGE_2_ROOM_PHYSICAL_PROPERTIES,
+	(PhysicalSpecification*)&Level1Stage2RoomPhysicalProperties,
 };

@@ -31,7 +31,7 @@ extern BYTE LandDustMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec LAND_DUST_HIDDEN_ANIM =
+AnimationFunctionROMSpec LandDustHiddenAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -52,7 +52,7 @@ AnimationFunctionROMSpec LAND_DUST_HIDDEN_ANIM =
 	"Hidden",
 };
 
-AnimationFunctionROMSpec LAND_DUST_SHOW_ANIM =
+AnimationFunctionROMSpec LandDustShowAnimation =
 {
 	// number of frames of this animation function
 	6,
@@ -73,17 +73,17 @@ AnimationFunctionROMSpec LAND_DUST_SHOW_ANIM =
 	"Show",
 };
 
-AnimationDescriptionROMSpec LAND_DUST_ANIM =
+AnimationDescriptionROMSpec LandDustAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&LAND_DUST_HIDDEN_ANIM,
-		(AnimationFunction*)&LAND_DUST_SHOW_ANIM,
+		(AnimationFunction*)&LandDustHiddenAnimation,
+		(AnimationFunction*)&LandDustShowAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec LAND_DUST_CH =
+CharSetROMSpec LandDustCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -98,10 +98,10 @@ CharSetROMSpec LAND_DUST_CH =
 	LandDustTiles,
 };
 
-TextureROMSpec LAND_DUST_TX =
+TextureROMSpec LandDustTexture =
 {
 	// charset definition
-	(CharSetSpec*)&LAND_DUST_CH,
+	(CharSetSpec*)&LandDustCharset,
 
 	// bgmap definition
 	LandDustMap,
@@ -133,14 +133,14 @@ TextureROMSpec LAND_DUST_TX =
 	false,
 };
 
-ObjectSpriteROMSpec LAND_DUST_SPRITE =
+ObjectSpriteROMSpec LandDustSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture definition
-		(TextureSpec*)&LAND_DUST_TX,
+		(TextureSpec*)&LandDustTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -157,13 +157,13 @@ ObjectSpriteROMSpec LAND_DUST_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const LAND_DUST_SPRITES[] =
+ObjectSpriteROMSpec* const LandDustSprites[] =
 {
-	&LAND_DUST_SPRITE,
+	&LandDustSprite,
 	NULL
 };
 
-AnimatedEntityROMSpec LAND_DUST_EN =
+AnimatedEntityROMSpec LandDustEntity =
 {
 	{
 		// class allocator
@@ -179,7 +179,7 @@ AnimatedEntityROMSpec LAND_DUST_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)LAND_DUST_SPRITES,
+		(SpriteSpec**)LandDustSprites,
 
 		// use z displacement in projection
 		false,
@@ -199,7 +199,7 @@ AnimatedEntityROMSpec LAND_DUST_EN =
 	},
 
 	// pointer to the animation definition for the item
-	(AnimationDescription*)&LAND_DUST_ANIM,
+	(AnimationDescription*)&LandDustAnimation,
 
 	// initial animation
 	"Hidden",

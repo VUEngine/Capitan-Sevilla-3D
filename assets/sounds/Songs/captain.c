@@ -14,7 +14,7 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ const uint16 CAPTAIN_TRACK_3[] =
 };
 
 
-SoundChannelConfigurationROM CAPTAIN_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM CaptainCharsetANNEL_1_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -76,7 +76,7 @@ SoundChannelConfigurationROM CAPTAIN_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	pianoWaveForm,
+	PianoWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -85,10 +85,10 @@ SoundChannelConfigurationROM CAPTAIN_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM CAPTAIN_CHANNEL_1 =
+SoundChannelROM CaptainCharsetANNEL_1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&CAPTAIN_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&CaptainCharsetANNEL_1_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
@@ -99,7 +99,7 @@ SoundChannelROM CAPTAIN_CHANNEL_1 =
 	}
 };
 
-SoundChannelConfigurationROM CAPTAIN_CHANNEL_2_CONFIGURATION =
+SoundChannelConfigurationROM CaptainCharsetANNEL_2_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -129,7 +129,7 @@ SoundChannelConfigurationROM CAPTAIN_CHANNEL_2_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	trumpetWaveForm,
+	TrumpetWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -138,10 +138,10 @@ SoundChannelConfigurationROM CAPTAIN_CHANNEL_2_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM CAPTAIN_CHANNEL_2 =
+SoundChannelROM CaptainCharsetANNEL_2 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&CAPTAIN_CHANNEL_2_CONFIGURATION,
+	(SoundChannelConfiguration*)&CaptainCharsetANNEL_2_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
@@ -153,7 +153,7 @@ SoundChannelROM CAPTAIN_CHANNEL_2 =
 };
 
 
-SoundChannelConfigurationROM CAPTAIN_CHANNEL_3_CONFIGURATION =
+SoundChannelConfigurationROM CaptainCharsetANNEL_3_CONFIGURATION =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -183,7 +183,7 @@ SoundChannelConfigurationROM CAPTAIN_CHANNEL_3_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	violinWaveForm,
+	ViolinWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -192,10 +192,10 @@ SoundChannelConfigurationROM CAPTAIN_CHANNEL_3_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM CAPTAIN_CHANNEL_3 =
+SoundChannelROM CaptainCharsetANNEL_3 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&CAPTAIN_CHANNEL_3_CONFIGURATION,
+	(SoundChannelConfiguration*)&CaptainCharsetANNEL_3_CONFIGURATION,
 
 	/// Length (PCM)
 	0,
@@ -207,15 +207,15 @@ SoundChannelROM CAPTAIN_CHANNEL_3 =
 };
 
 
-SoundChannelROM* CAPTAIN_CHANNELS[] =
+SoundChannelROM* CaptainCharsetANNELS[] =
 {
-	&CAPTAIN_CHANNEL_1,
-	&CAPTAIN_CHANNEL_2,
-	//&CAPTAIN_CHANNEL_3,
+	&CaptainCharsetANNEL_1,
+	&CaptainCharsetANNEL_2,
+	//&CaptainCharsetANNEL_3,
 	NULL
 };
 
-SoundROM CAPTAIN_SONG =
+SoundROM CaptainSong =
 {
 	/// Name
 	"Captain",
@@ -227,5 +227,5 @@ SoundROM CAPTAIN_SONG =
 	1580,
 
 	/// Tracks
-	(SoundChannel**)CAPTAIN_CHANNELS
+	(SoundChannel**)CaptainCharsetANNELS
 };

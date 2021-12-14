@@ -29,7 +29,7 @@ extern BYTE GarageCarMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec GARAGE_CAR_CH =
+CharSetROMSpec GarageCarCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec GARAGE_CAR_CH =
 	GarageCarTiles,
 };
 
-TextureROMSpec GARAGE_CAR_TX =
+TextureROMSpec GarageCarTexture =
 {
 	// charset spec
-	(CharSetSpec*)&GARAGE_CAR_CH,
+	(CharSetSpec*)&GarageCarCharset,
 
 	// bgmap spec
 	GarageCarMap,
@@ -79,14 +79,14 @@ TextureROMSpec GARAGE_CAR_TX =
 	false,
 };
 
-BgmapSpriteROMSpec GARAGE_CAR_SPRITE =
+BgmapSpriteROMSpec GarageCarSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&GARAGE_CAR_TX,
+		(TextureSpec*)&GarageCarTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec GARAGE_CAR_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const GARAGE_CAR_SPRITES[] =
+BgmapSpriteROMSpec* const GarageCarSprites[] =
 {
-	&GARAGE_CAR_SPRITE,
+	&GarageCarSprite,
 	NULL
 };
 
-EntityROMSpec GARAGE_CAR_EN =
+EntityROMSpec GarageCarEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec GARAGE_CAR_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)GARAGE_CAR_SPRITES,
+	(SpriteSpec**)GarageCarSprites,
 
 	// use z displacement in projection
 	false,

@@ -29,12 +29,12 @@ extern BYTE CloudsFrontMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CLOUDS_CH =
+CharSetROMSpec CloudsCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	16,
+	15,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -44,10 +44,10 @@ CharSetROMSpec CLOUDS_CH =
 	CloudsTiles,
 };
 
-TextureROMSpec CLOUDS_FRONT_TX =
+TextureROMSpec CloudsFrontTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CLOUDS_CH,
+	(CharSetSpec*)&CloudsCharset,
 
 	// bgmap spec
 	CloudsFrontMap,
@@ -79,13 +79,13 @@ TextureROMSpec CLOUDS_FRONT_TX =
 	false,
 };
 
-TextureROMSpec* const CLOUDS_FRONT_TEXTURES[] =
+TextureROMSpec* const CloudsFrontTextures[] =
 {
-	(TextureSpec*)&CLOUDS_FRONT_TX,
+	(TextureSpec*)&CloudsFrontTexture,
 	NULL
 };
 
-MBgmapSpriteROMSpec CLOUDS_FRONT_SPRITE =
+MBgmapSpriteROMSpec CloudsFrontSprite =
 {
 	{
 		{
@@ -114,7 +114,7 @@ MBgmapSpriteROMSpec CLOUDS_FRONT_SPRITE =
 	},
 
 	// textures
-	(TextureSpec**)CLOUDS_FRONT_TEXTURES,
+	(TextureSpec**)CloudsFrontTextures,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -135,13 +135,13 @@ MBgmapSpriteROMSpec CLOUDS_FRONT_SPRITE =
 	0,
 };
 
-BgmapSpriteROMSpec* const CLOUDS_FRONT_SPRITES[] =
+BgmapSpriteROMSpec* const CloudsFrontSprites[] =
 {
-	(BgmapSpriteROMSpec*)&CLOUDS_FRONT_SPRITE,
+	(BgmapSpriteROMSpec*)&CloudsFrontSprite,
 	NULL
 };
 
-MovingOneWayEntityROMSpec CLOUDS_FRONT_EN =
+MovingOneWayEntityROMSpec CloudsFrontEntity =
 {
 	{
 		{
@@ -159,7 +159,7 @@ MovingOneWayEntityROMSpec CLOUDS_FRONT_EN =
 				NULL,
 
 				// sprites
-				(SpriteSpec**)CLOUDS_FRONT_SPRITES,
+				(SpriteSpec**)CloudsFrontSprites,
 
 				// use z displacement in projection
 				false,

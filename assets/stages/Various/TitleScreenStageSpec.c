@@ -21,36 +21,36 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec PRESS_START_BUTTON_EN;
-extern EntitySpec CS3D_LOGO_EN;
-extern EntitySpec DEMO_BADGE_EN;
-extern EntitySpec TITLE_CAPITAN_IM;
-extern EntitySpec TITLE_EARTH_IM;
-extern EntitySpec TITLE_SUBTITLE_EN;
-extern EntitySpec LOW_POWER_INDICATOR_LB;
+extern EntitySpec PressStartButtonEntity;
+extern EntitySpec Cs3dLogoEntity;
+extern EntitySpec DemoBadgeEntity;
+extern EntitySpec TitleCapitanEntity;
+extern EntitySpec TitleEarthEntity;
+extern EntitySpec TitleSubtitleEntity;
+extern EntitySpec LowPowerIndicatorEntity;
 
-extern Sound TITLE_SONG;
+extern Sound TitleSong;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec TITLE_SCREEN_STAGE_ST_ENTITIES[] =
+PositionedEntityROMSpec TitleScreenStageEntities[] =
 {
-	{&CS3D_LOGO_EN, 			{204,  45,  0, 0}, 	0, NULL, NULL, NULL, false},
-	{&DEMO_BADGE_EN, 			{284, 100,  0, 0}, 	0, NULL, NULL, NULL, false},
-	{&TITLE_CAPITAN_IM, 		{204, 135, 32, 0}, 	0, NULL, NULL, NULL, false},
-	{&TITLE_EARTH_IM, 			{106, 136, 48, 0}, 	0, NULL, NULL, NULL, false},
-	{&PRESS_START_BUTTON_EN, 	{192, 216, 16, 0}, 	0, NULL, NULL, NULL, false},
-	{&TITLE_SUBTITLE_EN, 		{163,  74, 16, 0}, 	0, NULL, NULL, NULL, false},
+	{&Cs3dLogoEntity, 			{204,  45,  0, 0}, 	0, NULL, NULL, NULL, false},
+	{&DemoBadgeEntity, 			{284, 100,  0, 0}, 	0, NULL, NULL, NULL, false},
+	{&TitleCapitanEntity, 		{204, 135, 32, 0}, 	0, NULL, NULL, NULL, false},
+	{&TitleEarthEntity, 			{106, 136, 48, 0}, 	0, NULL, NULL, NULL, false},
+	{&PressStartButtonEntity, 	{192, 216, 16, 0}, 	0, NULL, NULL, NULL, false},
+	{&TitleSubtitleEntity, 		{163,  74, 16, 0}, 	0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec TITLE_SCREEN_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMSpec TitleScreenStageUiEntities[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&LowPowerIndicatorEntity, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -60,26 +60,26 @@ PositionedEntityROMSpec TITLE_SCREEN_STAGE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const TITLE_SCREEN_STAGE_ST_FONTS[] =
+FontROMSpec* const TitleScreenStageFonts[] =
 {
-	&CAPITAN_FONT,
+	&CapitanFont,
 
 	NULL
 };
 
-CharSetROMSpec* const TITLE_SCREEN_STAGE_ST_CHARSETS[] =
+CharSetROMSpec* const TitleScreenStageCharsets[] =
 {
 	NULL
 };
 
-TextureSpec* const TITLE_SCREEN_STAGE_ST_TEXTURES[] =
+TextureSpec* const TitleScreenStageTextures[] =
 {
 	NULL
 };
 
-SoundROM* const TITLE_SCREEN_STAGE_ST_BGM[] =
+SoundROM* const TitleScreenStage_BGM[] =
 {
-	&TITLE_SONG,
+	&TitleSong,
 	NULL,
 };
 
@@ -88,7 +88,7 @@ SoundROM* const TITLE_SCREEN_STAGE_ST_BGM[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec TITLE_SCREEN_STAGE_ST =
+StageROMSpec TitleScreenStage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -277,28 +277,28 @@ StageROMSpec TITLE_SCREEN_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)TITLE_SCREEN_STAGE_ST_FONTS,
+		(FontSpec**)TitleScreenStageFonts,
 
 		// char sets to preload
-		(CharSetSpec**)TITLE_SCREEN_STAGE_ST_CHARSETS,
+		(CharSetSpec**)TitleScreenStageCharsets,
 
 		// textures to preload
-		(TextureSpec**)TITLE_SCREEN_STAGE_ST_TEXTURES,
+		(TextureSpec**)TitleScreenStageTextures,
 
 		// background music
-		(Sound**)TITLE_SCREEN_STAGE_ST_BGM,
+		(Sound**)TitleScreenStage_BGM,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			(PositionedEntity*)TITLE_SCREEN_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)TitleScreenStageUiEntities,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)TITLE_SCREEN_STAGE_ST_ENTITIES,
+		(PositionedEntity*)TitleScreenStageEntities,
 	},
 
 	// post processing effects

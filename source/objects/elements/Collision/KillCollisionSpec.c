@@ -22,7 +22,7 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CollisionROMSpec KILL_COLLISION_CL =
+CollisionROMSpec KillCollisionCl =
 {
 	// class allocator
 	__TYPE(Collision),

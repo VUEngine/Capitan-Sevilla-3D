@@ -35,7 +35,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMSpec CREDITS_STAGE_ST;
+extern StageROMSpec CreditsStage;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -75,7 +75,7 @@ void CreditsState::enter(void* owner)
 	Base::enter(this, owner);
 
 	// load stage
-	GameState::loadStage(this, (StageSpec*)&CREDITS_STAGE_ST, NULL, true, false);
+	GameState::loadStage(this, (StageSpec*)&CreditsStage, NULL, true, false);
 
 	// disable user input
 	Game::disableKeypad(Game::getInstance());

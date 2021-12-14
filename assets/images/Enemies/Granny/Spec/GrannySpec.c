@@ -22,7 +22,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern ActorSpec FLOWER_POT_PR;
+extern ActorSpec FlowerPotPr;
 extern BYTE GrannyTiles[];
 extern BYTE GrannyMap[];
 
@@ -31,7 +31,7 @@ extern BYTE GrannyMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec GRANNY_IDLE_ANIM =
+AnimationFunctionROMSpec GrannyIdleAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -52,7 +52,7 @@ AnimationFunctionROMSpec GRANNY_IDLE_ANIM =
 	"Idle",
 };
 
-AnimationFunctionROMSpec GRANNY_SHOOT_ANIM =
+AnimationFunctionROMSpec GrannyShootAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -73,17 +73,17 @@ AnimationFunctionROMSpec GRANNY_SHOOT_ANIM =
 	"Shoot",
 };
 
-AnimationDescriptionROMSpec GRANNY_ANIM =
+AnimationDescriptionROMSpec GrannyAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&GRANNY_IDLE_ANIM,
-		(AnimationFunction*)&GRANNY_SHOOT_ANIM,
+		(AnimationFunction*)&GrannyIdleAnimation,
+		(AnimationFunction*)&GrannyShootAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec GRANNY_CH =
+CharSetROMSpec GrannyCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -98,10 +98,10 @@ CharSetROMSpec GRANNY_CH =
 	GrannyTiles,
 };
 
-TextureROMSpec GRANNY_TX =
+TextureROMSpec GrannyTexture =
 {
 	// charset spec
-	(CharSetSpec*)&GRANNY_CH,
+	(CharSetSpec*)&GrannyCharset,
 
 	// bgmap spec
 	GrannyMap,
@@ -133,14 +133,14 @@ TextureROMSpec GRANNY_TX =
 	false,
 };
 
-ObjectSpriteROMSpec GRANNY_SPRITE =
+ObjectSpriteROMSpec GrannySprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&GRANNY_TX,
+		(TextureSpec*)&GrannyTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -157,13 +157,13 @@ ObjectSpriteROMSpec GRANNY_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const GRANNY_SPRITES[] =
+ObjectSpriteROMSpec* const GrannySprites[] =
 {
-	&GRANNY_SPRITE,
+	&GrannySprite,
 	NULL
 };
 
-ProjectileEjectorROMSpec GRANNY_PE =
+ProjectileEjectorROMSpec GrannyPe =
 {
 	// animated entity
 	{
@@ -181,7 +181,7 @@ ProjectileEjectorROMSpec GRANNY_PE =
 			NULL,
 
 			// sprites
-			(SpriteSpec**)GRANNY_SPRITES,
+			(SpriteSpec**)GrannySprites,
 
 			// use z displacement in projection
 			false,
@@ -201,14 +201,14 @@ ProjectileEjectorROMSpec GRANNY_PE =
 		},
 
 		// pointer to the animation spec for the character
-		(AnimationDescription*)&GRANNY_ANIM,
+		(AnimationDescription*)&GrannyAnimation,
 
 		// initial animation
 		"Idle"
 	},
 
 	// projectile
-    {(EntitySpec*)&FLOWER_POT_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
+    {(EntitySpec*)&FlowerPotPr, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
 
 	// delay of the first projectile ejection (only relevant if initially active)
 	1500,

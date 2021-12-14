@@ -23,17 +23,17 @@
 
 extern BYTE CloudsTiles[];
 extern BYTE CloudsBackMap[];
-extern CharSetSpec CLOUDS_CH;
+extern CharSetSpec CloudsCharset;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMSpec CLOUDS_BACK_TX =
+TextureROMSpec CloudsBackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CLOUDS_CH,
+	(CharSetSpec*)&CloudsCharset,
 
 	// bgmap spec
 	CloudsBackMap,
@@ -65,13 +65,13 @@ TextureROMSpec CLOUDS_BACK_TX =
 	false,
 };
 
-TextureROMSpec* const CLOUDS_BACK_TEXTURES[] =
+TextureROMSpec* const CloudsBackTextures[] =
 {
-	(TextureSpec*)&CLOUDS_BACK_TX,
+	(TextureSpec*)&CloudsBackTexture,
 	NULL
 };
 
-MBgmapSpriteROMSpec CLOUDS_BACK_SPRITE =
+MBgmapSpriteROMSpec CloudsBackSprite =
 {
 	{
 		{
@@ -100,7 +100,7 @@ MBgmapSpriteROMSpec CLOUDS_BACK_SPRITE =
 	},
 
 	// textures
-	(TextureSpec**)CLOUDS_BACK_TEXTURES,
+	(TextureSpec**)CloudsBackTextures,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -121,13 +121,13 @@ MBgmapSpriteROMSpec CLOUDS_BACK_SPRITE =
 	0,
 };
 
-BgmapSpriteROMSpec* const CLOUDS_BACK_SPRITES[] =
+BgmapSpriteROMSpec* const CloudsBackSprites[] =
 {
-	(BgmapSpriteROMSpec*)&CLOUDS_BACK_SPRITE,
+	(BgmapSpriteROMSpec*)&CloudsBackSprite,
 	NULL
 };
 
-MovingOneWayEntityROMSpec CLOUDS_BACK_EN =
+MovingOneWayEntityROMSpec CloudsBackEntity =
 {
 	{
 		{
@@ -145,7 +145,7 @@ MovingOneWayEntityROMSpec CLOUDS_BACK_EN =
 				NULL,
 				
 				// sprites
-				(SpriteSpec**)CLOUDS_BACK_SPRITES,
+				(SpriteSpec**)CloudsBackSprites,
 
 				// use z displacement in projection
 				false,

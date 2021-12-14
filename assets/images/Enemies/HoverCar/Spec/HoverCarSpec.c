@@ -29,7 +29,7 @@ extern BYTE HoverCarMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec HOVER_CAR_MOVE_ANIM =
+AnimationFunctionROMSpec HoverCarMoveAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -50,16 +50,16 @@ AnimationFunctionROMSpec HOVER_CAR_MOVE_ANIM =
 	"Move",
 };
 
-AnimationDescriptionROMSpec HOVER_CAR_ANIM =
+AnimationDescriptionROMSpec HoverCarAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&HOVER_CAR_MOVE_ANIM,
+		(AnimationFunction*)&HoverCarMoveAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec HOVER_CAR_CH =
+CharSetROMSpec HoverCarCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -74,9 +74,9 @@ CharSetROMSpec HOVER_CAR_CH =
 	HoverCarTiles,
 };
 
-TextureROMSpec HOVER_CAR_TX =
+TextureROMSpec HoverCarTexture =
 {
-	(CharSetSpec*)&HOVER_CAR_CH,
+	(CharSetSpec*)&HoverCarCharset,
 
 	// bgmap spec
 	HoverCarMap,
@@ -108,14 +108,14 @@ TextureROMSpec HOVER_CAR_TX =
 	false,
 };
 
-ObjectSpriteROMSpec HOVER_CAR_SPRITE =
+ObjectSpriteROMSpec HoverCarSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&HOVER_CAR_TX,
+		(TextureSpec*)&HoverCarTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -132,13 +132,13 @@ ObjectSpriteROMSpec HOVER_CAR_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const HOVER_CAR_SPRITES[] =
+ObjectSpriteROMSpec* const HoverCarSprites[] =
 {
-	&HOVER_CAR_SPRITE,
+	&HoverCarSprite,
 	NULL
 };
 
-ShapeROMSpec HOVER_CAR_SHAPES[] =
+ShapeROMSpec HoverCarShapes[] =
 {
 	{
 		// shape
@@ -169,7 +169,7 @@ ShapeROMSpec HOVER_CAR_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-EnemyROMSpec HOVER_CAR_EM =
+EnemyROMSpec HoverCarEm =
 {
 	{
 		{
@@ -188,13 +188,13 @@ EnemyROMSpec HOVER_CAR_EM =
 					NULL,
 
 					// sprites
-					(SpriteSpec**)HOVER_CAR_SPRITES,
+					(SpriteSpec**)HoverCarSprites,
 
 					// use z displacement in projection
 					false,
 
 					// collision shapes
-					(ShapeSpec*)HOVER_CAR_SHAPES,
+					(ShapeSpec*)HoverCarShapes,
 
 					// size
 					// if 0, width and height will be inferred from the first sprite's texture's size
@@ -208,7 +208,7 @@ EnemyROMSpec HOVER_CAR_EM =
 				},
 
 				// pointer to the animation spec for the character
-				(AnimationDescription*)&HOVER_CAR_ANIM,
+				(AnimationDescription*)&HoverCarAnimation,
 
 				// initial animation
 				"Move",

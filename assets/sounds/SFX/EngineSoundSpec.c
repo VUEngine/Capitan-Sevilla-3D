@@ -36,7 +36,7 @@ const uint16 EngineSoundTrack1[] =
   0, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA, ENGINE_VOLUME_DELTA,
 };
 
-SoundChannelConfigurationROM ENGINE_SOUND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM EngineSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -66,7 +66,7 @@ SoundChannelConfigurationROM ENGINE_SOUND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	engineWaveForm,
+	EngineWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelModulation,
@@ -75,10 +75,10 @@ SoundChannelConfigurationROM ENGINE_SOUND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM ENGINE_SOUND_CHANNEL_1 =
+SoundChannelROM EngineSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&ENGINE_SOUND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&EngineSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -90,13 +90,13 @@ SoundChannelROM ENGINE_SOUND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* ENGINE_SOUND_CHANNELS[] =
+SoundChannelROM* EngineSoundChannels[] =
 {
-	&ENGINE_SOUND_CHANNEL_1,
+	&EngineSoundChannel1,
 	NULL
 };
 
-SoundROM ENGINE_SND =
+SoundROM EngineSound =
 {
 	/// Name
 	"Engine",
@@ -108,5 +108,5 @@ SoundROM ENGINE_SND =
 	3000,
 
 	/// Tracks
-	(SoundChannel**)ENGINE_SOUND_CHANNELS
+	(SoundChannel**)EngineSoundChannels
 };

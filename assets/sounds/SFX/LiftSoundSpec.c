@@ -36,7 +36,7 @@ const uint16 LIFT_TRACK_1[] =
   0, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA, LIFT_VOLUME_DELTA,
 };
 
-SoundChannelConfigurationROM LIFT_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM LiftChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -66,7 +66,7 @@ SoundChannelConfigurationROM LIFT_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	engineWaveForm,
+	EngineWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelModulation,
@@ -75,10 +75,10 @@ SoundChannelConfigurationROM LIFT_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM LIFT_CHANNEL_1 =
+SoundChannelROM LiftChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&LIFT_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&LiftChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -90,13 +90,13 @@ SoundChannelROM LIFT_CHANNEL_1 =
 };
 
 
-SoundChannelROM* LIFT_CHANNELS[] =
+SoundChannelROM* LiftChannels[] =
 {
-	&LIFT_CHANNEL_1,
+	&LiftChannel1,
 	NULL
 };
 
-SoundROM LIFT_SND =
+SoundROM LiftSound =
 {
 	/// Name
 	"Lift",
@@ -108,5 +108,5 @@ SoundROM LIFT_SND =
 	3000,
 
 	/// Tracks
-	(SoundChannel**)LIFT_CHANNELS
+	(SoundChannel**)LiftChannels
 };

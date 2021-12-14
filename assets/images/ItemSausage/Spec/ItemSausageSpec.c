@@ -29,7 +29,7 @@ extern BYTE ItemSausageMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec ITEM_SAUSAGE_DEFAULT_ANIM =
+AnimationFunctionROMSpec ItemSausageDefaultAnimation =
 {
 	// number of frames of this animation function
 	16,
@@ -50,7 +50,7 @@ AnimationFunctionROMSpec ITEM_SAUSAGE_DEFAULT_ANIM =
 	"Default",
 };
 
-AnimationFunctionROMSpec ITEM_SAUSAGE_TAKEN_ANIM =
+AnimationFunctionROMSpec ItemSausageTakenAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -71,17 +71,17 @@ AnimationFunctionROMSpec ITEM_SAUSAGE_TAKEN_ANIM =
 	"Taken",
 };
 
-AnimationDescriptionROMSpec ITEM_SAUSAGE_ANIM =
+AnimationDescriptionROMSpec ItemSausageAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&ITEM_SAUSAGE_DEFAULT_ANIM,
-		(AnimationFunction*)&ITEM_SAUSAGE_TAKEN_ANIM,
+		(AnimationFunction*)&ItemSausageDefaultAnimation,
+		(AnimationFunction*)&ItemSausageTakenAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec ITEM_SAUSAGE_CH =
+CharSetROMSpec ItemSausageCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -96,9 +96,9 @@ CharSetROMSpec ITEM_SAUSAGE_CH =
 	ItemSausageTiles,
 };
 
-TextureROMSpec ITEM_SAUSAGE_TX =
+TextureROMSpec ItemSausageTexture =
 {
-	(CharSetSpec*)&ITEM_SAUSAGE_CH,
+	(CharSetSpec*)&ItemSausageCharset,
 
 	// bgmap spec
 	ItemSausageMap,
@@ -130,14 +130,14 @@ TextureROMSpec ITEM_SAUSAGE_TX =
 	false,
 };
 
-ObjectSpriteROMSpec ITEM_SAUSAGE_SPRITE =
+ObjectSpriteROMSpec ItemSausageSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&ITEM_SAUSAGE_TX,
+		(TextureSpec*)&ItemSausageTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -154,13 +154,13 @@ ObjectSpriteROMSpec ITEM_SAUSAGE_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const ITEM_SAUSAGE_SPRITES[] =
+ObjectSpriteROMSpec* const ItemSausageSprites[] =
 {
-	&ITEM_SAUSAGE_SPRITE,
+	&ItemSausageSprite,
 	NULL
 };
 
-ShapeROMSpec ITEM_SAUSAGE_AC_SHAPES[] =
+ShapeROMSpec ItemSausageShapes[] =
 {
 	{
 		// shape
@@ -191,7 +191,7 @@ ShapeROMSpec ITEM_SAUSAGE_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-AnimatedEntityROMSpec ITEM_SAUSAGE_EN =
+AnimatedEntityROMSpec ItemSausageEntity =
 {
 	{
 		// class allocator
@@ -207,13 +207,13 @@ AnimatedEntityROMSpec ITEM_SAUSAGE_EN =
 		NULL,
 		
 		// sprites
-		(SpriteSpec**)ITEM_SAUSAGE_SPRITES,
+		(SpriteSpec**)ItemSausageSprites,
 
 		// use z displacement in projection
 		false,
 
 		// collision shapes
-		(ShapeSpec*)ITEM_SAUSAGE_AC_SHAPES,
+		(ShapeSpec*)ItemSausageShapes,
 
 		// size
 		// if 0, width and height will be inferred from the first sprite's texture's size
@@ -227,7 +227,7 @@ AnimatedEntityROMSpec ITEM_SAUSAGE_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&ITEM_SAUSAGE_ANIM,
+	(AnimationDescription*)&ItemSausageAnimation,
 
 	// initial animation
 	"Default",

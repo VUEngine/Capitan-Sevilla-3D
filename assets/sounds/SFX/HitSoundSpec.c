@@ -14,7 +14,7 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ const uint16 HitTrack[] =
   15, 15, 15, 15, 0,
 };
 
-SoundChannelConfigurationROM HIT_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM HitSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -65,7 +65,7 @@ SoundChannelConfigurationROM HIT_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sawtoothWaveForm,
+	SawtoothWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNoise,
@@ -74,10 +74,10 @@ SoundChannelConfigurationROM HIT_SND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM HIT_SND_CHANNEL_1 =
+SoundChannelROM HitSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&HIT_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&HitSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -89,13 +89,13 @@ SoundChannelROM HIT_SND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* HIT_SND_CHANNELS[] =
+SoundChannelROM* HitSoundChannels[] =
 {
-	&HIT_SND_CHANNEL_1,
+	&HitSoundChannel1,
 	NULL
 };
 
-SoundROM HIT_SND =
+SoundROM HitSound =
 {
 	/// Name
 	"Hit",
@@ -107,5 +107,5 @@ SoundROM HIT_SND =
 	500,
 
 	/// Tracks
-	(SoundChannel**)HIT_SND_CHANNELS
+	(SoundChannel**)HitSoundChannels
 };

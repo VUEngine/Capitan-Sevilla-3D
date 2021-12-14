@@ -21,50 +21,50 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec LOW_POWER_INDICATOR_LB;
-extern EntitySpec CS3D_LOGO_EN;
-extern EntitySpec DEMO_BADGE_EN;
-extern EntitySpec CREDITS_BASED_ON_EN;
-extern EntitySpec CREDITS_DEVELOPED_BY_EN;
-extern EntitySpec CREDITS_DEVELOPERS_EN;
-extern EntitySpec CREDITS_SUPPORTED_BY_EN;
-extern EntitySpec CREDITS_BACKERS_A_EN;
-extern EntitySpec CREDITS_BACKERS_B_EN;
-extern EntitySpec CREDITS_FORMER_BACKERS_EN;
-extern EntitySpec CREDITS_FORMER_BACKERS_LABEL_EN;
-extern EntitySpec CREDITS_THANK_YOU_EN;
-extern EntitySpec TITLE_CAPITAN_IM;
+extern EntitySpec LowPowerIndicatorEntity;
+extern EntitySpec Cs3dLogoEntity;
+extern EntitySpec DemoBadgeEntity;
+extern EntitySpec CreditsBasedOnEntity;
+extern EntitySpec CreditsDevelopedByEntity;
+extern EntitySpec CreditsDevelopersEntity;
+extern EntitySpec CreditsSupportedByEntity;
+extern EntitySpec CreditsBackersAEntity;
+extern EntitySpec CreditsBackersBEntity;
+extern EntitySpec CreditsFormerBackersEntity;
+extern EntitySpec CreditsFormerBackersLabelEntity;
+extern EntitySpec CreditsThankYouEntity;
+extern EntitySpec TitleCapitanEntity;
 
-extern Sound CREDITS_SONG;
+extern Sound CreditsSong;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec CREDITS_STAGE_ST_ENTITIES[] =
+PositionedEntityROMSpec CreditsStageEntities[] =
 {
-	{&CS3D_LOGO_EN, 					{192,   93,  0, 0},  0, NULL, NULL, NULL, false},
-	{&DEMO_BADGE_EN, 					{272,  148,  0, 0},  0, NULL, NULL, NULL, false},
+	{&Cs3dLogoEntity, 					{192,   93,  0, 0},  0, NULL, NULL, NULL, false},
+	{&DemoBadgeEntity, 					{272,  148,  0, 0},  0, NULL, NULL, NULL, false},
 
-	{&CREDITS_BASED_ON_EN, 				{192,  300,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_DEVELOPED_BY_EN, 			{192,  400,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_DEVELOPERS_EN, 			{192,  454,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_SUPPORTED_BY_EN, 			{192,  580,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_BACKERS_A_EN, 			{192,  800,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_BACKERS_B_EN, 			{192, 1136,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_FORMER_BACKERS_LABEL_EN, 	{192, 1328,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_FORMER_BACKERS_EN, 		{192, 1364,  0, 0},  0, NULL, NULL, NULL, false},
-	{&CREDITS_THANK_YOU_EN, 			{192, 1648,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CreditsBasedOnEntity, 				{192,  300,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CreditsDevelopedByEntity, 			{192,  400,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CreditsDevelopersEntity, 			{192,  454,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CreditsSupportedByEntity, 			{192,  580,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CreditsBackersAEntity, 			{192,  800,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CreditsBackersBEntity, 			{192, 1136,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CreditsFormerBackersLabelEntity, 	{192, 1328,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CreditsFormerBackersEntity, 		{192, 1364,  0, 0},  0, NULL, NULL, NULL, false},
+	{&CreditsThankYouEntity, 			{192, 1648,  0, 0},  0, NULL, NULL, NULL, false},
 
-	{&TITLE_CAPITAN_IM, 				{192, 1740, 32, 0},  0, NULL, NULL, NULL, false},
+	{&TitleCapitanEntity, 				{192, 1740, 32, 0},  0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec CREDITS_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMSpec CreditsStageUiEntities[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&LowPowerIndicatorEntity, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -74,16 +74,16 @@ PositionedEntityROMSpec CREDITS_STAGE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const CREDITS_STAGE_ST_FONTS[] =
+FontROMSpec* const CreditsStageFonts[] =
 {
-	//&CAPITAN_FONT,
+	//&CapitanFont,
 
 	NULL
 };
 
-SoundROM* const CREDITS_STAGE_ST_BGM[] =
+SoundROM* const CreditsStage_BGM[] =
 {
-	&CREDITS_SONG,
+	&CreditsSong,
 	NULL,
 };
 
@@ -92,7 +92,7 @@ SoundROM* const CREDITS_STAGE_ST_BGM[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec CREDITS_STAGE_ST =
+StageROMSpec CreditsStage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -281,7 +281,7 @@ StageROMSpec CREDITS_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)CREDITS_STAGE_ST_FONTS,
+		(FontSpec**)CreditsStageFonts,
 
 		// char sets to preload
 		(CharSetSpec**)NULL,
@@ -290,19 +290,19 @@ StageROMSpec CREDITS_STAGE_ST =
 		(TextureSpec**)NULL,
 
 		// background music
-		(Sound**)CREDITS_STAGE_ST_BGM,
+		(Sound**)CreditsStage_BGM,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			(PositionedEntity*)CREDITS_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)CreditsStageUiEntities,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)CREDITS_STAGE_ST_ENTITIES,
+		(PositionedEntity*)CreditsStageEntities,
 	},
 
 	// post processing effects

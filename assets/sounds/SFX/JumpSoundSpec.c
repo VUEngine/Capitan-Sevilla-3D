@@ -14,7 +14,7 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ const uint16 JumpTrack[] =
   15, 15, 15, 15 , 0,
 };
 
-SoundChannelConfigurationROM JUMP_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM JumpSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -65,7 +65,7 @@ SoundChannelConfigurationROM JUMP_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	pianoWaveForm,
+	PianoWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -74,10 +74,10 @@ SoundChannelConfigurationROM JUMP_SND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM JUMP_SND_CHANNEL_1 =
+SoundChannelROM JumpSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&JUMP_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&JumpSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -89,13 +89,13 @@ SoundChannelROM JUMP_SND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* JUMP_SND_CHANNELS[] =
+SoundChannelROM* JumpSoundChannels[] =
 {
-	&JUMP_SND_CHANNEL_1,
+	&JumpSoundChannel1,
 	NULL
 };
 
-SoundROM JUMP_SND =
+SoundROM JumpSound =
 {
 	/// Name
 	"Collect sound",
@@ -107,5 +107,5 @@ SoundROM JUMP_SND =
 	500,
 
 	/// Tracks
-	(SoundChannel**)JUMP_SND_CHANNELS
+	(SoundChannel**)JumpSoundChannels
 };

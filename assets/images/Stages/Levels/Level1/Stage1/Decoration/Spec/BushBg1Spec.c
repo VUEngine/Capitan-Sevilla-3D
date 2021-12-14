@@ -29,7 +29,7 @@ extern BYTE BushBg1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec BUSH_BG_1_CH =
+CharSetROMSpec BushBg1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec BUSH_BG_1_CH =
 	BushBg1Tiles,
 };
 
-TextureROMSpec BUSH_BG_1_TX =
+TextureROMSpec BushBg1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&BUSH_BG_1_CH,
+	(CharSetSpec*)&BushBg1Charset,
 
 	// bgmap spec
 	BushBg1Map,
@@ -79,14 +79,14 @@ TextureROMSpec BUSH_BG_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec BUSH_BG_1_SPRITE =
+BgmapSpriteROMSpec BushBg1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&BUSH_BG_1_TX,
+		(TextureSpec*)&BushBg1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec BUSH_BG_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const BUSH_BG_1_SPRITES[] =
+BgmapSpriteROMSpec* const BushBg1Sprites[] =
 {
-	&BUSH_BG_1_SPRITE,
+	&BushBg1Sprite,
 	NULL
 };
 
-EntityROMSpec BUSH_BG_1_EN =
+EntityROMSpec BushBg1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec BUSH_BG_1_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)BUSH_BG_1_SPRITES,
+	(SpriteSpec**)BushBg1Sprites,
 
 	// use z displacement in projection
 	false,

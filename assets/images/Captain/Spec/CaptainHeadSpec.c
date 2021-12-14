@@ -21,7 +21,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern ActorSpec GUM_PROJECTILE_PR;
+extern ActorSpec GumProjectilePr;
 extern BYTE CaptainHeadTiles[];
 extern BYTE CaptainHeadBlackTiles[];
 extern BYTE CaptainHeadMap[];
@@ -32,7 +32,7 @@ extern BYTE CaptainHeadBlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec CAPTAIN_HEAD_IDLE_ANIM =
+AnimationFunctionROMSpec CaptainHeadIdleAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -53,7 +53,7 @@ AnimationFunctionROMSpec CAPTAIN_HEAD_IDLE_ANIM =
 	"Idle",
 };
 
-AnimationFunctionROMSpec CAPTAIN_HEAD_SPIT_ANIM =
+AnimationFunctionROMSpec CaptainHeadSpitAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -74,17 +74,17 @@ AnimationFunctionROMSpec CAPTAIN_HEAD_SPIT_ANIM =
 	"Spit",
 };
 
-AnimationDescriptionROMSpec CAPTAIN_HEAD_ANIM =
+AnimationDescriptionROMSpec CaptainHeadAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&CAPTAIN_HEAD_IDLE_ANIM,
-		(AnimationFunction*)&CAPTAIN_HEAD_SPIT_ANIM,
+		(AnimationFunction*)&CaptainHeadIdleAnimation,
+		(AnimationFunction*)&CaptainHeadSpitAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec CAPTAIN_HEAD_CH =
+CharSetROMSpec CaptainHeadCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -99,7 +99,7 @@ CharSetROMSpec CAPTAIN_HEAD_CH =
 	CaptainHeadTiles,
 };
 
-CharSetROMSpec CAPTAIN_HEAD_BLACK_CH =
+CharSetROMSpec CaptainHeadBlackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -114,9 +114,9 @@ CharSetROMSpec CAPTAIN_HEAD_BLACK_CH =
 	CaptainHeadBlackTiles,
 };
 
-TextureROMSpec CAPTAIN_HEAD_TX =
+TextureROMSpec CaptainHeadTexture =
 {
-	(CharSetSpec*)&CAPTAIN_HEAD_CH,
+	(CharSetSpec*)&CaptainHeadCharset,
 
 	// bgmap spec
 	CaptainHeadMap,
@@ -148,9 +148,9 @@ TextureROMSpec CAPTAIN_HEAD_TX =
 	false,
 };
 
-TextureROMSpec CAPTAIN_HEAD_BLACK_TX =
+TextureROMSpec CaptainHeadBlackTexture =
 {
-	(CharSetSpec*)&CAPTAIN_HEAD_BLACK_CH,
+	(CharSetSpec*)&CaptainHeadBlackCharset,
 
 	// bgmap spec
 	CaptainHeadBlackMap,
@@ -182,14 +182,14 @@ TextureROMSpec CAPTAIN_HEAD_BLACK_TX =
 	false,
 };
 
-ObjectSpriteROMSpec CAPTAIN_HEAD_SPRITE =
+ObjectSpriteROMSpec CaptainHeadSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CAPTAIN_HEAD_TX,
+		(TextureSpec*)&CaptainHeadTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -206,14 +206,14 @@ ObjectSpriteROMSpec CAPTAIN_HEAD_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec CAPTAIN_HEAD_BLACK_SPRITE =
+ObjectSpriteROMSpec CaptainHeadBlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CAPTAIN_HEAD_BLACK_TX,
+		(TextureSpec*)&CaptainHeadBlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -230,14 +230,14 @@ ObjectSpriteROMSpec CAPTAIN_HEAD_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const CAPTAIN_HEAD_SPRITES[] =
+ObjectSpriteROMSpec* const CaptainHeadSprites[] =
 {
-	&CAPTAIN_HEAD_SPRITE,
-	&CAPTAIN_HEAD_BLACK_SPRITE,
+	&CaptainHeadSprite,
+	&CaptainHeadBlackSprite,
 	NULL
 };
 
-ProjectileEjectorROMSpec CAPTAIN_HEAD_PE =
+ProjectileEjectorROMSpec CaptainHeadPe =
 {
 	// animated entity
 	{
@@ -255,7 +255,7 @@ ProjectileEjectorROMSpec CAPTAIN_HEAD_PE =
 			NULL,
 			
 			// sprites
-			(SpriteSpec**)CAPTAIN_HEAD_SPRITES,
+			(SpriteSpec**)CaptainHeadSprites,
 
 			// use z displacement in projection
 			false,
@@ -275,14 +275,14 @@ ProjectileEjectorROMSpec CAPTAIN_HEAD_PE =
 		},
 
 		// pointer to the animation spec for the character
-		(AnimationDescription*)&CAPTAIN_HEAD_ANIM,
+		(AnimationDescription*)&CaptainHeadAnimation,
 
 		// initial animation
 		"Idle",
 	},
 
 	// projectile
-    {(EntitySpec*)&GUM_PROJECTILE_PR, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
+    {(EntitySpec*)&GumProjectilePr, {0, 0, 0, 0}, 0, NULL, NULL, NULL, true},
 
 	// delay of the first projectile ejection (only relevant if initially active)
 	0,

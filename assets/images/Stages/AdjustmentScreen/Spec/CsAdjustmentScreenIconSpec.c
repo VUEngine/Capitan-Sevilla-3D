@@ -26,7 +26,7 @@ extern BYTE CsAdjustmentScreenIconMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CS_ADJUSTMENT_SCREEN_ICON_CH =
+CharSetROMSpec CsAdjustmentScreenIconCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -41,10 +41,10 @@ CharSetROMSpec CS_ADJUSTMENT_SCREEN_ICON_CH =
 	CsAdjustmentScreenIconTiles,
 };
 
-TextureROMSpec CS_ADJUSTMENT_SCREEN_ICON_TX =
+TextureROMSpec CsAdjustmentScreenIconTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CS_ADJUSTMENT_SCREEN_ICON_CH,
+	(CharSetSpec*)&CsAdjustmentScreenIconCharset,
 
 	// bgmap spec
 	CsAdjustmentScreenIconMap,
@@ -76,14 +76,14 @@ TextureROMSpec CS_ADJUSTMENT_SCREEN_ICON_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CS_ADJUSTMENT_SCREEN_ICON_L_SPRITE =
+BgmapSpriteROMSpec CsAdjustmentScreenIconLSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CS_ADJUSTMENT_SCREEN_ICON_TX,
+		(TextureSpec*)&CsAdjustmentScreenIconTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -103,9 +103,9 @@ BgmapSpriteROMSpec CS_ADJUSTMENT_SCREEN_ICON_L_SPRITE =
 	__WORLD_LON,
 };
 
-BgmapSpriteROMSpec* const CS_ADJUSTMENT_SCREEN_ICON_L_SPRITES[] =
+BgmapSpriteROMSpec* const CsAdjustmentScreenIconLSprites[] =
 {
-	&CS_ADJUSTMENT_SCREEN_ICON_L_SPRITE,
+	&CsAdjustmentScreenIconLSprite,
 	NULL
 };
 
@@ -116,7 +116,7 @@ BgmapSpriteROMSpec const CS_ADJUSTMENT_SCREEN_ICON_R_SPRITE =
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CS_ADJUSTMENT_SCREEN_ICON_TX,
+		(TextureSpec*)&CsAdjustmentScreenIconTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -136,14 +136,14 @@ BgmapSpriteROMSpec const CS_ADJUSTMENT_SCREEN_ICON_R_SPRITE =
 	__WORLD_RON,
 };
 
-BgmapSpriteROMSpec* const CS_ADJUSTMENT_SCREEN_ICON_R_SPRITES[] =
+BgmapSpriteROMSpec* const CsAdjustmentScreenIconRSprites[] =
 {
 	&CS_ADJUSTMENT_SCREEN_ICON_R_SPRITE,
 	NULL
 
 };
 
-EntityROMSpec CS_ADJUSTMENT_SCREEN_ICON_L_EN =
+EntityROMSpec CsAdjustmentScreenIconLEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -158,7 +158,7 @@ EntityROMSpec CS_ADJUSTMENT_SCREEN_ICON_L_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CS_ADJUSTMENT_SCREEN_ICON_L_SPRITES,
+	(SpriteSpec**)CsAdjustmentScreenIconLSprites,
 
 	// use z displacement in projection
 	false,
@@ -177,7 +177,7 @@ EntityROMSpec CS_ADJUSTMENT_SCREEN_ICON_L_EN =
 	(PhysicalSpecification*)NULL,
 };
 
-EntityROMSpec CS_ADJUSTMENT_SCREEN_ICON_R_EN =
+EntityROMSpec CsAdjustmentScreenIconREntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -192,7 +192,7 @@ EntityROMSpec CS_ADJUSTMENT_SCREEN_ICON_R_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CS_ADJUSTMENT_SCREEN_ICON_R_SPRITES,
+	(SpriteSpec**)CsAdjustmentScreenIconRSprites,
 
 	// use z displacement in projection
 	false,

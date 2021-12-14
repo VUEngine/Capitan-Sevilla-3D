@@ -27,7 +27,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound WALK_SND;
+extern Sound WalkSound;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ void CaptainMoving::execute(void* owner)
 		{
 			SoundManager::playSound(
 				SoundManager::getInstance(),
-				&WALK_SND,
+				&WalkSound,
 				kPlayAll,
 				Actor::getPosition(Actor::safeCast(owner)),
 				kSoundWrapperPlaybackNormal,

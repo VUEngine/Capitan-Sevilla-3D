@@ -31,7 +31,7 @@ extern BYTE Level1Stage1Building1BlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_STAGE_1_BUILDING_1_CH =
+CharSetROMSpec Level1Stage1Building1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -48,10 +48,10 @@ CharSetROMSpec LEVEL_1_STAGE_1_BUILDING_1_CH =
 
 /* Black */
 
-TextureROMSpec LEVEL_1_STAGE_1_BUILDING_1_BLACK_TX =
+TextureROMSpec Level1Stage1Building1BlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_1_BUILDING_1_CH,
+	(CharSetSpec*)&Level1Stage1Building1Charset,
 
 	// bgmap spec
 	Level1Stage1Building1BlackMap,
@@ -83,14 +83,14 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_1_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_1_BLACK_SPRITE =
+BgmapSpriteROMSpec Level1Stage1Building1BlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_1_BUILDING_1_BLACK_TX,
+		(TextureSpec*)&Level1Stage1Building1BlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -112,10 +112,10 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_1_BLACK_SPRITE =
 
 /* Left */
 
-TextureROMSpec LEVEL_1_STAGE_1_BUILDING_1_L_TX =
+TextureROMSpec Level1Stage1Building1LTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_1_BUILDING_1_CH,
+	(CharSetSpec*)&Level1Stage1Building1Charset,
 
 	// bgmap spec
 	Level1Stage1Building1LMap,
@@ -147,14 +147,14 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_1_L_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_1_L_SPRITE =
+BgmapSpriteROMSpec Level1Stage1Building1LSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_1_BUILDING_1_L_TX,
+		(TextureSpec*)&Level1Stage1Building1LTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -176,10 +176,10 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_1_L_SPRITE =
 
 /* Right */
 
-TextureROMSpec LEVEL_1_STAGE_1_BUILDING_1_R_TX =
+TextureROMSpec Level1Stage1Building1RTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_1_BUILDING_1_CH,
+	(CharSetSpec*)&Level1Stage1Building1Charset,
 
 	// bgmap spec
 	Level1Stage1Building1RMap,
@@ -211,14 +211,14 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_1_R_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_1_R_SPRITE =
+BgmapSpriteROMSpec Level1Stage1Building1RSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_1_BUILDING_1_R_TX,
+		(TextureSpec*)&Level1Stage1Building1RTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -240,15 +240,15 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_1_R_SPRITE =
 
 /* Entity */
 
-BgmapSpriteROMSpec* const LEVEL_1_STAGE_1_BUILDING_1_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Stage1Building1Sprites[] =
 {
-	&LEVEL_1_STAGE_1_BUILDING_1_BLACK_SPRITE,
-	&LEVEL_1_STAGE_1_BUILDING_1_L_SPRITE,
-	&LEVEL_1_STAGE_1_BUILDING_1_R_SPRITE,
+	&Level1Stage1Building1BlackSprite,
+	&Level1Stage1Building1LSprite,
+	&Level1Stage1Building1RSprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_STAGE_1_BUILDING_1_EN =
+EntityROMSpec Level1Stage1Building1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -263,7 +263,7 @@ EntityROMSpec LEVEL_1_STAGE_1_BUILDING_1_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_STAGE_1_BUILDING_1_SPRITES,
+	(SpriteSpec**)Level1Stage1Building1Sprites,
 
 	// use z displacement in projection
 	false,

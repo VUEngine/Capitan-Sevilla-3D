@@ -22,17 +22,17 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE IntroImage8Map[];
-extern CharSetROMSpec INTRO_IMAGES_CH;
+extern CharSetROMSpec IntroImagesCharset;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMSpec INTRO_IMAGE_8_TX =
+TextureROMSpec IntroImage8Texture =
 {
 	// charset spec
-	(CharSetSpec*)&INTRO_IMAGES_CH,
+	(CharSetSpec*)&IntroImagesCharset,
 
 	// bgmap spec
 	IntroImage8Map,
@@ -64,14 +64,14 @@ TextureROMSpec INTRO_IMAGE_8_TX =
 	false,
 };
 
-BgmapSpriteROMSpec INTRO_IMAGE_8_SPRITE =
+BgmapSpriteROMSpec IntroImage8Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&INTRO_IMAGE_8_TX,
+		(TextureSpec*)&IntroImage8Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD) (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -91,14 +91,14 @@ BgmapSpriteROMSpec INTRO_IMAGE_8_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const INTRO_IMAGE_8_SPRITES[] =
+BgmapSpriteROMSpec* const IntroImage8Sprites[] =
 {
-	&INTRO_IMAGE_8_SPRITE,
+	&IntroImage8Sprite,
 	NULL
 
 };
 
-EntityROMSpec INTRO_IMAGE_8_IM =
+EntityROMSpec IntroImage8Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -113,7 +113,7 @@ EntityROMSpec INTRO_IMAGE_8_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)INTRO_IMAGE_8_SPRITES,
+	(SpriteSpec**)IntroImage8Sprites,
 
 	// use z displacement in projection
 	false,

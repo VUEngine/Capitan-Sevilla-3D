@@ -14,7 +14,7 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ const uint16 WalkTrack[] =
   0, 12, 12, 0,
 };
 
-SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
+SoundChannelConfigurationROM WalkSoundChannel1Configuration =
 {
 	/// kMIDI, kPCM
 	kMIDI,
@@ -59,7 +59,7 @@ SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	pianoWaveForm,
+	PianoWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -68,10 +68,10 @@ SoundChannelConfigurationROM WALK_SND_CHANNEL_1_CONFIGURATION =
 	__SOUND_LR
 };
 
-SoundChannelROM WALK_SND_CHANNEL_1 =
+SoundChannelROM WalkSoundChannel1 =
 {
 	/// Configuration
-	(SoundChannelConfiguration*)&WALK_SND_CHANNEL_1_CONFIGURATION,
+	(SoundChannelConfiguration*)&WalkSoundChannel1Configuration,
 
 	/// Length (PCM)
 	0,
@@ -83,13 +83,13 @@ SoundChannelROM WALK_SND_CHANNEL_1 =
 };
 
 
-SoundChannelROM* WALK_SND_CHANNELS[] =
+SoundChannelROM* WalkSoundChannels[] =
 {
-	&WALK_SND_CHANNEL_1,
+	&WalkSoundChannel1,
 	NULL
 };
 
-SoundROM WALK_SND =
+SoundROM WalkSound =
 {
 	/// Name
 	"Walk",
@@ -101,5 +101,5 @@ SoundROM WALK_SND =
 	500,
 
 	/// Tracks
-	(SoundChannel**)WALK_SND_CHANNELS
+	(SoundChannel**)WalkSoundChannels
 };

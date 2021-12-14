@@ -30,7 +30,7 @@ extern BYTE CityBackground2BMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CITY_BG_2_CH =
+CharSetROMSpec CityBg2Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec CITY_BG_2_CH =
 	CityBackground2Tiles,
 };
 
-TextureROMSpec CITY_BG_2_A_TX =
+TextureROMSpec CityBg2ATexture =
 {
 	// charset spec
-	(CharSetSpec*)&CITY_BG_2_CH,
+	(CharSetSpec*)&CityBg2Charset,
 
 	// bgmap spec
 	CityBackground2AMap,
@@ -80,10 +80,10 @@ TextureROMSpec CITY_BG_2_A_TX =
 	false,
 };
 
-TextureROMSpec CITY_BG_2_B_TX =
+TextureROMSpec CityBg2BTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CITY_BG_2_CH,
+	(CharSetSpec*)&CityBg2Charset,
 
 	// bgmap spec
 	CityBackground2BMap,
@@ -115,14 +115,14 @@ TextureROMSpec CITY_BG_2_B_TX =
 	false,
 };
 
-TextureROMSpec* const CITY_BG_2_TEXTURES[] =
+TextureROMSpec* const CityBg2Textures[] =
 {
-	(TextureSpec*)&CITY_BG_2_B_TX,
-	(TextureSpec*)&CITY_BG_2_A_TX,
+	(TextureSpec*)&CityBg2BTexture,
+	(TextureSpec*)&CityBg2ATexture,
 	NULL
 };
 
-MBgmapSpriteROMSpec CITY_BG_2_SPRITE =
+MBgmapSpriteROMSpec CityBg2Sprite =
 {
 	{
 		{
@@ -151,7 +151,7 @@ MBgmapSpriteROMSpec CITY_BG_2_SPRITE =
 	},
 
 	// textures
-	(TextureSpec**)CITY_BG_2_TEXTURES,
+	(TextureSpec**)CityBg2Textures,
 
 	// SCX/SCY (__WORLD_1x1, 1x2, 1x4, 1x8, 2x1, 2x2, 2x4, 4x1, 4x2, or 8x1)
 	// textures must be 64x64 for anything other than 1x1
@@ -172,13 +172,13 @@ MBgmapSpriteROMSpec CITY_BG_2_SPRITE =
 	112,
 };
 
-BgmapSpriteROMSpec* const CITY_BG_2_SPRITES[] =
+BgmapSpriteROMSpec* const CityBg2Sprites[] =
 {
-	(BgmapSpriteROMSpec*)&CITY_BG_2_SPRITE,
+	(BgmapSpriteROMSpec*)&CityBg2Sprite,
 	NULL
 };
 
-EntityROMSpec CITY_BG_2_EN =
+EntityROMSpec CityBg2Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -193,7 +193,7 @@ EntityROMSpec CITY_BG_2_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CITY_BG_2_SPRITES,
+	(SpriteSpec**)CityBg2Sprites,
 
 	// use z displacement in projection
 	false,

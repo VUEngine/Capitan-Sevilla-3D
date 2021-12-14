@@ -29,12 +29,12 @@ extern BYTE Level1Stage1Building7LMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_STAGE_1_BUILDING_7_CH =
+CharSetROMSpec Level1Stage1Building7Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
 	// __ANIMATED_MULTI, __NOT_ANIMATED: sum of all chars
-	115,
+	114,
 
 	// allocation type
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
@@ -44,10 +44,10 @@ CharSetROMSpec LEVEL_1_STAGE_1_BUILDING_7_CH =
 	Level1Stage1Building7Tiles,
 };
 
-TextureROMSpec LEVEL_1_STAGE_1_BUILDING_7_TX =
+TextureROMSpec Level1Stage1Building7Texture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_1_BUILDING_7_CH,
+	(CharSetSpec*)&Level1Stage1Building7Charset,
 
 	// bgmap spec
 	Level1Stage1Building7LMap,
@@ -79,14 +79,14 @@ TextureROMSpec LEVEL_1_STAGE_1_BUILDING_7_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_7_SPRITE =
+BgmapSpriteROMSpec Level1Stage1Building7Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_1_BUILDING_7_TX,
+		(TextureSpec*)&Level1Stage1Building7Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_1_BUILDING_7_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const LEVEL_1_STAGE_1_BUILDING_7_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Stage1Building7Sprites[] =
 {
-	&LEVEL_1_STAGE_1_BUILDING_7_SPRITE,
+	&Level1Stage1Building7Sprite,
 	NULL
 };
 
-EntityROMSpec LEVEL_1_STAGE_1_BUILDING_7_EN =
+EntityROMSpec Level1Stage1Building7Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec LEVEL_1_STAGE_1_BUILDING_7_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_STAGE_1_BUILDING_7_SPRITES,
+	(SpriteSpec**)Level1Stage1Building7Sprites,
 
 	// use z displacement in projection
 	false,

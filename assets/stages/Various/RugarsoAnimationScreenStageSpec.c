@@ -21,24 +21,24 @@
 //											DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec RUGARSO_ANIMATION_LOGO_EN;
-extern EntitySpec LOW_POWER_INDICATOR_LB;
+extern EntitySpec RugarsoAnimationLogoEntity;
+extern EntitySpec LowPowerIndicatorEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec RUGARSO_ANIMATION_SCREEN_STAGE_ST_ENTITIES[] =
+PositionedEntityROMSpec RugarsoAnimationScreenStageEntities[] =
 {
-	{&RUGARSO_ANIMATION_LOGO_EN, {192, 112, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&RugarsoAnimationLogoEntity, {192, 112, 0, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec RUGARSO_ANIMATION_SCREEN_STAGE_ST_UI_ENTITIES[] =
+PositionedEntityROMSpec RugarsoAnimationScreenStageUiEntities[] =
 {
-	{&LOW_POWER_INDICATOR_LB, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
+	{&LowPowerIndicatorEntity, 	{16, 12, 0, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -48,9 +48,9 @@ PositionedEntityROMSpec RUGARSO_ANIMATION_SCREEN_STAGE_ST_UI_ENTITIES[] =
 // 											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const RUGARSO_ANIMATION_SCREEN_STAGE_ST_FONTS[] =
+FontROMSpec* const RugarsoAnimationScreenStageFonts[] =
 {
-	&CAPITAN_FONT,
+	&CapitanFont,
 
 	NULL
 };
@@ -60,7 +60,7 @@ FontROMSpec* const RUGARSO_ANIMATION_SCREEN_STAGE_ST_FONTS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec RUGARSO_ANIMATION_SCREEN_STAGE_ST =
+StageROMSpec RugarsoAnimationScreenStage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -249,7 +249,7 @@ StageROMSpec RUGARSO_ANIMATION_SCREEN_STAGE_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)RUGARSO_ANIMATION_SCREEN_STAGE_ST_FONTS,
+		(FontSpec**)RugarsoAnimationScreenStageFonts,
 
 		// char sets to preload
 		(CharSetSpec**)NULL,
@@ -265,12 +265,12 @@ StageROMSpec RUGARSO_ANIMATION_SCREEN_STAGE_ST =
 	{
 		// ui
 		{
-			(PositionedEntity*)RUGARSO_ANIMATION_SCREEN_STAGE_ST_UI_ENTITIES,
+			(PositionedEntity*)RugarsoAnimationScreenStageUiEntities,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)RUGARSO_ANIMATION_SCREEN_STAGE_ST_ENTITIES,
+		(PositionedEntity*)RugarsoAnimationScreenStageEntities,
 	},
 
 	// post processing effects

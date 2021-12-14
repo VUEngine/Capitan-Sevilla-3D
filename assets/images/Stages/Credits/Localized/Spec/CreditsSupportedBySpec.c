@@ -23,14 +23,14 @@
 
 extern BYTE CreditsSupportedByTiles[];
 extern BYTE CreditsSupportedByMap[];
-extern AnimationDescription LOCALIZED_ENTITY_ANIM;
+extern AnimationDescription LocalizedEntityAnimation;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CREDITS_SUPPORTED_BY_CH =
+CharSetROMSpec CreditsSupportedByCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec CREDITS_SUPPORTED_BY_CH =
 	CreditsSupportedByTiles,
 };
 
-TextureROMSpec CREDITS_SUPPORTED_BY_TX =
+TextureROMSpec CreditsSupportedByTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CREDITS_SUPPORTED_BY_CH,
+	(CharSetSpec*)&CreditsSupportedByCharset,
 
 	// bgmap spec
 	CreditsSupportedByMap,
@@ -80,14 +80,14 @@ TextureROMSpec CREDITS_SUPPORTED_BY_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CREDITS_SUPPORTED_BY_SPRITE =
+BgmapSpriteROMSpec CreditsSupportedBySprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CREDITS_SUPPORTED_BY_TX,
+		(TextureSpec*)&CreditsSupportedByTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -107,13 +107,13 @@ BgmapSpriteROMSpec CREDITS_SUPPORTED_BY_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CREDITS_SUPPORTED_BY_SPRITES[] =
+BgmapSpriteROMSpec* const CreditsSupportedBySprites[] =
 {
-	&CREDITS_SUPPORTED_BY_SPRITE,
+	&CreditsSupportedBySprite,
 	NULL
 };
 
-LocalizedEntityROMSpec CREDITS_SUPPORTED_BY_EN =
+LocalizedEntityROMSpec CreditsSupportedByEntity =
 {
 	{
 		// class allocator
@@ -129,7 +129,7 @@ LocalizedEntityROMSpec CREDITS_SUPPORTED_BY_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)CREDITS_SUPPORTED_BY_SPRITES,
+		(SpriteSpec**)CreditsSupportedBySprites,
 
 		// use z displacement in projection
 		false,
@@ -149,7 +149,7 @@ LocalizedEntityROMSpec CREDITS_SUPPORTED_BY_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
+	(AnimationDescription*)&LocalizedEntityAnimation,
 
 	// initial animation
 	"0",

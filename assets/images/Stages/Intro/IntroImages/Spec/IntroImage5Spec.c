@@ -22,17 +22,17 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE IntroImage5Map[];
-extern CharSetROMSpec INTRO_IMAGES_CH;
+extern CharSetROMSpec IntroImagesCharset;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-TextureROMSpec INTRO_IMAGE_5_TX =
+TextureROMSpec IntroImage5Texture =
 {
 	// charset spec
-	(CharSetSpec*)&INTRO_IMAGES_CH,
+	(CharSetSpec*)&IntroImagesCharset,
 
 	// bgmap spec
 	IntroImage5Map,
@@ -64,14 +64,14 @@ TextureROMSpec INTRO_IMAGE_5_TX =
 	false,
 };
 
-BgmapSpriteROMSpec INTRO_IMAGE_5_SPRITE =
+BgmapSpriteROMSpec IntroImage5Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&INTRO_IMAGE_5_TX,
+		(TextureSpec*)&IntroImage5Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD) (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -91,14 +91,14 @@ BgmapSpriteROMSpec INTRO_IMAGE_5_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const INTRO_IMAGE_5_SPRITES[] =
+BgmapSpriteROMSpec* const IntroImage5Sprites[] =
 {
-	&INTRO_IMAGE_5_SPRITE,
+	&IntroImage5Sprite,
 	NULL
 
 };
 
-EntityROMSpec INTRO_IMAGE_5_IM =
+EntityROMSpec IntroImage5Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -113,7 +113,7 @@ EntityROMSpec INTRO_IMAGE_5_IM =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)INTRO_IMAGE_5_SPRITES,
+	(SpriteSpec**)IntroImage5Sprites,
 
 	// use z displacement in projection
 	false,

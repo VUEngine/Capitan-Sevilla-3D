@@ -24,7 +24,7 @@
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-ShapeROMSpec LEVEL_1_STAGE_4_MAIN_EXIT_POINT_SHAPES[] =
+ShapeROMSpec Level1Stage4MainExitPointShapes[] =
 {
 	{
 		// shape
@@ -55,7 +55,7 @@ ShapeROMSpec LEVEL_1_STAGE_4_MAIN_EXIT_POINT_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-StageExitPointROMSpec LEVEL_1_STAGE_4_MAIN_EXIT_XP =
+StageExitPointROMSpec Level1Stage4MainExitXp =
 {
 	{
 		// class allocator
@@ -77,7 +77,7 @@ StageExitPointROMSpec LEVEL_1_STAGE_4_MAIN_EXIT_XP =
 		false,
 
 		// collision shapes
-		(ShapeSpec*)LEVEL_1_STAGE_4_MAIN_EXIT_POINT_SHAPES,
+		(ShapeSpec*)Level1Stage4MainExitPointShapes,
 
 		// pixelSize
 		// if 0, width and height will be inferred from the first sprite's texture's size

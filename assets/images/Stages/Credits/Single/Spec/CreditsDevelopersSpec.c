@@ -29,7 +29,7 @@ extern BYTE CreditsDevelopersMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CREDITS_DEVELOPERS_CH =
+CharSetROMSpec CreditsDevelopersCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec CREDITS_DEVELOPERS_CH =
 	CreditsDevelopersTiles,
 };
 
-TextureROMSpec CREDITS_DEVELOPERS_TX =
+TextureROMSpec CreditsDevelopersTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CREDITS_DEVELOPERS_CH,
+	(CharSetSpec*)&CreditsDevelopersCharset,
 
 	// bgmap spec
 	CreditsDevelopersMap,
@@ -79,14 +79,14 @@ TextureROMSpec CREDITS_DEVELOPERS_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CREDITS_DEVELOPERS_SPRITE =
+BgmapSpriteROMSpec CreditsDevelopersSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CREDITS_DEVELOPERS_TX,
+		(TextureSpec*)&CreditsDevelopersTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec CREDITS_DEVELOPERS_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CREDITS_DEVELOPERS_SPRITES[] =
+BgmapSpriteROMSpec* const CreditsDevelopersSprites[] =
 {
-	&CREDITS_DEVELOPERS_SPRITE,
+	&CreditsDevelopersSprite,
 	NULL
 };
 
-EntityROMSpec CREDITS_DEVELOPERS_EN =
+EntityROMSpec CreditsDevelopersEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec CREDITS_DEVELOPERS_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CREDITS_DEVELOPERS_SPRITES,
+	(SpriteSpec**)CreditsDevelopersSprites,
 
 	// use z displacement in projection
 	false,

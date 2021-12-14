@@ -25,26 +25,26 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec LEVEL_1_STAGE_4_MAIN_EXIT_XP;
+extern EntitySpec Level1Stage4MainExitXp;
 
-extern EntitySpec ATTACK_DOG_EM;
-extern EntitySpec BENCH_EN;
-extern EntitySpec CLOUDS_BACK_EN;
-extern EntitySpec CLOUDS_FRONT_EN;
-extern EntitySpec COLLISION_CL;
-extern EntitySpec DOG_POO_1_EN;
-extern EntitySpec GUI_EN;
-extern EntitySpec LANTERN_1_EN;
-extern EntitySpec LEVEL_1_STAGE_4_BACKGROUND_A_EN;
-extern EntitySpec LEVEL_1_STAGE_4_BACKGROUND_B_EN;
-extern EntitySpec LEVEL_1_STAGE_4_BUILDING_1_EN;
-extern EntitySpec LEVEL_1_STAGE_4_LIFT_EN;
-extern EntitySpec LEVEL_1_STAGE_4_PARK_1_EN;
-extern EntitySpec LOW_POWER_INDICATOR_LB;
-extern EntitySpec TREE_1_EN;
+extern EntitySpec AttackDogEm;
+extern EntitySpec BenchEntity;
+extern EntitySpec CloudsBackEntity;
+extern EntitySpec CloudsFrontEntity;
+extern EntitySpec CollisionCl;
+extern EntitySpec DogPoo1Entity;
+extern EntitySpec GuiEntity;
+extern EntitySpec Lantern1Entity;
+extern EntitySpec Level1Stage4BackgroundAEntity;
+extern EntitySpec Level1Stage4BackgroundBEntity;
+extern EntitySpec Level1Stage4Building1Entity;
+extern EntitySpec Level1Stage4LiftEntity;
+extern EntitySpec Level1Stage4Park1Entity;
+extern EntitySpec LowPowerIndicatorEntity;
+extern EntitySpec Tree1Entity;
 
-extern CharSetSpec PUNK_CH;
-extern CharSetSpec PUNK_BLACK_CH;
+extern CharSetSpec PunkCharset;
+extern CharSetSpec PunkBlackCharset;
 
 extern Size collision_16_224_64;
 
@@ -53,34 +53,34 @@ extern Size collision_16_224_64;
 //											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_CHILDREN[] =
+PositionedEntityROMSpec Level1Stage4StChildren[] =
 {
-	{&COLLISION_CL,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // left border
+	{&CollisionCl,						{  -8,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // left border
 
-	{&CLOUDS_BACK_EN,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
-	{&CLOUDS_FRONT_EN,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_4_BACKGROUND_A_EN,	{-112, 112,  256,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_4_BACKGROUND_B_EN,	{ 590, 112,  256,   0},		0, NULL, NULL, NULL, true},
+	{&CloudsBackEntity,					{  32,   8,  352,   0},		0, NULL, NULL, NULL, true},
+	{&CloudsFrontEntity,					{   0,   0,  320,   0},		0, NULL, NULL, NULL, true},
+	{&Level1Stage4BackgroundAEntity,	{-112, 112,  256,   0},		0, NULL, NULL, NULL, true},
+	{&Level1Stage4BackgroundBEntity,	{ 590, 112,  256,   0},		0, NULL, NULL, NULL, true},
 
-	{&LEVEL_1_STAGE_4_BUILDING_1_EN,	{ 248,  92,    0,   0},		0, NULL, NULL, NULL, true},
-	{&LEVEL_1_STAGE_4_LIFT_EN,			{ 236,  76,    0,   0},		0, NULL, NULL, NULL, true},
-	{&TREE_1_EN,						{ 320, 128,    0,   0},		0, NULL, NULL, NULL, false},
-	{&DOG_POO_1_EN,						{ 416, 166,    0,   0},		0, NULL, NULL, NULL, false},
-	{&LEVEL_1_STAGE_4_PARK_1_EN,		{ 604,  92,    0,   0},		0, NULL, NULL, NULL, false},
-	{&LANTERN_1_EN,						{ 476, 132,    0,   0},		0, NULL, NULL, NULL, false},
-	{&BENCH_EN,							{ 624, 159,    0,   0},		0, NULL, NULL, NULL, false},
-	{&ATTACK_DOG_EM,					{ 632, 159,    0,   0},		0, NULL, NULL, NULL, false},
+	{&Level1Stage4Building1Entity,	{ 248,  92,    0,   0},		0, NULL, NULL, NULL, true},
+	{&Level1Stage4LiftEntity,			{ 236,  76,    0,   0},		0, NULL, NULL, NULL, true},
+	{&Tree1Entity,						{ 320, 128,    0,   0},		0, NULL, NULL, NULL, false},
+	{&DogPoo1Entity,						{ 416, 166,    0,   0},		0, NULL, NULL, NULL, false},
+	{&Level1Stage4Park1Entity,		{ 604,  92,    0,   0},		0, NULL, NULL, NULL, false},
+	{&Lantern1Entity,						{ 476, 132,    0,   0},		0, NULL, NULL, NULL, false},
+	{&BenchEntity,							{ 624, 159,    0,   0},		0, NULL, NULL, NULL, false},
+	{&AttackDogEm,					{ 632, 159,    0,   0},		0, NULL, NULL, NULL, false},
 
-	{&LEVEL_1_STAGE_4_MAIN_EXIT_XP,		{ 760, 128,    0,   0},		0, NULL, NULL, NULL, false},
-	{&COLLISION_CL,						{ 774,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // right border
+	{&Level1Stage4MainExitXp,		{ 760, 128,    0,   0},		0, NULL, NULL, NULL, false},
+	{&CollisionCl,						{ 774,  96,    0,   0},		0, NULL, NULL, (void*)&collision_16_224_64, false}, // right border
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_UI_CHILDREN[] =
+PositionedEntityROMSpec Level1Stage4StUiChildren[] =
 {
-	{&GUI_EN, 							{ 332, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
-	{&LOW_POWER_INDICATOR_LB, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
+	{&GuiEntity, 							{ 332, 204,  -1,   0}, 		0, NULL, NULL, NULL, true},
+	{&LowPowerIndicatorEntity, 			{ 265, 215,  -2,   0}, 		0, NULL, NULL, NULL, true},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
@@ -90,29 +90,29 @@ PositionedEntityROMSpec LEVEL_1_STAGE_4_ST_UI_CHILDREN[] =
 //											PRELOAD LISTS
 //---------------------------------------------------------------------------------------------------------
 
-FontROMSpec* const LEVEL_1_STAGE_4_ST_FONTS[] =
+FontROMSpec* const Level1Stage4StFonts[] =
 {
 	NULL
 };
 
-CharSetROMSpec* const LEVEL_1_STAGE_4_ST_CHARSETS[] =
+CharSetROMSpec* const Level1Stage4StCharsets[] =
 {
-	&PUNK_CH,
-	&PUNK_BLACK_CH,
+	&PunkCharset,
+	&PunkBlackCharset,
 	NULL
 };
 
-TextureSpec* const LEVEL_1_STAGE_4_ST_TEXTURES[] =
-{
-	NULL
-};
-
-const PostProcessingEffect LEVEL_1_STAGE_4_ST_POST_PROCESSING_EFFECTS[] =
+TextureSpec* const Level1Stage4StTextures[] =
 {
 	NULL
 };
 
-SoundROM* const LEVEL_1_STAGE_4_ST_BGM[] =
+const PostProcessingEffect Level1Stage4St_POST_PROCESSING_EFFECTS[] =
+{
+	NULL
+};
+
+SoundROM* const Level1Stage4St_BGM[] =
 {
 	NULL,
 };
@@ -122,7 +122,7 @@ SoundROM* const LEVEL_1_STAGE_4_ST_BGM[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec LEVEL_1_STAGE_4_ST =
+StageROMSpec Level1Stage4St =
 {
 	// allocator
 	__TYPE(Stage),
@@ -311,32 +311,32 @@ StageROMSpec LEVEL_1_STAGE_4_ST =
 	// assets
 	{
 		// fonts to preload
-		(FontSpec**)LEVEL_1_STAGE_4_ST_FONTS,
+		(FontSpec**)Level1Stage4StFonts,
 
 		// char sets to preload
-		(CharSetSpec**)LEVEL_1_STAGE_4_ST_CHARSETS,
+		(CharSetSpec**)Level1Stage4StCharsets,
 
 		// textures to preload
-		(TextureSpec**)LEVEL_1_STAGE_4_ST_TEXTURES,
+		(TextureSpec**)Level1Stage4StTextures,
 
 		// background sounds
-		(Sound**)LEVEL_1_STAGE_4_ST_BGM,
+		(Sound**)Level1Stage4St_BGM,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			(PositionedEntity*)LEVEL_1_STAGE_4_ST_UI_CHILDREN,
+			(PositionedEntity*)Level1Stage4StUiChildren,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)LEVEL_1_STAGE_4_ST_CHILDREN,
+		(PositionedEntity*)Level1Stage4StChildren,
 	},
 
 	// post processing effects
-	(PostProcessingEffect*)LEVEL_1_STAGE_4_ST_POST_PROCESSING_EFFECTS,
+	(PostProcessingEffect*)Level1Stage4St_POST_PROCESSING_EFFECTS,
 };
 
 
@@ -344,10 +344,10 @@ StageROMSpec LEVEL_1_STAGE_4_ST =
 //												ENTRY POINTS
 //---------------------------------------------------------------------------------------------------------
 
-StageEntryPointROMSpec LEVEL_1_STAGE_4_MAIN_EP =
+StageEntryPointROMSpec Level1Stage4MainEntryPoint =
 {
 	// the stage to load
-	(StageSpec*)&LEVEL_1_STAGE_4_ST,
+	(StageSpec*)&Level1Stage4St,
 
 	// starting position (x, y, z)
 	{236,  0, CAPTAIN_DSPL},

@@ -14,7 +14,7 @@
 
 #include <SoundManager.h>
 #include <WaveForms.h>
-#include <MIDI.h>
+#include <WaveForms.h>
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ SoundChannelConfigurationROM CAPITANO_CHANNEL_1_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	squareWaveForm,
+	SquareWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -129,7 +129,7 @@ SoundChannelConfigurationROM CAPITANO_CHANNEL_2_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	violinWaveForm,
+	ViolinWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -182,7 +182,7 @@ SoundChannelConfigurationROM CAPITANO_CHANNEL_3_CONFIGURATION =
 	0x00,
 
 	/// Waveform data pointer
-	sawSquareWaveForm,
+	SawSquareWaveForm,
 
 	/// kChannelNormal, kChannelModulation, kChannelNoise
 	kChannelNormal,
@@ -206,7 +206,7 @@ SoundChannelROM CAPITANO_CHANNEL_3 =
 };
 
 
-SoundChannelROM* CAPITANO_CHANNELS[] =
+SoundChannelROM* CAPITANOChannels[] =
 {
 	&CAPITANO_CHANNEL_1,
 	&CAPITANO_CHANNEL_2,
@@ -214,7 +214,7 @@ SoundChannelROM* CAPITANO_CHANNELS[] =
 	NULL
 };
 
-SoundROM CAPITANO_SONG =
+SoundROM CapitanoSong =
 {
 	/// Name
 	"Capitano",
@@ -226,5 +226,5 @@ SoundROM CAPITANO_SONG =
 	820,
 
 	/// Tracks
-	(SoundChannel**)CAPITANO_CHANNELS
+	(SoundChannel**)CAPITANOChannels
 };

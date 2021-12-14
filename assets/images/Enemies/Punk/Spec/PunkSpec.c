@@ -36,7 +36,7 @@ extern BYTE PunkDyingBlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec PUNK_MOVE_ANIM =
+AnimationFunctionROMSpec PunkMoveAnimation =
 {
 	// number of frames of this animation function
 	12,
@@ -57,7 +57,7 @@ AnimationFunctionROMSpec PUNK_MOVE_ANIM =
 	"Move",
 };
 
-AnimationFunctionROMSpec PUNK_DIE_ANIM =
+AnimationFunctionROMSpec PunkDieAnimation =
 {
 	// number of frames of this animation function
 	38,
@@ -82,17 +82,17 @@ AnimationFunctionROMSpec PUNK_DIE_ANIM =
 	"Die",
 };
 
-AnimationDescriptionROMSpec PUNK_ANIM =
+AnimationDescriptionROMSpec PunkAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&PUNK_MOVE_ANIM,
-		(AnimationFunction*)&PUNK_DIE_ANIM,
+		(AnimationFunction*)&PunkMoveAnimation,
+		(AnimationFunction*)&PunkDieAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec PUNK_CH =
+CharSetROMSpec PunkCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -107,7 +107,7 @@ CharSetROMSpec PUNK_CH =
 	PunkTiles,
 };
 
-CharSetROMSpec PUNK_BLACK_CH =
+CharSetROMSpec PunkBlackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -122,9 +122,9 @@ CharSetROMSpec PUNK_BLACK_CH =
 	PunkBlackTiles,
 };
 
-TextureROMSpec PUNK_TX =
+TextureROMSpec PunkTexture =
 {
-	(CharSetSpec*)&PUNK_CH,
+	(CharSetSpec*)&PunkCharset,
 
 	// bgmap spec
 	PunkMap,
@@ -156,9 +156,9 @@ TextureROMSpec PUNK_TX =
 	false,
 };
 
-TextureROMSpec PUNK_BLACK_TX =
+TextureROMSpec PunkBlackTexture =
 {
-	(CharSetSpec*)&PUNK_BLACK_CH,
+	(CharSetSpec*)&PunkBlackCharset,
 
 	// bgmap spec
 	PunkBlackMap,
@@ -190,14 +190,14 @@ TextureROMSpec PUNK_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec PUNK_SPRITE =
+BgmapSpriteROMSpec PunkSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&PUNK_TX,
+		(TextureSpec*)&PunkTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -217,14 +217,14 @@ BgmapSpriteROMSpec PUNK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec PUNK_BLACK_SPRITE =
+BgmapSpriteROMSpec PunkBlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&PUNK_BLACK_TX,
+		(TextureSpec*)&PunkBlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -244,14 +244,14 @@ BgmapSpriteROMSpec PUNK_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const PUNK_SPRITES[] =
+BgmapSpriteROMSpec* const PunkSprites[] =
 {
-	&PUNK_SPRITE,
-	&PUNK_BLACK_SPRITE,
+	&PunkSprite,
+	&PunkBlackSprite,
 	NULL
 };
 
-ShapeROMSpec PUNK_SHAPES[] =
+ShapeROMSpec PunkShapes[] =
 {
 	{
 		// shape
@@ -282,7 +282,7 @@ ShapeROMSpec PUNK_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-EnemyROMSpec PUNK_EM =
+EnemyROMSpec PunkEm =
 {
 	{
 		{
@@ -301,13 +301,13 @@ EnemyROMSpec PUNK_EM =
 					NULL,
 					
 					// sprites
-					(SpriteSpec**)PUNK_SPRITES,
+					(SpriteSpec**)PunkSprites,
 
 					// use z displacement in projection
 					false,
 
 					// collision shapes
-					(ShapeSpec*)PUNK_SHAPES,
+					(ShapeSpec*)PunkShapes,
 
 					// size
 					// if 0, width and height will be inferred from the first sprite's texture's size
@@ -321,7 +321,7 @@ EnemyROMSpec PUNK_EM =
 				},
 
 				// pointer to the animation spec for the character
-				(AnimationDescription*)&PUNK_ANIM,
+				(AnimationDescription*)&PunkAnimation,
 
 				// initial animation
 				"Move",
@@ -354,7 +354,7 @@ EnemyROMSpec PUNK_EM =
 	true
 };
 
-CharSetROMSpec PUNK_DYING_CH =
+CharSetROMSpec PunkDyingCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -369,7 +369,7 @@ CharSetROMSpec PUNK_DYING_CH =
 	PunkDyingTiles,
 };
 
-CharSetROMSpec PUNK_DYING_BLACK_CH =
+CharSetROMSpec PunkDyingBlackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -384,9 +384,9 @@ CharSetROMSpec PUNK_DYING_BLACK_CH =
 	PunkDyingBlackTiles,
 };
 
-TextureROMSpec PUNK_DYING_TX =
+TextureROMSpec PunkDyingTexture =
 {
-	(CharSetSpec*)&PUNK_DYING_CH,
+	(CharSetSpec*)&PunkDyingCharset,
 
 	// bgmap spec
 	PunkDyingMap,
@@ -418,9 +418,9 @@ TextureROMSpec PUNK_DYING_TX =
 	false,
 };
 
-TextureROMSpec PUNK_DYING_BLACK_TX =
+TextureROMSpec PunkDyingBlackTexture =
 {
-	(CharSetSpec*)&PUNK_DYING_BLACK_CH,
+	(CharSetSpec*)&PunkDyingBlackCharset,
 
 	// bgmap spec
 	PunkDyingBlackMap,
@@ -452,14 +452,14 @@ TextureROMSpec PUNK_DYING_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec PUNK_DYING_SPRITE =
+BgmapSpriteROMSpec PunkDyingSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&PUNK_DYING_TX,
+		(TextureSpec*)&PunkDyingTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -480,14 +480,14 @@ BgmapSpriteROMSpec PUNK_DYING_SPRITE =
 };
 
 
-BgmapSpriteROMSpec PUNK_DYING_BLACK_SPRITE =
+BgmapSpriteROMSpec PunkDyingBlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&PUNK_DYING_BLACK_TX,
+		(TextureSpec*)&PunkDyingBlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -507,9 +507,9 @@ BgmapSpriteROMSpec PUNK_DYING_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const PUNK_DYING_SPRITES[] =
+BgmapSpriteROMSpec* const PunkDyingSprites[] =
 {
-	&PUNK_DYING_SPRITE,
-	&PUNK_DYING_BLACK_SPRITE,
+	&PunkDyingSprite,
+	&PunkDyingBlackSprite,
 	NULL
 };

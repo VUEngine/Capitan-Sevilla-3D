@@ -29,9 +29,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound LIFT_SND;
-extern Sound LIFT_BREAK_SND;
-extern Sound INTRO_LOWER_SONG;
+extern Sound LiftSound;
+extern Sound LiftBreakSound;
+extern Sound IntroLowerSong;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ void Lift::resume()
 
 	SoundManager::playSound(
 		SoundManager::getInstance(),
-		&INTRO_LOWER_SONG,
+		&IntroLowerSong,
 		kPlayAll,
 		(const Vector3D*)&this->transformation.globalPosition,
 		kSoundWrapperPlaybackNormal,
@@ -94,7 +94,7 @@ bool Lift::handleMessage(Telegram telegram)
 		{
 			SoundManager::playSound(
 				SoundManager::getInstance(),
-				&LIFT_SND,
+				&LiftSound,
 				kPlayAll,
 				(const Vector3D*)&this->transformation.globalPosition,
 				kSoundWrapperPlaybackNormal,
@@ -131,7 +131,7 @@ void Lift::break()
 {
 	SoundManager::playSound(
 		SoundManager::getInstance(),
-		&LIFT_BREAK_SND,
+		&LiftBreakSound,
 		kPlayAll,
 		(const Vector3D*)&this->transformation.globalPosition,
 		kSoundWrapperPlaybackNormal,
@@ -148,7 +148,7 @@ void Lift::onBreakingSoundReleased(Object eventFirer __attribute__((unused)))
 
 	SoundManager::playSound(
 		SoundManager::getInstance(),
-		&INTRO_LOWER_SONG,
+		&IntroLowerSong,
 		kPlayAll,
 		(const Vector3D*)&this->transformation.globalPosition,
 		kSoundWrapperPlaybackNormal,

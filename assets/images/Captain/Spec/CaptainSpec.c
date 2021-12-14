@@ -31,7 +31,7 @@ extern BYTE CaptainBlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec CAPTAIN_IDLE_ANIM =
+AnimationFunctionROMSpec CaptainIdleAnimation =
 {
 	// number of frames of this animation function
 	8,
@@ -52,7 +52,7 @@ AnimationFunctionROMSpec CAPTAIN_IDLE_ANIM =
 	"Idle",
 };
 
-AnimationFunctionROMSpec CAPTAIN_WALK_ANIM =
+AnimationFunctionROMSpec CaptainWalkAnimation =
 {
 	// number of frames of this animation function
 	12,
@@ -73,7 +73,7 @@ AnimationFunctionROMSpec CAPTAIN_WALK_ANIM =
 	"Walk",
 };
 
-AnimationFunctionROMSpec CAPTAIN_KNEEL_DOWN_ANIM =
+AnimationFunctionROMSpec CaptainKneelDownAnimation =
 {
 	// number of frames of this animation function
 	6,
@@ -94,7 +94,7 @@ AnimationFunctionROMSpec CAPTAIN_KNEEL_DOWN_ANIM =
 	"KneelDown",
 };
 
-AnimationFunctionROMSpec CAPTAIN_JUMP_ANIM =
+AnimationFunctionROMSpec CaptainJumpAnimation =
 {
 	// number of frames of this animation function
 	23,
@@ -115,7 +115,7 @@ AnimationFunctionROMSpec CAPTAIN_JUMP_ANIM =
 	"Jump",
 };
 
-AnimationFunctionROMSpec CAPTAIN_FALL_ANIM =
+AnimationFunctionROMSpec CaptainFallAnimation =
 {
 	// number of frames of this animation function
 	18,
@@ -136,7 +136,7 @@ AnimationFunctionROMSpec CAPTAIN_FALL_ANIM =
 	"Fall",
 };
 
-AnimationFunctionROMSpec CAPTAIN_LAND_ANIM =
+AnimationFunctionROMSpec CaptainLandAnimation =
 {
 	// number of frames of this animation function
 	3,
@@ -157,7 +157,7 @@ AnimationFunctionROMSpec CAPTAIN_LAND_ANIM =
 	"Land",
 };
 
-AnimationFunctionROMSpec CAPTAIN_HIT_ANIM =
+AnimationFunctionROMSpec CaptainHitAnimation =
 {
 	// number of frames of this animation function
 	16,
@@ -178,7 +178,7 @@ AnimationFunctionROMSpec CAPTAIN_HIT_ANIM =
 	"Hit",
 };
 
-AnimationFunctionROMSpec CAPTAIN_RELOAD_ANIM =
+AnimationFunctionROMSpec CaptainReloadAnimation =
 {
 	// number of frames of this animation function
 	20,
@@ -199,7 +199,7 @@ AnimationFunctionROMSpec CAPTAIN_RELOAD_ANIM =
 	"Reload",
 };
 
-AnimationFunctionROMSpec CAPTAIN_DEAD_ANIM =
+AnimationFunctionROMSpec CaptainDeadAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -220,24 +220,24 @@ AnimationFunctionROMSpec CAPTAIN_DEAD_ANIM =
 	"Dead",
 };
 
-AnimationDescriptionROMSpec CAPTAIN_ANIM =
+AnimationDescriptionROMSpec CaptainAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&CAPTAIN_IDLE_ANIM,
-		(AnimationFunction*)&CAPTAIN_WALK_ANIM,
-		(AnimationFunction*)&CAPTAIN_KNEEL_DOWN_ANIM,
-		(AnimationFunction*)&CAPTAIN_JUMP_ANIM,
-		(AnimationFunction*)&CAPTAIN_FALL_ANIM,
-		(AnimationFunction*)&CAPTAIN_LAND_ANIM,
-		(AnimationFunction*)&CAPTAIN_HIT_ANIM,
-		(AnimationFunction*)&CAPTAIN_RELOAD_ANIM,
-		(AnimationFunction*)&CAPTAIN_DEAD_ANIM,
+		(AnimationFunction*)&CaptainIdleAnimation,
+		(AnimationFunction*)&CaptainWalkAnimation,
+		(AnimationFunction*)&CaptainKneelDownAnimation,
+		(AnimationFunction*)&CaptainJumpAnimation,
+		(AnimationFunction*)&CaptainFallAnimation,
+		(AnimationFunction*)&CaptainLandAnimation,
+		(AnimationFunction*)&CaptainHitAnimation,
+		(AnimationFunction*)&CaptainReloadAnimation,
+		(AnimationFunction*)&CaptainDeadAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec CAPTAIN_CH =
+CharSetROMSpec CaptainCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -252,7 +252,7 @@ CharSetROMSpec CAPTAIN_CH =
 	CaptainTiles,
 };
 
-CharSetROMSpec CAPTAIN_BLACK_CH =
+CharSetROMSpec CaptainBlackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -267,9 +267,9 @@ CharSetROMSpec CAPTAIN_BLACK_CH =
 	CaptainBlackTiles,
 };
 
-TextureROMSpec CAPTAIN_TX =
+TextureROMSpec CaptainTexture =
 {
-	(CharSetSpec*)&CAPTAIN_CH,
+	(CharSetSpec*)&CaptainCharset,
 
 	// bgmap spec
 	CaptainMap,
@@ -301,9 +301,9 @@ TextureROMSpec CAPTAIN_TX =
 	false,
 };
 
-TextureROMSpec CAPTAIN_BLACK_TX =
+TextureROMSpec CaptainBlackTexture =
 {
-	(CharSetSpec*)&CAPTAIN_BLACK_CH,
+	(CharSetSpec*)&CaptainBlackCharset,
 
 	// bgmap spec
 	CaptainBlackMap,
@@ -335,14 +335,14 @@ TextureROMSpec CAPTAIN_BLACK_TX =
 	false,
 };
 
-ObjectSpriteROMSpec CAPTAIN_SPRITE =
+ObjectSpriteROMSpec CaptainSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CAPTAIN_TX,
+		(TextureSpec*)&CaptainTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -359,14 +359,14 @@ ObjectSpriteROMSpec CAPTAIN_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec CAPTAIN_BLACK_SPRITE =
+ObjectSpriteROMSpec CaptainBlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CAPTAIN_BLACK_TX,
+		(TextureSpec*)&CaptainBlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -383,14 +383,14 @@ ObjectSpriteROMSpec CAPTAIN_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const CAPTAIN_SPRITES[] =
+ObjectSpriteROMSpec* const CaptainSprites[] =
 {
-	&CAPTAIN_SPRITE,
-	&CAPTAIN_BLACK_SPRITE,
+	&CaptainSprite,
+	&CaptainBlackSprite,
 	NULL
 };
 
-ShapeROMSpec CAPTAIN_AC_SHAPES[] =
+ShapeROMSpec CaptainShapes[] =
 {
 	// standing
 	{
@@ -449,7 +449,7 @@ ShapeROMSpec CAPTAIN_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-PhysicalSpecificationROMSpec CAPTAIN_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec CaptainPhysicalProperties =
 {
 	// mass
 	__F_TO_FIX10_6(0.65f),
@@ -467,7 +467,7 @@ PhysicalSpecificationROMSpec CAPTAIN_PHYSICAL_PROPERTIES =
 	__I_TO_FIX10_6(0)
 };
 
-CaptainROMSpec CAPTAIN_AC =
+CaptainROMSpec CaptainEntity =
 {
 	{
 		{
@@ -484,13 +484,13 @@ CaptainROMSpec CAPTAIN_AC =
 			NULL,
 
 			// sprites
-			(SpriteSpec**)CAPTAIN_SPRITES,
+			(SpriteSpec**)CaptainSprites,
 
 			// use z displacement in projection
 			false,
 
 			// collision shapes
-			(ShapeSpec*)CAPTAIN_AC_SHAPES,
+			(ShapeSpec*)CaptainShapes,
 
 			// size
 			// if 0, width and height will be inferred from the first sprite's texture's size
@@ -500,11 +500,11 @@ CaptainROMSpec CAPTAIN_AC =
 			kCaptain,
 
 			// physical specification
-			(PhysicalSpecification*)&CAPTAIN_PHYSICAL_PROPERTIES,
+			(PhysicalSpecification*)&CaptainPhysicalProperties,
 		},
 
 		// pointer to the animation spec for the character
-		(AnimationDescription*)&CAPTAIN_ANIM,
+		(AnimationDescription*)&CaptainAnimation,
 
 		// initial animation
 		"Idle",

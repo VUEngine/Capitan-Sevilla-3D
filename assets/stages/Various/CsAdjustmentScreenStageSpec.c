@@ -20,41 +20,41 @@
 //---------------------------------------------------------------------------------------------------------
 
 
-extern EntitySpec CS_ADJUSTMENT_SCREEN_SPLAT_EN;
-extern EntitySpec CS_ADJUSTMENT_SCREEN_ICON_L_EN;
-extern EntitySpec CS_ADJUSTMENT_SCREEN_ICON_R_EN;
-extern EntitySpec CS_ADJUSTMENT_SCREEN_LOGO_EN;
-extern EntitySpec CS_ADJUSTMENT_SCREEN_MADE_WITH_EN;
+extern EntitySpec CsAdjustmentScreenSplatEntity;
+extern EntitySpec CsAdjustmentScreenIconLEntity;
+extern EntitySpec CsAdjustmentScreenIconREntity;
+extern EntitySpec CsAdjustmentScreenLogoEntity;
+extern EntitySpec CsAdjustmentScreenMadeWithEntity;
 
-extern EntitySpec LOW_POWER_INDICATOR_LB;
+extern EntitySpec LowPowerIndicatorEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
 // 											ENTITY LISTS
 //---------------------------------------------------------------------------------------------------------
 
-PositionedEntityROMSpec CS_ADJUSTMENT_SCREEN_STAGE_ENTITIES[] =
+PositionedEntityROMSpec CsAdjustmentScreenStageEntities[] =
 {
 
-	{&CS_ADJUSTMENT_SCREEN_ICON_R_EN, 		{ 16, 202,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CS_ADJUSTMENT_SCREEN_ICON_L_EN, 		{ 16,  22,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CS_ADJUSTMENT_SCREEN_SPLAT_EN, 		{192, 112,  1, 0}, 0, NULL, NULL, NULL, false},
-	//{&CS_ADJUSTMENT_SCREEN_MADE_WITH_EN, 	{130,  90,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CS_ADJUSTMENT_SCREEN_LOGO_EN, 		{192, 110,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CS_ADJUSTMENT_SCREEN_ICON_L_EN, 		{368, 202,  0, 0}, 0, NULL, NULL, NULL, false},
-	{&CS_ADJUSTMENT_SCREEN_ICON_R_EN, 		{368,  22,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&CsAdjustmentScreenIconREntity, 		{ 16, 202,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&CsAdjustmentScreenIconLEntity, 		{ 16,  22,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&CsAdjustmentScreenSplatEntity, 		{192, 112,  1, 0}, 0, NULL, NULL, NULL, false},
+	//{&CsAdjustmentScreenMadeWithEntity, 	{130,  90,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&CsAdjustmentScreenLogoEntity, 		{192, 110,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&CsAdjustmentScreenIconLEntity, 		{368, 202,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&CsAdjustmentScreenIconREntity, 		{368,  22,  0, 0}, 0, NULL, NULL, NULL, false},
 
-	{&LOW_POWER_INDICATOR_LB, 				{ 40,  12,  0, 0}, 0, NULL, NULL, NULL, false},
+	{&LowPowerIndicatorEntity, 				{ 40,  12,  0, 0}, 0, NULL, NULL, NULL, false},
 
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-PositionedEntityROMSpec CS_ADJUSTMENT_SCREEN_STAGE_UI_ENTITIES[] =
+PositionedEntityROMSpec CsAdjustmentScreenStageUiEntities[] =
 {
 	{NULL, {0,0,0,0}, 0, NULL, NULL, NULL, false},
 };
 
-SoundROM* const CS_ADJUSTMENT_SCREEN_STAGE_SOUNDS[] =
+SoundROM* const CsAdjustmentScreenStage_SOUNDS[] =
 {
 	NULL
 };
@@ -64,7 +64,7 @@ SoundROM* const CS_ADJUSTMENT_SCREEN_STAGE_SOUNDS[] =
 //											STAGE DEFINITION
 //---------------------------------------------------------------------------------------------------------
 
-StageROMSpec CS_ADJUSTMENT_SCREEN_STAGE =
+StageROMSpec CsAdjustmentScreenStage =
 {
 	// allocator
 	__TYPE(Stage),
@@ -263,19 +263,19 @@ StageROMSpec CS_ADJUSTMENT_SCREEN_STAGE =
 		(TextureSpec**)NULL,
 
 		// background sounds
-		(Sound**)CS_ADJUSTMENT_SCREEN_STAGE_SOUNDS,
+		(Sound**)CsAdjustmentScreenStage_SOUNDS,
 	},
 
 	// entities
 	{
 		// ui
 		{
-			(PositionedEntity*)CS_ADJUSTMENT_SCREEN_STAGE_UI_ENTITIES,
+			(PositionedEntity*)CsAdjustmentScreenStageUiEntities,
 			__TYPE(UIContainer),
 		},
 
 		// children
-		(PositionedEntity*)CS_ADJUSTMENT_SCREEN_STAGE_ENTITIES,
+		(PositionedEntity*)CsAdjustmentScreenStageEntities,
 	},
 
 	// post processing effects

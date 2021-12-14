@@ -29,7 +29,7 @@ extern BYTE PillMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec PILL_DEFAULT_ANIM =
+AnimationFunctionROMSpec PillDefaultAnimation =
 {
 	// number of frames of this animation function
 	1,
@@ -50,16 +50,16 @@ AnimationFunctionROMSpec PILL_DEFAULT_ANIM =
 	"Default",
 };
 
-AnimationDescriptionROMSpec PILL_ANIM =
+AnimationDescriptionROMSpec PillAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&PILL_DEFAULT_ANIM,
+		(AnimationFunction*)&PillDefaultAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec PILL_CH =
+CharSetROMSpec PillCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -74,10 +74,10 @@ CharSetROMSpec PILL_CH =
 	PillTiles,
 };
 
-TextureROMSpec PILL_TX =
+TextureROMSpec PillTexture =
 {
 	// charset spec
-	(CharSetSpec*)&PILL_CH,
+	(CharSetSpec*)&PillCharset,
 
 	// bgmap spec
 	PillMap,
@@ -109,14 +109,14 @@ TextureROMSpec PILL_TX =
 	false,
 };
 
-ObjectSpriteROMSpec PILL_SPRITE =
+ObjectSpriteROMSpec PillSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&PILL_TX,
+		(TextureSpec*)&PillTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -133,13 +133,13 @@ ObjectSpriteROMSpec PILL_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const PILL_SPRITES[] =
+ObjectSpriteROMSpec* const PillSprites[] =
 {
-	&PILL_SPRITE,
+	&PillSprite,
 	NULL
 };
 
-ShapeROMSpec PILL_PR_SHAPES[] =
+ShapeROMSpec PillPrShapes[] =
 {
 	{
 		// shape
@@ -170,7 +170,7 @@ ShapeROMSpec PILL_PR_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-ProjectileROMSpec PILL_PR =
+ProjectileROMSpec PillPr =
 {
 	// actor
 	{
@@ -189,13 +189,13 @@ ProjectileROMSpec PILL_PR =
 				NULL,
 				
 				// sprites
-				(SpriteSpec**)PILL_SPRITES,
+				(SpriteSpec**)PillSprites,
 
 				// use z displacement in projection
 				false,
 
 				// collision shapes
-				(ShapeSpec*)PILL_PR_SHAPES,
+				(ShapeSpec*)PillPrShapes,
 
 				// size
 				// if 0, width and height will be inferred from the first sprite's texture's size
@@ -209,7 +209,7 @@ ProjectileROMSpec PILL_PR =
 			},
 
 			// pointer to the animation spec for the character
-			(AnimationDescription*)&PILL_ANIM,
+			(AnimationDescription*)&PillAnimation,
 
 			// initial animation
 			"Default",

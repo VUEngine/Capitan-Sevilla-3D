@@ -31,7 +31,7 @@ extern BYTE PlaygroundSignBlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec PLAYGROUND_SIGN_CH =
+CharSetROMSpec PlaygroundSignCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -46,7 +46,7 @@ CharSetROMSpec PLAYGROUND_SIGN_CH =
 	PlaygroundSignTiles,
 };
 
-CharSetROMSpec PLAYGROUND_SIGN_BLACK_CH =
+CharSetROMSpec PlaygroundSignBlackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -61,10 +61,10 @@ CharSetROMSpec PLAYGROUND_SIGN_BLACK_CH =
 	PlaygroundSignBlackTiles,
 };
 
-TextureROMSpec PLAYGROUND_SIGN_TX =
+TextureROMSpec PlaygroundSignTexture =
 {
 	// charset spec
-	(CharSetSpec*)&PLAYGROUND_SIGN_CH,
+	(CharSetSpec*)&PlaygroundSignCharset,
 
 	// bgmap spec
 	PlaygroundSignMap,
@@ -96,10 +96,10 @@ TextureROMSpec PLAYGROUND_SIGN_TX =
 	false,
 };
 
-TextureROMSpec PLAYGROUND_SIGN_BLACK_TX =
+TextureROMSpec PlaygroundSignBlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&PLAYGROUND_SIGN_BLACK_CH,
+	(CharSetSpec*)&PlaygroundSignBlackCharset,
 
 	// bgmap spec
 	PlaygroundSignBlackMap,
@@ -131,14 +131,14 @@ TextureROMSpec PLAYGROUND_SIGN_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec PLAYGROUND_SIGN_SPRITE =
+BgmapSpriteROMSpec PlaygroundSignSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&PLAYGROUND_SIGN_TX,
+		(TextureSpec*)&PlaygroundSignTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -158,14 +158,14 @@ BgmapSpriteROMSpec PLAYGROUND_SIGN_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec PLAYGROUND_SIGN_BLACK_SPRITE =
+BgmapSpriteROMSpec PlaygroundSignBlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&PLAYGROUND_SIGN_BLACK_TX,
+		(TextureSpec*)&PlaygroundSignBlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -185,14 +185,14 @@ BgmapSpriteROMSpec PLAYGROUND_SIGN_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const PLAYGROUND_SIGN_SPRITES[] =
+BgmapSpriteROMSpec* const PlaygroundSignSprites[] =
 {
-	&PLAYGROUND_SIGN_BLACK_SPRITE,
-	&PLAYGROUND_SIGN_SPRITE,
+	&PlaygroundSignBlackSprite,
+	&PlaygroundSignSprite,
 	NULL
 };
 
-EntityROMSpec PLAYGROUND_SIGN_EN =
+EntityROMSpec PlaygroundSignEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -207,7 +207,7 @@ EntityROMSpec PLAYGROUND_SIGN_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)PLAYGROUND_SIGN_SPRITES,
+	(SpriteSpec**)PlaygroundSignSprites,
 
 	// use z displacement in projection
 	false,

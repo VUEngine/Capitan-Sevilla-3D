@@ -32,7 +32,7 @@ extern BYTE CarBg2BlackMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CAR_BG_2_CH =
+CharSetROMSpec CarBg2Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -47,10 +47,10 @@ CharSetROMSpec CAR_BG_2_CH =
 	CarBg2Tiles,
 };
 
-TextureROMSpec CAR_BG_2_TX =
+TextureROMSpec CarBg2Texture =
 {
 	// charset spec
-	(CharSetSpec*)&CAR_BG_2_CH,
+	(CharSetSpec*)&CarBg2Charset,
 
 	// bgmap spec
 	CarBg2Map,
@@ -82,14 +82,14 @@ TextureROMSpec CAR_BG_2_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CAR_BG_2_SPRITE =
+BgmapSpriteROMSpec CarBg2Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CAR_BG_2_TX,
+		(TextureSpec*)&CarBg2Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -109,7 +109,7 @@ BgmapSpriteROMSpec CAR_BG_2_SPRITE =
 	__WORLD_ON,
 };
 
-CharSetROMSpec CAR_BG_2_BLACK_CH =
+CharSetROMSpec CarBg2BlackCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -124,10 +124,10 @@ CharSetROMSpec CAR_BG_2_BLACK_CH =
 	CarBg2BlackTiles,
 };
 
-TextureROMSpec CAR_BG_2_BLACK_TX =
+TextureROMSpec CarBg2BlackTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CAR_BG_2_BLACK_CH,
+	(CharSetSpec*)&CarBg2BlackCharset,
 
 	// bgmap spec
 	CarBg2BlackMap,
@@ -159,14 +159,14 @@ TextureROMSpec CAR_BG_2_BLACK_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CAR_BG_2_BLACK_SPRITE =
+BgmapSpriteROMSpec CarBg2BlackSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CAR_BG_2_BLACK_TX,
+		(TextureSpec*)&CarBg2BlackTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -186,14 +186,14 @@ BgmapSpriteROMSpec CAR_BG_2_BLACK_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CAR_BG_2_SPRITES[] =
+BgmapSpriteROMSpec* const CarBg2Sprites[] =
 {
-	&CAR_BG_2_BLACK_SPRITE,
-	&CAR_BG_2_SPRITE,
+	&CarBg2BlackSprite,
+	&CarBg2Sprite,
 	NULL
 };
 
-ShapeROMSpec CAR_BG_2_SHAPES[] =
+ShapeROMSpec CarBg2Shapes[] =
 {
 	{
 		// shape
@@ -249,7 +249,7 @@ ShapeROMSpec CAR_BG_2_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-PhysicalSpecificationROMSpec CAR_BG_2_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec CarBg2PhysicalProperties =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -267,7 +267,7 @@ PhysicalSpecificationROMSpec CAR_BG_2_PHYSICAL_PROPERTIES =
 	__I_TO_FIX10_6(0)
 };
 
-EntityROMSpec CAR_BG_2_EN =
+EntityROMSpec CarBg2Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -282,13 +282,13 @@ EntityROMSpec CAR_BG_2_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CAR_BG_2_SPRITES,
+	(SpriteSpec**)CarBg2Sprites,
 
 	// use z displacement in projection
 	false,
 
 	// collision shapes
-	(ShapeSpec*)CAR_BG_2_SHAPES,
+	(ShapeSpec*)CarBg2Shapes,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
@@ -298,5 +298,5 @@ EntityROMSpec CAR_BG_2_EN =
 	kTypeNone,
 
 	// physical specification
-	(PhysicalSpecification*)&CAR_BG_2_PHYSICAL_PROPERTIES,
+	(PhysicalSpecification*)&CarBg2PhysicalProperties,
 };

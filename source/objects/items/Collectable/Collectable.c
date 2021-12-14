@@ -29,7 +29,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern Sound JUMP_SND;
+extern Sound JumpSound;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -68,7 +68,7 @@ void Collectable::collect()
 	// play collect sound
 	SoundManager::playSound(
 		SoundManager::getInstance(),
-		&JUMP_SND,
+		&JumpSound,
 		kPlayAll,
 		(const Vector3D*)&this->transformation.globalPosition,
 		kSoundWrapperPlaybackNormal,

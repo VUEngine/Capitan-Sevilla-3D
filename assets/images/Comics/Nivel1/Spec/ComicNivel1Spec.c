@@ -24,14 +24,14 @@
 
 extern BYTE ComicNivel1Tiles[];
 extern BYTE ComicNivel1Map[];
-extern AnimationDescription LOCALIZED_ENTITY_ANIM;
+extern AnimationDescription LocalizedEntityAnimation;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec COMIC_NIVEL_1_CH =
+CharSetROMSpec ComicNivel1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -46,10 +46,10 @@ CharSetROMSpec COMIC_NIVEL_1_CH =
 	ComicNivel1Tiles,
 };
 
-TextureROMSpec COMIC_NIVEL_1_TX =
+TextureROMSpec ComicNivel1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&COMIC_NIVEL_1_CH,
+	(CharSetSpec*)&ComicNivel1Charset,
 
 	// bgmap spec
 	ComicNivel1Map,
@@ -81,14 +81,14 @@ TextureROMSpec COMIC_NIVEL_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec COMIC_NIVEL_1_SPRITE =
+BgmapSpriteROMSpec ComicNivel1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&COMIC_NIVEL_1_TX,
+		(TextureSpec*)&ComicNivel1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -108,13 +108,13 @@ BgmapSpriteROMSpec COMIC_NIVEL_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const COMIC_NIVEL_1_SPRITES[] =
+BgmapSpriteROMSpec* const ComicNivel1Sprites[] =
 {
-	&COMIC_NIVEL_1_SPRITE,
+	&ComicNivel1Sprite,
 	NULL
 };
 
-LocalizedEntityROMSpec COMIC_NIVEL_1_EN =
+LocalizedEntityROMSpec ComicNivel1Entity =
 {
 	{
 		// class allocator
@@ -130,7 +130,7 @@ LocalizedEntityROMSpec COMIC_NIVEL_1_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)COMIC_NIVEL_1_SPRITES,
+		(SpriteSpec**)ComicNivel1Sprites,
 
 		// use z displacement in projection
 		false,
@@ -150,7 +150,7 @@ LocalizedEntityROMSpec COMIC_NIVEL_1_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
+	(AnimationDescription*)&LocalizedEntityAnimation,
 
 	// initial animation
 	"0",

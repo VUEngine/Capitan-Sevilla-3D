@@ -23,14 +23,14 @@
 
 extern BYTE CreditsThankYouForPlayingTiles[];
 extern BYTE CreditsThankYouForPlayingMap[];
-extern AnimationDescription LOCALIZED_ENTITY_ANIM;
+extern AnimationDescription LocalizedEntityAnimation;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CREDITS_THANK_YOU_CH =
+CharSetROMSpec CreditsThankYouCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec CREDITS_THANK_YOU_CH =
 	CreditsThankYouForPlayingTiles,
 };
 
-TextureROMSpec CREDITS_THANK_YOU_TX =
+TextureROMSpec CreditsThankYouTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CREDITS_THANK_YOU_CH,
+	(CharSetSpec*)&CreditsThankYouCharset,
 
 	// bgmap spec
 	CreditsThankYouForPlayingMap,
@@ -80,14 +80,14 @@ TextureROMSpec CREDITS_THANK_YOU_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CREDITS_THANK_YOU_SPRITE =
+BgmapSpriteROMSpec CreditsThankYouSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&CREDITS_THANK_YOU_TX,
+		(TextureSpec*)&CreditsThankYouTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -107,13 +107,13 @@ BgmapSpriteROMSpec CREDITS_THANK_YOU_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CREDITS_THANK_YOU_SPRITES[] =
+BgmapSpriteROMSpec* const CreditsThankYouSprites[] =
 {
-	&CREDITS_THANK_YOU_SPRITE,
+	&CreditsThankYouSprite,
 	NULL
 };
 
-LocalizedEntityROMSpec CREDITS_THANK_YOU_EN =
+LocalizedEntityROMSpec CreditsThankYouEntity =
 {
 	{
 		// class allocator
@@ -129,7 +129,7 @@ LocalizedEntityROMSpec CREDITS_THANK_YOU_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)CREDITS_THANK_YOU_SPRITES,
+		(SpriteSpec**)CreditsThankYouSprites,
 
 		// use z displacement in projection
 		false,
@@ -149,7 +149,7 @@ LocalizedEntityROMSpec CREDITS_THANK_YOU_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
+	(AnimationDescription*)&LocalizedEntityAnimation,
 
 	// initial animation
 	"0",

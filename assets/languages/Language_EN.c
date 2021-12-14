@@ -19,7 +19,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec FLAG_UNITED_KINGDOM_EN;
+extern EntitySpec FlagUnitedKingdomEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ const LangROMSpec LANGUAGE_EN =
 	"ENGLISH",
 
 	// flag entity
-	&FLAG_UNITED_KINGDOM_EN,
+	&FlagUnitedKingdomEntity,
 	
 	// strings
 	(const char**)LANGUAGE_EN_STRINGS

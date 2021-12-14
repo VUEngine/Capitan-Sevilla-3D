@@ -26,7 +26,7 @@ extern BYTE CsAdjustmentScreenSplatMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CS_ADJUSTMENT_SCREEN_SPLAT_CH =
+CharSetROMSpec CsAdjustmentScreenSplatCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -41,10 +41,10 @@ CharSetROMSpec CS_ADJUSTMENT_SCREEN_SPLAT_CH =
 	CsAdjustmentScreenSplatTiles,
 };
 
-TextureROMSpec CS_ADJUSTMENT_SCREEN_SPLAT_TX =
+TextureROMSpec CsAdjustmentScreenSplatTexture =
 {
 	// charset spec
-	(CharSetSpec*)&CS_ADJUSTMENT_SCREEN_SPLAT_CH,
+	(CharSetSpec*)&CsAdjustmentScreenSplatCharset,
 
 	// bgmap spec
 	CsAdjustmentScreenSplatMap,
@@ -76,14 +76,14 @@ TextureROMSpec CS_ADJUSTMENT_SCREEN_SPLAT_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CS_ADJUSTMENT_SCREEN_SPLAT_SPRITE =
+BgmapSpriteROMSpec CsAdjustmentScreenSplatSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CS_ADJUSTMENT_SCREEN_SPLAT_TX,
+		(TextureSpec*)&CsAdjustmentScreenSplatTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -103,13 +103,13 @@ BgmapSpriteROMSpec CS_ADJUSTMENT_SCREEN_SPLAT_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CS_ADJUSTMENT_SCREEN_SPLAT_SPRITES[] =
+BgmapSpriteROMSpec* const CsAdjustmentScreenSplatSprites[] =
 {
-	&CS_ADJUSTMENT_SCREEN_SPLAT_SPRITE,
+	&CsAdjustmentScreenSplatSprite,
 	NULL
 };
 
-EntityROMSpec CS_ADJUSTMENT_SCREEN_SPLAT_EN =
+EntityROMSpec CsAdjustmentScreenSplatEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -124,7 +124,7 @@ EntityROMSpec CS_ADJUSTMENT_SCREEN_SPLAT_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CS_ADJUSTMENT_SCREEN_SPLAT_SPRITES,
+	(SpriteSpec**)CsAdjustmentScreenSplatSprites,
 
 	// use z displacement in projection
 	false,

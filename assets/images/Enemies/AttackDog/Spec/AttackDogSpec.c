@@ -29,7 +29,7 @@ extern BYTE AttackDogMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec ATTACK_DOG_MOVE_ANIM =
+AnimationFunctionROMSpec AttackDogMoveAnimation =
 {
 	// number of frames of this animation function
 	2,
@@ -50,16 +50,16 @@ AnimationFunctionROMSpec ATTACK_DOG_MOVE_ANIM =
 	"Move",
 };
 
-AnimationDescriptionROMSpec ATTACK_DOG_ANIM =
+AnimationDescriptionROMSpec AttackDogAnimation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&ATTACK_DOG_MOVE_ANIM,
+		(AnimationFunction*)&AttackDogMoveAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec ATTACK_DOG_CH =
+CharSetROMSpec AttackDogCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -74,9 +74,9 @@ CharSetROMSpec ATTACK_DOG_CH =
 	AttackDogTiles,
 };
 
-TextureROMSpec ATTACK_DOG_TX =
+TextureROMSpec AttackDogTexture =
 {
-	(CharSetSpec*)&ATTACK_DOG_CH,
+	(CharSetSpec*)&AttackDogCharset,
 
 	// bgmap spec
 	AttackDogMap,
@@ -108,14 +108,14 @@ TextureROMSpec ATTACK_DOG_TX =
 	false,
 };
 
-ObjectSpriteROMSpec ATTACK_DOG_SPRITE =
+ObjectSpriteROMSpec AttackDogSprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&ATTACK_DOG_TX,
+		(TextureSpec*)&AttackDogTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -132,13 +132,13 @@ ObjectSpriteROMSpec ATTACK_DOG_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const ATTACK_DOG_SPRITES[] =
+ObjectSpriteROMSpec* const AttackDogSprites[] =
 {
-	&ATTACK_DOG_SPRITE,
+	&AttackDogSprite,
 	NULL
 };
 
-ShapeROMSpec ATTACK_DOG_AC_SHAPES[] =
+ShapeROMSpec AttackDogShapes[] =
 {
 	{
 		// shape
@@ -169,7 +169,7 @@ ShapeROMSpec ATTACK_DOG_AC_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-EnemyROMSpec ATTACK_DOG_EM =
+EnemyROMSpec AttackDogEm =
 {
 	{
 		{
@@ -188,13 +188,13 @@ EnemyROMSpec ATTACK_DOG_EM =
 					NULL,
 					
 					// sprites
-					(SpriteSpec**)ATTACK_DOG_SPRITES,
+					(SpriteSpec**)AttackDogSprites,
 
 					// use z displacement in projection
 					false,
 
 					// collision shapes
-					(ShapeSpec*)ATTACK_DOG_AC_SHAPES,
+					(ShapeSpec*)AttackDogShapes,
 
 					// size
 					// if 0, width and height will be inferred from the first sprite's texture's size
@@ -208,7 +208,7 @@ EnemyROMSpec ATTACK_DOG_EM =
 				},
 
 				// pointer to the animation spec for the character
-				(AnimationDescription*)&ATTACK_DOG_ANIM,
+				(AnimationDescription*)&AttackDogAnimation,
 
 				// initial animation
 				"Move",

@@ -32,7 +32,7 @@ extern BYTE Level1Stage3Building3bWallMap[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec LEVEL_1_STAGE_3_BUILDING_3B_CH =
+CharSetROMSpec Level1Stage3Building3bCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -49,10 +49,10 @@ CharSetROMSpec LEVEL_1_STAGE_3_BUILDING_3B_CH =
 
 /* Left */
 
-TextureROMSpec LEVEL_1_STAGE_3_BUILDING_3B_L_TX =
+TextureROMSpec Level1Stage3Building3bLTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_3_BUILDING_3B_CH,
+	(CharSetSpec*)&Level1Stage3Building3bCharset,
 
 	// bgmap spec
 	Level1Stage3Building3bLMap,
@@ -84,14 +84,14 @@ TextureROMSpec LEVEL_1_STAGE_3_BUILDING_3B_L_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_3_BUILDING_3B_L_SPRITE =
+BgmapSpriteROMSpec Level1Stage3Building3bLSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_3_BUILDING_3B_L_TX,
+		(TextureSpec*)&Level1Stage3Building3bLTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -113,10 +113,10 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_3_BUILDING_3B_L_SPRITE =
 
 /* Right */
 
-TextureROMSpec LEVEL_1_STAGE_3_BUILDING_3B_R_TX =
+TextureROMSpec Level1Stage3Building3bRTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_3_BUILDING_3B_CH,
+	(CharSetSpec*)&Level1Stage3Building3bCharset,
 
 	// bgmap spec
 	Level1Stage3Building3bRMap,
@@ -148,14 +148,14 @@ TextureROMSpec LEVEL_1_STAGE_3_BUILDING_3B_R_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_3_BUILDING_3B_R_SPRITE =
+BgmapSpriteROMSpec Level1Stage3Building3bRSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_3_BUILDING_3B_R_TX,
+		(TextureSpec*)&Level1Stage3Building3bRTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -177,10 +177,10 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_3_BUILDING_3B_R_SPRITE =
 
 /* Front Wall */
 
-TextureROMSpec LEVEL_1_STAGE_3_BUILDING_3B_WALL_TX =
+TextureROMSpec Level1Stage3Building3bWallTexture =
 {
 	// charset spec
-	(CharSetSpec*)&LEVEL_1_STAGE_3_BUILDING_3B_CH,
+	(CharSetSpec*)&Level1Stage3Building3bCharset,
 
 	// bgmap spec
 	Level1Stage3Building3bWallMap,
@@ -212,14 +212,14 @@ TextureROMSpec LEVEL_1_STAGE_3_BUILDING_3B_WALL_TX =
 	false,
 };
 
-BgmapSpriteROMSpec LEVEL_1_STAGE_3_BUILDING_3B_WALL_SPRITE =
+BgmapSpriteROMSpec Level1Stage3Building3bWallSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&LEVEL_1_STAGE_3_BUILDING_3B_WALL_TX,
+		(TextureSpec*)&Level1Stage3Building3bWallTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -241,15 +241,15 @@ BgmapSpriteROMSpec LEVEL_1_STAGE_3_BUILDING_3B_WALL_SPRITE =
 
 /* Entity */
 
-BgmapSpriteROMSpec* const LEVEL_1_STAGE_3_BUILDING_3B_SPRITES[] =
+BgmapSpriteROMSpec* const Level1Stage3Building3bSprites[] =
 {
-	&LEVEL_1_STAGE_3_BUILDING_3B_L_SPRITE,
-	&LEVEL_1_STAGE_3_BUILDING_3B_R_SPRITE,
-	&LEVEL_1_STAGE_3_BUILDING_3B_WALL_SPRITE,
+	&Level1Stage3Building3bLSprite,
+	&Level1Stage3Building3bRSprite,
+	&Level1Stage3Building3bWallSprite,
 	NULL
 };
 
-ShapeROMSpec LEVEL_1_STAGE_3_BUILDING_3B_SHAPES[] =
+ShapeROMSpec Level1Stage3Building3bShapes[] =
 {
 	// floor
 	{
@@ -335,7 +335,7 @@ ShapeROMSpec LEVEL_1_STAGE_3_BUILDING_3B_SHAPES[] =
 	{NULL, {0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0}, {0, 0, 0}, false, kLayerNone, kLayerNone}
 };
 
-PhysicalSpecificationROMSpec LEVEL_1_STAGE_3_BUILDING_3B_PHYSICAL_PROPERTIES =
+PhysicalSpecificationROMSpec Level1Stage3Building3bPhysicalProperties =
 {
 	// mass
 	__F_TO_FIX10_6(0),
@@ -353,7 +353,7 @@ PhysicalSpecificationROMSpec LEVEL_1_STAGE_3_BUILDING_3B_PHYSICAL_PROPERTIES =
 	__I_TO_FIX10_6(0)
 };
 
-EntityROMSpec LEVEL_1_STAGE_3_BUILDING_3B_EN =
+EntityROMSpec Level1Stage3Building3bEntity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -368,13 +368,13 @@ EntityROMSpec LEVEL_1_STAGE_3_BUILDING_3B_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)LEVEL_1_STAGE_3_BUILDING_3B_SPRITES,
+	(SpriteSpec**)Level1Stage3Building3bSprites,
 
 	// use z displacement in projection
 	false,
 
 	// collision shapes
-	(ShapeSpec*)LEVEL_1_STAGE_3_BUILDING_3B_SHAPES,
+	(ShapeSpec*)Level1Stage3Building3bShapes,
 
 	// size
 	// if 0, width and height will be inferred from the first sprite's texture's size
@@ -384,5 +384,5 @@ EntityROMSpec LEVEL_1_STAGE_3_BUILDING_3B_EN =
 	kFloor,
 
 	// physical specification
-	(PhysicalSpecification*)&LEVEL_1_STAGE_3_BUILDING_3B_PHYSICAL_PROPERTIES,
+	(PhysicalSpecification*)&Level1Stage3Building3bPhysicalProperties,
 };

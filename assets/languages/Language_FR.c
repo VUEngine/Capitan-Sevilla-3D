@@ -19,7 +19,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern EntitySpec FLAG_FRANCE_EN;
+extern EntitySpec FlagFranceEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -29,17 +29,17 @@ extern EntitySpec FLAG_FRANCE_EN;
 const char* const LANGUAGE_FR_STRINGS[] =
 {
 	/* STR_ARE_YOU_SURE: */
-	"ES TU SÛR?",
+	"ES TU Sï¿½R?",
 	/* STR_AUTO_PAUSE_EXPLANATION: */
 	"  LA FONCTION PAUSE AUTOMATIQUE VA\nVOUS RAPPELEREZ DE PRENDRE UNE PAUSE\n  DE JEU CHAQUE 30 MINUTES ENVIRON",
 	/* STR_AUTOMATIC_PAUSE: */
 	"PAUSE AUTOMATIQUE",
 	/* STR_BACK: */
-	"ARRIÈRE",
+	"ARRIï¿½RE",
 	/* STR_CONTINUE: */
 	"CONTINUER",
 	/* STR_CREDITS: */
-	"CRÉDITS",
+	"CRï¿½DITS",
 	/* STR_LANGUAGE: */
 	"LANGUE",
 	/* STR_LANGUAGE_SELECT: */
@@ -55,25 +55,25 @@ const char* const LANGUAGE_FR_STRINGS[] =
 	/* STR_NO: */
 	"NON",
 	/* STR_OFF: */
-	"DESACTIVÉ",
+	"DESACTIVï¿½",
 	/* STR_ON: */
-	"ACTIVÉ",
+	"ACTIVï¿½",
 	/* STR_OPTIONS: */
 	"OPTIONS",
 	/* STR_PAUSE: */
 	"PAUSE",
 	/* STR_PRECAUTION_SCREEN_TEXT: */
-	"        IMPORTANT\n\nPRENEZ CONAISSANCE DE LA\n\nNOTICE ET DES PRÉCAUTIONS\n\n    A AVANT DE JOUER",
+	"        IMPORTANT\n\nPRENEZ CONAISSANCE DE LA\n\nNOTICE ET DES PRï¿½CAUTIONS\n\n    A AVANT DE JOUER",
 	/* STR_PRESENTS: */
-	"PRÉSENTE",
+	"PRï¿½SENTE",
 	/* STR_PRESS_START_BUTTON: */
 	"APPUYER SUR START",
 	/* STR_QUIT_GAME: */
 	"QUITTER JEU",
 	/* STR_SELECT: */
-	"SÉLECTIONNER",
+	"Sï¿½LECTIONNER",
 	/* STR_TAKE_A_REST: */
-	"SE IL VOUS PLAÎT, PRENDRE UN REPOS!",
+	"SE IL VOUS PLAï¿½T, PRENDRE UN REPOS!",
 	/* STR_YES: */
 	"OUI",
 	
@@ -82,10 +82,10 @@ const char* const LANGUAGE_FR_STRINGS[] =
 const LangROMSpec LANGUAGE_FR =
 {
 	// language name
-	"FRANÇAIS",
+	"FRANï¿½AIS",
 
 	// flag entity
-	&FLAG_FRANCE_EN,
+	&FlagFranceEntity,
 	
 	// strings
 	(const char**)LANGUAGE_FR_STRINGS

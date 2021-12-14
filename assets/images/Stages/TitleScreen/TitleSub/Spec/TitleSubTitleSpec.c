@@ -23,14 +23,14 @@
 
 extern BYTE TitleSubTitleTiles[];
 extern BYTE TitleSubTitleMap[];
-extern AnimationDescription LOCALIZED_ENTITY_ANIM;
+extern AnimationDescription LocalizedEntityAnimation;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec TITLE_SUBTITLE_CH =
+CharSetROMSpec TitleSubtitleCharset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec TITLE_SUBTITLE_CH =
 	TitleSubTitleTiles,
 };
 
-TextureROMSpec TITLE_SUBTITLE_TX =
+TextureROMSpec TitleSubtitleTexture =
 {
 	// charset spec
-	(CharSetSpec*)&TITLE_SUBTITLE_CH,
+	(CharSetSpec*)&TitleSubtitleCharset,
 
 	// bgmap spec
 	TitleSubTitleMap,
@@ -80,14 +80,14 @@ TextureROMSpec TITLE_SUBTITLE_TX =
 	false,
 };
 
-BgmapSpriteROMSpec TITLE_SUBTITLE_SPRITE =
+BgmapSpriteROMSpec TitleSubtitleSprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&TITLE_SUBTITLE_TX,
+		(TextureSpec*)&TitleSubtitleTexture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -107,13 +107,13 @@ BgmapSpriteROMSpec TITLE_SUBTITLE_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const TITLE_SUBTITLE_SPRITES[] =
+BgmapSpriteROMSpec* const TitleSubtitleSprites[] =
 {
-	&TITLE_SUBTITLE_SPRITE,
+	&TitleSubtitleSprite,
 	NULL
 };
 
-LocalizedEntityROMSpec TITLE_SUBTITLE_EN =
+LocalizedEntityROMSpec TitleSubtitleEntity =
 {
 	{
 		// class allocator
@@ -129,7 +129,7 @@ LocalizedEntityROMSpec TITLE_SUBTITLE_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)TITLE_SUBTITLE_SPRITES,
+		(SpriteSpec**)TitleSubtitleSprites,
 
 		// use z displacement in projection
 		false,
@@ -149,7 +149,7 @@ LocalizedEntityROMSpec TITLE_SUBTITLE_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
+	(AnimationDescription*)&LocalizedEntityAnimation,
 
 	// initial animation
 	"0",

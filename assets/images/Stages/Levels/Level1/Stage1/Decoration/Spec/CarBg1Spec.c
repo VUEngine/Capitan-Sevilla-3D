@@ -29,7 +29,7 @@ extern BYTE CarBg1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec CAR_BG_1_CH =
+CharSetROMSpec CarBg1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -44,10 +44,10 @@ CharSetROMSpec CAR_BG_1_CH =
 	CarBg1Tiles,
 };
 
-TextureROMSpec CAR_BG_1_TX =
+TextureROMSpec CarBg1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&CAR_BG_1_CH,
+	(CharSetSpec*)&CarBg1Charset,
 
 	// bgmap spec
 	CarBg1Map,
@@ -79,14 +79,14 @@ TextureROMSpec CAR_BG_1_TX =
 	false,
 };
 
-BgmapSpriteROMSpec CAR_BG_1_SPRITE =
+BgmapSpriteROMSpec CarBg1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapSprite),
 
 		// texture spec
-		(TextureSpec*)&CAR_BG_1_TX,
+		(TextureSpec*)&CarBg1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -106,13 +106,13 @@ BgmapSpriteROMSpec CAR_BG_1_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const CAR_BG_1_SPRITES[] =
+BgmapSpriteROMSpec* const CarBg1Sprites[] =
 {
-	&CAR_BG_1_SPRITE,
+	&CarBg1Sprite,
 	NULL
 };
 
-EntityROMSpec CAR_BG_1_EN =
+EntityROMSpec CarBg1Entity =
 {
 	// class allocator
 	__TYPE(Entity),
@@ -127,7 +127,7 @@ EntityROMSpec CAR_BG_1_EN =
 	NULL,
 
 	// sprites
-	(SpriteSpec**)CAR_BG_1_SPRITES,
+	(SpriteSpec**)CarBg1Sprites,
 
 	// use z displacement in projection
 	false,

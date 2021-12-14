@@ -23,14 +23,14 @@
 
 extern BYTE IntroText8Tiles[];
 extern BYTE IntroText8Map[];
-extern AnimationDescription LOCALIZED_ENTITY_ANIM;
+extern AnimationDescription LocalizedEntityAnimation;
 
 
 //---------------------------------------------------------------------------------------------------------
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-CharSetROMSpec INTRO_TEXT_8_CH =
+CharSetROMSpec IntroText8Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -45,10 +45,10 @@ CharSetROMSpec INTRO_TEXT_8_CH =
 	IntroText8Tiles,
 };
 
-TextureROMSpec INTRO_TEXT_8_TX =
+TextureROMSpec IntroText8Texture =
 {
 	// charset spec
-	(CharSetSpec*)&INTRO_TEXT_8_CH,
+	(CharSetSpec*)&IntroText8Charset,
 
 	// bgmap spec
 	IntroText8Map,
@@ -80,14 +80,14 @@ TextureROMSpec INTRO_TEXT_8_TX =
 	false,
 };
 
-BgmapSpriteROMSpec INTRO_TEXT_8_SPRITE =
+BgmapSpriteROMSpec IntroText8Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(BgmapAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&INTRO_TEXT_8_TX,
+		(TextureSpec*)&IntroText8Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -107,13 +107,13 @@ BgmapSpriteROMSpec INTRO_TEXT_8_SPRITE =
 	__WORLD_ON,
 };
 
-BgmapSpriteROMSpec* const INTRO_TEXT_8_SPRITES[] =
+BgmapSpriteROMSpec* const IntroText8Sprites[] =
 {
-	&INTRO_TEXT_8_SPRITE,
+	&IntroText8Sprite,
 	NULL
 };
 
-LocalizedEntityROMSpec INTRO_TEXT_8_AC =
+LocalizedEntityROMSpec IntroText8Entity =
 {
 	{
 		// class allocator
@@ -129,7 +129,7 @@ LocalizedEntityROMSpec INTRO_TEXT_8_AC =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)INTRO_TEXT_8_SPRITES,
+		(SpriteSpec**)IntroText8Sprites,
 
 		// use z displacement in projection
 		false,
@@ -149,7 +149,7 @@ LocalizedEntityROMSpec INTRO_TEXT_8_AC =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&LOCALIZED_ENTITY_ANIM,
+	(AnimationDescription*)&LocalizedEntityAnimation,
 
 	// initial animation
 	"0",

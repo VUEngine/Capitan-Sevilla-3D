@@ -1,0 +1,21 @@
+{
+    "images": [
+        "."
+    ],
+    "converter": {
+        "tileset": {
+            "shared": false,
+            "reduce": true
+        },
+        "map": {
+            "generate": true,
+            "reduce": {
+                "flipped": true,
+                "unique": true
+            }
+        },
+        "stackFrames": false
+    },
+    "name": "",
+    "section": "rom"
+}

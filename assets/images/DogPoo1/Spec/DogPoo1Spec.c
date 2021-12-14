@@ -29,7 +29,7 @@ extern BYTE DogPoo1Map[];
 //												DEFINITIONS
 //---------------------------------------------------------------------------------------------------------
 
-AnimationFunctionROMSpec DOG_POO_1_DEFAULT_ANIM =
+AnimationFunctionROMSpec DogPoo1DefaultAnimation =
 {
 	// number of frames of this animation function
 	4,
@@ -50,16 +50,16 @@ AnimationFunctionROMSpec DOG_POO_1_DEFAULT_ANIM =
 	"Default",
 };
 
-AnimationDescriptionROMSpec DOG_POO_1_ANIM =
+AnimationDescriptionROMSpec DogPoo1Animation =
 {
 	// animation functions
 	{
-		(AnimationFunction*)&DOG_POO_1_DEFAULT_ANIM,
+		(AnimationFunction*)&DogPoo1DefaultAnimation,
 		NULL,
 	}
 };
 
-CharSetROMSpec DOG_POO_1_CH =
+CharSetROMSpec DogPoo1Charset =
 {
 	// number of chars, depending on allocation type:
 	// __ANIMATED_SINGLE*, __ANIMATED_SHARED*: number of chars of a single animation frame (cols * rows)
@@ -74,10 +74,10 @@ CharSetROMSpec DOG_POO_1_CH =
 	DogPoo1Tiles,
 };
 
-TextureROMSpec DOG_POO_1_TX =
+TextureROMSpec DogPoo1Texture =
 {
 	// charset spec
-	(CharSetSpec*)&DOG_POO_1_CH,
+	(CharSetSpec*)&DogPoo1Charset,
 
 	// bgmap spec
 	DogPoo1Map,
@@ -109,14 +109,14 @@ TextureROMSpec DOG_POO_1_TX =
 	false,
 };
 
-ObjectSpriteROMSpec DOG_POO_1_SPRITE =
+ObjectSpriteROMSpec DogPoo1Sprite =
 {
 	{
 		// sprite's type
 		__TYPE(ObjectAnimatedSprite),
 
 		// texture spec
-		(TextureSpec*)&DOG_POO_1_TX,
+		(TextureSpec*)&DogPoo1Texture,
 
 		// transparent (__TRANSPARENCY_NONE, __TRANSPARENCY_EVEN or __TRANSPARENCY_ODD)
 		__TRANSPARENCY_NONE,
@@ -133,13 +133,13 @@ ObjectSpriteROMSpec DOG_POO_1_SPRITE =
 	__WORLD_ON,
 };
 
-ObjectSpriteROMSpec* const DOG_POO_1_SPRITES[] =
+ObjectSpriteROMSpec* const DogPoo1Sprites[] =
 {
-	&DOG_POO_1_SPRITE,
+	&DogPoo1Sprite,
 	NULL
 };
 
-AnimatedEntityROMSpec DOG_POO_1_EN =
+AnimatedEntityROMSpec DogPoo1Entity =
 {
 	{
 		// class allocator
@@ -155,7 +155,7 @@ AnimatedEntityROMSpec DOG_POO_1_EN =
 		NULL,
 
 		// sprites
-		(SpriteSpec**)DOG_POO_1_SPRITES,
+		(SpriteSpec**)DogPoo1Sprites,
 
 		// use z displacement in projection
 		false,
@@ -175,7 +175,7 @@ AnimatedEntityROMSpec DOG_POO_1_EN =
 	},
 
 	// pointer to the animation spec for the character
-	(AnimationDescription*)&DOG_POO_1_ANIM,
+	(AnimationDescription*)&DogPoo1Animation,
 
 	// initial animation
 	"Default",
