@@ -15,9 +15,8 @@
 #include <Game.h>
 #include <ProgressManager.h>
 #include <AutomaticPauseManager.h>
-#include <LowPowerManager.h>
 #include <PrecautionScreenState.h>
-#include <CsAdjustmentScreenState.h>
+#include <AdjustmentScreenState.h>
 #include <AutomaticPauseSelectionScreenState.h>
 #include <LanguageSelectionScreenState.h>
 #include <RugarsoAnimationScreenState.h>
@@ -36,11 +35,19 @@ int32 main()
 	AutomaticPauseManager::setAutomaticPauseDelay(AutomaticPauseManager::getInstance(), 30);
 	ProgressManager::restoreSettings(ProgressManager::getInstance());
 	SplashScreenState::setNextState(
+		SplashScreenState::safeCast(PrecautionScreenState::getInstance()),
+		GameState::safeCast(AdjustmentScreenState::getInstance())
+	);
+	SplashScreenState::setNextState(
+		SplashScreenState::safeCast(AdjustmentScreenState::getInstance()),
+		GameState::safeCast(LanguageSelectionScreenState::getInstance())
+	);
+	SplashScreenState::setNextState(
 		SplashScreenState::safeCast(LanguageSelectionScreenState::getInstance()),
 		GameState::safeCast(RugarsoAnimationScreenState::getInstance())
 	);
 	SplashScreenState::setNextState(
-		SplashScreenState::safeCast(PrecautionScreenState::getInstance()),
+		SplashScreenState::safeCast(RugarsoAnimationScreenState::getInstance()),
 		GameState::safeCast(TitleScreenState::getInstance())
 	);
 
@@ -48,7 +55,7 @@ int32 main()
 	//Game::start(Game::getInstance(), GameState::safeCast(CreditsState::getInstance()));
 	//Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
 	//Game::start(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
-	//Game::start(Game::getInstance(), GameState::safeCast(CsAdjustmentScreenState::getInstance()));
+	//Game::start(Game::getInstance(), GameState::safeCast(AdjustmentScreenState::getInstance()));
 	Game::start(Game::getInstance(), GameState::safeCast(PrecautionScreenState::getInstance()));
 
 	// end program

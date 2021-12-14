@@ -2,9 +2,8 @@
 //                              THIS FILE WAS AUTO-GENERATED - DO NOT EDIT                               //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 //---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES                                                 
 //---------------------------------------------------------------------------------------------------------
 
 #include <I18n.h>
@@ -12,23 +11,23 @@
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//                                              DECLARATIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-extern LangROMSpec LANGUAGE_EN;
-extern LangROMSpec LANGUAGE_ES;
-extern LangROMSpec LANGUAGE_DE;
+extern LangROMSpec EnglishLanguage;
+extern LangROMSpec SpanishLanguage;
+extern LangROMSpec GermanLanguage;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//                                               DEFINITIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
 LangROMSpec* const _languages[] =
 {
-	&LANGUAGE_EN,
-	&LANGUAGE_ES,
-	&LANGUAGE_DE,
+	&EnglishLanguage,
+	&SpanishLanguage,
+	&GermanLanguage,
 	
 	NULL
 };

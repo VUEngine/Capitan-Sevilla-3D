@@ -2,84 +2,75 @@
 //                              THIS FILE WAS AUTO-GENERATED - DO NOT EDIT                               //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 //---------------------------------------------------------------------------------------------------------
-// IMPORTANT: Ensure that this file is encoded in Windows-1252 to make use of the full
-//            character set including special characters of European languages.
-//---------------------------------------------------------------------------------------------------------
-
-//---------------------------------------------------------------------------------------------------------
-//												INCLUDES
+//                                                INCLUDES                                                 
 //---------------------------------------------------------------------------------------------------------
 
 #include <I18n.h>
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DECLARATIONS
+//                                              DECLARATIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
 extern EntitySpec FlagGermanyEntity;
 
 
 //---------------------------------------------------------------------------------------------------------
-//												DEFINITIONS
+//                                               DEFINITIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-const char* const LANGUAGE_DE_STRINGS[] =
+const char* const GermanLanguageStrings[] =
 {
-	/* STR_ARE_YOU_SURE: */
+	/* kStringAreYouSure: */
 	"BIST DU SICHER?",
-	/* STR_AUTO_PAUSE_EXPLANATION: */
-	" DIE AUTOMATISCHE PAUSE FUNKTION\n\nERINNERT DICH DARAN, DAS SPIEL CA.\n\n  ALLE 30 MINUTEN ZU PAUSIEREN.",
-	/* STR_AUTOMATIC_PAUSE: */
-	"AUTOMATISCHE PAUSE",
-	/* STR_BACK: */
-	"ZURï¿½CK",
-	/* STR_CONTINUE: */
-	"FORTSETZEN",
-	/* STR_CREDITS: */
-	"MITWIRKENDE",
-	/* STR_LANGUAGE: */
-	"SPRACHE",
-	/* STR_LANGUAGE_SELECT: */
-	"SPRACHAUSWAHL",
-	/* STR_LEVEL: */
-	"LEVEL",
-	/* STR_LEVEL_1_NAME: */
-	"SEVILLA, MISSION:\nBESORGE DAS BUCH",
-	/* STR_NEW_BEST: */
-	"NEUE BESTLEISTUNG!",
-	/* STR_NEW_GAME: */
-	"NEUES SPIEL",
-	/* STR_NO: */
-	"NEIN",
-	/* STR_OFF: */
-	"AUS",
-	/* STR_ON: */
-	"AN",
-	/* STR_OPTIONS: */
-	"OPTIONEN",
-	/* STR_PAUSE: */
-	"PAUSE",
-	/* STR_PRECAUTION_SCREEN_TEXT: */
-	"        WICHTIG\n\nBITTE LESEN SIE VOR DEM\n\n SPIELEN DIE ANLEITUNG\n\nUND SICHERHEITSHINWEISE",
-	/* STR_PRESENTS: */
-	"PRï¿½SENTIERT",
-	/* STR_PRESS_START_BUTTON: */
-	"START-KNOPF DRï¿½CKEN",
-	/* STR_QUIT_GAME: */
-	"SPIEL BEENDEN",
-	/* STR_SELECT: */
-	"AUSWï¿½HLEN",
-	/* STR_TAKE_A_REST: */
+	/* kStringAutomaticPauseBody: */
 	"BITTE MACHE EINE PAUSE!",
-	/* STR_YES: */
+	/* kStringAutomaticPauseSelectionBody: */
+	" DIE AUTOMATISCHE PAUSE FUNKTION\n\nERINNERT DICH DARAN, DAS SPIEL CA.\n\n  ALLE 30 MINUTEN ZU PAUSIEREN.",
+	/* kStringAutomaticPauseSelectionOff: */
+	"AUS",
+	/* kStringAutomaticPauseSelectionOn: */
+	"AN",
+	/* kStringAutomaticPauseSelectionTitle: */
+	"AUTOMATISCHE PAUSE",
+	/* kStringAutomaticPauseTitle: */
+	"AUTOMATISCHE PAUSE",
+	/* kStringBack: */
+	"ZURÜCK",
+	/* kStringContinue: */
+	"FORTSETZEN",
+	/* kStringCredits: */
+	"MITWIRKENDE",
+	/* kStringLanguage: */
+	"SPRACHE",
+	/* kStringLanguageSelectTitle: */
+	"SPRACHAUSWAHL",
+	/* kStringLevel: */
+	"LEVEL",
+	/* kStringLevel1Name: */
+	"SEVILLA, MISSION:\nBESORGE DAS BUCH",
+	/* kStringNo: */
+	"NEIN",
+	/* kStringOptions: */
+	"OPTIONEN",
+	/* kStringPause: */
+	"PAUSE",
+	/* kStringPrecautionScreenBody: */
+	"        WICHTIG\n\nBITTE LESEN SIE VOR DEM\n\n SPIELEN DIE ANLEITUNG\n\nUND SICHERHEITSHINWEISE",
+	/* kStringPresents: */
+	"PRÄSENTIERT",
+	/* kStringPressStartButton: */
+	"START-KNOPF DRÜCKEN",
+	/* kStringQuitGame: */
+	"SPIEL BEENDEN",
+	/* kStringSelect: */
+	"AUSWÄHLEN",
+	/* kStringYes: */
 	"JA",
-	
 };
 
-const LangROMSpec LANGUAGE_DE =
+const LangROMSpec GermanLanguage =
 {
 	// language name
 	"DEUTSCH",
@@ -88,5 +79,5 @@ const LangROMSpec LANGUAGE_DE =
 	&FlagGermanyEntity,
 	
 	// strings
-	(const char**)LANGUAGE_DE_STRINGS
+	(const char**)GermanLanguageStrings
 };

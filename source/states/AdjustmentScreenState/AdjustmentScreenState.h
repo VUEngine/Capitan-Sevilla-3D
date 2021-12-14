@@ -7,8 +7,8 @@
  * that was distributed with this source code.
  */
 
-#ifndef CS_ADJUSTMENT_SCREEN_STATE_H_
-#define CS_ADJUSTMENT_SCREEN_STATE_H_
+#ifndef ADJUSTMENT_SCREEN_STATE_H_
+#define ADJUSTMENT_SCREEN_STATE_H_
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -22,9 +22,9 @@
 //											CLASS'S DECLARATION
 //---------------------------------------------------------------------------------------------------------
 
-dynamic_singleton class CsAdjustmentScreenState : SplashScreenState
+dynamic_singleton class AdjustmentScreenState : SplashScreenState
 {
-	static CsAdjustmentScreenState getInstance(void);
+	static AdjustmentScreenState getInstance(void);
 	override void initNextState();
 }
 

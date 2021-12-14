@@ -1,0 +1,32 @@
+{
+	"id": "German",
+	"code": "DE",
+	"flag": "FlagGermanyEntity",
+	"name": "DEUTSCH",
+	"order": 3,
+	"strings": {
+		"AreYouSure": "BIST DU SICHER?",
+		"AutomaticPauseBody": "BITTE MACHE EINE PAUSE!",
+		"AutomaticPauseSelectionBody": " DIE AUTOMATISCHE PAUSE FUNKTION\n\nERINNERT DICH DARAN, DAS SPIEL CA.\n\n  ALLE 30 MINUTEN ZU PAUSIEREN.",
+		"AutomaticPauseSelectionOff": "AUS",
+		"AutomaticPauseSelectionOn": "AN",
+		"AutomaticPauseSelectionTitle": "AUTOMATISCHE PAUSE",
+		"AutomaticPauseTitle": "AUTOMATISCHE PAUSE",
+		"Back": "ZURÜCK",
+		"Continue": "FORTSETZEN",
+		"Credits": "MITWIRKENDE",
+		"Language": "SPRACHE",
+		"LanguageSelectTitle": "SPRACHAUSWAHL",
+		"Level": "LEVEL",
+		"Level1Name": "SEVILLA, MISSION:\nBESORGE DAS BUCH",
+		"No": "NEIN",
+		"Options": "OPTIONEN",
+		"Pause": "PAUSE",
+		"PrecautionScreenBody": "        WICHTIG\n\nBITTE LESEN SIE VOR DEM\n\n SPIELEN DIE ANLEITUNG\n\nUND SICHERHEITSHINWEISE",
+		"Presents": "PRÄSENTIERT",
+		"PressStartButton": "START-KNOPF DRÜCKEN",
+		"QuitGame": "SPIEL BEENDEN",
+		"Select": "AUSWÄHLEN",
+		"Yes": "JA"
+	}
+}

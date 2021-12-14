@@ -96,7 +96,7 @@ void OptionsScreenState::setNextState(GameState nextState)
 void OptionsScreenState::print()
 {
 	// title
-	const char* strOptionsTitle = I18n::getText(I18n::getInstance(), STR_OPTIONS);
+	const char* strOptionsTitle = I18n::getText(I18n::getInstance(), kStringOptions);
 	FontSize strOptionsTextSize = Printing::getTextSize(Printing::getInstance(), strOptionsTitle, "Capitan");
 	Printing::text(
 		Printing::getInstance(),
@@ -111,14 +111,14 @@ void OptionsScreenState::print()
 	Option* option = NULL;
 
 	option = new Option;
-	option->value = (char*)I18n::getText(I18n::getInstance(), STR_AUTOMATIC_PAUSE);
+	option->value = (char*)I18n::getText(I18n::getInstance(), kStringAutomaticPauseTitle);
 	option->type = kString;
 	option->callback = (void (*)(Object))OptionsScreenState::onOptionAutomaticPauseSelect;
 	option->callbackScope = Object::safeCast(this);
 	VirtualList::pushBack(options, option);
 
 	option = new Option;
-	option->value = (char*)I18n::getText(I18n::getInstance(), STR_LANGUAGE);
+	option->value = (char*)I18n::getText(I18n::getInstance(), kStringLanguage);
 	option->type = kString;
 	option->callback = (void (*)(Object))OptionsScreenState::onOptionLanguageSelect;
 	option->callbackScope = Object::safeCast(this);
@@ -134,9 +134,9 @@ void OptionsScreenState::print()
 	);
 
 	// buttons
-	const char* strSelect = I18n::getText(I18n::getInstance(), STR_SELECT);
+	const char* strSelect = I18n::getText(I18n::getInstance(), kStringSelect);
 	FontSize strSelectSize = Printing::getTextSize(Printing::getInstance(), strSelect, "Capitan");
-	const char* strBack = I18n::getText(I18n::getInstance(), STR_BACK);
+	const char* strBack = I18n::getText(I18n::getInstance(), kStringBack);
 
 	uint8 strSelectXPos = ((__SCREEN_WIDTH_IN_CHARS) - strOptionsTextSize.x) >> 1;
 	uint8 strBackXPos = strSelectXPos + strSelectSize.x + 2;

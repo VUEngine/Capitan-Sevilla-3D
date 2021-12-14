@@ -14,7 +14,7 @@
 #include <Game.h>
 #include <Camera.h>
 #include <MessageDispatcher.h>
-#include <CsAdjustmentScreenState.h>
+#include <AdjustmentScreenState.h>
 #include <AutomaticPauseSelectionScreenState.h>
 #include <DirectDraw.h>
 
@@ -23,7 +23,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern StageROMSpec CsAdjustmentScreenStage;
+extern StageROMSpec AdjustmentScreenStage;
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -31,22 +31,22 @@ extern StageROMSpec CsAdjustmentScreenStage;
 //---------------------------------------------------------------------------------------------------------
 
 // class's constructor
-void CsAdjustmentScreenState::constructor()
+void AdjustmentScreenState::constructor()
 {
 	Base::constructor();
 
-	this->stageSpec = (StageSpec*)&CsAdjustmentScreenStage;
+	this->stageSpec = (StageSpec*)&AdjustmentScreenStage;
 }
 
 // class's destructor
-void CsAdjustmentScreenState::destructor()
+void AdjustmentScreenState::destructor()
 {
 	// destroy base
 	Base::destructor();
 }
 
 // state's enter
-void CsAdjustmentScreenState::enter(void* owner)
+void AdjustmentScreenState::enter(void* owner)
 {
 	// call base
 	Base::enter(this, owner);
@@ -58,7 +58,7 @@ void CsAdjustmentScreenState::enter(void* owner)
 	this->processCollisions = false;
 }
 
-void CsAdjustmentScreenState::initNextState()
+void AdjustmentScreenState::initNextState()
 {
 	this->nextState = GameState::safeCast(AutomaticPauseSelectionScreenState::getInstance());
 }

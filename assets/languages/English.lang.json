@@ -1,0 +1,32 @@
+{
+	"id": "English",
+	"code": "en",
+	"flag": "FlagUnitedKingdomEntity",
+	"name": "ENGLISH",
+	"order": 1,
+	"strings": {
+		"AreYouSure": "ARE YOU SURE?",
+		"AutomaticPauseBody": "PLEASE TAKE A REST!",
+		"AutomaticPauseSelectionBody": "   THE AUTOMATIC PAUSE FEATURE WILL\n\n   REMIND YOU TO TAKE A BREAK FROM\n\nPLAYING APPROXIMATELY EVERY 30 MINUTES.",
+		"AutomaticPauseSelectionOff": "OFF",
+		"AutomaticPauseSelectionOn": "ON",
+		"AutomaticPauseSelectionTitle": "AUTOMATIC PAUSE",
+		"AutomaticPauseTitle": "AUTOMATIC PAUSE",
+		"Back": "BACK",
+		"Continue": "CONTINUE",
+		"Credits": "CREDITS",
+		"Language": "LANGUAGE",
+		"LanguageSelectTitle": "LANGUAGE SELECT",
+		"Level": "LEVEL",
+		"Level1Name": "SEVILLA,\nMISSION:\nRETRIEVE THE BOOK",
+		"No": "NO",
+		"Options": "OPTIONS",
+		"Pause": "PAUSE",
+		"PrecautionScreenBody": "     IMPORTANT\n\nREAD INSTRUCTION AND\n\nPRECAUTION BOOKLETS\n\n  BEFORE OPERATING",
+		"Presents": "PRESENTS",
+		"PressStartButton": "PRESS START BUTTON",
+		"QuitGame": "QUIT GAME",
+		"Select": "SELECT",
+		"Yes": "YES"
+	}
+}
