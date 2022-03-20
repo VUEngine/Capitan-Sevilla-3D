@@ -2,20 +2,25 @@
     "images": [
         "."
     ],
-    "converter": {
-        "tileset": {
-            "shared": false,
-            "reduce": true
-        },
-        "map": {
-            "generate": true,
-            "reduce": {
-                "flipped": true,
-                "unique": true
-            }
-        },
-        "stackFrames": true
-    },
     "name": "ComicNivel1",
-    "section": "rom"
+    "section": "rom",
+    "tileset": {
+        "shared": false,
+        "reduce": true,
+        "compress": false
+    },
+    "map": {
+        "generate": true,
+        "reduce": {
+            "flipped": true,
+            "unique": true
+        },
+        "compress": false
+    },
+    "animation": {
+        "isAnimation": true,
+        "individualFiles": true,
+        "frameWidth": 0,
+        "frameHeight": 0
+    }
 }

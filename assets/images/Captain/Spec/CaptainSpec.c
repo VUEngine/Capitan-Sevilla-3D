@@ -22,6 +22,7 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern BYTE CaptainTiles[];
+extern BYTE CaptainTilesFrameOffsets[];
 extern BYTE CaptainBlackTiles[];
 extern BYTE CaptainMap[];
 extern BYTE CaptainBlackMap[];

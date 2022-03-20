@@ -2,20 +2,25 @@
     "images": [
         "."
     ],
-    "converter": {
-        "tileset": {
-            "shared": false,
-            "reduce": false
-        },
-        "map": {
-            "generate": true,
-            "reduce": {
-                "flipped": false,
-                "unique": false
-            }
-        },
-        "stackFrames": false
-    },
     "name": "",
-    "section": "rom"
+    "section": "rom",
+    "tileset": {
+        "shared": false,
+        "reduce": false,
+        "compress": false
+    },
+    "map": {
+        "generate": true,
+        "reduce": {
+            "flipped": false,
+            "unique": false
+        },
+        "compress": false
+    },
+    "animation": {
+        "isAnimation": true,
+        "individualFiles": false,
+        "frameWidth": 5,
+        "frameHeight": 7
+    }
 }
