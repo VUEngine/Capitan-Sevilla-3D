@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE DogPoo1Tiles[];
-extern BYTE DogPoo1Map[];
+extern uint32 DogPoo1Tiles[];
+extern uint16 DogPoo1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -72,6 +72,9 @@ CharSetROMSpec DogPoo1Charset =
 
 	// char spec
 	DogPoo1Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec DogPoo1Texture =

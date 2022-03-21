@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BenchTiles[];
-extern BYTE BenchMap[];
+extern uint32 BenchTiles[];
+extern uint16 BenchMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec BenchCharset =
 
 	// char spec
 	BenchTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec BenchTexture =

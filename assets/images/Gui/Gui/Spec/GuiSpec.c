@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GuiTiles[];
-extern BYTE GuiMap[];
+extern uint32 GuiTiles[];
+extern uint16 GuiMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,6 +43,9 @@ CharSetROMSpec GuiCharset =
 
 	// char spec
 	GuiTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec GuiTexture =

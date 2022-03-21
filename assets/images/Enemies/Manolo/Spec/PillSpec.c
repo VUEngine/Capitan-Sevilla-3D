@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE PillTiles[];
-extern BYTE PillMap[];
+extern uint32 PillTiles[];
+extern uint16 PillMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -72,6 +72,9 @@ CharSetROMSpec PillCharset =
 
 	// char spec
 	PillTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec PillTexture =

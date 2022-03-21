@@ -22,10 +22,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CarBg2Tiles[];
-extern BYTE CarBg2Map[];
-extern BYTE CarBg2BlackTiles[];
-extern BYTE CarBg2BlackMap[];
+extern uint32 CarBg2Tiles[];
+extern uint16 CarBg2Map[];
+extern uint32 CarBg2BlackTiles[];
+extern uint16 CarBg2BlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -45,6 +45,9 @@ CharSetROMSpec CarBg2Charset =
 
 	// char spec
 	CarBg2Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CarBg2Texture =
@@ -122,6 +125,9 @@ CharSetROMSpec CarBg2BlackCharset =
 
 	// char spec
 	CarBg2BlackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CarBg2BlackTexture =

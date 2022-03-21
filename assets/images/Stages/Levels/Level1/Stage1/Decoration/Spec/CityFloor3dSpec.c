@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CityFloor3DTiles[];
-extern BYTE CityFloor3DMap[];
+extern uint32 CityFloor3DTiles[];
+extern uint16 CityFloor3DMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec CityFloor3dCharset =
 
 	// char spec
 	CityFloor3DTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CityFloor3dTexture =

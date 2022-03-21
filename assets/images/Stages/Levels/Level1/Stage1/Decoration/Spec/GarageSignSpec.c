@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GarageCarTiles[];
-extern BYTE GarageCarMap[];
+extern uint32 GarageCarTiles[];
+extern uint16 GarageCarMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec GarageCarCharset =
 
 	// char spec
 	GarageCarTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec GarageCarTexture =

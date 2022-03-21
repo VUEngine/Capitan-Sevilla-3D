@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CreditsBasedOnTiles[];
-extern BYTE CreditsBasedOnMap[];
+extern uint32 CreditsBasedOnTiles[];
+extern uint16 CreditsBasedOnMap[];
 extern AnimationDescription LocalizedEntityAnimation;
 
 
@@ -43,6 +43,9 @@ CharSetROMSpec CreditsBasedOnCharset =
 
 	// char spec
 	CreditsBasedOnTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CreditsBasedOnTexture =

@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage3SignTiles[];
-extern BYTE Level1Stage3SignMap[];
+extern uint32 Level1Stage3SignTiles[];
+extern uint16 Level1Stage3SignMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Level1Stage3SignCharset =
 
 	// char spec
 	Level1Stage3SignTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Stage3SignTexture =

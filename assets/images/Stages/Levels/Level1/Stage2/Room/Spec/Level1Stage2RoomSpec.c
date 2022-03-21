@@ -22,13 +22,13 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage2RoomTiles[];
-extern BYTE Level1Stage2RoomALMap[];
-extern BYTE Level1Stage2RoomARMap[];
-extern BYTE Level1Stage2RoomABlackMap[];
-extern BYTE Level1Stage2RoomBLMap[];
-extern BYTE Level1Stage2RoomBRMap[];
-extern BYTE Level1Stage2RoomBBlackMap[];
+extern uint32 Level1Stage2RoomTiles[];
+extern uint16 Level1Stage2RoomALMap[];
+extern uint16 Level1Stage2RoomARMap[];
+extern uint16 Level1Stage2RoomABlackMap[];
+extern uint16 Level1Stage2RoomBLMap[];
+extern uint16 Level1Stage2RoomBRMap[];
+extern uint16 Level1Stage2RoomBBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -48,6 +48,9 @@ CharSetROMSpec Level1Stage2RoomCharset =
 
 	// char spec
 	Level1Stage2RoomTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 /* Left (A) */

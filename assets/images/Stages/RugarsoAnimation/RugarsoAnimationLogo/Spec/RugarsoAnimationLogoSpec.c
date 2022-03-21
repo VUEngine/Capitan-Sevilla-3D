@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE RugarsoAnimationLogoTiles[];
-extern BYTE RugarsoAnimationLogoMap[];
+extern uint32 RugarsoAnimationLogoTiles[];
+extern uint16 RugarsoAnimationLogoMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec RugarsoAnimationLogoCharset =
 
 	// char spec
 	RugarsoAnimationLogoTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec RugarsoAnimationLogoTexture =

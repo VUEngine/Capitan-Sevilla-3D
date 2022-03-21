@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BikeTiles[];
-extern BYTE BikeMap[];
+extern uint32 BikeTiles[];
+extern uint16 BikeMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec BikeCharset =
 
 	// char spec
 	BikeTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec BikeTexture =

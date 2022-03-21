@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage3FenceTiles[];
-extern BYTE Level1Stage3FenceMap[];
+extern uint32 Level1Stage3FenceTiles[];
+extern uint16 Level1Stage3FenceMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Level1Stage3FenceCharset =
 
 	// char spec
 	Level1Stage3FenceTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Stage3FenceTexture =

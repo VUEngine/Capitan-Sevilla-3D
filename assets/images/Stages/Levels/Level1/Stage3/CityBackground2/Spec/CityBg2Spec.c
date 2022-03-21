@@ -21,9 +21,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CityBackground2Tiles[];
-extern BYTE CityBackground2AMap[];
-extern BYTE CityBackground2BMap[];
+extern uint32 CityBackground2Tiles[];
+extern uint16 CityBackground2AMap[];
+extern uint16 CityBackground2BMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,6 +43,9 @@ CharSetROMSpec CityBg2Charset =
 
 	// char spec
 	CityBackground2Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CityBg2ATexture =

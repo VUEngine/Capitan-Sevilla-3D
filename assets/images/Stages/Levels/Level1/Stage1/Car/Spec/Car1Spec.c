@@ -20,8 +20,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Car1Tiles[];
-extern BYTE Car1Map[];
+extern uint32 Car1Tiles[];
+extern uint16 Car1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -71,6 +71,9 @@ CharSetROMSpec Car1Charset =
 
 	// char spec
 	Car1Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Car1Texture =

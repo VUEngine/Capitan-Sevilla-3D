@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FlowerPotTiles[];
-extern BYTE FlowerPotMap[];
+extern uint32 FlowerPotTiles[];
+extern uint16 FlowerPotMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -94,6 +94,9 @@ CharSetROMSpec FlowerPotCharset =
 
 	// char spec
 	FlowerPotTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec FlowerPotTexture =

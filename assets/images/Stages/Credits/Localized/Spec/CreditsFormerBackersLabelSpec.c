@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CreditsFormerBackersLabelTiles[];
-extern BYTE CreditsFormerBackersLabelMap[];
+extern uint32 CreditsFormerBackersLabelTiles[];
+extern uint16 CreditsFormerBackersLabelMap[];
 extern AnimationDescription LocalizedEntityAnimation;
 
 
@@ -43,6 +43,9 @@ CharSetROMSpec CreditsFormerBackersLabelCharset =
 
 	// char spec
 	CreditsFormerBackersLabelTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CreditsFormerBackersLabelTexture =

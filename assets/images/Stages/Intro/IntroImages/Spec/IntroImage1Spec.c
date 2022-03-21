@@ -21,9 +21,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE IntroImagesTiles[];
-extern BYTE IntroImage1Map[];
-extern BYTE IntroImage1BlackMap[];
+extern uint32 IntroImagesTiles[];
+extern uint16 IntroImage1Map[];
+extern uint16 IntroImage1BlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,6 +43,9 @@ CharSetROMSpec IntroImagesCharset =
 
 	// char spec
 	IntroImagesTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec IntroImage1Texture =

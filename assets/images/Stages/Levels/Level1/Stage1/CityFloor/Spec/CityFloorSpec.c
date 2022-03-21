@@ -22,9 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CityFloorTiles[];
-extern BYTE CityFloorLMap[];
-extern BYTE CityFloorRMap[];
+extern uint32 CityFloorTiles[];
+extern uint16 CityFloorLMap[];
+extern uint16 CityFloorRMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,6 +44,9 @@ CharSetROMSpec CityFloorCharset =
 
 	// char spec
 	CityFloorTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 /* LEFT */

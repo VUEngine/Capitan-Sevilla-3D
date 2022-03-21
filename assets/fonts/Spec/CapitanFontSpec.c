@@ -13,7 +13,7 @@
 //                                              DECLARATIONS                                               
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FontDefaultTiles[];
+extern uint32 FontDefaultTiles[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -30,6 +30,9 @@ CharSetROMSpec CapitanFontCharSet =
 
 	// char spec
 	FontDefaultTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 FontROMSpec CapitanFont =

@@ -22,10 +22,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage3Building3bTiles[];
-extern BYTE Level1Stage3Building3bLMap[];
-extern BYTE Level1Stage3Building3bRMap[];
-extern BYTE Level1Stage3Building3bWallMap[];
+extern uint32 Level1Stage3Building3bTiles[];
+extern uint16 Level1Stage3Building3bLMap[];
+extern uint16 Level1Stage3Building3bRMap[];
+extern uint16 Level1Stage3Building3bWallMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -45,6 +45,9 @@ CharSetROMSpec Level1Stage3Building3bCharset =
 
 	// char spec
 	Level1Stage3Building3bTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 /* Left */

@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE StopYouCannotPassTiles[];
-extern BYTE StopYouCannotPassMap[];
+extern uint32 StopYouCannotPassTiles[];
+extern uint16 StopYouCannotPassMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -183,6 +183,9 @@ CharSetROMSpec StopYouCannotPassCharset =
 
 	// char spec
 	StopYouCannotPassTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec StopYouCannotPassTexture =

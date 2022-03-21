@@ -21,10 +21,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TitleLogoTiles[];
-extern BYTE TitleLogoMap[];
-extern BYTE TitleLogoBlackTiles[];
-extern BYTE TitleLogoBlackMap[];
+extern uint32 TitleLogoTiles[];
+extern uint16 TitleLogoMap[];
+extern uint32 TitleLogoBlackTiles[];
+extern uint16 TitleLogoBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,6 +44,9 @@ CharSetROMSpec TitleLogoCharset =
 
 	// char spec
 	TitleLogoTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 CharSetROMSpec TitleLogoBlackCharset =
@@ -59,6 +62,9 @@ CharSetROMSpec TitleLogoBlackCharset =
 
 	// char spec
 	TitleLogoBlackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec TitleLogoTexture =

@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage3HotelSignTiles[];
-extern BYTE Level1Stage3HotelSignMap[];
+extern uint32 Level1Stage3HotelSignTiles[];
+extern uint16 Level1Stage3HotelSignMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Level1Stage3HotelSignCharset =
 
 	// char spec
 	Level1Stage3HotelSignTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Stage3HotelSignTexture =

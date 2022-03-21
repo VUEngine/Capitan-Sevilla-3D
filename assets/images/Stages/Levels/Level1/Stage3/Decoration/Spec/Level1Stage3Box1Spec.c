@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage3Box1Tiles[];
-extern BYTE Level1Stage3Box1Map[];
+extern uint32 Level1Stage3Box1Tiles[];
+extern uint16 Level1Stage3Box1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Level1Stage3Box1Charset =
 
 	// char spec
 	Level1Stage3Box1Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Stage3Box1Texture =

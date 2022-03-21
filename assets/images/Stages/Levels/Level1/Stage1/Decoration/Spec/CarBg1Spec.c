@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CarBg1Tiles[];
-extern BYTE CarBg1Map[];
+extern uint32 CarBg1Tiles[];
+extern uint16 CarBg1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec CarBg1Charset =
 
 	// char spec
 	CarBg1Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CarBg1Texture =

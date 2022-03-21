@@ -21,11 +21,12 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CaptainTiles[];
-extern BYTE CaptainTilesFrameOffsets[];
-extern BYTE CaptainBlackTiles[];
-extern BYTE CaptainMap[];
-extern BYTE CaptainBlackMap[];
+extern uint32 CaptainTiles[];
+extern uint32 CaptainTilesFrameOffsets[];
+extern uint32 CaptainBlackTiles[];
+extern uint32 CaptainBlackTilesFrameOffsets[];
+extern uint16 CaptainMap[];
+extern uint16 CaptainBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -251,6 +252,9 @@ CharSetROMSpec CaptainCharset =
 
 	// char spec
 	CaptainTiles,
+
+	// pointer to the frames offsets
+	CaptainTilesFrameOffsets,
 };
 
 CharSetROMSpec CaptainBlackCharset =
@@ -266,6 +270,9 @@ CharSetROMSpec CaptainBlackCharset =
 
 	// char spec
 	CaptainBlackTiles,
+
+	// pointer to the frames offsets
+	CaptainBlackTilesFrameOffsets,
 };
 
 TextureROMSpec CaptainTexture =

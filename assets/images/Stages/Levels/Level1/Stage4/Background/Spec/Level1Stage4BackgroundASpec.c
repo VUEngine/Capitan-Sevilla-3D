@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage4BackgroundTiles[];
-extern BYTE Level1Stage4BackgroundAMap[];
+extern uint32 Level1Stage4BackgroundTiles[];
+extern uint16 Level1Stage4BackgroundAMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Level1Stage4BackgroundCharset =
 
 	// char spec
 	Level1Stage4BackgroundTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Stage4BackgroundATexture =

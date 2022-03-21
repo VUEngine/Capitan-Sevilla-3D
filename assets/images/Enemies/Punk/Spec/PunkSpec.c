@@ -21,15 +21,15 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE PunkTiles[];
-extern BYTE PunkBlackTiles[];
-extern BYTE PunkMap[];
-extern BYTE PunkBlackMap[];
+extern uint32 PunkTiles[];
+extern uint32 PunkBlackTiles[];
+extern uint16 PunkMap[];
+extern uint16 PunkBlackMap[];
 
-extern BYTE PunkDyingTiles[];
-extern BYTE PunkDyingBlackTiles[];
-extern BYTE PunkDyingMap[];
-extern BYTE PunkDyingBlackMap[];
+extern uint32 PunkDyingTiles[];
+extern uint32 PunkDyingBlackTiles[];
+extern uint16 PunkDyingMap[];
+extern uint16 PunkDyingBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -105,6 +105,9 @@ CharSetROMSpec PunkCharset =
 
 	// char spec
 	PunkTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 CharSetROMSpec PunkBlackCharset =
@@ -120,6 +123,9 @@ CharSetROMSpec PunkBlackCharset =
 
 	// char spec
 	PunkBlackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec PunkTexture =
@@ -367,6 +373,9 @@ CharSetROMSpec PunkDyingCharset =
 
 	// char spec
 	PunkDyingTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 CharSetROMSpec PunkDyingBlackCharset =
@@ -382,6 +391,9 @@ CharSetROMSpec PunkDyingBlackCharset =
 
 	// char spec
 	PunkDyingBlackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec PunkDyingTexture =

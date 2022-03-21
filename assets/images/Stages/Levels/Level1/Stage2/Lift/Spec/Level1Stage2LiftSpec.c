@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage2LiftTiles[];
-extern BYTE Level1Stage2LiftMap[];
+extern uint32 Level1Stage2LiftTiles[];
+extern uint16 Level1Stage2LiftMap[];
 extern StageEntryPointSpec Level1Stage3MainEntryPoint;
 extern StageEntryPointSpec Level1Stage4MainEntryPoint;
 
@@ -119,6 +119,9 @@ CharSetROMSpec Level1Stage2LiftCharset =
 
 	// char spec
 	Level1Stage2LiftTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Stage2LiftTexture =

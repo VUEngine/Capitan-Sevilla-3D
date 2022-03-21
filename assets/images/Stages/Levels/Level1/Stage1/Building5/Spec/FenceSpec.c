@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FenceTiles[];
-extern BYTE FenceMap[];
+extern uint32 FenceTiles[];
+extern uint16 FenceMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec FenceCharset =
 
 	// char spec
 	FenceTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec FenceTexture =

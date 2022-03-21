@@ -21,10 +21,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE PlaygroundTiles[];
-extern BYTE PlaygroundMap[];
-extern BYTE PlaygroundBlackTiles[];
-extern BYTE PlaygroundBlackMap[];
+extern uint32 PlaygroundTiles[];
+extern uint16 PlaygroundMap[];
+extern uint32 PlaygroundBlackTiles[];
+extern uint16 PlaygroundBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,6 +44,9 @@ CharSetROMSpec PlaygroundCharset =
 
 	// char spec
 	PlaygroundTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec PlaygroundTexture =

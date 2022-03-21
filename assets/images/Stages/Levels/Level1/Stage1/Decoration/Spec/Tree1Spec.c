@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Tree1Tiles[];
-extern BYTE Tree1Map[];
+extern uint32 Tree1Tiles[];
+extern uint16 Tree1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Tree1Charset =
 
 	// char spec
 	Tree1Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Tree1Texture =

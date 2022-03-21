@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE IntroText8Tiles[];
-extern BYTE IntroText8Map[];
+extern uint32 IntroText8Tiles[];
+extern uint16 IntroText8Map[];
 extern AnimationDescription LocalizedEntityAnimation;
 
 
@@ -43,6 +43,9 @@ CharSetROMSpec IntroText8Charset =
 
 	// char spec
 	IntroText8Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec IntroText8Texture =

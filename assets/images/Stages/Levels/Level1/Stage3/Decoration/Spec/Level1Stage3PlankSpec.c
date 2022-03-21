@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage3PlankTiles[];
-extern BYTE Level1Stage3PlankMap[];
+extern uint32 Level1Stage3PlankTiles[];
+extern uint16 Level1Stage3PlankMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,6 +43,9 @@ CharSetROMSpec Level1Stage3PlankCharset =
 
 	// char spec
 	Level1Stage3PlankTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Stage3PlankTexture =

@@ -21,11 +21,11 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CS3DLogoTiles[];
-extern BYTE CS3DLogoLMap[];
-extern BYTE CS3DLogoLBlackMap[];
-extern BYTE CS3DLogoRMap[];
-extern BYTE CS3DLogoRBlackMap[];
+extern uint32 CS3DLogoTiles[];
+extern uint16 CS3DLogoLMap[];
+extern uint16 CS3DLogoLBlackMap[];
+extern uint16 CS3DLogoRMap[];
+extern uint16 CS3DLogoRBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -45,6 +45,9 @@ CharSetROMSpec Cs3dLogoCharset =
 
 	// char spec
 	CS3DLogoTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 /* Left */

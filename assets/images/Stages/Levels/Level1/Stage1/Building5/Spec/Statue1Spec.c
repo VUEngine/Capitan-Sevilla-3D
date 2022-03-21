@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Statue1Tiles[];
-extern BYTE Statue1Map[];
+extern uint32 Statue1Tiles[];
+extern uint16 Statue1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Statue1Charset =
 
 	// char spec
 	Statue1Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Statue1Texture =

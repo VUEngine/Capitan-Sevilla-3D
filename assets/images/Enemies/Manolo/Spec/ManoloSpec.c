@@ -24,8 +24,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern ActorSpec PillPr;
-extern BYTE ManoloTiles[];
-extern BYTE ManoloMap[];
+extern uint32 ManoloTiles[];
+extern uint16 ManoloMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -97,6 +97,9 @@ CharSetROMSpec ManoloCharset =
 
 	// char spec
 	ManoloTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec ManoloTexture =

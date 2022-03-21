@@ -23,8 +23,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE LandDustTiles[];
-extern BYTE LandDustMap[];
+extern uint32 LandDustTiles[];
+extern uint16 LandDustMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -94,8 +94,11 @@ CharSetROMSpec LandDustCharset =
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_SINGLE,
 
-	// char definition
+	// char spec
 	LandDustTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec LandDustTexture =

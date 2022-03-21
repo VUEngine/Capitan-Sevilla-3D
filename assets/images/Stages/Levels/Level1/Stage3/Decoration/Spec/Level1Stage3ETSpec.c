@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage3ETTiles[];
-extern BYTE Level1Stage3ETMap[];
+extern uint32 Level1Stage3ETTiles[];
+extern uint16 Level1Stage3ETMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Level1Stage3EtCharset =
 
 	// char spec
 	Level1Stage3ETTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Stage3EtTexture =

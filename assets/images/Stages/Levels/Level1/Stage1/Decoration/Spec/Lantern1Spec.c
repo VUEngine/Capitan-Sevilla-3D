@@ -21,10 +21,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Lantern1Tiles[];
-extern BYTE Lantern1Map[];
-extern BYTE Lantern1BlackTiles[];
-extern BYTE Lantern1BlackMap[];
+extern uint32 Lantern1Tiles[];
+extern uint16 Lantern1Map[];
+extern uint32 Lantern1BlackTiles[];
+extern uint16 Lantern1BlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,6 +44,9 @@ CharSetROMSpec Lantern1Charset =
 
 	// char spec
 	Lantern1Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 CharSetROMSpec Lantern1BlackCharset =
@@ -59,6 +62,9 @@ CharSetROMSpec Lantern1BlackCharset =
 
 	// char spec
 	Lantern1BlackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Lantern1Texture =

@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE ItemSausageTiles[];
-extern BYTE ItemSausageMap[];
+extern uint32 ItemSausageTiles[];
+extern uint16 ItemSausageMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -94,6 +94,9 @@ CharSetROMSpec ItemSausageCharset =
 
 	// char spec
 	ItemSausageTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec ItemSausageTexture =

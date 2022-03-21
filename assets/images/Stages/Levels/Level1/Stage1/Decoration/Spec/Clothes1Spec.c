@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Clothes1Tiles[];
-extern BYTE Clothes1Map[];
+extern uint32 Clothes1Tiles[];
+extern uint16 Clothes1Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Clothes1Charset =
 
 	// char spec
 	Clothes1Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Clothes1Texture =

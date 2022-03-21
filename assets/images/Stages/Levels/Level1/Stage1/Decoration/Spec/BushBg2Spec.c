@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE BushBg2Tiles[];
-extern BYTE BushBg2Map[];
+extern uint32 BushBg2Tiles[];
+extern uint16 BushBg2Map[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec BushBg2Charset =
 
 	// char spec
 	BushBg2Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec BushBg2Texture =

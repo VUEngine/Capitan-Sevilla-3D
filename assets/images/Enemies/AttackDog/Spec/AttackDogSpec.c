@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE AttackDogTiles[];
-extern BYTE AttackDogMap[];
+extern uint32 AttackDogTiles[];
+extern uint16 AttackDogMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -72,6 +72,9 @@ CharSetROMSpec AttackDogCharset =
 
 	// char spec
 	AttackDogTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec AttackDogTexture =

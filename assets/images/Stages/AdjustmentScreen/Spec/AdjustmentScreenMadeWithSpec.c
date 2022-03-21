@@ -18,8 +18,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE AdjustmentScreenMadeWithTiles[];
-extern BYTE AdjustmentScreenMadeWithMap[];
+extern uint32 AdjustmentScreenMadeWithTiles[];
+extern uint16 AdjustmentScreenMadeWithMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -39,6 +39,9 @@ CharSetROMSpec AdjustmentScreenMadeWithCharset =
 
 	// char spec
 	AdjustmentScreenMadeWithTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec AdjustmentScreenMadeWithTexture =

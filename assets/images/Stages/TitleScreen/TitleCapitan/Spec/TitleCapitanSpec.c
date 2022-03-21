@@ -21,10 +21,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TitleCapitanTiles[];
-extern BYTE TitleCapitanMap[];
-extern BYTE TitleCapitanBlackTiles[];
-extern BYTE TitleCapitanBlackMap[];
+extern uint32 TitleCapitanTiles[];
+extern uint16 TitleCapitanMap[];
+extern uint32 TitleCapitanBlackTiles[];
+extern uint16 TitleCapitanBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,6 +44,9 @@ CharSetROMSpec TitleCapitanCharset =
 
 	// char spec
 	TitleCapitanTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 CharSetROMSpec TitleCapitanBlackCharset =
@@ -59,6 +62,9 @@ CharSetROMSpec TitleCapitanBlackCharset =
 
 	// char spec
 	TitleCapitanBlackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec TitleCapitanTexture =

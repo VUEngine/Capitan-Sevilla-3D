@@ -22,10 +22,12 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern ActorSpec GumProjectilePr;
-extern BYTE CaptainHeadTiles[];
-extern BYTE CaptainHeadBlackTiles[];
-extern BYTE CaptainHeadMap[];
-extern BYTE CaptainHeadBlackMap[];
+extern uint32 CaptainHeadTiles[];
+extern uint32 CaptainHeadTilesFrameOffsets[];
+extern uint32 CaptainHeadBlackTiles[];
+extern uint32 CaptainHeadBlackTilesFrameOffsets[];
+extern uint16 CaptainHeadMap[];
+extern uint16 CaptainHeadBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -97,6 +99,9 @@ CharSetROMSpec CaptainHeadCharset =
 
 	// char spec
 	CaptainHeadTiles,
+
+	// pointer to the frames offsets
+	CaptainHeadTilesFrameOffsets,
 };
 
 CharSetROMSpec CaptainHeadBlackCharset =
@@ -112,6 +117,9 @@ CharSetROMSpec CaptainHeadBlackCharset =
 
 	// char spec
 	CaptainHeadBlackTiles,
+
+	// pointer to the frames offsets
+	CaptainHeadBlackTilesFrameOffsets,
 };
 
 TextureROMSpec CaptainHeadTexture =

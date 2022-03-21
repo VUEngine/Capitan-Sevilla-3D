@@ -21,7 +21,7 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE IntroImage3Map[];
+extern uint16 IntroImage3Map[];
 extern CharSetROMSpec IntroImagesCharset;
 
 

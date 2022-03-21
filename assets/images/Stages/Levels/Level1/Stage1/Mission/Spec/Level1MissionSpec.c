@@ -20,8 +20,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1MissionTiles[];
-extern BYTE Level1MissionMap[];
+extern uint32 Level1MissionTiles[];
+extern uint16 Level1MissionMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -181,8 +181,11 @@ CharSetROMSpec Level1MissionCharset =
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_SINGLE,
 
-	// char definition
+	// char spec
 	Level1MissionTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1MissionTexture =

@@ -20,8 +20,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE PressStartButtonTiles[];
-extern BYTE PressStartButtonMap[];
+extern uint32 PressStartButtonTiles[];
+extern uint16 PressStartButtonMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -156,8 +156,11 @@ CharSetROMSpec PressStartButtonCharset =
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_SINGLE,
 
-	// char definition
+	// char spec
 	PressStartButtonTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec PressStartButtonTexture =

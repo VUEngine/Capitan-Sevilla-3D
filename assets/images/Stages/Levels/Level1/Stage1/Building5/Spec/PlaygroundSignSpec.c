@@ -21,10 +21,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE PlaygroundSignTiles[];
-extern BYTE PlaygroundSignMap[];
-extern BYTE PlaygroundSignBlackTiles[];
-extern BYTE PlaygroundSignBlackMap[];
+extern uint32 PlaygroundSignTiles[];
+extern uint16 PlaygroundSignMap[];
+extern uint32 PlaygroundSignBlackTiles[];
+extern uint16 PlaygroundSignBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,6 +44,9 @@ CharSetROMSpec PlaygroundSignCharset =
 
 	// char spec
 	PlaygroundSignTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 CharSetROMSpec PlaygroundSignBlackCharset =
@@ -59,6 +62,9 @@ CharSetROMSpec PlaygroundSignBlackCharset =
 
 	// char spec
 	PlaygroundSignBlackTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec PlaygroundSignTexture =

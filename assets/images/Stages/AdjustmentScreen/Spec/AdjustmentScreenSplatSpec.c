@@ -18,8 +18,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE AdjustmentScreenSplatTiles[];
-extern BYTE AdjustmentScreenSplatMap[];
+extern uint32 AdjustmentScreenSplatTiles[];
+extern uint16 AdjustmentScreenSplatMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -39,6 +39,9 @@ CharSetROMSpec AdjustmentScreenSplatCharset =
 
 	// char spec
 	AdjustmentScreenSplatTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec AdjustmentScreenSplatTexture =

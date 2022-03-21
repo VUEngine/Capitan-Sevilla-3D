@@ -21,10 +21,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage1Building9bTiles[];
-extern BYTE Level1Stage1Building9bLMap[];
-extern BYTE Level1Stage1Building9bRMap[];
-extern BYTE Level1Stage1Building9bBlackMap[];
+extern uint32 Level1Stage1Building9bTiles[];
+extern uint16 Level1Stage1Building9bLMap[];
+extern uint16 Level1Stage1Building9bRMap[];
+extern uint16 Level1Stage1Building9bBlackMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,6 +44,9 @@ CharSetROMSpec Level1Stage1Building9BCharset =
 
 	// char spec
 	Level1Stage1Building9bTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Stage1Building9BLTexture =

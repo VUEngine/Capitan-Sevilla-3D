@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TitleSubTitleTiles[];
-extern BYTE TitleSubTitleMap[];
+extern uint32 TitleSubTitleTiles[];
+extern uint16 TitleSubTitleMap[];
 extern AnimationDescription LocalizedEntityAnimation;
 
 
@@ -43,6 +43,9 @@ CharSetROMSpec TitleSubtitleCharset =
 
 	// char spec
 	TitleSubTitleTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec TitleSubtitleTexture =

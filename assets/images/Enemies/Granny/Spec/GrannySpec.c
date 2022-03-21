@@ -23,8 +23,8 @@
 //---------------------------------------------------------------------------------------------------------
 
 extern ActorSpec FlowerPotPr;
-extern BYTE GrannyTiles[];
-extern BYTE GrannyMap[];
+extern uint32 GrannyTiles[];
+extern uint16 GrannyMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -96,6 +96,9 @@ CharSetROMSpec GrannyCharset =
 
 	// char spec
 	GrannyTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec GrannyTexture =

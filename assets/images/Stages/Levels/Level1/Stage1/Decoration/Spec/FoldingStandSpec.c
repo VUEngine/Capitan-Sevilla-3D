@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE FoldingStandTiles[];
-extern BYTE FoldingStandMap[];
+extern uint32 FoldingStandTiles[];
+extern uint16 FoldingStandMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec FoldingStandCharset =
 
 	// char spec
 	FoldingStandTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec FoldingStandTexture =

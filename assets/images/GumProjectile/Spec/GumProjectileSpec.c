@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GumProjectileTiles[];
-extern BYTE GumProjectileMap[];
+extern uint32 GumProjectileTiles[];
+extern uint16 GumProjectileMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -94,6 +94,9 @@ CharSetROMSpec GumProjectileCharset =
 
 	// char spec
 	GumProjectileTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec GumProjectileTexture =

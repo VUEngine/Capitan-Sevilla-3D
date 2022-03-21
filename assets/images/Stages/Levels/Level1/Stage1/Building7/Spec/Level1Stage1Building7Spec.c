@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage1Building7Tiles[];
-extern BYTE Level1Stage1Building7LMap[];
+extern uint32 Level1Stage1Building7Tiles[];
+extern uint16 Level1Stage1Building7LMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec Level1Stage1Building7Charset =
 
 	// char spec
 	Level1Stage1Building7Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec Level1Stage1Building7Texture =

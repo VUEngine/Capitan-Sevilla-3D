@@ -22,8 +22,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HighwaymenTiles[];
-extern BYTE HighwaymenMap[];
+extern uint32 HighwaymenTiles[];
+extern uint16 HighwaymenMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -43,6 +43,9 @@ CharSetROMSpec HighwaymenCharset =
 
 	// char spec
 	HighwaymenTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec HighwaymenTexture =

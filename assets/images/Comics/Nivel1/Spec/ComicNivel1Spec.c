@@ -22,8 +22,9 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE ComicNivel1Tiles[];
-extern BYTE ComicNivel1Map[];
+extern uint32 ComicNivel1Tiles[];
+extern uint32 ComicNivel1TilesFrameOffsets[];
+extern uint16 ComicNivel1Map[];
 extern AnimationDescription LocalizedEntityAnimation;
 
 
@@ -44,6 +45,9 @@ CharSetROMSpec ComicNivel1Charset =
 
 	// char spec
 	ComicNivel1Tiles,
+
+	// pointer to the frames offsets
+	ComicNivel1TilesFrameOffsets,
 };
 
 TextureROMSpec ComicNivel1Texture =

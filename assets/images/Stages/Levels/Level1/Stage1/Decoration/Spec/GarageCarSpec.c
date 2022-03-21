@@ -21,10 +21,10 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GarageSignLTiles[];
-extern BYTE GarageSignRTiles[];
-extern BYTE GarageSignLMap[];
-extern BYTE GarageSignRMap[];
+extern uint32 GarageSignLTiles[];
+extern uint32 GarageSignRTiles[];
+extern uint16 GarageSignLMap[];
+extern uint16 GarageSignRMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -44,6 +44,9 @@ CharSetROMSpec GarageSignLCharset =
 
 	// char spec
 	GarageSignLTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 CharSetROMSpec GarageSignRCharset =
@@ -59,6 +62,9 @@ CharSetROMSpec GarageSignRCharset =
 
 	// char spec
 	GarageSignRTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec GarageSignLTexture =

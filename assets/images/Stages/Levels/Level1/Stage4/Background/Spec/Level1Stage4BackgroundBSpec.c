@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE Level1Stage4BackgroundTiles[];
-extern BYTE Level1Stage4BackgroundBMap[];
+extern uint32 Level1Stage4BackgroundTiles[];
+extern uint16 Level1Stage4BackgroundBMap[];
 extern CharSetSpec Level1Stage4BackgroundCharset;
 
 

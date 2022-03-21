@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE GameOverTiles[];
-extern BYTE GameOverMap[];
+extern uint32 GameOverTiles[];
+extern uint16 GameOverMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec GameOverCharset =
 
 	// char spec
 	GameOverTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec GameOverTexture =

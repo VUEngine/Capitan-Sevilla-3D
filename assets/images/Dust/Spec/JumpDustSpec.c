@@ -23,8 +23,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE JumpDustTiles[];
-extern BYTE JumpDustMap[];
+extern uint32 JumpDustTiles[];
+extern uint16 JumpDustMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -94,8 +94,11 @@ CharSetROMSpec JumpDustCharset =
 	// (__ANIMATED_SINGLE, __ANIMATED_SINGLE_OPTIMIZED, __ANIMATED_SHARED, __ANIMATED_SHARED_COORDINATED, __ANIMATED_MULTI or __NOT_ANIMATED)
 	__ANIMATED_SINGLE,
 
-	// char definition
+	// char spec
 	JumpDustTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec JumpDustTexture =

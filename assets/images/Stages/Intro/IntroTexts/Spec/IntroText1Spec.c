@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE IntroText1Tiles[];
-extern BYTE IntroText1Map[];
+extern uint32 IntroText1Tiles[];
+extern uint16 IntroText1Map[];
 extern AnimationDescription LocalizedEntityAnimation;
 
 
@@ -43,6 +43,9 @@ CharSetROMSpec IntroText1Charset =
 
 	// char spec
 	IntroText1Tiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec IntroText1Texture =

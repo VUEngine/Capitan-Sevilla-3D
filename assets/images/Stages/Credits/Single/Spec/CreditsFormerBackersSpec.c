@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CreditsFormerBackersTiles[];
-extern BYTE CreditsFormerBackersMap[];
+extern uint32 CreditsFormerBackersTiles[];
+extern uint16 CreditsFormerBackersMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec CreditsFormerBackersCharset =
 
 	// char spec
 	CreditsFormerBackersTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec CreditsFormerBackersTexture =

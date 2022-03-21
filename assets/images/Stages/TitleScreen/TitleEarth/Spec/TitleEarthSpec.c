@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE TitleEarthTiles[];
-extern BYTE TitleEarthMap[];
+extern uint32 TitleEarthTiles[];
+extern uint16 TitleEarthMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -42,6 +42,9 @@ CharSetROMSpec TitleEarthCharset =
 
 	// char spec
 	TitleEarthTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec TitleEarthTexture =

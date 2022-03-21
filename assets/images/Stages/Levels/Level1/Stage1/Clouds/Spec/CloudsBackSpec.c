@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE CloudsTiles[];
-extern BYTE CloudsBackMap[];
+extern uint32 CloudsTiles[];
+extern uint16 CloudsBackMap[];
 extern CharSetSpec CloudsCharset;
 
 

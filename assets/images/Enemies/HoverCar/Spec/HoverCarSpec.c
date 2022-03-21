@@ -21,8 +21,8 @@
 //												DECLARATIONS
 //---------------------------------------------------------------------------------------------------------
 
-extern BYTE HoverCarTiles[];
-extern BYTE HoverCarMap[];
+extern uint32 HoverCarTiles[];
+extern uint16 HoverCarMap[];
 
 
 //---------------------------------------------------------------------------------------------------------
@@ -72,6 +72,9 @@ CharSetROMSpec HoverCarCharset =
 
 	// char spec
 	HoverCarTiles,
+
+	// pointer to the frames offsets
+	NULL,
 };
 
 TextureROMSpec HoverCarTexture =
