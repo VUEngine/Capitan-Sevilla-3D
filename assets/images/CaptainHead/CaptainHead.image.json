@@ -1,0 +1,26 @@
+{
+    "images": [
+        "."
+    ],
+    "name": "",
+    "section": "rom",
+    "tileset": {
+        "shared": false,
+        "reduce": false,
+        "compress": false
+    },
+    "map": {
+        "generate": true,
+        "reduce": {
+            "flipped": false,
+            "unique": false
+        },
+        "compress": false
+    },
+    "animation": {
+        "isAnimation": true,
+        "individualFiles": false,
+        "frameWidth": 2,
+        "frameHeight": 2
+    }
+}

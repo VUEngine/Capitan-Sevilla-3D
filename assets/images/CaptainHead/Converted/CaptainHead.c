@@ -4,7 +4,7 @@
 //  • 16×80 pixels
 //  • 20 tiles, unreduced, not compressed
 //  • 2×10 map, not compressed
-//  • 1 animation frames, 5×7, spritesheet
+//  • 5 animation frames, 2×2, spritesheet
 //  Size: 324 + 40 = 364
 //
 //---------------------------------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ const uint16 CaptainHeadMap[20] __attribute__((aligned(4))) =
     0x0010,0x0011,0x0012,0x0013,
 };
 
-const uint32 CaptainHeadTilesFrameOffsets[1] __attribute__((aligned(4))) =
+const uint32 CaptainHeadTilesFrameOffsets[5] __attribute__((aligned(4))) =
 {
-    0x00000001,
+    0x00000001,0x00000011,0x00000021,0x00000031,0x00000041,
 };
