@@ -61,8 +61,8 @@ int32 main()
 	//Game::start(Game::getInstance(), GameState::safeCast(CreditsState::getInstance()));
 	//Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
 	//Game::start(Game::getInstance(), GameState::safeCast(TitleScreenState::getInstance()));
-	//Game::start(Game::getInstance(), GameState::safeCast(AdjustmentScreenState::getInstance()));
-	Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+	//Game::start(Game::getInstance(), GameState::safeCast(PlatformerLevelState::getInstance()));
+	Game::start(Game::getInstance(), GameState::safeCast(AdjustmentScreenState::getInstance()));
 
 	// end program
 	return true;
