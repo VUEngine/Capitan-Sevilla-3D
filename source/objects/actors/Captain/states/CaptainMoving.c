@@ -57,7 +57,7 @@ void CaptainMoving::enter(void* owner)
 
 	// make sure that the captain's body is awaken right now so the check during
 	// the execute method doesn't fail
-	Captain::applyForce(owner, __X_AXIS, false);
+	Captain::applyForceToBody(owner, __X_AXIS, false);
 }
 
 void CaptainMoving::execute(void* owner)
@@ -65,7 +65,7 @@ void CaptainMoving::execute(void* owner)
 	// keep adding force
 	if(((K_LL | K_LR ) & KeypadManager::getHoldKey(KeypadManager::getInstance())) && Body::isAwake(Actor::getBody(owner)))
 	{
-		Captain::applyForce(owner, __X_AXIS, false);
+		Captain::applyForceToBody(owner, __X_AXIS, false);
 	}
 
 	// play footstep sounds
@@ -125,7 +125,7 @@ void CaptainMoving::onKeyPressed(void* owner, const UserInput* userInput)
 	}
 	else if((K_LL | K_LR ) & (userInput->pressedKey | userInput->holdKey))
 	{
-		Captain::applyForce(owner, __X_AXIS, true);
+		Captain::applyForceToBody(owner, __X_AXIS, true);
 
 		Captain::checkDirection(owner, userInput->pressedKey, "Walk");
 	}

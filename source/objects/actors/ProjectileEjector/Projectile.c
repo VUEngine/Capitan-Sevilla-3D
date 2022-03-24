@@ -99,7 +99,7 @@ void Projectile::startMovement()
 	}
 	else
 	{
-		Actor::addForce(this, &this->projectileSpec->velocity, true);
+		Actor::applyForce(this, &this->projectileSpec->velocity, true);
 	}
 	*/
 

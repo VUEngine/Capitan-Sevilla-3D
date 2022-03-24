@@ -250,7 +250,7 @@ void Captain::jump(bool checkIfYMovement)
 				force.y = __FIX10_6_MULT(__ABS(yBouncingPlaneNormal), CAPTAIN_NORMAL_JUMP_INPUT_FORCE);
 
 				// add the force to actually make the captain jump
-				Actor::addForce(this, &force, true);
+				Actor::applyForce(this, &force, true);
 			}
 			else
 			{
@@ -264,7 +264,7 @@ void Captain::jump(bool checkIfYMovement)
 				this->jumps = 2;
 
 				// add the force to actually make the captain jump
-				Actor::addForce(this, &force, true);
+				Actor::applyForce(this, &force, true);
 			}
 
 			// play jump animation
@@ -289,7 +289,7 @@ void Captain::jump(bool checkIfYMovement)
 }
 
 // keep movement
-void Captain::applyForce(uint16 axis, bool enableAddingForce)
+void Captain::applyForceToBody(uint16 axis, bool enableAddingForce)
 {
 	if(enableAddingForce)
 	{
@@ -323,7 +323,7 @@ void Captain::applyForce(uint16 axis, bool enableAddingForce)
 			zForce
 		};
 
-		Actor::addForce(this, &force, true);
+		Actor::applyForce(this, &force, true);
 	}
 	else
 	{
@@ -370,7 +370,7 @@ void Captain::stopAddingForce()
 			zForce
 		};
 
-		Actor::addForce(this, &force, true);
+		Actor::applyForce(this, &force, true);
 	}
 	else
 	{
