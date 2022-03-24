@@ -31,6 +31,7 @@
 #include <CustomCameraEffectManager.h>
 #include <EventManager.h>
 #include <SoundManager.h>
+#include <WaveForms.h>
 #include <PlatformerLevelState.h>
 #include <MovingOneWayEntity.h>
 #include <ProjectileEjector.h>
