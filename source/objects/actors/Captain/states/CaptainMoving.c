@@ -20,6 +20,7 @@
 #include <MessageDispatcher.h>
 #include <KeypadManager.h>
 #include <SoundManager.h>
+#include <WaveForms.h>
 #include <debugUtilities.h>
 
 

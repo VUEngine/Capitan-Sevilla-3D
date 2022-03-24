@@ -19,6 +19,7 @@
 #include <Box.h>
 #include <PhysicalWorld.h>
 #include <SoundManager.h>
+#include <WaveForms.h>
 #include <EventManager.h>
 #include <ProgressManager.h>
 #include "Lift.h"

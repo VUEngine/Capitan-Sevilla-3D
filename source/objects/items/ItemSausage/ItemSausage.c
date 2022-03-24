@@ -15,6 +15,7 @@
 #include <GameEvents.h>
 #include <Game.h>
 #include <SoundManager.h>
+#include <WaveForms.h>
 #include <EventManager.h>
 #include "ItemSausage.h"
 
