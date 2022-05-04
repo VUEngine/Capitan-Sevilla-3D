@@ -134,6 +134,9 @@ EntityROMSpec Level1Stage1Building7Entity =
 
 	// use z displacement in projection
 	false,
+			
+	/// meshes
+	(MeshSpec*)NULL,
 
 	// collision shapes
 	NULL,

@@ -336,6 +336,9 @@ EntityROMSpec Cs3dLogoEntity =
 
 	// use z displacement in projection
 	false,
+			
+	/// meshes
+	(MeshSpec*)NULL,
 
 	// collision shapes
 	NULL,

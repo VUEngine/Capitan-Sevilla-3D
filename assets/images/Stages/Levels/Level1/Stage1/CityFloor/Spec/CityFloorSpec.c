@@ -263,6 +263,9 @@ EntityROMSpec CityFloorEntity =
 
 	// use z displacement in projection
 	false,
+			
+	/// meshes
+	(MeshSpec*)NULL,
 
 	// collision shapes
 	NULL,
@@ -315,6 +318,9 @@ CollisionROMSpec CITY_FLOOR_CollisionCl =
 
 	// use z displacement in projection
 	false,
+			
+	/// meshes
+	(MeshSpec*)NULL,
 
 	// collision shapes
 	(ShapeSpec*)NULL,

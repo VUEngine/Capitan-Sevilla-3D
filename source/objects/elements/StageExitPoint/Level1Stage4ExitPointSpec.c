@@ -75,6 +75,9 @@ StageExitPointROMSpec Level1Stage4MainExitXp =
 
 		// use z displacement in projection
 		false,
+			
+		/// meshes
+		(MeshSpec*)NULL,
 
 		// collision shapes
 		(ShapeSpec*)Level1Stage4MainExitPointShapes,

@@ -274,6 +274,9 @@ LiftROMSpec Level1Stage2LiftEntity =
 
 				// use z displacement in projection
 				false,
+			
+				/// meshes
+				(MeshSpec*)NULL,
 
 				// collision shapes
 				(ShapeSpec*)Level1Stage2LiftShapes,
@@ -335,6 +338,9 @@ LiftROMSpec Level1Stage3LiftEntity =
 
 				// use z displacement in projection
 				false,
+			
+				/// meshes
+				(MeshSpec*)NULL,
 
 				// collision shapes
 				(ShapeSpec*)Level1Stage2LiftShapes,
@@ -432,6 +438,9 @@ LiftROMSpec Level1Stage4LiftEntity =
 
 				// use z displacement in projection
 				false,
+			
+				/// meshes
+				(MeshSpec*)NULL,
 
 				// collision shapes
 				(ShapeSpec*)Level1Stage4LiftShapes,

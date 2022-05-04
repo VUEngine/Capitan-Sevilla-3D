@@ -348,6 +348,9 @@ EntityROMSpec Level1Stage3Building3aEntity =
 
 	// use z displacement in projection
 	false,
+			
+	/// meshes
+	(MeshSpec*)NULL,
 
 	// collision shapes
 	(ShapeSpec*)Level1Stage3Building3aShapes,

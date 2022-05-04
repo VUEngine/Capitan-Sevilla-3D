@@ -220,6 +220,9 @@ ProjectileEjectorROMSpec PillEjectorPe =
 
 			// use z displacement in projection
 			false,
+			
+			/// meshes
+			(MeshSpec*)NULL,
 
 			// collision shapes
 			NULL,
@@ -287,6 +290,9 @@ EnemyROMSpec ManoloEm =
 
 					// use z displacement in projection
 					false,
+			
+					/// meshes
+					(MeshSpec*)NULL,
 
 					// collision shapes
 					(ShapeSpec*)ManoloShapes,
